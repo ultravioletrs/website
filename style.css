@@ -1,0 +1,9 @@
+* {
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* Apply Inter font to all headings */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Sen', sans-serif;
+}
+  
