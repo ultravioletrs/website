@@ -454,6 +454,44 @@
   
   
 
+<!-- TEE Manager section -->
+<section id="tee-manager" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+          <img src="img/tee-manager.png" alt="TEE Manager in Cocos AI" class="img-fluid" style="max-width: 500px;">
+        </div>
+        <div class="col-md-6">
+          <h1>TEE Manager</h1>
+          <p>TEE Manager is a pivotal component within the Cocos AI architecture, dedicated to enabling dynamic deployment and configuration of Trusted Execution Environments (TEEs) required for confidential multi-party computations.</p>
+          <p>When a computation is initiated, TEE Manager orchestrates the creation of secure TEEs, equipping them with the necessary hardware and runtime support. It continually monitors the execution and health of each enclave, ensuring that computations run securely and efficiently.</p>
+          <p>Once a computation is completed and its result is securely extracted from the enclave, TEE Manager is responsible for the timely destruction of the used TEEs and the erasure of all related data, preserving confidentiality and data integrity.</p>
+        </div>
+      </div>
+    </div>
+</section>
+<!-- End of TEE Manager section -->
+
+  
+
+<!-- In-enclave Agent section -->
+<section id="in-enclave-agent" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>In-enclave Agent</h1>
+          <p>In-enclave Agent is a lightweight, open-source component at the heart of Cocos AI. Operating within secure enclaves, this agent plays a crucial role in coordinating the execution of algorithms and ensuring the secure exchange of data.</p>
+          <p>The In-enclave Agent establishes TLS-encrypted channels, allowing clients such as Data Providers and Algorithm Providers to securely upload AI algorithms and datasets. It also facilitates remote attestation for Trusted Execution Environments (TEEs), ensuring the integrity and authenticity of the execution environment.</p>
+          <p>With its capabilities, the In-enclave Agent contributes to the platform's robust security and efficient execution of AI computations, making it a key component for ensuring confidentiality and data protection.</p>
+        </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+          <img src="img/in-enclave-agent.png" alt="In-enclave Agent in Cocos AI" class="img-fluid" style="max-width: 500px;">
+        </div>
+      </div>
+    </div>
+</section>
+<!-- End of In-enclave Agent section -->
+  
 
 
 
@@ -461,59 +499,70 @@
 
 <!-- Remote Attestation section -->
 <section id="remote-attestation" class="py-5">
-  <div class="container">
+    <div class="container">
       <div class="row">
-          <div class="col-md-6 d-flex align-items-center justify-content-center">
-              <img src="img/remote-attestation.png" alt="Remote Attestation in Confidential Computing" class="img-fluid" style="max-width: 500px;">
-          </div>
-          <div class="col-md-6">
-              <h1>Remote Attestation</h1>
-              <p>Remote Attestation is a critical component of Confidential Computing, leveraging Trusted Execution Environments (TEEs) to ensure the integrity and security of remote systems and applications. It allows you to establish trust and verify the authenticity of your computing environment, even in untrusted or remote settings.</p>
-              <p>With TEEs, remote attestation guarantees that your data and workloads run within secure enclaves, isolated from potential threats. This process involves verifying the identity of a remote system, ensuring it is running trusted and unaltered software, and encrypting data transmissions for secure communication.</p>
-              <p>By using Remote Attestation in Confidential Computing, you can confidently collaborate and process data across untrusted networks while maintaining the highest level of security and privacy.</p>
-          </div>
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+          <img src="img/remote-attestation.png" alt="Remote Attestation in Confidential Computing" class="img-fluid" style="max-width: 500px;">
+        </div>
+        <div class="col-md-6">
+          <h1>Remote Attestation</h1>
+          <p>Remote Attestation is a critical component of Confidential Computing, leveraging Trusted Execution Environments (TEEs) to ensure the integrity and security of remote systems and applications. It allows you to establish trust and verify the authenticity of your computing environment, even in untrusted or remote settings.</p>
+          <p>With TEEs, remote attestation guarantees that your data and workloads run within secure enclaves, isolated from potential threats. This process involves verifying the identity of a remote system, ensuring it is running trusted and unaltered software, and encrypting data transmissions for secure communication.</p>
+          <p>By using Remote Attestation in Confidential Computing, you can confidently collaborate and process data across untrusted networks while maintaining the highest level of security and privacy.</p>
+        </div>
       </div>
-  </div>
+    </div>
 </section>
 <!-- End of Remote Attestation section -->
 
+  
 
 
 
 
-<!-- Functionalities section -->
+
+
+
+<!-- Cocos AI Use-Cases section -->
 <section class="py-lg-5 py-md-4 py-sm-3 py-2">
-  <div class="container">
+    <div class="container">
+      <h2 class="text-center">Where Cocos AI is Used</h2>
       <div class="row mt-5 mb-5">
-          <div class="col">
-              <div class="d-flex flex-column align-items-center">
-                  <i class="fas fa-cogs fa-3x mb-3"></i>
-                  <h3 class="text-center">TEE Enablement</h3>
-                  <p class="text-left text-justify">Ultraviolet specializes in the enablement of Trusted Execution Environments (TEEs) across various CPU architectures and platforms. TEEs provide secure, isolated environments within the CPU, ensuring the confidentiality and integrity of your computations and data.</p>
-              </div>
+        <!-- Healthcare -->
+        <div class="col">
+          <div class="d-flex flex-column align-items-center">
+            <i class="fas fa-medkit fa-3x mb-3"></i>
+            <h3 class="text-center">Healthcare</h3>
+            <p class="text-left text-justify">In the healthcare sector, Cocos AI brings the power of confidential computing and secure multi-party computation (SMPC) to protect sensitive patient data and enable collaborative research. Healthcare organizations can securely share and analyze patient records, conduct research on medical data, and develop AI-driven healthcare solutions while maintaining data privacy and compliance with regulations.</p>
           </div>
-          <div class="col">
-              <div class="d-flex flex-column align-items-center">
-                  <i class="fas fa-lock fa-3x mb-3"></i>
-                  <h3 class="text-center">Confidential Cloud</h3>
-                  <p class="text-left text-justify">Experience the future of cybersecurity with Ultraviolet's confidential cloud solutions. We ensure the security, reliability, and confidentiality of your cloud infrastructure. Your data and workloads are protected within secure enclaves, safeguarding against unauthorized access and external threats.</p>
-              </div>
+        </div>
+        <!-- Finance -->
+        <div class="col">
+          <div class="d-flex flex-column align-items-center">
+            <i class="fas fa-chart-line fa-3x mb-3"></i>
+            <h3 class="text-center">Finance</h3>
+            <p class="text-left text-justify">In the finance sector, Cocos AI enhances data security and privacy for financial institutions and organizations. It enables secure data sharing and collaborative financial analysis while protecting sensitive financial data. Financial organizations can securely exchange financial information, perform risk assessments, and develop AI-driven financial models, all within confidential computing environments.</p>
           </div>
-          <div class="col">
-            <div class="d-flex flex-column align-items-center">
-                <i class="fas fa-rocket fa-3x mb-3"></i>
-                <h3 class="text-center">Secure Collaboration</h3>
-                <p class="text-left text-justify">Ultraviolet's secure multi-party computation (SMPC) platform allows multiple parties to collaboratively process data without exposing sensitive information. Powered by Trusted Execution Environments (TEEs), our platform ensures the confidentiality and privacy of your data exchanges and AI workloads.</p>
-            </div>
-        </div>  
+        </div>
+        <!-- Government -->
+        <div class="col">
+          <div class="d-flex flex-column align-items-center">
+            <i class="fas fa-building fa-3x mb-3"></i>
+            <h3 class="text-center">Government</h3>
+            <p class="text-left text-justify">In government agencies and institutions, Cocos AI ensures data security and privacy for critical government operations. It enables secure multi-party computation (SMPC) for collaborative data analysis, secure data sharing between government departments, and confidential computing for sensitive government applications. Government entities can leverage Cocos AI to protect classified information, enhance cybersecurity, and drive data-driven policy decisions.</p>
+          </div>
+        </div>
       </div>
-      <!-- Call to Action (CTA) button to explore products -->
+      <!-- Call to Action (CTA) button to contact us -->
       <div class="text-center">
-          <a href="products.html" class="btn btn-success btn-lg">Explore Our Products</a>
+        <a href="contact.html" class="btn btn-success btn-lg">Contact Us to Learn More</a>
       </div>
-  </div>
-</section>
-<!-- End of Functionalities section -->
+    </div>
+  </section>
+  <!-- End of Cocos AI Use-Cases section -->
+  
+  
+  
 
 
 
