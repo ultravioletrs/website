@@ -376,29 +376,16 @@
         <img src="img/cocos-architecture.png" alt="Cocos AI Architecture" class="img-fluid">
       </div>
 
-        <div class="row">
-            <div class="col-md-12 mt-5">
-                <p><strong>Hardware Abstraction Layer and Secure Enclaves:</strong> At its core, Cocos AI leverages a Hardware Abstraction Layer (HAL) and Trusted Execution Environments (TEEs) to provide secure enclaves for workload execution. This secure foundation ensures the confidentiality and integrity of AI workloads.</p>
-                
-                <p><strong>Computation Definition and Management:</strong> Cocos AI enables users to define and manage computations, specifying characteristics and participants. It dynamically provisions secure VMs (TEEs) with hardware and runtime enablement, ensuring secure computation orchestration.</p>
-                
-                <p><strong>In-Enclave Agent:</strong> The in-enclave Agent serves as an execution scheduler and coordinator, facilitating the seamless execution of programs over combined datasets following the Computation manifest.</p>
-                
-                <p><strong>End-to-End Encryption:</strong> Cocos AI ensures the privacy and security of data with end-to-end encryption, safeguarding sensitive information throughout the AI computation process.</p>
-                
-                <p><strong>Remote Attestation Mechanism:</strong> A robust remote attestation mechanism verifies the validity of the enclave, ensuring the integrity of the execution environment before program execution begins.</p>
-                
-                <p><strong>Intuitive User Interface:</strong> Cocos AI provides an intuitive user interface that simplifies the management and monitoring of AI computations, enhancing user experience and efficiency.</p>
-                
-                <p><strong>Platform Logging and Instrumentation:</strong> The platform supports logging and instrumentation with Grafana, Prometheus, and OpenTracing, offering comprehensive insights into AI computation performance and health.</p>
-                
-                <p><strong>Container-Based Deployment:</strong> Cocos AI uses Docker and Kubernetes for cloud components, along with provisioning and configuration scripts for confidential server components, ensuring efficient and scalable deployment.</p>
-                
-                <p><strong>SDK and CLI:</strong> Developers benefit from the Software Development Kit (SDK) and Command Line Interface (CLI), simplifying development and management tasks.</p>
-                
-                <p><strong>Domain-Driven Design and High-Quality Code:</strong> Cocos AI employs a domain-driven design architecture, ensuring high-quality code with extensive test coverage for stability and reliability.</p>
-            </div>
+      <div class="row">
+        <div class="col-md-12 mt-5">
+          <p><strong>1. Cloud Services:</strong> Cocos AI leverages a microservices-based architecture, with each service containerized using Docker and orchestrated by Kubernetes. These cloud services include the Computations service, responsible for managing confidential multi-party computations deployed within secure enclaves, Users service, that offers user and organization management, Authorization service, ensuring robust authentication and policy-based authorization, and an intuitive user interface (UI).</p>
+          
+          <p><strong>2. TEE Manager:</strong> The Trusted Execution Environment (TEE) Manager is a critical microservice running on host hardware equipped with TEE hardware. Its role is to dynamically deploy and configure TEEs required for confidential multi-party computations. Once a computation is deployed within a newly-created TEE, the Manager actively monitors its execution and health. After the computation is complete and the result is extracted from the enclave, the Manager ensures the secure destruction of the TEE and nullifies all associated data, maintaining confidentiality.</p>
+          
+          <p><strong>3. In-Enclave Agent:</strong> The In-enclave Agent is an open-source, lightweight component running within the enclave. It serves as a coordinator for algorithm execution, establishing TLS-encrypted channels over which clients (Data Providers and Algorithm Providers) can securely upload AI algorithms and datasets. Additionally, the In-enclave Agent provides remote attestation for the TEE, ensuring the integrity of the execution environment.</p>
         </div>
+      </div>
+
     </div>
     </div>
   </section>
