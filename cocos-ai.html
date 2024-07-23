@@ -91,24 +91,25 @@
 
 <!-- Cocos AI section -->
 <section id="cocos-ai" class="py-5">
-    <div class="container">
+  <div class="container">
       <div class="row">
-        <div class="col-md-6 mt-5 d-flex align-items-center justify-content-center">
-            <img src="img/cocos-concept.png" alt="pattern-white" class="img-fluid">
-        </div>
-        <div class="col-md-6">
-          <div class="mt-5">
-            <h1>Introducing Cocos AI</h1>
-            <p>Cocos AI is a cutting-edge platform meticulously engineered to empower organizations and developers in executing confidential workloads within secure enclaves known as Trusted Execution Environments (TEEs). Whether operating in private, hybrid, or public cloud settings, Cocos AI excels in provisioning secure encrypted Virtual Machines (VMs).</p>
-            <p>At its core, Cocos AI offers an extensive Hardware Abstraction Layer (HAL) and runtime environment within these VMs, orchestrating secure computations and vigilantly monitoring their execution. This unique combination of features sets the stage for Secure Multi-party Computation (SMPC), enabling organizations to collaborate securely on AI projects while preserving the privacy of sensitive data.</p>
-            <p>Cocos AI is more than just a platform; it's a catalyst for privacy-preserving collaborative AI. It equips users with a versatile set of tools, libraries, and software components, facilitating seamless and secure data exchange. This capability enables developers to engage in collaborative AI initiatives with confidence, knowing that their data remains confidential throughout the process.</p>
-            <p>With Cocos AI, secure data sharing becomes a reality. Organizations can harness the power of AI while ensuring the utmost privacy and security for their data. Collaborate, innovate, and harness the potential of AI in a confidential and protected environment with Cocos AI.</p>
+          <div class="col-md-6 mt-5 d-flex align-items-center justify-content-center">
+              <img src="img/cocos-concept.png" alt="Cocos Concept" class="img-fluid">
           </div>
-        </div>
+          <div class="col-md-6">
+              <div class="mt-5">
+                  <h1>Introducing Cocos AI</h1>
+                  <p><a href="https://github.com/ultravioletrs/cocos">Cocos AI</a> is an open-source system designed for running confidential workloads. It features a Confidential VM (CVM) manager, an in-enclave Agent, and a Command Line Interface (CLI) for secure communication with the enclave.</p>
+                  <p>Cocos AI implements and enables Remote Attestation procedures, ensuring the integrity and security of the execution environment. The platform also includes an open-source, Linux-based Hardware Abstraction Layer (HAL) and supports runtime environments within Trusted Execution Environments (TEEs) for Python, Docker, and WebAssembly (Wasm) workloads.</p>
+                  <p>With Cocos AI, organizations and developers can efficiently manage confidential workloads within secure enclaves, facilitating secure multi-party computation (SMPC) and ensuring the privacy of sensitive data. The platform provides a comprehensive set of tools, libraries, and software components to enable seamless and secure data exchange, promoting privacy-preserving collaborative AI initiatives.</p>
+                  <p>By leveraging Cocos AI, organizations can confidently collaborate, innovate, and harness the potential of AI within a confidential and protected environment. Experience secure data sharing and robust confidentiality with Cocos AI.</p>
+              </div>
+          </div>
       </div>
-    </div>
-  </section>
-  <!-- End of Cocos AI section -->
+  </div>
+</section>
+<!-- End of Cocos AI section -->
+
 
 
 
@@ -124,38 +125,6 @@
         </div>
       </div>
       <div class="row">
-  
-        <!-- Computation Definition and Management -->
-        <div class="col-md-6 mb-4">
-          <div class="row">
-            <div class="col-3">
-              <div class="text-center">
-                <i class="fas fa-cogs fa-2x mb-3"></i>
-              </div>
-            </div>
-            <div class="col-9">
-              <h5 class="text-left mb-3">Computation Definition and Management</h5>
-              <p class="text-left">Cocos AI simplifies computation definition and management, enabling users to effortlessly define and execute secure workloads within Trusted Execution Environments (TEEs). This feature facilitates efficient orchestration of computations while maintaining data confidentiality.</p>
-            </div>
-          </div>
-        </div>
-        <!-- End of Computation Definition and Management -->
-  
-        <!-- Fine-Grained Access Control -->
-        <div class="col-md-6 mb-4">
-          <div class="row">
-            <div class="col-3">
-              <div class="text-center">
-                <i class="fas fa-shield-alt fa-2x mb-3"></i>
-              </div>
-            </div>
-            <div class="col-9">
-              <h5 class="text-left mb-3">Fine-Grained Access Control</h5>
-              <p class="text-left">Cocos AI empowers users with fine-grained access control through policies and attribute-based access control (ABAC) or role-based access control (RBAC). Ensure that only authorized entities access your confidential workloads and data.</p>
-            </div>
-          </div>
-        </div>
-        <!-- End of Fine-Grained Access Control -->
   
         <!-- Secure VM Provisioning and Management -->
         <div class="col-md-6 mb-4">
@@ -237,53 +206,22 @@
         </div>
         <!-- End of Remote Attestation Mechanism -->
   
-        <!-- Intuitive User Interface -->
+        <!-- Multiple Runtime Environments -->
         <div class="col-md-6 mb-4">
           <div class="row">
             <div class="col-3">
               <div class="text-center">
-                <i class="fas fa-desktop fa-2x mb-3"></i>
+                <i class="fa-solid fa-cogs fa-2x mb-3"></i> <!-- Changed icon to represent multiple environments -->
               </div>
             </div>
             <div class="col-9">
-              <h5 class="text-left mb-3">Intuitive User Interface</h5>
-              <p class="text-left">Cocos AI offers an intuitive user interface, simplifying the management and orchestration of secure workloads. Experience seamless control over your confidential computing environment.</p>
+              <h5 class="text-left mb-3">Multiple Runtime Environments</h5>
+              <p class="text-left">Cocos AI supports a variety of runtime environments for executing confidential workloads within enclaves.
+                This includes Python for flexible scripting and data manipulation, Docker for containerized applications ensuring isolation and consistency, and WebAssembly (Wasm) for running lightweight and secure code in a portable format.</p>
             </div>
           </div>
         </div>
-        <!-- End of Intuitive User Interface -->
-  
-        <!-- Platform Logging and Instrumentation Support -->
-        <div class="col-md-6 mb-4">
-          <div class="row">
-            <div class="col-3">
-              <div class="text-center">
-                <i class="fas fa-chart-bar fa-2x mb-3"></i>
-              </div>
-            </div>
-            <div class="col-9">
-              <h5 class="text-left mb-3">Platform Logging and Instrumentation Support</h5>
-              <p class="text-left">Cocos AI offers comprehensive platform logging and instrumentation support, including Grafana, Prometheus, and OpenTracing integration. Gain complete visibility and insight into your secure computing environment's performance.</p>
-            </div>
-          </div>
-        </div>
-        <!-- End of Platform Logging and Instrumentation Support -->
-  
-        <!-- Container-Based Deployment -->
-        <div class="col-md-6 mb-4">
-          <div class="row">
-            <div class="col-3">
-              <div class="text-center">
-                <i class="fa-brands fa-docker fa-2x mb-3"></i>
-              </div>
-            </div>
-            <div class="col-9">
-              <h5 class="text-left mb-3">Container-Based Deployment</h5>
-              <p class="text-left">Cocos AI facilitates container-based deployment using Docker and Kubernetes for cloud components. Additionally, it offers a set of provisioning and configuration scripts for confidential server components. Streamline your deployment process for enhanced efficiency.</p>
-            </div>
-          </div>
-        </div>
-        <!-- End of Container-Based Deployment -->
+        <!-- End of Multiple Runtime Environments -->
   
         <!-- SDK and CLI -->
         <div class="col-md-6 mb-4">
@@ -379,81 +317,23 @@
 
       <div class="row">
         <div class="col-md-12 mt-5">
-          <p><strong>1. Cloud Services:</strong> Cocos AI leverages a microservices-based architecture, with each service containerized using Docker and orchestrated by Kubernetes. These cloud services include the Computations service, responsible for managing confidential multi-party computations deployed within secure enclaves, Users service, that offers user and organization management, Authorization service, ensuring robust authentication and policy-based authorization, and an intuitive user interface (UI).</p>
-          
-          <p><strong>2. TEE Manager:</strong> The Trusted Execution Environment (TEE) Manager is a critical microservice running on host hardware equipped with TEE hardware. Its role is to dynamically deploy and configure TEEs required for confidential multi-party computations. Once a computation is deployed within a newly-created TEE, the Manager actively monitors its execution and health. After the computation is complete and the result is extracted from the enclave, the Manager ensures the secure destruction of the TEE and nullifies all associated data, maintaining confidentiality.</p>
-          
-          <p><strong>3. In-Enclave Agent:</strong> The In-enclave Agent is an open-source, lightweight component running within the enclave. It serves as a coordinator for algorithm execution, establishing TLS-encrypted channels over which clients (Data Providers and Algorithm Providers) can securely upload AI algorithms and datasets. Additionally, the In-enclave Agent provides remote attestation for the TEE, ensuring the integrity of the execution environment.</p>
+            <p><strong>1. TEE Manager:</strong> The Trusted Execution Environment (TEE) Manager is a critical microservice running on host hardware equipped with TEE hardware. Its role is to dynamically deploy and configure TEEs required for confidential multi-party computations. Once a computation is deployed within a newly-created TEE, the Manager actively monitors its execution and health. After the computation is complete and the result is extracted from the enclave, the Manager ensures the secure destruction of the TEE and nullifies all associated data, maintaining confidentiality.</p>
+    
+            <p><strong>2. In-Enclave Agent:</strong> The In-enclave Agent is an open-source, lightweight component running within the enclave. It serves as a coordinator for algorithm execution, establishing TLS-encrypted channels over which clients (Data Providers and Algorithm Providers) can securely upload AI algorithms and datasets. Additionally, the In-enclave Agent provides remote attestation for the TEE, ensuring the integrity of the execution environment.</p>
+    
+            <p><strong>3. HAL (Hardware Abstraction Layer):</strong> The Hardware Abstraction Layer (HAL) in Cocos AI provides a unified interface for interacting with various hardware architectures, including AMD SEV and Intel TDX. It abstracts the hardware-specific details to ensure seamless integration and operation of confidential computing tasks across different hardware platforms. This layer facilitates consistent and efficient management of hardware resources for secure computations.</p>
+    
+            <p><strong>4. CLI (Command Line Interface):</strong> The Command Line Interface (CLI) provides a text-based interface for interacting with the Cocos AI system. It allows users to configure, manage, and monitor confidential computations and TEEs through command-line commands. The CLI offers powerful scripting capabilities and detailed control over system operations, making it an essential tool for advanced users and administrators.</p>
         </div>
-      </div>
+    </div>    
 
     </div>
     </div>
   </section>
   <!-- End of Cocos AI Architecture -->
-  
 
 
 
-  <!-- How Cocos AI Works section -->
-<section id="how-it-works" class="py-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <h2>How Cocos AI Works</h2>
-            </div>
-        </div>
-        <div class="row mt-5">
-
-            <!-- Step 1: User creates Computation -->
-            <div class="col-md-3 mb-4">
-                <div class="text-center">
-                    <i class="fas fa-cogs fa-3x mb-3"></i>
-                </div>
-                <h5 class="text-center mb-3">Step 1</h5>
-                <p class="text-center">User creates a Computation, defines characteristics, and participants. A secure VM (TEE) is provisioned and prepared for use.</p>
-            </div>
-            <!-- End of Step 1 -->
-
-            <!-- Step 2: Upload Programs and Data -->
-            <div class="col-md-3 mb-4">
-                <div class="text-center">
-                    <i class="fas fa-cloud-upload-alt fa-3x mb-3"></i>
-                </div>
-                <h5 class="text-center mb-3">Step 2</h5>
-                <p class="text-center">Program and Data Providers upload programs and datasets into the enclave using secure CLI and remote attestation.</p>
-            </div>
-            <!-- End of Step 2 -->
-
-            <!-- Step 3: Program Execution -->
-            <div class="col-md-3 mb-4">
-                <div class="text-center">
-                    <i class="fas fa-play-circle fa-3x mb-3"></i>
-                </div>
-                <h5 class="text-center mb-3">Step 3</h5>
-                <p class="text-center">Programs are executed over combined datasets, coordinated by an in-enclave Agent, following the Computation manifest.</p>
-            </div>
-            <!-- End of Step 3 -->
-
-            <!-- Step 4: Result Delivery -->
-            <div class="col-md-3 mb-4">
-                <div class="text-center">
-                    <i class="fas fa-envelope-open-text fa-3x mb-3"></i>
-                </div>
-                <h5 class="text-center mb-3">Step 4</h5>
-                <p class="text-center">Results are sent to the Result Consumer user as the algorithm completes execution inside the enclave.</p>
-            </div>
-            <!-- End of Step 4 -->
-
-        </div>
-    </div>
-</section>
-<!-- End of How Cocos AI Works section -->
-
-
-
-  
-  
 
 <!-- TEE Manager section -->
 <section id="tee-manager" class="py-5">
@@ -515,54 +395,6 @@
     </div>
 </section>
 <!-- End of Remote Attestation section -->
-
-  
-
-
-
-
-
-
-
-<!-- Cocos AI Use-Cases section -->
-<section class="py-lg-5 py-md-4 py-sm-3 py-2">
-    <div class="container">
-      <h2 class="text-center">Where Cocos AI is Used</h2>
-      <div class="row mt-5 mb-5">
-        <!-- Healthcare -->
-        <div class="col">
-          <div class="d-flex flex-column align-items-center">
-            <i class="fas fa-medkit fa-3x mb-3"></i>
-            <h3 class="text-center">Healthcare</h3>
-            <p class="text-left text-justify">In the healthcare sector, Cocos AI brings the power of confidential computing and secure multi-party computation (SMPC) to protect sensitive patient data and enable collaborative research. Healthcare organizations can securely share and analyze patient records, conduct research on medical data, and develop AI-driven healthcare solutions while maintaining data privacy and compliance with regulations.</p>
-          </div>
-        </div>
-        <!-- Finance -->
-        <div class="col">
-          <div class="d-flex flex-column align-items-center">
-            <i class="fas fa-chart-line fa-3x mb-3"></i>
-            <h3 class="text-center">Finance</h3>
-            <p class="text-left text-justify">In the finance sector, Cocos AI enhances data security and privacy for financial institutions and organizations. It enables secure data sharing and collaborative financial analysis while protecting sensitive financial data. Financial organizations can securely exchange financial information, perform risk assessments, and develop AI-driven financial models, all within confidential computing environments.</p>
-          </div>
-        </div>
-        <!-- Government -->
-        <div class="col">
-          <div class="d-flex flex-column align-items-center">
-            <i class="fas fa-building fa-3x mb-3"></i>
-            <h3 class="text-center">Government</h3>
-            <p class="text-left text-justify">In government agencies and institutions, Cocos AI ensures data security and privacy for critical government operations. It enables secure multi-party computation (SMPC) for collaborative data analysis, secure data sharing between government departments, and confidential computing for sensitive government applications. Government entities can leverage Cocos AI to protect classified information, enhance cybersecurity, and drive data-driven policy decisions.</p>
-          </div>
-        </div>
-      </div>
-      <!-- Call to Action (CTA) button to contact us -->
-      <div class="text-center">
-        <a href="contact.html" class="btn btn-warning btn-lg">Contact Us</a>
-      </div>
-    </div>
-  </section>
-  <!-- End of Cocos AI Use-Cases section -->
-  
-  
 
 
 

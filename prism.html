@@ -50,9 +50,15 @@
               <li><a class="dropdown-item" href="#">All Products</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" style="color: black;">DOCUMENTATION</a>
-          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
+              DOCUMENTATION
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="https://docs.prism.ultraviolet.rs/" target="_blank">PRISM</a></li>
+              <li><a class="dropdown-item" href="https://docs.cocos.ultraviolet.rs/" target="_blank">COCOS AI</a></li>
+            </ul>
+          </li>          
           <li class="nav-item">
             <a class="nav-link" href="company.html" style="color: black;">COMPANY</a>
           </li>
@@ -236,6 +242,25 @@
           </div>
         </div>
         <!-- End of Remote Attestation Mechanism -->
+
+        <!-- Multiple Computational Backends -->
+        <div class="col-md-6 mb-4">
+          <div class="row">
+              <div class="col-3">
+                  <div class="text-center">
+                      <i class="fas fa-plug fa-2x mb-3"></i> <!-- Updated icon to represent connectivity or integration -->
+                  </div>
+              </div>
+              <div class="col-9">
+                  <h5 class="text-left mb-3">Multiple Computational Backends</h5>
+                  <p class="text-left">Prism supports a "bring your own backend" approach, enabling the introduction of any TEE-capable node into the infrastructure.
+                    Computational node can be enabled via open-source <a href="https://github.com/ultravioletrs/cocos">Cocos AI</a> platform,
+                    enhancing flexibility and scalability.</p>
+              </div>
+          </div>
+        </div>
+        <!-- End of Multiple Computational Backends -->
+
   
         <!-- Intuitive User Interface -->
         <div class="col-md-6 mb-4">
@@ -316,22 +341,6 @@
           </div>
         </div>
         <!-- End of Small Memory Footprint and Fast Execution -->
-  
-        <!-- Domain-Driven Design Architecture -->
-        <div class="col-md-6 mb-4">
-          <div class="row">
-            <div class="col-3">
-              <div class="text-center">
-                <i class="fas fa-archway fa-2x mb-3"></i>
-              </div>
-            </div>
-            <div class="col-9">
-              <h5 class="text-left mb-3">Domain-Driven Design Architecture</h5>
-              <p class="text-left">Prism adopts a domain-driven design architecture, resulting in high-quality code and comprehensive test coverage. Rely on a platform built with meticulous care and dedication to open-source excellence.</p>
-            </div>
-          </div>
-        </div>
-        <!-- End of Domain-Driven Design Architecture -->
 
         <!-- Open Source -->
         <div class="col-md-6 mb-4">
@@ -343,7 +352,7 @@
                 </div>
                 <div class="col-9">
                     <h5 class="text-left mb-3">Open Source</h5>
-                    <p class="text-left">Prism is open source, published under the Apache 2.0 license, enabling transparency, rapid bug fixing, customization, and collaboration. It fosters heightened security and innovation within a thriving developer community.</p>
+                    <p class="text-left">Core part of Prism - Cocos AI - is open source, published under the Apache 2.0 license, enabling transparency, rapid bug fixing, customization, and collaboration. It fosters heightened security and innovation within a thriving developer community.</p>
                 </div>
             </div>
         </div>
@@ -357,34 +366,49 @@
 
   
 
-  <!-- Prism Architecture -->
+<!-- Prism Architecture -->
 <section id="prism-architecture" class="py-5">
-    <div class="container mb-5">
-      <div class="row">
-        <div class="col-md-12 mt-5">
-          <h1>Prism Architecture</h1>
-          <p>Prism, the pinnacle of secure collaborative AI, boasts an intricately designed architecture tailored to meet the complex demands of confidential computing and collaborative artificial intelligence. This architecture empowers developers and organizations with a robust foundation for secure, scalable, and innovative AI applications.</p>
-        </div>
+  <div class="container mb-5">
+    <div class="row">
+      <div class="col-md-12 mt-5">
+        <h1>Prism Architecture</h1>
+        <p>Prism, the pinnacle of secure collaborative AI, boasts an intricately designed architecture tailored to meet the complex demands of confidential computing and collaborative artificial intelligence. This architecture empowers developers and organizations with a robust foundation for secure, scalable, and innovative AI applications.</p>
       </div>
-
-      <div class="d-flex justify-content-center mt-5">
-        <img src="img/prism-architecture.png" alt="Prism Architecture" class="img-fluid">
-      </div>
-
-      <div class="row">
-        <div class="col-md-12 mt-5">
-          <p><strong>1. Cloud Services:</strong> Prism leverages a microservices-based architecture, with each service containerized using Docker and orchestrated by Kubernetes. These cloud services include the Computations service, responsible for managing confidential multi-party computations deployed within secure enclaves, Users service, that offers user and organization management, Authorization service, ensuring robust authentication and policy-based authorization, and an intuitive user interface (UI).</p>
-          
-          <p><strong>2. TEE Manager:</strong> The Trusted Execution Environment (TEE) Manager is a critical microservice running on host hardware equipped with TEE hardware. Its role is to dynamically deploy and configure TEEs required for confidential multi-party computations. Once a computation is deployed within a newly-created TEE, the Manager actively monitors its execution and health. After the computation is complete and the result is extracted from the enclave, the Manager ensures the secure destruction of the TEE and nullifies all associated data, maintaining confidentiality.</p>
-          
-          <p><strong>3. In-Enclave Agent:</strong> The In-enclave Agent is an open-source, lightweight component running within the enclave. It serves as a coordinator for algorithm execution, establishing TLS-encrypted channels over which clients (Data Providers and Algorithm Providers) can securely upload AI algorithms and datasets. Additionally, the In-enclave Agent provides remote attestation for the TEE, ensuring the integrity of the execution environment.</p>
-        </div>
-      </div>
-
     </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <img src="img/prism-architecture.png" alt="Prism Architecture" class="img-fluid">
     </div>
-  </section>
-  <!-- End of Prism Architecture -->
+
+    <div class="row">
+      <div class="col-md-12 mt-5">
+        <p><strong>1. Cloud Services:</strong> Prism leverages a microservices-based architecture, with each service containerized using Docker and orchestrated by Kubernetes. These cloud services include the Computations service, responsible for managing confidential multi-party computations deployed within secure enclaves, Users service, that offers user and organization management, Authorization service, ensuring robust authentication and policy-based authorization, and an intuitive user interface (UI).</p>
+        
+        <p><strong>2. TEE Manager:</strong> The Trusted Execution Environment (TEE) Manager is a critical microservice running on host hardware equipped with TEE hardware. Its role is to dynamically deploy and configure TEEs required for confidential multi-party computations. Once a computation is deployed within a newly-created TEE, the Manager actively monitors its execution and health. After the computation is complete and the result is extracted from the enclave, the Manager ensures the secure destruction of the TEE and nullifies all associated data, maintaining confidentiality.</p>
+        
+        <p><strong>3. In-Enclave Agent:</strong> The In-enclave Agent is an open-source, lightweight component running within the enclave. It serves as a coordinator for algorithm execution, establishing TLS-encrypted channels over which clients (Data Providers and Algorithm Providers) can securely upload AI algorithms and datasets. Additionally, the In-enclave Agent provides remote attestation for the TEE, ensuring the integrity of the execution environment.</p>
+      </div>
+    </div>
+
+    <!-- Open-source Core with Cocos AI subsection -->
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <h2>Open-source Core with Cocos AI</h2>
+        <p>The core components of Prism, including the TEE Manager and In-enclave Agent, are part of the open-source <a href="https://github.com/ultravioletrs/cocos">Cocos AI project</a>. This integration ensures that every computational node, whether located in the cloud or in a private data center, benefits from the robust features provided by Cocos AI.</p>
+        <p>Cocos AI runs on every node equipped with TEE hardware, providing essential functionality for TEE creation, management, and computation orchestration. By leveraging Cocos AI, Prism inherits advanced capabilities such as secure enclave management, confidential VM orchestration, and remote attestation procedures.</p>
+        <p>This open-source approach fosters transparency and community-driven development, ensuring that Prism remains at the cutting edge of privacy-preserving collaborative AI. Users can rely on Cocos AI’s established and tested features to support their secure computing needs, while benefiting from the continuous innovation and improvements contributed by the open-source community.</p>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <img src="img/prism-cocos.png" alt="Open-source Core with Cocos AI" class="img-fluid">
+    </div>
+
+  </div>
+</section>
+<!-- End of Prism Architecture -->
+
+
   
 
 
@@ -446,72 +470,110 @@
 
 
 
-  
+
+<!-- Intuitive User Interface section -->
+<section id="intuitive-ui" class="py-5">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 d-flex align-items-center justify-content-center">
+              <img src="img/ui.png" alt="Intuitive User Interface in Prism" class="img-fluid">
+          </div>
+          <div class="col-md-6 mt-5 mt-lg-0">
+              <h1>Intuitive User Interface</h1>
+              <p>Prism features an intuitive user interface designed to simplify the management and orchestration of confidential workloads. The UI is crafted to enhance user experience, providing seamless navigation, easy configuration, and real-time monitoring of computational tasks.</p>
+              <p>With a user-centric design, Prism's interface offers comprehensive controls and visual aids, enabling users to effortlessly set up, monitor, and manage secure computations. This ensures that even complex workflows are straightforward to handle, reducing the learning curve and boosting productivity.</p>
+              <p>The intuitive UI is integrated with powerful features such as visualization tools, real-time logs, and status updates, providing users with clear insights into the health and performance of their computational tasks. This enhances decision-making and operational efficiency, making Prism a user-friendly platform for secure AI and data processing.</p>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- End of Intuitive User Interface section -->
+
+
+<!-- Multi-tenant And Strong Security section -->
+<section id="multi-tenant-security" class="py-5">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6 order-md-2 d-flex align-items-center justify-content-center">
+              <img src="img/security.png" alt="Multi-tenant And Strong Security in Prism" class="img-fluid">
+          </div>
+          <div class="col-md-6 order-md-1 mt-5 mt-lg-0">
+              <h1>Multi-tenant And Strong Security</h1>
+              <p>Prism is built with multi-tenancy and robust security in mind, ensuring that each tenant's data and computations remain isolated and protected. This design supports the deployment of multiple users or organizations on a single platform without compromising privacy or security.</p>
+              <p>With advanced security features such as fine-grained access control, encryption at rest and in transit, and rigorous authentication mechanisms, Prism guarantees the confidentiality and integrity of all data and computations. The platform’s multi-tenant architecture is designed to handle diverse workloads while maintaining high security standards.</p>
+              <p>Prism's security model is complemented by continuous monitoring and automated threat detection, ensuring that potential vulnerabilities are identified and mitigated promptly. This proactive approach to security helps maintain a secure and compliant environment, making Prism an ideal choice for organizations requiring stringent security and multi-tenancy support.</p>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- End of Multi-tenant And Strong Security section -->
+
   
 
-<!-- TEE Manager section -->
-<section id="tee-manager" class="py-5">
-    <div class="container">
+<!-- BYO Backend section -->
+<section id="byo-backend" class="py-5">
+  <div class="container">
       <div class="row">
-        <div class="col-md-6 d-flex align-items-center justify-content-center">
-          <img src="img/manager.png" alt="TEE Manager in Prism" class="img-fluid">
-        </div>
-        <div class="col-md-6 mt-5 mt-lg-0">
-          <h1>TEE Manager</h1>
-          <p>TEE Manager is a pivotal component within the Prism architecture, dedicated to enabling dynamic deployment and configuration of Trusted Execution Environments (TEEs) required for confidential multi-party computations.</p>
-          <p>When a computation is initiated, TEE Manager orchestrates the creation of secure TEEs, equipping them with the necessary hardware and runtime support. It continually monitors the execution and health of each enclave, ensuring that computations run securely and efficiently.</p>
-          <p>Once a computation is completed and its result is securely extracted from the enclave, TEE Manager is responsible for the timely destruction of the used TEEs and the erasure of all related data, preserving confidentiality and data integrity.</p>
-        </div>
+          <div class="col-md-6 d-flex align-items-center justify-content-center">
+              <img src="img/backends.png" alt="BYO Backend in Prism" class="img-fluid">
+          </div>
+          <div class="col-md-6 mt-5 mt-lg-0">
+              <h1>Bring Your Own Compuational Backend</h1>
+              <p>Prism is designed with a flexible architecture that supports multiple computational backends, adhering to a "bring your own backend" approach. This flexibility allows the integration of any TEE-capable node into the infrastructure, enhancing scalability and adaptability.</p>
+              <p>Through seamless integration with the open-source Hardware Abstraction Layer (HAL) provided by the <a href="https://github.com/ultravioletrs/cocos">Cocos AI platform</a>, Prism enables efficient and secure execution of confidential workloads across various environments. This ensures that organizations can leverage their existing hardware investments while maintaining high standards of security and performance.</p>
+              <p>By supporting multiple computational backends, Prism empowers organizations to deploy secure multi-party computations in diverse settings, from private data centers to public clouds, ensuring the confidentiality and integrity of sensitive data throughout the process.</p>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- End of Multiple Backend Support section -->
+
+
+
+<!-- Multiple Workload Runtime Support section -->
+<section id="multiple-workload-runtime-support" class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mt-5 mt-lg-0">
+        <h1>Multiple Workload Runtime Support</h1>
+        <p>Prism offers robust support for multiple workload runtimes, enabling users to orchestrate and run a variety of computational tasks within secure enclaves. This flexibility is crucial for accommodating diverse computational needs and enhancing the versatility of the platform.</p>
+        <p>Users can seamlessly execute Python AI algorithms with the necessary libraries, leveraging the power of Python’s extensive ecosystem for machine learning and data science.</p>
+        <p>Additionaly, Prism supports Docker containers, allowing for the deployment of containerized applications with all dependencies included, ensuring consistency and scalability across different environments.</p>
+        <p>Furthermore, Prism supports WebAssembly (Wasm) workloads, enabling efficient execution of lightweight, high-performance code. This support for Wasm enhances the platform’s capability to handle diverse computational tasks, making it a versatile choice for a wide range of applications.</p>
+        <p>With Prism's multiple workload runtime support, users can confidently develop, deploy, and manage a variety of computational workloads within a secure, privacy-preserving environment, driving innovation and efficiency in confidential computing.</p>
+      </div>
+      <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <img src="img/runtimes.png" alt="Multiple Workload Runtime Support in Prism" class="img-fluid">
       </div>
     </div>
+  </div>
 </section>
-<!-- End of TEE Manager section -->
+<!-- End of Multiple Workload Runtime Support section -->
 
-  
 
-<!-- In-enclave Agent section -->
-<section id="in-enclave-agent" class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 order-md-2 d-flex align-items-center justify-content-center">
-          <img src="img/agent.png" alt="In-enclave Agent in Prism" class="img-fluid">
-        </div>
-        <div class="col-md-6 order-md-1 mt-5 mt-lg-0">
-          <h1>In-enclave Agent</h1>
-          <p>In-enclave Agent is a lightweight, open-source component at the heart of Prism. Operating within secure enclaves, this agent plays a crucial role in coordinating the execution of algorithms and ensuring the secure exchange of data.</p>
-          <p>The In-enclave Agent establishes TLS-encrypted channels, allowing clients such as Data Providers and Algorithm Providers to securely upload AI algorithms and datasets. It also facilitates remote attestation for Trusted Execution Environments (TEEs), ensuring the integrity and authenticity of the execution environment.</p>
-          <p>With its capabilities, the In-enclave Agent contributes to the platform's robust security and efficient execution of AI computations, making it a key component for ensuring confidentiality and data protection.</p>
-        </div>
+
+<!-- Open-source Core section -->
+<section id="open-source-core" class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <img src="img/open-source.png" alt="Open-source Core in Prism" class="img-fluid">
+      </div>
+      <div class="col-md-6 mt-5 mt-lg-0">
+        <h1>Open-source Core</h1>
+        <p>Prism is built on a foundation of open-source technology, leveraging the robust capabilities of the <a href="https://github.com/ultravioletrs/cocos">Cocos AI platform</a>. All critical infrastructural software within Prism is completely open and free, ensuring transparency, flexibility, and community-driven innovation.</p>
+        <p>This open-source approach allows organizations and developers to access, modify, and contribute to the core components of the platform, fostering a collaborative ecosystem. By integrating with Cocos AI, Prism ensures that secure, confidential computations are accessible and customizable to meet diverse needs.</p>
+        <p>The open-source core includes essential features such as secure enclave management, confidential VM orchestration, and remote attestation procedures, all designed to maintain high standards of security and performance. This commitment to open-source excellence ensures that Prism remains at the forefront of privacy-preserving collaborative AI.</p>
       </div>
     </div>
+  </div>
 </section>
-<!-- End of In-enclave Agent section -->
-  
+<!-- End of Open-source Core section -->
 
 
 
-
-
-<!-- Remote Attestation section -->
-<section id="remote-attestation" class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 d-flex align-items-center justify-content-center">
-          <img src="img/attestation.png" alt="Remote Attestation in Confidential Computing" class="img-fluid">
-        </div>
-        <div class="col-md-6 mt-5 mt-lg-0">
-          <h1>Remote Attestation</h1>
-          <p>Remote Attestation is a critical component of Confidential Computing, leveraging Trusted Execution Environments (TEEs) to ensure the integrity and security of remote systems and applications. It allows you to establish trust and verify the authenticity of your computing environment, even in untrusted or remote settings.</p>
-          <p>With TEEs, remote attestation guarantees that your data and workloads run within secure enclaves, isolated from potential threats. This process involves verifying the identity of a remote system, ensuring it is running trusted and unaltered software, and encrypting data transmissions for secure communication.</p>
-          <p>By using Remote Attestation in Confidential Computing, you can confidently collaborate and process data across untrusted networks while maintaining the highest level of security and privacy.</p>
-        </div>
-      </div>
-    </div>
-</section>
-<!-- End of Remote Attestation section -->
 
   
-
 
 
 
