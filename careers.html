@@ -24,6 +24,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <!-- Font Awesome CSS Link -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+     <!-- Osano Cookie consent CSS Link -->
+    <link
+    rel="stylesheet"
+    type="text/css"
+    href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
+  />
 </head>
 <body>
 
@@ -221,17 +227,76 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CH54M1Z8DY"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+     <!-- Google tag (gtag.js) -->
+     <script
+     async
+     src="https://www.googletagmanager.com/gtag/js?id=G-CH54M1Z8DY"
+   ></script>
 
-      gtag('config', 'G-CH54M1Z8DY');
-    </script>
+   <!-- Include Cookie Consent Script -->
+   <script
+     src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
+     data-cfasync="false"
+   ></script>
+   <script>
+     function getCookie(name) {
+       var b = document.cookie.match(
+         "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)"
+       );
+       return b ? b.pop() : "";
+     }
 
-    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+     function addAnalytics() {
+       window.dataLayer = window.dataLayer || [];
+       function gtag() {
+         dataLayer.push(arguments);
+       }
+       gtag("js", new Date());
+
+       gtag("config", "G-CH54M1Z8DY");
+     }
+
+     document.addEventListener("DOMContentLoaded", function () {
+       // Reading "cookieconsent_status" cookie
+       const cookieConsent = getCookie('cookieconsent_status');
+
+        // Start analytics if user consented or did not deny
+        if (cookieConsent === 'allow' || cookieConsent === '') {
+           addAnalytics();
+       }
+
+
+       if (typeof window.cookieconsent !== "undefined") {
+         window.cookieconsent.initialise({
+           palette: {
+             popup: { background: "#000" },
+             button: { background: "#f1d600" },
+           },
+           revokable: true,
+           law: {
+             regionalLaw: {
+               EU: true, // Show banner in EU
+               UK: true, // Show banner in the UK
+             },
+           },
+           location: true, // Enable geolocation for regional targeting
+           type: "opt-out",
+           content: {
+             message:
+               "🍪 We use cookies to collect data to improve your experience on our site.",
+             allow: 'Allow',
+             dismiss: 'Allow',
+             deny: 'Reject',
+           },
+           onStatusChange: function (status, chosenBefore) {
+             location.reload();
+           },
+         });
+       } else {
+         console.error("Cookie consent script not loaded.");
+       }
+     });
+   </script>
 
 </body>
 </html>
