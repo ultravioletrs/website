@@ -1,13 +1,35 @@
 * {
-    font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
 }
 
 /* Apply Inter font to all headings */
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Sen', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Sen", sans-serif;
 }
 
 .cc-btn,
 .cc-link {
-    text-decoration: none !important;
+  text-decoration: none !important;
+}
+
+#hero {
+  padding-top: 70px !important;
+}
+
+#hero h1 {
+  font-size: 2.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add offset for fixed navbar when scrolling to sections */
+section[id] {
+  scroll-margin-top: 120px;
 }
