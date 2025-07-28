@@ -25,48 +25,7 @@
       href="https://fonts.googleapis.com/css2?family=Sen&display=swap"
     />
 
-    <link rel="stylesheet" type="text/css" href="style.css" />
-
-    <style>
-      /* FAQ Accordion styling */
-      .accordion-button {
-        font-weight: bold !important;
-      }
-
-      .accordion-button:focus {
-        box-shadow: none !important;
-        border-color: transparent !important;
-      }
-
-      .accordion-button:not(.collapsed) {
-        background-color: #f8f9fa !important;
-        color: #212529 !important;
-      }
-
-      /* Pricing cards styling */
-      .pricing-card {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-      }
-
-      .pricing-card .card-body {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-      }
-
-      .pricing-card .list-unstyled {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-      }
-
-      .pricing-card .btn {
-        margin-top: auto;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../style.css" />
 
     <!-- Bootstrap CSS Link -->
     <link
@@ -205,7 +164,7 @@
 
     <!-- Table of Contents Navigation -->
     <nav
-      class="toc-nav bg-light border-bottom sticky-top"
+      class="toc-nav bg-white sticky-top"
       style="top: 56px; z-index: 1020"
     >
       <div class="container">
@@ -218,13 +177,11 @@
                 <a href="#hero" class="text-muted">Overview</a>
                 <a href="#prism-ai" class="text-muted">About</a>
                 <a href="#features" class="text-muted">Features</a>
-                <a href="#prism-architecture" class="text-muted"
-                  >Architecture</a
-                >
-                <a href="#how-it-works" class="text-muted">How It Works</a>
-                <a href="#use-cases" class="text-muted">Use Cases</a>
-                <a href="#faq" class="text-muted">FAQ</a>
                 <a href="#pricing" class="text-muted">Pricing</a>
+                <a href="#prism-architecture" class="text-muted">Architecture</a>
+                <a href="#how-it-works" class="text-muted">How It Works</a>
+                <a href="#faq" class="text-muted">FAQ</a>
+                <a href="#use-cases" class="text-muted">Use Cases</a>
               </div>
             </div>
           </div>
@@ -240,7 +197,7 @@
             <h1 class="display-4 fw-bold mb-4">
               Secure, Collaborative AI for Confidential Workloads
             </h1>
-            <p class="lead mb-4">
+            <p class="mb-4">
               Prism AI empowers organizations to execute AI computations
               securely within Trusted Execution Environments (TEEs). Designed
               for privacy-preserving collaboration, it enables multi-party data
@@ -251,7 +208,7 @@
             <div class="d-flex gap-3">
               <a
                 href="https://prism.ultraviolet.rs"
-                class="btn btn-primary btn-lg"
+                class="btn btn-primary"
                 >Get Started</a
               >
             </div>
@@ -270,7 +227,7 @@
     </section>
 
     <!-- Client/Partner Logos section -->
-    <section id="clients-partners" class="py-5 bg-light">
+    <section id="clients-partners" class="py-5">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center mb-5">
@@ -741,6 +698,130 @@
     </section>
     <!-- End of Prism AI Features section -->
 
+    <!-- Pricing Plans section -->
+    <section id="pricing" class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center mb-5">
+            <h2>Choose Your Plan</h2>
+            <p class="lead">Flexible pricing plans tailored to your needs</p>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <!-- Trial Plan -->
+          <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card pricing-card h-100">
+              <div class="card-body text-start">
+                <h4 class="card-title text-center">Trial</h4>
+                <h2 class="text-primary text-center">Free</h2>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Private CVMs only</li>
+                  <li>Max 30 minutes per lifecycle</li>
+                  <li>1 member</li>
+                  <li>2 concurrent computations</li>
+                  <li>10 computation runs per month</li>
+                  <li>1 concurrent VM</li>
+                  <li>Community support</li>
+                </ul>
+                <a href="https://prism.ultraviolet.rs" class="btn btn-outline-primary btn-block"
+                >Get Started</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Developer Plan -->
+          <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card pricing-card h-100">
+              <div class="card-body text-start">
+                <h4 class="card-title text-center">Developer</h4>
+                <h2 class="text-primary text-center">
+                  € 99<small class="text-muted">/month</small>
+                </h2>
+                <p class="text-muted">€ 90/month (yearly)</p>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Single infrastructure choice (GCP)</li>
+                  <li>2 members</li>
+                  <li>3 concurrent computations</li>
+                  <li>1 concurrent VM</li>
+                  <li>Community support</li>
+                </ul>
+                <a href="#pricing" class="btn btn-primary btn-block"
+                >Coming Soon</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Team Plan -->
+          <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card pricing-card h-100 border-primary">
+              <div class="card-body text-start">
+                <h4 class="card-title text-center">Team</h4>
+                <h2 class="text-primary text-center">
+                  € 499<small class="text-muted">/month</small>
+                </h2>
+                <p class="text-muted">€ 450/month (yearly)</p>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Two infrastructure choices (GCP, Azure)</li>
+                  <li>Up to 5 members</li>
+                  <li>Maximum 8 concurrent computations</li>
+                  <li>2 concurrent VMs</li>
+                  <li>Standard support</li>
+                </ul>
+                <a href="#pricing" class="btn btn-primary btn-block"
+                >Coming Soon</a
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Business Plan -->
+          <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card pricing-card h-100">
+              <div class="card-body text-start">
+                <h4 class="card-title text-center">Business</h4>
+                <h2 class="text-primary text-center">
+                  € 1499<small class="text-muted">/month</small>
+                </h2>
+                <p class="text-muted">€ 1350/month (yearly)</p>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>All infrastructure options</li>
+                  <li>Up to 15 members</li>
+                  <li>Maximum 25 concurrent computations</li>
+                  <li>5 concurrent VMs</li>
+                  <li>Priority support</li>
+                  <li>Basic analytics</li>
+                </ul>
+                <a href="#pricing" class="btn btn-primary btn-block"
+                >Coming Soon</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+          <!-- Enterprise Plan -->
+          <div class="col-md-4 col-lg-3">
+            <div class="card pricing-card h-100 border-warning">
+              <div class="card-body text-start">
+                <h4 class="card-title text-center">Enterprise</h4>
+                <h2 class="text-warning text-center">Contact us</h2>
+                <ul class="list-unstyled mt-3 mb-4">
+                  <li>Custom infrastructure allocation</li>
+                  <li>Unlimited members</li>
+                  <li>Custom computation limits</li>
+                  <li>Custom VM allocation</li>
+                  <li>24/7 dedicated support</li>
+                  <li>Custom integration options</li>
+                </ul>
+                <a href="/contact" class="btn btn-warning btn-block"
+                >Contact Us</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Prism AI Architecture -->
     <section id="prism-architecture" class="py-5">
       <div class="container mb-5">
@@ -1161,6 +1242,184 @@
     </section>
     <!-- End of Enclave Monitoring, Events, and Logs section -->
 
+
+    <!-- FAQ section -->
+    <section id="faq" class="py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 text-center mb-5">
+            <h2>Frequently Asked Questions</h2>
+            <p class="lead">Find answers to common questions about Prism AI</p>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="w-100">
+            <div class="accordion" id="faqAccordion">
+              <!-- General Questions -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button
+                          class="accordion-button"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseOne"
+                          aria-expanded="true"
+                          aria-controls="collapseOne"
+                  >
+                    What is a computation?
+                  </button>
+                </h2>
+                <div
+                        id="collapseOne"
+                        class="accordion-collapse collapse show"
+                        aria-labelledby="headingOne"
+                        data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    Computation is an entity that defines a collection of users
+                    and assets that are used in a manifest to define a workload
+                    on the platform.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseTwo"
+                          aria-expanded="false"
+                          aria-controls="collapseTwo"
+                  >
+                    Which cloud platforms do you support?
+                  </button>
+                </h2>
+                <div
+                        id="collapseTwo"
+                        class="accordion-collapse collapse"
+                        aria-labelledby="headingTwo"
+                        data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    We support Google Cloud Platform, Azure and private cloud
+                    offerings.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                  <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseThree"
+                          aria-expanded="false"
+                          aria-controls="collapseThree"
+                  >
+                    Can I integrate with existing systems?
+                  </button>
+                </h2>
+                <div
+                        id="collapseThree"
+                        class="accordion-collapse collapse"
+                        aria-labelledby="headingThree"
+                        data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    Yes, our platform is designed to be highly integrable. We
+                    offer APIs and SDKs that allow you to easily integrate with
+                    your existing systems and workflows.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                  <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseFour"
+                          aria-expanded="false"
+                          aria-controls="collapseFour"
+                  >
+                    Which confidential computing technologies do you use?
+                  </button>
+                </h2>
+                <div
+                        id="collapseFour"
+                        class="accordion-collapse collapse"
+                        aria-labelledby="headingFour"
+                        data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    We support both AMD SEV_SNP and Intel TDX
+                  </div>
+                </div>
+              </div>
+
+              <!-- Billing Questions -->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                  <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseFive"
+                          aria-expanded="false"
+                          aria-controls="collapseFive"
+                  >
+                    What are the available pricing plans?
+                  </button>
+                </h2>
+                <div
+                        id="collapseFive"
+                        class="accordion-collapse collapse"
+                        aria-labelledby="headingFive"
+                        data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    We offer flexible pricing plans tailored to your needs.
+                    Visit our pricing section below for detailed information on
+                    Trial, Developer, Team, Business, and Enterprise plans.
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                  <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseSix"
+                          aria-expanded="false"
+                          aria-controls="collapseSix"
+                  >
+                    How do I upgrade my plan?
+                  </button>
+                </h2>
+                <div
+                        id="collapseSix"
+                        class="accordion-collapse collapse"
+                        aria-labelledby="headingSix"
+                        data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body">
+                    You can upgrade your plan directly from your billing page.
+                    Select the desired plan and complete the payment process.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Prism AI Use-Cases section -->
     <section class="py-lg-5 py-md-4 py-sm-3 py-2">
       <div class="container">
@@ -1270,312 +1529,11 @@
         </div>
         <!-- Call to Action (CTA) button to contact us -->
         <div class="text-center">
-          <a href="/contact" class="btn btn-warning btn-lg">Contact Us</a>
+          <a href="/contact" class="btn btn-warning">Contact Us</a>
         </div>
       </div>
     </section>
     <!-- End of Use Cases section -->
-
-    <!-- FAQ section -->
-    <section id="faq" class="py-5">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 text-center mb-5">
-            <h2>Frequently Asked Questions</h2>
-            <p class="lead">Find answers to common questions about Prism AI</p>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="w-100">
-            <div class="accordion" id="faqAccordion">
-              <!-- General Questions -->
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                  <button
-                    class="accordion-button"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne"
-                    aria-expanded="true"
-                    aria-controls="collapseOne"
-                  >
-                    What is a computation?
-                  </button>
-                </h2>
-                <div
-                  id="collapseOne"
-                  class="accordion-collapse collapse show"
-                  aria-labelledby="headingOne"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    Computation is an entity that defines a collection of users
-                    and assets that are used in a manifest to define a workload
-                    on the platform.
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo"
-                    aria-expanded="false"
-                    aria-controls="collapseTwo"
-                  >
-                    Which cloud platforms do you support?
-                  </button>
-                </h2>
-                <div
-                  id="collapseTwo"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingTwo"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    We support Google Cloud Platform, Azure and private cloud
-                    offerings.
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingThree">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree"
-                    aria-expanded="false"
-                    aria-controls="collapseThree"
-                  >
-                    Can I integrate with existing systems?
-                  </button>
-                </h2>
-                <div
-                  id="collapseThree"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingThree"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    Yes, our platform is designed to be highly integrable. We
-                    offer APIs and SDKs that allow you to easily integrate with
-                    your existing systems and workflows.
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFour">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseFour"
-                    aria-expanded="false"
-                    aria-controls="collapseFour"
-                  >
-                    Which confidential computing technologies do you use?
-                  </button>
-                </h2>
-                <div
-                  id="collapseFour"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingFour"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    We support both AMD SEV_SNP and Intel TDX
-                  </div>
-                </div>
-              </div>
-
-              <!-- Billing Questions -->
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingFive">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseFive"
-                    aria-expanded="false"
-                    aria-controls="collapseFive"
-                  >
-                    What are the available pricing plans?
-                  </button>
-                </h2>
-                <div
-                  id="collapseFive"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingFive"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    We offer flexible pricing plans tailored to your needs.
-                    Visit our pricing section below for detailed information on
-                    Trial, Developer, Team, Business, and Enterprise plans.
-                  </div>
-                </div>
-              </div>
-
-              <div class="accordion-item">
-                <h2 class="accordion-header" id="headingSix">
-                  <button
-                    class="accordion-button collapsed"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseSix"
-                    aria-expanded="false"
-                    aria-controls="collapseSix"
-                  >
-                    How do I upgrade my plan?
-                  </button>
-                </h2>
-                <div
-                  id="collapseSix"
-                  class="accordion-collapse collapse"
-                  aria-labelledby="headingSix"
-                  data-bs-parent="#faqAccordion"
-                >
-                  <div class="accordion-body">
-                    You can upgrade your plan directly from your billing page.
-                    Select the desired plan and complete the payment process.
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pricing Plans section -->
-    <section id="pricing" class="py-5 bg-light">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 text-center mb-5">
-            <h2>Choose Your Plan</h2>
-            <p class="lead">Flexible pricing plans tailored to your needs</p>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <!-- Trial Plan -->
-          <div class="col-md-4 col-lg-3 mb-4">
-            <div class="card pricing-card h-100">
-              <div class="card-body text-start">
-                <h4 class="card-title text-center">Trial</h4>
-                <h2 class="text-primary text-center">Free</h2>
-                <ul class="list-unstyled mt-3 mb-4">
-                  <li>Private CVMs only</li>
-                  <li>Max 30 minutes per lifecycle</li>
-                  <li>1 member</li>
-                  <li>2 concurrent computations</li>
-                  <li>10 computation runs per month</li>
-                  <li>1 concurrent VM</li>
-                  <li>Community support</li>
-                </ul>
-                <a href="https://prism.ultraviolet.rs" class="btn btn-outline-primary btn-block"
-                  >Get Started</a
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Developer Plan -->
-          <div class="col-md-4 col-lg-3 mb-4">
-            <div class="card pricing-card h-100">
-              <div class="card-body text-start">
-                <h4 class="card-title text-center">Developer</h4>
-                <h2 class="text-primary text-center">
-                  € 99<small class="text-muted">/month</small>
-                </h2>
-                <p class="text-muted">€ 90/month (yearly)</p>
-                <ul class="list-unstyled mt-3 mb-4">
-                  <li>Single infrastructure choice (GCP)</li>
-                  <li>2 members</li>
-                  <li>3 concurrent computations</li>
-                  <li>1 concurrent VM</li>
-                  <li>Community support</li>
-                </ul>
-                <a href="#pricing" class="btn btn-primary btn-block"
-                  >Coming Soon</a
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Team Plan -->
-          <div class="col-md-4 col-lg-3 mb-4">
-            <div class="card pricing-card h-100 border-primary">
-              <div class="card-body text-start">
-                <h4 class="card-title text-center">Team</h4>
-                <h2 class="text-primary text-center">
-                  € 499<small class="text-muted">/month</small>
-                </h2>
-                <p class="text-muted">€ 450/month (yearly)</p>
-                <ul class="list-unstyled mt-3 mb-4">
-                  <li>Two infrastructure choices (GCP, Azure)</li>
-                  <li>Up to 5 members</li>
-                  <li>Maximum 8 concurrent computations</li>
-                  <li>2 concurrent VMs</li>
-                  <li>Standard support</li>
-                </ul>
-                <a href="#pricing" class="btn btn-primary btn-block"
-                  >Coming Soon</a
-                >
-              </div>
-            </div>
-          </div>
-          <!-- Business Plan -->
-          <div class="col-md-4 col-lg-3 mb-4">
-            <div class="card pricing-card h-100">
-              <div class="card-body text-start">
-                <h4 class="card-title text-center">Business</h4>
-                <h2 class="text-primary text-center">
-                  € 1499<small class="text-muted">/month</small>
-                </h2>
-                <p class="text-muted">€ 1350/month (yearly)</p>
-                <ul class="list-unstyled mt-3 mb-4">
-                  <li>All infrastructure options</li>
-                  <li>Up to 15 members</li>
-                  <li>Maximum 25 concurrent computations</li>
-                  <li>5 concurrent VMs</li>
-                  <li>Priority support</li>
-                  <li>Basic analytics</li>
-                </ul>
-                <a href="#pricing" class="btn btn-primary btn-block"
-                  >Coming Soon</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center mt-4">
-          <!-- Enterprise Plan -->
-          <div class="col-md-4 col-lg-3">
-            <div class="card pricing-card h-100 border-warning">
-              <div class="card-body text-start">
-                <h4 class="card-title text-center">Enterprise</h4>
-                <h2 class="text-warning text-center">Contact us</h2>
-                <ul class="list-unstyled mt-3 mb-4">
-                  <li>Custom infrastructure allocation</li>
-                  <li>Unlimited members</li>
-                  <li>Custom computation limits</li>
-                  <li>Custom VM allocation</li>
-                  <li>24/7 dedicated support</li>
-                  <li>Custom integration options</li>
-                </ul>
-                <a href="/contact" class="btn btn-warning btn-block"
-                  >Contact Us</a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Newsletter section -->
     <section id="newsletter" class="py-5">
@@ -1675,6 +1633,16 @@
               <li>
                 <i class="fas fa-cube me-2"></i>
                 <a href="cube/" class="text-white">Cube AI</a>
+              </li>
+            </ul>
+
+            <h5>Legal</h5>
+            <ul class="list-unstyled">
+              <li>
+                Prism AI <a href="/prism/terms" class="text-white"> Terms of Service</a> and <a href="/prism/privacy" class="text-white"> Privacy Policy</a>
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="text-white">Cube AI Terms of Service</a>
               </li>
             </ul>
           </div>
