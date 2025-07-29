@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ULTRAVIOLET</title>
-    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="../img/favicon.png" />
 
     <!-- Google Fonts -->
     <link
@@ -53,9 +53,7 @@
       style="background-color: #ffffff"
     >
       <div class="container">
-        <a class="navbar-brand" href="/" style="color: black">
-          ULTRAVIOLET
-        </a>
+        <a class="navbar-brand" href="/" style="color: black"> ULTRAVIOLET </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -135,7 +133,9 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="javascript:void(0)" style="color: black">CONTACT</a>
+              <a class="nav-link" href="javascript:void(0)" style="color: black"
+                >CONTACT</a
+              >
             </li>
             <li class="nav-item">
               <a
@@ -310,7 +310,7 @@
     <footer class="bg-dark text-white py-3">
       <div class="container">
         <div class="row mt-4 mb-3">
-          <div class="col-md-3">
+          <div class="col">
             <h5>About Us</h5>
             <p>
               Ultraviolet is a leading company specializing in confidential
@@ -318,7 +318,7 @@
               secure data sharing.
             </p>
           </div>
-          <div class="col-md-3">
+          <div class="col">
             <h5>Contact Us</h5>
             <p>
               <i class="fas fa-envelope me-2"></i
@@ -340,7 +340,7 @@
               Carnojevica 103, 11000 Belgrade, Serbia
             </p>
           </div>
-          <div class="col-md-3">
+          <div class="col">
             <h5>Products</h5>
             <ul class="list-unstyled">
               <li>
@@ -356,18 +356,32 @@
                 <a href="cube/" class="text-white">Cube AI</a>
               </li>
             </ul>
-
+          </div>
+          <div class="col">
             <h5>Legal</h5>
             <ul class="list-unstyled">
+              Prism AI
               <li>
-                Prism AI <a href="/prism/terms" class="text-white"> Terms of Service</a> and <a href="/prism/privacy" class="text-white"> Privacy Policy</a>
+                <a href="/prism/terms" class="text-white"> Terms of Service</a>
               </li>
               <li>
-                <a href="javascript:void(0)" class="text-white">Cube AI Terms of Service</a>
+                <a href="/prism/privacy" class="text-white"> Privacy Policy</a>
+              </li>
+              <br />
+              Cube AI
+              <li>
+                <a href="javascript:void(0)" class="text-white"
+                  >Terms of Service</a
+                >
+              </li>
+              <li>
+                <a href="javascript:void(0)" class="text-white"
+                  >Privacy Policy</a
+                >
               </li>
             </ul>
           </div>
-          <div class="col-md-3">
+          <div class="col">
             <h5>Connect With Us</h5>
             <ul class="list-unstyled">
               <li>
@@ -382,7 +396,7 @@
               <li>
                 <i class="fab fa-linkedin me-2"></i
                 ><a
-                  href="https://www.linkedin.com/companyultravioletrs"
+                  href="https://www.linkedin.com/company/ultravioletrs"
                   class="text-white"
                   target="_blank"
                   >LinkedIn</a
@@ -433,7 +447,7 @@
     <script>
       function getCookie(name) {
         var b = document.cookie.match(
-          "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)"
+          "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)",
         );
         return b ? b.pop() : "";
       }
