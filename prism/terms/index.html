@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -25,7 +25,7 @@
       href="https://fonts.googleapis.com/css2?family=Sen&display=swap"
     />
 
-    <link rel="stylesheet" type="text/css" href="../../style.css" />
+    <link rel="stylesheet" type="text/css" href="/style.css" />
 
     <!-- Bootstrap CSS Link -->
     <link
@@ -78,9 +78,7 @@
                 aria-labelledby="productsDropdown"
               >
                 <li>
-                  <a class="dropdown-item" href="/prism"
-                    >PRISM AI</a
-                  >
+                  <a class="dropdown-item" href="/prism">PRISM AI</a>
                 </li>
                 <li><a class="dropdown-item" href="/cocos">COCOS AI</a></li>
                 <li><a class="dropdown-item" href="/cube">CUBE AI</a></li>
@@ -340,7 +338,7 @@
     <footer class="bg-dark text-white py-3">
       <div class="container">
         <div class="row mt-4 mb-3">
-          <div class="col-md-3">
+          <div class="col">
             <h5>About Us</h5>
             <p>
               Ultraviolet is a leading company specializing in confidential
@@ -348,61 +346,44 @@
               secure data sharing.
             </p>
           </div>
-          <div class="col-md-3">
-            <h5>Contact Us</h5>
-            <p>
-              <i class="fas fa-envelope me-2"></i
-              ><a href="mailto:info@ultraviolet.rs" class="text-white"
-                >info@ultraviolet.rs</a
-              >
-            </p>
-            <p>
-              <i class="fab fa-gitter me-2"></i
-              ><a
-                href="https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im"
-                class="text-white"
-                target="_blank"
-                >Chat on Gitter</a
-              >
-            </p>
-            <p>
-              <i class="fas fa-map-marker-alt me-2"></i>Bulevar Arsenija
-              Carnojevica 103, 11000 Belgrade, Serbia
-            </p>
-          </div>
-          <div class="col-md-3">
+          <div class="col">
             <h5>Products</h5>
             <ul class="list-unstyled">
               <li>
                 <i class="fas fa-network-wired me-2"></i
-                ><a href="/prism" class="text-white">Prism AI</a>
+                ><a href="prism/" class="text-white">Prism AI</a>
               </li>
               <li>
                 <i class="fas fa-cog me-2"></i
-                ><a href="/cocos" class="text-white">Cocos AI</a>
+                ><a href="cocos/" class="text-white">Cocos AI</a>
               </li>
               <li>
-                <i class="fas fa-cube me-2"></i>
-                <a href="/cube" class="text-white">Cube AI</a>
-              </li>
-            </ul>
-
-            <h5>Legal</h5>
-            <ul class="list-unstyled">
-              <li>
-                Prism AI
-                <a href="#" class="text-white"> Terms of Service</a>
-                and <a href="/prism/privacy" class="text-white"> Privacy Policy</a>
-              </li>
-              <li>
-                <a href="javascript:void(0)" class="text-white"
-                  >Cube AI Terms of Service</a
-                >
+                <i class="fas fa-cube"></i>
+                <a href="cube/" class="text-white">Cube AI</a>
               </li>
             </ul>
           </div>
-
-          <div class="col-md-3">
+          <div class="col">
+            <h5>Legal</h5>
+            <ul class="list-unstyled">
+              Prism AI
+              <li>
+                <a href="#" class="text-white"> Terms of Service</a>
+              </li>
+              <li>
+                <a href="/prism/privacy" class="text-white"> Privacy Policy</a>
+              </li>
+              <br />
+              Cube AI
+              <li>
+                <a href="/cube/terms" class="text-white">Terms of Service</a>
+              </li>
+              <li>
+                <a href="/cube/privacy" class="text-white">Privacy Policy</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col">
             <h5>Connect With Us</h5>
             <ul class="list-unstyled">
               <li>
@@ -443,10 +424,31 @@
               </li>
             </ul>
           </div>
+          <div class="col">
+            <h5>Contact Us</h5>
+            <p>
+              <i class="fas fa-envelope me-2"></i
+              ><a href="mailto:info@ultraviolet.rs" class="text-white"
+                >info@ultraviolet.rs</a
+              >
+            </p>
+            <p>
+              <i class="fab fa-gitter me-2"></i
+              ><a
+                href="https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im"
+                class="text-white"
+                target="_blank"
+                >Chat on Gitter</a
+              >
+            </p>
+            <p>
+              <i class="fas fa-map-marker-alt me-2"></i>Bulevar Arsenija
+              Carnojevica 103, 11000 Belgrade, Serbia
+            </p>
+          </div>
         </div>
       </div>
     </footer>
-
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
