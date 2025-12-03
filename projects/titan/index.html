@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TITAN Project - ULTRAVIOLET</title>
+  <link rel="icon" type="image/png" href="../../img/favicon.png" />
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen&display=swap" />
+
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+
+  <!-- Bootstrap CSS Link -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  <!-- Font Awesome CSS Link -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <!-- Osano Cookie consent CSS Link -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #ffffff">
+    <div class="container">
+      <a class="navbar-brand" href="/" style="color: black">
+        ULTRAVIOLET
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PRODUCTS
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="productsDropdown">
+              <li><a class="dropdown-item" href="https://prism.ultraviolet.rs" target="_blank">PRISM AI</a></li>
+              <li><a class="dropdown-item" href="/cocos">COCOS AI</a></li>
+              <li><a class="dropdown-item" href="/cube">CUBE AI</a></li>
+              <li>
+                <a class="dropdown-item" href="/products">All Products</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              DOCUMENTATION
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="https://docs.prism.ultraviolet.rs/" target="_blank">PRISM AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://docs.cocos.ultraviolet.rs/" target="_blank">COCOS AI</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PROJECTS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+              <li>
+                <a class="dropdown-item" href="/projects/confidential6g">CONFIDENTIAL6G</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/elastic">ELASTIC</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/titan">TITAN</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects">All Projects</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/company" style="color: black">COMPANY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/careers" style="color: black">CAREERS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact" style="color: black">CONTACT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://medium.com/ultraviolet-blog" target="_blank" style="color: black">BLOG</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/ultravioletrs" target="_blank" style="color: black"><i
+                class="fab fa-github"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header section -->
+  <section id="header" class="py-5">
+    <div class="container">
+      <div class="d-flex align-items-center justify-content-center" style="height: 400px; overflow: hidden">
+        <img src="/img/header.avif" alt="pattern-white" class="img-fluid" style="width: 100%" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Title section -->
+  <section id="project-title" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <img src="/img/logos/titan.svg" alt="TITAN Logo" class="mb-4" style="max-height: 120px;" />
+          <h1>TITAN</h1>
+          <p class="lead">
+            Trusted AI systems through confidential computing and privacy-preserving technologies
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Project Title section -->
+
+  <!-- Project Details Summary section -->
+  <section id="project-details" class="py-5 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="mb-4">Project Details</h2>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title"><i class="fas fa-calendar-alt me-2"></i>Duration</h5>
+                  <p class="card-text">1 February 2024 - 31 January 2027</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title"><i class="fas fa-euro-sign me-2"></i>Total Budget</h5>
+                  <p class="card-text">€5 Million</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title"><i class="fas fa-flag me-2"></i>Status</h5>
+                  <p class="card-text"><span class="badge bg-success">Active</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-6 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title"><i class="fas fa-landmark me-2"></i>Funding Program</h5>
+                  <p class="card-text">Horizon Europe</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h5 class="card-title"><i class="fas fa-user-tie me-2"></i>Project Coordinator</h5>
+                  <p class="card-text">UNIVERSIDAD DE MURCIA</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Project Details Summary section -->
+
+  <!-- Project Description section -->
+  <section id="project-description" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Project Description</h2>
+          <p>
+            TITAN is a 36-month project that proposes to develop secure and trustworthy confidential data processing and
+            sharing capabilities, and demonstrate them in the EOSC ecosystem.
+
+          </p>
+          <p>The sharing of sensitive data will follow FAIR data and open science principles. The project puts
+            significant emphasis on privacy preservation and AI technological solutions in line with existing ethical,
+            regulatory and legal EU boundaries.
+          </p>
+          <p>The developed open-source software platform will focus mostly on the two use cases present in the project:
+            government data and healthcare.
+          </p>
+          <p>By being under the umbrella of the EOSC Ecosystem, TITAN will take advantage of a commonly created brand,
+            already established networks of contacts and working groups, and close collaboration with several other
+            projects., some of them starting also early this year.
+          </p>
+          <p>
+            To promote community adoption of TITAN’s open-source software artefacts, the solution will be practically
+            demonstrated in several vertical cross-border scenarios – notably in the public administration and
+            healthcare sector.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Project Description section -->
+
+  <!-- Project Summary section -->
+  <section id="project-summary" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="mb-4">Project Summary</h2>
+
+      <div class="row mb-5">
+        <div class="col-md-6">
+          <h4>Key Objectives</h4>
+          <ul>
+            <li>
+              <strong>Trusted AI Infrastructure:</strong> Develop secure infrastructure for AI/ML workloads
+              using confidential computing technologies
+            </li>
+            <li>
+              <strong>Privacy-Preserving Machine Learning:</strong> Enable collaborative machine learning
+              while preserving data privacy across multiple stakeholders
+            </li>
+            <li>
+              <strong>Secure Data Sharing:</strong> Implement secure multi-party computation protocols for
+              confidential data exchange and processing
+            </li>
+            <li>
+              <strong>TEE Integration:</strong> Leverage hardware-based security features for protecting
+              AI models and training data
+            </li>
+            <li>
+              <strong>Federated Learning:</strong> Support distributed AI training across edge and cloud
+              environments with strong privacy guarantees
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-md-6">
+          <h4>Expected Outcomes</h4>
+          <ul>
+            <li>
+              <strong>Confidential AI platform:</strong> Secure platform for training and deploying AI
+              models in untrusted environments
+            </li>
+            <li>
+              <strong>Privacy-preserving protocols:</strong> Advanced protocols for secure collaborative
+              AI across organizations
+            </li>
+            <li>
+              <strong>TEE-enabled ML:</strong> Machine learning frameworks optimized for Trusted Execution
+              Environments
+            </li>
+            <li>
+              <strong>Secure model deployment:</strong> Tools and frameworks for deploying AI models with
+              confidentiality guarantees
+            </li>
+            <li>
+              <strong>Open-source tools:</strong> Community-driven tools and libraries for trusted AI
+              development
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Project Summary section -->
+
+  <!-- Our Involvement section -->
+  <section id="our-involvement" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Our Involvement</h2>
+          <p>
+            Ultraviolet brings extensive expertise in confidential computing and privacy-preserving
+            technologies to the TITAN project. Our experience with Trusted Execution Environments (TEEs),
+            secure multi-party computation, and collaborative AI platforms positions us as a key contributor
+            to developing trusted AI systems.
+          </p>
+
+          <h4 class="mt-4">Our Responsibilities:</h4>
+          <ul>
+            <li>
+              <strong>Confidential Computing Architecture:</strong> Designing and implementing TEE-based
+              architectures for secure AI workloads
+            </li>
+            <li>
+              <strong>Privacy-Preserving AI Frameworks:</strong> Developing frameworks for secure
+              collaborative machine learning using SMPC and confidential computing
+            </li>
+            <li>
+              <strong>Secure Model Training:</strong> Implementing secure protocols for distributed AI
+              model training across multiple parties
+            </li>
+            <li>
+              <strong>Data Protection:</strong> Ensuring data confidentiality and integrity throughout
+              the AI lifecycle using hardware-based security
+            </li>
+            <li>
+              <strong>Platform Integration:</strong> Integrating confidential computing capabilities into
+              existing AI/ML platforms and workflows
+            </li>
+          </ul>
+
+          <div class="mt-4">
+            <h4>Project Information</h4>
+            <p>
+              <a href="https://titan-eosc.eu/" target="_blank" class="btn btn-success me-2">
+                <i class="fas fa-external-link-alt me-2"></i>Visit Project Site
+              </a>
+              <a href="https://cordis.europa.eu/project/id/101129822" target="_blank" class="btn btn-outline-primary">
+                <i class="fas fa-info-circle me-2"></i>View on CORDIS
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Our Involvement section -->
+
+  <!-- Project Goals & Impact section -->
+  <section id="project-impact" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="mb-4">Project Goals & Impact</h2>
+
+      <div class="row mb-4">
+        <div class="col-md-12">
+          <p>
+            Funded by the European Commission, TITAN has the overall objective of enriching the EOSC
+            Interoperability Framework (IF) by developing a software platform solution for confidential
+            collaboration and privacy-preserving data processing. The project's main goals are:
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-clipboard-list text-success me-2"></i>Requirements & Architecture
+              </h5>
+              <p class="card-text">
+                Collect legal, technical, and architectural requirements and define a platform architecture
+                for secure sharing of sensitive data and publishing anonymised data sets in the EOSC IF.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-shield-alt text-success me-2"></i>Secure Data Sharing
+              </h5>
+              <p class="card-text">
+                Develop secure data sharing and auditing mechanisms for sensitive data, including secure
+                data zones, data access control, and end-to-end data protection (storage – transfer – processing).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-brain text-success me-2"></i>Privacy-Preserving ML
+              </h5>
+              <p class="card-text">
+                Develop an end-to-end secure data processing framework for collaborative and privacy-preserving
+                Machine Learning (ML) using Trusted Execution Environments.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-check-circle text-success me-2"></i>Implementation & Validation
+              </h5>
+              <p class="card-text">
+                Implement confidential mechanisms, algorithms, and tools with cloud infrastructure platforms
+                and the EOSC IF, and validate solutions in sensitive data-driven use cases (government and healthcare).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-share-alt text-success me-2"></i>Dissemination & Integration
+              </h5>
+              <p class="card-text">
+                Disseminate and promote the solutions for data governance and stewardship through collaboration
+                with EOSC Partnership initiatives, standardisation, and integrating with the EOSC infrastructure.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Project Goals & Impact section -->
+
+  <!-- Project Partners section -->
+  <section id="project-partners" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center mb-4">
+          <h2>Project Partners</h2>
+          <p class="lead">Collaborating with leading organizations across Europe</p>
+        </div>
+      </div>
+      <div class="row align-items-center justify-content-center">
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/Universidad-de-Murcia.png" alt="Universidad de Murcia" class="img-fluid mb-2"
+            style="max-height: 80px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/fujitsu.png" alt="Fujitsu" class="img-fluid mb-2" style="max-height: 80px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/zen.png" alt="Zentrix Labs" class="img-fluid mb-2" style="max-height: 60px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/canarybit.png" alt="Canarybit" class="img-fluid mb-2" style="max-height: 60px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/f6s.png" alt="F6S" class="img-fluid mb-2" style="max-height: 60px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/universityofeastern.png" alt="University of Eastern Finland" class="img-fluid mb-2"
+            style="max-height: 60px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/odysseus.png" alt="Odysseus Data Services" class="img-fluid mb-2"
+            style="max-height: 60px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/Trilateral-Research.png" alt="Trilateral Research" class="img-fluid mb-2"
+            style="max-height: 60px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/charite.png" alt="Charité University Hospital" class="img-fluid mb-2"
+            style="max-height: 60px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/inserm.png" alt="Inserm" class="img-fluid mb-2" style="max-height: 80px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/SARGA.png" alt="SARGA" class="img-fluid mb-2" style="max-height: 80px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/regione-del-veneto.png" alt="Regione del Veneto" class="img-fluid mb-2"
+            style="max-height: 80px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/university-of-koblenz.png" alt="University of Koblenz" class="img-fluid mb-2"
+            style="max-height: 80px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/ITA.png" alt="ITA" class="img-fluid mb-2" style="max-height: 80px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/fraunhofer.png" alt="Fraunhofer" class="img-fluid mb-2" style="max-height: 80px;" />
+        </div>
+        <div class="col-6 col-md-3 col-lg-2 mb-4 text-center">
+          <img src="/img/logos/ultraviolet.png" alt="Ultraviolet" class="img-fluid mb-2" style="max-height: 80px;" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Project Partners section -->
+
+  <!-- Back to Projects section -->
+  <section class="py-5">
+    <div class="container text-center">
+      <a href="/projects" class="btn btn-outline-secondary">
+        <i class="fas fa-arrow-left me-2"></i>Back to All Projects
+      </a>
+    </div>
+  </section>
+  <!-- End of Back to Projects section -->
+
+  <!-- Newsletter section -->
+  <section id="newsletter" class="py-5 bg-light">
+    <div class="container">
+      <div class="row mt-5 mb-5">
+        <div class="col-md-6 offset-md-3 text-center">
+          <h2>Subscribe to Our Newsletter</h2>
+          <p>
+            Stay updated with the latest news, updates, and announcements.
+          </p>
+          <form
+            action="https://ultraviolet.us20.list-manage.com/subscribe/post?u=b35e6bdc7b2adf06c56da2265&amp;id=88ed6c4af0&amp;f_id=004f06eaf0"
+            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="mt-4"
+            target="_blank">
+            <div class="input-group">
+              <input type="email" class="form-control" name="EMAIL" placeholder="Enter your email" aria-label="Email"
+                aria-describedby="subscribe-btn" required="" />
+              <button class="btn btn-primary" type="submit" id="subscribe-btn">
+                Subscribe
+              </button>
+            </div>
+            <div style="position: absolute; left: -5000px" aria-hidden="true">
+              <input type="text" name="b_b35e6bdc7b2adf06c56da2265_88ed6c4af0" tabindex="-1" value="" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Newsletter section -->
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-3">
+    <div class="container">
+      <div class="row mt-3 mb-2">
+        <div class="col">
+          <h5>About Us</h5>
+          <p class="w-65">
+            Ultraviolet is a leading company specializing in confidential
+            computing, cloud security, AI/ML, multi-party computation, and
+            secure data sharing.
+          </p>
+        </div>
+
+        <div class="col">
+          <h5>Products</h5>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fas fa-network-wired me-2"></i><a href="/prism/" class="text-white">Prism AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cog me-2"></i><a href="/cocos/" class="text-white">Cocos AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cube"></i>
+              <a href="/cube/" class="text-white">Cube AI</a>
+            </li>
+          </ul>
+          <h5>Resources</h5>
+          <ul class="list-unstyled">
+            <li>
+              <a href="https://docs.google.com/presentation/d/199CkKD4YpgfJ1CLWVyZ9TdmXLLvME7JHN4Kfjkbgmho/export/pdf"
+                class="text-white">
+                Prism AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1oZDjQjuzNR8PeI1AHS8tePaiA73SmjnjrFFEBoS6b68/export/pdf"
+                class="text-white">
+                Cocos AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1UJR6HKiBV3r56SyMNZvO3ylek8VFmNojbFkTC-bawBY/export/pdf"
+                class="text-white">
+                Cube AI Datasheet
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h5>Legal</h5>
+          <ul class="list-unstyled">
+            Prism AI
+            <li>
+              <a href="/prism/terms" class="text-white"> Terms of Service</a>
+            </li>
+            <li>
+              <a href="/prism/privacy" class="text-white"> Privacy Policy</a>
+            </li>
+            <br />
+            Cube AI
+            <li>
+              <a href="/cube/terms" class="text-white">Terms of Service</a>
+            </li>
+            <li>
+              <a href="/cube/privacy" class="text-white">Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h5>Connect With Us</h5>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fab fa-twitter me-2"></i><a href="https://twitter.com/ultravioletrs" class="text-white"
+                target="_blank">Twitter</a>
+            </li>
+            <li>
+              <i class="fab fa-linkedin me-2"></i><a href="https://www.linkedin.com/company/ultravioletrs"
+                class="text-white" target="_blank">LinkedIn</a>
+            </li>
+            <li>
+              <i class="fab fa-medium me-2"></i><a href="https://medium.com/ultraviolet-blog" class="text-white"
+                target="_blank">Medium Blog</a>
+            </li>
+            <li>
+              <i class="fab fa-github me-2"></i><a href="https://github.com/ultravioletrs" class="text-white"
+                target="_blank">GitHub</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h5>Contact Us</h5>
+          <p>
+            <i class="fas fa-envelope me-2"></i><a href="mailto:info@ultraviolet.rs"
+              class="text-white">info@ultraviolet.rs</a>
+          </p>
+          <p>
+            <i class="fab fa-gitter me-2"></i><a href="https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im"
+              class="text-white" target="_blank">Chat on Gitter</a>
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt me-2"></i>Bulevar Arsenija
+            Carnojevica 103, 11000 Belgrade, Serbia
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer section -->
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CH54M1Z8DY"></script>
+
+  <!-- Include Cookie Consent Script -->
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+    function getCookie(name) {
+      var b = document.cookie.match(
+        "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)",
+      );
+      return b ? b.pop() : "";
+    }
+
+    function addAnalytics() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-CH54M1Z8DY");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      // Reading "cookieconsent_status" cookie
+      const cookieConsent = getCookie("cookieconsent_status");
+
+      // Start analytics if user consented or did not deny
+      if (cookieConsent === "allow" || cookieConsent === "") {
+        addAnalytics();
+      }
+
+      if (typeof window.cookieconsent !== "undefined") {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: { background: "#000" },
+            button: { background: "#f1d600" },
+          },
+          revokable: true,
+          law: {
+            regionalLaw: {
+              EU: true, // Show banner in EU
+              UK: true, // Show banner in the UK
+            },
+          },
+          location: true, // Enable geolocation for regional targeting
+          type: "opt-out",
+          content: {
+            message:
+              "🍪 We use cookies to collect data to improve your experience on our site.",
+            allow: "Allow",
+            dismiss: "Allow",
+            deny: "Reject",
+          },
+          onStatusChange: function (status, chosenBefore) {
+            location.reload();
+          },
+        });
+      } else {
+        console.error("Cookie consent script not loaded.");
+      }
+    });
+  </script>
+</body>
+
+</html>
