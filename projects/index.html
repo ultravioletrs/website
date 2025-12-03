@@ -4,12 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ULTRAVIOLET</title>
-  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <title>Research Projects - ULTRAVIOLET</title>
+  <link rel="icon" type="image/png" href="../img/favicon.png" />
 
   <!-- Google Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" />
-
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen&display=swap" />
@@ -30,7 +29,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #ffffff">
     <div class="container">
-      <a class="navbar-brand" href="javascript:void(0)" style="color: black">
+      <a class="navbar-brand" href="/" style="color: black">
         ULTRAVIOLET
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -112,265 +111,138 @@
   <section id="header" class="py-5">
     <div class="container">
       <div class="d-flex align-items-center justify-content-center" style="height: 400px; overflow: hidden">
-        <img src="img/header.avif" alt="pattern-white" class="img-fluid" style="width: 100%" />
+        <img src="../img/header.avif" alt="pattern-white" class="img-fluid" style="width: 100%" />
       </div>
     </div>
   </section>
 
-  <!-- Your AI Is Now Protected section -->
-  <section id="ai-protection" class="py-5">
+  <!-- Projects Introduction section -->
+  <section id="projects-intro" class="py-5">
     <div class="container">
       <div class="row mt-5">
         <div class="col-md-12">
-          <h1>Your AI Is Now Protected</h1>
+          <h1>Research Projects</h1>
           <p>
-            At Ultraviolet, we are dedicated to ensuring the security of your
-            AI and data. We specialize in confidential computing technologies,
-            providing hardware and software enablement of Trusted Execution
-            Environments (TEEs) across various CPU architectures and
-            platforms.
+            Advancing confidential computing, AI security, and privacy-preserving technologies through 
+            EU-funded research initiatives
           </p>
           <p>
-            Introducing cocos.ai, a powerful open-source platform for Secure
-            Multi-party Computation and confidential collaborative AI.
+            At Ultraviolet, we actively participate in cutting-edge research projects that push the 
+            boundaries of confidential computing, secure AI/ML, and privacy-preserving technologies. 
+            Our involvement in European Union-funded initiatives enables us to collaborate with leading 
+            research institutions and industry partners to develop next-generation security solutions 
+            for cloud, edge, and 6G networks.
           </p>
-          <div class="mt-4">
-            <a href="cocos/" class="btn btn-success d-inline-block">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End of Projects Introduction section -->
+
+  <!-- Projects Cards section -->
+  <section id="projects-cards" class="py-5">
+    <div class="container">
+      <div class="row">
+        <!-- CONFIDENTIAL6G Project -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <div class="text-center mb-3">
+                <img src="../img/c6g.png" alt="CONFIDENTIAL6G Logo" style="max-height: 80px;" />
+              </div>
+              <h3 class="card-title text-center">CONFIDENTIAL6G</h3>
+              <p class="card-text">
+                Develop cryptographic quantum-resistant protocols and security proofs tools, libraries, 
+                mechanisms and architectural blueprints for confidentiality in 6G networks.
+              </p>
+              <div class="mt-auto">
+                <a href="/projects/confidential6g" class="btn btn-success">View Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ELASTIC Project -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <div class="text-center mb-3">
+                <img src="../img/logos/elastic.png" alt="ELASTIC Logo" style="max-height: 80px; background: #323232;" />
+              </div>
+              <h3 class="card-title text-center">ELASTIC</h3>
+              <p class="card-text">
+                Pioneer next-gen network orchestration, harnessing WebAssembly and Confidential Computing 
+                to ensure efficient, secure service delivery across 6G infrastructures.
+              </p>
+              <div class="mt-auto">
+                <a href="/projects/elastic" class="btn btn-success">View Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TITAN Project -->
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body d-flex flex-column">
+              <div class="text-center mb-3">
+                <img src="../img/logos/titan.svg" alt="TITAN Logo" style="max-height: 80px;" />
+              </div>
+              <h3 class="card-title text-center">TITAN</h3>
+              <p class="card-text">
+                Building trusted AI systems through confidential computing and privacy-preserving 
+                technologies for secure collaborative machine learning across distributed environments.
+              </p>
+              <div class="mt-auto">
+                <a href="/projects/titan" class="btn btn-success">View Details</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- End of Your AI Is Now Protected section -->
+  <!-- End of Projects Cards section -->
 
-  <!-- Membership section -->
-  <section class="py-4">
+  <!-- Research Focus Areas section -->
+  <section class="py-5 bg-light">
     <div class="container">
-      <h2 class="text-center">Our Memberships</h2>
-      <div class="row justify-content-center align-items-center">
-        <div class="col-12 mt-5">
-          <div class="d-flex justify-content-center flex-wrap">
-            <!-- LF Logo -->
-            <a href="https://www.linuxfoundation.org/" target="_blank">
-              <img src="img/logos/lf.png" alt="LF" class="img-fluid logo-img mx-5 my-2" style="max-height: 70px" />
-            </a>
-            <!-- CCC Logo -->
-            <a href="https://confidentialcomputing.io/" target="_blank">
-              <img src="img/logos/ccc.png" alt="CCC" class="img-fluid logo-img mx-5 my-2" style="max-height: 70px" />
-            </a>
-          </div>
-        </div>
-      </div>
-      <p class="text-center mt-3">
-        Ultraviolet is a proud member of the Linux Foundation (LF) and the
-        Confidential Computing Consortium (CCC).
-      </p>
-    </div>
-  </section>
-  <!-- End of Membership section -->
-
-  <!-- Confidential Computing section -->
-  <section id="confidential-computing" class="py-5">
-    <div class="container">
+      <h2 class="text-center mb-5">Our Research Focus Areas</h2>
       <div class="row">
-        <div class="col-md-6 d-flex justify-content-center align-items-center">
-          <!-- Insert your diagram explaining TEEs here -->
-          <img src="img/cc.png" alt="TEE Diagram" class="img-fluid" />
-        </div>
-        <div class="col-md-6 mt-5 mt-lg-0">
-          <h1>Confidential Computing</h1>
-          <p>
-            Confidential Computing is a field at the intersection of computer
-            science and cybersecurity. It revolves around the concept of
-            Trusted Execution Environments (TEEs) and secure enclaves.
-          </p>
-          <p>
-            TEEs are secure, isolated environments within a computer's central
-            processing unit (CPU) that are designed to protect sensitive data
-            and computations from unauthorized access. These environments
-            operate independently from the host system, ensuring that data
-            remains confidential and secure.
-          </p>
-          <p>
-            Secure enclaves, provided by TEEs, enable critical operations such
-            as encryption, decryption, and data processing to take place in a
-            protected space that is immune to external attacks. This makes
-            TEEs invaluable for applications that require the highest levels
-            of data security, such as multi-party computation and
-            collaborative AI projects.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End of Confidential Computing section -->
-
-  <!-- Secure Collaborative AI section -->
-  <section id="secure-collaborative-ai" class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 order-md-2 d-flex justify-content-center align-items-center">
-          <img src="img/prism-concept.png" alt="Secure Collaborative AI" class="img-fluid" />
-        </div>
-        <div class="col-md-6 order-md-1 mt-5 mt-lg-0">
-          <h1>Collaborative AI</h1>
-          <p>
-            Enter the realm of secure collaborative AI powered by Trusted
-            Execution Environments (TEEs) and secure enclaves. This
-            cutting-edge technology ensures the utmost confidentiality,
-            integrity, and privacy of your AI workloads and data exchange.
-          </p>
-          <p>
-            TEEs provide secure, isolated environments within the CPU,
-            shielding your AI computations from unauthorized access.
-            Multi-party computation becomes a reality as TEEs enable multiple
-            parties to collaboratively process data without exposing sensitive
-            information.
-          </p>
-          <p>
-            With TEE secure enclaves, your AI workloads run in a confidential
-            and encrypted manner, protecting against external threats and
-            ensuring data remains secure throughout the computation process.
-            Experience the future of AI collaboration with security and trust
-            at its core.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End of Secure Collaborative AI section -->
-
-  <!-- Open Source section -->
-  <section id="open-source" class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 d-flex justify-content-center align-items-center">
-          <img src="img/open-source.png" alt="Open Source - Cocos AI" class="img-fluid" />
-        </div>
-        <div class="col-md-6 mt-5 mt-lg-0">
-          <h1>Open Source</h1>
-          <p>
-            Cocos AI, the cornerstone of secure collaborative AI, is
-            engineered as an open-source platform. Its foundation lies in
-            Trusted Execution Environments (TEEs), ensuring the utmost
-            integrity and security for AI workloads, even in untrusted or
-            remote environments.
-          </p>
-          <p>
-            This open-source approach grants developers, organizations, and
-            users the freedom to harness, tailor, and contribute to Cocos AI.
-            Our transparent and well-documented deployment of TEEs transforms
-            this platform into an open confidential computing infrastructure
-            for cloud and edge environments, ushering in a new era of
-            innovative, secure, and collaborative AI.
-          </p>
-          <p>
-            As a member of the Linux Foundation and Confidential Computing
-            Consortium, we collaborate closely with industry leaders to
-            facilitate open-source development and maintenance of the Cocos AI
-            platform. Our commitment to open source extends beyond Cocos AI,
-            encompassing the broader ecosystem of open-source tools and
-            components that are essential for building a comprehensive and
-            secure confidential computing framework.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End of Open Source section -->
-
-  <!-- Ultraviolet Solutions for Confidential Computing section -->
-  <section class="py-lg-5 py-md-4 py-sm-3 py-2">
-    <div class="container">
-      <h2 class="text-center mb-4">
-        Ultraviolet Solutions for Confidential Computing
-      </h2>
-      <div class="row mt-5 mb-5">
-        <div class="col">
-          <div class="d-flex flex-column align-items-center">
-            <i class="fas fa-cogs fa-3x mb-3"></i>
-            <h3 class="text-center">TEE Enablement</h3>
-            <p class="text-left text-justify">
-              Ultraviolet specializes in the enablement of Trusted Execution
-              Environments (TEEs) across various CPU architectures and
-              platforms. TEEs provide secure, isolated environments within the
-              CPU, ensuring the confidentiality and integrity of your
-              computations and data.
+        <div class="col-md-4 mb-4">
+          <div class="d-flex flex-column align-items-center text-center">
+            <i class="fas fa-shield-alt fa-3x mb-3 text-success"></i>
+            <h4>Confidential Computing</h4>
+            <p>
+              Developing secure execution environments using Trusted Execution Environments (TEEs), 
+              secure enclaves, and hardware-based security for protecting data in use.
             </p>
           </div>
         </div>
-        <div class="col">
-          <div class="d-flex flex-column align-items-center">
-            <i class="fas fa-lock fa-3x mb-3"></i>
-            <h3 class="text-center">Confidential Cloud</h3>
-            <p class="text-left text-justify">
-              Experience the future of cybersecurity with Ultraviolet's
-              confidential cloud solutions. We ensure the security,
-              reliability, and confidentiality of your cloud infrastructure.
-              Your data and workloads are protected within secure enclaves,
-              safeguarding against unauthorized access and external threats.
+        <div class="col-md-4 mb-4">
+          <div class="d-flex flex-column align-items-center text-center">
+            <i class="fas fa-network-wired fa-3x mb-3 text-success"></i>
+            <h4>6G Security</h4>
+            <p>
+              Advancing security protocols and cryptographic techniques for next-generation 6G networks, 
+              including quantum-resistant algorithms and privacy-preserving networking.
             </p>
           </div>
         </div>
-        <div class="col">
-          <div class="d-flex flex-column align-items-center">
-            <i class="fas fa-rocket fa-3x mb-3"></i>
-            <h3 class="text-center">Secure Collaboration</h3>
-            <p class="text-left text-justify">
-              Ultraviolet's secure multi-party computation (SMPC) platform
-              allows multiple parties to collaboratively process data without
-              exposing sensitive information. Powered by Trusted Execution
-              Environments (TEEs), our platform ensures the confidentiality
-              and privacy of your data exchanges and AI workloads.
+        <div class="col-md-4 mb-4">
+          <div class="d-flex flex-column align-items-center text-center">
+            <i class="fas fa-brain fa-3x mb-3 text-success"></i>
+            <h4>Privacy-Preserving AI</h4>
+            <p>
+              Creating secure frameworks for collaborative AI/ML, federated learning, and multi-party 
+              computation that preserve data privacy while enabling innovation.
             </p>
           </div>
         </div>
       </div>
-      <!-- Call to Action (CTA) button to explore products -->
-      <div class="text-center">
-        <a href="/products" class="btn btn-success btn-lg">Explore Our Products</a>
-      </div>
     </div>
   </section>
-  <!-- End of Ultraviolet Solutions for Confidential Computing section -->
-
-  <!-- Logo section -->
-  <section class="py-4">
-    <div class="container">
-      <h2 class="text-center mt-5">Our Clients and Partners</h2>
-      <div class="row justify-content-center align-items-center">
-        <!-- All logos in one row -->
-        <div class="col-12 mt-5">
-          <div class="d-flex justify-content-center align-items-center flex-wrap">
-            <!-- Use flex-wrap to allow logos to wrap on smaller screens -->
-            <!-- Logos with spacing -->
-            <img src="img/logos/if.png" alt="IF" class="img-fluid logo-img mx-3 my-2" style="max-height: 70px" />
-            <img src="img/logos/etf.png" alt="ETF" class="img-fluid logo-img mx-3 my-2" style="max-height: 80px" />
-            <img src="img/logos/eu.png" alt="EU Commission" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 70px" />
-            <img src="img/logos/telefonica.png" alt="Telefonica" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 50px" />
-            <img src="img/logos/vtt.png" alt="VTT" class="img-fluid logo-img mx-3 my-2" style="max-height: 50px" />
-            <img src="img/logos/fujitsu.png" alt="Fujitsu" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 50px" />
-            <img src="img/logos/fraunhofer.png" alt="Fraunhofer" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 40px" />
-            <img src="img/logos/tno.png" alt="TNO" class="img-fluid logo-img mx-3 my-2" style="max-height: 50px" />
-            <img src="img/logos/ericsson.png" alt="Ericsson" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 90px" />
-            <img src="img/logos/nokia.png" alt="Nokia" class="img-fluid logo-img mx-3 my-2" style="max-height: 90px" />
-            <img src="img/logos/inserm.png" alt="Inserm" class="img-fluid logo-img mx-3 my-2"
-              style="max-height: 80px" />
-            <img src="img/logos/tue.png" alt="TUE" class="img-fluid logo-img mx-3 my-2" style="max-height: 50px" />
-            <img src="img/logos/thales.png" alt="Thales" class="img-fluid logo-img mx-0 my-0"
-              style="max-height: 150px; align-self: center" />
-            <img src="img/logos/imdea.svg" alt="Imdea" class="img-fluid logo-img mx-3 my-2" style="max-height: 70px" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End of Logo section -->
+  <!-- End of Research Focus Areas section -->
 
   <!-- Newsletter section -->
   <section id="newsletter" class="py-5">
@@ -419,14 +291,14 @@
           <h5>Products</h5>
           <ul class="list-unstyled">
             <li>
-              <i class="fas fa-network-wired me-2"></i><a href="prism/" class="text-white">Prism AI</a>
+              <i class="fas fa-network-wired me-2"></i><a href="/prism/" class="text-white">Prism AI</a>
             </li>
             <li>
-              <i class="fas fa-cog me-2"></i><a href="cocos/" class="text-white">Cocos AI</a>
+              <i class="fas fa-cog me-2"></i><a href="/cocos/" class="text-white">Cocos AI</a>
             </li>
             <li>
               <i class="fas fa-cube"></i>
-              <a href="cube/" class="text-white">Cube AI</a>
+              <a href="/cube/" class="text-white">Cube AI</a>
             </li>
           </ul>
           <h5>Resources</h5>
