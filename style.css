@@ -76,3 +76,62 @@ section[id] {
 .w-65 {
   width: 65%;
 }
+
+/*News section stlying */
+    .news-grid {
+      position: relative;
+    }
+    
+    /* Create the vertical dotted line between Date and Content */
+    .news-divider {
+      border-left: 1px dashed #e0e0e0;
+      min-height: 100%;
+    }
+
+    /* Custom Typography matches */
+    .news-date {
+      color: #6b7280; /* Cool gray */
+      font-size: 0.9rem;
+      padding-top: 0.2rem;
+    }
+
+    .news-category {
+      color: #635bff; /* Stripe Purple/Blue */
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .news-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      line-height: 1.4;
+      color: #111827;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .news-title:hover {
+      color: #635bff;
+    }
+
+    .news-image {
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      transition: transform 0.2s;
+    }
+
+    .news-row:hover .news-image {
+      transform: scale(1.02);
+    }
+    
+    .news-row {
+      padding-bottom: 3rem;
+    }
+    
