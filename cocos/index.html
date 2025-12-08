@@ -4,8 +4,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ULTRAVIOLET</title>
-  <link rel="icon" type="image/png" href="../img/favicon.png" />
+  <title>Cocos AI - Open Source Confidential Computing System</title>
+  <meta name="description"
+    content="Cocos AI is an open-source system for running confidential workloads with a CVM manager, in-enclave Agent, and secure remote attestation." />
+  <meta name="keywords"
+    content="Cocos AI, confidential computing, open source, TEE, CVM, remote attestation, secure enclave, AI workloads" />
+  <meta name="author" content="Ultraviolet" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ultraviolet.rs/cocos/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cocos AI - Open Source Confidential Computing System" />
+  <meta property="og:description"
+    content="Cocos AI is an open-source system for running confidential workloads with a CVM manager, in-enclave Agent, and secure remote attestation." />
+  <meta property="og:image" content="https://ultraviolet.rs/img/header.avif" />
+  <meta property="og:url" content="https://ultraviolet.rs/cocos/" />
+  <meta property="og:type" content="product" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cocos AI - Open Source Confidential Computing System" />
+  <meta name="twitter:description"
+    content="Cocos AI is an open-source system for running confidential workloads with a CVM manager, in-enclave Agent, and secure remote attestation." />
+  <meta name="twitter:image" content="https://ultraviolet.rs/img/header.avif" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Cocos AI",
+        "description": "Open-source system for running confidential workloads",
+        "image": "https://ultraviolet.rs/img/cocos-concept.png",
+        "brand": {
+          "@type": "Brand",
+          "name": "Ultraviolet"
+        },
+        "url": "https://ultraviolet.rs/cocos/"
+      }
+    </script>
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://ultraviolet.rs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Products",
+            "item": "https://ultraviolet.rs/products/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Cocos AI",
+            "item": "https://ultraviolet.rs/cocos/"
+          }
+        ]
+      }
+    </script>
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Ultraviolet" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Google Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" />
@@ -43,7 +113,9 @@
               PRODUCTS
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="productsDropdown">
-              <li><a class="dropdown-item" href="https://prism.ultraviolet.rs" target="_blank">PRISM AI</a></li>
+              <li>
+                <a class="dropdown-item" href="https://prism.ultraviolet.rs" target="_blank">PRISM AI</a>
+              </li>
               <li>
                 <a class="dropdown-item" href="javascript:void(0)">COCOS AI</a>
               </li>
@@ -759,7 +831,7 @@
   <script>
     function getCookie(name) {
       var b = document.cookie.match(
-        "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)",
+        "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)"
       );
       return b ? b.pop() : "";
     }

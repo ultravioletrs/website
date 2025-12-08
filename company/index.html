@@ -3,8 +3,98 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ULTRAVIOLET</title>
-    <link rel="icon" type="image/png" href="../img/favicon.png" />
+    <title>About Ultraviolet - Confidential Computing & AI Security</title>
+    <meta
+      name="description"
+      content="Ultraviolet specializes in confidential computing, cloud security, AI/ML, multi-party computation, and secure data sharing."
+    />
+    <meta
+      name="keywords"
+      content="confidential computing, cloud security, AI, ML, multi-party computation, secure data sharing, TEE, Ultraviolet, company, about"
+    />
+    <meta name="author" content="Ultraviolet" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ultraviolet.rs/company/" />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="About Ultraviolet - Confidential Computing & AI Security"
+    />
+    <meta
+      property="og:description"
+      content="Ultraviolet specializes in confidential computing, cloud security, AI/ML, multi-party computation, and secure data sharing."
+    />
+    <meta
+      property="og:image"
+      content="https://ultraviolet.rs/img/header.avif"
+    />
+    <meta property="og:url" content="https://ultraviolet.rs/company/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="About Ultraviolet - Confidential Computing & AI Security"
+    />
+    <meta
+      name="twitter:description"
+      content="Ultraviolet specializes in confidential computing, cloud security, AI/ML, multi-party computation, and secure data sharing."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ultraviolet.rs/img/header.avif"
+    />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Ultraviolet",
+        "url": "https://ultraviolet.rs/company/",
+        "logo": "https://ultraviolet.rs/img/favicon.png",
+        "sameAs": [
+          "https://twitter.com/ultravioletrs",
+          "https://www.linkedin.com/company/ultravioletrs",
+          "https://medium.com/ultraviolet-blog",
+          "https://github.com/ultravioletrs"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "info@ultraviolet.rs",
+          "contactType": "customer support"
+        }
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://ultraviolet.rs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Company",
+            "item": "https://ultraviolet.rs/company/"
+          }
+        ]
+      }
+    </script>
+
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Ultraviolet" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Google Fonts -->
     <link
@@ -83,7 +173,14 @@
                 class="dropdown-menu dropdown-menu-end"
                 aria-labelledby="productsDropdown"
               >
-                <li><a class="dropdown-item" href="https://prism.ultraviolet.rs" target="_blank">PRISM AI</a></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://prism.ultraviolet.rs"
+                    target="_blank"
+                    >PRISM AI</a
+                  >
+                </li>
                 <li><a class="dropdown-item" href="/cocos">COCOS AI</a></li>
                 <li><a class="dropdown-item" href="/cube">CUBE AI</a></li>
                 <li>
@@ -123,25 +220,34 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false" style="color: black">
-              PROJECTS
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
-              <li>
-                <a class="dropdown-item" href="/projects/confidential6g">CONFIDENTIAL6G</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="/projects/elastic">ELASTIC</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="/projects/titan">TITAN</a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="/projects">All Projects</a>
-              </li>
-            </ul>
-          </li>
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="projectsDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="color: black"
+              >
+                PROJECTS
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+                <li>
+                  <a class="dropdown-item" href="/projects/confidential6g"
+                    >CONFIDENTIAL6G</a
+                  >
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/projects/elastic">ELASTIC</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/projects/titan">TITAN</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="/projects">All Projects</a>
+                </li>
+              </ul>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="javascript:void(0)" style="color: black"
                 >COMPANY</a
@@ -460,7 +566,7 @@
     <script>
       function getCookie(name) {
         var b = document.cookie.match(
-          "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)",
+          "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)"
         );
         return b ? b.pop() : "";
       }

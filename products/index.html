@@ -3,8 +3,109 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ULTRAVIOLET</title>
-    <link rel="icon" type="image/png" href="../img/favicon.png" />
+    <title>
+      Ultraviolet Products - Secure AI & Confidential Computing Solutions
+    </title>
+    <meta
+      name="description"
+      content="Explore Ultraviolet's suite of secure AI products: Prism AI, Cocos AI, and Cube AI. Enable confidential computing and collaborative AI."
+    />
+    <meta
+      name="keywords"
+      content="products, Ultraviolet, Prism AI, Cocos AI, Cube AI, confidential computing, secure AI, TEE, collaborative AI"
+    />
+    <meta name="author" content="Ultraviolet" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://ultraviolet.rs/products/" />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Ultraviolet Products - Secure AI & Confidential Computing Solutions"
+    />
+    <meta
+      property="og:description"
+      content="Explore Ultraviolet's suite of secure AI products: Prism AI, Cocos AI, and Cube AI. Enable confidential computing and collaborative AI."
+    />
+    <meta
+      property="og:image"
+      content="https://ultraviolet.rs/img/header.avif"
+    />
+    <meta property="og:url" content="https://ultraviolet.rs/products/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Ultraviolet Products - Secure AI & Confidential Computing Solutions"
+    />
+    <meta
+      name="twitter:description"
+      content="Explore Ultraviolet's suite of secure AI products: Prism AI, Cocos AI, and Cube AI. Enable confidential computing and collaborative AI."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ultraviolet.rs/img/header.avif"
+    />
+
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Ultraviolet Products",
+        "description": "Suite of secure AI and confidential computing products",
+        "url": "https://ultraviolet.rs/products/",
+        "hasPart": [
+          {
+            "@type": "Product",
+            "name": "Prism AI",
+            "description": "Secure collaborative AI training and inference system",
+            "url": "https://ultraviolet.rs/prism/"
+          },
+          {
+            "@type": "Product",
+            "name": "Cocos AI",
+            "description": "Open-source confidential computing HAL and execution environment",
+            "url": "https://ultraviolet.rs/cocos/"
+          },
+          {
+            "@type": "Product",
+            "name": "Cube AI",
+            "description": "Secure LLM platform using TEEs",
+            "url": "https://ultraviolet.rs/cube/"
+          }
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://ultraviolet.rs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Products",
+            "item": "https://ultraviolet.rs/products/"
+          }
+        ]
+      }
+    </script>
+
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Ultraviolet" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Google Fonts -->
     <link
@@ -83,7 +184,14 @@
                 class="dropdown-menu dropdown-menu-end"
                 aria-labelledby="productsDropdown"
               >
-                <li><a class="dropdown-item" href="https://prism.ultraviolet.rs" target="_blank">PRISM AI</a></li>
+                <li>
+                  <a
+                    class="dropdown-item"
+                    href="https://prism.ultraviolet.rs"
+                    target="_blank"
+                    >PRISM AI</a
+                  >
+                </li>
                 <li><a class="dropdown-item" href="/cocos">COCOS AI</a></li>
                 <li><a class="dropdown-item" href="/cube">CUBE AI</a></li>
                 <li>
@@ -125,13 +233,22 @@
               </ul>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown"
-                aria-expanded="false" style="color: black">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                id="projectsDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="color: black"
+              >
                 PROJECTS
               </a>
               <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
                 <li>
-                  <a class="dropdown-item" href="/projects/confidential6g">CONFIDENTIAL6G</a>
+                  <a class="dropdown-item" href="/projects/confidential6g"
+                    >CONFIDENTIAL6G</a
+                  >
                 </li>
                 <li>
                   <a class="dropdown-item" href="/projects/elastic">ELASTIC</a>
@@ -472,7 +589,7 @@
     <script>
       function getCookie(name) {
         var b = document.cookie.match(
-          "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)",
+          "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)"
         );
         return b ? b.pop() : "";
       }

@@ -4,8 +4,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ULTRAVIOLET</title>
-  <link rel="icon" type="image/png" href="../img/favicon.png" />
+  <title>Cube AI - Secure LLM & Confidential AI Platform</title>
+  <meta name="description"
+    content="Cube AI is an open-source framework for securing Large Language Models (LLMs) with TEEs, built-in governance, and privacy-preserving AI gateways." />
+  <meta name="keywords"
+    content="Cube AI, secure LLM, confidential AI, TEE, AI gateway, privacy-preserving AI, Ollama, Hugging Face, enterprise AI" />
+  <meta name="author" content="Ultraviolet" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ultraviolet.rs/cube/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cube AI - Secure LLM & Confidential AI Platform" />
+  <meta property="og:description"
+    content="Cube AI is an open-source framework for securing Large Language Models (LLMs) with TEEs, built-in governance, and privacy-preserving AI gateways." />
+  <meta property="og:image" content="https://ultraviolet.rs/img/header.avif" />
+  <meta property="og:url" content="https://ultraviolet.rs/cube/" />
+  <meta property="og:type" content="product" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Cube AI - Secure LLM & Confidential AI Platform" />
+  <meta name="twitter:description"
+    content="Cube AI is an open-source framework for securing Large Language Models (LLMs) with TEEs, built-in governance, and privacy-preserving AI gateways." />
+  <meta name="twitter:image" content="https://ultraviolet.rs/img/header.avif" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": "Cube AI",
+        "description": "Secure LLM framework using Confidential Computing",
+        "image": "https://ultraviolet.rs/img/cube-ai.png",
+        "brand": {
+          "@type": "Brand",
+          "name": "Ultraviolet"
+        },
+        "url": "https://ultraviolet.rs/cube/"
+      }
+    </script>
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://ultraviolet.rs/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Products",
+            "item": "https://ultraviolet.rs/products/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Cube AI",
+            "item": "https://ultraviolet.rs/cube/"
+          }
+        ]
+      }
+    </script>
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Ultraviolet" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Google Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" />
@@ -43,7 +113,9 @@
               PRODUCTS
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="productsDropdown">
-              <li><a class="dropdown-item" href="https://prism.ultraviolet.rs" target="_blank">PRISM AI</a></li>
+              <li>
+                <a class="dropdown-item" href="https://prism.ultraviolet.rs" target="_blank">PRISM AI</a>
+              </li>
               <li><a class="dropdown-item" href="/cocos">COCOS AI</a></li>
               <li>
                 <a class="dropdown-item" href="javascript:void(0)">CUBE AI</a>
@@ -67,8 +139,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-          </li>
+          <li class="nav-item"></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false" style="color: black">
@@ -664,7 +735,7 @@
   <script>
     function getCookie(name) {
       var b = document.cookie.match(
-        "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)",
+        "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)"
       );
       return b ? b.pop() : "";
     }
