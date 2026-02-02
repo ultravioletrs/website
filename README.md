@@ -25,8 +25,17 @@ To add a new blog post, follow these steps:
    ```bash
    make clean && make build
    ```
-3. Commit both the source Markdown files **and** the generated files in the `blog/` folder.
-4. Open a Pull Request.
+3. To run live reload server, use:
+   ```bash
+   make serve
+   ```
+   and open a browser at http://localhost:8080.
+4. To run on a different port (if, say, 8080 is taken), use:
+```bash
+   PORT=8081 make serve
+```
+5. Commit both the source Markdown files **and** the generated files in the `blog/` folder.
+6. Open a Pull Request.
 
 ## Documentation
 
