@@ -5,22 +5,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet</title>
-  <meta name="title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet" />
+  <title>Open Source Confidential Computing: Why Cube AI Chose Transparency Over Secrecy - Ultraviolet</title>
+  <meta name="title" content="Open Source Confidential Computing: Why Cube AI Chose Transparency Over Secrecy - Ultraviolet" />
   <meta name="description" content="" />
 
-  <link rel="canonical" href="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai/" />
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/open-source-confidential-computing/" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Ultraviolet" />
-  <meta property="og:url" content="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai" />
-  <meta property="og:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/open-source-confidential-computing" />
+  <meta property="og:title" content="Open Source Confidential Computing: Why Cube AI Chose Transparency Over Secrecy" />
   <meta property="og:description" content="" />
   <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
   
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
+  <meta name="twitter:title" content="Open Source Confidential Computing: Why Cube AI Chose Transparency Over Secrecy" />
   <meta name="twitter:description" content="" />
   <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
@@ -30,9 +30,9 @@
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": "Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts",
+        "headline": "Open Source Confidential Computing: Why Cube AI Chose Transparency Over Secrecy",
         "image": "https:\/\/www.ultraviolet.rs",
-        "datePublished": "2026-01-30",
+        "datePublished": "2026-02-02",
         "author": {
           "@type": "Person",
           "name": "sammy oina"
@@ -290,7 +290,7 @@
           
         </div>
 
-        <h1 class="display-4 fw-bold mb-4">Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts</h1>
+        <h1 class="display-4 fw-bold mb-4">Open Source Confidential Computing: Why Cube AI Chose Transparency Over Secrecy</h1>
 
         <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
           <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina" class="rounded-circle me-3" width="60" height="60"
@@ -298,130 +298,64 @@
           <div>
             <div class="fw-bold fs-5">sammy oina</div>
             <div class="text-muted">
-              January 30, 2026 · 4 min read
+              February 02, 2026 · 3 min read
             </div>
           </div>
         </div>
 
         
 
-        <div class="markdown-content"><p><img src="/img/confidential-computing-meets-ai/confidential-computing-cover.png" alt="Confidential Computing for AI"></p>
-<p>In the race to adopt Large Language Models (LLMs), enterprises and developers face a critical dilemma: <strong>how to leverage the power of state-of-the-art AI without compromising the privacy of sensitive data.</strong></p>
-<p>When you send a prompt to a traditional AI provider, you are trusting them not to log, read, or train on your data. But in the world of high-stakes finance, healthcare, and proprietary R&amp;D, &quot;trust us&quot; isn't good enough. You need <strong>mathematical proof</strong> that your data is private.</p>
-<p>This is where <strong>Confidential Computing</strong> comes in.</p>
-<p>In this deep dive, we'll explore how Cube AI leverages Trusted Execution Environments (TEEs) to provide a mathematically secure enclave for your AI workloads, guaranteeing that <strong>even the cloud provider cannot see your prompts.</strong></p>
+        <div class="markdown-content"><p><img src="/img/open-source-confidential-computing/open-source-confidential-computing.png" alt="Open Source Confidential Computing"></p>
+<p>There is a strange paradox at the heart of the &quot;Confidential Computing&quot; industry.</p>
+<p>On one hand, the premise is simple and powerful: <strong>mathematically guaranteed privacy</strong>. By using Trusted Execution Environments (TEEs) like AMD SEV-SNP and Intel TDX, we can theoretically prove that no one—not even the cloud provider—can peek at your data.</p>
+<p>On the other hand, many solutions that promise this transparency are themselves built on <strong>proprietary, closed-source blobs</strong>. They ask you to trust their &quot;secure enclave,&quot; but they won't show you the code running inside it.</p>
+<p>At Cube AI, we believe this approach is fundamentally flawed. <strong>You cannot have Confidential Computing without Open Source.</strong></p>
 <!-- raw HTML omitted -->
-<h2 id="the-hardware-trust-anchor-how-tees-work">The Hardware Trust Anchor: How TEEs Work</h2>
-<p>At the heart of Cube AI's security model are <strong>Trusted Execution Environments (TEEs)</strong>, specifically utilizing <strong>AMD SEV-SNP</strong> and <strong>Intel TDX</strong>.</p>
-<p>Traditionally, if you run a VM in the cloud, the cloud provider (the hypervisor context) has technical access to your memory. They <em>could</em>, in theory, dump the RAM and see your unencrypted data.</p>
-<p>TEEs change this equation by encrypting the virtual machine's memory <strong>at the hardware level</strong>.</p>
-<ol>
-<li>
-<p><strong>Memory Encryption</strong>: The CPU automatically encrypts data written to RAM and decrypts it only inside the CPU core. The keys are managed by a secure processor and are never exposed to the hypervisor or host OS.</p>
-<pre><code class="language-mermaid">graph TD
-    subgraph CPU [&quot;CPU Package (Trusted Boundary)&quot;]
-        Core[&quot;CPU Core&lt;br/&gt;(Data is Plaintext)&quot;]
-        ME[&quot;Memory Encryption Engine&lt;br/&gt;(AES-128/256)&quot;]
-    end
-
-    subgraph RAM [&quot;System Memory (Untrusted)&quot;]
-        EncData[&quot;Encrypted Data&lt;br/&gt;(Ciphertext)&quot;]
-    end
-
-    subgraph Host [&quot;Hypervisor / Host OS&quot;]
-        Admin[&quot;Cloud Admin / Root&quot;]
-    end
-
-    Core &lt;--&gt; ME
-    ME &lt;--&gt;|Encrypted Read/Write| EncData
-
-    Admin -.-&gt;|Attempts to Read| EncData
-    Admin -- &quot;Sees Garbage&quot; --&gt; EncData
-
-    style CPU fill:#ecfdf5,stroke:#22c55e,stroke-width:2px,color:#000
-    style RAM fill:#f8fafc,stroke:#eab308,stroke-width:2px,color:#000
-    style Host fill:#fef2f2,stroke:#ef4444,stroke-width:2px,color:#000
-</code></pre>
-</li>
-<li>
-<p><strong>Remote Attestation</strong>: This is the &quot;proof&quot; part. The hardware generates a cryptographic &quot;quote&quot;—a digital signature signed by the processor's manufacturer key. This quote serves as proof that:</p>
+<h2 id="the-black-box-problem">The &quot;Black Box&quot; Problem</h2>
+<p>In security engineering, there is a famous concept known as <strong>Kerckhoffs's principle</strong>: a cryptosystem should be secure even if everything about the system, except the key, is public knowledge.</p>
+<p>When a vendor sells you a closed-source confidential computing platform, they are violating this principle. They are asking you to trust a &quot;Black Box.&quot;</p>
 <ul>
-<li>The software running is exactly what you expect (measured by a hash).</li>
-<li>The hardware protections (SEV-SNP/TDX) are active.</li>
-<li>The environment hasn't been tampered with.</li>
+<li>How do you know the attestation report isn't being spoofed by a hardcoded key?</li>
+<li>How do you verify there are no backdoors in the control plane?</li>
+<li>How can you audit the memory encryption handling if you can't see the source?</li>
 </ul>
-</li>
-</ol>
-<h2 id="why-traditional-llm-apis-expose-privacy-risks">Why Traditional LLM APIs Expose Privacy Risks</h2>
-<p>When you use a standard API (like OpenAI or Anthropic), the flow usually looks like this:</p>
-<ol>
-<li>
-<p>TLS encrypts data in transit (good).</p>
-</li>
-<li>
-<p>Provider decrypts data on their server to process it (necessary).</p>
-</li>
-<li>
-<p><strong>Risk Zone</strong>: While the data is processed, it is visible in plain text in the server's memory.</p>
+<p>If the code protecting your secrets is itself a secret, you aren't buying security; you're buying a promise. And in the world of high-stakes AI—where medical records, financial strategies, and IP are on the line—promises aren't enough.</p>
+<h2 id="security-through-transparency">Security Through Transparency</h2>
+<p>This is why Cube AI is built on a foundation of <strong>radical transparency</strong>. We made a conscious decision to open-source our entire core stack. We want you to verify, not just trust.</p>
+<p>Our architecture relies on battle-tested open-source libraries that are open for peer review.</p>
+<h3 id="powered-by-cocos-ai">Powered by Cocos AI</h3>
+<p>A critical component of our stack is <a href="https://github.com/ultravioletrs/cocos"><strong>Cocos AI</strong></a>. Cocos provides the essential confidential computing layer for AI workloads. It abstracts the complexities of the underlying TEE hardware, allowing us to deploy confidential Virtual Machines (CVMs) across different cloud providers seamlessly.</p>
+<p>By building on top of Cocos, we ensure that the very mechanism creating the &quot;enclave&quot; is transparent. You can inspect the code to see exactly how:</p>
 <ul>
-<li><strong>Insider Threats</strong>: Rogue admins with root access could potentially inspect memory.</li>
-<li><strong>Side-Channel Attacks</strong>: Exploits like Spectre/Meltdown or purely software-based memory scrapers could exfiltrate data.</li>
-<li><strong>Data Retention</strong>: Mistakes in logging configurations could accidentally save sensitive prompts to persistent storage.</li>
+<li>The connection to the TEE hardware is established.</li>
+<li>The guest memory is managed.</li>
+<li>The transition from &quot;untrusted&quot; to &quot;trusted&quot; execution occurs.</li>
 </ul>
-<pre><code class="language-mermaid">graph LR
-    User([User]) --&gt;|TLS Encrypted| Gateway[API Gateway]
-    Gateway --&gt;|Plaintext| Server[Model Server]
-
-    subgraph RAM [&quot;Server Memory (RAM)&quot;]
-        Prompt[&quot;User Prompt&lt;br/&gt;(Plaintext)&quot;]
-    end
-
-    Server -- Processing --&gt; Prompt
-
-    Hacker[Attacker / Malware] -.-&gt;|Side Channel| Prompt
-    Admin[Rogue Employee] -.-&gt;|Direct Memory Dump| Prompt
-    Logs[Log Collector] -.-&gt;|Misconfiguration| Prompt
-
-    style Prompt fill:#ef4444,stroke:#7f1d1d,color:#fff,stroke-width:2px
-    style RAM fill:#e2e8f0,stroke:#94a3b8,color:#333
-    style Hacker stroke:#ef4444,stroke-dasharray: 5 5
-</code></pre>
-</li>
-</ol>
-<p>For regulated industries, this &quot;Processing in the Clear&quot; is a major compliance hurdle.</p>
-<h2 id="cube-ai-architecture-isolation-by-design">Cube AI Architecture: Isolation by Design</h2>
-<p>Cube AI solves this by moving the <strong>entire inference process</strong> into a TEE.</p>
-<p>The LLM (Ollama or vLLM) runs inside a Confidential VM. The model weights are decrypted only inside this enclave. Your prompts are encrypted with a key that is <strong>only</strong> released to the enclave after it proves its identity via attestation.</p>
-<h3 id="the-protected-inference-flow">The Protected Inference Flow</h3>
-<p>Here is how Cube AI isolates your data:</p>
-<p><img src="/img/confidential-computing-meets-ai/protected-inference-flow.png" alt="The Protected Inference Flow"></p>
-<ol>
-<li><strong>Attestation Handshake</strong>: The connection negotiation starts with an <strong>Attested TLS (aTLS)</strong> handshake. The Attestation Agent sends its certificate along with a hardware-signed quote.</li>
-<li><strong>Proxy Verification</strong>: The Cube Proxy verifies this quote against a strict attestation policy. Unlike standard TLS which blindly trusts a Certificate Authority, the Proxy validates the <em>hardware identity</em> and <em>software integrity</em> of the Agent.</li>
-<li><strong>Secure Tunnel</strong>: Once verified, an encrypted aTLS tunnel is established between the Proxy and the Agent.</li>
-<li><strong>Inference Proxying</strong>: The User sends an encrypted prompt to the Proxy, which forwards it through the aTLS tunnel. The Agent then proxies this request to the local LLM backend (vLLM/Ollama) running inside the enclave. Use the same key.</li>
-</ol>
-<h2 id="practical-example-private-medical-diagnosis">Practical Example: Private Medical Diagnosis</h2>
-<p>Imagine a healthcare provider building an AI assistant to analyze patient records for rare disease patterns.</p>
+<h3 id="standing-on-the-shoulders-of-giants">Standing on the Shoulders of Giants</h3>
+<p>We don't reinvent the wheel when it comes to cryptography. Our attestation flow relies on standard, industry-verified libraries:</p>
 <ul>
-<li><strong>The Data</strong>: Highly sensitive patient history, genetic markers, and lab results.</li>
-<li><strong>The Risk</strong>: Uploading this to a public LLM violates HIPAA and GDPR.</li>
-<li><strong>The Cube AI Solution</strong>:
-<ol>
-<li>The hospital's application connects to their private Cube AI instance.</li>
-<li>It verifies the instance acts as a &quot;black box&quot; via Remote Attestation.</li>
-<li>It sends the patient data.</li>
-<li><strong>Insight</strong>: The model analyzes the data <em>in memory</em> (which is encrypted at the hardware level).</li>
-<li><strong>Result</strong>: The diagnosis is returned encrypted.</li>
-<li><strong>Aftermath</strong>: Once the request is done, the data in memory is wiped. No logs, no training, no eyes on the data.</li>
-</ol>
-</li>
+<li><strong><code>google/go-sev-guest</code> &amp; <code>google/go-tdx-guest</code></strong>: These libraries, maintained by Google's security team, provide the low-level primitives for communicating with AMD and Intel hardware. They ensure that our parsing of attestation reports adheres to the strictest manufacturer specifications.</li>
+<li><strong><code>absmach/certs</code></strong>: We use this for managing the certificate chains that validate the hardware's identity.</li>
 </ul>
-<h2 id="key-takeaway">Key Takeaway</h2>
-<p>Cube AI shifts the trust model from <strong>policy-based security</strong> (&quot;we promise we won't look&quot;) to <strong>technology-based security</strong> (&quot;we physically cannot look&quot;).</p>
-<p>By combining the power of open-weights models (like Llama 3, Mistral) with the hardware-grade isolation of <strong>Confidential Computing</strong>, Cube AI allows you to deploy the most powerful AI capabilities on your most sensitive data—without losing sleep over privacy.</p>
+<p>By using these open upstream projects, we ensure that Cube AI benefits from the collective security research of the entire open-source community.</p>
+<h2 id="building-trustworthy-ai-infrastructure">Building Trustworthy AI Infrastructure</h2>
+<p>For developers and CTOs, the open-source model offers more than just philosophical satisfaction—it renders tangible business value.</p>
+<ol>
+<li><strong>Auditable Security</strong>: Your security team can audit every line of code that processes your sensitive LLM prompts. There is no &quot;magic&quot; occurring behind a proprietary API.</li>
+<li><strong>No Vendor Lock-in</strong>: Because the stack is open, you aren't beholden to a single vendor's roadmap. You can fork, extend, or contribute back to the project to suit your specific needs.</li>
+<li><strong>Faster Innovation</strong>: Open source accelerates adoption. When developers can easily spin up a local instance of Cube AI, inspect the attestation flow, and integrate it into their apps without a sales call, the ecosystem grows stronger.</li>
+</ol>
+<h2 id="join-the-confidential-revolution">Join the Confidential Revolution</h2>
+<p>We believe that the future of AI is private, and the future of privacy is open.</p>
+<p>We invite you to stop trusting blindly and start verifying.</p>
+<ul>
+<li><strong>Check out our code</strong>: <a href="https://github.com/ultravioletrs/cube">Cube AI on GitHub</a></li>
+<li><strong>Inspect the core</strong>: <a href="https://github.com/ultravioletrs/cocos">Cocos AI on GitHub</a></li>
+<li><strong>Verify the dependencies</strong>: Look at our <code>go.mod</code> to see exactly what goes into your build.</li>
+</ul>
+<p>Confidential Computing shouldn't be a secret. It should be a standard.</p>
 <hr>
-<p><em>Ready to secure your AI workloads? Check out our <a href="../docs/getting-started.md">Getting Started</a> guide or explore the <a href="../docs/attestation.md">Attestation Documentation</a>.</em></p>
+<p><em>Ready to contribute? We're looking for developers to help build the next generation of secure AI infrastructure. Check out our <a href="../docs/contributing.md">Contributing Guide</a> or say hi in our <a href="https://github.com/ultravioletrs/cube/discussions">Discussions</a>.</em></p>
 </div>
 
         <div class="mt-5 pt-4 border-top">
@@ -433,13 +367,13 @@
           <h5 class="mb-3 mt-3">Tags</h5>
           <div>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">security</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">open-source</span>
             
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential-computing</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">ai</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">community</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">privacy</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">transparency</span>
             
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">cube ai</span>
             
@@ -449,11 +383,11 @@
         <div class="mt-4">
           <h5 class="mb-3">Share this article</h5>
           <div class="d-flex gap-2 flex-wrap">
-            <a href="https://twitter.com/intent/tweet?text=Confidential&#43;Computing&#43;Meets&#43;AI%3A&#43;How&#43;Cube&#43;AI&#43;Protects&#43;Your&#43;LLM&#43;Prompts&url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://twitter.com/intent/tweet?text=Open&#43;Source&#43;Confidential&#43;Computing%3A&#43;Why&#43;Cube&#43;AI&#43;Chose&#43;Transparency&#43;Over&#43;Secrecy&url=https%3a%2f%2fwww.ultraviolet.rs/blog/open-source-confidential-computing"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-twitter me-2"></i>Twitter
             </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/open-source-confidential-computing"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-linkedin me-2"></i>LinkedIn
             </a>
@@ -524,7 +458,7 @@
         
         <div class="col-md-6 col-lg-4">
           <article class="card h-100 shadow-sm hover-lift border-0">
-            <a href="/blog/open-source-confidential-computing" class="text-decoration-none text-dark">
+            <a href="/blog/confidential-computing-meets-ai" class="text-decoration-none text-dark">
               
 
               <div class="card-body">
@@ -536,7 +470,7 @@
                 </div>
 
                 <h2 class="card-title h5 fw-bold">
-                  Open Source Confidential Computing: Why Cube AI Chose Transparency Over Secrecy
+                  Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts
                 </h2>
                 <p class="card-text text-muted small">
                   
@@ -551,20 +485,20 @@
                       sammy oina
                     </div>
                     <div class="text-muted">
-                      February 02, 2026 · 3 min
+                      January 30, 2026 · 4 min
                     </div>
                   </div>
                 </div>
 
                 <div class="mt-3">
                   
-                  <span class="badge bg-light text-dark me-1">open-source</span>
+                  <span class="badge bg-light text-dark me-1">security</span>
                   
                   <span class="badge bg-light text-dark me-1">confidential-computing</span>
                   
-                  <span class="badge bg-light text-dark me-1">community</span>
+                  <span class="badge bg-light text-dark me-1">ai</span>
                   
-                  <span class="badge bg-light text-dark me-1">transparency</span>
+                  <span class="badge bg-light text-dark me-1">privacy</span>
                   
                   <span class="badge bg-light text-dark me-1">cube ai</span>
                   
