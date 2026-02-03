@@ -293,7 +293,7 @@
         <h1 class="display-4 fw-bold mb-4">Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts</h1>
 
         <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
-          <img src="/assets/team/sammy-avatar.jpeg" alt="sammy oina" class="rounded-circle me-3" width="60" height="60"
+          <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina" class="rounded-circle me-3" width="60" height="60"
             loading="lazy" onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
           <div>
             <div class="fw-bold fs-5">sammy oina</div>
@@ -305,7 +305,7 @@
 
         
 
-        <div class="markdown-content"><p><img src="/img/confidential-computing-cover.png" alt="Confidential Computing for AI"></p>
+        <div class="markdown-content"><p><img src="/img/confidential-computing-meets-ai/confidential-computing-cover.png" alt="Confidential Computing for AI"></p>
 <p>In the race to adopt Large Language Models (LLMs), enterprises and developers face a critical dilemma: <strong>how to leverage the power of state-of-the-art AI without compromising the privacy of sensitive data.</strong></p>
 <p>When you send a prompt to a traditional AI provider, you are trusting them not to log, read, or train on your data. But in the world of high-stakes finance, healthcare, and proprietary R&amp;D, &quot;trust us&quot; isn't good enough. You need <strong>mathematical proof</strong> that your data is private.</p>
 <p>This is where <strong>Confidential Computing</strong> comes in.</p>
@@ -394,7 +394,7 @@
 <p>The LLM (Ollama or vLLM) runs inside a Confidential VM. The model weights are decrypted only inside this enclave. Your prompts are encrypted with a key that is <strong>only</strong> released to the enclave after it proves its identity via attestation.</p>
 <h3 id="the-protected-inference-flow">The Protected Inference Flow</h3>
 <p>Here is how Cube AI isolates your data:</p>
-<p><img src="/img/protected-inference-flow.png" alt="The Protected Inference Flow"></p>
+<p><img src="/img/confidential-computing-meets-ai/protected-inference-flow.png" alt="The Protected Inference Flow"></p>
 <ol>
 <li><strong>Attestation Handshake</strong>: The connection negotiation starts with an <strong>Attested TLS (aTLS)</strong> handshake. The Attestation Agent sends its certificate along with a hardware-signed quote.</li>
 <li><strong>Proxy Verification</strong>: The Cube Proxy verifies this quote against a strict attestation policy. Unlike standard TLS which blindly trusts a Certificate Authority, the Proxy validates the <em>hardware identity</em> and <em>software integrity</em> of the Agent.</li>

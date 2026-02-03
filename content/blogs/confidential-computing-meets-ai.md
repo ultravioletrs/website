@@ -3,13 +3,13 @@ slug: confidential-computing-meets-ai
 title: "Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts"
 author:
   name: "sammy oina"
-  picture: "/assets/team/sammy-avatar.jpeg"
+  picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
 tags: [security, confidential-computing, ai, privacy, "cube ai"]
 image: /img/confidential-computing-cover.png
 date: 2026-01-30
 ---
 
-![Confidential Computing for AI](/img/confidential-computing-cover.png)
+![Confidential Computing for AI](/img/confidential-computing-meets-ai/confidential-computing-cover.png)
 
 In the race to adopt Large Language Models (LLMs), enterprises and developers face a critical dilemma: **how to leverage the power of state-of-the-art AI without compromising the privacy of sensitive data.**
 
@@ -106,7 +106,7 @@ The LLM (Ollama or vLLM) runs inside a Confidential VM. The model weights are de
 
 Here is how Cube AI isolates your data:
 
-![The Protected Inference Flow](/img/protected-inference-flow.png)
+![The Protected Inference Flow](/img/confidential-computing-meets-ai/protected-inference-flow.png)
 
 
 1.  **Attestation Handshake**: The connection negotiation starts with an **Attested TLS (aTLS)** handshake. The Attestation Agent sends its certificate along with a hardware-signed quote.
