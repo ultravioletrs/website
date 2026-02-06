@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Scaling Confidential AI Inference: Multi-Tenant Architecture in Cube - Ultraviolet</title>
+  <meta name="title" content="Scaling Confidential AI Inference: Multi-Tenant Architecture in Cube - Ultraviolet" />
+  <meta name="description" content="" />
+
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/scaling-confidential-ai-inference/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Ultraviolet" />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/scaling-confidential-ai-inference" />
+  <meta property="og:title" content="Scaling Confidential AI Inference: Multi-Tenant Architecture in Cube" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
+
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Scaling Confidential AI Inference: Multi-Tenant Architecture in Cube" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
+
+
+  
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Scaling Confidential AI Inference: Multi-Tenant Architecture in Cube",
+        "image": "https:\/\/www.ultraviolet.rs",
+        "datePublished": "2026-02-06",
+        "author": {
+          "@type": "Person",
+          "name": "sammy oina"
+        },
+        "description": ""
+      }
+    </script>
+
+  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Ultraviolet" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen&display=swap" />
+
+  
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+  <style>
+    .navbar-nav .nav-link {
+      color: black !important;
+    }
+
+     
+    .markdown-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .markdown-content h2,
+    .markdown-content h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #212529;
+    }
+
+    .markdown-content p {
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .markdown-content pre {
+      border-radius: 6px;
+      padding: 1rem;
+    }
+
+    .markdown-content blockquote {
+      border-left: 4px solid #ddd;
+      padding-left: 1rem;
+      color: #555;
+      margin: 1.5rem 0;
+      font-style: italic;
+    }
+
+    .markdown-content table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    .markdown-content th,
+    .markdown-content td {
+      border: 1px solid #ddd;
+      padding: 0.6rem 0.8rem;
+    }
+
+    .markdown-content th {
+      background: #f5f5f5;
+      font-weight: 600;
+    }
+
+    .code-wrapper {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .code-wrapper pre {
+      margin-bottom: 0;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+
+    .code-wrapper:hover .copy-button {
+      opacity: 1;
+    }
+
+    .copy-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .copy-button.copied {
+      background: #198754;
+      border-color: #198754;
+      color: #fff;
+      opacity: 1;
+    }
+
+     
+    .markdown-content pre[class*="language-mermaid"] {
+      background: transparent;
+      padding: 0;
+      border: none;
+    }
+
+    .markdown-content code[class*="language-mermaid"] {
+      display: none;
+    }
+
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #ffffff">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Magistrala" height="30" width="250" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PRODUCTS
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="productsDropdown">
+              <li><a class="dropdown-item" href="https://prism.ultraviolet.rs"
+                  title="Prism AI Multi-Party Confidential Computation Orchestration Platform" target="_blank">PRISM
+                  AI</a></li>
+              <li><a class="dropdown-item" href="/cocos"
+                  title="Cocos AI Open Source Confidential Computing Platform">COCOS AI</a></li>
+              <li><a class="dropdown-item" href="/cube"
+                  title="Cube AI Privacy-Preserving LLM Deployment Framework with Confidential Computing">CUBE AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/products">All Products</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              DOCUMENTATION
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="https://docs.prism.ultraviolet.rs/" target="_blank">PRISM AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://docs.cocos.ultraviolet.rs/" target="_blank">COCOS AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://docs.cube.ultraviolet.rs/" target="_blank">CUBE AI</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PROJECTS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+              <li>
+                <a class="dropdown-item" href="/projects/confidential6g">CONFIDENTIAL6G</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/elastic">ELASTIC</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/titan">TITAN</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects">All Projects</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/company" style="color: black">COMPANY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/careers" style="color: black">CAREERS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact" style="color: black">CONTACT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog" style="color: black">BLOG</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/ultravioletrs" target="_blank" style="color: black"><i
+                class="fab fa-github"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <article class="container py-5 mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        
+        <div class="mb-4">
+          <a href="/blog" class="text-decoration-none text-muted"><i class="fas fa-arrow-left me-2"></i>Back to Blog</a>
+        </div>
+
+        <div class="mb-3">
+          <span class="badge bg-primary fs-6"></span>
+          
+        </div>
+
+        <h1 class="display-4 fw-bold mb-4">Scaling Confidential AI Inference: Multi-Tenant Architecture in Cube</h1>
+
+        <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
+          <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina" class="rounded-circle me-3" width="60" height="60"
+            loading="lazy" onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+          <div>
+            <div class="fw-bold fs-5">sammy oina</div>
+            <div class="text-muted">
+              February 06, 2026 · 5 min read
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="markdown-content"><p><img src="/img/scaling-confidential-ai-inference/scaling_confidential_ai_inference_cover.png" alt="Scaling Confidential AI Inference"></p>
+<p>Confidential AI is quickly transitioning from research environments into production infrastructure. As enterprises deploy large language models across departments, customers, and workloads, the question is no longer <em>whether</em> AI can scale — but whether it can scale <strong>securely</strong>.</p>
+<p><a href="https://docs.cube.ultraviolet.rs/architecture">Cube AI</a> is designed to answer that challenge.</p>
+<p>Built around confidential computing, attested infrastructure, and domain-based multi-tenancy, Cube enables operations teams to run AI workloads at production scale without compromising isolation, auditability, or performance.</p>
+<p>This article explores how Cube achieves multi-tenant confidential inference, the operational patterns that support it, and what it looks like to run real workloads in production.</p>
+<!-- raw HTML omitted -->
+<h2 id="the-architectural-foundation">The Architectural Foundation</h2>
+<p>At a high level, Cube separates control-plane responsibilities from confidential compute environments while maintaining a strongly observable and policy-driven infrastructure.</p>
+<h3 id="inference-flow">Inference Flow</h3>
+<pre><code>Client → Traefik → Cube Proxy → Auth → Audit → Route → Agent (CVM) → LLM Backend
+</code></pre>
+<p>Each layer is intentionally modular:</p>
+<ul>
+<li><strong>Proxy</strong> handles routing, authorization, metrics, and audit.</li>
+<li><strong>Agent</strong> runs inside a Confidential Virtual Machine (CVM) and performs attested inference.</li>
+<li><strong>SuperMQ + SpiceDB</strong> provide identity and relationship-based access control.</li>
+<li><strong>OpenSearch, Prometheus, Jaeger</strong> ensure production-grade observability.</li>
+</ul>
+<p>The result is an architecture where security is not bolted on — it is intrinsic to request execution.</p>
+<h2 id="multi-tenant-design-patterns-in-cube">Multi-Tenant Design Patterns in Cube</h2>
+<p>Multi-tenancy begins with a simple but powerful abstraction:</p>
+<blockquote>
+<p><strong>Every tenant is a Domain.</strong></p>
+</blockquote>
+<p>Each request carries a domain identifier embedded directly into the API path:</p>
+<pre><code>/proxy/{domainID}/v1/chat/completions
+</code></pre>
+<p>This decision pushes tenant isolation upstream into the routing layer, preventing cross-tenant ambiguity before a request reaches compute.</p>
+<h3 id="layered-isolation-model">Layered Isolation Model</h3>
+<p>Cube enforces separation across multiple infrastructure layers:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Layer</th>
+<th style="text-align:left">Isolation Mechanism</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>API</strong></td>
+<td style="text-align:left">Domain ID embedded in request path</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Auth</strong></td>
+<td style="text-align:left">Per-domain RBAC via SpiceDB</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Audit</strong></td>
+<td style="text-align:left">Logs filtered by <code>session.domain_id</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Database</strong></td>
+<td style="text-align:left">Schema-level separation through SuperMQ</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Compute</strong></td>
+<td style="text-align:left">Agent executes inside attested CVMs</td>
+</tr>
+</tbody>
+</table>
+<p>Rather than relying on a single boundary, Cube adopts a <strong>defense-in-depth</strong> posture — isolating identity, storage, compute, and telemetry.</p>
+<p>This layered approach is critical for enterprises where regulatory requirements demand verifiable separation between customers or business units.</p>
+<h2 id="isolation-guarantees-between-tenants">Isolation Guarantees Between Tenants</h2>
+<p>Logical isolation is only half the story. In confidential AI environments, operators must also guarantee <strong>runtime integrity</strong>.</p>
+<p>Cube achieves this through <strong>Attestation-TLS (aTLS)</strong> backed by hardware Trusted Execution Environments.</p>
+<p>Supported platforms include:</p>
+<ul>
+<li>AMD SEV-SNP</li>
+<li>Intel TDX</li>
+<li>Azure Confidential VMs</li>
+<li>vTPM-backed environments</li>
+</ul>
+<p>Before a connection is established, the proxy verifies the agent's cryptographic attestation against a stored measurement policy.</p>
+<p><strong>Only workloads running inside verified environments receive traffic.</strong></p>
+<h3 id="why-this-matters">Why This Matters</h3>
+<p>In traditional multi-tenant AI systems, operators <em>trust</em> infrastructure boundaries.</p>
+<p>In Cube, infrastructure <strong>proves its integrity</strong> before participating in inference.</p>
+<p>This transforms tenant isolation from a policy assumption into a <strong>cryptographically verifiable guarantee</strong>.</p>
+<h2 id="resource-management-and-quota-enforcement">Resource Management and Quota Enforcement</h2>
+<p>Production AI systems fail not from lack of compute — but from <strong>uncontrolled contention</strong>.</p>
+<p>Cube approaches resource governance through observability-first design, enabling operators to enforce quotas based on real usage patterns.</p>
+<h3 id="current-enforcement-signals">Current Enforcement Signals</h3>
+<p><strong>Proxy Metrics</strong></p>
+<ul>
+<li>Request counters per domain</li>
+<li>Latency histograms</li>
+<li>OpenAI-compatible API usage tracking</li>
+</ul>
+<p><strong>Transport Optimization</strong></p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="font-weight:bold">MaxIdleConns</span>: <span style="color:#ff0;font-weight:bold">100</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">IdleConnTimeout</span>: 90s
+</span></span></code></pre><p>Connection reuse dramatically reduces handshake overhead during burst traffic.</p>
+<p><strong>GPU Scheduling (vLLM)</strong></p>
+<pre><code>--gpu-memory-utilization 0.85
+--max-model-len 1024
+</code></pre>
+<p>Continuous batching ensures high throughput without starving smaller tenants.</p>
+<p><strong>Database Limits</strong></p>
+<pre><code>SMQ_POSTGRES_MAX_CONNECTIONS=100
+</code></pre>
+<p>Protects control-plane stability during traffic spikes.</p>
+<h3 id="the-middleware-advantage">The Middleware Advantage</h3>
+<p>Cube's middleware stack allows operators to insert:</p>
+<ul>
+<li>Rate limiting</li>
+<li>Usage-based billing</li>
+<li>Token quotas</li>
+<li>Per-domain throttling</li>
+</ul>
+<p>without redesigning the request pipeline.</p>
+<p>This composability is what enables Cube to evolve from observability-driven governance toward fully automated quota enforcement.</p>
+<h2 id="monitoring-and-observability-in-confidential-environments">Monitoring and Observability in Confidential Environments</h2>
+<p>Confidential infrastructure does not mean invisible infrastructure.</p>
+<p>Cube captures approximately <strong>40 audit fields per request</strong>, spanning identity, model behavior, and security posture.</p>
+<h3 id="example-audit-dimensions">Example Audit Dimensions</h3>
+<p><strong>Identity</strong></p>
+<ul>
+<li>TraceID</li>
+<li>RequestID</li>
+<li>Session</li>
+<li>DomainUserID</li>
+</ul>
+<p><strong>Model Telemetry</strong></p>
+<ul>
+<li>Model name</li>
+<li>Input/output tokens</li>
+<li>Temperature</li>
+</ul>
+<p><strong>Security</strong></p>
+<ul>
+<li>TLS version</li>
+<li>Cipher suite</li>
+<li>Attestation type</li>
+<li>Attestation verification status</li>
+</ul>
+<p><strong>Compliance</strong></p>
+<ul>
+<li>PII detection</li>
+<li>Content filtering flags</li>
+<li>Policy tags</li>
+</ul>
+<h3 id="log-pipeline">Log Pipeline</h3>
+<pre><code>Application → JSON slog → Fluent Bit → OpenSearch
+</code></pre>
+<p>Indexes are rotated daily:</p>
+<ul>
+<li><code>cube-audit-logs</code></li>
+<li><code>cube-error-logs</code></li>
+<li><code>cube-warn-logs</code></li>
+<li><code>cube-app</code></li>
+</ul>
+<p>Tracing flows through OTLP into Jaeger, enabling full request reconstruction across services.</p>
+<p>For SRE teams, this means confidential workloads remain <strong>fully diagnosable</strong> without exposing sensitive payloads.</p>
+<h2 id="performance-optimization-at-scale">Performance Optimization at Scale</h2>
+<p>Running inference inside CVMs introduces legitimate concerns around latency and throughput.</p>
+<p>Cube mitigates these through architectural placement and transport efficiency.</p>
+<h3 id="dynamic-routing">Dynamic Routing</h3>
+<p>Routes are stored in PostgreSQL and matched using priority rules across:</p>
+<ul>
+<li>Path</li>
+<li>Headers</li>
+<li>Query parameters</li>
+<li>Body fields</li>
+</ul>
+<p>This enables traffic shaping such as:</p>
+<ul>
+<li>High-priority GPU routes</li>
+<li>Guardrail-enforced paths</li>
+<li>Region-specific inference</li>
+</ul>
+<p>without redeploying services.</p>
+<h3 id="backend-flexibility">Backend Flexibility</h3>
+<p>Cube supports multiple inference engines:</p>
+<p><strong>Ollama</strong></p>
+<ul>
+<li>Ideal for general-purpose deployments</li>
+<li>Fast local model iteration</li>
+</ul>
+<p><strong>vLLM</strong></p>
+<ul>
+<li>Continuous batching</li>
+<li>High GPU utilization</li>
+<li>Production throughput</li>
+</ul>
+<p>Operators can mix both depending on workload characteristics.</p>
+<h3 id="middleware-execution-order">Middleware Execution Order</h3>
+<pre><code>Request → Request ID → AuthN → Audit → AuthZ → Logging → Tracing → Metrics → Route → Reverse Proxy
+</code></pre>
+<p>By performing authorization early and routing late, Cube avoids unnecessary compute expenditure on rejected traffic.</p>
+<p>This ordering becomes increasingly important at scale.</p>
+<h2 id="case-study-running-production-workloads">Case Study: Running Production Workloads</h2>
+<p>Consider a SaaS provider deploying AI assistants across hundreds of enterprise customers.</p>
+<p>Each customer receives:</p>
+<ul>
+<li>A dedicated domain</li>
+<li>Relationship-based access control</li>
+<li>Cryptographically attested compute</li>
+<li>Full audit traceability</li>
+</ul>
+<p>Traffic enters through Traefik, is authenticated via SuperMQ, authorized through SpiceDB, audited in real time, and routed into a verified CVM agent.</p>
+<p>Even during burst demand:</p>
+<ul>
+<li>Connection pools prevent transport thrashing</li>
+<li>Continuous batching maximizes GPU efficiency</li>
+<li>Middleware enables future quota enforcement</li>
+</ul>
+<p>Most importantly — <strong>no tenant can observe or influence another tenant's workload</strong>.</p>
+<p>This is the operational bar modern AI platforms must meet.</p>
+<h2 id="deployment-topologies">Deployment Topologies</h2>
+<p>Cube supports multiple deployment profiles:</p>
+<p><strong>Default</strong></p>
+<p>Includes proxy, agent, inference backends, and observability stack.</p>
+<p><strong>Cloud</strong></p>
+<p>Separates control-plane services from CVM-hosted agents — ideal for regulated environments.</p>
+<p><strong>GPU Variant</strong></p>
+<p>Dedicated vLLM configuration for high-throughput inference clusters.</p>
+<p>This flexibility allows operators to align infrastructure with compliance boundaries and cost models.</p>
+<h2 id="the-operational-takeaway">The Operational Takeaway</h2>
+<p>Scaling AI is no longer just a machine learning challenge. It is an <strong>infrastructure discipline</strong>.</p>
+<p>Cube demonstrates that confidential computing, multi-tenancy, and production observability are not mutually exclusive — they are <strong>mutually reinforcing</strong>.</p>
+<p>By combining:</p>
+<ul>
+<li>Domain-based tenancy</li>
+<li>Hardware-backed attestation</li>
+<li>Middleware-driven governance</li>
+<li>Deep telemetry</li>
+<li>Flexible routing</li>
+</ul>
+<p>operations teams can deploy AI systems that scale without sacrificing trust.</p>
+<h2 id="key-takeaway">Key Takeaway</h2>
+<p>Operations teams can confidently deploy Cube AI at scale — with <strong>verifiable isolation</strong>, <strong>production-grade observability</strong>, and infrastructure designed for the realities of multi-tenant inference.</p>
+<p>Confidential AI is not merely about protecting data. It is about building platforms enterprises are willing to trust.</p>
+<hr>
+<p><em>Cube is engineered for exactly that future. Explore the <a href="https://docs.cube.ultraviolet.rs/architecture">Architecture</a> or get started with the <a href="https://docs.cube.ultraviolet.rs/getting-started">Deployment Guide</a>.</em></p>
+</div>
+
+        <div class="mt-5 pt-4 border-top">
+          
+          <div>
+            <a href="/blog" class="btn btn-outline-secondary"><i class="fas fa-arrow-left me-2"></i>Back to
+              Blog</a>
+          </div>
+          <h5 class="mb-3 mt-3">Tags</h5>
+          <div>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">architecture</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">operations</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">multi-tenancy</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential-computing</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">infrastructure</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">cube ai</span>
+            
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <h5 class="mb-3">Share this article</h5>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="https://twitter.com/intent/tweet?text=Scaling&#43;Confidential&#43;AI&#43;Inference%3A&#43;Multi-Tenant&#43;Architecture&#43;in&#43;Cube&url=https%3a%2f%2fwww.ultraviolet.rs/blog/scaling-confidential-ai-inference"
+              target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+              <i class="fab fa-twitter me-2"></i>Twitter
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/scaling-confidential-ai-inference"
+              target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+              <i class="fab fa-linkedin me-2"></i>LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  
+  <section id="newsletter" class="py-5">
+    <div class="container">
+      <div class="row mt-5 mb-5">
+        <div class="col-md-6 offset-md-3 text-center">
+          <h2>Subscribe to Our Newsletter</h2>
+          <p>Stay updated with the latest news, updates and announcements.</p>
+
+          
+          <form
+            action="https://absmach.us11.list-manage.com/subscribe/post?u=70b43c7181d005024187bfb31&amp;id=0a319b6b63&amp;f_id=002711e1f0"
+            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+            target="_blank">
+            <div class="input-group">
+              <input type="email" class="form-control" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email"
+                aria-label="Email" aria-describedby="subscribe-btn" required="" />
+              <div hidden="">
+                <input type="hidden" name="tags" value="8115258" />
+              </div>
+              <button class="btn bg-deep-blue" type="submit" id="subscribe-btn"
+                style="background-color: #073763; color: white;">
+                Subscribe
+              </button>
+            </div>
+            <div id="mce-responses" class="clear foot">
+              <div class="response" id="mce-error-response" style="display: none"></div>
+              <div class="response" id="mce-success-response" style="display: none"></div>
+            </div>
+            <div style="position: absolute; left: -5000px" aria-hidden="true">
+              
+              <input type="text" name="b_70b43c7181d005024187bfb31_0a319b6b63" tabindex="-1" value="" />
+            </div>
+
+            
+            <div class="mt-2">
+              <div class="mt-2">
+                <p class="mb-0" style="font-size: 0.75rem; color: #6c757d; line-height: 1.4">
+                  By subscribing, you agree to our
+                  <a href="/privacy" target="_blank" class="link-blue-sm">Privacy Policy</a>
+                  and
+                  <a href="/terms" target="_blank" class="link-blue-sm">Terms of Service</a>. <br />You can unsubscribe
+                  at any time.
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  
+  
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h3 class="mb-4 fw-bold">Next Read</h3>
+      <div class="row g-4">
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/confidential-computing-meets-ai" class="text-decoration-none text-dark">
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts
+                </h2>
+                <p class="card-text text-muted small">
+                  
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      sammy oina
+                    </div>
+                    <div class="text-muted">
+                      January 30, 2026 · 4 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">security</span>
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">ai</span>
+                  
+                  <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                  <span class="badge bg-light text-dark me-1">cube ai</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  
+  <footer class="bg-dark text-white py-3">
+    <div class="container">
+      <div class="row mt-3 mb-2">
+        <div class="col">
+          <h3>About Us</h3>
+          <p class="w-65">
+            Ultraviolet is a leading company specializing in confidential
+            computing, cloud security, AI/ML, multi-party computation, and
+            secure data sharing.
+          </p>
+        </div>
+
+        <div class="col">
+          <h3>Products</h3>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fas fa-network-wired me-2"></i><a href="prism/" class="text-white">Prism AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cog me-2"></i><a href="cocos/" class="text-white">Cocos AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cube"></i>
+              <a href="cube/" class="text-white">Cube AI</a>
+            </li>
+          </ul>
+          <h3>Resources</h3>
+          <ul class="list-unstyled">
+            <li>
+              <a href="https://docs.google.com/presentation/d/199CkKD4YpgfJ1CLWVyZ9TdmXLLvME7JHN4Kfjkbgmho/export/pdf"
+                class="text-white">
+                Prism AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1oZDjQjuzNR8PeI1AHS8tePaiA73SmjnjrFFEBoS6b68/export/pdf"
+                class="text-white">
+                Cocos AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1UJR6HKiBV3r56SyMNZvO3ylek8VFmNojbFkTC-bawBY/export/pdf"
+                class="text-white">
+                Cube AI Datasheet
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Legal</h3>
+          <ul class="list-unstyled">
+            Prism AI
+            <li>
+              <a href="/prism/terms" class="text-white"> Terms of Service</a>
+            </li>
+            <li>
+              <a href="/prism/privacy" class="text-white"> Privacy Policy</a>
+            </li>
+            <br />
+            Cube AI
+            <li>
+              <a href="/cube/terms" class="text-white">Terms of Service</a>
+            </li>
+            <li>
+              <a href="/cube/privacy" class="text-white">Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Connect With Us</h3>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fab fa-twitter me-2"></i><a href="https://twitter.com/ultravioletrs" class="text-white"
+                target="_blank">Twitter</a>
+            </li>
+            <li>
+              <i class="fab fa-linkedin me-2"></i><a href="https://www.linkedin.com/company/ultravioletrs"
+                class="text-white" target="_blank">LinkedIn</a>
+            </li>
+            <li>
+
+            <li>
+              <i class="fab fa-github me-2"></i><a href="https://github.com/ultravioletrs" class="text-white"
+                target="_blank">GitHub</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Contact Us</h3>
+          <p>
+            <i class="fas fa-envelope me-2"></i><a href="mailto:info@ultraviolet.rs"
+              class="text-white">info@ultraviolet.rs</a>
+          </p>
+          <p>
+            <i class="fab fa-gitter me-2"></i><a href="https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im"
+              class="text-white" target="_blank">Chat on Gitter</a>
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt me-2"></i>Bulevar Arsenija
+            Carnojevica 103, 11000 Belgrade, Serbia
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CH54M1Z8DY"></script>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+    function getCookie(name) {
+      var b = document.cookie.match(
+        "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)",
+      );
+      return b ? b.pop() : "";
+    }
+
+    function addAnalytics() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-CH54M1Z8DY");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      const cookieConsent = getCookie("cookieconsent_status");
+
+      
+      if (cookieConsent === "allow" || cookieConsent === "") {
+        addAnalytics();
+      }
+
+      if (typeof window.cookieconsent !== "undefined") {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: { background: "#000" },
+            button: { background: "#f1d600" },
+          },
+          revokable: true,
+          law: {
+            regionalLaw: {
+              EU: true, 
+              UK: true, 
+            },
+          },
+          location: true, 
+          type: "opt-out",
+          content: {
+            message:
+              "🍪 We use cookies to collect data to improve your experience on our site.",
+            allow: "Allow",
+            dismiss: "Allow",
+            deny: "Reject",
+          },
+          onStatusChange: function (status, chosenBefore) {
+            location.reload();
+          },
+        });
+      } else {
+        console.error("Cookie consent script not loaded.");
+      }
+    });
+  </script>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', async () => {
+      
+      if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: false, theme: 'default', logLevel: 'debug' });
+      }
+
+      
+      const markdownContent = document.querySelector('.markdown-content');
+      if (markdownContent) {
+        const pres = markdownContent.querySelectorAll('pre');
+        
+        pres.forEach(pre => {
+          const code = pre.querySelector('code');
+          if (code && code.className.includes('language-mermaid')) {
+            const mermaidDiv = document.createElement('div');
+            mermaidDiv.className = 'mermaid';
+            mermaidDiv.textContent = code.textContent;
+            pre.replaceWith(mermaidDiv);
+          }
+        });
+      }
+
+      
+      if (typeof mermaid !== 'undefined') {
+        try {
+          await mermaid.run();
+        } catch (e) {
+          console.error('Mermaid rendering error:', e);
+        }
+      }
+
+      hljs.highlightAll();
+
+      const pres = document.querySelectorAll('.markdown-content pre');
+
+      pres.forEach(pre => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        const btn = document.createElement('button');
+        btn.className = 'copy-button';
+        btn.type = 'button';
+        btn.innerHTML = '<i class="far fa-copy"></i>';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
+        btn.title = 'Copy code';
+
+        wrapper.appendChild(btn);
+      });
+    });
+
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.copy-button');
+      if (!btn) return;
+
+      const pre = btn.parentElement.querySelector('pre');
+      const code = pre.querySelector('code') || pre;
+      const text = code.textContent;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+        }
+
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        btn.classList.add('copied');
+        btn.title = 'Copied!';
+
+        setTimeout(() => {
+          btn.innerHTML = '<i class="far fa-copy"></i>';
+          btn.classList.remove('copied');
+          btn.title = 'Copy code';
+        }, 2000);
+
+      } catch (err) {
+        console.error('Copy failed', err);
+        btn.innerHTML = '<i class="fas fa-times"></i>';
+        setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i>', 2000);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
