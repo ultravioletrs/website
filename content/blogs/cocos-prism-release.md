@@ -5,7 +5,6 @@ author:
   name: "sammy oina"
   picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
 tags: [confidential-computing, ai, cocos, prism, privacy]
-image: /img/cocos-prism-release.png
 date: 2026-02-06
 ---
 
