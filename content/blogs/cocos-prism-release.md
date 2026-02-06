@@ -32,7 +32,7 @@ The platform enables:
 
 While Cocos AI provides the core confidential computing infrastructure, **Prism** is the user-friendly, enterprise-grade platform layer that makes Cocos accessible to organizations and teams. Prism is a **web-based SaaS** that sits on top of Cocos, adding essential enterprise capabilities:
 
-![Prism Admin Console](https://raw.githubusercontent.com/ultravioletrs/prism-docs/main/static/img/admin_console.png)
+![Prism Dashboard](https://raw.githubusercontent.com/ultravioletrs/prism-docs/refs/heads/main/static/img/ui/dashboard.png)
 
 ### What Prism Brings to the Table
 
@@ -187,6 +187,6 @@ Stay tuned for more innovations in the confidential computing space!
 ---
 
 **Learn More:**
-- [Cocos AI Documentation](https://docs.ultraviolet.rs/cocos)
-- [Prism Documentation](https://docs.ultraviolet.rs/prism)
+- [Cocos AI Documentation](https://docs.cocos.ultraviolet.rs)
+- [Prism Documentation](https://docs.prism.ultraviolet.rs)
 - [Ultraviolet RS](https://ultraviolet.rs)
