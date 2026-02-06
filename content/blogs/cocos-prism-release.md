@@ -75,7 +75,7 @@ While Cocos AI provides the core confidential computing infrastructure, **Prism*
 
 Cocos v0.8.0 brings significant improvements focused on attestation, security, and architecture refinement—critical for enterprises demanding the highest security standards.
 
-### 🌟 Key Highlights
+### Key Highlights
 
 **Enhanced Attestation Policy**
 - Improved CLI attestation policy tools for better developer experience
@@ -101,27 +101,10 @@ Cocos v0.8.0 brings significant improvements focused on attestation, security, a
 - Updated SMQ library to 0.18.1 with security patches
 - Enhanced certificate library integration
 
-### 📦 Notable Dependency Updates
 
-| Package | Old Version | New Version |
-|---------|-----------|-------------|
-| gRPC | 1.74.2 | 1.75.0 |
-| Docker SDK | 28.3.2 | 28.5.0 |
-| Certs Library | 0.0.0-20250707 | 0.18.0 |
-| SEV Policy | 6.2.1 | 7.0.0 |
-| Cloud Storage | 1.55.0 | 1.57.0 |
+### Patch Updates
 
-### 📝 Patch Releases
-
-**v0.8.1** focused on stability:
-- Fixed SEV-SNP attestation policy validation
-- Certificate optimization for SEV-SNP CVMs
-- Security patches for cryptography library
-
-**v0.8.2** (Latest) added advanced vTPM features:
-- Added AllowEFIAppBeforeCallingEvent flag to vTPM verification
-- Enhanced SEV-SNP reporting with vTPM AK hash
-- Updated dependencies for maximum compatibility
+Recent patch releases (**v0.8.1** and **v0.8.2**) have focused on platform stability, security patches for cryptography libraries, and adding advanced vTPM features to enhance SEV-SNP reporting.
 
 ---
 
@@ -129,7 +112,7 @@ Cocos v0.8.0 brings significant improvements focused on attestation, security, a
 
 Prism v0.6.0 focuses on user experience, asset discovery, and operational improvements—making the platform more accessible and intuitive.
 
-### 🎉 What's New
+### What's New
 
 **Advanced Search & Discovery**
 - **Comprehensive Asset Search**: New asset search functionality with full UI and backend support
@@ -144,18 +127,9 @@ Prism v0.6.0 focuses on user experience, asset discovery, and operational improv
 ### 🔧 Improvements
 
 **UI/UX Refinements**
-- Fixed horizontal overflow issues with proper max-width and overflow handling
-- Added vertical scrollbars for improved content navigation
-- Cleaner asset template styling (removed badge styling for asset types)
-- Enhanced validation error messages for better user guidance
+We've polished the interface with cleaner styling for asset templates, improved content navigation, and enhanced validation messages to provide better guidance.
 
 ![Asset View Interface](https://raw.githubusercontent.com/ultravioletrs/prism-docs/main/static/img/asset_view.png)
-
-**Code Quality & Performance**
-- Refactored password reset forms with improved styling and functionality
-- Simplified SearchCVMs function through logic optimization
-- Removed redundant code blocks for better maintainability
-- Improved code structure for easier future development
 
 ---
 
@@ -197,7 +171,7 @@ Together, Cocos and Prism enable a new paradigm for AI:
 Visit the [Cocos GitHub repository](https://github.com/ultravioletrs/cocos) to deploy and integrate confidential computing into your infrastructure.
 
 ### Experience Prism
-Access Prism's web interface to manage users, policies, and computations in a secure, user-friendly environment.
+Access [Prism's web interface](https://prism.ultraviolet.rs/) to manage users, policies, and computations in a secure, user-friendly environment.
 
 ---
 
