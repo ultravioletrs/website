@@ -298,7 +298,7 @@
           <div>
             <div class="fw-bold fs-5">Washington Kamadi</div>
             <div class="text-muted">
-              February 06, 2026 · 5 min read
+              February 06, 2026 · 18 min read
             </div>
           </div>
         </div>
@@ -306,11 +306,11 @@
         
 
         <div class="markdown-content"><p><img src="/img/vllm-vs-ollama-in-cube-ai/vllm_vs_ollama_cover.png" alt="vLLM vs Ollama in Cube AI"></p>
-<p>Selecting the right Large Language Model (LLM) backend is no longer just an infrastructure decision — it directly impacts latency, throughput, operational cost, scalability, and developer velocity.</p>
-<p>Cube AI is intentionally designed with <strong>backend modularity</strong>, allowing teams to switch between inference engines without changing application logic. Whether you prioritize <strong>GPU-accelerated performance</strong> or <strong>lightweight local deployments</strong>, Cube AI supports both paradigms through two production-ready backends:</p>
+<p>Selecting the right Large Language Model (LLM) backend is no longer just an infrastructure decision — it directly impacts latency, throughput, operational cost, scalability, and developer velocity. The choice of inference engine determines how quickly your models respond under load, how efficiently your GPU resources are utilized, and how much operational overhead your team must absorb on an ongoing basis. Getting this decision wrong can mean over-provisioning expensive hardware for a workload that doesn't need it, or under-serving users with an engine that can't keep up with production traffic.</p>
+<p>Cube AI is intentionally designed with <strong>backend modularity</strong> at its core, allowing teams to switch between inference engines without changing any application logic, rewriting API integrations, or modifying client SDKs. Whether you prioritize <strong>GPU-accelerated performance</strong> for high-concurrency production workloads or <strong>lightweight local deployments</strong> for development, edge computing, and confidential environments, Cube AI supports both paradigms through two production-ready backends:</p>
 <ul>
-<li><strong>vLLM</strong> — optimized for high-throughput, GPU-driven inference</li>
-<li><strong>Ollama</strong> — flexible, developer-friendly runtime for local and hybrid environments</li>
+<li><strong>vLLM</strong> — optimized for high-throughput, GPU-driven inference with continuous batching and explicit memory management</li>
+<li><strong>Ollama</strong> — a flexible, developer-friendly runtime designed for local, hybrid, and resource-constrained environments</li>
 </ul>
 <p>The architectural takeaway is simple:</p>
 <blockquote>
@@ -318,78 +318,48 @@
 </blockquote>
 <!-- raw HTML omitted -->
 <h2 id="backend-selection-architecture">Backend Selection Architecture</h2>
-<p>Cube AI routes all inference traffic through a <strong>backend-agnostic agent proxy</strong>. The proxy simply forwards requests to whichever backend is configured.</p>
+<p>Cube AI routes all inference traffic through a <strong>backend-agnostic agent proxy</strong>. Rather than coupling application code directly to a specific inference engine's API, the proxy sits between the application layer and the backend, forwarding requests to whichever inference engine is currently configured. This means the entire system — from the frontend client to the guardrails pipeline — remains completely unaware of whether it is talking to vLLM or Ollama on the other side.</p>
+<p>The backend target is controlled by a single environment variable:</p>
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>UV_CUBE_AGENT_TARGET_URL=http://ollama:11434
 </span></span><span style="display:flex;"><span><span style="color:#007f7f"># OR</span>
 </span></span><span style="display:flex;"><span>UV_CUBE_AGENT_TARGET_URL=http://vllm:8000
-</span></span></code></pre><p>Switching backends is operationally trivial:</p>
+</span></span></code></pre><p>This variable is defined in the agent configuration (see <code>cmd/agent/main.go</code>), where it defaults to <code>http://localhost:11434</code> (Ollama). The Makefile provides convenient targets that automatically update this variable and launch the appropriate Docker Compose profile, so switching backends is operationally trivial:</p>
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>up-ollama: config-ollama
 </span></span><span style="display:flex;"><span>up-vllm:   config-vllm
-</span></span></code></pre><ul>
-<li>No application rewrites.</li>
-<li>No routing changes.</li>
-<li>No SDK updates.</li>
-</ul>
-<p>Just redeploy.</p>
+</span></span></code></pre><p>There is no need for application rewrites, routing changes, or SDK updates. The swap happens entirely at the infrastructure level. You simply reconfigure the environment variable and redeploy — the application continues to function exactly as before, now backed by a different inference engine.</p>
 <h3 id="why-this-matters-architecturally">Why This Matters Architecturally</h3>
-<p>This design creates a clean separation between:</p>
+<p>This design creates a clean separation between four distinct layers of the system, each of which can evolve independently:</p>
 <ul>
-<li>Application layer</li>
-<li>Guardrails</li>
-<li>Proxy routing</li>
-<li>Inference engine</li>
+<li><strong>Application layer</strong> — the user-facing services and clients that consume LLM responses</li>
+<li><strong>Guardrails</strong> — the NeMo Guardrails pipeline that enforces safety policies, sensitive data detection, and content filtering</li>
+<li><strong>Proxy routing</strong> — the dynamic router that directs traffic based on configurable rules such as headers, paths, and priority levels</li>
+<li><strong>Inference engine</strong> — the actual LLM backend (vLLM or Ollama) that performs model inference</li>
 </ul>
-<p>The agent (<code>httputil.NewSingleHostReverseProxy</code>) handles:</p>
-<ul>
-<li>Header sanitization</li>
-<li>Connection pooling (<code>MaxIdleConns: 100</code>)</li>
-<li>Idle timeout (<code>90s</code>)</li>
-</ul>
-<p>From the application's perspective, the backend is invisible.</p>
-<p>This is critical for:</p>
-<ul>
-<li>Multi-environment deployments</li>
-<li>Gradual GPU rollouts</li>
-<li>Cost optimization</li>
-<li>Performance experimentation</li>
-</ul>
+<p>At the heart of this architecture, the agent service uses Go's <code>httputil.NewSingleHostReverseProxy</code> (found in <code>agent/agent.go</code>) to forward requests to the configured backend. This reverse proxy is not a simple pass-through — it performs several important functions. It handles header sanitization by setting the <code>Content-Type</code> to <code>application/json</code> and stripping the <code>Authorization</code> header before forwarding to the backend, ensuring that authentication concerns remain at the proxy boundary. It maintains a connection pool with <code>MaxIdleConns: 100</code> to efficiently reuse TCP connections under load, and enforces an idle connection timeout of <code>90s</code> to prevent stale connections from accumulating.</p>
+<p>From the application's perspective, the backend is completely invisible. Whether the underlying engine is vLLM processing requests with continuous batching on a GPU cluster or Ollama running sequentially on a CPU-only node, the API contract remains identical.</p>
+<p>This separation is critical for several real-world operational scenarios: multi-environment deployments where staging runs Ollama and production runs vLLM, gradual GPU rollouts where teams incrementally shift traffic to GPU-backed inference, cost optimization experiments where teams compare per-token costs across backends, and performance experimentation where teams benchmark different engines under realistic workloads.</p>
 <h2 id="performance-benchmarks-architectural-expectations">Performance Benchmarks (Architectural Expectations)</h2>
-<p>While exact numbers vary by model and GPU class, the underlying architecture reveals clear performance behavior.</p>
+<p>While exact performance numbers will vary depending on the specific model, GPU class, input sequence length, and concurrency level, the underlying architecture of each engine reveals clear and predictable performance behavior. Understanding these architectural characteristics helps teams make informed backend decisions before committing to expensive hardware.</p>
 <h3 id="throughput">Throughput</h3>
 <p><strong>vLLM</strong></p>
-<ul>
-<li>Continuous batching dramatically increases tokens/sec</li>
-<li>Designed for concurrent request handling</li>
-<li>Ideal for production APIs serving many users</li>
-</ul>
+<p>vLLM was purpose-built for high-throughput inference. Its continuous batching engine dynamically groups incoming requests together and processes them in parallel on the GPU, which dramatically increases the number of tokens generated per second compared to sequential processing. This design means that vLLM actually becomes more efficient as concurrency increases — the GPU stays saturated with useful work rather than idling between requests. For production APIs serving many concurrent users, this translates directly into lower cost per token and higher overall system utilization.</p>
 <p><strong>Ollama</strong></p>
-<ul>
-<li>Sequential processing model</li>
-<li>Excellent for low-to-moderate concurrency</li>
-<li>Predictable performance on smaller nodes</li>
-</ul>
-<p><strong>Expected Winner: vLLM</strong> (by design)</p>
+<p>Ollama uses a sequential processing model, handling one request at a time through the inference pipeline. While this approach is simpler and more predictable, it means that throughput scales linearly with hardware rather than benefiting from batching efficiencies. That said, Ollama performs excellently for low-to-moderate concurrency workloads, and its predictable performance characteristics make it easier to reason about resource requirements on smaller nodes.</p>
+<p><strong>Expected Winner: vLLM</strong> (by design — continuous batching is fundamentally more throughput-efficient than sequential processing)</p>
 <h3 id="latency">Latency</h3>
-<p>Single-request latency:</p>
-<ul>
-<li>Ollama performs well for isolated prompts.</li>
-<li>vLLM shines under load due to batching efficiency.</li>
-</ul>
+<p>When measuring single-request latency in isolation, Ollama performs well for individual prompts because there is no batching overhead. The request goes directly into the model and comes back with minimal scheduling delay. However, this advantage diminishes rapidly as concurrency increases.</p>
+<p>vLLM shines under load due to its batching efficiency. Because it processes multiple requests simultaneously, the amortized latency per request can actually decrease as more requests arrive — the GPU processes a batch of requests in roughly the same time it would take to process a single one.</p>
 <p><strong>Important Insight:</strong>
-If your system sees burst traffic, vLLM latency often <em>improves</em> relative to sequential engines.</p>
+If your system experiences burst traffic patterns — where many requests arrive in a short window — vLLM's latency often <em>improves</em> relative to sequential engines. While a sequential engine queues requests and processes them one at a time (leading to linearly increasing wait times), vLLM absorbs the burst into a batch and processes it as a unit.</p>
 <h3 id="memory-usage">Memory Usage</h3>
 <p><strong>vLLM</strong></p>
-<p>Explicit control:</p>
+<p>vLLM provides explicit, fine-grained control over GPU memory allocation. In the Cube AI Docker Compose configuration (<code>docker/vllm-compose.yml</code>), this is configured with:</p>
 <pre><code>--gpu-memory-utilization 0.85
 --max-model-len 1024
 </code></pre>
-<p>Predictable GPU allocation is extremely valuable for capacity planning.</p>
+<p>The <code>--gpu-memory-utilization 0.85</code> flag tells vLLM to use up to 85% of available GPU memory, reserving the remaining 15% as a safety margin. The <code>--max-model-len 1024</code> flag caps the maximum sequence length, which directly controls the KV-cache memory footprint. This level of explicit control is extremely valuable for capacity planning, because you can precisely predict how much GPU memory your deployment will consume and plan your infrastructure accordingly.</p>
 <p><strong>Ollama</strong></p>
-<ul>
-<li>Automatic memory handling</li>
-<li>Model-dependent footprint</li>
-<li>Lower operational tuning overhead</li>
-</ul>
+<p>Ollama takes a different approach, handling memory management automatically based on the loaded model's requirements. The memory footprint is model-dependent, and Ollama dynamically allocates and releases memory as models are loaded and unloaded. While this means less operational tuning overhead — you don't need to carefully configure memory utilization percentages — it also means less predictability in resource consumption, which can complicate capacity planning in tightly constrained environments.</p>
 <p><strong>Trade-off:</strong></p>
 <table>
 <thead>
@@ -410,57 +380,31 @@ If your system sees burst traffic, vLLM latency often <em>improves</em> relative
 </tbody>
 </table>
 <h2 id="vllm-high-performance-gpu-inference">vLLM: High-Performance GPU Inference</h2>
-<p>Cube AI deploys vLLM via:</p>
+<p>Cube AI deploys vLLM using the official OpenAI-compatible container image:</p>
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>vllm/vllm-openai:v0.10.2
-</span></span></code></pre><p>Key characteristics:</p>
-<ul>
-<li>OpenAI-compatible API (<code>/v1/chat/completions</code>)</li>
-<li>NVIDIA runtime required</li>
-<li>Continuous batching</li>
-<li>HuggingFace model loading</li>
-<li>Cache volume for faster restarts</li>
-<li>Startup-defined model</li>
-</ul>
-<p>Example:</p>
+</span></span></code></pre><p>This image provides an OpenAI-compatible API server out of the box, which means any client or SDK that speaks the OpenAI protocol (specifically the <code>/v1/chat/completions</code> and <code>/v1/models</code> endpoints) can interact with vLLM without modification. The deployment requires the NVIDIA container runtime, as vLLM is designed exclusively for GPU-accelerated inference — it leverages CUDA for all compute operations and is not intended for CPU-only environments.</p>
+<p>Under the hood, vLLM implements continuous batching, which dynamically groups incoming requests for parallel processing on the GPU. It loads models directly from HuggingFace by model identifier, caching them in a persistent Docker volume (<code>vllm-cache</code>) so that subsequent restarts don't require re-downloading the model weights. The model is defined at startup time through the <code>VLLM_MODEL</code> environment variable:</p>
 <pre><code>VLLM_MODEL=microsoft/DialoGPT-medium
 </code></pre>
 <blockquote>
-<p>Model changes require a restart — a deliberate design choice that stabilizes production behavior.</p>
+<p>Model changes require a container restart — this is a deliberate design choice that stabilizes production behavior. By binding the model to the container lifecycle, vLLM ensures that the loaded model is always consistent and predictable, avoiding the complexity of runtime model swapping in performance-critical deployments.</p>
 </blockquote>
 <h3 id="when-vllm-is-the-right-choice">When vLLM Is the Right Choice</h3>
-<p>Choose vLLM if your system requires:</p>
-<ul>
-<li>High tokens/sec</li>
-<li>Multi-tenant inference</li>
-<li>GPU saturation</li>
-<li>Production-scale APIs</li>
-<li>Predictable latency under load</li>
-</ul>
-<p>Typical environments:</p>
-<ul>
-<li>Enterprise AI platforms</li>
-<li>Internal copilots</li>
-<li>Retrieval pipelines</li>
-<li>Customer-facing LLM APIs</li>
-</ul>
+<p>Choose vLLM when your system demands high tokens-per-second throughput, multi-tenant inference where many users share a single GPU-backed endpoint, or maximum GPU utilization for cost efficiency. vLLM is particularly well-suited for production-scale APIs where predictable latency under load is a hard requirement, because the continuous batching engine ensures that response times remain stable even as request concurrency increases.</p>
+<p>Typical environments where vLLM excels include enterprise AI platforms serving thousands of internal users, internal copilot systems integrated into developer workflows, retrieval-augmented generation (RAG) pipelines that need fast inference alongside document retrieval, and customer-facing LLM APIs where SLA commitments require consistent performance characteristics.</p>
 <h2 id="ollama-lightweight-and-operationally-flexible">Ollama: Lightweight and Operationally Flexible</h2>
-<p>Cube AI ships Ollama as:</p>
+<p>Cube AI ships Ollama using the official container image, tracking the latest stable release:</p>
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>ollama/ollama:latest
-</span></span></code></pre><p>Default auto-pulled models:</p>
+</span></span></code></pre><p>When the Ollama profile starts, Cube AI automatically pulls a curated set of default models through sidecar containers that execute <code>ollama pull</code> against the running Ollama instance. These default models provide a ready-to-use baseline for chat, code generation, and text embedding:</p>
 <ul>
-<li><code>llama3.2:3b</code></li>
-<li><code>starcoder2:3b</code></li>
-<li><code>nomic-embed-text:v1.5</code></li>
+<li><code>llama3.2:3b</code> — a general-purpose conversational model</li>
+<li><code>starcoder2:3b</code> — a code-oriented model for programming tasks</li>
+<li><code>nomic-embed-text:v1.5</code> — a text embedding model for semantic search and RAG pipelines</li>
 </ul>
 <h3 id="major-strength-runtime-model-management">Major Strength: Runtime Model Management</h3>
-<p>Unlike vLLM:</p>
-<ul>
-<li>Pull models without restart</li>
-<li>Delete unused models</li>
-<li>Push private builds</li>
-</ul>
-<p>This dramatically improves developer velocity.</p>
+<p>One of Ollama's most significant advantages over vLLM is its ability to manage models at runtime without requiring a service restart. While vLLM binds its model to the container lifecycle (the model is loaded at startup and cannot be changed without restarting), Ollama provides a full model management API that allows you to pull new models from the Ollama registry on the fly, delete unused models to reclaim disk space, and push custom or fine-tuned models to a private registry. This capability dramatically improves developer velocity, because teams can experiment with different models — swapping between Llama, Mistral, CodeLlama, and others — without any downtime or infrastructure changes.</p>
 <h3 id="hardware-flexibility">Hardware Flexibility</h3>
+<p>Ollama is designed to run across a wide range of hardware configurations, which makes it far more versatile than vLLM in terms of deployment targets:</p>
 <table>
 <thead>
 <tr>
@@ -478,7 +422,7 @@ If your system sees burst traffic, vLLM latency often <em>improves</em> relative
 <td style="text-align:left">Supported</td>
 </tr>
 <tr>
-<td style="text-align:left">AMD GPU</td>
+<td style="text-align:left">AMD GPU (ROCm)</td>
 <td style="text-align:left">Supported</td>
 </tr>
 <tr>
@@ -487,104 +431,66 @@ If your system sees burst traffic, vLLM latency often <em>improves</em> relative
 </tr>
 </tbody>
 </table>
-<p>This makes Ollama extremely attractive for:</p>
-<ul>
-<li>CVMs</li>
-<li>Edge inference</li>
-<li>On-prem deployments</li>
-<li>Secure environments</li>
-</ul>
+<p>This broad hardware compatibility makes Ollama extremely attractive for deployment scenarios where GPU availability cannot be guaranteed. Confidential Virtual Machines (CVMs) running in Trusted Execution Environments may not have GPU passthrough configured, edge inference nodes may be running on commodity ARM hardware, on-premises deployments may need to operate on whatever hardware is available, and secure or air-gapped environments may have strict procurement constraints that limit GPU options. In all of these cases, Ollama's ability to run on CPU-only nodes provides a viable path to deploying LLM inference without GPU dependencies.</p>
 <h2 id="deployment-scenarios-and-trade-offs">Deployment Scenarios and Trade-offs</h2>
+<p>To make the backend choice more concrete, here are four common deployment scenarios and the reasoning behind each recommendation.</p>
 <h3 id="scenario-1--enterprise-production-api">Scenario 1 — Enterprise Production API</h3>
 <p><strong>Recommended: vLLM</strong></p>
-<p>Why:</p>
-<ul>
-<li>Continuous batching</li>
-<li>GPU utilization</li>
-<li>OpenAI compatibility</li>
-<li>Predictable scaling</li>
-</ul>
+<p>When you're building a production API that serves multiple teams, departments, or external customers, vLLM is the clear choice. Continuous batching ensures that the GPU stays efficiently utilized even under variable load patterns, and the OpenAI-compatible API means that existing client integrations — whether they use the official OpenAI SDK, LangChain, or custom HTTP clients — work without modification. The predictable scaling behavior of vLLM allows infrastructure teams to capacity-plan with confidence, knowing exactly how the system will behave as request volumes grow.</p>
 <h3 id="scenario-2--confidential--air-gapped-environment">Scenario 2 — Confidential / Air-Gapped Environment</h3>
 <p><strong>Recommended: Ollama</strong></p>
-<p>Why:</p>
-<ul>
-<li>Runtime model control</li>
-<li>Hardware flexibility</li>
-<li>Easier offline workflows</li>
-</ul>
+<p>In confidential computing environments — such as CVMs running inside Trusted Execution Environments (TEEs) — or air-gapped networks where external connectivity is restricted, Ollama's operational characteristics become decisive advantages. Its runtime model management means that models can be pre-loaded, swapped, or updated without restarting the service, which is particularly important in environments where service restarts trigger re-attestation or security re-validation. Ollama's hardware flexibility means it can run on whatever compute is available inside the secure enclave, and its simpler dependency chain makes offline deployment and model provisioning significantly easier to manage.</p>
 <h3 id="scenario-3--developer-sandbox">Scenario 3 — Developer Sandbox</h3>
 <p><strong>Recommended: Ollama</strong></p>
-<ul>
-<li>Startup friction is minimal.</li>
-<li>Perfect for experimentation.</li>
-</ul>
+<p>For development and experimentation environments, Ollama's minimal startup friction makes it the natural choice. Developers can spin up a local Ollama instance in seconds, pull different models to test against, and iterate rapidly without needing access to GPU infrastructure. The ability to dynamically swap models at runtime is especially valuable during the prototyping phase, where teams are evaluating which model best fits their use case before committing to a production deployment.</p>
 <h3 id="scenario-4--high-concurrency-saas">Scenario 4 — High-Concurrency SaaS</h3>
 <p><strong>Recommended: vLLM</strong></p>
-<ul>
-<li>Sequential engines become bottlenecks quickly.</li>
-</ul>
+<p>When building a multi-tenant SaaS product where hundreds or thousands of concurrent users are generating inference requests simultaneously, sequential processing engines become bottlenecks almost immediately. Each new concurrent request adds to the queue, and response times degrade linearly. vLLM's continuous batching architecture is specifically designed for this scenario — it absorbs concurrent requests into batches and processes them in parallel, maintaining stable response times even as concurrency scales.</p>
 <h2 id="cost-analysis-and-resource-requirements">Cost Analysis and Resource Requirements</h2>
+<p>Understanding the cost profile of each backend is essential for making financially sound infrastructure decisions, especially as LLM workloads grow from experimental to production scale.</p>
 <h3 id="vllm-cost-profile">vLLM Cost Profile</h3>
-<p>Higher infrastructure cost — lower cost per token at scale.</p>
-<p>Requires:</p>
-<ul>
-<li>NVIDIA GPUs</li>
-<li>GPU-aware orchestration</li>
-<li>Capacity planning</li>
-</ul>
-<p>Best when utilization is high. Idle GPUs are expensive.</p>
+<p>vLLM carries a higher upfront infrastructure cost because it requires dedicated NVIDIA GPUs, GPU-aware container orchestration (the Docker Compose configuration specifies <code>runtime: nvidia</code> with all GPU capabilities reserved), and careful capacity planning to ensure GPU memory is allocated efficiently. However, the cost per token at scale is significantly lower than sequential engines, because continuous batching maximizes GPU utilization — you're extracting more useful inference work from each dollar of GPU compute.</p>
+<p>The key consideration is utilization: idle GPUs are expensive. If your vLLM instance sits idle for large portions of the day because traffic is light or sporadic, you're paying for reserved GPU capacity that isn't generating value. vLLM is most cost-effective when GPU utilization is consistently high, which typically means production workloads with steady or predictable traffic patterns.</p>
 <h3 id="ollama-cost-profile">Ollama Cost Profile</h3>
-<p>Lower entry cost — higher marginal cost under heavy load.</p>
-<p>Runs on:</p>
-<ul>
-<li>CPU nodes</li>
-<li>Mixed GPU fleets</li>
-<li>Smaller instances</li>
-</ul>
-<p>Excellent for staged growth.</p>
+<p>Ollama offers a much lower entry cost because it can run on standard CPU nodes, mixed GPU fleets (including AMD GPUs via ROCm), and smaller cloud instances. There is no requirement for specialized GPU drivers, NVIDIA container runtime, or dedicated GPU reservations. This makes Ollama an excellent choice for early-stage projects, proof-of-concept deployments, and environments where budget constraints preclude GPU infrastructure.</p>
+<p>The trade-off is that the marginal cost per token under heavy load is higher than vLLM, because Ollama's sequential processing model cannot achieve the same throughput per hardware unit. As traffic grows, you'll need to scale horizontally (more Ollama instances) rather than relying on the batching efficiency of a single GPU-backed vLLM deployment.</p>
 <h3 id="strategic-insight">Strategic Insight</h3>
 <p><strong>Start with Ollama. Move to vLLM when concurrency justifies GPU spend.</strong></p>
-<p>Cube AI makes this migration trivial.</p>
+<p>This migration path is one of Cube AI's core design advantages. Because the backend is abstracted behind the agent proxy and a single environment variable, graduating from Ollama to vLLM is a configuration change — not a rewrite. Teams can validate their LLM use case with minimal infrastructure investment, then scale to GPU-accelerated inference when the workload demands it.</p>
 <h2 id="integration-patterns-with-cube-ai">Integration Patterns with Cube AI</h2>
 <h3 id="proxy-level-api-exposure">Proxy-Level API Exposure</h3>
-<p>Cube AI exposes both formats:</p>
+<p>The Cube AI proxy exposes inference endpoints in two API formats, giving clients flexibility in how they interact with the system.</p>
 <p><strong>OpenAI-Compatible</strong></p>
 <pre><code>POST /{domainID}/v1/chat/completions
 GET  /{domainID}/v1/models
 </code></pre>
-<p>Works with both backends.</p>
+<p>These endpoints work with both vLLM and Ollama backends. vLLM natively speaks the OpenAI protocol, while Ollama also supports OpenAI-compatible endpoints. The <code>{domainID}</code> prefix allows the proxy to route requests to the correct domain-scoped backend instance, enabling multi-tenant deployments where different organizations or teams use separate inference endpoints.</p>
 <p><strong>Ollama-Native</strong></p>
 <pre><code>POST /api/chat
 POST /api/generate
 GET  /api/tags
 </code></pre>
-<p>Available when Ollama is active.</p>
+<p>These Ollama-native endpoints are available when Ollama is the active backend. The <code>/api/chat</code> endpoint is particularly important in the Cube AI architecture because the dynamic router (configured in <code>docker/config.json</code>) intercepts requests matching the <code>^.*/api/chat$</code> pattern and forwards them to the guardrails service at <code>http://guardrails:8001/guardrails/messages</code>, ensuring that all chat traffic passes through the safety and content filtering pipeline before reaching the LLM backend.</p>
 <h3 id="guardrails-integration">Guardrails Integration</h3>
-<p>Guardrails currently leverage the <code>ExtendedOllama</code> LangChain adapter, enabling:</p>
+<p>The guardrails system is built on NVIDIA's NeMo Guardrails framework and leverages a custom LLM provider called <code>ExtendedOllama</code> (defined in <code>guardrails/src/adapters/llm/extended_ollama.py</code>). This adapter extends LangChain's <code>ChatOllama</code> class with several capabilities that are essential for Cube AI's multi-tenant, security-conscious architecture:</p>
 <ul>
-<li>Dynamic header injection</li>
-<li>Per-request model selection</li>
-<li>Option mapping (temperature, top_p, etc.)</li>
+<li><strong>Dynamic header injection</strong> — per-request authentication tokens and custom headers are read from NeMo Guardrails' <code>generation_options_var</code> context variable and merged with the base configuration headers before forwarding to the backend. This allows each request to carry its own authorization context through the proxy.</li>
+<li><strong>Per-request model selection</strong> — the model can be overridden on a per-request basis via the generation options, enabling scenarios where different conversations or users use different models without requiring separate guardrail instances.</li>
+<li><strong>Option mapping</strong> — LangChain parameters such as <code>temperature</code>, <code>top_p</code>, <code>max_tokens</code>, and others are correctly mapped to Ollama's native option format, ensuring consistent behavior regardless of how the client specifies generation parameters.</li>
 </ul>
-<p>Model config example:</p>
+<p>The guardrails configuration in <code>guardrails/rails/config.yml</code> ties this all together:</p>
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="font-weight:bold">engine</span>: CubeLLM
 </span></span><span style="display:flex;"><span><span style="font-weight:bold">model</span>: llama3.2:3b
 </span></span><span style="display:flex;"><span><span style="font-weight:bold">base_url</span>: http://cube-proxy:8900
-</span></span></code></pre><p>Sensitive data detection is handled via:</p>
-<ul>
-<li>Presidio</li>
-<li>spaCy</li>
-</ul>
-<p>Atomic configuration swaps ensure safe updates without downtime.</p>
+</span></span></code></pre><p>The <code>CubeLLM</code> engine is registered as a custom LLM provider in the NeMo runtime (<code>nemo_runtime.py</code>), which maps it to the <code>ExtendedOllama</code> class. Sensitive data detection is handled through a combination of Presidio (for entity recognition of PII like credit cards, email addresses, and IP addresses) and spaCy (using the <code>en_core_web_lg</code> model for named entity recognition). The runtime supports atomic configuration swaps with revision tracking, meaning guardrail policies can be updated without downtime — the old configuration serves requests until the new one is fully loaded and validated.</p>
 <h3 id="hal-beyond-containers">HAL: Beyond Containers</h3>
-<p>Cube AI packages both backends inside the Hardware Abstraction Layer (HAL):</p>
+<p>Cube AI doesn't stop at Docker containers. Both vLLM and Ollama are fully packaged inside the Hardware Abstraction Layer (HAL), which is built on Buildroot to produce minimal Linux images for bare-metal and CVM deployments. Each backend includes:</p>
 <ul>
-<li>Systemd services</li>
-<li>Init scripts</li>
-<li>Auto model provisioning</li>
+<li><strong>Systemd service units</strong> — <code>ollama.service</code> and <code>vllm.service</code> provide proper service lifecycle management with automatic restart, journal logging, and dedicated service users (<code>ollama</code> and <code>vllm</code> respectively)</li>
+<li><strong>SysV init scripts</strong> — <code>S96ollama</code> and <code>S96vllm</code> provide backward-compatible init support for environments that don't use systemd</li>
+<li><strong>Auto model provisioning</strong> — the Ollama HAL package includes a <code>pull-models.sh</code> script that automatically pulls configured models on first boot, with retry logic (up to 20 attempts with 5-second backoff) to handle slow network conditions in CVM environments</li>
 </ul>
-<p>This enables bare-metal CVM deployments, not just Docker.</p>
-<p>A critical advantage for confidential AI environments.</p>
+<p>This HAL integration enables bare-metal CVM deployments where Docker is not available or not permitted — a critical advantage for confidential AI environments where the entire software stack must run inside a hardware-attested Trusted Execution Environment.</p>
 <h2 id="side-by-side-comparison">Side-by-Side Comparison</h2>
 <table>
 <thead>
@@ -648,31 +554,29 @@ GET  /api/tags
 </tbody>
 </table>
 <h2 id="the-architectural-insight-that-matters-most">The Architectural Insight That Matters Most</h2>
-<p>Cube AI treats inference engines like <strong>infrastructure plugins</strong>.</p>
-<p>Not dependencies. Not lock-in points. Just modules.</p>
-<p>Because of the agent proxy:</p>
-<p><strong>Your application never needs to know which backend is running.</strong></p>
-<p>This dramatically reduces platform risk.</p>
+<p>Cube AI treats inference engines like <strong>infrastructure plugins</strong> — not hard dependencies, not vendor lock-in points, but interchangeable modules that can be swapped, upgraded, or replaced without rippling changes through the rest of the system.</p>
+<p>This is possible because the agent proxy creates a clean abstraction boundary between the application and the inference engine. The proxy handles authentication, header management, connection pooling, and request forwarding, while the dynamic router directs traffic based on configurable rules. The application code, the guardrails pipeline, and the client SDKs never communicate directly with vLLM or Ollama — they talk to the proxy, and the proxy talks to whatever backend is currently configured.</p>
+<p>The practical consequence of this design is significant: <strong>your application never needs to know which backend is running.</strong> This dramatically reduces platform risk, because you're never locked into a single inference engine's API, deployment model, or hardware requirements. If a better engine emerges, or if your requirements change, the migration is a configuration change — not an architecture overhaul.</p>
 <h2 id="decision-framework">Decision Framework</h2>
 <p><strong>Choose vLLM if:</strong></p>
 <ul>
-<li>You operate at scale</li>
-<li>Latency under load matters</li>
-<li>GPU clusters are available</li>
-<li>You need maximum throughput</li>
+<li>You are operating at production scale with sustained or growing traffic, where GPU efficiency translates directly into cost savings</li>
+<li>Latency consistency under concurrent load is a hard requirement, such as customer-facing APIs with SLA commitments</li>
+<li>GPU clusters are available and you have the operational expertise to manage GPU-aware orchestration</li>
+<li>You need maximum throughput per hardware unit and are willing to invest in the infrastructure to achieve it</li>
 </ul>
 <p><strong>Choose Ollama if:</strong></p>
 <ul>
-<li>You want operational flexibility</li>
-<li>You deploy to edge or CVMs</li>
-<li>You value runtime model control</li>
-<li>You are cost-sensitive early</li>
+<li>You value operational flexibility and the ability to experiment with different models without infrastructure changes</li>
+<li>You deploy to edge nodes, Confidential Virtual Machines (CVMs), or other environments where GPU availability is uncertain</li>
+<li>You need runtime model control — the ability to pull, swap, and delete models without restarting the inference service</li>
+<li>You are cost-sensitive in the early stages of your AI deployment and want to validate your use case before committing to GPU infrastructure</li>
 </ul>
 <h2 id="key-takeaway">Key Takeaway</h2>
-<p>Cube AI eliminates the traditional trade-off between performance and flexibility.</p>
-<p>You do not need to commit early. You can evolve your backend alongside your workload.</p>
+<p>Cube AI eliminates the traditional trade-off between performance and flexibility by treating the LLM backend as an infrastructure plugin behind a clean proxy abstraction.</p>
+<p>You do not need to commit to an inference engine early in your project. You can start with Ollama for development and proof-of-concept, validate your use case with real users and real data, and then evolve your backend to vLLM when concurrency and throughput requirements justify the GPU investment — all without changing a single line of application code.</p>
 <p><strong>Start lightweight. Scale when necessary. Switch without friction.</strong></p>
-<p>That is the power of backend modularity.</p>
+<p>That is the power of backend modularity, and it is built into the foundation of Cube AI's architecture.</p>
 <hr>
 <p><em>Explore Cube AI's backend architecture in the <a href="https://docs.cube.ultraviolet.rs/getting-started">Deployment Guide</a> or learn more about <a href="https://docs.cube.ultraviolet.rs/architecture">Cube AI Architecture</a>.</em></p>
 </div>
