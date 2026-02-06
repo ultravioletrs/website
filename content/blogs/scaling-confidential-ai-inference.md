@@ -2,8 +2,8 @@
 slug: scaling-confidential-ai-inference
 title: "Scaling Confidential AI Inference: Multi-Tenant Architecture in Cube"
 author:
-  name: "sammy oina"
-  picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
+  name: "Washington Kamadi"
+  picture: "https://avatars.githubusercontent.com/u/43080232?v=4&size=64"
 tags: [architecture, operations, multi-tenancy, confidential-computing, infrastructure, "cube ai"]
 image: /img/scaling-confidential-ai-inference/scaling_confidential_ai_inference_cover.png
 date: 2026-02-06
