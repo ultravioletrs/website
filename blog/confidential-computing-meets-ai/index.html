@@ -76,7 +76,8 @@
       max-width: 100%;
       height: auto;
       border-radius: 8px;
-      margin: 1.5rem 0;
+      margin: 1.5rem auto;
+      display: block;
     }
 
     .markdown-content h2,
@@ -769,7 +770,7 @@
       const markdownContent = document.querySelector('.markdown-content');
       if (markdownContent) {
         const pres = markdownContent.querySelectorAll('pre');
-        
+
         pres.forEach(pre => {
           const code = pre.querySelector('code');
           if (code && code.className.includes('language-mermaid')) {
