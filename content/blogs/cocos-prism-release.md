@@ -6,6 +6,7 @@ author:
   picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
 tags: [confidential-computing, ai, cocos, prism, privacy]
 date: 2026-02-06
+featured: true
 ---
 
 The confidential computing landscape continues to evolve with two major releases that strengthen the ecosystem for secure, privacy-preserving AI: **Cocos AI v0.8.0** and **Prism v0.6.0**. Together, they represent a powerful advancement in enabling organizations to build trustworthy, collaborative AI systems without compromising data privacy.
