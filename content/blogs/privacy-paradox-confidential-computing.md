@@ -1,7 +1,7 @@
 ---
 slug: privacy-paradox-confidential-computing
 title: "The Privacy Paradox: Why AI Teams Should Care About Confidential Computing"
-excerpt: "As organizations race to integrate LLMs into their operations, they're exposing sensitive data to unprecedented vulnerabilities. Learn why traditional software architectures are structurally inadequate for the AI era and how Confidential Computing solves the data-in-use gap."
+excerpt: ""
 description: "Discover why AI teams need Confidential Computing to protect sensitive data during processing. Learn about TEEs, real-world breaches, and implementation strategies."
 author:
   name: "Jilks Smith"
@@ -206,4 +206,4 @@ Confidential Computing is the "HTTPS for AI"—the protocol that builds the trus
 
 ---
 
-*Ready to secure your AI workloads? Learn more about [Cube AI's confidential computing architecture](/) or explore our [getting started guide](/getting-started) to begin your journey toward trustworthy AI.*
+*Ready to secure your AI workloads? Learn more about [Cube AI's confidential computing architecture](https://docs.cube.ultraviolet.rs/architecture) or explore our [developer guides](https://docs.cube.ultraviolet.rs/developer-guide) to get started.*
