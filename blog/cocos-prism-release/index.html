@@ -5,22 +5,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet</title>
-  <meta name="title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet" />
+  <title>Unleashing Confidential AI: Cocos v0.8.0 and Prism v0.6.0 Released - Ultraviolet</title>
+  <meta name="title" content="Unleashing Confidential AI: Cocos v0.8.0 and Prism v0.6.0 Released - Ultraviolet" />
   <meta name="description" content="" />
 
-  <link rel="canonical" href="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai/" />
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/cocos-prism-release/" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Ultraviolet" />
-  <meta property="og:url" content="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai" />
-  <meta property="og:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/cocos-prism-release" />
+  <meta property="og:title" content="Unleashing Confidential AI: Cocos v0.8.0 and Prism v0.6.0 Released" />
   <meta property="og:description" content="" />
   <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
   
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
+  <meta name="twitter:title" content="Unleashing Confidential AI: Cocos v0.8.0 and Prism v0.6.0 Released" />
   <meta name="twitter:description" content="" />
   <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
@@ -30,9 +30,9 @@
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": "Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts",
+        "headline": "Unleashing Confidential AI: Cocos v0.8.0 and Prism v0.6.0 Released",
         "image": "https:\/\/www.ultraviolet.rs",
-        "datePublished": "2026-01-30",
+        "datePublished": "2026-02-06",
         "author": {
           "@type": "Person",
           "name": "sammy oina"
@@ -291,7 +291,7 @@
           
         </div>
 
-        <h1 class="display-4 fw-bold mb-4">Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts</h1>
+        <h1 class="display-4 fw-bold mb-4">Unleashing Confidential AI: Cocos v0.8.0 and Prism v0.6.0 Released</h1>
 
         <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
           <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina" class="rounded-circle me-3" width="60" height="60"
@@ -299,130 +299,169 @@
           <div>
             <div class="fw-bold fs-5">sammy oina</div>
             <div class="text-muted">
-              January 30, 2026 · 4 min read
+              February 06, 2026 · 4 min read
             </div>
           </div>
         </div>
 
         
 
-        <div class="markdown-content"><p><img src="/img/confidential-computing-meets-ai/confidential-computing-cover.png" alt="Confidential Computing for AI"></p>
-<p>In the race to adopt Large Language Models (LLMs), enterprises and developers face a critical dilemma: <strong>how to leverage the power of state-of-the-art AI without compromising the privacy of sensitive data.</strong></p>
-<p>When you send a prompt to a traditional AI provider, you are trusting them not to log, read, or train on your data. But in the world of high-stakes finance, healthcare, and proprietary R&amp;D, &quot;trust us&quot; isn't good enough. You need <strong>mathematical proof</strong> that your data is private.</p>
-<p>This is where <strong>Confidential Computing</strong> comes in.</p>
-<p>In this deep dive, we'll explore how Cube AI leverages Trusted Execution Environments (TEEs) to provide a mathematically secure enclave for your AI workloads, guaranteeing that <strong>even the cloud provider cannot see your prompts.</strong></p>
+        <div class="markdown-content"><p>The confidential computing landscape continues to evolve with two major releases that strengthen the ecosystem for secure, privacy-preserving AI: <strong>Cocos AI v0.8.0</strong> and <strong>Prism v0.6.0</strong>. Together, they represent a powerful advancement in enabling organizations to build trustworthy, collaborative AI systems without compromising data privacy.</p>
 <!-- raw HTML omitted -->
-<h2 id="the-hardware-trust-anchor-how-tees-work">The Hardware Trust Anchor: How TEEs Work</h2>
-<p>At the heart of Cube AI's security model are <strong>Trusted Execution Environments (TEEs)</strong>, specifically utilizing <strong>AMD SEV-SNP</strong> and <strong>Intel TDX</strong>.</p>
-<p>Traditionally, if you run a VM in the cloud, the cloud provider (the hypervisor context) has technical access to your memory. They <em>could</em>, in theory, dump the RAM and see your unencrypted data.</p>
-<p>TEEs change this equation by encrypting the virtual machine's memory <strong>at the hardware level</strong>.</p>
-<ol>
-<li>
-<p><strong>Memory Encryption</strong>: The CPU automatically encrypts data written to RAM and decrypts it only inside the CPU core. The keys are managed by a secure processor and are never exposed to the hypervisor or host OS.</p>
-<pre><code class="language-mermaid">graph TD
-    subgraph CPU [&quot;CPU Package (Trusted Boundary)&quot;]
-        Core[&quot;CPU Core&lt;br/&gt;(Data is Plaintext)&quot;]
-        ME[&quot;Memory Encryption Engine&lt;br/&gt;(AES-128/256)&quot;]
-    end
-
-    subgraph RAM [&quot;System Memory (Untrusted)&quot;]
-        EncData[&quot;Encrypted Data&lt;br/&gt;(Ciphertext)&quot;]
-    end
-
-    subgraph Host [&quot;Hypervisor / Host OS&quot;]
-        Admin[&quot;Cloud Admin / Root&quot;]
-    end
-
-    Core &lt;--&gt; ME
-    ME &lt;--&gt;|Encrypted Read/Write| EncData
-
-    Admin -.-&gt;|Attempts to Read| EncData
-    Admin -- &quot;Sees Garbage&quot; --&gt; EncData
-
-    style CPU fill:#ecfdf5,stroke:#22c55e,stroke-width:2px,color:#000
-    style RAM fill:#f8fafc,stroke:#eab308,stroke-width:2px,color:#000
-    style Host fill:#fef2f2,stroke:#ef4444,stroke-width:2px,color:#000
-</code></pre>
-</li>
-<li>
-<p><strong>Remote Attestation</strong>: This is the &quot;proof&quot; part. The hardware generates a cryptographic &quot;quote&quot;—a digital signature signed by the processor's manufacturer key. This quote serves as proof that:</p>
-<ul>
-<li>The software running is exactly what you expect (measured by a hash).</li>
-<li>The hardware protections (SEV-SNP/TDX) are active.</li>
-<li>The environment hasn't been tampered with.</li>
-</ul>
-</li>
-</ol>
-<h2 id="why-traditional-llm-apis-expose-privacy-risks">Why Traditional LLM APIs Expose Privacy Risks</h2>
-<p>When you use a standard API (like OpenAI or Anthropic), the flow usually looks like this:</p>
-<ol>
-<li>
-<p>TLS encrypts data in transit (good).</p>
-</li>
-<li>
-<p>Provider decrypts data on their server to process it (necessary).</p>
-</li>
-<li>
-<p><strong>Risk Zone</strong>: While the data is processed, it is visible in plain text in the server's memory.</p>
-<ul>
-<li><strong>Insider Threats</strong>: Rogue admins with root access could potentially inspect memory.</li>
-<li><strong>Side-Channel Attacks</strong>: Exploits like Spectre/Meltdown or purely software-based memory scrapers could exfiltrate data.</li>
-<li><strong>Data Retention</strong>: Mistakes in logging configurations could accidentally save sensitive prompts to persistent storage.</li>
-</ul>
-<pre><code class="language-mermaid">graph LR
-    User([User]) --&gt;|TLS Encrypted| Gateway[API Gateway]
-    Gateway --&gt;|Plaintext| Server[Model Server]
-
-    subgraph RAM [&quot;Server Memory (RAM)&quot;]
-        Prompt[&quot;User Prompt&lt;br/&gt;(Plaintext)&quot;]
-    end
-
-    Server -- Processing --&gt; Prompt
-
-    Hacker[Attacker / Malware] -.-&gt;|Side Channel| Prompt
-    Admin[Rogue Employee] -.-&gt;|Direct Memory Dump| Prompt
-    Logs[Log Collector] -.-&gt;|Misconfiguration| Prompt
-
-    style Prompt fill:#ef4444,stroke:#7f1d1d,color:#fff,stroke-width:2px
-    style RAM fill:#e2e8f0,stroke:#94a3b8,color:#333
-    style Hacker stroke:#ef4444,stroke-dasharray: 5 5
-</code></pre>
-</li>
-</ol>
-<p>For regulated industries, this &quot;Processing in the Clear&quot; is a major compliance hurdle.</p>
-<h2 id="cube-ai-architecture-isolation-by-design">Cube AI Architecture: Isolation by Design</h2>
-<p>Cube AI solves this by moving the <strong>entire inference process</strong> into a TEE.</p>
-<p>The LLM (Ollama or vLLM) runs inside a Confidential VM. The model weights are decrypted only inside this enclave. Your prompts are encrypted with a key that is <strong>only</strong> released to the enclave after it proves its identity via attestation.</p>
-<h3 id="the-protected-inference-flow">The Protected Inference Flow</h3>
-<p>Here is how Cube AI isolates your data:</p>
-<p><img src="/img/confidential-computing-meets-ai/protected-inference-flow.png" alt="The Protected Inference Flow"></p>
-<ol>
-<li><strong>Attestation Handshake</strong>: The connection negotiation starts with an <strong>Attested TLS (aTLS)</strong> handshake. The Attestation Agent sends its certificate along with a hardware-signed quote.</li>
-<li><strong>Proxy Verification</strong>: The Cube Proxy verifies this quote against a strict attestation policy. Unlike standard TLS which blindly trusts a Certificate Authority, the Proxy validates the <em>hardware identity</em> and <em>software integrity</em> of the Agent.</li>
-<li><strong>Secure Tunnel</strong>: Once verified, an encrypted aTLS tunnel is established between the Proxy and the Agent.</li>
-<li><strong>Inference Proxying</strong>: The User sends an encrypted prompt to the Proxy, which forwards it through the aTLS tunnel. The Agent then proxies this request to the local LLM backend (vLLM/Ollama) running inside the enclave. Use the same key.</li>
-</ol>
-<h2 id="practical-example-private-medical-diagnosis">Practical Example: Private Medical Diagnosis</h2>
-<p>Imagine a healthcare provider building an AI assistant to analyze patient records for rare disease patterns.</p>
-<ul>
-<li><strong>The Data</strong>: Highly sensitive patient history, genetic markers, and lab results.</li>
-<li><strong>The Risk</strong>: Uploading this to a public LLM violates HIPAA and GDPR.</li>
-<li><strong>The Cube AI Solution</strong>:
-<ol>
-<li>The hospital's application connects to their private Cube AI instance.</li>
-<li>It verifies the instance acts as a &quot;black box&quot; via Remote Attestation.</li>
-<li>It sends the patient data.</li>
-<li><strong>Insight</strong>: The model analyzes the data <em>in memory</em> (which is encrypted at the hardware level).</li>
-<li><strong>Result</strong>: The diagnosis is returned encrypted.</li>
-<li><strong>Aftermath</strong>: Once the request is done, the data in memory is wiped. No logs, no training, no eyes on the data.</li>
-</ol>
-</li>
-</ul>
-<h2 id="key-takeaway">Key Takeaway</h2>
-<p>Cube AI shifts the trust model from <strong>policy-based security</strong> (&quot;we promise we won't look&quot;) to <strong>technology-based security</strong> (&quot;we physically cannot look&quot;).</p>
-<p>By combining the power of open-weights models (like Llama 3, Mistral) with the hardware-grade isolation of <strong>Confidential Computing</strong>, Cube AI allows you to deploy the most powerful AI capabilities on your most sensitive data—without losing sleep over privacy.</p>
 <hr>
-<p><em>Ready to secure your AI workloads? Check out our <a href="../docs/getting-started.md">Getting Started</a> guide or explore the <a href="../docs/attestation.md">Attestation Documentation</a>.</em></p>
+<h2 id="what-is-cocos-ai">What is Cocos AI?</h2>
+<p>Cocos AI (Confidential Computing System for AI) is a comprehensive software platform engineered for confidential and privacy-preserving AI and machine learning. At its foundation, Cocos uses <strong>Trusted Execution Environments (TEEs)</strong>—specialized hardware enclaves that isolate data and code from the entire system, providing protection even from privileged software.</p>
+<p><img src="https://raw.githubusercontent.com/ultravioletrs/cocos-docs/main/static/img/arch.png" alt="Cocos Architecture"></p>
+<p>The platform enables:</p>
+<ul>
+<li><strong>Model training and inference on sensitive data</strong> without ever exposing that data</li>
+<li><strong>Secure Multi-Party Computation (SMPC)</strong> for collaborative analysis across different data sources</li>
+<li><strong>Hardware attestation</strong> to verify the integrity and trustworthiness of computations</li>
+<li><strong>End-to-end encrypted communication</strong> through aTLS (attestation TLS)</li>
+</ul>
+<hr>
+<h2 id="introducing-prism-the-gateway-to-enterprise-confidential-ai">Introducing Prism: The Gateway to Enterprise Confidential AI</h2>
+<p>While Cocos AI provides the core confidential computing infrastructure, <strong>Prism</strong> is the user-friendly, enterprise-grade platform layer that makes Cocos accessible to organizations and teams. Prism is a <strong>web-based SaaS</strong> that sits on top of Cocos, adding essential enterprise capabilities:</p>
+<p><img src="https://raw.githubusercontent.com/ultravioletrs/prism-docs/refs/heads/main/static/img/ui/dashboard.png" alt="Prism Dashboard"></p>
+<h3 id="what-prism-brings-to-the-table">What Prism Brings to the Table</h3>
+<p><strong>1. User &amp; Workspace Management</strong></p>
+<ul>
+<li>Create and manage users across workspaces (consortiums)</li>
+<li>Fine-grained role-based access control (RBAC)</li>
+<li>Multi-tenant isolation for collaborative environments</li>
+</ul>
+<p><strong>2. Policy Management</strong></p>
+<ul>
+<li>Define access control policies between users, workspaces, and computations</li>
+<li>Manage asset access and computational workflows</li>
+<li>Enforce data governance rules seamlessly</li>
+</ul>
+<p><strong>3. Asset Management</strong></p>
+<ul>
+<li>Organize and search datasets and algorithms</li>
+<li>Track asset usage across computations</li>
+<li>Maintain metadata and audit trails</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/ultravioletrs/prism-docs/main/static/img/asset_management.png" alt="Asset Management Dashboard"></p>
+<p><strong>4. Computation Orchestration</strong></p>
+<ul>
+<li>Submit and monitor confidential computations</li>
+<li>View computation results with audit logs</li>
+<li>Track computation policies and resource allocation</li>
+</ul>
+<p><strong>5. Billing &amp; Subscription Management</strong></p>
+<ul>
+<li>Manage subscription tiers and payment information</li>
+<li>Track resource usage and costs</li>
+<li>Email notifications for important events</li>
+</ul>
+<p><strong>6. Secure Infrastructure</strong></p>
+<ul>
+<li>Leverage TEE-based secure VM provisioning</li>
+<li>End-to-end encryption throughout the workflow</li>
+<li>Comprehensive logging and monitoring</li>
+</ul>
+<hr>
+<h2 id="cocos-v080-enhanced-security-and-performance">Cocos v0.8.0: Enhanced Security and Performance</h2>
+<p>Cocos v0.8.0 brings significant improvements focused on attestation, security, and architecture refinement—critical for enterprises demanding the highest security standards.</p>
+<h3 id="key-highlights">Key Highlights</h3>
+<p><strong>Enhanced Attestation Policy</strong></p>
+<ul>
+<li>Improved CLI attestation policy tools for better developer experience</li>
+<li>Updated configurations for AMD SEV-SNP and Intel TDX platforms</li>
+<li>Added reported TCB (Trusted Computing Base) support for more comprehensive security validation</li>
+<li>SEV version bump to 7.0.0 for latest security standards</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/ultravioletrs/cocos-docs/main/static/img/SEVSNPThreatModel.png" alt="SEV-SNP Threat Model"></p>
+<p><strong>Performance Innovations</strong></p>
+<ul>
+<li><strong>VCEK Caching on aTLS Verification</strong>: Significantly improves performance by caching VCEK (Versioned Chip Endorsement Key) certificates during attestation TLS verification</li>
+<li>Optimized certificate handling and verification workflows</li>
+<li>Enhanced HTTP and gRPC client reusability</li>
+</ul>
+<p><strong>Architecture Enhancements</strong></p>
+<ul>
+<li>Refactored attestation handling: <code>AttestationResult</code> renamed to <code>AzureAttestationToken</code> for clarity</li>
+<li>New <code>CertificateProvider</code> interface for flexible certificate handling</li>
+<li>Improved aTLS and gRPC server architecture</li>
+<li>Better code reusability across components</li>
+</ul>
+<p><strong>Security Updates</strong></p>
+<ul>
+<li>Major dependency upgrades (gRPC 1.74.2 → 1.75.0, Docker SDK 28.3.2 → 28.5.0)</li>
+<li>Updated SMQ library to 0.18.1 with security patches</li>
+<li>Enhanced certificate library integration</li>
+</ul>
+<h3 id="patch-updates">Patch Updates</h3>
+<p>Recent patch releases (<strong>v0.8.1</strong> and <strong>v0.8.2</strong>) have focused on platform stability, security patches for cryptography libraries, and adding advanced vTPM features to enhance SEV-SNP reporting.</p>
+<hr>
+<h2 id="prism-v060-usability-and-discovery">Prism v0.6.0: Usability and Discovery</h2>
+<p>Prism v0.6.0 focuses on user experience, asset discovery, and operational improvements—making the platform more accessible and intuitive.</p>
+<h3 id="whats-new">What's New</h3>
+<p><strong>Advanced Search &amp; Discovery</strong></p>
+<ul>
+<li><strong>Comprehensive Asset Search</strong>: New asset search functionality with full UI and backend support</li>
+<li>Find and manage algorithms, datasets, and computational resources effortlessly</li>
+<li>Enhanced search performance and filtering options</li>
+</ul>
+<p><strong>User Management Enhancements</strong></p>
+<ul>
+<li><strong>Subscription Management Button</strong>: Dedicated UI for easier subscription control access</li>
+<li><strong>Email Notifications</strong>: Introduced notifications for email events, keeping users informed of critical updates</li>
+<li>Better visibility into account and subscription status</li>
+</ul>
+<h3 id="-improvements">🔧 Improvements</h3>
+<p><strong>UI/UX Refinements</strong>
+We've polished the interface with cleaner styling for asset templates, improved content navigation, and enhanced validation messages to provide better guidance.</p>
+<p><img src="https://raw.githubusercontent.com/ultravioletrs/prism-docs/main/static/img/asset_view.png" alt="Asset View Interface"></p>
+<hr>
+<h2 id="why-these-releases-matter">Why These Releases Matter</h2>
+<h3 id="for-data-scientists--researchers">For Data Scientists &amp; Researchers</h3>
+<ul>
+<li><strong>Cocos</strong>: Attestable proof that their sensitive algorithms and data are executed in protected enclaves</li>
+<li><strong>Prism</strong>: Intuitive interface to run confidential computations without infrastructure complexity</li>
+</ul>
+<h3 id="for-enterprises--organizations">For Enterprises &amp; Organizations</h3>
+<ul>
+<li><strong>Cocos</strong>: Hardware-validated security guarantees for regulatory compliance (HIPAA, GDPR, etc.)</li>
+<li><strong>Prism</strong>: Enterprise features like billing, user management, and audit logs for governance</li>
+</ul>
+<h3 id="for-security-teams">For Security Teams</h3>
+<ul>
+<li><strong>Cocos</strong>: Advanced attestation validation, updated security policies, and dependency management</li>
+<li><strong>Prism</strong>: Fine-grained access control, comprehensive logging, and policy enforcement</li>
+</ul>
+<hr>
+<h2 id="the-collaborative-ai-future">The Collaborative AI Future</h2>
+<p>Together, Cocos and Prism enable a new paradigm for AI:</p>
+<p><img src="https://raw.githubusercontent.com/ultravioletrs/cocos-docs/main/static/img/DataFlow.png" alt="Collaborative AI Architecture"></p>
+<p><strong>Healthcare</strong>: Train diagnostic AI models on patient data from multiple hospitals without sharing raw data.</p>
+<p><strong>Finance</strong>: Perform collaborative fraud detection across institutions while maintaining data privacy.</p>
+<p><strong>Government</strong>: Enable multi-agency analysis on sensitive information without centralized data collection.</p>
+<p><strong>Research</strong>: Combine datasets from different organizations for breakthroughs while maintaining strict confidentiality.</p>
+<hr>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="explore-cocos-ai">Explore Cocos AI</h3>
+<p>Visit the <a href="https://github.com/ultravioletrs/cocos">Cocos GitHub repository</a> to deploy and integrate confidential computing into your infrastructure.</p>
+<h3 id="experience-prism">Experience Prism</h3>
+<p>Access <a href="https://prism.ultraviolet.rs/">Prism's web interface</a> to manage users, policies, and computations in a secure, user-friendly environment.</p>
+<hr>
+<h2 id="whats-next">What's Next?</h2>
+<p>Both projects continue to evolve. The roadmap includes:</p>
+<ul>
+<li>Enhanced multi-party computation capabilities</li>
+<li>Support for additional TEE technologies</li>
+<li>Expanded analytics and reporting features</li>
+<li>Improved developer tooling and SDKs</li>
+</ul>
+<p>Stay tuned for more innovations in the confidential computing space!</p>
+<hr>
+<p><strong>Learn More:</strong></p>
+<ul>
+<li><a href="https://docs.cocos.ultraviolet.rs">Cocos AI Documentation</a></li>
+<li><a href="https://docs.prism.ultraviolet.rs">Prism Documentation</a></li>
+<li><a href="https://ultraviolet.rs">Ultraviolet RS</a></li>
+</ul>
 </div>
 
         <div class="mt-5 pt-4 border-top">
@@ -434,15 +473,15 @@
           <h5 class="mb-3 mt-3">Tags</h5>
           <div>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">security</span>
-            
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential-computing</span>
             
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">ai</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">privacy</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">cocos</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">cube ai</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">prism</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">privacy</span>
             
           </div>
         </div>
@@ -450,11 +489,11 @@
         <div class="mt-4">
           <h5 class="mb-3">Share this article</h5>
           <div class="d-flex gap-2 flex-wrap">
-            <a href="https://twitter.com/intent/tweet?text=Confidential&#43;Computing&#43;Meets&#43;AI%3A&#43;How&#43;Cube&#43;AI&#43;Protects&#43;Your&#43;LLM&#43;Prompts&url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://twitter.com/intent/tweet?text=Unleashing&#43;Confidential&#43;AI%3A&#43;Cocos&#43;v0.8.0&#43;and&#43;Prism&#43;v0.6.0&#43;Released&url=https%3a%2f%2fwww.ultraviolet.rs/blog/cocos-prism-release"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-twitter me-2"></i>Twitter
             </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/cocos-prism-release"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-linkedin me-2"></i>LinkedIn
             </a>
@@ -525,7 +564,7 @@
         
         <div class="col-md-6 col-lg-4">
           <article class="card h-100 shadow-sm hover-lift border-0">
-            <a href="/blog/cocos-prism-release" class="text-decoration-none text-dark">
+            <a href="/blog/confidential-computing-meets-ai" class="text-decoration-none text-dark">
               
 
               <div class="card-body">
@@ -537,7 +576,7 @@
                 </div>
 
                 <h2 class="card-title h5 fw-bold">
-                  Unleashing Confidential AI: Cocos v0.8.0 and Prism v0.6.0 Released
+                  Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts
                 </h2>
                 <p class="card-text text-muted small">
                   
@@ -552,22 +591,22 @@
                       sammy oina
                     </div>
                     <div class="text-muted">
-                      February 06, 2026 · 4 min
+                      January 30, 2026 · 4 min
                     </div>
                   </div>
                 </div>
 
                 <div class="mt-3">
                   
+                  <span class="badge bg-light text-dark me-1">security</span>
+                  
                   <span class="badge bg-light text-dark me-1">confidential-computing</span>
                   
                   <span class="badge bg-light text-dark me-1">ai</span>
                   
-                  <span class="badge bg-light text-dark me-1">cocos</span>
-                  
-                  <span class="badge bg-light text-dark me-1">prism</span>
-                  
                   <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                  <span class="badge bg-light text-dark me-1">cube ai</span>
                   
                 </div>
               </div>
