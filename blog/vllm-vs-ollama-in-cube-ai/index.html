@@ -5,22 +5,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet</title>
-  <meta name="title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet" />
+  <title>vLLM vs Ollama in Cube AI: Choosing the Right LLM Backend for Your Use Case - Ultraviolet</title>
+  <meta name="title" content="vLLM vs Ollama in Cube AI: Choosing the Right LLM Backend for Your Use Case - Ultraviolet" />
   <meta name="description" content="" />
 
-  <link rel="canonical" href="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai/" />
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/vllm-vs-ollama-in-cube-ai/" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Ultraviolet" />
-  <meta property="og:url" content="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai" />
-  <meta property="og:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/vllm-vs-ollama-in-cube-ai" />
+  <meta property="og:title" content="vLLM vs Ollama in Cube AI: Choosing the Right LLM Backend for Your Use Case" />
   <meta property="og:description" content="" />
   <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
   
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
+  <meta name="twitter:title" content="vLLM vs Ollama in Cube AI: Choosing the Right LLM Backend for Your Use Case" />
   <meta name="twitter:description" content="" />
   <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
@@ -30,12 +30,12 @@
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": "Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts",
+        "headline": "vLLM vs Ollama in Cube AI: Choosing the Right LLM Backend for Your Use Case",
         "image": "https:\/\/www.ultraviolet.rs",
-        "datePublished": "2026-01-30",
+        "datePublished": "2026-02-06",
         "author": {
           "@type": "Person",
-          "name": "sammy oina"
+          "name": "Washington Kamadi"
         },
         "description": ""
       }
@@ -290,138 +290,391 @@
           
         </div>
 
-        <h1 class="display-4 fw-bold mb-4">Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts</h1>
+        <h1 class="display-4 fw-bold mb-4">vLLM vs Ollama in Cube AI: Choosing the Right LLM Backend for Your Use Case</h1>
 
         <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
-          <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina" class="rounded-circle me-3" width="60" height="60"
+          <img src="https://avatars.githubusercontent.com/u/43080232?v=4&amp;size=64" alt="Washington Kamadi" class="rounded-circle me-3" width="60" height="60"
             loading="lazy" onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
           <div>
-            <div class="fw-bold fs-5">sammy oina</div>
+            <div class="fw-bold fs-5">Washington Kamadi</div>
             <div class="text-muted">
-              January 30, 2026 · 4 min read
+              February 06, 2026 · 5 min read
             </div>
           </div>
         </div>
 
         
 
-        <div class="markdown-content"><p><img src="/img/confidential-computing-meets-ai/confidential-computing-cover.png" alt="Confidential Computing for AI"></p>
-<p>In the race to adopt Large Language Models (LLMs), enterprises and developers face a critical dilemma: <strong>how to leverage the power of state-of-the-art AI without compromising the privacy of sensitive data.</strong></p>
-<p>When you send a prompt to a traditional AI provider, you are trusting them not to log, read, or train on your data. But in the world of high-stakes finance, healthcare, and proprietary R&amp;D, &quot;trust us&quot; isn't good enough. You need <strong>mathematical proof</strong> that your data is private.</p>
-<p>This is where <strong>Confidential Computing</strong> comes in.</p>
-<p>In this deep dive, we'll explore how Cube AI leverages Trusted Execution Environments (TEEs) to provide a mathematically secure enclave for your AI workloads, guaranteeing that <strong>even the cloud provider cannot see your prompts.</strong></p>
+        <div class="markdown-content"><p><img src="/img/vllm-vs-ollama-in-cube-ai/vllm_vs_ollama_cover.png" alt="vLLM vs Ollama in Cube AI"></p>
+<p>Selecting the right Large Language Model (LLM) backend is no longer just an infrastructure decision — it directly impacts latency, throughput, operational cost, scalability, and developer velocity.</p>
+<p>Cube AI is intentionally designed with <strong>backend modularity</strong>, allowing teams to switch between inference engines without changing application logic. Whether you prioritize <strong>GPU-accelerated performance</strong> or <strong>lightweight local deployments</strong>, Cube AI supports both paradigms through two production-ready backends:</p>
+<ul>
+<li><strong>vLLM</strong> — optimized for high-throughput, GPU-driven inference</li>
+<li><strong>Ollama</strong> — flexible, developer-friendly runtime for local and hybrid environments</li>
+</ul>
+<p>The architectural takeaway is simple:</p>
+<blockquote>
+<p><strong>In Cube AI, the LLM backend is a swappable module behind a single environment variable.</strong></p>
+</blockquote>
 <!-- raw HTML omitted -->
-<h2 id="the-hardware-trust-anchor-how-tees-work">The Hardware Trust Anchor: How TEEs Work</h2>
-<p>At the heart of Cube AI's security model are <strong>Trusted Execution Environments (TEEs)</strong>, specifically utilizing <strong>AMD SEV-SNP</strong> and <strong>Intel TDX</strong>.</p>
-<p>Traditionally, if you run a VM in the cloud, the cloud provider (the hypervisor context) has technical access to your memory. They <em>could</em>, in theory, dump the RAM and see your unencrypted data.</p>
-<p>TEEs change this equation by encrypting the virtual machine's memory <strong>at the hardware level</strong>.</p>
-<ol>
-<li>
-<p><strong>Memory Encryption</strong>: The CPU automatically encrypts data written to RAM and decrypts it only inside the CPU core. The keys are managed by a secure processor and are never exposed to the hypervisor or host OS.</p>
-<pre><code class="language-mermaid">graph TD
-    subgraph CPU [&quot;CPU Package (Trusted Boundary)&quot;]
-        Core[&quot;CPU Core&lt;br/&gt;(Data is Plaintext)&quot;]
-        ME[&quot;Memory Encryption Engine&lt;br/&gt;(AES-128/256)&quot;]
-    end
-
-    subgraph RAM [&quot;System Memory (Untrusted)&quot;]
-        EncData[&quot;Encrypted Data&lt;br/&gt;(Ciphertext)&quot;]
-    end
-
-    subgraph Host [&quot;Hypervisor / Host OS&quot;]
-        Admin[&quot;Cloud Admin / Root&quot;]
-    end
-
-    Core &lt;--&gt; ME
-    ME &lt;--&gt;|Encrypted Read/Write| EncData
-
-    Admin -.-&gt;|Attempts to Read| EncData
-    Admin -- &quot;Sees Garbage&quot; --&gt; EncData
-
-    style CPU fill:#ecfdf5,stroke:#22c55e,stroke-width:2px,color:#000
-    style RAM fill:#f8fafc,stroke:#eab308,stroke-width:2px,color:#000
-    style Host fill:#fef2f2,stroke:#ef4444,stroke-width:2px,color:#000
-</code></pre>
-</li>
-<li>
-<p><strong>Remote Attestation</strong>: This is the &quot;proof&quot; part. The hardware generates a cryptographic &quot;quote&quot;—a digital signature signed by the processor's manufacturer key. This quote serves as proof that:</p>
-<ul>
-<li>The software running is exactly what you expect (measured by a hash).</li>
-<li>The hardware protections (SEV-SNP/TDX) are active.</li>
-<li>The environment hasn't been tampered with.</li>
+<h2 id="backend-selection-architecture">Backend Selection Architecture</h2>
+<p>Cube AI routes all inference traffic through a <strong>backend-agnostic agent proxy</strong>. The proxy simply forwards requests to whichever backend is configured.</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>UV_CUBE_AGENT_TARGET_URL=http://ollama:11434
+</span></span><span style="display:flex;"><span><span style="color:#007f7f"># OR</span>
+</span></span><span style="display:flex;"><span>UV_CUBE_AGENT_TARGET_URL=http://vllm:8000
+</span></span></code></pre><p>Switching backends is operationally trivial:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>up-ollama: config-ollama
+</span></span><span style="display:flex;"><span>up-vllm:   config-vllm
+</span></span></code></pre><ul>
+<li>No application rewrites.</li>
+<li>No routing changes.</li>
+<li>No SDK updates.</li>
 </ul>
-</li>
-</ol>
-<h2 id="why-traditional-llm-apis-expose-privacy-risks">Why Traditional LLM APIs Expose Privacy Risks</h2>
-<p>When you use a standard API (like OpenAI or Anthropic), the flow usually looks like this:</p>
-<ol>
-<li>
-<p>TLS encrypts data in transit (good).</p>
-</li>
-<li>
-<p>Provider decrypts data on their server to process it (necessary).</p>
-</li>
-<li>
-<p><strong>Risk Zone</strong>: While the data is processed, it is visible in plain text in the server's memory.</p>
+<p>Just redeploy.</p>
+<h3 id="why-this-matters-architecturally">Why This Matters Architecturally</h3>
+<p>This design creates a clean separation between:</p>
 <ul>
-<li><strong>Insider Threats</strong>: Rogue admins with root access could potentially inspect memory.</li>
-<li><strong>Side-Channel Attacks</strong>: Exploits like Spectre/Meltdown or purely software-based memory scrapers could exfiltrate data.</li>
-<li><strong>Data Retention</strong>: Mistakes in logging configurations could accidentally save sensitive prompts to persistent storage.</li>
+<li>Application layer</li>
+<li>Guardrails</li>
+<li>Proxy routing</li>
+<li>Inference engine</li>
 </ul>
-<pre><code class="language-mermaid">graph LR
-    User([User]) --&gt;|TLS Encrypted| Gateway[API Gateway]
-    Gateway --&gt;|Plaintext| Server[Model Server]
-
-    subgraph RAM [&quot;Server Memory (RAM)&quot;]
-        Prompt[&quot;User Prompt&lt;br/&gt;(Plaintext)&quot;]
-    end
-
-    Server -- Processing --&gt; Prompt
-
-    Hacker[Attacker / Malware] -.-&gt;|Side Channel| Prompt
-    Admin[Rogue Employee] -.-&gt;|Direct Memory Dump| Prompt
-    Logs[Log Collector] -.-&gt;|Misconfiguration| Prompt
-
-    style Prompt fill:#ef4444,stroke:#7f1d1d,color:#fff,stroke-width:2px
-    style RAM fill:#e2e8f0,stroke:#94a3b8,color:#333
-    style Hacker stroke:#ef4444,stroke-dasharray: 5 5
-</code></pre>
-</li>
-</ol>
-<p>For regulated industries, this &quot;Processing in the Clear&quot; is a major compliance hurdle.</p>
-<h2 id="cube-ai-architecture-isolation-by-design">Cube AI Architecture: Isolation by Design</h2>
-<p>Cube AI solves this by moving the <strong>entire inference process</strong> into a TEE.</p>
-<p>The LLM (Ollama or vLLM) runs inside a Confidential VM. The model weights are decrypted only inside this enclave. Your prompts are encrypted with a key that is <strong>only</strong> released to the enclave after it proves its identity via attestation.</p>
-<h3 id="the-protected-inference-flow">The Protected Inference Flow</h3>
-<p>Here is how Cube AI isolates your data:</p>
-<p><img src="/img/confidential-computing-meets-ai/protected-inference-flow.png" alt="The Protected Inference Flow"></p>
-<ol>
-<li><strong>Attestation Handshake</strong>: The connection negotiation starts with an <strong>Attested TLS (aTLS)</strong> handshake. The Attestation Agent sends its certificate along with a hardware-signed quote.</li>
-<li><strong>Proxy Verification</strong>: The Cube Proxy verifies this quote against a strict attestation policy. Unlike standard TLS which blindly trusts a Certificate Authority, the Proxy validates the <em>hardware identity</em> and <em>software integrity</em> of the Agent.</li>
-<li><strong>Secure Tunnel</strong>: Once verified, an encrypted aTLS tunnel is established between the Proxy and the Agent.</li>
-<li><strong>Inference Proxying</strong>: The User sends an encrypted prompt to the Proxy, which forwards it through the aTLS tunnel. The Agent then proxies this request to the local LLM backend (vLLM/Ollama) running inside the enclave. Use the same key.</li>
-</ol>
-<h2 id="practical-example-private-medical-diagnosis">Practical Example: Private Medical Diagnosis</h2>
-<p>Imagine a healthcare provider building an AI assistant to analyze patient records for rare disease patterns.</p>
+<p>The agent (<code>httputil.NewSingleHostReverseProxy</code>) handles:</p>
 <ul>
-<li><strong>The Data</strong>: Highly sensitive patient history, genetic markers, and lab results.</li>
-<li><strong>The Risk</strong>: Uploading this to a public LLM violates HIPAA and GDPR.</li>
-<li><strong>The Cube AI Solution</strong>:
-<ol>
-<li>The hospital's application connects to their private Cube AI instance.</li>
-<li>It verifies the instance acts as a &quot;black box&quot; via Remote Attestation.</li>
-<li>It sends the patient data.</li>
-<li><strong>Insight</strong>: The model analyzes the data <em>in memory</em> (which is encrypted at the hardware level).</li>
-<li><strong>Result</strong>: The diagnosis is returned encrypted.</li>
-<li><strong>Aftermath</strong>: Once the request is done, the data in memory is wiped. No logs, no training, no eyes on the data.</li>
-</ol>
-</li>
+<li>Header sanitization</li>
+<li>Connection pooling (<code>MaxIdleConns: 100</code>)</li>
+<li>Idle timeout (<code>90s</code>)</li>
+</ul>
+<p>From the application's perspective, the backend is invisible.</p>
+<p>This is critical for:</p>
+<ul>
+<li>Multi-environment deployments</li>
+<li>Gradual GPU rollouts</li>
+<li>Cost optimization</li>
+<li>Performance experimentation</li>
+</ul>
+<h2 id="performance-benchmarks-architectural-expectations">Performance Benchmarks (Architectural Expectations)</h2>
+<p>While exact numbers vary by model and GPU class, the underlying architecture reveals clear performance behavior.</p>
+<h3 id="throughput">Throughput</h3>
+<p><strong>vLLM</strong></p>
+<ul>
+<li>Continuous batching dramatically increases tokens/sec</li>
+<li>Designed for concurrent request handling</li>
+<li>Ideal for production APIs serving many users</li>
+</ul>
+<p><strong>Ollama</strong></p>
+<ul>
+<li>Sequential processing model</li>
+<li>Excellent for low-to-moderate concurrency</li>
+<li>Predictable performance on smaller nodes</li>
+</ul>
+<p><strong>Expected Winner: vLLM</strong> (by design)</p>
+<h3 id="latency">Latency</h3>
+<p>Single-request latency:</p>
+<ul>
+<li>Ollama performs well for isolated prompts.</li>
+<li>vLLM shines under load due to batching efficiency.</li>
+</ul>
+<p><strong>Important Insight:</strong>
+If your system sees burst traffic, vLLM latency often <em>improves</em> relative to sequential engines.</p>
+<h3 id="memory-usage">Memory Usage</h3>
+<p><strong>vLLM</strong></p>
+<p>Explicit control:</p>
+<pre><code>--gpu-memory-utilization 0.85
+--max-model-len 1024
+</code></pre>
+<p>Predictable GPU allocation is extremely valuable for capacity planning.</p>
+<p><strong>Ollama</strong></p>
+<ul>
+<li>Automatic memory handling</li>
+<li>Model-dependent footprint</li>
+<li>Lower operational tuning overhead</li>
+</ul>
+<p><strong>Trade-off:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Goal</th>
+<th style="text-align:left">Better Choice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Deterministic GPU planning</td>
+<td style="text-align:left">vLLM</td>
+</tr>
+<tr>
+<td style="text-align:left">Operational simplicity</td>
+<td style="text-align:left">Ollama</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vllm-high-performance-gpu-inference">vLLM: High-Performance GPU Inference</h2>
+<p>Cube AI deploys vLLM via:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>vllm/vllm-openai:v0.10.2
+</span></span></code></pre><p>Key characteristics:</p>
+<ul>
+<li>OpenAI-compatible API (<code>/v1/chat/completions</code>)</li>
+<li>NVIDIA runtime required</li>
+<li>Continuous batching</li>
+<li>HuggingFace model loading</li>
+<li>Cache volume for faster restarts</li>
+<li>Startup-defined model</li>
+</ul>
+<p>Example:</p>
+<pre><code>VLLM_MODEL=microsoft/DialoGPT-medium
+</code></pre>
+<blockquote>
+<p>Model changes require a restart — a deliberate design choice that stabilizes production behavior.</p>
+</blockquote>
+<h3 id="when-vllm-is-the-right-choice">When vLLM Is the Right Choice</h3>
+<p>Choose vLLM if your system requires:</p>
+<ul>
+<li>High tokens/sec</li>
+<li>Multi-tenant inference</li>
+<li>GPU saturation</li>
+<li>Production-scale APIs</li>
+<li>Predictable latency under load</li>
+</ul>
+<p>Typical environments:</p>
+<ul>
+<li>Enterprise AI platforms</li>
+<li>Internal copilots</li>
+<li>Retrieval pipelines</li>
+<li>Customer-facing LLM APIs</li>
+</ul>
+<h2 id="ollama-lightweight-and-operationally-flexible">Ollama: Lightweight and Operationally Flexible</h2>
+<p>Cube AI ships Ollama as:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>ollama/ollama:latest
+</span></span></code></pre><p>Default auto-pulled models:</p>
+<ul>
+<li><code>llama3.2:3b</code></li>
+<li><code>starcoder2:3b</code></li>
+<li><code>nomic-embed-text:v1.5</code></li>
+</ul>
+<h3 id="major-strength-runtime-model-management">Major Strength: Runtime Model Management</h3>
+<p>Unlike vLLM:</p>
+<ul>
+<li>Pull models without restart</li>
+<li>Delete unused models</li>
+<li>Push private builds</li>
+</ul>
+<p>This dramatically improves developer velocity.</p>
+<h3 id="hardware-flexibility">Hardware Flexibility</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Capability</th>
+<th style="text-align:left">Ollama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">CPU-only</td>
+<td style="text-align:left">Supported</td>
+</tr>
+<tr>
+<td style="text-align:left">NVIDIA GPU</td>
+<td style="text-align:left">Supported</td>
+</tr>
+<tr>
+<td style="text-align:left">AMD GPU</td>
+<td style="text-align:left">Supported</td>
+</tr>
+<tr>
+<td style="text-align:left">Edge devices</td>
+<td style="text-align:left">Supported</td>
+</tr>
+</tbody>
+</table>
+<p>This makes Ollama extremely attractive for:</p>
+<ul>
+<li>CVMs</li>
+<li>Edge inference</li>
+<li>On-prem deployments</li>
+<li>Secure environments</li>
+</ul>
+<h2 id="deployment-scenarios-and-trade-offs">Deployment Scenarios and Trade-offs</h2>
+<h3 id="scenario-1--enterprise-production-api">Scenario 1 — Enterprise Production API</h3>
+<p><strong>Recommended: vLLM</strong></p>
+<p>Why:</p>
+<ul>
+<li>Continuous batching</li>
+<li>GPU utilization</li>
+<li>OpenAI compatibility</li>
+<li>Predictable scaling</li>
+</ul>
+<h3 id="scenario-2--confidential--air-gapped-environment">Scenario 2 — Confidential / Air-Gapped Environment</h3>
+<p><strong>Recommended: Ollama</strong></p>
+<p>Why:</p>
+<ul>
+<li>Runtime model control</li>
+<li>Hardware flexibility</li>
+<li>Easier offline workflows</li>
+</ul>
+<h3 id="scenario-3--developer-sandbox">Scenario 3 — Developer Sandbox</h3>
+<p><strong>Recommended: Ollama</strong></p>
+<ul>
+<li>Startup friction is minimal.</li>
+<li>Perfect for experimentation.</li>
+</ul>
+<h3 id="scenario-4--high-concurrency-saas">Scenario 4 — High-Concurrency SaaS</h3>
+<p><strong>Recommended: vLLM</strong></p>
+<ul>
+<li>Sequential engines become bottlenecks quickly.</li>
+</ul>
+<h2 id="cost-analysis-and-resource-requirements">Cost Analysis and Resource Requirements</h2>
+<h3 id="vllm-cost-profile">vLLM Cost Profile</h3>
+<p>Higher infrastructure cost — lower cost per token at scale.</p>
+<p>Requires:</p>
+<ul>
+<li>NVIDIA GPUs</li>
+<li>GPU-aware orchestration</li>
+<li>Capacity planning</li>
+</ul>
+<p>Best when utilization is high. Idle GPUs are expensive.</p>
+<h3 id="ollama-cost-profile">Ollama Cost Profile</h3>
+<p>Lower entry cost — higher marginal cost under heavy load.</p>
+<p>Runs on:</p>
+<ul>
+<li>CPU nodes</li>
+<li>Mixed GPU fleets</li>
+<li>Smaller instances</li>
+</ul>
+<p>Excellent for staged growth.</p>
+<h3 id="strategic-insight">Strategic Insight</h3>
+<p><strong>Start with Ollama. Move to vLLM when concurrency justifies GPU spend.</strong></p>
+<p>Cube AI makes this migration trivial.</p>
+<h2 id="integration-patterns-with-cube-ai">Integration Patterns with Cube AI</h2>
+<h3 id="proxy-level-api-exposure">Proxy-Level API Exposure</h3>
+<p>Cube AI exposes both formats:</p>
+<p><strong>OpenAI-Compatible</strong></p>
+<pre><code>POST /{domainID}/v1/chat/completions
+GET  /{domainID}/v1/models
+</code></pre>
+<p>Works with both backends.</p>
+<p><strong>Ollama-Native</strong></p>
+<pre><code>POST /api/chat
+POST /api/generate
+GET  /api/tags
+</code></pre>
+<p>Available when Ollama is active.</p>
+<h3 id="guardrails-integration">Guardrails Integration</h3>
+<p>Guardrails currently leverage the <code>ExtendedOllama</code> LangChain adapter, enabling:</p>
+<ul>
+<li>Dynamic header injection</li>
+<li>Per-request model selection</li>
+<li>Option mapping (temperature, top_p, etc.)</li>
+</ul>
+<p>Model config example:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="font-weight:bold">engine</span>: CubeLLM
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">model</span>: llama3.2:3b
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">base_url</span>: http://cube-proxy:8900
+</span></span></code></pre><p>Sensitive data detection is handled via:</p>
+<ul>
+<li>Presidio</li>
+<li>spaCy</li>
+</ul>
+<p>Atomic configuration swaps ensure safe updates without downtime.</p>
+<h3 id="hal-beyond-containers">HAL: Beyond Containers</h3>
+<p>Cube AI packages both backends inside the Hardware Abstraction Layer (HAL):</p>
+<ul>
+<li>Systemd services</li>
+<li>Init scripts</li>
+<li>Auto model provisioning</li>
+</ul>
+<p>This enables bare-metal CVM deployments, not just Docker.</p>
+<p>A critical advantage for confidential AI environments.</p>
+<h2 id="side-by-side-comparison">Side-by-Side Comparison</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Dimension</th>
+<th style="text-align:left">Ollama</th>
+<th style="text-align:left">vLLM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Version</strong></td>
+<td style="text-align:left">0.12.3</td>
+<td style="text-align:left">0.10.2</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>API</strong></td>
+<td style="text-align:left">Native <code>/api/*</code></td>
+<td style="text-align:left">OpenAI <code>/v1/*</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>GPU</strong></td>
+<td style="text-align:left">Optional</td>
+<td style="text-align:left">Required (NVIDIA)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>CPU Support</strong></td>
+<td style="text-align:left">Yes</td>
+<td style="text-align:left">No</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Model Mgmt</strong></td>
+<td style="text-align:left">Runtime</td>
+<td style="text-align:left">Startup</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Batching</strong></td>
+<td style="text-align:left">Sequential</td>
+<td style="text-align:left">Continuous</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Default Model</strong></td>
+<td style="text-align:left"><code>llama3.2:3b</code></td>
+<td style="text-align:left"><code>DialoGPT-medium</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Memory Config</strong></td>
+<td style="text-align:left">Automatic</td>
+<td style="text-align:left">Explicit</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Guardrails</strong></td>
+<td style="text-align:left">Native adapter</td>
+<td style="text-align:left">Via OpenAI</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Compose Profile</strong></td>
+<td style="text-align:left">default</td>
+<td style="text-align:left">vllm</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-architectural-insight-that-matters-most">The Architectural Insight That Matters Most</h2>
+<p>Cube AI treats inference engines like <strong>infrastructure plugins</strong>.</p>
+<p>Not dependencies. Not lock-in points. Just modules.</p>
+<p>Because of the agent proxy:</p>
+<p><strong>Your application never needs to know which backend is running.</strong></p>
+<p>This dramatically reduces platform risk.</p>
+<h2 id="decision-framework">Decision Framework</h2>
+<p><strong>Choose vLLM if:</strong></p>
+<ul>
+<li>You operate at scale</li>
+<li>Latency under load matters</li>
+<li>GPU clusters are available</li>
+<li>You need maximum throughput</li>
+</ul>
+<p><strong>Choose Ollama if:</strong></p>
+<ul>
+<li>You want operational flexibility</li>
+<li>You deploy to edge or CVMs</li>
+<li>You value runtime model control</li>
+<li>You are cost-sensitive early</li>
 </ul>
 <h2 id="key-takeaway">Key Takeaway</h2>
-<p>Cube AI shifts the trust model from <strong>policy-based security</strong> (&quot;we promise we won't look&quot;) to <strong>technology-based security</strong> (&quot;we physically cannot look&quot;).</p>
-<p>By combining the power of open-weights models (like Llama 3, Mistral) with the hardware-grade isolation of <strong>Confidential Computing</strong>, Cube AI allows you to deploy the most powerful AI capabilities on your most sensitive data—without losing sleep over privacy.</p>
+<p>Cube AI eliminates the traditional trade-off between performance and flexibility.</p>
+<p>You do not need to commit early. You can evolve your backend alongside your workload.</p>
+<p><strong>Start lightweight. Scale when necessary. Switch without friction.</strong></p>
+<p>That is the power of backend modularity.</p>
 <hr>
-<p><em>Ready to secure your AI workloads? Check out our <a href="../docs/getting-started.md">Getting Started</a> guide or explore the <a href="../docs/attestation.md">Attestation Documentation</a>.</em></p>
+<p><em>Explore Cube AI's backend architecture in the <a href="https://docs.cube.ultraviolet.rs/getting-started">Deployment Guide</a> or learn more about <a href="https://docs.cube.ultraviolet.rs/architecture">Cube AI Architecture</a>.</em></p>
 </div>
 
         <div class="mt-5 pt-4 border-top">
@@ -433,13 +686,15 @@
           <h5 class="mb-3 mt-3">Tags</h5>
           <div>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">security</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">architecture</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential-computing</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">devops</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">ai</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">inference</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">privacy</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">vllm</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">ollama</span>
             
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">cube ai</span>
             
@@ -449,11 +704,11 @@
         <div class="mt-4">
           <h5 class="mb-3">Share this article</h5>
           <div class="d-flex gap-2 flex-wrap">
-            <a href="https://twitter.com/intent/tweet?text=Confidential&#43;Computing&#43;Meets&#43;AI%3A&#43;How&#43;Cube&#43;AI&#43;Protects&#43;Your&#43;LLM&#43;Prompts&url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://twitter.com/intent/tweet?text=vLLM&#43;vs&#43;Ollama&#43;in&#43;Cube&#43;AI%3A&#43;Choosing&#43;the&#43;Right&#43;LLM&#43;Backend&#43;for&#43;Your&#43;Use&#43;Case&url=https%3a%2f%2fwww.ultraviolet.rs/blog/vllm-vs-ollama-in-cube-ai"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-twitter me-2"></i>Twitter
             </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/vllm-vs-ollama-in-cube-ai"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-linkedin me-2"></i>LinkedIn
             </a>
@@ -524,7 +779,7 @@
         
         <div class="col-md-6 col-lg-4">
           <article class="card h-100 shadow-sm hover-lift border-0">
-            <a href="/blog/vllm-vs-ollama-in-cube-ai" class="text-decoration-none text-dark">
+            <a href="/blog/confidential-computing-meets-ai" class="text-decoration-none text-dark">
               
 
               <div class="card-body">
@@ -536,37 +791,35 @@
                 </div>
 
                 <h2 class="card-title h5 fw-bold">
-                  vLLM vs Ollama in Cube AI: Choosing the Right LLM Backend for Your Use Case
+                  Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts
                 </h2>
                 <p class="card-text text-muted small">
                   
                 </p>
 
                 <div class="d-flex align-items-center mt-3">
-                  <img src="https://avatars.githubusercontent.com/u/43080232?v=4&amp;size=64" alt="Washington Kamadi"
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
                     class="rounded-circle me-2" width="32" height="32" loading="lazy"
                     onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
                   <div class="small">
                     <div class="fw-semibold">
-                      Washington Kamadi
+                      sammy oina
                     </div>
                     <div class="text-muted">
-                      February 06, 2026 · 5 min
+                      January 30, 2026 · 4 min
                     </div>
                   </div>
                 </div>
 
                 <div class="mt-3">
                   
-                  <span class="badge bg-light text-dark me-1">architecture</span>
+                  <span class="badge bg-light text-dark me-1">security</span>
                   
-                  <span class="badge bg-light text-dark me-1">devops</span>
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
                   
-                  <span class="badge bg-light text-dark me-1">inference</span>
+                  <span class="badge bg-light text-dark me-1">ai</span>
                   
-                  <span class="badge bg-light text-dark me-1">vllm</span>
-                  
-                  <span class="badge bg-light text-dark me-1">ollama</span>
+                  <span class="badge bg-light text-dark me-1">privacy</span>
                   
                   <span class="badge bg-light text-dark me-1">cube ai</span>
                   
