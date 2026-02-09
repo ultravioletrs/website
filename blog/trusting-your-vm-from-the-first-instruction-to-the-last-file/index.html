@@ -5,23 +5,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet</title>
-  <meta name="title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet" />
-  <meta name="description" content="Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats." />
+  <title>Trusting Your VM from the First Instruction to the Last File - Ultraviolet</title>
+  <meta name="title" content="Trusting Your VM from the First Instruction to the Last File - Ultraviolet" />
+  <meta name="description" content="Learn about secured bot, measured boot, TPM and Linux IMA in the context of COCOS AI." />
 
-  <link rel="canonical" href="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai/" />
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/trusting-your-vm-from-the-first-instruction-to-the-last-file/" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Ultraviolet" />
-  <meta property="og:url" content="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai" />
-  <meta property="og:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
-  <meta property="og:description" content="Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats." />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/trusting-your-vm-from-the-first-instruction-to-the-last-file" />
+  <meta property="og:title" content="Trusting Your VM from the First Instruction to the Last File" />
+  <meta property="og:description" content="Learn about secured bot, measured boot, TPM and Linux IMA in the context of COCOS AI." />
   <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
   
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
-  <meta name="twitter:description" content="Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats." />
+  <meta name="twitter:title" content="Trusting Your VM from the First Instruction to the Last File" />
+  <meta name="twitter:description" content="Learn about secured bot, measured boot, TPM and Linux IMA in the context of COCOS AI." />
   <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
 
@@ -30,14 +30,14 @@
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": "Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts",
+        "headline": "Trusting Your VM from the First Instruction to the Last File",
         "image": "https:\/\/www.ultraviolet.rs",
-        "datePublished": "2026-01-30",
+        "datePublished": "2026-02-09",
         "author": {
           "@type": "Person",
-          "name": "sammy oina"
+          "name": "Jovan Djukic"
         },
-        "description": "Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats."
+        "description": "Learn about secured bot, measured boot, TPM and Linux IMA in the context of COCOS AI."
       }
     </script>
 
@@ -291,138 +291,358 @@
           
         </div>
 
-        <h1 class="display-4 fw-bold mb-4">Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts</h1>
+        <h1 class="display-4 fw-bold mb-4">Trusting Your VM from the First Instruction to the Last File</h1>
 
         <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
-          <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina" class="rounded-circle me-3" width="60" height="60"
+          <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="Jovan Djukic" class="rounded-circle me-3" width="60" height="60"
             loading="lazy" onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
           <div>
-            <div class="fw-bold fs-5">sammy oina</div>
+            <div class="fw-bold fs-5">Jovan Djukic</div>
             <div class="text-muted">
-              January 30, 2026 · 4 min read
+              February 09, 2026 · 12 min read
             </div>
           </div>
         </div>
 
         
 
-        <div class="markdown-content"><p><img src="/img/confidential-computing-meets-ai/confidential-computing-cover.png" alt="Confidential Computing for AI"></p>
-<p>In the race to adopt Large Language Models (LLMs), enterprises and developers face a critical dilemma: <strong>how to leverage the power of state-of-the-art AI without compromising the privacy of sensitive data.</strong></p>
-<p>When you send a prompt to a traditional AI provider, you are trusting them not to log, read, or train on your data. But in the world of high-stakes finance, healthcare, and proprietary R&amp;D, &quot;trust us&quot; isn't good enough. You need <strong>mathematical proof</strong> that your data is private.</p>
-<p>This is where <strong>Confidential Computing</strong> comes in.</p>
-<p>In this deep dive, we'll explore how Cube AI leverages Trusted Execution Environments (TEEs) to provide a mathematically secure enclave for your AI workloads, guaranteeing that <strong>even the cloud provider cannot see your prompts.</strong></p>
-<!-- raw HTML omitted -->
-<h2 id="the-hardware-trust-anchor-how-tees-work">The Hardware Trust Anchor: How TEEs Work</h2>
-<p>At the heart of Cube AI's security model are <strong>Trusted Execution Environments (TEEs)</strong>, specifically utilizing <strong>AMD SEV-SNP</strong> and <strong>Intel TDX</strong>.</p>
-<p>Traditionally, if you run a VM in the cloud, the cloud provider (the hypervisor context) has technical access to your memory. They <em>could</em>, in theory, dump the RAM and see your unencrypted data.</p>
-<p>TEEs change this equation by encrypting the virtual machine's memory <strong>at the hardware level</strong>.</p>
-<ol>
-<li>
-<p><strong>Memory Encryption</strong>: The CPU automatically encrypts data written to RAM and decrypts it only inside the CPU core. The keys are managed by a secure processor and are never exposed to the hypervisor or host OS.</p>
-<pre><code class="language-mermaid">graph TD
-    subgraph CPU [&quot;CPU Package (Trusted Boundary)&quot;]
-        Core[&quot;CPU Core&lt;br/&gt;(Data is Plaintext)&quot;]
-        ME[&quot;Memory Encryption Engine&lt;br/&gt;(AES-128/256)&quot;]
-    end
-
-    subgraph RAM [&quot;System Memory (Untrusted)&quot;]
-        EncData[&quot;Encrypted Data&lt;br/&gt;(Ciphertext)&quot;]
-    end
-
-    subgraph Host [&quot;Hypervisor / Host OS&quot;]
-        Admin[&quot;Cloud Admin / Root&quot;]
-    end
-
-    Core &lt;--&gt; ME
-    ME &lt;--&gt;|Encrypted Read/Write| EncData
-
-    Admin -.-&gt;|Attempts to Read| EncData
-    Admin -- &quot;Sees Garbage&quot; --&gt; EncData
-
-    style CPU fill:#ecfdf5,stroke:#22c55e,stroke-width:2px,color:#000
-    style RAM fill:#f8fafc,stroke:#eab308,stroke-width:2px,color:#000
-    style Host fill:#fef2f2,stroke:#ef4444,stroke-width:2px,color:#000
+        <div class="markdown-content"><p><img src="/img/trusting-your-vm-from-the-first-instruction-to-the-last-file/overview.png" alt=""></p>
+<h3 id="introduction">Introduction</h3>
+<p>With the rise of <strong>Trusted Execution Environments (TEEs)</strong>, cloud users
+can now provision virtual machines with the strong guarantee that all
+<em>data in use</em> remains encrypted. This advancement protects sensitive
+workloads against exposure, even if the underlying infrastructure is
+compromised.</p>
+<p>However, encryption alone does not solve the entire trust problem. Since
+the majority of the software stack - from firmware to operating system
+components - is provided and managed by the <strong>Cloud Service Provider
+(CSP)</strong>, users still need a reliable way to ensure that no untrusted or
+malicious software is running inside their virtual machine.</p>
+<p>In this article, I describe how <strong>COCOS AI [1]</strong> addresses this
+challenge. The solution combines three complementary
+technologies - <strong>Secure Boot, Measured Boot, and Linux Integrity
+Measurement Architecture (IMA)</strong> - to build a continuous chain of
+trust from the very first instruction executed during boot to the last
+file loaded into memory.</p>
+<h4 id="secure-boot-verifying-the-kernel-atstartup">Secure Boot: Verifying the Kernel at Startup</h4>
+<p><strong>Secure Boot [2]</strong> ensures that the firmware will load only <strong>signed
+kernels</strong>. The kernel is signed with a private key, while the firmware
+holds the corresponding public key. During boot, the firmware verifies
+the kernel's signature before execution. If the kernel has been tampered
+with or replaced, the signature check fails, and the boot process is
+halted.</p>
+<p>This mechanism guarantees that only kernels explicitly approved by the
+system owner can run, preventing unauthorized modifications at the
+earliest stage of the boot process.</p>
+<h4 id="measured-boot-creating-a-verifiable-record">Measured Boot: Creating a Verifiable Record</h4>
+<p>While Secure Boot enforces integrity, <strong>Measured Boot [3]</strong> records
+integrity. At each stage of the boot process (firmware, bootloader,
+kernel, etc.), components are <strong>measured</strong> (hashed using a cryptographic
+hash function such as SHA-256). These measurements are extended into
+special registers inside the <strong>Trusted Platform Module (TPM)</strong>, called
+<strong>Platform Configuration Registers (PCRs)</strong>.</p>
+<p>Each PCR is updated using the formula:</p>
+<pre><code>PCR[i] = Hash(PCR[i] || ComponentHash)
 </code></pre>
-</li>
-<li>
-<p><strong>Remote Attestation</strong>: This is the &quot;proof&quot; part. The hardware generates a cryptographic &quot;quote&quot;—a digital signature signed by the processor's manufacturer key. This quote serves as proof that:</p>
+<p>This chaining mechanism means that even a small change in one component
+produces a completely different final PCR value. As a result, users (or
+remote attestation services) can later verify the expected state of the
+system by comparing PCR values against a known baseline.</p>
+<p>Measured Boot therefore provides <strong>tamper-evidence</strong>: it doesn't stop
+malicious code from executing, but it guarantees that any modification
+will be detectable.</p>
+<h4 id="linux-ima-extending-trust-beyondboot">Linux IMA: Extending Trust Beyond Boot</h4>
+<p>Measured Boot covers integrity only up until the kernel is loaded. But
+what about the rest of the software stack - drivers, shared libraries,
+or application binaries - that are brought into memory after boot?</p>
+<p>This is where the <strong>Linux Integrity Measurement Architecture
+(IMA)[4]</strong> comes in. IMA continuously measures files as they are
+loaded into RAM, including both executables and data files. The
+resulting measurements are logged in a text file (the IMA measurement
+list) that can be used to verify system integrity after boot.</p>
+<p>In other words, IMA closes the gap by ensuring that no unauthorized or
+malicious code sneaks in after the kernel has taken over. Together with
+Secure Boot and Measured Boot, it forms a <strong>complete trust chain</strong>:</p>
 <ul>
-<li>The software running is exactly what you expect (measured by a hash).</li>
-<li>The hardware protections (SEV-SNP/TDX) are active.</li>
-<li>The environment hasn't been tampered with.</li>
+<li>Secure Boot verifies what runs.</li>
+<li>Measured Boot records what ran.</li>
+<li>IMA monitors what continues to run.</li>
 </ul>
-</li>
-</ol>
-<h2 id="why-traditional-llm-apis-expose-privacy-risks">Why Traditional LLM APIs Expose Privacy Risks</h2>
-<p>When you use a standard API (like OpenAI or Anthropic), the flow usually looks like this:</p>
-<ol>
-<li>
-<p>TLS encrypts data in transit (good).</p>
-</li>
-<li>
-<p>Provider decrypts data on their server to process it (necessary).</p>
-</li>
-<li>
-<p><strong>Risk Zone</strong>: While the data is processed, it is visible in plain text in the server's memory.</p>
-<ul>
-<li><strong>Insider Threats</strong>: Rogue admins with root access could potentially inspect memory.</li>
-<li><strong>Side-Channel Attacks</strong>: Exploits like Spectre/Meltdown or purely software-based memory scrapers could exfiltrate data.</li>
-<li><strong>Data Retention</strong>: Mistakes in logging configurations could accidentally save sensitive prompts to persistent storage.</li>
-</ul>
-<pre><code class="language-mermaid">graph LR
-    User([User]) --&gt;|TLS Encrypted| Gateway[API Gateway]
-    Gateway --&gt;|Plaintext| Server[Model Server]
-
-    subgraph RAM [&quot;Server Memory (RAM)&quot;]
-        Prompt[&quot;User Prompt&lt;br/&gt;(Plaintext)&quot;]
-    end
-
-    Server -- Processing --&gt; Prompt
-
-    Hacker[Attacker / Malware] -.-&gt;|Side Channel| Prompt
-    Admin[Rogue Employee] -.-&gt;|Direct Memory Dump| Prompt
-    Logs[Log Collector] -.-&gt;|Misconfiguration| Prompt
-
-    style Prompt fill:#ef4444,stroke:#7f1d1d,color:#fff,stroke-width:2px
-    style RAM fill:#e2e8f0,stroke:#94a3b8,color:#333
-    style Hacker stroke:#ef4444,stroke-dasharray: 5 5
+<p>By combining Secure Boot, Measured Boot, and Linux IMA, <strong>COCOS AI</strong>
+provides a comprehensive way to ensure that virtual machines are both
+encrypted and verifiably trustworthy. This layered approach establishes
+confidence not only in the confidentiality of your data, but also in the
+integrity of the entire software stack - from the very first
+instruction of boot to the last file loaded during runtime.</p>
+<pre><code>[Secure Boot] → [Measured Boot] → [Linux IMA]
+  &quot;Verifies&quot;       &quot;Records&quot;       &quot;Monitors&quot;
+  Kernel sigs      Boot hashes    Files at runtime
 </code></pre>
-</li>
-</ol>
-<p>For regulated industries, this &quot;Processing in the Clear&quot; is a major compliance hurdle.</p>
-<h2 id="cube-ai-architecture-isolation-by-design">Cube AI Architecture: Isolation by Design</h2>
-<p>Cube AI solves this by moving the <strong>entire inference process</strong> into a TEE.</p>
-<p>The LLM (Ollama or vLLM) runs inside a Confidential VM. The model weights are decrypted only inside this enclave. Your prompts are encrypted with a key that is <strong>only</strong> released to the enclave after it proves its identity via attestation.</p>
-<h3 id="the-protected-inference-flow">The Protected Inference Flow</h3>
-<p>Here is how Cube AI isolates your data:</p>
-<p><img src="/img/confidential-computing-meets-ai/protected-inference-flow.png" alt="The Protected Inference Flow"></p>
-<ol>
-<li><strong>Attestation Handshake</strong>: The connection negotiation starts with an <strong>Attested TLS (aTLS)</strong> handshake. The Attestation Agent sends its certificate along with a hardware-signed quote.</li>
-<li><strong>Proxy Verification</strong>: The Cube Proxy verifies this quote against a strict attestation policy. Unlike standard TLS which blindly trusts a Certificate Authority, the Proxy validates the <em>hardware identity</em> and <em>software integrity</em> of the Agent.</li>
-<li><strong>Secure Tunnel</strong>: Once verified, an encrypted aTLS tunnel is established between the Proxy and the Agent.</li>
-<li><strong>Inference Proxying</strong>: The User sends an encrypted prompt to the Proxy, which forwards it through the aTLS tunnel. The Agent then proxies this request to the local LLM backend (vLLM/Ollama) running inside the enclave. Use the same key.</li>
-</ol>
-<h2 id="practical-example-private-medical-diagnosis">Practical Example: Private Medical Diagnosis</h2>
-<p>Imagine a healthcare provider building an AI assistant to analyze patient records for rare disease patterns.</p>
+<p>In the rest of this article I will describe how to achieve this &quot;chain&quot;
+of trust using open source components. The whole process will be done on
+AMD SEV-SNP CPU.</p>
+<h3 id="coconut-secure-vm-servicemodule">COCONUT Secure VM Service Module</h3>
+<p>The core part of this process is <strong>COCONUT SVSM [5]</strong>. This software
+which aims to provide secure services and device emulations to guest
+operating systems in confidential virtual machines (CVMs). It requires
+AMD Secure Encrypted Virtualization with Secure Nested Paging (AMD
+SEV-SNP), especially the VM Privilege Level (VMPL) feature.</p>
+<h4 id="guest-firmware">Guest firmware</h4>
+<p>Firstly, we need to build the firmware. A special <strong>OVMF</strong> build is
+required to launch a guest on top of the <strong>COCONUT-SVSM</strong>. To build the
+<strong>OVMF</strong> binary for the guest, first checkout this repository:</p>
+<pre><code>$ git clone https://github.com/coconut-svsm/edk2.git
+$ cd edk2/
+$ git checkout svsm
+$ git submodule init
+$ git submodule update
+</code></pre>
+<p>Before building we need to make a few changes. This firmware starts an
+emulated software <strong>TPM</strong> in <strong>VMPL0</strong>. However this emulated <strong>TPM</strong>
+does not support <strong>SHA1 PCR</strong> bank. This register bank is needed to
+verify the measurements produced by the <strong>Linux IMA</strong>. To enable this
+bank we need to make a few modifications to the source code:</p>
+<p>The following line needs to be added to
+<em>SecurityPkg/Tcg/Tcg2Dxe/Tcg2Dxe.inf</em> file at the end of the <em>Pcd</em>
+section:</p>
+<pre><code>gEfiSecurityPkgTokenSpaceGuid.PcdTpm2HashMask
+</code></pre>
+<p>The following line needs to be added to <em>OvmfPkg/OvmfPkgX64.dsc</em> file at
+the end of the <em>PcdsDynamicDefault</em> section:</p>
+<pre><code>gEfiSecurityPkgTokenSpaceGuid.PcdTpm2HashMask|0x0000000C
+</code></pre>
+<p>These lines enable the <strong>SHA1</strong> bank. After the changes have been made,
+we need to build the firmware:</p>
+<pre><code>$ export PYTHON3_ENABLE=TRUE
+$ export PYTHON_COMMAND=python3
+$ make -j16 -C BaseTools/
+$ source ./edksetup.sh --reconfig
+$ build -a X64 -b DEBUG -t GCC5 -D DEBUG_ON_SERIAL_PORT -D DEBUG_VERBOSE -D TPM2_ENABLE -D SECURE_BOOT_ENABLE -p OvmfPkg/OvmfPkgX64.dsc
+</code></pre>
+<p>This will build the <strong>OVMF</strong> binary that will be packaged into the
+<strong>IGVM</strong> [7] file to use with QEMU.</p>
+<h4 id="generating-the-secure-bootkeys">Generating the secure boot keys</h4>
+<p>Secure Boot relies on a <strong>chain of trust</strong> anchored in cryptographic
+keys stored in the firmware. These keys define <em>who</em> is trusted to
+update firmware settings, <em>who</em> can sign software, and <em>which binaries</em>
+are allowed or denied during boot.</p>
+<p>The three most important keys are Platform Key (PK), Key Exchange Key
+(KEK) and Signature Database Key (DB).</p>
+<p>In the Secure Boot process, the <strong>Platform Key (PK)</strong> serves as the root
+of trust for the system. It is typically owned by the original equipment
+manufacturer (OEM) or the system administrator, and it establishes
+ultimate authority over the Secure Boot configuration. Only the holder
+of the PK can authorize changes to the Key Exchange Keys (KEKs), making
+it the master key that defines who controls trust on the platform.</p>
+<p>The <strong>Key Exchange Key (KEK)</strong> acts as a layer of delegation between the
+platform owner and the operating system vendors or administrators.
+Instead of the PK being used for everyday updates, KEKs are entrusted
+with the responsibility of updating the Secure Boot signature databases.
+In practice, this allows OS vendors, such as Microsoft or Linux
+distributions, to provide updates that modify which binaries are trusted
+or revoked. By signing these updates with a KEK, they can add to or
+remove from the trusted lists without requiring the platform owner's PK
+for every change.</p>
+<p>The <strong>signature database (DB)</strong> is where the trusted software components
+are defined. It contains certificates, cryptographic hashes, and
+signatures of executables such as bootloaders, kernels, and drivers.
+During the boot process, the firmware checks each component against the
+DB, and only those that match entries in the database are allowed to
+run. In this way, DB acts as a whitelist that ensures only verified
+software is executed at boot time.</p>
+<p>For this tutorial we will generate all these keys using <strong>openssl</strong>:</p>
+<pre><code> # PK (self-signed)
+ openssl req -x509 -newkey rsa:2048 -nodes \
+   -subj &quot;/CN=Demo Platform Key/&quot; \
+   -keyout PK.key -out PK.pem
+
+ # KEK (CSR -&gt; signed by PK)
+ openssl req -new -newkey rsa:2048 -nodes \
+   -subj &quot;/CN=Demo KEK/&quot; \
+   -keyout KEK.key -out KEK.csr
+ openssl x509 -req -in KEK.csr -days 3650 \
+   -CA PK.pem -CAkey PK.key -CAcreateserial -out KEK.pem
+
+ # db (CSR -&gt; signed by KEK). This cert will sign EFI binaries.
+ openssl req -new -newkey rsa:2048 -nodes \
+   -subj &quot;/CN=Demo db/&quot; \
+   -keyout DB.key -out DB.csr
+ openssl x509 -req -in DB.csr -days 3650 \
+   -CA KEK.pem -CAkey KEK.key -CAcreateserial -out DB.pem
+
+ # Convert to DER (what firmware variables expect)
+ openssl x509 -inform PEM -in PK.pem  -outform DER -out PK.cer
+ openssl x509 -inform PEM -in KEK.pem -outform DER -out KEK.cer
+ openssl x509 -inform PEM -in DB.pem  -outform DER -out DB.cer
+</code></pre>
+<p>Now we need to add these keys to firmware. For this we can use the
+<strong>virt-firmware [8]</strong> tool. Run the following command:</p>
+<pre><code>#!/bin/bash
+UUDI=$uuidgen 
+
+virt-fw-vars \
+--input &lt;path to OVMF_VARS.fd&gt; \
+--output &lt;path to new OVMF_VARS.secure.fd&gt; \
+--set-pk   $UUID &lt;path to PK.cer&gt; \
+--add-kek  $UUID &lt;path to KEK.cer&gt; \
+--add-db   $UUID &lt;path to DB.cer&gt; \
+--sb
+</code></pre>
+<p>This command will store public keys in <strong>OVMF_VARS.fd</strong>. You can check
+what was written with the following command:</p>
+<pre><code>virt-fw-vars -i OVMF_VARS.secure.fd --print | less
+</code></pre>
+<h4 id="combing-ovmf-varsfd-and-ovmf-codefd">Combing OVMF_VARS.fd and OVMF_CODE.fd</h4>
+<p>Now that we made changes to <strong>OVMF_VARS.fd</strong> wee need to combine the
+new <strong>OVMF_VARS.secure.fd</strong> and <strong>OVMF_CODE.fd</strong> into a single
+<strong>OVMF.fd</strong> file. This file will then be used to generate an <strong>IGVM</strong>
+file which will be used to start a VM with <strong>QEMU</strong>.</p>
+<p>This is achieved with concatenating the vars and code files. First check
+in which order are they concatenated. The EDK2 build already produced an
+<strong>OVMF.fd</strong> file which we can use for this purpose:</p>
+<pre><code>cmp &lt;(cat &lt;path to old OVMF_VARS.fd&gt; &lt;path to OVMF_CODE.fd&gt;) &lt;path to old OVMF.fd&gt; &amp;&amp; echo &quot;order is VARS+CODE&quot;
+</code></pre>
+<p>If the order is vars + code, the following command is going to
+concatenate vars and code files:</p>
+<pre><code>cat &lt;path to OVMF_VARS.fd with keys&gt; &lt;path t OVMF_CODE.fd&gt; &gt; &lt;path to new OVMF.secure.fd&gt;
+</code></pre>
+<h4 id="building-the-coconut-svsm-igvmfile">Building the COCONUT-SVSM IGVM file</h4>
+<p>Building the SVSM itself requires:</p>
 <ul>
-<li><strong>The Data</strong>: Highly sensitive patient history, genetic markers, and lab results.</li>
-<li><strong>The Risk</strong>: Uploading this to a public LLM violates HIPAA and GDPR.</li>
-<li><strong>The Cube AI Solution</strong>:
-<ol>
-<li>The hospital's application connects to their private Cube AI instance.</li>
-<li>It verifies the instance acts as a &quot;black box&quot; via Remote Attestation.</li>
-<li>It sends the patient data.</li>
-<li><strong>Insight</strong>: The model analyzes the data <em>in memory</em> (which is encrypted at the hardware level).</li>
-<li><strong>Result</strong>: The diagnosis is returned encrypted.</li>
-<li><strong>Aftermath</strong>: Once the request is done, the data in memory is wiped. No logs, no training, no eyes on the data.</li>
-</ol>
-</li>
+<li>a recent Rust compiler and build environment installed. Please
+refer to <a href="https://rustup.rs/">https://rustup.rs/</a> on how to get this environment
+installed.</li>
+<li><code>x86_64-unknown-none</code> target
+toolchain installed
+(<code>rustup target add x86_64-unknown-none</code>{.markup--code
+.markup--li-code})</li>
+<li><code>binutils</code></li>
 </ul>
-<h2 id="key-takeaway">Key Takeaway</h2>
-<p>Cube AI shifts the trust model from <strong>policy-based security</strong> (&quot;we promise we won't look&quot;) to <strong>technology-based security</strong> (&quot;we physically cannot look&quot;).</p>
-<p>By combining the power of open-weights models (like Llama 3, Mistral) with the hardware-grade isolation of <strong>Confidential Computing</strong>, Cube AI allows you to deploy the most powerful AI capabilities on your most sensitive data—without losing sleep over privacy.</p>
-<hr>
-<p><em>Ready to secure your AI workloads? Check out our <a href="../docs/getting-started.md">Getting Started</a> guide or explore the <a href="../docs/attestation.md">Attestation Documentation</a>.</em></p>
+<p>Then checkout the SVSM repository and build the SVSM binary:</p>
+<pre><code>$ git clone https://github.com/coconut-svsm/svsm
+$ cd svsm
+$ git submodule update --init
+$ FW_FILE=&lt;path to new OVMF.fd&gt; cargo xbuild --release configs/qemu-target.json
+</code></pre>
+<p>This will build a <strong>coconut-igvm.igvm</strong> file which will be placed in
+<strong>svsm/bin</strong> directory. This file will be used as firmware when starting
+the new VM. It will create a software <strong>TPM</strong> in <strong>VPML0</strong>.</p>
+<h3 id="building-a-kernel-using-buildroot">Building a kernel using Buildroot</h3>
+<p>If you want to build a basic Linux kernel and minimal root filesystem
+with Buildroot, the process is surprisingly straightforward. After
+installing the required packages (compilers, libraries, and utilities),
+you clone the Buildroot repository. The next step is to configure the
+necessary packages. For this you can use the <a href="https://github.com/ultravioletrs/cocos/tree/main/hal/linux">COCOS AI
+configuration</a>. To build the kernel (<code>bzImage</code>) and an initial RAM file system
+(<code>rootfs.cpio</code>) checkout the COCOS AI
+repository and run the following commands:</p>
+<pre><code>git clone git@github.com:ultravioletrs/cocos.git
+git clone git@github.com:buildroot/buildroot.git
+cd buildroot
+git checkout 2025.05-rc1
+make BR2_EXTERNAL=../cocos/hal/linux cocos_defconfig
+# Execute 'make menuconfig' only if you want to make additional configuration changes to Buildroot.
+make menuconfig
+make
+</code></pre>
+<p>The kernel and the initial RAM file system can be found in the
+<code>output/</code> directory. You can then boot
+your new kernel with QEMU by pointing it to the kernel image and root
+filesystem, appending the right console and root parameters.</p>
+<p>There is one additional step. Since we are using the secure boot
+feature, we need to sign this kernel:</p>
+<pre><code> sbsign --key &lt;path to DB.key&gt; --cert &lt;path to DB.pem&gt; bzImage --output bzImage.signed
+</code></pre>
+<p>This kernel can be used with generated IGMV file to start the VM.</p>
+<h3 id="building-qemu">Building QEMU</h3>
+<p><strong>COCONUT-SVSM</strong> is packaged during the build into a file conforming to
+the <strong>IGVM</strong> format. Current versions of <strong>QEMU</strong> do not support
+launching guests using IGVM, but a branch is available that includes
+this capability. This will need to be built in order to be able to
+launch <strong>COCONUT-SVSM</strong>. Support for <strong>IGVM</strong> within <strong>QEMU</strong> depends on
+the <strong>IGVM</strong> library. This will need to be built and installed prior to
+building <strong>QEMU</strong>.</p>
+<pre><code>$ git clone https://github.com/microsoft/igvm
+$ cd igvm
+$ make -f igvm_c/Makefile
+$ sudo make -f igvm_c/Makefile install
+</code></pre>
+<p>After the build dependencies are installed, clone the <strong>QEMU</strong>
+repository and switch to the branch that supports <strong>IGVM</strong>:</p>
+<pre><code>$ git clone https://github.com/coconut-svsm/qemu
+$ cd qemu
+$ git checkout svsm-igvm
+</code></pre>
+<p>Now the right branch is checked out and you can continue with the build.
+Feel free to adapt the installation directory to your needs:</p>
+<pre><code>$ ./configure --prefix=$HOME/bin/qemu-svsm/ --target-list=x86_64-softmmu --enable-igvm
+$ ninja -C build/
+$ make install
+</code></pre>
+<p><strong>QEMU</strong> is now installed and ready to run an <strong>AMD SEV-SNP</strong> guest with
+an <strong>SVSM</strong> embedded in an <strong>IGVM</strong> file.</p>
+<h3 id="starting-thevm">Starting the VM</h3>
+<p>To start and test the VM we can use <a href="https://github.com/ultravioletrs/cocos/tree/main/manager">COCOS AI manager
+component</a>. However, to make this testing process a bit simpler,
+we will use the newly compiled QEMU and point it to all the necessary
+files:</p>
+<pre><code># $QEMU_BIN -&gt; path to qemu binary
+# $IGVM -&gt; path to IGVM binary
+# $KERNEL -&gt; path to signed kernel
+# $INITRD -&gt; path to init RAM file system
+
+sudo $QEMU_BIN \
+  -enable-kvm \
+  -cpu host \
+  -machine q35,confidential-guest-support=sev0,memory-backend=ram1,igvm-cfg=igvm0 \
+  -smp 4,maxcpus=16 \
+  -m 25G,slots=5,maxmem=30G \
+  -object memory-backend-memfd,id=ram1,size=25G,share=true,prealloc=false,reserve=false \
+  -object sev-snp-guest,id=sev0,cbitpos=51,reduced-phys-bits=1 \
+  -object igvm-cfg,id=igvm0,file=&quot;$IGVM&quot; \
+  -device virtio-net-pci,disable-legacy=on,iommu_platform=true,netdev=vmnic,romfile= \
+  -netdev user,id=vmnic \
+  -kernel $KERNEL \
+  -initrd $INITRD \
+  -append &quot;console=ttyS0 earlyprintk=ttyS0,115200 ima_policy=tcb&quot; \
+  -nographic \
+  -monitor unix:monitor,server,nowait
+</code></pre>
+<p>The <strong>append</strong> flag appends the string to the kernel command line
+parameters. The parameter <strong>ima_policy=tcb</strong> enables the Linux IMA. In
+this mode Linux IMA only measures files that pass through RAM.</p>
+<p>If the boot was successful, that means the firmware verified the kernel
+signature. When the VM boots, there should be a <strong>/dev/tpm0</strong> folder
+which represents the TPM. The Linux IMA measurements can be found in the
+<strong>/sys/kernel/security/ima/ascii_runtime_measurements</strong> file. The
+<strong>SHA1</strong> <strong>PCR10</strong> register can be used to verify the Linux IMA
+measurements.</p>
+<p>The values of TPM PCRs and the data from
+<code>ascii_runtime_measurements</code> can be
+included in the attestation report to strengthen the machine's
+verification process.</p>
+<h3 id="conclusion"><strong>Conclusion</strong></h3>
+<p>In this article, we explored how to launch a custom virtual machine with
+<strong>Secure Boot</strong>, <strong>Measured Boot</strong>, and <strong>Linux IMA</strong> enabled. Together,
+these features record measurements of boot components and provide
+assurance that the VM has started in a trusted, &quot;good state.&quot;</p>
+<p>Cloud Service Providers (CSPs) typically don't grant this level of
+control. For example, on <strong>Google Cloud Platform (GCP)</strong> you cannot
+supply your own firmware or kernel. What they do offer, however, is a
+way to verify the integrity of the boot process: you can download the
+firmware and kernel they provide, inspect them locally, and calculate
+their measurements to confirm that what booted in the cloud matches what
+you expect.</p>
+<h3 id="literature">Literature</h3>
+<p>[1] <a href="https://github.com/ultravioletrs/cocos">https://github.com/ultravioletrs/cocos</a></p>
+<p>[2] <a href="https://en.wikipedia.org/wiki/UEFI#Secure_Boot">https://en.wikipedia.org/wiki/UEFI#Secure_Boot</a></p>
+<p>[3]
+<a href="https://tianocore-docs.github.io/edk2-TrustedBootChain/release-1.00/3_TCG_Trusted_Boot_Chain_in_EDKII.html">https://tianocore-docs.github.io/edk2-TrustedBootChain/release-1.00/3_TCG_Trusted_Boot_Chain_in_EDKII.html</a></p>
+<p>[4] <a href="https://ima-doc.readthedocs.io/en/latest/ima-concepts.html">https://ima-doc.readthedocs.io/en/latest/ima-concepts.html</a></p>
+<p>[5]<a href="https://github.com/coconut-svsm/svsm">https://github.com/coconut-svsm/svsm</a></p>
+<p>[6] <a href="https://github.com/tianocore/edk2">https://github.com/tianocore/edk2</a></p>
+<p>[7] <a href="https://docs.rs/igvm_defs/0.1.3/igvm_defs/index.html">https://docs.rs/igvm_defs/0.1.3/igvm_defs/index.html</a></p>
+<p>[8] <a href="https://pypi.org/project/virt-firmware/">https://pypi.org/project/virt-firmware/</a></p>
 </div>
 
         <div class="mt-5 pt-4 border-top">
@@ -434,15 +654,17 @@
           <h5 class="mb-3 mt-3">Tags</h5>
           <div>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">security</span>
-            
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential-computing</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">ai</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">secured boot</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">privacy</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">measured boot</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">cube ai</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">TPM</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">Linux IMA</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">cocos</span>
             
           </div>
         </div>
@@ -450,11 +672,11 @@
         <div class="mt-4">
           <h5 class="mb-3">Share this article</h5>
           <div class="d-flex gap-2 flex-wrap">
-            <a href="https://twitter.com/intent/tweet?text=Confidential&#43;Computing&#43;Meets&#43;AI%3A&#43;How&#43;Cube&#43;AI&#43;Protects&#43;Your&#43;LLM&#43;Prompts&url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://twitter.com/intent/tweet?text=Trusting&#43;Your&#43;VM&#43;from&#43;the&#43;First&#43;Instruction&#43;to&#43;the&#43;Last&#43;File&url=https%3a%2f%2fwww.ultraviolet.rs/blog/trusting-your-vm-from-the-first-instruction-to-the-last-file"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-twitter me-2"></i>Twitter
             </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/trusting-your-vm-from-the-first-instruction-to-the-last-file"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-linkedin me-2"></i>LinkedIn
             </a>
@@ -575,60 +797,6 @@
         
         <div class="col-md-6 col-lg-4">
           <article class="card h-100 shadow-sm hover-lift border-0">
-            <a href="/blog/trusting-your-vm-from-the-first-instruction-to-the-last-file" class="text-decoration-none text-dark">
-              
-
-              <div class="card-body">
-                <div class="mb-2">
-                  <span class="badge bg-primary me-2">
-                    blog
-                  </span>
-                  
-                </div>
-
-                <h2 class="card-title h5 fw-bold">
-                  Trusting Your VM from the First Instruction to the Last File
-                </h2>
-                <p class="card-text text-muted small">
-                  COCOS AI leverages several mechanism in order to build a continous chain of trust from the very first instruction executed during boot to the last file loaded into memory.
-                </p>
-
-                <div class="d-flex align-items-center mt-3">
-                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="Jovan Djukic"
-                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
-                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
-                  <div class="small">
-                    <div class="fw-semibold">
-                      Jovan Djukic
-                    </div>
-                    <div class="text-muted">
-                      February 09, 2026 · 12 min
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mt-3">
-                  
-                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
-                  
-                  <span class="badge bg-light text-dark me-1">secured boot</span>
-                  
-                  <span class="badge bg-light text-dark me-1">measured boot</span>
-                  
-                  <span class="badge bg-light text-dark me-1">TPM</span>
-                  
-                  <span class="badge bg-light text-dark me-1">Linux IMA</span>
-                  
-                  <span class="badge bg-light text-dark me-1">cocos</span>
-                  
-                </div>
-              </div>
-            </a>
-          </article>
-        </div>
-        
-        <div class="col-md-6 col-lg-4">
-          <article class="card h-100 shadow-sm hover-lift border-0">
             <a href="/blog/cocos-prism-release" class="text-decoration-none text-dark">
               
 
@@ -672,6 +840,58 @@
                   <span class="badge bg-light text-dark me-1">prism</span>
                   
                   <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/confidential-computing-meets-ai" class="text-decoration-none text-dark">
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts
+                </h2>
+                <p class="card-text text-muted small">
+                  Cube AI leverages confidential computing and TEEs to protect your sensitive AI workloads. Ensure your prompts remain private with hardware-verified security.
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      sammy oina
+                    </div>
+                    <div class="text-muted">
+                      January 30, 2026 · 4 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">security</span>
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">ai</span>
+                  
+                  <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                  <span class="badge bg-light text-dark me-1">cube ai</span>
                   
                 </div>
               </div>

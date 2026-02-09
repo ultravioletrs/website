@@ -5,23 +5,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet</title>
-  <meta name="title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet" />
-  <meta name="description" content="Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats." />
+  <title>Securing Trust: RATS and Attested TLS (aTLS) - Ultraviolet</title>
+  <meta name="title" content="Securing Trust: RATS and Attested TLS (aTLS) - Ultraviolet" />
+  <meta name="description" content="Learn about attestation, attested TLS and IETF document defining how a system can prove their integrity and operational state." />
 
-  <link rel="canonical" href="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai/" />
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/securing-trus-rats-and-attested-tls/" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Ultraviolet" />
-  <meta property="og:url" content="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai" />
-  <meta property="og:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
-  <meta property="og:description" content="Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats." />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/securing-trus-rats-and-attested-tls" />
+  <meta property="og:title" content="Securing Trust: RATS and Attested TLS (aTLS)" />
+  <meta property="og:description" content="Learn about attestation, attested TLS and IETF document defining how a system can prove their integrity and operational state." />
   <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
   
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
-  <meta name="twitter:description" content="Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats." />
+  <meta name="twitter:title" content="Securing Trust: RATS and Attested TLS (aTLS)" />
+  <meta name="twitter:description" content="Learn about attestation, attested TLS and IETF document defining how a system can prove their integrity and operational state." />
   <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
 
@@ -30,14 +30,14 @@
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": "Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts",
+        "headline": "Securing Trust: RATS and Attested TLS (aTLS)",
         "image": "https:\/\/www.ultraviolet.rs",
-        "datePublished": "2026-01-30",
+        "datePublished": "2026-02-09",
         "author": {
           "@type": "Person",
-          "name": "sammy oina"
+          "name": "Jovan Djukic"
         },
-        "description": "Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats."
+        "description": "Learn about attestation, attested TLS and IETF document defining how a system can prove their integrity and operational state."
       }
     </script>
 
@@ -291,138 +291,301 @@
           
         </div>
 
-        <h1 class="display-4 fw-bold mb-4">Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts</h1>
+        <h1 class="display-4 fw-bold mb-4">Securing Trust: RATS and Attested TLS (aTLS)</h1>
 
         <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
-          <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina" class="rounded-circle me-3" width="60" height="60"
+          <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="Jovan Djukic" class="rounded-circle me-3" width="60" height="60"
             loading="lazy" onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
           <div>
-            <div class="fw-bold fs-5">sammy oina</div>
+            <div class="fw-bold fs-5">Jovan Djukic</div>
             <div class="text-muted">
-              January 30, 2026 · 4 min read
+              February 09, 2026 · 9 min read
             </div>
           </div>
         </div>
 
         
 
-        <div class="markdown-content"><p><img src="/img/confidential-computing-meets-ai/confidential-computing-cover.png" alt="Confidential Computing for AI"></p>
-<p>In the race to adopt Large Language Models (LLMs), enterprises and developers face a critical dilemma: <strong>how to leverage the power of state-of-the-art AI without compromising the privacy of sensitive data.</strong></p>
-<p>When you send a prompt to a traditional AI provider, you are trusting them not to log, read, or train on your data. But in the world of high-stakes finance, healthcare, and proprietary R&amp;D, &quot;trust us&quot; isn't good enough. You need <strong>mathematical proof</strong> that your data is private.</p>
-<p>This is where <strong>Confidential Computing</strong> comes in.</p>
-<p>In this deep dive, we'll explore how Cube AI leverages Trusted Execution Environments (TEEs) to provide a mathematically secure enclave for your AI workloads, guaranteeing that <strong>even the cloud provider cannot see your prompts.</strong></p>
-<!-- raw HTML omitted -->
-<h2 id="the-hardware-trust-anchor-how-tees-work">The Hardware Trust Anchor: How TEEs Work</h2>
-<p>At the heart of Cube AI's security model are <strong>Trusted Execution Environments (TEEs)</strong>, specifically utilizing <strong>AMD SEV-SNP</strong> and <strong>Intel TDX</strong>.</p>
-<p>Traditionally, if you run a VM in the cloud, the cloud provider (the hypervisor context) has technical access to your memory. They <em>could</em>, in theory, dump the RAM and see your unencrypted data.</p>
-<p>TEEs change this equation by encrypting the virtual machine's memory <strong>at the hardware level</strong>.</p>
+        <div class="markdown-content"><p>In this article, we'll explore <strong>Remote ATtestation procedureS (RATS)</strong>,
+an IETF standard that defines how systems can securely prove their
+integrity and operational state to others. We'll break down the key
+components of the RATS architecture, explain how evidence and
+attestation results are exchanged, and discuss its relevance in
+establishing trust between devices and services. Building on this
+foundation, we'll dive into <strong>Attested TLS (aTLS)</strong>, which integrates
+remote attestation directly into the TLS handshake. Finally, we'll look
+at how these concepts are <strong>implemented in</strong> <a href="https://github.com/ultravioletrs/cocos"><strong>COCOS
+AI</strong></a>, demonstrating how RATS and aTLS enable secure,
+verifiable communication between clients, servers, and trusted execution
+environments (TEEs).</p>
+<h3 id="remote-attestation-procedures-rats--the-architectural-backbone">Remote ATtestation procedureS (RATS) - The Architectural Backbone</h3>
+<p><strong>Remote ATtestation procedureS (RATS)</strong>, defined in <a href="https://datatracker.ietf.org/doc/rfc9334/">RFC
+9334</a>, provide a standardized architecture for proving the
+trustworthiness of a device, workload, or service. At its core, RATS
+enable one system to produce <strong>verifiable evidence</strong> about its current
+state, while another system evaluates this information to decide whether
+to trust it. In an age where workloads run on untrusted infrastructures
+and sensitive computations happen in shared environments, having a
+portable and interoperable way to prove integrity has become essential.</p>
+<p>RATS define several key <strong>roles</strong> in this process:</p>
+<p>1. The <strong>Attester</strong> is the entity that generates <strong>Evidence</strong> about its
+own operational state.</p>
+<ul>
+<li>Runs in a TEE, device, confidential VM, or enclave.</li>
+<li>Produces measurements like firmware hashes, kernel versions, or PCR
+alues from a TPM.</li>
+<li>Uses <strong>Attestation Keys</strong> bound to hardware or firmware to sign
+this evidence.</li>
+</ul>
+<p>2. The <strong>Verifier</strong> evaluates the <strong>Evidence</strong> received from the
+Attester.</p>
+<ul>
+<li>Uses <strong>Endorsements</strong> (e.g., TPM vendor certificates) and
+<strong>Reference Values</strong> (known-good measurements) to check
+validity.</li>
+<li>Produces an <strong>Attestation Result</strong> - a signed statement about the
+Attester's trustworthiness.</li>
+<li>Often operated by a trusted authority, like a cloud provider or
+security service.</li>
+</ul>
+<p>3. The <strong>Relying Party</strong> consumes the <strong>Attestation Result</strong> from the
+Verifier and <strong>makes trust decisions</strong>. Examples:</p>
+<ul>
+<li>A cloud orchestration platform deciding whether to schedule
+workloads on a VM.</li>
+<li>A client deciding whether to connect to a server running inside a
+TEE.</li>
+<li>Does <strong>not</strong> need to understand raw evidence, only the Verifier's
+signed results.</li>
+</ul>
+<p>4. The <strong>Endorser</strong> vouches for the trustworthiness of an <strong>Attesting
+Environment</strong> by providing <strong>Endorsements</strong>. Typically the hardware or
+firmware vendor. Examples:</p>
+<ul>
+<li>Intel SGX/TDX provisioning services signing enclave keys.</li>
+<li>AMD providing ARK and ASK certificates for SEV-SNP.</li>
+</ul>
+<p>5. The <strong>Reference Value Provider</strong> supplies <strong>Reference
+Values</strong> - known-good measurements used by the Verifier. Ensures the
+Verifier knows what a &quot;trusted state&quot; looks like. Examples:</p>
+<ul>
+<li>BIOS vendors providing approved firmware hashes.</li>
+<li>Container registries providing signed digests of container
+images.</li>
+</ul>
+<p>6. The <strong>Verifier Owner</strong> defines <strong>appraisal policies</strong> for a device
+or environment. Determines <strong>what evidence matters</strong> and <strong>what
+constitutes a trustworthy state</strong>. Could be:</p>
+<ul>
+<li>A cloud tenant defining which OS images are approved.</li>
+<li>An IoT fleet operator defining minimum firmware
+requirements.</li>
+</ul>
+<p>7. <strong>Relying Party Owner</strong> (optional, less explicit). Some deployments
+separate the <strong>Relying Party</strong> from the <strong>Relying Party Owner</strong>:</p>
+<ul>
+<li>The <strong>Relying Party</strong> executes policy decisions.</li>
+<li>The <strong>Owner</strong> defines those policies.</li>
+</ul>
+<p>This distinction matters in multi-tenant or cloud scenarios where
+<strong>service providers enforce policies defined by customers</strong>.</p>
+<p><img src="/img/securing-trust-rats-annd-attested-tls/overview.png" alt="RATS architecture diagram"></p>
+<p>To support different deployment models, RATS describe two primary
+patterns: the <strong>passport model</strong> and the <strong>background-check model</strong>. In
+the passport model (left picture), the Attester communicates directly
+with the Verifier, obtains the attestation result, and then presents
+this &quot;passport&quot; to the Relying Party. In contrast, the background-check
+model (right picture) shifts more responsibility to the Relying
+Party - it sends the evidence to the Verifier itself, ensuring
+independent validation. This flexibility allows RATS to fit into diverse
+ecosystems, from cloud platforms to IoT devices.</p>
+<p><img src="/img/securing-trust-rats-annd-attested-tls/rats-patterns.png" alt="RATS patterns"></p>
+<p>Another important aspect of RATS is its <strong>layered and composite
+attestation model</strong>. Modern systems often consist of multiple
+components, each capable of measuring and attesting to the state of the
+next layer. For example, a device's BIOS might measure the bootloader,
+the bootloader measures the kernel, and the kernel measures user-space
+workloads. RATS provide a way to structure this <strong>chain of trust</strong> so
+that relying parties can evaluate integrity from the hardware level all
+the way up to applications.</p>
+<p>Security in RATS goes beyond exchanging evidence. The architecture
+considers <strong>freshness</strong>, ensuring that attestation results cannot be
+replayed or reused maliciously. Mechanisms like nonces, secure clocks,
+and epoch identifiers are critical here. Equally important is the secure
+handling of <strong>attestation keys</strong> - compromising these would undermine
+the entire trust model. By combining cryptographic proofs, policy
+evaluation, and carefully designed message flows, RATS establish a
+portable framework for secure, cross-vendor attestation.</p>
+<p>In essence, RATS solve one of the hardest problems in distributed
+computing: <strong>how to trust a remote system without physically inspecting
+it</strong>. Whether you're securing IoT devices, protecting cloud workloads,
+or enabling confidential computing, RATS provide the architectural
+foundation for verifiable trust at scale.</p>
+<h3 id="from-tls-to-atls-embedding-trust-into-securechannels">From TLS to aTLS: Embedding Trust into Secure Channels</h3>
+<h4 id="tls-recap-the-foundation-of-secure-communication">TLS Recap - The Foundation of Secure Communication</h4>
+<p>Transport Layer Security (<strong>TLS</strong>) is the backbone of secure
+communication on the internet. It establishes an encrypted channel
+between two parties - typically a client and a server - ensuring
+that data exchanged cannot be intercepted or modified.</p>
+<p>In a standard <strong>TLS 1.3</strong> handshake:</p>
 <ol>
-<li>
-<p><strong>Memory Encryption</strong>: The CPU automatically encrypts data written to RAM and decrypts it only inside the CPU core. The keys are managed by a secure processor and are never exposed to the hypervisor or host OS.</p>
-<pre><code class="language-mermaid">graph TD
-    subgraph CPU [&quot;CPU Package (Trusted Boundary)&quot;]
-        Core[&quot;CPU Core&lt;br/&gt;(Data is Plaintext)&quot;]
-        ME[&quot;Memory Encryption Engine&lt;br/&gt;(AES-128/256)&quot;]
-    end
+<li>The <strong>client</strong> and <strong>server</strong> negotiate encryption
+parameters.</li>
+<li>The server presents an <strong>X.509 certificate</strong> proving its
+identity.</li>
+<li>The client validates this certificate against trusted Certificate
+Authorities (CAs).</li>
+<li>Both parties derive a <strong>session key</strong> to encrypt all subsequent
+communication.</li>
+</ol>
+<p>This model provides <strong>confidentiality</strong>, <strong>integrity</strong>, and
+<strong>authentication</strong>. But there's a problem: <strong>TLS certificates only prove
+identity, not trustworthiness</strong>.</p>
+<p>For example, a server can present a valid certificate while running
+outdated firmware or malicious code, and the client has no way of
+knowing. In highly sensitive environments - like confidential
+computing, IoT, and secure AI workloads - this isn't enough.</p>
+<h4 id="what-is-atls-attestedtls">What Is aTLS? - Attested TLS</h4>
+<p><strong>Attested TLS (aTLS)</strong> extends TLS by embedding <strong>remote attestation</strong>
+into the TLS handshake, enabling endpoints to prove not just <strong>who</strong>
+they are, but also <strong>how they are running</strong>.</p>
+<p>With aTLS, the TLS certificate - or an additional handshake
+extension - includes <strong>attestation evidence</strong> or <strong>attestation
+results</strong>. This allows one party to verify not only the cryptographic
+identity of the other, but also:</p>
+<ul>
+<li>Whether it's running in a <strong>Trusted Execution Environment
+(TEE)</strong>.</li>
+<li>Whether the <strong>firmware and software stack</strong> match known-good
+configurations.</li>
+<li>Whether <strong>security policies</strong> are being enforced.</li>
+</ul>
+<p>This builds on the <strong>RATS architecture</strong> defined in <a href="https://datatracker.ietf.org/doc/rfc9334/">RFC
+9334</a>, which standardizes how evidence, endorsements, and
+attestation results are produced and consumed.</p>
+<h4 id="how-atls-usesrats">How aTLS Uses RATS</h4>
+<p>aTLS doesn't invent a new attestation framework - it <strong>integrates RATS
+into TLS</strong>. The flow depends on which RATS model is used. The Passport
+Model in aTLS has the following steps:</p>
+<ol>
+<li>The <strong>Attester</strong> (e.g., a TEE-enabled server) contacts a
+<strong>Verifier</strong> before the TLS handshake.</li>
+<li>The Verifier evaluates evidence and returns an <strong>Attestation
+Result</strong> - essentially a signed &quot;passport.&quot;</li>
+<li>During the TLS handshake, the Attester embeds this result into its
+TLS certificate.</li>
+<li>The client (<strong>Relying Party</strong>) validates the attestation result and
+decides whether to trust the session.</li>
+</ol>
+<p>The Background-Check Model in aTLS has the following steps:</p>
+<ol>
+<li>The client (<strong>Relying Party</strong>) requests attestation during the TLS
+handshake.</li>
+<li>The Attester sends <strong>raw evidence</strong> rather than pre-verified
+results.</li>
+<li>The client forwards this evidence to a <strong>Verifier</strong> in real
+time.</li>
+<li>The Verifier issues an <strong>Attestation Result</strong>, which the client
+uses to decide whether to proceed.</li>
+</ol>
+<p>This flexibility makes aTLS suitable for cloud workloads, IoT
+deployments, and secure AI environments - each with different trust
+relationships.</p>
+<h4 id="the-biggerpicture">The Bigger Picture</h4>
+<p>By combining <strong>TLS</strong> with <strong>RATS</strong>, aTLS transforms &quot;secure
+communication&quot; into <strong>&quot;secure and verifiable communication.&quot;</strong> It
+ensures that:</p>
+<ul>
+<li><strong>Who you're talking to</strong> is verified.</li>
+<li><strong>What they're running</strong> is trustworthy.</li>
+<li><strong>How your data is handled</strong> respects your security
+policies.</li>
+</ul>
+<p>This is especially critical for <strong>confidential computing</strong>, where trust
+must extend beyond identities to include the <strong>state of the runtime
+environment</strong>.</p>
+<h3 id="real-world-example-confidential-computing--ai-in-cocosai">Real-World Example - Confidential Computing &amp; AI in COCOS AI</h3>
+<p><strong>Cocos AI</strong> is an advanced platform that leverages <strong>Confidential
+Computing</strong> and <strong>Trusted Execution Environments (TEEs)</strong> to enable
+<strong>secure multiparty computation (SMPC)</strong>. Within its architecture, the
+<strong>Agent</strong> operates inside a TEE and plays a crucial role in establishing
+an <strong>attested TLS (aTLS)</strong> connection with the <strong>CLI</strong>, ensuring both
+secure communication and runtime integrity.</p>
+<p><img src="/img/securing-trust-rats-annd-attested-tls/cocos-ai-architecture.png" alt="COCOS AI architecture"></p>
+<p><strong>COCOS AI</strong> adopts the <strong>RATS passport model</strong> for remote attestation.
+During certificate creation, the <strong>attestation report</strong> is embedded
+directly into the <strong>X.509 certificate</strong> by passing it through the
+<strong>Certificate Signing Request (CSR)</strong> and including it in the issued
+certificate. The following Go
+<a href="https://github.com/ultravioletrs/cocos/blob/654e22bba532ffb4fe979b285b1aa4bef4f0d467/pkg/atls/atls.go#L214">snippet</a> demonstrates how the CSR is generated.</p>
+<pre><code class="language-{#8132">attestExtension, err := getCertificateExtension(provider, pubKeyDER, nonce, teeOid)
+if err != nil {
+  return nil, fmt.Errorf(&quot;failed to get certificate extension: %w&quot;, err)
+}
 
-    subgraph RAM [&quot;System Memory (Untrusted)&quot;]
-        EncData[&quot;Encrypted Data&lt;br/&gt;(Ciphertext)&quot;]
-    end
+[...]
 
-    subgraph Host [&quot;Hypervisor / Host OS&quot;]
-        Admin[&quot;Cloud Admin / Root&quot;]
-    end
+csrmd := certs.CSRMetadata{
+  Organization:    []string{organization},
+  Country:         []string{country},
+  Province:        []string{province},
+  Locality:        []string{locality},
+  StreetAddress:   []string{streetAddress},
+  PostalCode:      []string{postalCode},
+  ExtraExtensions: []pkix.Extension{attestExtension},
+}
 
-    Core &lt;--&gt; ME
-    ME &lt;--&gt;|Encrypted Read/Write| EncData
-
-    Admin -.-&gt;|Attempts to Read| EncData
-    Admin -- &quot;Sees Garbage&quot; --&gt; EncData
-
-    style CPU fill:#ecfdf5,stroke:#22c55e,stroke-width:2px,color:#000
-    style RAM fill:#f8fafc,stroke:#eab308,stroke-width:2px,color:#000
-    style Host fill:#fef2f2,stroke:#ef4444,stroke-width:2px,color:#000
+csr, err := certscli.CreateCSR(csrmd, privateKey)
+if err != nil {
+  return nil, fmt.Errorf(&quot;failed to create CSR: %w&quot;, err)
+}
 </code></pre>
-</li>
-<li>
-<p><strong>Remote Attestation</strong>: This is the &quot;proof&quot; part. The hardware generates a cryptographic &quot;quote&quot;—a digital signature signed by the processor's manufacturer key. This quote serves as proof that:</p>
-<ul>
-<li>The software running is exactly what you expect (measured by a hash).</li>
-<li>The hardware protections (SEV-SNP/TDX) are active.</li>
-<li>The environment hasn't been tampered with.</li>
-</ul>
-</li>
-</ol>
-<h2 id="why-traditional-llm-apis-expose-privacy-risks">Why Traditional LLM APIs Expose Privacy Risks</h2>
-<p>When you use a standard API (like OpenAI or Anthropic), the flow usually looks like this:</p>
-<ol>
-<li>
-<p>TLS encrypts data in transit (good).</p>
-</li>
-<li>
-<p>Provider decrypts data on their server to process it (necessary).</p>
-</li>
-<li>
-<p><strong>Risk Zone</strong>: While the data is processed, it is visible in plain text in the server's memory.</p>
-<ul>
-<li><strong>Insider Threats</strong>: Rogue admins with root access could potentially inspect memory.</li>
-<li><strong>Side-Channel Attacks</strong>: Exploits like Spectre/Meltdown or purely software-based memory scrapers could exfiltrate data.</li>
-<li><strong>Data Retention</strong>: Mistakes in logging configurations could accidentally save sensitive prompts to persistent storage.</li>
-</ul>
-<pre><code class="language-mermaid">graph LR
-    User([User]) --&gt;|TLS Encrypted| Gateway[API Gateway]
-    Gateway --&gt;|Plaintext| Server[Model Server]
-
-    subgraph RAM [&quot;Server Memory (RAM)&quot;]
-        Prompt[&quot;User Prompt&lt;br/&gt;(Plaintext)&quot;]
-    end
-
-    Server -- Processing --&gt; Prompt
-
-    Hacker[Attacker / Malware] -.-&gt;|Side Channel| Prompt
-    Admin[Rogue Employee] -.-&gt;|Direct Memory Dump| Prompt
-    Logs[Log Collector] -.-&gt;|Misconfiguration| Prompt
-
-    style Prompt fill:#ef4444,stroke:#7f1d1d,color:#fff,stroke-width:2px
-    style RAM fill:#e2e8f0,stroke:#94a3b8,color:#333
-    style Hacker stroke:#ef4444,stroke-dasharray: 5 5
+<p>The behavior of the <code>getCertificateExtension</code>{.markup--code
+.markup--p-code} function depends on the underlying platform, such as
+<strong>AMD SEV-SNP</strong> or <strong>Intel TDX</strong>. Once the certificate is obtained, a
+standard <strong>TLS connection</strong> can be established. The key difference
+compared to a regular TLS setup is the inclusion of a <strong>custom
+verification function</strong> for the <strong>X.509 certificate</strong>. This function
+ensures that the embedded <strong>attestation extension</strong> contains a valid
+attestation report.</p>
+<p>The following Go
+<a href="https://github.com/ultravioletrs/cocos/blob/654e22bba532ffb4fe979b285b1aa4bef4f0d467/pkg/clients/grpc/atls.go#L71">snippet</a> demonstrates how to configure TLS to perform this
+additional verification step.</p>
+<pre><code class="language-{#538b"> tlsConfig := &amp;tls.Config{
+    InsecureSkipVerify: true,
+    RootCAs:            rootCAs,
+    ServerName:         sni,
+    VerifyPeerCertificate: func(rawCerts [][]byte, verifiedChains [][]*x509.Certificate) error {
+     return verifyPeerCertificateATLS(rawCerts, verifiedChains, nonce, rootCAs)
+    },
+ }
 </code></pre>
-</li>
-</ol>
-<p>For regulated industries, this &quot;Processing in the Clear&quot; is a major compliance hurdle.</p>
-<h2 id="cube-ai-architecture-isolation-by-design">Cube AI Architecture: Isolation by Design</h2>
-<p>Cube AI solves this by moving the <strong>entire inference process</strong> into a TEE.</p>
-<p>The LLM (Ollama or vLLM) runs inside a Confidential VM. The model weights are decrypted only inside this enclave. Your prompts are encrypted with a key that is <strong>only</strong> released to the enclave after it proves its identity via attestation.</p>
-<h3 id="the-protected-inference-flow">The Protected Inference Flow</h3>
-<p>Here is how Cube AI isolates your data:</p>
-<p><img src="/img/confidential-computing-meets-ai/protected-inference-flow.png" alt="The Protected Inference Flow"></p>
-<ol>
-<li><strong>Attestation Handshake</strong>: The connection negotiation starts with an <strong>Attested TLS (aTLS)</strong> handshake. The Attestation Agent sends its certificate along with a hardware-signed quote.</li>
-<li><strong>Proxy Verification</strong>: The Cube Proxy verifies this quote against a strict attestation policy. Unlike standard TLS which blindly trusts a Certificate Authority, the Proxy validates the <em>hardware identity</em> and <em>software integrity</em> of the Agent.</li>
-<li><strong>Secure Tunnel</strong>: Once verified, an encrypted aTLS tunnel is established between the Proxy and the Agent.</li>
-<li><strong>Inference Proxying</strong>: The User sends an encrypted prompt to the Proxy, which forwards it through the aTLS tunnel. The Agent then proxies this request to the local LLM backend (vLLM/Ollama) running inside the enclave. Use the same key.</li>
-</ol>
-<h2 id="practical-example-private-medical-diagnosis">Practical Example: Private Medical Diagnosis</h2>
-<p>Imagine a healthcare provider building an AI assistant to analyze patient records for rare disease patterns.</p>
-<ul>
-<li><strong>The Data</strong>: Highly sensitive patient history, genetic markers, and lab results.</li>
-<li><strong>The Risk</strong>: Uploading this to a public LLM violates HIPAA and GDPR.</li>
-<li><strong>The Cube AI Solution</strong>:
-<ol>
-<li>The hospital's application connects to their private Cube AI instance.</li>
-<li>It verifies the instance acts as a &quot;black box&quot; via Remote Attestation.</li>
-<li>It sends the patient data.</li>
-<li><strong>Insight</strong>: The model analyzes the data <em>in memory</em> (which is encrypted at the hardware level).</li>
-<li><strong>Result</strong>: The diagnosis is returned encrypted.</li>
-<li><strong>Aftermath</strong>: Once the request is done, the data in memory is wiped. No logs, no training, no eyes on the data.</li>
-</ol>
-</li>
-</ul>
-<h2 id="key-takeaway">Key Takeaway</h2>
-<p>Cube AI shifts the trust model from <strong>policy-based security</strong> (&quot;we promise we won't look&quot;) to <strong>technology-based security</strong> (&quot;we physically cannot look&quot;).</p>
-<p>By combining the power of open-weights models (like Llama 3, Mistral) with the hardware-grade isolation of <strong>Confidential Computing</strong>, Cube AI allows you to deploy the most powerful AI capabilities on your most sensitive data—without losing sleep over privacy.</p>
-<hr>
-<p><em>Ready to secure your AI workloads? Check out our <a href="../docs/getting-started.md">Getting Started</a> guide or explore the <a href="../docs/attestation.md">Attestation Documentation</a>.</em></p>
+<p>Similar to the <code>getCertificateExtension</code>
+function, the behavior of the <code>verifyPeerCertificateATLS</code>{.markup--code
+.markup--p-code} function, which veryfies the attestation extension,
+also depends on the underlying platform, such as <strong>AMD SEV-SNP</strong> or
+<strong>Intel TDX</strong>.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>As workloads move to <strong>untrusted environments</strong> like public clouds and
+edge platforms, securing communication is no longer just about
+encryption - it's about <strong>verifiable trust</strong>. This is where <strong>RATS</strong>
+and <strong>aTLS</strong> come together.</p>
+<p><strong>RATS</strong> provides the architectural framework for generating,
+evaluating, and sharing <strong>attestation evidence</strong>, while <strong>aTLS</strong>
+seamlessly integrates this attestation into the TLS handshake. The
+result is not just <strong>secure communication</strong>, but communication where
+each party can <strong>prove its integrity and runtime state</strong> before
+exchanging sensitive data.</p>
+<p><strong>COCOS AI</strong> builds on this foundation by leveraging <strong>Confidential
+Computing</strong> and <strong>Trusted Execution Environments</strong> to enable <strong>secure
+multiparty computation</strong>. By adopting the <strong>RATS passport model</strong> and
+embedding <strong>attestation reports</strong> directly into X.509 certificates,
+COCOS AI ensures that every connection is both <strong>encrypted</strong> and
+<strong>verifiably trusted</strong>.</p>
+<p>As technologies like confidential computing and secure AI continue to
+evolve, approaches like <strong>RATS + aTLS</strong> are set to become a cornerstone
+of <strong>next-generation security architectures</strong> - enabling us to build
+systems where trust is <strong>cryptographically enforced</strong>, not just assumed.</p>
 </div>
 
         <div class="mt-5 pt-4 border-top">
@@ -434,15 +597,13 @@
           <h5 class="mb-3 mt-3">Tags</h5>
           <div>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">security</span>
-            
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential-computing</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">ai</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">attestation</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">privacy</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">aTLS</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">cube ai</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">cocos ai</span>
             
           </div>
         </div>
@@ -450,11 +611,11 @@
         <div class="mt-4">
           <h5 class="mb-3">Share this article</h5>
           <div class="d-flex gap-2 flex-wrap">
-            <a href="https://twitter.com/intent/tweet?text=Confidential&#43;Computing&#43;Meets&#43;AI%3A&#43;How&#43;Cube&#43;AI&#43;Protects&#43;Your&#43;LLM&#43;Prompts&url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://twitter.com/intent/tweet?text=Securing&#43;Trust%3A&#43;RATS&#43;and&#43;Attested&#43;TLS&#43;%28aTLS%29&url=https%3a%2f%2fwww.ultraviolet.rs/blog/securing-trus-rats-and-attested-tls"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-twitter me-2"></i>Twitter
             </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/securing-trus-rats-and-attested-tls"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-linkedin me-2"></i>LinkedIn
             </a>
@@ -522,56 +683,6 @@
     <div class="container">
       <h3 class="mb-4 fw-bold">Next Read</h3>
       <div class="row g-4">
-        
-        <div class="col-md-6 col-lg-4">
-          <article class="card h-100 shadow-sm hover-lift border-0">
-            <a href="/blog/securing-trus-rats-and-attested-tls" class="text-decoration-none text-dark">
-              
-
-              <div class="card-body">
-                <div class="mb-2">
-                  <span class="badge bg-primary me-2">
-                    blog
-                  </span>
-                  
-                </div>
-
-                <h2 class="card-title h5 fw-bold">
-                  Securing Trust: RATS and Attested TLS (aTLS)
-                </h2>
-                <p class="card-text text-muted small">
-                  COCOS AI leverages modern attestation standards to prove the integrity and operational state of the platform.
-                </p>
-
-                <div class="d-flex align-items-center mt-3">
-                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="Jovan Djukic"
-                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
-                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
-                  <div class="small">
-                    <div class="fw-semibold">
-                      Jovan Djukic
-                    </div>
-                    <div class="text-muted">
-                      February 09, 2026 · 9 min
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mt-3">
-                  
-                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
-                  
-                  <span class="badge bg-light text-dark me-1">attestation</span>
-                  
-                  <span class="badge bg-light text-dark me-1">aTLS</span>
-                  
-                  <span class="badge bg-light text-dark me-1">cocos ai</span>
-                  
-                </div>
-              </div>
-            </a>
-          </article>
-        </div>
         
         <div class="col-md-6 col-lg-4">
           <article class="card h-100 shadow-sm hover-lift border-0">
@@ -672,6 +783,58 @@
                   <span class="badge bg-light text-dark me-1">prism</span>
                   
                   <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/confidential-computing-meets-ai" class="text-decoration-none text-dark">
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts
+                </h2>
+                <p class="card-text text-muted small">
+                  Cube AI leverages confidential computing and TEEs to protect your sensitive AI workloads. Ensure your prompts remain private with hardware-verified security.
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      sammy oina
+                    </div>
+                    <div class="text-muted">
+                      January 30, 2026 · 4 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">security</span>
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">ai</span>
+                  
+                  <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                  <span class="badge bg-light text-dark me-1">cube ai</span>
                   
                 </div>
               </div>
