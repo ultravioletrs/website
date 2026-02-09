@@ -5,23 +5,23 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet</title>
-  <meta name="title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet" />
-  <meta name="description" content="Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats." />
+  <title>The Privacy Paradox: Why AI Teams Should Care About Confidential Computing - Ultraviolet</title>
+  <meta name="title" content="The Privacy Paradox: Why AI Teams Should Care About Confidential Computing - Ultraviolet" />
+  <meta name="description" content="Discover why AI teams need Confidential Computing to protect sensitive data during processing. Learn about TEEs, real-world breaches, and implementation strategies." />
 
-  <link rel="canonical" href="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai/" />
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/privacy-paradox-confidential-computing/" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Ultraviolet" />
-  <meta property="og:url" content="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai" />
-  <meta property="og:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
-  <meta property="og:description" content="Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats." />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/privacy-paradox-confidential-computing" />
+  <meta property="og:title" content="The Privacy Paradox: Why AI Teams Should Care About Confidential Computing" />
+  <meta property="og:description" content="Discover why AI teams need Confidential Computing to protect sensitive data during processing. Learn about TEEs, real-world breaches, and implementation strategies." />
   <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
   
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
-  <meta name="twitter:description" content="Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats." />
+  <meta name="twitter:title" content="The Privacy Paradox: Why AI Teams Should Care About Confidential Computing" />
+  <meta name="twitter:description" content="Discover why AI teams need Confidential Computing to protect sensitive data during processing. Learn about TEEs, real-world breaches, and implementation strategies." />
   <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
 
@@ -30,14 +30,14 @@
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": "Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts",
+        "headline": "The Privacy Paradox: Why AI Teams Should Care About Confidential Computing",
         "image": "https:\/\/www.ultraviolet.rs",
-        "datePublished": "2026-01-30",
+        "datePublished": "2026-02-02",
         "author": {
           "@type": "Person",
-          "name": "sammy oina"
+          "name": "Jilks Smith"
         },
-        "description": "Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats."
+        "description": "Discover why AI teams need Confidential Computing to protect sensitive data during processing. Learn about TEEs, real-world breaches, and implementation strategies."
       }
     </script>
 
@@ -291,138 +291,147 @@
           
         </div>
 
-        <h1 class="display-4 fw-bold mb-4">Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts</h1>
+        <h1 class="display-4 fw-bold mb-4">The Privacy Paradox: Why AI Teams Should Care About Confidential Computing</h1>
 
         <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
-          <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina" class="rounded-circle me-3" width="60" height="60"
+          <img src="https://avatars.githubusercontent.com/u/41241359?v=4" alt="Jilks Smith" class="rounded-circle me-3" width="60" height="60"
             loading="lazy" onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
           <div>
-            <div class="fw-bold fs-5">sammy oina</div>
+            <div class="fw-bold fs-5">Jilks Smith</div>
             <div class="text-muted">
-              January 30, 2026 · 4 min read
+              February 02, 2026 · 8 min read
             </div>
           </div>
         </div>
 
         
 
-        <div class="markdown-content"><p><img src="/img/confidential-computing-meets-ai/confidential-computing-cover.png" alt="Confidential Computing for AI"></p>
-<p>In the race to adopt Large Language Models (LLMs), enterprises and developers face a critical dilemma: <strong>how to leverage the power of state-of-the-art AI without compromising the privacy of sensitive data.</strong></p>
-<p>When you send a prompt to a traditional AI provider, you are trusting them not to log, read, or train on your data. But in the world of high-stakes finance, healthcare, and proprietary R&amp;D, &quot;trust us&quot; isn't good enough. You need <strong>mathematical proof</strong> that your data is private.</p>
-<p>This is where <strong>Confidential Computing</strong> comes in.</p>
-<p>In this deep dive, we'll explore how Cube AI leverages Trusted Execution Environments (TEEs) to provide a mathematically secure enclave for your AI workloads, guaranteeing that <strong>even the cloud provider cannot see your prompts.</strong></p>
+        <div class="markdown-content"><p><img src="/img/privacy-paradox/privacy-paradox.jpg" alt="Privacy Paradox"></p>
+<p>As organizations race to integrate Large Language Models into their operations, they're simultaneously exposing intellectual property, customer records, financial models and many more assets to unprecedented vulnerabilities. <strong>The problem? Traditional software architectures are structurally inadequate for the AI era.</strong></p>
 <!-- raw HTML omitted -->
-<h2 id="the-hardware-trust-anchor-how-tees-work">The Hardware Trust Anchor: How TEEs Work</h2>
-<p>At the heart of Cube AI's security model are <strong>Trusted Execution Environments (TEEs)</strong>, specifically utilizing <strong>AMD SEV-SNP</strong> and <strong>Intel TDX</strong>.</p>
-<p>Traditionally, if you run a VM in the cloud, the cloud provider (the hypervisor context) has technical access to your memory. They <em>could</em>, in theory, dump the RAM and see your unencrypted data.</p>
-<p>TEEs change this equation by encrypting the virtual machine's memory <strong>at the hardware level</strong>.</p>
-<ol>
-<li>
-<p><strong>Memory Encryption</strong>: The CPU automatically encrypts data written to RAM and decrypts it only inside the CPU core. The keys are managed by a secure processor and are never exposed to the hypervisor or host OS.</p>
-<pre><code class="language-mermaid">graph TD
-    subgraph CPU [&quot;CPU Package (Trusted Boundary)&quot;]
-        Core[&quot;CPU Core&lt;br/&gt;(Data is Plaintext)&quot;]
-        ME[&quot;Memory Encryption Engine&lt;br/&gt;(AES-128/256)&quot;]
-    end
-
-    subgraph RAM [&quot;System Memory (Untrusted)&quot;]
-        EncData[&quot;Encrypted Data&lt;br/&gt;(Ciphertext)&quot;]
-    end
-
-    subgraph Host [&quot;Hypervisor / Host OS&quot;]
-        Admin[&quot;Cloud Admin / Root&quot;]
-    end
-
-    Core &lt;--&gt; ME
-    ME &lt;--&gt;|Encrypted Read/Write| EncData
-
-    Admin -.-&gt;|Attempts to Read| EncData
-    Admin -- &quot;Sees Garbage&quot; --&gt; EncData
-
-    style CPU fill:#ecfdf5,stroke:#22c55e,stroke-width:2px,color:#000
-    style RAM fill:#f8fafc,stroke:#eab308,stroke-width:2px,color:#000
-    style Host fill:#fef2f2,stroke:#ef4444,stroke-width:2px,color:#000
-</code></pre>
-</li>
-<li>
-<p><strong>Remote Attestation</strong>: This is the &quot;proof&quot; part. The hardware generates a cryptographic &quot;quote&quot;—a digital signature signed by the processor's manufacturer key. This quote serves as proof that:</p>
+<h2 id="the-data-in-use-gap">The Data-in-Use Gap</h2>
+<p>For decades, cybersecurity has relied on protecting <strong>data at rest</strong> (disk encryption) and <strong>data in transit</strong> (TLS). This framework has been largely successful—until now.</p>
+<p>The critical gap is <strong>data in use</strong>. To generate value, data must be decrypted and loaded into memory for processing. At this moment, data exists in plaintext, vulnerable to:</p>
 <ul>
-<li>The software running is exactly what you expect (measured by a hash).</li>
-<li>The hardware protections (SEV-SNP/TDX) are active.</li>
-<li>The environment hasn't been tampered with.</li>
+<li>Operating system access</li>
+<li>Hypervisor inspection</li>
+<li>Cloud administrator snooping</li>
+<li>Malicious actors with privileged access</li>
 </ul>
-</li>
-</ol>
-<h2 id="why-traditional-llm-apis-expose-privacy-risks">Why Traditional LLM APIs Expose Privacy Risks</h2>
-<p>When you use a standard API (like OpenAI or Anthropic), the flow usually looks like this:</p>
-<ol>
-<li>
-<p>TLS encrypts data in transit (good).</p>
-</li>
-<li>
-<p>Provider decrypts data on their server to process it (necessary).</p>
-</li>
-<li>
-<p><strong>Risk Zone</strong>: While the data is processed, it is visible in plain text in the server's memory.</p>
+<p>In the pre-AI era, this vulnerability was manageable because the exposure window was small. <strong>With AI this risk profile changes.</strong></p>
+<h3 id="the-ai-multiplier-effect">The AI Multiplier Effect</h3>
+<p>Training or running inference on LLMs requires loading massive datasets into memory for extended periods. The &quot;context window&quot; of an LLM becomes a &quot;vulnerability window.&quot;</p>
+<p>If an attacker gains access, the entire contents of memory are available for exfiltration in cleartext. The models themselves have become high-value assets worth hundreds of millions in R&amp;D investment.</p>
+<p>This creates a paradox: organizations must use cloud scale to train models, but cannot trust the cloud with secrets and sensitive data.</p>
+<h2 id="real-world-breach-forensics">Real-World Breach Forensics</h2>
+<p>The fragility of AI data pipelines isn't theoretical. Recent incidents demonstrate the urgent need for architectural change.</p>
+<h3 id="microsoft-ai-research-exposure-2023">Microsoft AI Research Exposure (2023)</h3>
+<p>Microsoft's AI research team accidentally exposed <strong>38 terabytes</strong> of private data while publishing open-source training data on GitHub. The breach included:</p>
 <ul>
-<li><strong>Insider Threats</strong>: Rogue admins with root access could potentially inspect memory.</li>
-<li><strong>Side-Channel Attacks</strong>: Exploits like Spectre/Meltdown or purely software-based memory scrapers could exfiltrate data.</li>
-<li><strong>Data Retention</strong>: Mistakes in logging configurations could accidentally save sensitive prompts to persistent storage.</li>
+<li>Disk backups of employee workstations</li>
+<li>Private keys and passwords</li>
+<li>Over 30,000 internal Teams messages</li>
 </ul>
-<pre><code class="language-mermaid">graph LR
-    User([User]) --&gt;|TLS Encrypted| Gateway[API Gateway]
-    Gateway --&gt;|Plaintext| Server[Model Server]
-
-    subgraph RAM [&quot;Server Memory (RAM)&quot;]
-        Prompt[&quot;User Prompt&lt;br/&gt;(Plaintext)&quot;]
-    end
-
-    Server -- Processing --&gt; Prompt
-
-    Hacker[Attacker / Malware] -.-&gt;|Side Channel| Prompt
-    Admin[Rogue Employee] -.-&gt;|Direct Memory Dump| Prompt
-    Logs[Log Collector] -.-&gt;|Misconfiguration| Prompt
-
-    style Prompt fill:#ef4444,stroke:#7f1d1d,color:#fff,stroke-width:2px
-    style RAM fill:#e2e8f0,stroke:#94a3b8,color:#333
-    style Hacker stroke:#ef4444,stroke-dasharray: 5 5
-</code></pre>
-</li>
-</ol>
-<p>For regulated industries, this &quot;Processing in the Clear&quot; is a major compliance hurdle.</p>
-<h2 id="cube-ai-architecture-isolation-by-design">Cube AI Architecture: Isolation by Design</h2>
-<p>Cube AI solves this by moving the <strong>entire inference process</strong> into a TEE.</p>
-<p>The LLM (Ollama or vLLM) runs inside a Confidential VM. The model weights are decrypted only inside this enclave. Your prompts are encrypted with a key that is <strong>only</strong> released to the enclave after it proves its identity via attestation.</p>
-<h3 id="the-protected-inference-flow">The Protected Inference Flow</h3>
-<p>Here is how Cube AI isolates your data:</p>
-<p><img src="/img/confidential-computing-meets-ai/protected-inference-flow.png" alt="The Protected Inference Flow"></p>
-<ol>
-<li><strong>Attestation Handshake</strong>: The connection negotiation starts with an <strong>Attested TLS (aTLS)</strong> handshake. The Attestation Agent sends its certificate along with a hardware-signed quote.</li>
-<li><strong>Proxy Verification</strong>: The Cube Proxy verifies this quote against a strict attestation policy. Unlike standard TLS which blindly trusts a Certificate Authority, the Proxy validates the <em>hardware identity</em> and <em>software integrity</em> of the Agent.</li>
-<li><strong>Secure Tunnel</strong>: Once verified, an encrypted aTLS tunnel is established between the Proxy and the Agent.</li>
-<li><strong>Inference Proxying</strong>: The User sends an encrypted prompt to the Proxy, which forwards it through the aTLS tunnel. The Agent then proxies this request to the local LLM backend (vLLM/Ollama) running inside the enclave. Use the same key.</li>
-</ol>
-<h2 id="practical-example-private-medical-diagnosis">Practical Example: Private Medical Diagnosis</h2>
-<p>Imagine a healthcare provider building an AI assistant to analyze patient records for rare disease patterns.</p>
+<p><strong>The Lesson</strong>: AI &quot;data lakes&quot; are massive targets. The breach was caused by a misconfigured storage token, but highlights how data aggregation for AI creates concentrated risk. In a Confidential Computing model, even if storage keys leaked, attackers would lack the hardware-bound decryption keys needed to read the data.</p>
+<h3 id="change-healthcare-ransomware-2024">Change Healthcare Ransomware (2024)</h3>
+<p>The February 2024 attack on Change Healthcare paralyzed the US healthcare system, costing over <strong>$872 million</strong> and disrupting patient care nationwide. Attackers gained entry via compromised credentials and allegedly stole 6TB of sensitive medical data.</p>
+<p><strong>The Lesson</strong>: While Confidential Computing can't prevent credential theft, it can prevent data exfiltration. If core processing ran inside Trusted Execution Environments (TEEs), ransomware could encrypt disk files but couldn't read cleartext patient data from memory. Hardware attestation would detect malicious code injection, potentially halting attacks before data compromise.</p>
+<h3 id="samsung-chatgpt-leak-2023">Samsung ChatGPT Leak (2023)</h3>
+<p>Engineers leaked proprietary source code and meeting notes into ChatGPT, demonstrating how &quot;Shadow AI&quot; bypasses IT governance. Once data enters the &quot;AI black box,&quot; organizations lose visibility and control.</p>
+<p><strong>The Lesson</strong>: Without architectural safeguards like Confidential Computing, sensitive data can flow into uncontrolled environments with no audit trail or protection.</p>
+<h2 id="ai-specific-attack-vectors">AI-Specific Attack Vectors</h2>
+<p>Beyond traditional breaches, AI systems face unique adversarial attacks:</p>
+<h3 id="model-inversion--membership-inference">Model Inversion &amp; Membership Inference</h3>
+<p>Attackers can query API-exposed models to reconstruct training data. &quot;Model Inversion&quot; recreates specific training examples (faces, patient records). &quot;Membership Inference&quot; determines if specific data was used in training.</p>
+<p><strong>Confidential Computing Solution</strong>: Deploy privacy-preserving techniques like Differential Privacy inside tamper-proof enclaves, ensuring privacy guarantees can't be disabled by malicious admins.</p>
+<h3 id="model-theft">Model Theft</h3>
+<p>For AI companies, model weights are primary IP. In standard cloud deployments, weights reside in GPU memory. Sophisticated attackers with kernel access can copy these weights.</p>
+<p><strong>Confidential Computing Solution</strong>: NVIDIA's H100 Confidential Computing encrypts GPU memory and the CPU-GPU link, preventing &quot;weight stealing&quot; even from infrastructure providers.</p>
+<h3 id="supply-chain-poisoning">Supply Chain Poisoning</h3>
+<p>Research revealed hundreds of Hugging Face models containing malicious code or susceptible to tampering. Attackers upload models that execute arbitrary code when loaded or are &quot;poisoned&quot; to misbehave on triggers.</p>
+<p><strong>Confidential Computing Solution</strong>: Combine TEEs with supply chain tools like Sigstore to enforce &quot;Verify then Trust&quot; policies—models load into secure enclaves only with valid cryptographic signatures from trusted builders.</p>
+<h2 id="the-regulatory-imperative">The Regulatory Imperative</h2>
+<p>Global regulations are accelerating Confidential Computing adoption, moving from general data protection to specific AI safety mandates.</p>
+<h3 id="eu-ai-act">EU AI Act</h3>
+<p>The world's first comprehensive AI law includes provisions that directly align with Confidential Computing capabilities:</p>
 <ul>
-<li><strong>The Data</strong>: Highly sensitive patient history, genetic markers, and lab results.</li>
-<li><strong>The Risk</strong>: Uploading this to a public LLM violates HIPAA and GDPR.</li>
-<li><strong>The Cube AI Solution</strong>:
-<ol>
-<li>The hospital's application connects to their private Cube AI instance.</li>
-<li>It verifies the instance acts as a &quot;black box&quot; via Remote Attestation.</li>
-<li>It sends the patient data.</li>
-<li><strong>Insight</strong>: The model analyzes the data <em>in memory</em> (which is encrypted at the hardware level).</li>
-<li><strong>Result</strong>: The diagnosis is returned encrypted.</li>
-<li><strong>Aftermath</strong>: Once the request is done, the data in memory is wiped. No logs, no training, no eyes on the data.</li>
-</ol>
-</li>
+<li><strong>Article 78 (Confidentiality)</strong>: Mandates protection of intellectual property and trade secrets</li>
+<li><strong>Article 15 (Cybersecurity)</strong>: Requires high-risk AI systems to resist unauthorized alteration—implying execution environments that guarantee code and data integrity (TEEs)</li>
+<li><strong>Article 10 (Data Governance)</strong>: Mandates data integrity and confidentiality during processing</li>
 </ul>
-<h2 id="key-takeaway">Key Takeaway</h2>
-<p>Cube AI shifts the trust model from <strong>policy-based security</strong> (&quot;we promise we won't look&quot;) to <strong>technology-based security</strong> (&quot;we physically cannot look&quot;).</p>
-<p>By combining the power of open-weights models (like Llama 3, Mistral) with the hardware-grade isolation of <strong>Confidential Computing</strong>, Cube AI allows you to deploy the most powerful AI capabilities on your most sensitive data—without losing sleep over privacy.</p>
+<h3 id="us-legislation">US Legislation</h3>
+<p>By 2025, all 50 states introduced AI-related legislation. States like Colorado and California regulate algorithmic discrimination and require risk management policies, driving demand for auditable, secure compute environments.</p>
+<p>Federal Executive Orders emphasize securing the AI supply chain and preventing model theft by adversaries—goals directly supported by hardware-enforced isolation.</p>
+<h2 id="how-confidential-computing-works">How Confidential Computing Works</h2>
+<p>Confidential Computing resolves the Privacy Paradox by changing the fundamental assumption of trust in the compute stack.</p>
+<h3 id="trusted-execution-environments-tees">Trusted Execution Environments (TEEs)</h3>
+<p>TEEs are hardware-isolated environments where code and data are protected from the rest of the system:</p>
+<ul>
+<li><strong>Memory Encryption</strong>: Data written to RAM is encrypted with keys generated inside the CPU package that never leave it</li>
+<li><strong>Access Control</strong>: CPUs prevent any software outside the TEE (OS, hypervisor, other VMs) from reading or writing TEE memory</li>
+<li><strong>Attestation</strong>: Cryptographic proof that specific code is running in a genuine, untampered TEE</li>
+</ul>
+<p>Even with full root privileges, attackers see only encrypted ciphertext when attempting to access TEE memory.</p>
+<h3 id="hardware-platforms">Hardware Platforms</h3>
+<p><strong>AMD SEV-SNP</strong>: Each VM gets a unique memory encryption key. Ideal for confidential VMs hosting AI control planes, vector databases, or CPU-based inference.</p>
+<p><strong>Intel TDX</strong>: Introduces &quot;Trust Domains&quot; with efficient memory encryption. Optimized for high-performance compute and rigorous attestation. Strong for sensitive model training pipelines.</p>
+<p><strong>NVIDIA H100 Confidential GPU</strong>: Revolutionary for AI. Encrypts GPU memory (up to 80GB HBM3) and the CPU-GPU link. Enables confidential training and inference with &lt;5% overhead for compute-bound workloads.</p>
+<h3 id="remote-attestation">Remote Attestation</h3>
+<p>Remote attestation proves a workload is running in a genuine TEE:</p>
+<ol>
+<li><strong>Measurement</strong>: Hardware computes a cryptographic hash of code loaded into the TEE</li>
+<li><strong>Evidence Generation</strong>: Hardware signs this hash with a private key embedded in silicon</li>
+<li><strong>Verification</strong>: An Attestation Service checks the signature against manufacturer public keys</li>
+<li><strong>Key Release</strong>: If verification succeeds, decryption keys are released to the workload</li>
+</ol>
+<p>This ensures keys are never released unless the environment is proven secure and untampered. If malware is injected, the hash changes, verification fails, and keys remain locked.</p>
+<h2 id="real-world-roi-case-studies">Real-World ROI: Case Studies</h2>
+<h3 id="beekeeperai-healthcare-research-platform">BeeKeeperAI: Healthcare Research Platform</h3>
+<p><strong>Challenge</strong>: Developing clinical AI requires diverse patient data, but privacy regulations create massive friction. Traditional de-identification is costly, slow, and reduces data fidelity.</p>
+<p><strong>Solution</strong>: BeeKeeperAI's &quot;EscrowAI&quot; platform uses Azure Confidential Computing (Intel SGX). Hospitals encrypt data and upload to secure enclaves. Algorithm developers upload models to the same enclave. Models execute against data inside the TEE—developers receive performance reports but never see raw data.</p>
+<p><strong>Impact</strong>:</p>
+<ul>
+<li><strong>Time-to-Insight</strong>: Reduced from 12-24 months to days</li>
+<li><strong>Cost Savings</strong>: Eliminated expensive synthetic data purchases and legal fees</li>
+<li><strong>Innovation</strong>: Enabled validation on rare disease datasets previously inaccessible due to privacy fragmentation</li>
+</ul>
+<h3 id="consilient-federated-aml-for-financial-services">Consilient: Federated AML for Financial Services</h3>
+<p><strong>Challenge</strong>: Anti-Money Laundering efforts are hampered by information silos. Banks only see transactions within their walls. Criminals exploit this by moving funds across institutions. Traditional systems generate &gt;90% false positives.</p>
+<p><strong>Solution</strong>: Consilient's &quot;DOZER&quot; uses Federated Learning in Intel SGX enclaves. Models move to banks' secure environments, learn from local data without data leaving custody, then aggregate to form smarter global detectors.</p>
+<p><strong>Impact</strong>:</p>
+<ul>
+<li><strong>False Positive Reduction</strong>: Achieved 12% false positive rate (87% reduction from 90% industry standard)</li>
+<li><strong>Effectiveness</strong>: AUC-ROC score of 0.90 (17% improvement over single-institution models)</li>
+<li><strong>Efficiency</strong>: 75% efficiency improvement for one Tier-1 US bank</li>
+<li><strong>Discovery</strong>: Identified previously undetected money laundering network</li>
+</ul>
+<h2 id="implementation-strategies">Implementation Strategies</h2>
+<h3 id="confidential-vms-cvms">Confidential VMs (CVMs)</h3>
+<p><strong>Approach</strong>: &quot;Lift and Shift&quot;—entire VMs run inside TEEs (AMD SEV-SNP)</p>
+<p><strong>Pros</strong>: Easiest deployment, no code changes, works with legacy applications</p>
+<p><strong>Cons</strong>: Large Trusted Computing Base (must trust entire guest OS)</p>
+<p><strong>Best For</strong>: Migrating existing monolithic AI applications, databases, legacy systems</p>
+<h3 id="confidential-containers-coco">Confidential Containers (CoCo)</h3>
+<p><strong>Approach</strong>: Cloud-native—each Kubernetes Pod runs in its own lightweight microVM TEE</p>
+<p><strong>Pros</strong>: Small TCB, fine-grained isolation, better security posture, native Kubernetes integration</p>
+<p><strong>Cons</strong>: Requires mature Kubernetes setup, slightly more complex debugging</p>
+<p><strong>Best For</strong>: Modern AI inference services, multi-tenant SaaS platforms, sensitive microservices</p>
+<h2 id="the-path-forward">The Path Forward</h2>
+<p>The global confidential computing market is projected to grow from <strong>$9.04 billion in 2024 to over $1,281 billion by 2034</strong>—a 64% CAGR. This isn't just security spending; it's a structural transformation in enterprise computing architecture.</p>
+<p>By 2026, over 70% of enterprise AI workloads will involve sensitive data, making confidential architectures a necessity rather than a luxury.</p>
+<h3 id="the-https-moment">The HTTPS Moment</h3>
+<p>In internet history, there was a moment when HTTPS transitioned from a requirement for banking sites to the default standard for the entire web. <strong>We're at that same inflection point for AI.</strong></p>
+<p>Confidential Computing is the &quot;HTTPS for AI&quot;—the protocol that builds the trust necessary for the next generation of intelligent systems to flourish.</p>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<ol>
+<li><strong>Traditional security fails AI</strong>: The &quot;two-state&quot; model (at rest, in transit) leaves data-in-use vulnerable—the exact state AI requires</li>
+<li><strong>Hardware-based isolation is essential</strong>: TEEs provide mathematical guarantees that software-based security cannot</li>
+<li><strong>Regulatory pressure is accelerating</strong>: The EU AI Act and US legislation increasingly demand &quot;privacy by design&quot;</li>
+<li><strong>ROI is proven</strong>: Organizations like BeeKeeperAI and Consilient demonstrate dramatic time-to-value and cost reductions</li>
+<li><strong>The question has changed</strong>: From &quot;Can we afford to implement this?&quot; to &quot;Can we survive ignoring it?&quot;</li>
+</ol>
 <hr>
-<p><em>Ready to secure your AI workloads? Check out our <a href="../docs/getting-started.md">Getting Started</a> guide or explore the <a href="../docs/attestation.md">Attestation Documentation</a>.</em></p>
+<p><em>Ready to secure your AI workloads? Learn more about <a href="https://docs.cube.ultraviolet.rs/architecture">Cube AI's confidential computing architecture</a> or explore our <a href="https://docs.cube.ultraviolet.rs/developer-guide">developer guides</a> to get started.</em></p>
 </div>
 
         <div class="mt-5 pt-4 border-top">
@@ -434,15 +443,15 @@
           <h5 class="mb-3 mt-3">Tags</h5>
           <div>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">security</span>
-            
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential-computing</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">ai</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">ai-security</span>
             
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">privacy</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">cube ai</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">tee</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">enterprise-ai</span>
             
           </div>
         </div>
@@ -450,11 +459,11 @@
         <div class="mt-4">
           <h5 class="mb-3">Share this article</h5>
           <div class="d-flex gap-2 flex-wrap">
-            <a href="https://twitter.com/intent/tweet?text=Confidential&#43;Computing&#43;Meets&#43;AI%3A&#43;How&#43;Cube&#43;AI&#43;Protects&#43;Your&#43;LLM&#43;Prompts&url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://twitter.com/intent/tweet?text=The&#43;Privacy&#43;Paradox%3A&#43;Why&#43;AI&#43;Teams&#43;Should&#43;Care&#43;About&#43;Confidential&#43;Computing&url=https%3a%2f%2fwww.ultraviolet.rs/blog/privacy-paradox-confidential-computing"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-twitter me-2"></i>Twitter
             </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/privacy-paradox-confidential-computing"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-linkedin me-2"></i>LinkedIn
             </a>
@@ -629,7 +638,7 @@
         
         <div class="col-md-6 col-lg-4">
           <article class="card h-100 shadow-sm hover-lift border-0">
-            <a href="/blog/privacy-paradox-confidential-computing" class="text-decoration-none text-dark">
+            <a href="/blog/confidential-computing-meets-ai" class="text-decoration-none text-dark">
               
 
               <div class="card-body">
@@ -641,37 +650,37 @@
                 </div>
 
                 <h2 class="card-title h5 fw-bold">
-                  The Privacy Paradox: Why AI Teams Should Care About Confidential Computing
+                  Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts
                 </h2>
                 <p class="card-text text-muted small">
-                  
+                  Cube AI leverages confidential computing and TEEs to protect your sensitive AI workloads. Ensure your prompts remain private with hardware-verified security.
                 </p>
 
                 <div class="d-flex align-items-center mt-3">
-                  <img src="https://avatars.githubusercontent.com/u/41241359?v=4" alt="Jilks Smith"
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
                     class="rounded-circle me-2" width="32" height="32" loading="lazy"
                     onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
                   <div class="small">
                     <div class="fw-semibold">
-                      Jilks Smith
+                      sammy oina
                     </div>
                     <div class="text-muted">
-                      February 02, 2026 · 8 min
+                      January 30, 2026 · 4 min
                     </div>
                   </div>
                 </div>
 
                 <div class="mt-3">
                   
+                  <span class="badge bg-light text-dark me-1">security</span>
+                  
                   <span class="badge bg-light text-dark me-1">confidential-computing</span>
                   
-                  <span class="badge bg-light text-dark me-1">ai-security</span>
+                  <span class="badge bg-light text-dark me-1">ai</span>
                   
                   <span class="badge bg-light text-dark me-1">privacy</span>
                   
-                  <span class="badge bg-light text-dark me-1">tee</span>
-                  
-                  <span class="badge bg-light text-dark me-1">enterprise-ai</span>
+                  <span class="badge bg-light text-dark me-1">cube ai</span>
                   
                 </div>
               </div>
