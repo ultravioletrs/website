@@ -137,30 +137,29 @@ Remote attestation proves a workload is running in a genuine TEE:
 
 This ensures keys are never released unless the environment is proven secure and untampered. If malware is injected, the hash changes, verification fails, and keys remain locked.
 
-## Real-World ROI: Case Studies
+## Industry Applications
 
-### BeeKeeperAI: Healthcare Research Platform
+### Healthcare: Clinical AI Development
 
-**Challenge**: Developing clinical AI requires diverse patient data, but privacy regulations create massive friction. Traditional de-identification is costly, slow, and reduces data fidelity.
+**Challenge**: Developing clinical AI requires diverse patient data, but privacy regulations create friction. Traditional de-identification is costly, slow, and reduces data fidelity.
 
-**Solution**: BeeKeeperAI's "EscrowAI" platform uses Azure Confidential Computing (Intel SGX). Hospitals encrypt data and upload to secure enclaves. Algorithm developers upload models to the same enclave. Models execute against data inside the TEE—developers receive performance reports but never see raw data.
+**How Confidential Computing Helps**: Secure enclaves enable a data escrow model where hospitals encrypt data and upload to TEEs. Algorithm developers upload models to the same enclave. Models execute against data inside the TEE—developers receive performance reports but never access raw data.
 
-**Impact**:
-- **Time-to-Insight**: Reduced from 12-24 months to days
-- **Cost Savings**: Eliminated expensive synthetic data purchases and legal fees
-- **Innovation**: Enabled validation on rare disease datasets previously inaccessible due to privacy fragmentation
+**Potential Benefits**:
+- Reduced time-to-insight from months to days
+- Lower costs by avoiding synthetic data purchases and extensive legal review
+- Access to rare disease datasets previously inaccessible due to privacy fragmentation
 
-### Consilient: Federated AML for Financial Services
+### Financial Services: Anti-Money Laundering
 
-**Challenge**: Anti-Money Laundering efforts are hampered by information silos. Banks only see transactions within their walls. Criminals exploit this by moving funds across institutions. Traditional systems generate >90% false positives.
+**Challenge**: AML efforts are hampered by information silos. Banks only see transactions within their walls. Criminals exploit this by moving funds across institutions. Traditional systems generate high false positive rates (often exceeding 90%).
 
-**Solution**: Consilient's "DOZER" uses Federated Learning in Intel SGX enclaves. Models move to banks' secure environments, learn from local data without data leaving custody, then aggregate to form smarter global detectors.
+**How Confidential Computing Helps**: Federated Learning in secure enclaves allows models to move to banks' secure environments, learn from local data without data leaving custody, then aggregate to form more accurate global detectors.
 
-**Impact**:
-- **False Positive Reduction**: Achieved 12% false positive rate (87% reduction from 90% industry standard)
-- **Effectiveness**: AUC-ROC score of 0.90 (17% improvement over single-institution models)
-- **Efficiency**: 75% efficiency improvement for one Tier-1 US bank
-- **Discovery**: Identified previously undetected money laundering network
+**Potential Benefits**:
+- Significant reduction in false positive rates
+- Improved detection accuracy across institutions
+- Ability to identify cross-institutional money laundering patterns
 
 ## Implementation Strategies
 
