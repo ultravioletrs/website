@@ -104,13 +104,19 @@
     </url>
     <url>
         <loc>https://www.ultraviolet.rs/blog/confidential-computing-meets-ai/</loc>
-        <lastmod>2026-02-06</lastmod>
+        <lastmod>2026-02-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://www.ultraviolet.rs/blog/cocos-prism-release/</loc>
-        <lastmod>2026-02-06</lastmod>
+        <lastmod>2026-02-09</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.ultraviolet.rs/blog/trusting-your-vm-from-the-first-instruction-to-the-last-file/</loc>
+        <lastmod>2026-02-09</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
