@@ -1,0 +1,1200 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>PRISM AI: Architecting a Cost-Effective Cloud-Native AI Platform with Kubernetes and GitOps - Ultraviolet</title>
+  <meta name="title" content="PRISM AI: Architecting a Cost-Effective Cloud-Native AI Platform with Kubernetes and GitOps - Ultraviolet" />
+  <meta name="description" content="Explore the DevOps and Kubernetes architecture powering PRISM AI, a confidential computing platform that enables secure collaborative AI workloads." />
+
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/prism-ai-kubernetes-architecture/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Ultraviolet" />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/prism-ai-kubernetes-architecture" />
+  <meta property="og:title" content="PRISM AI: Architecting a Cost-Effective Cloud-Native AI Platform with Kubernetes and GitOps" />
+  <meta property="og:description" content="Explore the DevOps and Kubernetes architecture powering PRISM AI, a confidential computing platform that enables secure collaborative AI workloads." />
+  <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
+
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="PRISM AI: Architecting a Cost-Effective Cloud-Native AI Platform with Kubernetes and GitOps" />
+  <meta name="twitter:description" content="Explore the DevOps and Kubernetes architecture powering PRISM AI, a confidential computing platform that enables secure collaborative AI workloads." />
+  <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
+
+
+  
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "PRISM AI: Architecting a Cost-Effective Cloud-Native AI Platform with Kubernetes and GitOps",
+        "image": "https:\/\/www.ultraviolet.rs",
+        "datePublished": "2026-02-10",
+        "author": {
+          "@type": "Person",
+          "name": "Jilks Smith"
+        },
+        "description": "Explore the DevOps and Kubernetes architecture powering PRISM AI, a confidential computing platform that enables secure collaborative AI workloads."
+      }
+    </script>
+
+  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Ultraviolet" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen&display=swap" />
+
+  
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+  <style>
+    .navbar-nav .nav-link {
+      color: black !important;
+    }
+
+     
+    .markdown-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1.5rem auto;
+      display: block;
+    }
+
+    .markdown-content h2,
+    .markdown-content h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #212529;
+    }
+
+    .markdown-content p {
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .markdown-content pre {
+      border-radius: 6px;
+      padding: 1rem;
+    }
+
+    .markdown-content blockquote {
+      border-left: 4px solid #ddd;
+      padding-left: 1rem;
+      color: #555;
+      margin: 1.5rem 0;
+      font-style: italic;
+    }
+
+    .markdown-content table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    .markdown-content th,
+    .markdown-content td {
+      border: 1px solid #ddd;
+      padding: 0.6rem 0.8rem;
+    }
+
+    .markdown-content th {
+      background: #f5f5f5;
+      font-weight: 600;
+    }
+
+    .code-wrapper {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .code-wrapper pre {
+      margin-bottom: 0;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+
+    .code-wrapper:hover .copy-button {
+      opacity: 1;
+    }
+
+    .copy-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .copy-button.copied {
+      background: #198754;
+      border-color: #198754;
+      color: #fff;
+      opacity: 1;
+    }
+
+     
+    .markdown-content pre[class*="language-mermaid"] {
+      background: transparent;
+      padding: 0;
+      border: none;
+    }
+
+    .markdown-content code[class*="language-mermaid"] {
+      display: none;
+    }
+
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #ffffff">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Magistrala" height="30" width="250" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PRODUCTS
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="productsDropdown">
+              <li><a class="dropdown-item" href="https://prism.ultraviolet.rs"
+                  title="Prism AI Multi-Party Confidential Computation Orchestration Platform" target="_blank">PRISM
+                  AI</a></li>
+              <li><a class="dropdown-item" href="/cocos"
+                  title="Cocos AI Open Source Confidential Computing Platform">COCOS AI</a></li>
+              <li><a class="dropdown-item" href="/cube"
+                  title="Cube AI Privacy-Preserving LLM Deployment Framework with Confidential Computing">CUBE AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/products">All Products</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              DOCUMENTATION
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="https://docs.prism.ultraviolet.rs/" target="_blank">PRISM AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://docs.cocos.ultraviolet.rs/" target="_blank">COCOS AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://docs.cube.ultraviolet.rs/" target="_blank">CUBE AI</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PROJECTS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+              <li>
+                <a class="dropdown-item" href="/projects/confidential6g">CONFIDENTIAL6G</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/elastic">ELASTIC</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/titan">TITAN</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects">All Projects</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/company" style="color: black">COMPANY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/careers" style="color: black">CAREERS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact" style="color: black">CONTACT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog" style="color: black">BLOG</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/ultravioletrs" target="_blank" style="color: black"><i
+                class="fab fa-github"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <article class="container py-5 mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        
+        <div class="mb-4">
+          <a href="/blog" class="text-decoration-none text-muted"><i class="fas fa-arrow-left me-2"></i>Back to Blog</a>
+        </div>
+
+        <div class="mb-3">
+          <span class="badge bg-primary fs-6"></span>
+          
+        </div>
+
+        <h1 class="display-4 fw-bold mb-4">PRISM AI: Architecting a Cost-Effective Cloud-Native AI Platform with Kubernetes and GitOps</h1>
+
+        <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
+          <img src="https://avatars.githubusercontent.com/u/41241359?v=4" alt="Jilks Smith" class="rounded-circle me-3" width="60" height="60"
+            loading="lazy" onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+          <div>
+            <div class="fw-bold fs-5">Jilks Smith</div>
+            <div class="text-muted">
+              February 10, 2026 · 7 min read
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="markdown-content"><p><img src="/img/prism-kubernetes/prism-kubernetes.png" alt="PRISM AI Kubernetes Architecture"></p>
+<p>Here we'll explore the DevOps and Kubernetes architecture powering PRISM AI, a confidential computing platform that enables secure collaborative AI workloads. We'll dive deep into the technical decisions and tooling choices that enable reliable scaling while maintaining enterprise-grade security and observability.</p>
+<!-- raw HTML omitted -->
+<h2 id="a-modern-cloud-native-stack">A Modern Cloud-Native Stack</h2>
+<p>PRISM AI represents a modern cloud-native application built with a microservices architecture that embraces DevOps best practices from the ground up.</p>
+<h3 id="microservices">Microservices</h3>
+<p>The platform is built around the following microservices, each with specific responsibilities:</p>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Authentication Service</strong></td>
+<td>Identity and access management</td>
+</tr>
+<tr>
+<td><strong>Users Service</strong></td>
+<td>User lifecycle and profile management</td>
+</tr>
+<tr>
+<td><strong>Domains Service</strong></td>
+<td>Domain management with Redis caching</td>
+</tr>
+<tr>
+<td><strong>Computations Service</strong></td>
+<td>AI workload orchestration and management</td>
+</tr>
+<tr>
+<td><strong>Backends Service</strong></td>
+<td>Infrastructure provider abstraction (Azure, GCP, AWS, Ultraviolet Cloud, self-hosted infrastructure)</td>
+</tr>
+<tr>
+<td><strong>Certificates Service</strong></td>
+<td>PKI management for secure communications</td>
+</tr>
+<tr>
+<td><strong>Billing Services</strong></td>
+<td>Financial operations and subscription management</td>
+</tr>
+<tr>
+<td><strong>UI Service</strong></td>
+<td>Frontend application</td>
+</tr>
+</tbody>
+</table>
+<h2 id="kubernetes-orchestration-the-foundation">Kubernetes Orchestration: The Foundation</h2>
+<h3 id="helm-charts-as-infrastructure-code">Helm Charts as Infrastructure Code</h3>
+<p>PRISM AI's entire Kubernetes infrastructure is defined through Helm charts, Infrastructure as Code. The following dependencies are defined in the charts:</p>
+<ul>
+<li><strong>External Secrets</strong> for secret management</li>
+<li><strong>Kube Prometheus Stack</strong> for monitoring</li>
+<li><strong>Jaeger</strong> for distributed tracing</li>
+<li><strong>PostgreSQL</strong> for persistence</li>
+<li><strong>Redis</strong> for caching</li>
+<li><strong>NATS</strong> for event streaming</li>
+<li><strong>OpenSearch</strong> for log analytics</li>
+<li><strong>Fluent Bit</strong> for log collection</li>
+</ul>
+<p>This dependency management approach ensures consistent deployments across environments while maintaining version control and rollback capabilities.</p>
+<h3 id="container-strategy-and-registry-management">Container Strategy and Registry Management</h3>
+<p>PRISM AI utilizes the GitHub Container Registry (GHCR) for managing microservices images. These images are built and tagged from the source code repository using GitHub Actions.</p>
+<p><strong>Development Flow:</strong></p>
+<ul>
+<li>Latest builds tagged as <code>latest</code>: deployed to staging</li>
+<li>Release builds tagged with semantic versions: deployed to production</li>
+</ul>
+<p><strong>Security Implementation:</strong></p>
+<p>All services use private registry authentication through Kubernetes secrets. This ensures secure image distribution while maintaining access control.</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="font-weight:bold">imagePullSecrets</span>:
+</span></span><span style="display:flex;"><span>  - <span style="font-weight:bold">name</span>: your-container-registry-secret
+</span></span></code></pre><h3 id="resource-management-and-scaling">Resource Management and Scaling</h3>
+<p>For CPU and memory utilization and management, Horizontal Pod Autoscaler limits are enforced in the deployment manifests.</p>
+<h2 id="gitops-implementation-with-argocd">GitOps Implementation with ArgoCD</h2>
+<p>PRISM AI implements a pull-based GitOps model using ArgoCD, where the desired state is declaratively defined in Git repositories and automatically synchronized to Kubernetes clusters.</p>
+<p>For cost-effective measures, only two environments are used: staging and production. Rigorous end-to-end and load tests are carried out on all latest builds in the staging environment before updating the production environment.</p>
+<ul>
+<li><strong>Staging Environment</strong>: Uses <code>digest</code> strategy for latest tags, enabling rapid iteration</li>
+<li><strong>Production Environment</strong>: Uses <code>newest-build</code> strategy with tagged releases, ensuring stability</li>
+</ul>
+<h3 id="automated-image-updates">Automated Image Updates</h3>
+<p>ArgoCD Image Updater is used to automatically monitor container registries and update the deployments when new images are available:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="font-weight:bold">annotations</span>:
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">argocd-image-updater.argoproj.io/auth.update-strategy</span>: digest
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">argocd-image-updater.argoproj.io/auth.force-update</span>: <span style="color:#0ff;font-weight:bold">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">argocd-image-updater.argoproj.io/auth.ignore-tags</span>: latest, mastery
+</span></span></code></pre><p>This automation reduces manual intervention while maintaining control over the deployments.</p>
+<p>The manifests in the helm repository are also updated via GitHub Actions every time there is a tagged release on the source code repository.</p>
+<h2 id="networking-and-ingress-architecture">Networking and Ingress Architecture</h2>
+<h3 id="traefik">Traefik</h3>
+<p>Traefik serves as both the ingress controller and load balancer, providing structured routing and SSL termination. Traefik manifest defines Traefik as a StatefulSet with persistent volumes, allowing multiple instances for scalability and availability.</p>
+<p><strong>Entry Points Configuration:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Port</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>80</td>
+<td>HTTP traffic (redirects to HTTPS)</td>
+</tr>
+<tr>
+<td>443</td>
+<td>HTTPS traffic with automatic SSL</td>
+</tr>
+<tr>
+<td>8080</td>
+<td>Traefik dashboard on development</td>
+</tr>
+<tr>
+<td>7018</td>
+<td>gRPC backends for agent communication</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Service Routing:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Service</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/ui</code></td>
+<td>PRISM UI Service</td>
+</tr>
+<tr>
+<td><code>/grafana</code></td>
+<td>Metrics Visualization</td>
+</tr>
+<tr>
+<td><code>/argocd</code></td>
+<td>GitOps Dashboard</td>
+</tr>
+<tr>
+<td><code>/opensearch</code></td>
+<td>Log Analytics Interface</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ssltls-management">SSL/TLS Management</h3>
+<p>SSL certificates are managed automatically through Let's Encrypt on Traefik, with persistent storage for certificate data using StatefulSets and persistent volumes.</p>
+<h2 id="database-architecture-and-management">Database Architecture and Management</h2>
+<p>PRISM AI uses a database-per-service pattern with PostgreSQL. This approach ensures services are isolated and have autonomy.</p>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auth</code></td>
+<td>Authentication and authorization data</td>
+</tr>
+<tr>
+<td><code>users</code></td>
+<td>User profiles and preferences</td>
+</tr>
+<tr>
+<td><code>spicedb</code></td>
+<td>Authorization policy engine (SpiceDB)</td>
+</tr>
+<tr>
+<td><code>computations</code></td>
+<td>AI workload metadata</td>
+</tr>
+<tr>
+<td><code>backends</code></td>
+<td>Infrastructure provider configurations</td>
+</tr>
+<tr>
+<td><code>billing</code></td>
+<td>Financial and subscription data</td>
+</tr>
+<tr>
+<td><code>domains</code></td>
+<td>Domain management</td>
+</tr>
+</tbody>
+</table>
+<p>Each database instance is configured with:</p>
+<ul>
+<li>Resource limits and requests for optimal performance</li>
+<li>Persistent storage for data durability</li>
+<li>Separate secrets management for security isolation</li>
+</ul>
+<h2 id="observability-comprehensive-monitoring-and-logging">Observability: Comprehensive Monitoring and Logging</h2>
+<p>For enterprise-level observability, PRISM AI uses the Kube Prometheus Stack.</p>
+<h3 id="components">Components</h3>
+<ul>
+<li><strong>Prometheus</strong>: Metrics collection and alerting</li>
+<li><strong>Grafana</strong>: Visualization and dashboards</li>
+<li><strong>AlertManager</strong>: Notification routing and management</li>
+<li><strong>Node Exporter</strong>: Infrastructure metrics</li>
+<li><strong>Kube State Metrics</strong>: Kubernetes cluster metrics</li>
+</ul>
+<h3 id="custom-dashboards">Custom Dashboards</h3>
+<p>There are pre-configured dashboards for each service, which provide deeper and custom insights in addition to the default dashboards that are provided out of the box by Grafana. These dashboards are defined in JSON files and imported into Grafana on service creation via ConfigMaps:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>{{- range $path, $content := .Files.Glob &#34;files/dashboards/*.json&#34; }}
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">apiVersion</span>: v1
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">kind</span>: ConfigMap
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">name</span>: {{ $.Release.Name }}-dashboard-{{ base $path | trimSuffix &#34;.json&#34; }}
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">namespace</span>: {{ $.Release.Namespace }}
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">labels</span>:
+</span></span><span style="display:flex;"><span>    <span style="font-weight:bold">grafana_dashboard</span>: <span style="color:#0ff;font-weight:bold">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">data</span>:
+</span></span><span style="display:flex;"><span>  {{ <span style="font-weight:bold">base $path }}</span>: |-
+</span></span><span style="display:flex;"><span>{{ ($content| toString) | indent 4 }}
+</span></span><span style="display:flex;"><span>{{- end }}
+</span></span></code></pre><h3 id="centralized-logging-with-opensearch">Centralized Logging with OpenSearch</h3>
+<p>PRISM makes use of:</p>
+<ul>
+<li><strong>Fluent Bit</strong> for log collection and forwarding</li>
+<li><strong>OpenSearch</strong> for log storage and indexing</li>
+<li><strong>OpenSearch Dashboards</strong> for log visualization and analysis</li>
+</ul>
+<p>A snippet of the log processing pipeline:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="font-weight:bold">fluent-bit</span>:
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">inputs</span>: |<span style="color:#0ff;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    [INPUT]
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">        Name: tail
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">        Path: /var/log/containers/*.log
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">        Parser: cri</span>    
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">outputs</span>: |<span style="color:#0ff;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    [OUTPUT]
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">        Name: opensearch
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">        Host: opensearch-cluster-master
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">        Index: prism-logs</span>    
+</span></span></code></pre><h2 id="security">Security</h2>
+<h3 id="secret-management">Secret Management</h3>
+<p>A multi-layered secret management approach is used:</p>
+<p><strong>Development/Staging:</strong></p>
+<ul>
+<li>Kubernetes secrets for sensitive configuration</li>
+<li>Base64 encoded values with RBAC controls</li>
+</ul>
+<p><strong>Production:</strong></p>
+<ul>
+<li>External Secrets Operator integration with cloud secret managers</li>
+<li>GCP Secret Manager integration for enterprise environments</li>
+<li>Automatic secret rotation capabilities</li>
+</ul>
+<h3 id="network-security">Network Security</h3>
+<p><strong>Network Policies:</strong>
+Kubernetes network policies restrict inter-service communication, implementing zero-trust networking principles.</p>
+<p><strong>Authentication &amp; Authorization:</strong></p>
+<ul>
+<li>JWT-based authentication with configurable token lifespans</li>
+<li>SpiceDB for fine-grained authorization policies</li>
+</ul>
+<h3 id="container-security">Container Security</h3>
+<p>The following measures have been applied:</p>
+<ul>
+<li>Private container registries with pull secrets</li>
+<li>Non-root container execution</li>
+<li>Resource limits to prevent resource exhaustion attacks</li>
+<li>Regular security scanning through CI/CD pipelines</li>
+</ul>
+<h2 id="data-persistence-and-backup-strategy">Data Persistence and Backup Strategy</h2>
+<h3 id="backup-with-velero">Backup with Velero</h3>
+<p>To ensure resilience and availability of user data whenever an incident occurs, PRISM AI uses Velero for disaster recovery. Backups are done regularly.</p>
+<p>The following have been configured:</p>
+<ul>
+<li>Kubernetes object backup to DigitalOcean Spaces</li>
+<li>Persistent volume snapshots</li>
+<li>Scheduled backups with configurable retention</li>
+</ul>
+<h2 id="cicd-pipeline-architecture">CI/CD Pipeline Architecture</h2>
+<h3 id="multi-environment">Multi-Environment</h3>
+<p>The CI/CD pipeline supports multiple environments with different promotion strategies.</p>
+<p><strong>Branching Strategy:</strong></p>
+<ul>
+<li><code>main</code> branch: Staging environment (latest image tags)</li>
+<li><code>production</code> branch: Production environment (semantic versioning)</li>
+</ul>
+<p><strong>Automated Testing:</strong></p>
+<ul>
+<li>Unit tests in source repositories run on GitHub Actions</li>
+<li>UI tests with Playwright and load tests with Artillery before production promotion</li>
+<li>Manual QA tests before promotion to production</li>
+</ul>
+<h3 id="container-build-and-distribution">Container Build and Distribution</h3>
+<p>The container build and distribution process is automated through GitHub Actions and takes place in the following sequence:</p>
+<ol>
+<li>Code commit triggers GitHub Actions</li>
+<li>Docker images built and tested</li>
+<li>Images pushed to GHCR</li>
+<li>Helm repository is updated with new image references</li>
+<li>ArgoCD detects changes and syncs to cluster</li>
+</ol>
+<h2 id="deployment-environments-and-configuration-management">Deployment Environments and Configuration Management</h2>
+<h3 id="environment-specific-configurations">Environment-Specific Configurations</h3>
+<p>The platform supports multiple deployment environments through Helm values files:</p>
+<ul>
+<li><strong>staging.yaml</strong>: Development and testing configurations</li>
+<li><strong>production.yaml</strong>: Production-ready configuration with enhanced security</li>
+</ul>
+<p>Major key differences between the files:</p>
+<ul>
+<li>Resource allocations scaled for production workloads</li>
+<li>Enhanced security configurations</li>
+<li>External secret management enabled for production</li>
+</ul>
+<p><strong>Best practices from the environment configurations:</strong></p>
+<ul>
+<li>Sensitive data is not stored in Git</li>
+<li>Environment variables are configured through environment-specific values</li>
+<li>Helm template validation and linting in CI/CD</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>There are many lessons that can be drawn from the PRISM AI architecture, CI/CD, and DevOps practices, especially when it comes to cost optimization without compromising on excellence and security. The platform makes good use of open-source production-ready tools. It also utilizes DigitalOcean primarily, which is more affordable than other cloud providers.</p>
+<h3 id="scalability-considerations">Scalability Considerations</h3>
+<ul>
+<li><strong>Service Decomposition</strong>: Clear service boundaries enable independent scaling</li>
+<li><strong>Database Strategy</strong>: Database-per-service prevents bottlenecks</li>
+<li><strong>Async Communication</strong>: Event-driven architecture improves resilience</li>
+</ul>
+<h3 id="operational-excellence">Operational Excellence</h3>
+<ul>
+<li><strong>Observability First</strong>: Comprehensive monitoring from day one</li>
+<li><strong>GitOps Adoption</strong>: Declarative infrastructure management</li>
+<li><strong>Automated Testing</strong>: Continuous validation of deployments</li>
+<li><strong>Disaster Recovery</strong>: Regular backup testing and restoration procedures</li>
+</ul>
+<h3 id="security-implementation">Security Implementation</h3>
+<ul>
+<li><strong>Zero Trust Networking</strong>: Network policies restrict communication</li>
+<li><strong>Least Privilege Access</strong>: RBAC controls limit access scope</li>
+<li><strong>Secret Rotation</strong>: Automated secret management and rotation</li>
+<li><strong>Container Security</strong>: Private registries and security scanning</li>
+</ul>
+<h3 id="areas-for-future-improvement">Areas for Future Improvement</h3>
+<ul>
+<li><strong>Service Mesh Integration</strong>: Istio or Linkerd for advanced traffic management</li>
+<li><strong>Chaos Engineering</strong>: Automated failure testing with Chaos Monkey</li>
+<li><strong>Cost Optimization</strong>: Advanced resource scheduling and spot instance usage</li>
+<li><strong>Multi-Cloud Deployment</strong>: Cross-cloud redundancy and disaster recovery</li>
+<li><strong>Kubernetes Operators</strong>: Custom operators for application lifecycle management</li>
+<li><strong>Advanced Scheduling</strong>: Topology-aware scheduling and resource optimization</li>
+</ul>
+</div>
+
+        <div class="mt-5 pt-4 border-top">
+          
+          <div>
+            <a href="/blog" class="btn btn-outline-secondary"><i class="fas fa-arrow-left me-2"></i>Back to
+              Blog</a>
+          </div>
+          <h5 class="mb-3 mt-3">Tags</h5>
+          <div>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">prism-ai</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">kubernetes</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">gitops</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">devops</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">cloud-native</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">argocd</span>
+            
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <h5 class="mb-3">Share this article</h5>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="https://twitter.com/intent/tweet?text=PRISM&#43;AI%3A&#43;Architecting&#43;a&#43;Cost-Effective&#43;Cloud-Native&#43;AI&#43;Platform&#43;with&#43;Kubernetes&#43;and&#43;GitOps&url=https%3a%2f%2fwww.ultraviolet.rs/blog/prism-ai-kubernetes-architecture"
+              target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+              <i class="fab fa-twitter me-2"></i>Twitter
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/prism-ai-kubernetes-architecture"
+              target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+              <i class="fab fa-linkedin me-2"></i>LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  
+  <section id="newsletter" class="py-5">
+    <div class="container">
+      <div class="row mt-5 mb-5">
+        <div class="col-md-6 offset-md-3 text-center">
+          <h2>Subscribe to Our Newsletter</h2>
+          <p>Stay updated with the latest news, updates and announcements.</p>
+
+          
+          <form
+            action="https://absmach.us11.list-manage.com/subscribe/post?u=70b43c7181d005024187bfb31&amp;id=0a319b6b63&amp;f_id=002711e1f0"
+            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+            target="_blank">
+            <div class="input-group">
+              <input type="email" class="form-control" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email"
+                aria-label="Email" aria-describedby="subscribe-btn" required="" />
+              <div hidden="">
+                <input type="hidden" name="tags" value="8115258" />
+              </div>
+              <button class="btn bg-deep-blue" type="submit" id="subscribe-btn"
+                style="background-color: #073763; color: white;">
+                Subscribe
+              </button>
+            </div>
+            <div id="mce-responses" class="clear foot">
+              <div class="response" id="mce-error-response" style="display: none"></div>
+              <div class="response" id="mce-success-response" style="display: none"></div>
+            </div>
+            <div style="position: absolute; left: -5000px" aria-hidden="true">
+              
+              <input type="text" name="b_70b43c7181d005024187bfb31_0a319b6b63" tabindex="-1" value="" />
+            </div>
+
+            
+            <div class="mt-2">
+              <div class="mt-2">
+                <p class="mb-0" style="font-size: 0.75rem; color: #6c757d; line-height: 1.4">
+                  By subscribing, you agree to our
+                  <a href="/privacy" target="_blank" class="link-blue-sm">Privacy Policy</a>
+                  and
+                  <a href="/terms" target="_blank" class="link-blue-sm">Terms of Service</a>. <br />You can unsubscribe
+                  at any time.
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  
+  
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h3 class="mb-4 fw-bold">Next Read</h3>
+      <div class="row g-4">
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/cocos-prism-release" class="text-decoration-none text-dark">
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  Unleashing Confidential AI: Cocos v0.8.0 and Prism v0.6.0 Released
+                </h2>
+                <p class="card-text text-muted small">
+                  Ultraviolet releases Cocos AI v0.8.0 and Prism v0.6.0, enhancing the confidential computing ecosystem. These updates bring improved attestation, stronger security, and a better enterprise experience.
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      sammy oina
+                    </div>
+                    <div class="text-muted">
+                      February 06, 2026 · 4 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">ai</span>
+                  
+                  <span class="badge bg-light text-dark me-1">cocos</span>
+                  
+                  <span class="badge bg-light text-dark me-1">prism</span>
+                  
+                  <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/prism-ai-access-control" class="text-decoration-none text-dark">
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  PRISM AI: Understanding Privacy-Preserving Access Control
+                </h2>
+                <p class="card-text text-muted small">
+                  
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/41241359?v=4" alt="Jilks Smith"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      Jilks Smith
+                    </div>
+                    <div class="text-muted">
+                      February 10, 2026 · 5 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">prism-ai</span>
+                  
+                  <span class="badge bg-light text-dark me-1">access-control</span>
+                  
+                  <span class="badge bg-light text-dark me-1">rbac</span>
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">security</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/privacy-paradox-confidential-computing" class="text-decoration-none text-dark">
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  The Privacy Paradox: Why AI Teams Should Care About Confidential Computing
+                </h2>
+                <p class="card-text text-muted small">
+                  
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/41241359?v=4" alt="Jilks Smith"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      Jilks Smith
+                    </div>
+                    <div class="text-muted">
+                      February 02, 2026 · 8 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">ai-security</span>
+                  
+                  <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                  <span class="badge bg-light text-dark me-1">tee</span>
+                  
+                  <span class="badge bg-light text-dark me-1">enterprise-ai</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  
+  <footer class="bg-dark text-white py-3">
+    <div class="container">
+      <div class="row mt-3 mb-2">
+        <div class="col">
+          <h3>About Us</h3>
+          <p class="w-65">
+            Ultraviolet is a leading company specializing in confidential
+            computing, cloud security, AI/ML, multi-party computation, and
+            secure data sharing.
+          </p>
+        </div>
+
+        <div class="col">
+          <h3>Products</h3>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fas fa-network-wired me-2"></i><a href="prism/" class="text-white">Prism AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cog me-2"></i><a href="cocos/" class="text-white">Cocos AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cube"></i>
+              <a href="cube/" class="text-white">Cube AI</a>
+            </li>
+          </ul>
+          <h3>Resources</h3>
+          <ul class="list-unstyled">
+            <li>
+              <a href="https://docs.google.com/presentation/d/199CkKD4YpgfJ1CLWVyZ9TdmXLLvME7JHN4Kfjkbgmho/export/pdf"
+                class="text-white">
+                Prism AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1oZDjQjuzNR8PeI1AHS8tePaiA73SmjnjrFFEBoS6b68/export/pdf"
+                class="text-white">
+                Cocos AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1UJR6HKiBV3r56SyMNZvO3ylek8VFmNojbFkTC-bawBY/export/pdf"
+                class="text-white">
+                Cube AI Datasheet
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Legal</h3>
+          <ul class="list-unstyled">
+            Prism AI
+            <li>
+              <a href="/prism/terms" class="text-white"> Terms of Service</a>
+            </li>
+            <li>
+              <a href="/prism/privacy" class="text-white"> Privacy Policy</a>
+            </li>
+            <br />
+            Cube AI
+            <li>
+              <a href="/cube/terms" class="text-white">Terms of Service</a>
+            </li>
+            <li>
+              <a href="/cube/privacy" class="text-white">Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Connect With Us</h3>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fab fa-twitter me-2"></i><a href="https://twitter.com/ultravioletrs" class="text-white"
+                target="_blank">Twitter</a>
+            </li>
+            <li>
+              <i class="fab fa-linkedin me-2"></i><a href="https://www.linkedin.com/company/ultravioletrs"
+                class="text-white" target="_blank">LinkedIn</a>
+            </li>
+            <li>
+
+            <li>
+              <i class="fab fa-github me-2"></i><a href="https://github.com/ultravioletrs" class="text-white"
+                target="_blank">GitHub</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Contact Us</h3>
+          <p>
+            <i class="fas fa-envelope me-2"></i><a href="mailto:info@ultraviolet.rs"
+              class="text-white">info@ultraviolet.rs</a>
+          </p>
+          <p>
+            <i class="fab fa-gitter me-2"></i><a href="https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im"
+              class="text-white" target="_blank">Chat on Gitter</a>
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt me-2"></i>Bulevar Arsenija
+            Carnojevica 103, 11000 Belgrade, Serbia
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CH54M1Z8DY"></script>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+    function getCookie(name) {
+      var b = document.cookie.match(
+        "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)",
+      );
+      return b ? b.pop() : "";
+    }
+
+    function addAnalytics() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-CH54M1Z8DY");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      const cookieConsent = getCookie("cookieconsent_status");
+
+      
+      if (cookieConsent === "allow" || cookieConsent === "") {
+        addAnalytics();
+      }
+
+      if (typeof window.cookieconsent !== "undefined") {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: { background: "#000" },
+            button: { background: "#f1d600" },
+          },
+          revokable: true,
+          law: {
+            regionalLaw: {
+              EU: true, 
+              UK: true, 
+            },
+          },
+          location: true, 
+          type: "opt-out",
+          content: {
+            message:
+              "🍪 We use cookies to collect data to improve your experience on our site.",
+            allow: "Allow",
+            dismiss: "Allow",
+            deny: "Reject",
+          },
+          onStatusChange: function (status, chosenBefore) {
+            location.reload();
+          },
+        });
+      } else {
+        console.error("Cookie consent script not loaded.");
+      }
+    });
+  </script>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', async () => {
+      
+      if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: false, theme: 'default', logLevel: 'debug' });
+      }
+
+      
+      const markdownContent = document.querySelector('.markdown-content');
+      if (markdownContent) {
+        const pres = markdownContent.querySelectorAll('pre');
+
+        pres.forEach(pre => {
+          const code = pre.querySelector('code');
+          if (code && code.className.includes('language-mermaid')) {
+            const mermaidDiv = document.createElement('div');
+            mermaidDiv.className = 'mermaid';
+            mermaidDiv.textContent = code.textContent;
+            pre.replaceWith(mermaidDiv);
+          }
+        });
+      }
+
+      
+      if (typeof mermaid !== 'undefined') {
+        try {
+          await mermaid.run();
+        } catch (e) {
+          console.error('Mermaid rendering error:', e);
+        }
+      }
+
+      hljs.highlightAll();
+
+      const pres = document.querySelectorAll('.markdown-content pre');
+
+      pres.forEach(pre => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        const btn = document.createElement('button');
+        btn.className = 'copy-button';
+        btn.type = 'button';
+        btn.innerHTML = '<i class="far fa-copy"></i>';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
+        btn.title = 'Copy code';
+
+        wrapper.appendChild(btn);
+      });
+    });
+
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.copy-button');
+      if (!btn) return;
+
+      const pre = btn.parentElement.querySelector('pre');
+      const code = pre.querySelector('code') || pre;
+      const text = code.textContent;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+        }
+
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        btn.classList.add('copied');
+        btn.title = 'Copied!';
+
+        setTimeout(() => {
+          btn.innerHTML = '<i class="far fa-copy"></i>';
+          btn.classList.remove('copied');
+          btn.title = 'Copy code';
+        }, 2000);
+
+      } catch (err) {
+        console.error('Copy failed', err);
+        btn.innerHTML = '<i class="fas fa-times"></i>';
+        setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i>', 2000);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
