@@ -76,7 +76,8 @@
       max-width: 100%;
       height: auto;
       border-radius: 8px;
-      margin: 1.5rem 0;
+      margin: 1.5rem auto;
+      display: block;
     }
 
     .markdown-content h2,
@@ -384,25 +385,24 @@
 <li><strong>Key Release</strong>: If verification succeeds, decryption keys are released to the workload</li>
 </ol>
 <p>This ensures keys are never released unless the environment is proven secure and untampered. If malware is injected, the hash changes, verification fails, and keys remain locked.</p>
-<h2 id="real-world-roi-case-studies">Real-World ROI: Case Studies</h2>
-<h3 id="beekeeperai-healthcare-research-platform">BeeKeeperAI: Healthcare Research Platform</h3>
-<p><strong>Challenge</strong>: Developing clinical AI requires diverse patient data, but privacy regulations create massive friction. Traditional de-identification is costly, slow, and reduces data fidelity.</p>
-<p><strong>Solution</strong>: BeeKeeperAI's &quot;EscrowAI&quot; platform uses Azure Confidential Computing (Intel SGX). Hospitals encrypt data and upload to secure enclaves. Algorithm developers upload models to the same enclave. Models execute against data inside the TEE—developers receive performance reports but never see raw data.</p>
-<p><strong>Impact</strong>:</p>
+<h2 id="industry-applications">Industry Applications</h2>
+<h3 id="healthcare-clinical-ai-development">Healthcare: Clinical AI Development</h3>
+<p><strong>Challenge</strong>: Developing clinical AI requires diverse patient data, but privacy regulations create friction. Traditional de-identification is costly, slow, and reduces data fidelity.</p>
+<p><strong>How Confidential Computing Helps</strong>: Secure enclaves enable a data escrow model where hospitals encrypt data and upload to TEEs. Algorithm developers upload models to the same enclave. Models execute against data inside the TEE—developers receive performance reports but never access raw data.</p>
+<p><strong>Potential Benefits</strong>:</p>
 <ul>
-<li><strong>Time-to-Insight</strong>: Reduced from 12-24 months to days</li>
-<li><strong>Cost Savings</strong>: Eliminated expensive synthetic data purchases and legal fees</li>
-<li><strong>Innovation</strong>: Enabled validation on rare disease datasets previously inaccessible due to privacy fragmentation</li>
+<li>Reduced time-to-insight from months to days</li>
+<li>Lower costs by avoiding synthetic data purchases and extensive legal review</li>
+<li>Access to rare disease datasets previously inaccessible due to privacy fragmentation</li>
 </ul>
-<h3 id="consilient-federated-aml-for-financial-services">Consilient: Federated AML for Financial Services</h3>
-<p><strong>Challenge</strong>: Anti-Money Laundering efforts are hampered by information silos. Banks only see transactions within their walls. Criminals exploit this by moving funds across institutions. Traditional systems generate &gt;90% false positives.</p>
-<p><strong>Solution</strong>: Consilient's &quot;DOZER&quot; uses Federated Learning in Intel SGX enclaves. Models move to banks' secure environments, learn from local data without data leaving custody, then aggregate to form smarter global detectors.</p>
-<p><strong>Impact</strong>:</p>
+<h3 id="financial-services-anti-money-laundering">Financial Services: Anti-Money Laundering</h3>
+<p><strong>Challenge</strong>: AML efforts are hampered by information silos. Banks only see transactions within their walls. Criminals exploit this by moving funds across institutions. Traditional systems generate high false positive rates (often exceeding 90%).</p>
+<p><strong>How Confidential Computing Helps</strong>: Federated Learning in secure enclaves allows models to move to banks' secure environments, learn from local data without data leaving custody, then aggregate to form more accurate global detectors.</p>
+<p><strong>Potential Benefits</strong>:</p>
 <ul>
-<li><strong>False Positive Reduction</strong>: Achieved 12% false positive rate (87% reduction from 90% industry standard)</li>
-<li><strong>Effectiveness</strong>: AUC-ROC score of 0.90 (17% improvement over single-institution models)</li>
-<li><strong>Efficiency</strong>: 75% efficiency improvement for one Tier-1 US bank</li>
-<li><strong>Discovery</strong>: Identified previously undetected money laundering network</li>
+<li>Significant reduction in false positive rates</li>
+<li>Improved detection accuracy across institutions</li>
+<li>Ability to identify cross-institutional money laundering patterns</li>
 </ul>
 <h2 id="implementation-strategies">Implementation Strategies</h2>
 <h3 id="confidential-vms-cvms">Confidential VMs (CVMs)</h3>
@@ -533,6 +533,58 @@
         
         <div class="col-md-6 col-lg-4">
           <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/cocos-prism-release" class="text-decoration-none text-dark">
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  Unleashing Confidential AI: Cocos v0.8.0 and Prism v0.6.0 Released
+                </h2>
+                <p class="card-text text-muted small">
+                  Ultraviolet releases Cocos AI v0.8.0 and Prism v0.6.0, enhancing the confidential computing ecosystem. These updates bring improved attestation, stronger security, and a better enterprise experience.
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      sammy oina
+                    </div>
+                    <div class="text-muted">
+                      February 06, 2026 · 4 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">ai</span>
+                  
+                  <span class="badge bg-light text-dark me-1">cocos</span>
+                  
+                  <span class="badge bg-light text-dark me-1">prism</span>
+                  
+                  <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
             <a href="/blog/confidential-computing-meets-ai" class="text-decoration-none text-dark">
               
 
@@ -548,7 +600,7 @@
                   Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts
                 </h2>
                 <p class="card-text text-muted small">
-                  
+                  Cube AI leverages confidential computing and TEEs to protect your sensitive AI workloads. Ensure your prompts remain private with hardware-verified security.
                 </p>
 
                 <div class="d-flex align-items-center mt-3">
@@ -778,7 +830,7 @@
       const markdownContent = document.querySelector('.markdown-content');
       if (markdownContent) {
         const pres = markdownContent.querySelectorAll('pre');
-        
+
         pres.forEach(pre => {
           const code = pre.querySelector('code');
           if (code && code.className.includes('language-mermaid')) {
