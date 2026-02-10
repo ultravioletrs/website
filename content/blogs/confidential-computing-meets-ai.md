@@ -7,8 +7,10 @@ author:
   name: "sammy oina"
   picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
 tags: [security, confidential-computing, ai, privacy, "cube ai"]
-image: /img/confidential-computing-cover.png
-ogImage: /img/confidential-computing-cover.png
+image: /img/confidential-computing-meets-ai/confidential-computing-cover.png
+coverImage: /img/confidential-computing-meets-ai/confidential-computing-cover.png
+ogImage:
+  url: /img/confidential-computing-meets-ai/confidential-computing-cover.png
 date: 2026-01-30
 ---
 
