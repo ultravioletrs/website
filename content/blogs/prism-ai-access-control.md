@@ -40,7 +40,9 @@ control system that is both secure and flexible. You need to ensure that:
 PRISM AI addresses these challenges through a hierarchical, role-based access control (RBAC) system that operates at two
 distinct levels: **Workspaces** and **Computations**.
 
-Let's examine the components of PRISM AI to understand better the access control policies it implements.
+Let's examine the components of PRISM AI to better understand the access control policies implemented.
+
+![PRISM AI Architecture](/img/prism-access-control/architecture.png)
 
 ## Workspaces: Organizational Boundaries
 
@@ -128,6 +130,8 @@ operations:
    supplied when creating the asset definition on the platform. Users do not upload asset files on the platform UI;
    rather, they are uploaded directly into the Confidential Virtual Machine that will be running the workloads.
 3. **The IP address of the Confidential Virtual Machine** — This can be viewed on the platform.
+
+![PRISM AI CLI](/img/prism-access-control/cli.png)
 
 ## Why This Architecture Works
 
