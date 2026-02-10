@@ -9,7 +9,9 @@ author:
 tags: [confidential-computing, ai, cocos, prism, privacy]
 date: 2026-02-06
 image: /img/prism-cocos.png
-ogImage: /img/prism-cocos.png
+coverImage: /img/prism-cocos.png
+ogImage:
+  url: /img/prism-cocos.png
 featured: true
 ---
 
