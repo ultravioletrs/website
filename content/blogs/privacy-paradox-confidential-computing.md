@@ -1,14 +1,17 @@
 ---
 slug: privacy-paradox-confidential-computing
 title: "The Privacy Paradox: Why AI Teams Should Care About Confidential Computing"
-excerpt: ""
+excerpt: "AI teams face a growing privacy paradox: they must process highly sensitive data at cloud scale while traditional architectures leave data in use exposed. This post explains how confidential computing and TEEs close that gap for enterprise AI workloads."
 description: "Discover why AI teams need Confidential Computing to protect sensitive data during processing. Learn about TEEs, real-world breaches, and implementation strategies."
 author:
   name: "Jilks Smith"
   picture: "https://avatars.githubusercontent.com/u/41241359?v=4"
 tags: [confidential-computing, ai-security, privacy, tee, enterprise-ai]
-image: /img/privacy-paradox.png
-date: 2026-02-02
+image: /img/privacy-paradox/privacy-paradox.jpg
+coverImage: /img/privacy-paradox/privacy-paradox.jpg
+ogImage:
+  url: /img/privacy-paradox/privacy-paradox.jpg
+category: blog
 ---
 
 ![Privacy Paradox](/img/privacy-paradox/privacy-paradox.jpg)
