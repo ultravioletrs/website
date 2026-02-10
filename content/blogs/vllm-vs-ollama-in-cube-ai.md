@@ -5,6 +5,8 @@ author:
   name: "Washington Kamadi"
   picture: "https://avatars.githubusercontent.com/u/43080232?v=4&size=64"
 tags: [architecture, devops, inference, vllm, ollama, "cube ai"]
+excerpt: "Compare vLLM and Ollama as pluggable LLM backends in Cube AI, and learn how to choose the right engine for your latency, throughput, cost, and deployment requirements."
+description: "This post explains how Cube AI lets you swap between vLLM and Ollama as LLM backends using a single configuration flag, and walks through the trade-offs in performance, scalability, and deployment so you can pick the best inference engine for your use case."
 image: /img/vllm-vs-ollama-in-cube-ai/vllm_vs_ollama_cover.png
 date: 2026-02-06
 ---
