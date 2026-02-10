@@ -1,4 +1,7 @@
 {
-  "content/blogs/cocos-prism-release.md": "3841b39e8411e13b0d618bcffe9d7815",
-  "content/blogs/confidential-computing-meets-ai.md": "17261c4020c7f2f5d6a3da6f6272926b"
+  "content/blogs/cocos-prism-release.md": "8a45148d84030b5b5bcd47f5088cfd41",
+  "content/blogs/confidential-computing-meets-ai.md": "6997a319608301ea40d5ee467d954910",
+  "content/blogs/prism-ai-access-control.md": "64e64b51eed783a0f20f39dd949b502b",
+  "content/blogs/prism-ai-kubernetes-architecture.md": "fbe3d76f6bd99447c9fd7465df3487f0",
+  "content/blogs/privacy-paradox-confidential-computing.md": "9a724199150814e0fdb3b1f4e0106ada"
 }
