@@ -5,22 +5,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet</title>
-  <meta name="title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts - Ultraviolet" />
+  <title>From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises - Ultraviolet</title>
+  <meta name="title" content="From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises - Ultraviolet" />
   <meta name="description" content="" />
 
-  <link rel="canonical" href="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai/" />
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/from-data-liability-to-data-assets/" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Ultraviolet" />
-  <meta property="og:url" content="https://www.ultraviolet.rs/blog/confidential-computing-meets-ai" />
-  <meta property="og:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/from-data-liability-to-data-assets" />
+  <meta property="og:title" content="From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises" />
   <meta property="og:description" content="" />
   <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
   
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts" />
+  <meta name="twitter:title" content="From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises" />
   <meta name="twitter:description" content="" />
   <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
@@ -30,12 +30,12 @@
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": "Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts",
+        "headline": "From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises",
         "image": "https:\/\/www.ultraviolet.rs",
-        "datePublished": "2026-01-30",
+        "datePublished": "2026-02-06",
         "author": {
           "@type": "Person",
-          "name": "sammy oina"
+          "name": "Washington Kamadi"
         },
         "description": ""
       }
@@ -290,138 +290,75 @@
           
         </div>
 
-        <h1 class="display-4 fw-bold mb-4">Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts</h1>
+        <h1 class="display-4 fw-bold mb-4">From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises</h1>
 
         <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
-          <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina" class="rounded-circle me-3" width="60" height="60"
+          <img src="https://avatars.githubusercontent.com/u/43080232?v=4&amp;size=64" alt="Washington Kamadi" class="rounded-circle me-3" width="60" height="60"
             loading="lazy" onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
           <div>
-            <div class="fw-bold fs-5">sammy oina</div>
+            <div class="fw-bold fs-5">Washington Kamadi</div>
             <div class="text-muted">
-              January 30, 2026 · 4 min read
+              February 06, 2026 · 8 min read
             </div>
           </div>
         </div>
 
         
 
-        <div class="markdown-content"><p><img src="/img/confidential-computing-meets-ai/confidential-computing-cover.png" alt="Confidential Computing for AI"></p>
-<p>In the race to adopt Large Language Models (LLMs), enterprises and developers face a critical dilemma: <strong>how to leverage the power of state-of-the-art AI without compromising the privacy of sensitive data.</strong></p>
-<p>When you send a prompt to a traditional AI provider, you are trusting them not to log, read, or train on your data. But in the world of high-stakes finance, healthcare, and proprietary R&amp;D, &quot;trust us&quot; isn't good enough. You need <strong>mathematical proof</strong> that your data is private.</p>
-<p>This is where <strong>Confidential Computing</strong> comes in.</p>
-<p>In this deep dive, we'll explore how Cube AI leverages Trusted Execution Environments (TEEs) to provide a mathematically secure enclave for your AI workloads, guaranteeing that <strong>even the cloud provider cannot see your prompts.</strong></p>
+        <div class="markdown-content"><p><img src="/img/from-data-liability-to-data-assets/from_data_liability_to_data_assets_cover.png" alt="From Data Liability to Data Assets"></p>
+<p>Data has proven to be the most valuable strategic resource for all enterprises. With vast amounts of data, insightful and strategic decisions can be made by leveraging the power of Artificial Intelligence and Machine Learning. While this has been and continues to be the case, the rise of AI has transformed the same data into a potential liability.
+Executives today face a difficult dilemna: the more sensitive and proprietary the data, the greater the potential for AI driven insights. Yet handling more sensitive and proprietary data poses a risk to the executives; potential lawsuits, regulatory barriers, data leaks, reputational damage, and competitive leakage.
+Confidential AI comes in as a solution to the greatest challenge in handling proprietary data, adding an extra layer of security when handling such data that has the capability of revolutionizing enterprises. Confidential AI allows data in action to be protected, preventing malicious and accidental exposure to parties involved in confidential computing.
+The result being that data is no longer something to worry about protecting, but an asset that can be freely and safely used to drive key decisions in industry.</p>
 <!-- raw HTML omitted -->
-<h2 id="the-hardware-trust-anchor-how-tees-work">The Hardware Trust Anchor: How TEEs Work</h2>
-<p>At the heart of Cube AI's security model are <strong>Trusted Execution Environments (TEEs)</strong>, specifically utilizing <strong>AMD SEV-SNP</strong> and <strong>Intel TDX</strong>.</p>
-<p>Traditionally, if you run a VM in the cloud, the cloud provider (the hypervisor context) has technical access to your memory. They <em>could</em>, in theory, dump the RAM and see your unencrypted data.</p>
-<p>TEEs change this equation by encrypting the virtual machine's memory <strong>at the hardware level</strong>.</p>
-<ol>
-<li>
-<p><strong>Memory Encryption</strong>: The CPU automatically encrypts data written to RAM and decrypts it only inside the CPU core. The keys are managed by a secure processor and are never exposed to the hypervisor or host OS.</p>
-<pre><code class="language-mermaid">graph TD
-    subgraph CPU [&quot;CPU Package (Trusted Boundary)&quot;]
-        Core[&quot;CPU Core&lt;br/&gt;(Data is Plaintext)&quot;]
-        ME[&quot;Memory Encryption Engine&lt;br/&gt;(AES-128/256)&quot;]
-    end
-
-    subgraph RAM [&quot;System Memory (Untrusted)&quot;]
-        EncData[&quot;Encrypted Data&lt;br/&gt;(Ciphertext)&quot;]
-    end
-
-    subgraph Host [&quot;Hypervisor / Host OS&quot;]
-        Admin[&quot;Cloud Admin / Root&quot;]
-    end
-
-    Core &lt;--&gt; ME
-    ME &lt;--&gt;|Encrypted Read/Write| EncData
-
-    Admin -.-&gt;|Attempts to Read| EncData
-    Admin -- &quot;Sees Garbage&quot; --&gt; EncData
-
-    style CPU fill:#ecfdf5,stroke:#22c55e,stroke-width:2px,color:#000
-    style RAM fill:#f8fafc,stroke:#eab308,stroke-width:2px,color:#000
-    style Host fill:#fef2f2,stroke:#ef4444,stroke-width:2px,color:#000
-</code></pre>
-</li>
-<li>
-<p><strong>Remote Attestation</strong>: This is the &quot;proof&quot; part. The hardware generates a cryptographic &quot;quote&quot;—a digital signature signed by the processor's manufacturer key. This quote serves as proof that:</p>
-<ul>
-<li>The software running is exactly what you expect (measured by a hash).</li>
-<li>The hardware protections (SEV-SNP/TDX) are active.</li>
-<li>The environment hasn't been tampered with.</li>
-</ul>
-</li>
-</ol>
-<h2 id="why-traditional-llm-apis-expose-privacy-risks">Why Traditional LLM APIs Expose Privacy Risks</h2>
-<p>When you use a standard API (like OpenAI or Anthropic), the flow usually looks like this:</p>
-<ol>
-<li>
-<p>TLS encrypts data in transit (good).</p>
-</li>
-<li>
-<p>Provider decrypts data on their server to process it (necessary).</p>
-</li>
-<li>
-<p><strong>Risk Zone</strong>: While the data is processed, it is visible in plain text in the server's memory.</p>
-<ul>
-<li><strong>Insider Threats</strong>: Rogue admins with root access could potentially inspect memory.</li>
-<li><strong>Side-Channel Attacks</strong>: Exploits like Spectre/Meltdown or purely software-based memory scrapers could exfiltrate data.</li>
-<li><strong>Data Retention</strong>: Mistakes in logging configurations could accidentally save sensitive prompts to persistent storage.</li>
-</ul>
-<pre><code class="language-mermaid">graph LR
-    User([User]) --&gt;|TLS Encrypted| Gateway[API Gateway]
-    Gateway --&gt;|Plaintext| Server[Model Server]
-
-    subgraph RAM [&quot;Server Memory (RAM)&quot;]
-        Prompt[&quot;User Prompt&lt;br/&gt;(Plaintext)&quot;]
-    end
-
-    Server -- Processing --&gt; Prompt
-
-    Hacker[Attacker / Malware] -.-&gt;|Side Channel| Prompt
-    Admin[Rogue Employee] -.-&gt;|Direct Memory Dump| Prompt
-    Logs[Log Collector] -.-&gt;|Misconfiguration| Prompt
-
-    style Prompt fill:#ef4444,stroke:#7f1d1d,color:#fff,stroke-width:2px
-    style RAM fill:#e2e8f0,stroke:#94a3b8,color:#333
-    style Hacker stroke:#ef4444,stroke-dasharray: 5 5
-</code></pre>
-</li>
-</ol>
-<p>For regulated industries, this &quot;Processing in the Clear&quot; is a major compliance hurdle.</p>
-<h2 id="cube-ai-architecture-isolation-by-design">Cube AI Architecture: Isolation by Design</h2>
-<p>Cube AI solves this by moving the <strong>entire inference process</strong> into a TEE.</p>
-<p>The LLM (Ollama or vLLM) runs inside a Confidential VM. The model weights are decrypted only inside this enclave. Your prompts are encrypted with a key that is <strong>only</strong> released to the enclave after it proves its identity via attestation.</p>
-<h3 id="the-protected-inference-flow">The Protected Inference Flow</h3>
-<p>Here is how Cube AI isolates your data:</p>
-<p><img src="/img/confidential-computing-meets-ai/protected-inference-flow.png" alt="The Protected Inference Flow"></p>
-<ol>
-<li><strong>Attestation Handshake</strong>: The connection negotiation starts with an <strong>Attested TLS (aTLS)</strong> handshake. The Attestation Agent sends its certificate along with a hardware-signed quote.</li>
-<li><strong>Proxy Verification</strong>: The Cube Proxy verifies this quote against a strict attestation policy. Unlike standard TLS which blindly trusts a Certificate Authority, the Proxy validates the <em>hardware identity</em> and <em>software integrity</em> of the Agent.</li>
-<li><strong>Secure Tunnel</strong>: Once verified, an encrypted aTLS tunnel is established between the Proxy and the Agent.</li>
-<li><strong>Inference Proxying</strong>: The User sends an encrypted prompt to the Proxy, which forwards it through the aTLS tunnel. The Agent then proxies this request to the local LLM backend (vLLM/Ollama) running inside the enclave. Use the same key.</li>
-</ol>
-<h2 id="practical-example-private-medical-diagnosis">Practical Example: Private Medical Diagnosis</h2>
-<p>Imagine a healthcare provider building an AI assistant to analyze patient records for rare disease patterns.</p>
-<ul>
-<li><strong>The Data</strong>: Highly sensitive patient history, genetic markers, and lab results.</li>
-<li><strong>The Risk</strong>: Uploading this to a public LLM violates HIPAA and GDPR.</li>
-<li><strong>The Cube AI Solution</strong>:
-<ol>
-<li>The hospital's application connects to their private Cube AI instance.</li>
-<li>It verifies the instance acts as a &quot;black box&quot; via Remote Attestation.</li>
-<li>It sends the patient data.</li>
-<li><strong>Insight</strong>: The model analyzes the data <em>in memory</em> (which is encrypted at the hardware level).</li>
-<li><strong>Result</strong>: The diagnosis is returned encrypted.</li>
-<li><strong>Aftermath</strong>: Once the request is done, the data in memory is wiped. No logs, no training, no eyes on the data.</li>
-</ol>
-</li>
-</ul>
-<h2 id="key-takeaway">Key Takeaway</h2>
-<p>Cube AI shifts the trust model from <strong>policy-based security</strong> (&quot;we promise we won't look&quot;) to <strong>technology-based security</strong> (&quot;we physically cannot look&quot;).</p>
-<p>By combining the power of open-weights models (like Llama 3, Mistral) with the hardware-grade isolation of <strong>Confidential Computing</strong>, Cube AI allows you to deploy the most powerful AI capabilities on your most sensitive data—without losing sleep over privacy.</p>
+<h2 id="the-data-liability-problem-with-public-cloud-ai">The &quot;Data Liability&quot; Problem with Public Cloud AI</h2>
+<p>The pubclic cloud AI has significantly accelerated innovation in the field of collaborative AI, but it has introduced several key structural risks that many enterprises underestimated. Traditional AI environments send data to AI workloads while relinquishing meaningful control over where the data is processed, access control, the potential of data retention or model improvement, and how the data is protected in memory during computation. Inasmuch as data at rest and in transit is protected, this data is typically decrypted during processing which creates a window of exposure to malicious attacks.
+For regulated industries such as finance, health, and other industries which handle sensitive data - this creates serious concerns, as this data has to be handled securely. Financial institutions must safeguard transaction histories and trading strategies, healthcare providers have to protect patient records, legal firms have to preserve client confidentiality, and generally all data has to be protected against leakage.
+This has led to a quite decline by companies on their AI ambitions, not for the lack of data, but for the risk of using it in public cloud AI which risks leakage.
+The very datasets that could generate a competitive advantage are kept away by valid security and compliance fears.</p>
+<h2 id="how-confidential-ai-enables-safe-data-sharing-in-ai-workloads">How Confidential AI Enables Safe Data Sharing in AI Workloads</h2>
+<p>Confidential AI changes the security model entirely by ensuring that data remains encrypted even when being processed. By leveraging hardware-backed trusted execuiton environments (TEEs), workloads are executed entirely inside isolated enclaves wheredata is decrypted only within protected memory, infrastructure operators can not inspect it, and unauthorized access is cryptographically prevented. Additionally, through attestation, processing the integrity of the hardware can be remotely verified.
+This allows enterprises to collaborate with AI providers, research partners, and even other organizations without giving up control over their data. This effectively implies that companies can train their models on sensitive datasets without exposing them, multiple parties can jointly compute insights without compromising on the privacy of their sensitive data, LLMs can be used for code completion or insights on confidential code or data.
+With this in place, and hardware that supports trusted execution enviroments (Intel's TDX, Sev SNP, etc), security shifts from a policy promise to a technical guarantee that can be validated and verified.</p>
+<h2 id="cube-ais-role-in-securing-llms-and-vllms">Cube AI's role in Securing LLMs and vLLMs</h2>
+<p>Cube AI's core competence lies in the protection of LLMs and now even vLLMs in trusted execution environments (TEEs). Cube is designed to enable enterprises to maximize the unlimited potential of LLMs in creating a competitive advantage for themselves.
+The advent of LLMs has significantly bumped up the productivity of developers, with numerous organizations mandating the use of LLMs in product development. Engineers of all kinds are now able to focus on what matters, and leave the rest of the repetitive work to be done by LLMs. Financial institutions are now employing LLMs to derive insights from financial data, medical firms relying on LLMs to perform anomaly detection in medical data - all this conventionally coming with the risk of a security brecah.
+Cube AI allows LLMs to be deployed in secure enclaves, allowing organizations to make use of LLMs for code completion and chat, all while ensuring the security of the data input. Cube currently supports Llama3.2:3b for chat and code completion, StarCoder2:3b for code completion, and Nomic Embed text:137M, with the possibility of adding custom models and vLLMs.
+All LLM activity is run inside confidential vms, running on an Intel TDX host with the hardware backed support for TEEs.</p>
+<h2 id="industries-already-benefitting-from-confidential-ai">Industries Already Benefitting from Confidential AI</h2>
+<p>While still in early adoption, several sectors are quickly moving to adopt confidential AI to leverage the merits of confidential data, and guaranteed privacy.
+Banks and financial trading firms can run risk models on highly sensitive financial data while ensuring that proprietary strategies remain confidential. This opens the door to secure AI-powered fraud and anomaly detection, insights on tailored actions to perform to increase competitive advantage, collaborative anti-money-laundering analytics, and cross-institution risk modeling without data pooling.
+Healthcare organizations possess some of the richest datasets in the world, which makes it one of the most regulated dataset. Confidential AI enables privacy-preserving clinical research, secure diagnostic model training, multi-hospital data collaboration, and pharmaceutical research without exposing patient records. Confidential AI also allows aided medical practice, allowing healthcare workers to securely infer from trained models about real patient records.
+Law and legal firms have historically been cautious about AI dur to privilege and confidentiality requirements. Confidential AI allows these firms to analyze large case corpora, automate contract intelligence and development, extract insights from sensitive documents, and to build proprietary legal copilots and AI agents. Firms that can move early can create differentiated knowledge banks which competitors can not replicate.</p>
+<h2 id="setting-yourself-apart-with-confidential-ai--proprietary-data">Setting yourself apart with Confidential AI &amp; Proprietary Data</h2>
+<p>While most AI models are becoming commoditized, access alone to these models is no longer a differentiator in industry - proprietary data and access is!
+Confidential AI allows organizations to fully leverage unique datasets that competitors cannot access, without increasing risk exposure. Having guaranteed and secure access to proprietary data allows a strategic position in industry where organizations and firms can securely use proprietary data, generate superior AI insights, improve products and decision-making, capture market share and collect more differentiated data. These, over time, widens the gap between enterprises that have proprietary data and those that lack.
+When data can be safely used and shared, completely new revenue streams emerge. The potential to unlock additional revenue sources creates a whole new space that was hardly thought of as income generating.
+Some of these include:
+Data-as-a-Service (Secure Data): Organizations can monetize datasets without transferring ownership or exposing raw data to the participating parties.
+Regulated AI Products: Vendors can deliver AI solutions tailored for compliance-heavy sectors that previouslt avoided automation, all with the guarantee of security.
+Industry Data Consortia: Competitors can contribute encrypted datasets to produce a shared intelligence that benefits all participants - the dataset providers, the model owners, and the end users.</p>
+<h2 id="vendor-selection-criteria-for-enterprise-ai-infrastructure">Vendor Selection Criteria for Enterprise AI Infrastructure</h2>
+<p>Not all &quot;secure AI&quot; platforms provide true confidentiality. Executeves should evaluate vendors carefully across several dimensions:
+Hardware-Backed security: Enterprises should be able to cryptographically confirm that workloads are running in protected environments.
+Data sovereignity controls: Critical to confidential AI is the location where computations occur and operaitonal visibility.
+Performance at Scale: Security can not come at the expence of production readiness.
+Integration Flexibility: The platforms should not limit the users on which models to use or not to use, and what platforms to integrate with.
+Remotely verifiable attestation: For secure AI, attestation must be verified remotely with proper attestation reports and audits to give insights on the hardware where the models are running.</p>
+<p>Cube AI confidently provides all of these.</p>
 <hr>
-<p><em>Ready to secure your AI workloads? Check out our <a href="../docs/getting-started.md">Getting Started</a> guide or explore the <a href="../docs/attestation.md">Attestation Documentation</a>.</em></p>
+<p>Confidential AI marks a turning point in enterprise technology strategy. For the first time, organizations no longer have to choose between innovation and control - they can achieve both.
+The enterprises that will lead the next decade are not necessarily those with the most data, but those with the confidence and infrastructure to activate it securely. Proprietary data, when combined with trusted AI systems, becomes more than an operational asset - it becomes a durable competitive moat.
+The question facing executives is no longer whether to adopt AI. That future is already unfolding. The real question is whether your organization is prepared to use its most valuable data safely enough to unlock its full economic potential.
+In the shift from data liability to data asset, confidential AI is not merely a technological upgrade - it is the foundation for the next generation of intelligent, resilient, and market-leading enterprises.</p>
+<h2 id="learn-more-about-cube-ai">Learn More About Cube AI</h2>
+<p>Confidential AI is rapidly becoming foundational to enterprise infrastructure. To explore how secure AI workloads can be deployed using trusted execution environments, visit the resources below:</p>
+<ul>
+<li><a href="https://github.com/ultravioletrs/cube">Cube AI GitHub Repository</a> - Explore the open-source components, architecture, and deployment patterns.</li>
+<li><a href="https://docs.cube.ultraviolet.rs/architecture">Official Documentation</a> - Access detailed implementation guides, security architecture, and operational best practices.</li>
+<li><a href="https://docs.cube.ultraviolet.rs/getting-started">Getting Started Guide</a> - Learn how to deploy confidential AI workloads and integrate secure LLMs into your enterprise environment.</li>
+</ul>
+<p>Whether you are evaluating confidential computing or preparing for production deployment, these resources provide a practical starting point for building trusted AI systems.</p>
 </div>
 
         <div class="mt-5 pt-4 border-top">
@@ -433,13 +370,15 @@
           <h5 class="mb-3 mt-3">Tags</h5>
           <div>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">security</span>
-            
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential-computing</span>
             
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">ai</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">privacy</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">enterprise</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">security</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">data-privacy</span>
             
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">cube ai</span>
             
@@ -449,11 +388,11 @@
         <div class="mt-4">
           <h5 class="mb-3">Share this article</h5>
           <div class="d-flex gap-2 flex-wrap">
-            <a href="https://twitter.com/intent/tweet?text=Confidential&#43;Computing&#43;Meets&#43;AI%3A&#43;How&#43;Cube&#43;AI&#43;Protects&#43;Your&#43;LLM&#43;Prompts&url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://twitter.com/intent/tweet?text=From&#43;Data&#43;Liability&#43;to&#43;Data&#43;Assets%3A&#43;How&#43;Confidential&#43;AI&#43;Changes&#43;the&#43;Game&#43;for&#43;Enterprises&url=https%3a%2f%2fwww.ultraviolet.rs/blog/from-data-liability-to-data-assets"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-twitter me-2"></i>Twitter
             </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/confidential-computing-meets-ai"
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/from-data-liability-to-data-assets"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-linkedin me-2"></i>LinkedIn
             </a>
@@ -524,7 +463,7 @@
         
         <div class="col-md-6 col-lg-4">
           <article class="card h-100 shadow-sm hover-lift border-0">
-            <a href="/blog/from-data-liability-to-data-assets" class="text-decoration-none text-dark">
+            <a href="/blog/confidential-computing-meets-ai" class="text-decoration-none text-dark">
               
 
               <div class="card-body">
@@ -536,37 +475,35 @@
                 </div>
 
                 <h2 class="card-title h5 fw-bold">
-                  From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises
+                  Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts
                 </h2>
                 <p class="card-text text-muted small">
                   
                 </p>
 
                 <div class="d-flex align-items-center mt-3">
-                  <img src="https://avatars.githubusercontent.com/u/43080232?v=4&amp;size=64" alt="Washington Kamadi"
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
                     class="rounded-circle me-2" width="32" height="32" loading="lazy"
                     onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
                   <div class="small">
                     <div class="fw-semibold">
-                      Washington Kamadi
+                      sammy oina
                     </div>
                     <div class="text-muted">
-                      February 06, 2026 · 8 min
+                      January 30, 2026 · 4 min
                     </div>
                   </div>
                 </div>
 
                 <div class="mt-3">
                   
+                  <span class="badge bg-light text-dark me-1">security</span>
+                  
                   <span class="badge bg-light text-dark me-1">confidential-computing</span>
                   
                   <span class="badge bg-light text-dark me-1">ai</span>
                   
-                  <span class="badge bg-light text-dark me-1">enterprise</span>
-                  
-                  <span class="badge bg-light text-dark me-1">security</span>
-                  
-                  <span class="badge bg-light text-dark me-1">data-privacy</span>
+                  <span class="badge bg-light text-dark me-1">privacy</span>
                   
                   <span class="badge bg-light text-dark me-1">cube ai</span>
                   
