@@ -1,0 +1,239 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FeatureSection from '../../components/FeatureSection.astro';
+import Hero from '../../components/Hero.astro';
+
+const title = "Cube AI - Secure LLM & Confidential AI Platform";
+const description = "Cube AI is an open-source framework for securing Large Language Models (LLMs) with TEEs, built-in governance, and privacy-preserving AI gateways.";
+---
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <div class="pt-20">
+        <Hero 
+            title="Introducing Cube AI"
+            description="Open-source framework designed to enable the secure deployment of Large Language Models (LLMs) in privacy-sensitive applications by leveraging Confidential Computing."
+            image="/img/cube-ai.png"
+            ctaText="Contact Us"
+            ctaLink="mailto:info@ultraviolet.rs"
+        />
+    </div>
+
+    <!-- Features Grid -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-heading">Cube AI Features</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                            <i class="fas fa-lock text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-heading">Secure Data Protection</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                             Uses Trusted Execution Environments (TEEs) to protect both user data and AI models from unauthorized access.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                            <i class="fas fa-cogs text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-heading">Model Agnosticism</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Supports a range of popular open-source LLMs like Llama, Falcon, and Mistral, as well as proprietary models.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                            <i class="fas fa-users-cog text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-heading">Access Control</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Fine-grained access control with role-based or attribute-based access for sensitive workloads.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                            <i class="fas fa-tachometer-alt text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-heading">Scalable and Performant</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Designed to handle large-scale workloads and demanding AI applications while ensuring privacy.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                            <i class="fas fa-shield-alt text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-heading">End-to-End Encryption</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Ensures that all traffic is encrypted end-to-end, safeguarding sensitive data during transmission.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                            <i class="fas fa-plug text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-heading">Seamless Integration</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            User-friendly SDK and API for easy integration with existing systems and AI workflows.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                            <i class="fas fa-check-circle text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-heading">Remote Attestation</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                            Robust remote attestation mechanism ensuring the integrity of the system during execution.
+                        </p>
+                    </div>
+                </div>
+
+                 <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                            <i class="fas fa-code-branch text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-heading">Open Source</h3>
+                        <p class="mt-2 text-base text-gray-500">
+                           Open-source and released under the Apache 2.0 license, promoting transparency and collaboration.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                 <a href="https://github.com/ultravioletrs/cube" target="_blank" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 md:py-4 md:text-lg md:px-10 transition-colors">
+                    Visit Cube AI GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+             <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-heading mb-6">Cube AI Architecture</h2>
+             <p class="max-w-4xl mx-auto text-lg text-gray-500 mb-10">
+                Groundbreaking architecture focused on protecting LLMs, user prompts, and data through TEEs.
+             </p>
+             <div class="relative rounded-xl overflow-hidden shadow-2xl mb-12 bg-white p-4">
+                 <img src="/img/cube-architecture.png" alt="Cube AI Architecture" class="mx-auto w-full md:w-3/4">
+             </div>
+             
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
+                     <h4 class="font-bold text-lg mb-2">1. User Management and Access Control</h4>
+                     <p class="text-gray-600 text-sm">Robust user management features with granular access control for sensitive LLM operations.</p>
+                 </div>
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
+                     <h4 class="font-bold text-lg mb-2">2. Flexible Model Deployment</h4>
+                     <p class="text-gray-600 text-sm">Supports dynamic deployment of AI models, enabling users to upload, manage, and execute models securely.</p>
+                 </div>
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
+                     <h4 class="font-bold text-lg mb-2">3. HAL (Hardware Abstraction Layer)</h4>
+                     <p class="text-gray-600 text-sm">Seamless interaction with a variety of TEE-enabled hardware platforms like AMD SEV and Intel TDX.</p>
+                 </div>
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
+                     <h4 class="font-bold text-lg mb-2">4. Private and Public Cloud Support</h4>
+                     <p class="text-gray-600 text-sm">Designed for hybrid environments, allowing deployment in both private and public clouds.</p>
+                 </div>
+             </div>
+        </div>
+    </section>
+
+    <FeatureSection title="Deploy Any LLM" image="/img/ollama.png" imageSide="right" background="white">
+        <p>
+            Cube AI empowers organizations to deploy any Large Language Model (LLM) securely and efficiently, integrating seamlessly with leading platforms like Ollama and Hugging Face.
+        </p>
+        <p class="mt-4">
+            Protect sensitive user prompts and data by leveraging Trusted Execution Environments (TEEs), ensuring optimal performance and confidentiality.
+        </p>
+    </FeatureSection>
+
+    <FeatureSection title="AI Gateway" image="/img/ai-gateway.png" imageSide="left" background="gray">
+        <p>
+            Delivering built-in <strong>Security, Observability, and Governance</strong> to AI workloads. Powered by CubeProxy’s Policy Enforcement Point (PEP) service.
+        </p>
+        <p class="mt-4">
+            Safeguards API communications, ensuring that data flows to LLMs are handled with confidentiality and integrity.
+        </p>
+    </FeatureSection>
+
+    <!-- Use Cases -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+             <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-heading mb-12">Cube AI Use Cases</h2>
+             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                 <div class="p-4">
+                      <div class="text-primary mb-4 text-4xl"><i class="fas fa-heartbeat"></i></div>
+                      <h3 class="text-xl font-bold mb-2">Healthcare</h3>
+                      <p class="text-gray-500 text-sm">Process sensitive patient records securely and generate insights without exposing private data.</p>
+                 </div>
+                 <div class="p-4">
+                      <div class="text-primary mb-4 text-4xl"><i class="fas fa-chart-line"></i></div>
+                      <h3 class="text-xl font-bold mb-2">Finance</h3>
+                      <p class="text-gray-500 text-sm">Analyze confidential financial transactions and detect fraud with robust protections.</p>
+                 </div>
+                 <div class="p-4">
+                      <div class="text-primary mb-4 text-4xl"><i class="fas fa-headset"></i></div>
+                      <h3 class="text-xl font-bold mb-2">Customer Support</h3>
+                      <p class="text-gray-500 text-sm">Deploy intelligent chatbots capable of handling sensitive user queries privately.</p>
+                 </div>
+                 <div class="p-4">
+                      <div class="text-primary mb-4 text-4xl"><i class="fas fa-building"></i></div>
+                      <h3 class="text-xl font-bold mb-2">Enterprise AI</h3>
+                      <p class="text-gray-500 text-sm">Build proprietary AI tools and workflows with confidence, securing models and data.</p>
+                 </div>
+             </div>
+             
+             <div class="mt-12">
+                 <a href="mailto:info@ultraviolet.rs" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary-dark transition-colors">
+                    Contact Us
+                </a>
+             </div>
+        </div>
+    </section>
+
+    <Footer slot="footer" />
+</Layout>
