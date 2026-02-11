@@ -19,34 +19,38 @@ const description = "Contact Ultraviolet for inquiries about confidential comput
         />
     </div>
 
-    <section class="py-16 bg-white overflow-hidden">
+    <section class="py-16 bg-background overflow-hidden transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <!-- Get in Touch -->
                 <div>
-                    <h2 class="text-3xl font-extrabold text-gray-900 font-heading mb-6">Get In Touch</h2>
-                    <ul class="space-y-4 text-lg text-gray-600">
+                    <h2 class="text-3xl font-extrabold text-text-main font-heading mb-6">Get In Touch</h2>
+                    <ul class="space-y-4 text-lg text-text-muted">
                         <li class="flex items-center">
-                            <i class="fas fa-envelope w-8 h-8 flex items-center justify-center rounded-full bg-indigo-100 text-primary mr-4"></i>
-                            <a href="mailto:info@ultraviolet.rs" class="text-primary hover:text-indigo-800 transition-colors">info@ultraviolet.rs</a>
+                            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <a href="mailto:info@ultraviolet.rs" class="text-primary hover:text-primary-dark transition-colors">info@ultraviolet.rs</a>
                         </li>
                         <li class="flex items-center">
-                            <i class="fab fa-gitter w-8 h-8 flex items-center justify-center rounded-full bg-indigo-100 text-primary mr-4"></i>
-                            <a href="https://app.gitter.im/#/room/#Ultraviolet:mainflux.io" target="_blank" class="text-primary hover:text-indigo-800 transition-colors">Chat on Gitter</a>
+                            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary mr-4">
+                                <i class="fab fa-gitter"></i>
+                            </div>
+                            <a href="https://app.gitter.im/#/room/#Ultraviolet:mainflux.io" target="_blank" class="text-primary hover:text-primary-dark transition-colors">Chat on Gitter</a>
                         </li>
                     </ul>
 
-                    <h2 class="text-3xl font-extrabold text-gray-900 font-heading mt-12 mb-6">Follow Us</h2>
+                    <h2 class="text-3xl font-extrabold text-text-main font-heading mt-12 mb-6">Follow Us</h2>
                     <div class="flex space-x-6">
-                        <a href="https://twitter.com/ultravioletrs" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                        <a href="https://twitter.com/ultravioletrs" target="_blank" class="text-text-muted hover:text-primary transition-colors">
                             <span class="sr-only">Twitter</span>
                             <i class="fab fa-twitter fa-2x"></i>
                         </a>
-                        <a href="https://www.linkedin.com/company/ultravioletrs" target="_blank" class="text-gray-400 hover:text-blue-700 transition-colors">
+                        <a href="https://www.linkedin.com/company/ultravioletrs" target="_blank" class="text-text-muted hover:text-primary transition-colors">
                             <span class="sr-only">LinkedIn</span>
                             <i class="fab fa-linkedin fa-2x"></i>
                         </a>
-                        <a href="https://github.com/ultravioletrs" target="_blank" class="text-gray-400 hover:text-gray-900 transition-colors">
+                        <a href="https://github.com/ultravioletrs" target="_blank" class="text-text-muted hover:text-text-main transition-colors">
                             <span class="sr-only">GitHub</span>
                             <i class="fab fa-github fa-2x"></i>
                         </a>
@@ -55,16 +59,16 @@ const description = "Contact Ultraviolet for inquiries about confidential comput
 
                 <!-- Address -->
                 <div>
-                    <h2 class="text-3xl font-extrabold text-gray-900 font-heading mb-6">Our Office</h2>
-                    <div class="bg-gray-50 rounded-lg p-6 mb-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">ULTRAVIOLET</h3>
-                        <p class="text-gray-600">
+                    <h2 class="text-3xl font-extrabold text-text-main font-heading mb-6">Our Office</h2>
+                    <div class="bg-surface rounded-lg p-6 mb-6 border border-border">
+                        <h3 class="text-xl font-bold text-text-main mb-2">ULTRAVIOLET</h3>
+                        <p class="text-text-muted">
                             Bulevar Arsenija Carnojevica 103<br>
                             11000 Belgrade<br>
                             Serbia
                         </p>
                     </div>
-                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg">
+                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg border border-border">
                         <iframe 
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2268.377985058479!2d20.409364951467016!3d44.82032882973188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a709e828cd3b7%3A0x5c11252c64fcf58a!2sBulevar%20Arsenija%20Carnojevica%20103%2C%2011070%2C%20Novi%20Beograd!5e0!3m2!1sen!2srs!4v1661888661151!5m2!1sen!2srs" 
                             width="100%" 
