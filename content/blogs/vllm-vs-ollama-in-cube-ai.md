@@ -7,11 +7,11 @@ author:
 tags: [architecture, devops, inference, vllm, ollama, "cube ai"]
 excerpt: "Compare vLLM and Ollama as pluggable LLM backends in Cube AI, and learn how to choose the right engine for your latency, throughput, cost, and deployment requirements."
 description: "This post explains how Cube AI lets you swap between vLLM and Ollama as LLM backends using a single configuration flag, and walks through the trade-offs in performance, scalability, and deployment so you can pick the best inference engine for your use case."
-image: /img/vllm-vs-ollama-in-cube-ai/vllm_vs_ollama_cover.png
+coverImage: "/img/vllm-vs-ollama-in-cube-ai/vllm_vs_ollama_cover.png"
+ogImage:
+  url: "/img/vllm-vs-ollama-in-cube-ai/vllm_vs_ollama_cover.png"
 date: 2026-02-06
 ---
-
-![vLLM vs Ollama in Cube AI](/img/vllm-vs-ollama-in-cube-ai/vllm_vs_ollama_cover.png)
 
 Selecting the right Large Language Model (LLM) backend is no longer just an infrastructure decision — it directly impacts latency, throughput, operational cost, scalability, and developer velocity. The choice of inference engine determines how quickly your models respond under load, how efficiently your GPU resources are utilized, and how much operational overhead your team must absorb on an ongoing basis. Getting this decision wrong can mean over-provisioning expensive hardware for a workload that doesn't need it, or under-serving users with an engine that can't keep up with production traffic.
 
