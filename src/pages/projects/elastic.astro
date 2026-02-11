@@ -34,53 +34,53 @@ const description = "ELASTIC is an EU-funded project pioneering next-gen network
     </div>
 
     <!-- Project Overview -->
-    <section class="py-16 bg-white overflow-hidden">
+    <section class="py-16 bg-background overflow-hidden transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
                 <div>
                      <div class="mb-8">
-                        <div class="bg-[#323232] rounded-lg p-4 inline-block mb-6">
+                        <div class="bg-surface rounded-lg p-4 inline-block mb-6 border border-border">
                             <img class="h-auto w-auto max-h-20" src={project.logo} alt={`${project.title} Logo`} />
                         </div>
-                        <h2 class="text-3xl font-extrabold text-gray-900 font-heading sm:text-4xl">
+                        <h2 class="text-3xl font-extrabold text-text-main font-heading sm:text-4xl">
                             Project Description
                         </h2>
-                        <p class="mt-4 text-lg text-gray-500">
+                        <p class="mt-4 text-lg text-text-muted">
                             ELASTIC redefines service orchestration within 6G networks, integrating cutting-edge technologies like WebAssembly and Confidential Computing to optimize network functionality and security. Our project not only aims to advance the capabilities and reach of connectivity services but also ensures robust security measures across diverse infrastructures.
                         </p>
-                        <p class="mt-4 text-lg text-gray-500">
+                        <p class="mt-4 text-lg text-text-muted">
                             By combining emerging technologies such as WebAssembly, eBPF, Trusted Execution Environments (TEEs), and Federated Learning, ELASTIC optimizes latency, throughput, and cybersecurity resilience, creating a more secure, efficient, and flexible networking environment for the future.
                         </p>
                     </div>
 
-                    <div class="bg-gray-50 rounded-lg p-6 shadow-sm border border-gray-100">
+                    <div class="bg-surface rounded-lg p-6 shadow-sm border border-border">
                         <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
                              <div>
-                                <dt class="text-sm font-medium text-gray-500">Duration</dt>
-                                <dd class="mt-1 text-sm text-gray-900 font-semibold">{project.duration}</dd>
+                                <dt class="text-sm font-medium text-text-muted">Duration</dt>
+                                <dd class="mt-1 text-sm text-text-main font-semibold">{project.duration}</dd>
                             </div>
                             <div>
-                                <dt class="text-sm font-medium text-gray-500">Total Budget</dt>
-                                <dd class="mt-1 text-sm text-gray-900 font-semibold">{project.budget}</dd>
+                                <dt class="text-sm font-medium text-text-muted">Total Budget</dt>
+                                <dd class="mt-1 text-sm text-text-main font-semibold">{project.budget}</dd>
                             </div>
                            <div>
-                                <dt class="text-sm font-medium text-gray-500">Status</dt>
-                                <dd class="mt-1 text-sm text-green-600 font-semibold">{project.status}</dd>
+                                <dt class="text-sm font-medium text-text-muted">Status</dt>
+                                <dd class="mt-1 text-sm text-green-500 font-semibold">{project.status}</dd>
                             </div>
                              <div>
-                                <dt class="text-sm font-medium text-gray-500">Funding Program</dt>
-                                <dd class="mt-1 text-sm text-gray-900 font-semibold">{project.funding}</dd>
+                                <dt class="text-sm font-medium text-text-muted">Funding Program</dt>
+                                <dd class="mt-1 text-sm text-text-main font-semibold">{project.funding}</dd>
                             </div>
                              <div class="sm:col-span-2">
-                                <dt class="text-sm font-medium text-gray-500">Project Coordinator</dt>
-                                <dd class="mt-1 text-sm text-gray-900 font-semibold">{project.coordinator}</dd>
+                                <dt class="text-sm font-medium text-text-muted">Project Coordinator</dt>
+                                <dd class="mt-1 text-sm text-text-main font-semibold">{project.coordinator}</dd>
                             </div>
                         </dl>
                         <div class="mt-6 flex space-x-4">
-                            <a href={project.site} target="_blank" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark">
+                            <a href={project.site} target="_blank" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark transition-colors">
                                 Visit Project Site
                             </a>
-                             <a href={project.cordis} target="_blank" class="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+                             <a href={project.cordis} target="_blank" class="inline-flex items-center px-4 py-2 border border-border text-sm font-medium rounded-md text-text-main bg-background hover:bg-surface transition-colors">
                                 View on CORDIS
                             </a>
                         </div>
@@ -88,8 +88,8 @@ const description = "ELASTIC is an EU-funded project pioneering next-gen network
                 </div>
 
                  <div class="mt-10 lg:mt-0 relative">
-                     <div class="prose prose-indigo text-gray-500 mx-auto lg:max-w-none lg:row-start-1 lg:col-start-2">
-                        <h3>Our Involvement</h3>
+                     <div class="prose prose-indigo text-text-muted mx-auto lg:max-w-none lg:row-start-1 lg:col-start-2 dark:prose-invert">
+                        <h3 class="text-text-main font-heading">Our Involvement</h3>
                         <p>
                             We are a SME from Belgrade, Serbia, specializing in <strong>cutting-edge technologies</strong> such as cloud computing, AI/ML, multi-party computation, secure data sharing, and Trusted Execution Environments (TEEs).
                         </p>
@@ -104,76 +104,76 @@ const description = "ELASTIC is an EU-funded project pioneering next-gen network
     </section>
 
     <!-- Key Objectives & Outcomes -->
-     <section class="py-16 bg-gray-50">
+     <section class="py-16 bg-surface transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
              <div class="lg:grid lg:grid-cols-2 lg:gap-16">
                  <div class="mb-10 lg:mb-0">
-                    <h3 class="text-2xl font-bold text-gray-900 font-heading mb-4">Key Objectives</h3>
+                    <h3 class="text-2xl font-bold text-text-main font-heading mb-4">Key Objectives</h3>
                     <ul class="space-y-4">
                          <li class="flex items-start">
                             <div class="flex-shrink-0">
                                 <i class="fas fa-check-circle text-green-500 mt-1"></i>
                             </div>
-                            <p class="ml-3 text-base text-gray-500"><strong>Executable Isolation Techniques:</strong> Enhance efficiency, portability, and security in in-network cloud and edge computing by analyzing and improving executable isolation across the entire lifecycle.</p>
+                            <p class="ml-3 text-base text-text-muted"><strong>Executable Isolation Techniques:</strong> Enhance efficiency, portability, and security in in-network cloud and edge computing by analyzing and improving executable isolation across the entire lifecycle.</p>
                         </li>
                          <li class="flex items-start">
                             <div class="flex-shrink-0">
                                 <i class="fas fa-check-circle text-green-500 mt-1"></i>
                             </div>
-                            <p class="ml-3 text-base text-gray-500"><strong>6G Edge Workload Orchestration:</strong> Develop secure and efficient orchestration for edge and far-edge IoT workloads in critical 6G infrastructure.</p>
+                            <p class="ml-3 text-base text-text-muted"><strong>6G Edge Workload Orchestration:</strong> Develop secure and efficient orchestration for edge and far-edge IoT workloads in critical 6G infrastructure.</p>
                         </li>
                         <li class="flex items-start">
                             <div class="flex-shrink-0">
                                 <i class="fas fa-check-circle text-green-500 mt-1"></i>
                             </div>
-                            <p class="ml-3 text-base text-gray-500"><strong>Secure Serverless FaaS Orchestration:</strong> Design architecture-agnostic, secure serverless FaaS orchestration to support diverse artifacts and workloads.</p>
+                            <p class="ml-3 text-base text-text-muted"><strong>Secure Serverless FaaS Orchestration:</strong> Design architecture-agnostic, secure serverless FaaS orchestration to support diverse artifacts and workloads.</p>
                         </li>
                         <li class="flex items-start">
                              <div class="flex-shrink-0">
                                 <i class="fas fa-check-circle text-green-500 mt-1"></i>
                             </div>
-                             <p class="ml-3 text-base text-gray-500"><strong>6G Standardization:</strong> Support the standardization and dissemination of 6G technologies, aligning with EU supply capabilities.</p>
+                             <p class="ml-3 text-base text-text-muted"><strong>6G Standardization:</strong> Support the standardization and dissemination of 6G technologies, aligning with EU supply capabilities.</p>
                         </li>
                          <li class="flex items-start">
                              <div class="flex-shrink-0">
                                 <i class="fas fa-check-circle text-green-500 mt-1"></i>
                             </div>
-                             <p class="ml-3 text-base text-gray-500"><strong>Confidential Execution:</strong> Implement secure, architecture-agnostic execution environments using confidential computing.</p>
+                             <p class="ml-3 text-base text-text-muted"><strong>Confidential Execution:</strong> Implement secure, architecture-agnostic execution environments using confidential computing.</p>
                         </li>
                     </ul>
                 </div>
                 <div>
-                     <h3 class="text-2xl font-bold text-gray-900 font-heading mb-4">Expected Outcomes</h3>
+                     <h3 class="text-2xl font-bold text-text-main font-heading mb-4">Expected Outcomes</h3>
                      <ul class="space-y-4">
                          <li class="flex items-start">
                             <div class="flex-shrink-0">
                                 <i class="fas fa-star text-primary mt-1"></i>
                             </div>
-                            <p class="ml-3 text-base text-gray-500"><strong>Cryptographic libraries:</strong> Post-quantum libraries and SDKs for 6G.</p>
+                            <p class="ml-3 text-base text-text-muted"><strong>Cryptographic libraries:</strong> Post-quantum libraries and SDKs for 6G.</p>
                         </li>
                          <li class="flex items-start">
                             <div class="flex-shrink-0">
                                 <i class="fas fa-star text-primary mt-1"></i>
                             </div>
-                            <p class="ml-3 text-base text-gray-500"><strong>Computing framework:</strong> Confidential computing framework for cloud-edge environments.</p>
+                            <p class="ml-3 text-base text-text-muted"><strong>Computing framework:</strong> Confidential computing framework for cloud-edge environments.</p>
                         </li>
                         <li class="flex items-start">
                              <div class="flex-shrink-0">
                                 <i class="fas fa-star text-primary mt-1"></i>
                             </div>
-                            <p class="ml-3 text-base text-gray-500"><strong>Privacy protocols:</strong> Privacy-preserving protocols for heterogeneous 6G networks.</p>
+                            <p class="ml-3 text-base text-text-muted"><strong>Privacy protocols:</strong> Privacy-preserving protocols for heterogeneous 6G networks.</p>
                         </li>
                          <li class="flex items-start">
                              <div class="flex-shrink-0">
                                 <i class="fas fa-star text-primary mt-1"></i>
                             </div>
-                            <p class="ml-3 text-base text-gray-500"><strong>Security tools:</strong> Quantum-resistant security tools and artifacts.</p>
+                            <p class="ml-3 text-base text-text-muted"><strong>Security tools:</strong> Quantum-resistant security tools and artifacts.</p>
                         </li>
                          <li class="flex items-start">
                              <div class="flex-shrink-0">
                                 <i class="fas fa-star text-primary mt-1"></i>
                             </div>
-                            <p class="ml-3 text-base text-gray-500"><strong>Security standards:</strong> Enhanced security standards for future 6G deployments.</p>
+                            <p class="ml-3 text-base text-text-muted"><strong>Security standards:</strong> Enhanced security standards for future 6G deployments.</p>
                         </li>
                     </ul>
                 </div>
@@ -182,10 +182,10 @@ const description = "ELASTIC is an EU-funded project pioneering next-gen network
     </section>
 
     <!-- Partners -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-background transition-colors duration-300">
           <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-extrabold text-gray-900 font-heading mb-8">Project Partners</h2>
-             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+            <h2 class="text-3xl font-extrabold text-text-main font-heading mb-8">Project Partners</h2>
+             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center dark:invert dark:brightness-0 dark:invert-0">
                  <img src="/img/logos/TUC.png" alt="Technical university of Crete" class="h-12 mx-auto filter grayscale hover:grayscale-0 transition-all duration-300" />
                 <img src="/img/logos/ericsson.png" alt="Ericsson" class="h-12 mx-auto filter grayscale hover:grayscale-0 transition-all duration-300" />
                  <img src="/img/logos/telefonica.png" alt="Telefonica" class="h-12 mx-auto filter grayscale hover:grayscale-0 transition-all duration-300" />
@@ -201,8 +201,8 @@ const description = "ELASTIC is an EU-funded project pioneering next-gen network
         </div>
     </section>
 
-    <div class="py-12 bg-white text-center">
-         <a href="/projects" class="text-primary hover:text-primary-dark font-medium">
+    <div class="py-12 bg-background text-center transition-colors duration-300">
+         <a href="/projects" class="text-primary hover:text-primary-dark font-medium transition-colors">
             <i class="fas fa-arrow-left mr-2"></i> Back to Projects
         </a>
     </div>

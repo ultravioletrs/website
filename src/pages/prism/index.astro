@@ -24,10 +24,10 @@ const description = "Prism AI facilitates secure, collaborative AI workflows in 
     </div>
 
     <!-- Clients Section -->
-    <section class="py-12 bg-white border-b border-gray-100">
+    <section class="py-12 bg-surface border-b border-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl font-bold text-center text-gray-900 mb-8 font-heading">Our Clients and Partners</h2>
-            <div class="flex flex-wrap justify-center gap-8 items-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+            <h2 class="text-2xl font-bold text-center text-text-main mb-8 font-heading">Our Clients and Partners</h2>
+            <div class="flex flex-wrap justify-center gap-8 items-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500 dark:invert">
                  <img src="/img/logos/target.png" alt="Target" class="h-12 object-contain">
                  <img src="/img/logos/greennet.png" alt="Greennet" class="h-12 object-contain">
                  <img src="/img/logos/eu.png" alt="EU Commission" class="h-12 object-contain">
@@ -52,10 +52,10 @@ const description = "Prism AI facilitates secure, collaborative AI workflows in 
     </FeatureSection>
 
      <!-- Features Grid -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-background transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-heading">Prism AI Features</h2>
+                <h2 class="text-3xl font-extrabold text-text-main sm:text-4xl font-heading">Prism AI Features</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <!-- Add Prism Features here - abbreviating list for brevity, matching previous pattern -->
@@ -64,8 +64,8 @@ const description = "Prism AI facilitates secure, collaborative AI workflows in 
                          <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white"><i class="fas fa-cogs text-xl"></i></div>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-heading">Computation Definition and Management</h3>
-                        <p class="mt-2 text-base text-gray-500">Simplify the definition and execution of secure workloads within TEEs.</p>
+                        <h3 class="text-lg leading-6 font-medium text-text-main font-heading">Computation Definition and Management</h3>
+                        <p class="mt-2 text-base text-text-muted">Simplify the definition and execution of secure workloads within TEEs.</p>
                     </div>
                 </div>
                  <div class="flex items-start">
@@ -73,8 +73,8 @@ const description = "Prism AI facilitates secure, collaborative AI workflows in 
                          <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white"><i class="fas fa-shield-alt text-xl"></i></div>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-heading">Fine-Grained Access Control</h3>
-                        <p class="mt-2 text-base text-gray-500">Control access with ABAC or RBAC. AI algorithms and data are never uploaded to Prism AI - only to attested enclaves.</p>
+                        <h3 class="text-lg leading-6 font-medium text-text-main font-heading">Fine-Grained Access Control</h3>
+                        <p class="mt-2 text-base text-text-muted">Control access with ABAC or RBAC. AI algorithms and data are never uploaded to Prism AI - only to attested enclaves.</p>
                     </div>
                 </div>
                  <div class="flex items-start">
@@ -82,8 +82,8 @@ const description = "Prism AI facilitates secure, collaborative AI workflows in 
                          <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white"><i class="fas fa-server text-xl"></i></div>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-heading">Secure VM Provisioning</h3>
-                        <p class="mt-2 text-base text-gray-500">Excels in secure provisioning, management, and monitoring of encrypted VMs.</p>
+                        <h3 class="text-lg leading-6 font-medium text-text-main font-heading">Secure VM Provisioning</h3>
+                        <p class="mt-2 text-base text-text-muted">Excels in secure provisioning, management, and monitoring of encrypted VMs.</p>
                     </div>
                 </div>
                 <!-- ... other features ... -->
@@ -92,8 +92,8 @@ const description = "Prism AI facilitates secure, collaborative AI workflows in 
                          <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white"><i class="fas fa-plug text-xl"></i></div>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg leading-6 font-medium text-gray-900 font-heading">Bring Your Own CVM</h3>
-                        <p class="mt-2 text-base text-gray-500">Use your own Confidential VMs in addition to Prism-managed CVMs. Leverage Cocos AI for your own infrastructure.</p>
+                        <h3 class="text-lg leading-6 font-medium text-text-main font-heading">Bring Your Own CVM</h3>
+                        <p class="mt-2 text-base text-text-muted">Use your own Confidential VMs in addition to Prism-managed CVMs. Leverage Cocos AI for your own infrastructure.</p>
                     </div>
                 </div>
             </div>
@@ -101,11 +101,11 @@ const description = "Prism AI facilitates secure, collaborative AI workflows in 
     </section>
 
     <!-- Pricing Section -->
-    <section class="py-16 bg-gray-50" id="pricing">
+    <section class="py-16 bg-surface transition-colors duration-300" id="pricing">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-heading">Choose Your Plan</h2>
-                <p class="mt-4 text-xl text-gray-500">Flexible pricing plans tailored to your needs</p>
+                <h2 class="text-3xl font-extrabold text-text-main sm:text-4xl font-heading">Choose Your Plan</h2>
+                <p class="mt-4 text-xl text-text-muted">Flexible pricing plans tailored to your needs</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <PricingCard 
@@ -197,10 +197,10 @@ const description = "Prism AI facilitates secure, collaborative AI workflows in 
     </section>
 
     <!-- Architecture Section -->
-    <section class="py-16 bg-white">
+    <section class="py-16 bg-background transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-             <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-heading mb-6">Prism AI Architecture</h2>
-             <div class="relative rounded-xl overflow-hidden shadow-2xl mb-12 bg-gray-50 p-4">
+             <h2 class="text-3xl font-extrabold text-text-main sm:text-4xl font-heading mb-6">Prism AI Architecture</h2>
+             <div class="relative rounded-xl overflow-hidden shadow-2xl mb-12 bg-white p-4 dark:bg-slate-800">
                  <img src="/img/prism-architecture.png" alt="Prism AI Architecture" class="mx-auto w-full md:w-3/4">
              </div>
         </div>
