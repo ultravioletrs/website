@@ -243,21 +243,7 @@ These Ollama-native endpoints are available when Ollama is the active backend. T
 
 ### Guardrails Integration
 
-The guardrails system is built on NVIDIA's NeMo Guardrails framework and leverages a custom LLM provider called `ExtendedOllama` (defined in `guardrails/src/adapters/llm/extended_ollama.py`). This adapter extends LangChain's `ChatOllama` class with several capabilities that are essential for Cube AI's multi-tenant, security-conscious architecture:
-
-- **Dynamic header injection** — per-request authentication tokens and custom headers are read from NeMo Guardrails' `generation_options_var` context variable and merged with the base configuration headers before forwarding to the backend. This allows each request to carry its own authorization context through the proxy.
-- **Per-request model selection** — the model can be overridden on a per-request basis via the generation options, enabling scenarios where different conversations or users use different models without requiring separate guardrail instances.
-- **Option mapping** — LangChain parameters such as `temperature`, `top_p`, `max_tokens`, and others are correctly mapped to Ollama's native option format, ensuring consistent behavior regardless of how the client specifies generation parameters.
-
-The guardrails configuration in `guardrails/rails/config.yml` ties this all together:
-
-```yaml
-engine: CubeLLM
-model: llama3.2:3b
-base_url: http://cube-proxy:8900
-```
-
-The `CubeLLM` engine is registered as a custom LLM provider in the NeMo runtime (`nemo_runtime.py`), which maps it to the `ExtendedOllama` class. Sensitive data detection is handled through a combination of Presidio (for entity recognition of PII like credit cards, email addresses, and IP addresses) and spaCy (using the `en_core_web_lg` model for named entity recognition). The runtime supports atomic configuration swaps with revision tracking, meaning guardrail policies can be updated without downtime — the old configuration serves requests until the new one is fully loaded and validated.
+Cube AI includes a guardrails pipeline built on NVIDIA's NeMo Guardrails framework, providing safety policies, sensitive data detection, and content filtering for all inference traffic. The guardrails system works seamlessly with both vLLM and Ollama backends — because the guardrails sit upstream of the agent proxy, they are completely backend-agnostic. Regardless of which inference engine is active, all chat traffic passes through the same guardrails pipeline before reaching the LLM, ensuring consistent safety and compliance enforcement across backend configurations.
 
 ### HAL: Beyond Containers
 
