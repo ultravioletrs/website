@@ -24,7 +24,15 @@ const { title, description = "Ultraviolet - Open Source Confidential Computing A
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
 		<title>{title}</title>
 	</head>
-	<body class="flex flex-col min-h-screen">
+	<body class="flex flex-col min-h-screen bg-background text-text-main transition-colors duration-300">
+        <script is:inline>
+            // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        </script>
 		<slot name="header" />
 		<main class="flex-grow">
 			<slot />
