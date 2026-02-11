@@ -38,7 +38,7 @@ UV_CUBE_AGENT_TARGET_URL=http://ollama:11434
 UV_CUBE_AGENT_TARGET_URL=http://vllm:8000
 ```
 
-This variable is defined in the agent configuration (see `cmd/agent/main.go`), where it defaults to `http://localhost:11434` (Ollama). The Makefile provides convenient targets that automatically update this variable and launch the appropriate Docker Compose profile, so switching backends is operationally trivial:
+This variable defaults to `http://localhost:11434` (Ollama). The Makefile provides convenient targets that automatically update this variable and launch the appropriate Docker Compose profile, so switching backends is operationally trivial:
 
 ```makefile
 up-ollama: config-ollama
@@ -56,9 +56,7 @@ This design creates a clean separation between four distinct layers of the syste
 - **Proxy routing** — the dynamic router that directs traffic based on configurable rules such as headers, paths, and priority levels
 - **Inference engine** — the actual LLM backend (vLLM or Ollama) that performs model inference
 
-At the heart of this architecture, the agent service uses Go's `httputil.NewSingleHostReverseProxy` (found in `agent/agent.go`) to forward requests to the configured backend. This reverse proxy is not a simple pass-through — it performs several important functions. It handles header sanitization by setting the `Content-Type` to `application/json` and stripping the `Authorization` header before forwarding to the backend, ensuring that authentication concerns remain at the proxy boundary. It maintains a connection pool with `MaxIdleConns: 100` to efficiently reuse TCP connections under load, and enforces an idle connection timeout of `90s` to prevent stale connections from accumulating.
-
-From the application's perspective, the backend is completely invisible. Whether the underlying engine is vLLM processing requests with continuous batching on a GPU cluster or Ollama running sequentially on a CPU-only node, the API contract remains identical.
+The agent service acts as a reverse proxy, forwarding requests to the configured backend. It handles authentication at the proxy boundary and maintains efficient connection management under load, so the backend remains completely invisible to the application. Whether the underlying engine is vLLM processing requests with continuous batching on a GPU cluster or Ollama running sequentially on a CPU-only node, the API contract remains identical.
 
 This separation is critical for several real-world operational scenarios: multi-environment deployments where staging runs Ollama and production runs vLLM, gradual GPU rollouts where teams incrementally shift traffic to GPU-backed inference, cost optimization experiments where teams compare per-token costs across backends, and performance experimentation where teams benchmark different engines under realistic workloads.
 
@@ -239,7 +237,7 @@ POST /api/generate
 GET  /api/tags
 ```
 
-These Ollama-native endpoints are available when Ollama is the active backend. The `/api/chat` endpoint is particularly important in the Cube AI architecture because the dynamic router (configured in `docker/config.json`) intercepts requests matching the `^.*/api/chat$` pattern and forwards them to the guardrails service at `http://guardrails:8001/guardrails/messages`, ensuring that all chat traffic passes through the safety and content filtering pipeline before reaching the LLM backend.
+These Ollama-native endpoints are available when Ollama is the active backend. Regardless of which backend is active, Cube AI provides OpenAI-compatible endpoints, so clients interact with a consistent API regardless of whether the underlying engine is vLLM or Ollama.
 
 ### Guardrails Integration
 

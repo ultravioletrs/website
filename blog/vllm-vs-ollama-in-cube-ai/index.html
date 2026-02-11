@@ -7,7 +7,7 @@
 
   <title>vLLM vs Ollama in Cube AI: Choosing the Right LLM Backend for Your Use Case - Ultraviolet</title>
   <meta name="title" content="vLLM vs Ollama in Cube AI: Choosing the Right LLM Backend for Your Use Case - Ultraviolet" />
-  <meta name="description" content="" />
+  <meta name="description" content="This post explains how Cube AI lets you swap between vLLM and Ollama as LLM backends using a single configuration flag, and walks through the trade-offs in performance, scalability, and deployment so you can pick the best inference engine for your use case." />
 
   <link rel="canonical" href="https://www.ultraviolet.rs/blog/vllm-vs-ollama-in-cube-ai/" />
 
@@ -15,13 +15,13 @@
   <meta property="og:site_name" content="Ultraviolet" />
   <meta property="og:url" content="https://www.ultraviolet.rs/blog/vllm-vs-ollama-in-cube-ai" />
   <meta property="og:title" content="vLLM vs Ollama in Cube AI: Choosing the Right LLM Backend for Your Use Case" />
-  <meta property="og:description" content="" />
+  <meta property="og:description" content="This post explains how Cube AI lets you swap between vLLM and Ollama as LLM backends using a single configuration flag, and walks through the trade-offs in performance, scalability, and deployment so you can pick the best inference engine for your use case." />
   <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
   
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="vLLM vs Ollama in Cube AI: Choosing the Right LLM Backend for Your Use Case" />
-  <meta name="twitter:description" content="" />
+  <meta name="twitter:description" content="This post explains how Cube AI lets you swap between vLLM and Ollama as LLM backends using a single configuration flag, and walks through the trade-offs in performance, scalability, and deployment so you can pick the best inference engine for your use case." />
   <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
 
 
@@ -37,7 +37,7 @@
           "@type": "Person",
           "name": "Washington Kamadi"
         },
-        "description": ""
+        "description": "This post explains how Cube AI lets you swap between vLLM and Ollama as LLM backends using a single configuration flag, and walks through the trade-offs in performance, scalability, and deployment so you can pick the best inference engine for your use case."
       }
     </script>
 
@@ -299,7 +299,7 @@
           <div>
             <div class="fw-bold fs-5">Washington Kamadi</div>
             <div class="text-muted">
-              February 06, 2026 · 18 min read
+              February 06, 2026 · 16 min read
             </div>
           </div>
         </div>
@@ -324,7 +324,7 @@
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>UV_CUBE_AGENT_TARGET_URL=http://ollama:11434
 </span></span><span style="display:flex;"><span><span style="color:#007f7f"># OR</span>
 </span></span><span style="display:flex;"><span>UV_CUBE_AGENT_TARGET_URL=http://vllm:8000
-</span></span></code></pre><p>This variable is defined in the agent configuration (see <code>cmd/agent/main.go</code>), where it defaults to <code>http://localhost:11434</code> (Ollama). The Makefile provides convenient targets that automatically update this variable and launch the appropriate Docker Compose profile, so switching backends is operationally trivial:</p>
+</span></span></code></pre><p>This variable defaults to <code>http://localhost:11434</code> (Ollama). The Makefile provides convenient targets that automatically update this variable and launch the appropriate Docker Compose profile, so switching backends is operationally trivial:</p>
 <pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>up-ollama: config-ollama
 </span></span><span style="display:flex;"><span>up-vllm:   config-vllm
 </span></span></code></pre><p>There is no need for application rewrites, routing changes, or SDK updates. The swap happens entirely at the infrastructure level. You simply reconfigure the environment variable and redeploy — the application continues to function exactly as before, now backed by a different inference engine.</p>
@@ -336,8 +336,7 @@
 <li><strong>Proxy routing</strong> — the dynamic router that directs traffic based on configurable rules such as headers, paths, and priority levels</li>
 <li><strong>Inference engine</strong> — the actual LLM backend (vLLM or Ollama) that performs model inference</li>
 </ul>
-<p>At the heart of this architecture, the agent service uses Go's <code>httputil.NewSingleHostReverseProxy</code> (found in <code>agent/agent.go</code>) to forward requests to the configured backend. This reverse proxy is not a simple pass-through — it performs several important functions. It handles header sanitization by setting the <code>Content-Type</code> to <code>application/json</code> and stripping the <code>Authorization</code> header before forwarding to the backend, ensuring that authentication concerns remain at the proxy boundary. It maintains a connection pool with <code>MaxIdleConns: 100</code> to efficiently reuse TCP connections under load, and enforces an idle connection timeout of <code>90s</code> to prevent stale connections from accumulating.</p>
-<p>From the application's perspective, the backend is completely invisible. Whether the underlying engine is vLLM processing requests with continuous batching on a GPU cluster or Ollama running sequentially on a CPU-only node, the API contract remains identical.</p>
+<p>The agent service acts as a reverse proxy, forwarding requests to the configured backend. It handles authentication at the proxy boundary and maintains efficient connection management under load, so the backend remains completely invisible to the application. Whether the underlying engine is vLLM processing requests with continuous batching on a GPU cluster or Ollama running sequentially on a CPU-only node, the API contract remains identical.</p>
 <p>This separation is critical for several real-world operational scenarios: multi-environment deployments where staging runs Ollama and production runs vLLM, gradual GPU rollouts where teams incrementally shift traffic to GPU-backed inference, cost optimization experiments where teams compare per-token costs across backends, and performance experimentation where teams benchmark different engines under realistic workloads.</p>
 <h2 id="performance-benchmarks-architectural-expectations">Performance Benchmarks (Architectural Expectations)</h2>
 <p>While exact performance numbers will vary depending on the specific model, GPU class, input sequence length, and concurrency level, the underlying architecture of each engine reveals clear and predictable performance behavior. Understanding these architectural characteristics helps teams make informed backend decisions before committing to expensive hardware.</p>
@@ -471,19 +470,9 @@ GET  /{domainID}/v1/models
 POST /api/generate
 GET  /api/tags
 </code></pre>
-<p>These Ollama-native endpoints are available when Ollama is the active backend. The <code>/api/chat</code> endpoint is particularly important in the Cube AI architecture because the dynamic router (configured in <code>docker/config.json</code>) intercepts requests matching the <code>^.*/api/chat$</code> pattern and forwards them to the guardrails service at <code>http://guardrails:8001/guardrails/messages</code>, ensuring that all chat traffic passes through the safety and content filtering pipeline before reaching the LLM backend.</p>
+<p>These Ollama-native endpoints are available when Ollama is the active backend. Regardless of which backend is active, Cube AI provides OpenAI-compatible endpoints, so clients interact with a consistent API regardless of whether the underlying engine is vLLM or Ollama.</p>
 <h3 id="guardrails-integration">Guardrails Integration</h3>
-<p>The guardrails system is built on NVIDIA's NeMo Guardrails framework and leverages a custom LLM provider called <code>ExtendedOllama</code> (defined in <code>guardrails/src/adapters/llm/extended_ollama.py</code>). This adapter extends LangChain's <code>ChatOllama</code> class with several capabilities that are essential for Cube AI's multi-tenant, security-conscious architecture:</p>
-<ul>
-<li><strong>Dynamic header injection</strong> — per-request authentication tokens and custom headers are read from NeMo Guardrails' <code>generation_options_var</code> context variable and merged with the base configuration headers before forwarding to the backend. This allows each request to carry its own authorization context through the proxy.</li>
-<li><strong>Per-request model selection</strong> — the model can be overridden on a per-request basis via the generation options, enabling scenarios where different conversations or users use different models without requiring separate guardrail instances.</li>
-<li><strong>Option mapping</strong> — LangChain parameters such as <code>temperature</code>, <code>top_p</code>, <code>max_tokens</code>, and others are correctly mapped to Ollama's native option format, ensuring consistent behavior regardless of how the client specifies generation parameters.</li>
-</ul>
-<p>The guardrails configuration in <code>guardrails/rails/config.yml</code> ties this all together:</p>
-<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="font-weight:bold">engine</span>: CubeLLM
-</span></span><span style="display:flex;"><span><span style="font-weight:bold">model</span>: llama3.2:3b
-</span></span><span style="display:flex;"><span><span style="font-weight:bold">base_url</span>: http://cube-proxy:8900
-</span></span></code></pre><p>The <code>CubeLLM</code> engine is registered as a custom LLM provider in the NeMo runtime (<code>nemo_runtime.py</code>), which maps it to the <code>ExtendedOllama</code> class. Sensitive data detection is handled through a combination of Presidio (for entity recognition of PII like credit cards, email addresses, and IP addresses) and spaCy (using the <code>en_core_web_lg</code> model for named entity recognition). The runtime supports atomic configuration swaps with revision tracking, meaning guardrail policies can be updated without downtime — the old configuration serves requests until the new one is fully loaded and validated.</p>
+<p>Cube AI includes a guardrails pipeline built on NVIDIA's NeMo Guardrails framework, providing safety policies, sensitive data detection, and content filtering for all inference traffic. The guardrails system works seamlessly with both vLLM and Ollama backends — because the guardrails sit upstream of the agent proxy, they are completely backend-agnostic. Regardless of which inference engine is active, all chat traffic passes through the same guardrails pipeline before reaching the LLM, ensuring consistent safety and compliance enforcement across backend configurations.</p>
 <h3 id="hal-beyond-containers">HAL: Beyond Containers</h3>
 <p>Cube AI doesn't stop at Docker containers. Both vLLM and Ollama are fully packaged inside the Hardware Abstraction Layer (HAL), which is built on Buildroot to produce minimal Linux images for bare-metal and CVM deployments. Each backend includes:</p>
 <ul>
