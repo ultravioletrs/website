@@ -206,6 +206,15 @@ When building a multi-tenant SaaS product where hundreds or thousands of concurr
 
 Understanding the cost profile of each backend is essential for making financially sound infrastructure decisions, especially as LLM workloads grow from experimental to production scale.
 
+| Dimension | vLLM | Ollama |
+| :--- | :--- | :--- |
+| **Upfront Cost** | High (requires NVIDIA GPUs, GPU orchestration) | Low (runs on CPU, standard instances) |
+| **Cost per Token** | Lower at scale (continuous batching) | Higher under load (sequential processing) |
+| **Idle Cost** | Expensive (reserved GPU capacity) | Minimal (standard compute) |
+| **Best For** | Sustained high traffic, predictable workloads | Early-stage, sporadic traffic, PoC |
+| **Scaling Model** | Vertical (GPU utilization) | Horizontal (more instances) |
+| **Infrastructure** | Specialized (NVIDIA runtime, GPU drivers) | Standard (no specialized requirements) |
+
 ### vLLM Cost Profile
 
 vLLM carries a higher upfront infrastructure cost because it requires dedicated NVIDIA GPUs, GPU-aware container orchestration (the Docker Compose configuration specifies `runtime: nvidia` with all GPU capabilities reserved), and careful capacity planning to ensure GPU memory is allocated efficiently. However, the cost per token at scale is significantly lower than sequential engines, because continuous batching maximizes GPU utilization — you're extracting more useful inference work from each dollar of GPU compute.

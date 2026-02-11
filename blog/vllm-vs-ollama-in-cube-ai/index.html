@@ -299,7 +299,7 @@
           <div>
             <div class="fw-bold fs-5">Washington Kamadi</div>
             <div class="text-muted">
-              February 11, 2026 · 16 min read
+              February 11, 2026 · 17 min read
             </div>
           </div>
         </div>
@@ -455,6 +455,47 @@ If your system experiences burst traffic patterns — where many requests arrive
 <hr>
 <h2 id="cost-analysis-and-resource-requirements">Cost Analysis and Resource Requirements</h2>
 <p>Understanding the cost profile of each backend is essential for making financially sound infrastructure decisions, especially as LLM workloads grow from experimental to production scale.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Dimension</th>
+<th style="text-align:left">vLLM</th>
+<th style="text-align:left">Ollama</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Upfront Cost</strong></td>
+<td style="text-align:left">High (requires NVIDIA GPUs, GPU orchestration)</td>
+<td style="text-align:left">Low (runs on CPU, standard instances)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Cost per Token</strong></td>
+<td style="text-align:left">Lower at scale (continuous batching)</td>
+<td style="text-align:left">Higher under load (sequential processing)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Idle Cost</strong></td>
+<td style="text-align:left">Expensive (reserved GPU capacity)</td>
+<td style="text-align:left">Minimal (standard compute)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Best For</strong></td>
+<td style="text-align:left">Sustained high traffic, predictable workloads</td>
+<td style="text-align:left">Early-stage, sporadic traffic, PoC</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Scaling Model</strong></td>
+<td style="text-align:left">Vertical (GPU utilization)</td>
+<td style="text-align:left">Horizontal (more instances)</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Infrastructure</strong></td>
+<td style="text-align:left">Specialized (NVIDIA runtime, GPU drivers)</td>
+<td style="text-align:left">Standard (no specialized requirements)</td>
+</tr>
+</tbody>
+</table>
 <h3 id="vllm-cost-profile">vLLM Cost Profile</h3>
 <p>vLLM carries a higher upfront infrastructure cost because it requires dedicated NVIDIA GPUs, GPU-aware container orchestration (the Docker Compose configuration specifies <code>runtime: nvidia</code> with all GPU capabilities reserved), and careful capacity planning to ensure GPU memory is allocated efficiently. However, the cost per token at scale is significantly lower than sequential engines, because continuous batching maximizes GPU utilization — you're extracting more useful inference work from each dollar of GPU compute.</p>
 <p>The key consideration is utilization: idle GPUs are expensive. If your vLLM instance sits idle for large portions of the day because traffic is light or sporadic, you're paying for reserved GPU capacity that isn't generating value. vLLM is most cost-effective when GPU utilization is consistently high, which typically means production workloads with steady or predictable traffic patterns.</p>
