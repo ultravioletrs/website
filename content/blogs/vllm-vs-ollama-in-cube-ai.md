@@ -60,6 +60,8 @@ The agent service acts as a reverse proxy, forwarding requests to the configured
 
 This separation is critical for several real-world operational scenarios: multi-environment deployments where staging runs Ollama and production runs vLLM, gradual GPU rollouts where teams incrementally shift traffic to GPU-backed inference, cost optimization experiments where teams compare per-token costs across backends, and performance experimentation where teams benchmark different engines under realistic workloads.
 
+---
+
 ## Performance Benchmarks (Architectural Expectations)
 
 While exact performance numbers will vary depending on the specific model, GPU class, input sequence length, and concurrency level, the underlying architecture of each engine reveals clear and predictable performance behavior. Understanding these architectural characteristics helps teams make informed backend decisions before committing to expensive hardware.
@@ -109,6 +111,8 @@ Ollama takes a different approach, handling memory management automatically base
 | Deterministic GPU planning | vLLM |
 | Operational simplicity | Ollama |
 
+---
+
 ## vLLM: High-Performance GPU Inference
 
 Cube AI deploys vLLM using the official OpenAI-compatible container image:
@@ -132,6 +136,8 @@ VLLM_MODEL=microsoft/DialoGPT-medium
 Choose vLLM when your system demands high tokens-per-second throughput, multi-tenant inference where many users share a single GPU-backed endpoint, or maximum GPU utilization for cost efficiency. vLLM is particularly well-suited for production-scale APIs where predictable latency under load is a hard requirement, because the continuous batching engine ensures that response times remain stable even as request concurrency increases.
 
 Typical environments where vLLM excels include enterprise AI platforms serving thousands of internal users, internal copilot systems integrated into developer workflows, retrieval-augmented generation (RAG) pipelines that need fast inference alongside document retrieval, and customer-facing LLM APIs where SLA commitments require consistent performance characteristics.
+
+---
 
 ## Ollama: Lightweight and Operationally Flexible
 
@@ -164,6 +170,8 @@ Ollama is designed to run across a wide range of hardware configurations, which 
 
 This broad hardware compatibility makes Ollama extremely attractive for deployment scenarios where GPU availability cannot be guaranteed. Confidential Virtual Machines (CVMs) running in Trusted Execution Environments may not have GPU passthrough configured, edge inference nodes may be running on commodity ARM hardware, on-premises deployments may need to operate on whatever hardware is available, and secure or air-gapped environments may have strict procurement constraints that limit GPU options. In all of these cases, Ollama's ability to run on CPU-only nodes provides a viable path to deploying LLM inference without GPU dependencies.
 
+---
+
 ## Deployment Scenarios and Trade-offs
 
 To make the backend choice more concrete, here are four common deployment scenarios and the reasoning behind each recommendation.
@@ -192,6 +200,8 @@ For development and experimentation environments, Ollama's minimal startup frict
 
 When building a multi-tenant SaaS product where hundreds or thousands of concurrent users are generating inference requests simultaneously, sequential processing engines become bottlenecks almost immediately. Each new concurrent request adds to the queue, and response times degrade linearly. vLLM's continuous batching architecture is specifically designed for this scenario — it absorbs concurrent requests into batches and processes them in parallel, maintaining stable response times even as concurrency scales.
 
+---
+
 ## Cost Analysis and Resource Requirements
 
 Understanding the cost profile of each backend is essential for making financially sound infrastructure decisions, especially as LLM workloads grow from experimental to production scale.
@@ -213,6 +223,8 @@ The trade-off is that the marginal cost per token under heavy load is higher tha
 **Start with Ollama. Move to vLLM when concurrency justifies GPU spend.**
 
 This migration path is one of Cube AI's core design advantages. Because the backend is abstracted behind the agent proxy and a single environment variable, graduating from Ollama to vLLM is a configuration change — not a rewrite. Teams can validate their LLM use case with minimal infrastructure investment, then scale to GPU-accelerated inference when the workload demands it.
+
+---
 
 ## Integration Patterns with Cube AI
 
@@ -253,6 +265,8 @@ Cube AI doesn't stop at Docker containers. Both vLLM and Ollama are fully packag
 
 This HAL integration enables bare-metal CVM deployments where Docker is not available or not permitted — a critical advantage for confidential AI environments where the entire software stack must run inside a hardware-attested Trusted Execution Environment.
 
+---
+
 ## Side-by-Side Comparison
 
 | Dimension | Ollama | vLLM |
@@ -268,6 +282,8 @@ This HAL integration enables bare-metal CVM deployments where Docker is not avai
 | **Guardrails** | Native adapter | Via OpenAI |
 | **Compose Profile** | default | vllm |
 
+---
+
 ## The Architectural Insight That Matters Most
 
 Cube AI treats inference engines like **infrastructure plugins** — not hard dependencies, not vendor lock-in points, but interchangeable modules that can be swapped, upgraded, or replaced without rippling changes through the rest of the system.
@@ -275,6 +291,8 @@ Cube AI treats inference engines like **infrastructure plugins** — not hard de
 This is possible because the agent proxy creates a clean abstraction boundary between the application and the inference engine. The proxy handles authentication, header management, connection pooling, and request forwarding, while the dynamic router directs traffic based on configurable rules. The application code, the guardrails pipeline, and the client SDKs never communicate directly with vLLM or Ollama — they talk to the proxy, and the proxy talks to whatever backend is currently configured.
 
 The practical consequence of this design is significant: **your application never needs to know which backend is running.** This dramatically reduces platform risk, because you're never locked into a single inference engine's API, deployment model, or hardware requirements. If a better engine emerges, or if your requirements change, the migration is a configuration change — not an architecture overhaul.
+
+---
 
 ## Decision Framework
 
@@ -291,6 +309,8 @@ The practical consequence of this design is significant: **your application neve
 - You deploy to edge nodes, Confidential Virtual Machines (CVMs), or other environments where GPU availability is uncertain
 - You need runtime model control — the ability to pull, swap, and delete models without restarting the inference service
 - You are cost-sensitive in the early stages of your AI deployment and want to validate your use case before committing to GPU infrastructure
+
+---
 
 ## Key Takeaway
 
