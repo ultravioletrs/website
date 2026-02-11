@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = "Cube AI Privacy Policy - Ultraviolet";
+const description = "Privacy Policy for Cube AI. Learn how Ultraviolet collects, uses, and protects your personal data when using the Cube AI platform.";
+---
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <div class="pt-20"></div>
+
+    <section class="py-12 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-3xl font-extrabold text-gray-900 font-heading mb-8 text-center">
+                Privacy Policy
+            </h1>
+
+            <div class="prose prose-indigo text-gray-500 mx-auto">
+                <p>
+                    This Privacy Policy explains how Ultraviolet ("we," "us," or
+                    "our") collects, uses, and protects your personal data when
+                    you use the Cube AI platform ("Platform"). We are committed to
+                    complying with the General Data Protection Regulation (GDPR)
+                    and other applicable privacy laws.
+                </p>
+
+                <h2 class="mt-8 text-2xl font-bold text-gray-900 font-heading">1. Who We Are</h2>
+                <p>
+                    Ultraviolet is a company registered in Serbia with
+                    headquarters at Bulevar Arsenija Carnojevica 103, 11000
+                    Belgrade, Serbia. We are the data controller for your personal
+                    data when you create and use an account on our Platform.
+                </p>
+
+                <h2 class="mt-8 text-2xl font-bold text-gray-900 font-heading">2. WHAT DATA WE COLLECT</h2>
+                <ul class="list-disc pl-5 mt-4 space-y-2">
+                    <li>Full name</li>
+                    <li>Email address</li>
+                    <li>Company name</li>
+                    <li>User credentials and login metadata (IP, device, browser)</li>
+                    <li>Payment and billing information (processed via third-party payment processor)</li>
+                    <li>Technical usage data (e.g., API usage, project activity)</li>
+                </ul>
+
+                <h2 class="mt-8 text-2xl font-bold text-gray-900 font-heading">3. HOW WE USE YOUR DATA</h2>
+                <p>We use your data to:</p>
+                <ul class="list-disc pl-5 mt-4 space-y-2">
+                    <li>Provide access to and operate the Platform</li>
+                    <li>Communicate with you regarding your account and service updates</li>
+                    <li>Provide support and respond to inquiries</li>
+                    <li>Process payments and manage subscriptions</li>
+                    <li>Improve the Platform and monitor usage</li>
+                    <li>Comply with legal obligations</li>
+                </ul>
+
+                <h2 class="mt-8 text-2xl font-bold text-gray-900 font-heading">4. LEGAL BASIS FOR PROCESSING</h2>
+                <p>We process your data on the following legal bases:</p>
+                <ul class="list-disc pl-5 mt-4 space-y-2">
+                    <li><strong>Contractual necessity</strong> – to deliver the services you signed up for</li>
+                    <li><strong>Legitimate interests</strong> – to maintain and improve our services</li>
+                    <li><strong>Legal obligation</strong> – to meet accounting or regulatory requirements</li>
+                    <li><strong>Consent</strong> - where applicable (e.g., marketing communications)</li>
+                </ul>
+
+                <h2 class="mt-8 text-2xl font-bold text-gray-900 font-heading">5. DATA RETENTION</h2>
+                <p>
+                    We retain your personal data for as long as your account is
+                    active and for a limited period thereafter to comply with
+                    legal and operational obligations. Data may be anonymized for
+                    analytics.
+                </p>
+
+                <h2 class="mt-8 text-2xl font-bold text-gray-900 font-heading">6. DATA SHARING AND SUBPROCESSORS</h2>
+                <p>We do not sell or share your personal data with third parties, except:</p>
+                <ul class="list-disc pl-5 mt-4 space-y-2">
+                    <li>With cloud hosting providers, email service providers, and payment processors strictly as needed to provide the Platform</li>
+                    <li>With public authorities if legally required</li>
+                </ul>
+                <p>All subprocessors are GDPR-compliant and under data processing agreements.</p>
+
+                <h2 class="mt-8 text-2xl font-bold text-gray-900 font-heading">7. DATA TRANSFERS</h2>
+                <p>
+                    Your data may be processed or stored in the EU or other
+                    jurisdictions with adequate protection standards. Where
+                    applicable, we use Standard Contractual Clauses (SCCs) to
+                    safeguard cross-border data transfers.
+                </p>
+
+                <h2 class="mt-8 text-2xl font-bold text-gray-900 font-heading">8. YOUR RIGHTS UNDER GDPR</h2>
+                <p>You have the right to:</p>
+                <ul class="list-disc pl-5 mt-4 space-y-2">
+                    <li>Access your personal data</li>
+                    <li>Correct or update inaccuracies</li>
+                    <li>Request deletion ("right to be forgotten")</li>
+                    <li>Restrict or object to processing</li>
+                    <li>Data portability</li>
+                    <li>Lodge a complaint with a data protection authority</li>
+                </ul>
+                <p>To exercise your rights, contact us at <a href="mailto:privacy@ultraviolet.rs" class="text-primary hover:underline">privacy@ultraviolet.rs</a></p>
+
+                <h2 class="mt-8 text-2xl font-bold text-gray-900 font-heading">9. SECURITY</h2>
+                <p>
+                    We implement appropriate technical and organizational measures
+                    to protect your data, including encryption, access control,
+                    and regular security reviews.
+                </p>
+
+                <h2 class="mt-8 text-2xl font-bold text-gray-900 font-heading">10. CHANGES TO THIS POLICY</h2>
+                <p>
+                    We may update this Privacy Policy from time to time. We will
+                    notify you via email or through the Platform when significant
+                    changes occur.
+                </p>
+
+                <h2 class="mt-8 text-2xl font-bold text-gray-900 font-heading">11. CONTACT</h2>
+                <p>
+                    If you have questions or concerns about this policy or how we
+                    handle your data, contact us at: <a href="mailto:privacy@ultraviolet.rs" class="text-primary hover:underline">privacy@ultraviolet.rs</a><br>
+                    Ultraviolet, Bulevar Arsenija Carnojevica 103, 11000 Belgrade, Serbia.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <Footer slot="footer" />
+</Layout>

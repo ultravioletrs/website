@@ -1,0 +1,75 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+
+const title = "About Ultraviolet - Confidential Computing & AI Security";
+const description = "Ultraviolet specializes in confidential computing, cloud security, AI/ML, multi-party computation, and secure data sharing.";
+---
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <div class="pt-20">
+        <Hero 
+            title="About Us"
+            description="Pioneering the future of secure, private, and collaborative computing."
+        />
+    </div>
+
+    <section class="py-16 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="prose prose-lg prose-indigo mx-auto text-gray-500">
+                <p>
+                    Ultraviolet is a European-based company headquartered in Belgrade, Serbia, specializing in cutting-edge technologies such as cloud computing, AI/ML, multi-party computation, secure data sharing, and Trusted Execution Environments (TEEs). We are dedicated to developing open-source software and tools that empower organizations and developers to harness the power of these technologies while ensuring the highest levels of security and privacy.
+                </p>
+                <p>
+                    Security and privacy are at the core of Ultraviolet's mission. Our team is highly committed to creating software that guarantees the confidentiality and integrity of data in cloud environments. We specialize in multi-party computation, enabling secure and collaborative data processing without compromising privacy. Ultraviolet also excels in developing AI/ML solutions that can operate on sensitive data while preserving individual privacy.
+                </p>
+                <p>
+                    As a proud member of the open-source community, Ultraviolet actively contributes to advancing these technologies. We collaborate with leading organizations and consortia, including the <a href="https://confidentialcomputing.io/">Confidential Computing Consortium (CCC)</a> and the Linux Foundation, to drive innovation and set industry standards. Our commitment extends to hosting events, creating discussion forums, and offering training and support to developers and businesses interested in adopting secure and privacy-focused solutions.
+                </p>
+                
+                <h3>Research & Innovation</h3>
+                <p>
+                   Ultraviolet is deeply engaged in highly sophisticated and advanced large-scale EU research projects. We partner with some of the world's largest companies in these endeavors. For instance, Ultraviolet plays a pivotal role in the <a href="https://confidential6g.eu/">CONFIDENTIAL6G EU project</a>, which researches Confidential Computing for 6G networks. This project showcases our commitment to pushing the boundaries of technology and security in collaboration with global leaders.
+                </p>
+                <p>
+                   Additionally, Ultraviolet contributes to the <a href="https://titan-eosc.eu/">TITAN EOSC project</a>, funded by the European Commission, which aims to enrich the <a href="https://research-and-innovation.ec.europa.eu/strategy/strategy-2020-2024/our-digital-future/open-science/european-open-science-cloud-eosc_en">European Open Science Cloud (EOSC)</a> Interoperability Framework (IF) by developing a software platform solution for confidential collaboration and privacy-preserving data processing.
+                </p>
+                <p>
+                   We are also involved in the <a href="https://elasticproject.eu/">ELASTIC project</a>, which pioneers next-gen network orchestration, harnessing WebAssembly and Confidential Computing to ensure efficient, secure service delivery across 6G infrastructures.
+                </p>
+
+                <h3>Our Vision</h3>
+                <p>
+                    At Ultraviolet, we envision a future where cloud computing, AI/ML, multi-party computation, secure data sharing, TEEs, and advanced research converge to create a safer and more collaborative digital world. Join us on this transformative journey toward a more secure and connected future.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect section -->
+    <section class="bg-gray-50 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 font-heading mb-8">Connect With Us</h2>
+            <div class="flex justify-center space-x-8">
+                <a href="https://twitter.com/ultravioletrs" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors">
+                    <span class="sr-only">Twitter</span>
+                    <i class="fab fa-twitter fa-3x"></i>
+                </a>
+                <a href="https://www.linkedin.com/company/ultravioletrs" target="_blank" class="text-gray-400 hover:text-blue-700 transition-colors">
+                    <span class="sr-only">LinkedIn</span>
+                    <i class="fab fa-linkedin fa-3x"></i>
+                </a>
+                <a href="https://github.com/ultravioletrs" target="_blank" class="text-gray-400 hover:text-gray-900 transition-colors">
+                    <span class="sr-only">GitHub</span>
+                    <i class="fab fa-github fa-3x"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <Footer slot="footer" />
+</Layout>

@@ -1,42 +1,43 @@
-# Ultraviolet Website
+# Astro Starter Kit: Minimal
 
-This repository contains the source code for the [Ultraviolet](https://ultraviolet.rs) website and blog.
-
-## Project Structure
-
-- `content/blogs/`: Markdown files for blog posts.
-- `img/blogs/`: Images used in blog posts.
-- `scripts/`: The Go-based static site generator.
-- `scripts/templates/`: HTML templates for the blog listing and individual posts.
-- `blog/`: Generated static files (do not edit manually).
-- `index.html`: The main landing page.
-
-## Prerequisites
-
-- **Go**: Required to run the blog builder.
-- **Make**: Used for task automation.
-
-## Guidelines for Contributors
-
-To add a new blog post, follow these steps:
-
-1. Create your content in `content/blogs/` (see [WRITING.md](WRITING.md)).
-2. Build the site locally to generate the static files:
-   ```bash
-   make clean && make build
-   ```
-3. To run live reload server, use:
-   ```bash
-   make serve
-   ```
-   and open a browser at http://localhost:8080.
-4. To run on a different port (if, say, 8080 is taken), use:
-```bash
-   PORT=8081 make serve
+```sh
+npm create astro@latest -- --template minimal
 ```
-5. Commit both the source Markdown files **and** the generated files in the `blog/` folder.
-6. Open a Pull Request.
 
-## Documentation
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-- [How to Write a Blog Post](WRITING.md)
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+/
+├── public/
+├── src/
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
+
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

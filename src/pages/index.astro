@@ -1,0 +1,184 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+
+const title = "Open Source Confidential Computing & Secure AI Platform | Ultraviolet";
+---
+
+<Layout title={title}>
+	<Header slot="header" />
+	
+	<!-- Hero Section -->
+    <div class="pt-20"> <!-- Padding for fixed header -->
+        <Hero 
+            title="Secure Your AI with Ultraviolet"
+            description="Open Source Confidential Computing Platform. We authorize secure multi-party computation and confidential collaborative AI on protected platforms using Trusted Execution Environments (TEEs)."
+            image="/img/header.avif"
+            ctaText="Learn More"
+            ctaLink="/cocos"
+        />
+    </div>
+
+	<!-- Logo Cloud / Memberships -->
+	<section class="py-12 bg-white">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-8 font-heading">Our Memberships</h2>
+			<div class="flex justify-center flex-wrap gap-8 items-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+				<a href="https://www.linuxfoundation.org/" target="_blank" class="transition-transform hover:scale-105">
+                    <img src="/img/logos/lf.png" alt="Linux Foundation" class="h-16 object-contain">
+                </a>
+                <a href="https://confidentialcomputing.io/" target="_blank" class="transition-transform hover:scale-105">
+                    <img src="/img/logos/ccc.png" alt="Confidential Computing Consortium" class="h-16 object-contain">
+                </a>
+			</div>
+             <p class="text-center mt-6 text-gray-500 max-w-2xl mx-auto">
+                Ultraviolet is a proud member of the Linux Foundation (LF) and the Confidential Computing Consortium (CCC), contributing to the advancement of confidential computing platforms and collaborative AI technologies.
+            </p>
+		</div>
+	</section>
+
+	<!-- Confidential Computing Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+                <div class="relative">
+                     <img class="w-full rounded-lg shadow-lg ring-1 ring-black ring-opacity-5" src="/img/cc.png" alt="Trusted Execution Environment (TEE) diagram">
+                </div>
+                <div class="mt-10 lg:mt-0">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-heading">
+                        Confidential Computing
+                    </h2>
+                    <p class="mt-3 max-w-3xl text-lg text-gray-500">
+                        Confidential computing is a field at the intersection of computer science and cybersecurity, enabling secure multi-party computation and confidential collaborative AI on protected platforms.
+                    </p>
+                    <p class="mt-3 max-w-3xl text-lg text-gray-500">
+                        Trusted Execution Environments (TEEs) are isolated, secure environments within a CPU, designed to safeguard sensitive data and computations from unauthorized access, ensuring confidentiality.
+                    </p>
+                     <p class="mt-3 max-w-3xl text-lg text-gray-500">
+                        These secure enclaves allow critical operations such as encryption, decryption, and data processing to take place in a protected space immune to external attacks.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Secure Collaborative AI Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+                 <div class="mt-10 lg:mt-0 lg:order-1">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-heading">
+                        Secure Collaborative AI
+                    </h2>
+                    <p class="mt-3 max-w-3xl text-lg text-gray-500">
+                        Explore secure collaborative AI within our confidential computing platform, powered by Trusted Execution Environments (TEEs) and secure enclaves. This technology ensures maximum confidentiality, integrity, and privacy.
+                    </p>
+                    <p class="mt-3 max-w-3xl text-lg text-gray-500">
+                        TEEs provide isolated, secure environments within the CPU, protecting your AI computations from unauthorized access. Multi-party computation becomes possible as TEEs allow multiple parties to process data collaboratively.
+                    </p>
+                </div>
+                <div class="lg:order-2">
+                     <img class="w-full rounded-lg shadow-lg ring-1 ring-black ring-opacity-5" src="/img/prism-concept.png" alt="Secure Collaborative AI platform">
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Open Source Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
+                <div class="relative">
+                     <img class="w-full rounded-lg shadow-lg ring-1 ring-black ring-opacity-5" src="/img/open-source.png" alt="Cocos AI open source">
+                </div>
+                <div class="mt-10 lg:mt-0">
+                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-heading">
+                        Cocos AI - Open Source Confidential Computing Platform
+                    </h2>
+                    <p class="mt-3 max-w-3xl text-lg text-gray-500">
+                        Cocos AI, a leading open-source confidential computing platform, powers secure collaborative AI using Trusted Execution Environments (TEEs). It ensures integrity and confidentiality for AI workloads.
+                    </p>
+                    <p class="mt-3 max-w-3xl text-lg text-gray-500">
+                        This open-source approach grants developers, organizations, and users the freedom to harness, customize, and contribute to Cocos AI.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-12 font-heading">Ultraviolet Solutions for Confidential Computing</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-primary mb-4 text-4xl">
+                        <i class="fas fa-cogs"></i> <!-- Using FontAwesome? Need to add to Layout -->
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 font-heading">TEE Enablement</h3>
+                    <p class="text-gray-500">Ultraviolet specializes in enabling Trusted Execution Environments (TEEs) across a wide range of CPU architectures and platforms.</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-xl transition-shadow duration-300">
+                    <div class="text-primary mb-4 text-4xl">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 font-heading">Confidential Cloud</h3>
+                    <p class="text-gray-500">Experience the next generation of cybersecurity with Ultraviolet's confidential cloud solutions. Protect cloud infrastructure and AI workloads.</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded-xl hover:shadow-xl transition-shadow duration-300">
+                     <div class="text-primary mb-4 text-4xl">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 font-heading">Secure Collaboration</h3>
+                    <p class="text-gray-500">Ultraviolet's secure multi-party computation (SMPC) platform enables multiple organizations to collaboratively process data without exposing sensitive information.</p>
+                </div>
+            </div>
+            <div class="mt-12">
+                <a href="/products" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-secondary hover:bg-green-600 md:py-4 md:text-lg md:px-10 transition-colors">
+                    Explore Our Products
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-extrabold text-center text-gray-900 mb-8 font-heading">Our Clients and Partners</h2>
+            <div class="flex flex-wrap justify-center gap-8 items-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+                 <!-- Logos (simplified list from original) -->
+                 <img src="/img/logos/if.png" alt="IF" class="h-12 object-contain">
+                 <img src="/img/logos/etf.png" alt="ETF" class="h-12 object-contain">
+                 <img src="/img/logos/eu.png" alt="EU" class="h-12 object-contain">
+                 <img src="/img/logos/telefonica.png" alt="Telefonica" class="h-10 object-contain">
+                 <img src="/img/logos/vtt.png" alt="VTT" class="h-10 object-contain">
+                 <img src="/img/logos/fujitsu.png" alt="Fujitsu" class="h-10 object-contain">
+                 <img src="/img/logos/fraunhofer.png" alt="Fraunhofer" class="h-8 object-contain">
+                 <img src="/img/logos/tno.png" alt="TNO" class="h-10 object-contain">
+                 <img src="/img/logos/ericsson.png" alt="Ericsson" class="h-12 object-contain">
+                 <img src="/img/logos/nokia.png" alt="Nokia" class="h-12 object-contain">
+                 <!-- Add more as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl mb-4 font-heading">Subscribe to Our Newsletter</h2>
+            <p class="text-lg text-gray-500 mb-8">Stay updated with the latest news, updates, and announcements.</p>
+            <form action="https://ultraviolet.us20.list-manage.com/subscribe/post?u=b35e6bdc7b2adf06c56da2265&id=88ed6c4af0&f_id=004f06eaf0" method="post" target="_blank" class="mt-4 sm:flex justify-center">
+                <input type="email" name="EMAIL" required class="appearance-none min-w-0 w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-4 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-primary focus:border-primary sm:max-w-xs" placeholder="Enter your email">
+                <div class="mt-3 sm:mt-0 sm:ml-3 sm:flex-shrink-0">
+                    <button type="submit" class="w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors">
+                        Subscribe
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+	<Footer slot="footer" />
+</Layout>

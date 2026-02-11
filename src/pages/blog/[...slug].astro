@@ -1,0 +1,132 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+	<Header slot="header" />
+
+    <article class="pt-32 pb-16 bg-white overflow-hidden">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
+                <div class="relative h-full text-lg max-w-prose mx-auto" aria-hidden="true">
+                    <svg class="absolute top-12 left-full transform translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
+                        <defs>
+                            <pattern id="74b3fd99-0a6f-4271-bef2-e80eeafdf357" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="384" fill="url(#74b3fd99-0a6f-4271-bef2-e80eeafdf357)" />
+                    </svg>
+                    <svg class="absolute top-1/2 right-full transform -translate-y-1/2 -translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
+                        <defs>
+                            <pattern id="f210dbf6-a58d-4871-961e-36d5016a0f49" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="384" fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)" />
+                    </svg>
+                    <svg class="absolute bottom-12 left-full transform translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
+                        <defs>
+                            <pattern id="d3eb07ae-5182-43e6-857d-35c643af9034" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="384" fill="url(#d3eb07ae-5182-43e6-857d-35c643af9034)" />
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="relative px-4 sm:px-6 lg:px-8">
+                <div class="text-lg max-w-prose mx-auto">
+                    <h1>
+                        <span class="block text-base text-center text-primary font-semibold tracking-wide uppercase">{post.data.tags ? post.data.tags[0] : 'Blog'}</span>
+                        <span class="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl font-heading">{post.data.title}</span>
+                    </h1>
+                    <div class="mt-6 flex items-center justify-center">
+                        {post.data.author && (
+                            <div class="flex-shrink-0">
+                                <a href="#">
+                                    <span class="sr-only">{post.data.author.name}</span>
+                                    {post.data.author.picture && <img class="h-10 w-10 rounded-full" src={post.data.author.picture} alt="" />}
+                                </a>
+                            </div>
+                        )}
+                        <div class="ml-3">
+                             {post.data.author && (
+                                <p class="text-sm font-medium text-gray-900">
+                                    <a href="#" class="hover:underline">{post.data.author.name}</a>
+                                </p>
+                             )}
+                            <div class="flex space-x-1 text-sm text-gray-500">
+                                <time datetime={post.data.date.toISOString()}>
+                                    {post.data.date.toLocaleDateString('en-US', {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric',
+                                    })}
+                                </time>
+                            </div>
+                        </div>
+                    </div>
+                     {post.data.image && (
+                         <figure class="mt-8">
+                             <img class="w-full rounded-lg shadow-lg object-cover" src={post.data.image} alt={post.data.title} style="max-height: 400px;">
+                         </figure>
+                    )}
+                </div>
+                
+                <div class="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
+                    <Content />
+                </div>
+            </div>
+        </div>
+    </article>
+
+	<Footer slot="footer" />
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        
+        mermaid.initialize({ 
+            startOnLoad: true,
+            theme: 'default',
+        });
+
+        // Find all pre > code.language-mermaid blocks
+        const mermaidBlocks = document.querySelectorAll('pre > code.language-mermaid');
+        
+        mermaidBlocks.forEach((block) => {
+            const pre = block.parentElement;
+            const content = block.textContent;
+            
+            // Create a new div for mermaid
+            const div = document.createElement('div');
+            div.classList.add('mermaid');
+            div.textContent = content;
+            
+            // Replace the pre block with the new div
+            if (pre) {
+                pre.replaceWith(div);
+            }
+        });
+
+        // Re-run mermaid to render the new divs
+        mermaid.run({
+            nodes: document.querySelectorAll('.mermaid')
+        });
+    </script>
+</Layout>

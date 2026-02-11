@@ -1,0 +1,82 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+
+const products = [
+    {
+        name: "Prism AI",
+        description: "Prism AI is a distributed system for organizing and orchestrating secure, privacy-preserving collaborative AI training and inference using confidential computing and Trusted Execution Environments (TEEs). It enables efficient and secure management of sensitive data across various applications and industries.",
+        link: "/prism",
+        icon: "fas fa-users"
+    },
+    {
+        name: "Cocos AI",
+        description: "Cocos AI is an open-source system that enables a Hardware Abstraction Layer (HAL) and execution environment for confidential computing over various hardware architectures, including AMD SEV and Intel TDX. It provides enablers for secure VM management and monitoring, workload orchestration, and secure, encrypted data exchange.",
+        link: "/cocos",
+        icon: "fas fa-shield-alt"
+    },
+    {
+        name: "Cube AI",
+        description: "Cube AI is a comprehensive platform designed to protect Large Language Models (LLMs) and their inputs/outputs using Trusted Execution Environments (TEEs). It combines security, observability, and governance to ensure safe and scalable deployment of LLMs, supporting integration with APIs such as Hugging Face and Ollama.",
+        link: "/cube",
+        icon: "fas fa-cube"
+    }
+];
+
+const title = "Ultraviolet Products - Secure AI & Confidential Computing Solutions";
+const description = "Explore Ultraviolet's suite of secure AI products: Prism AI, Cocos AI, and Cube AI. Enable confidential computing and collaborative AI.";
+---
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <div class="pt-20">
+        <Hero 
+            title="Our Products"
+            description="Ultraviolet specializes in cutting-edge products that leverage Confidential Computing technology to address the evolving needs of organizations. Our suite of products empowers businesses with secure, collaborative, and privacy-preserving solutions."
+        />
+    </div>
+
+    <section class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-8">
+                {products.map((product) => (
+                    <div class="flex flex-col rounded-2xl shadow-xl bg-white overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                        <div class="p-8 flex-1 flex flex-col">
+                            <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-6 mx-auto">
+                                <i class={`${product.icon} text-3xl`}></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 text-center mb-4 font-heading">{product.name}</h3>
+                            <p class="text-gray-600 text-center mb-8 flex-1 leading-relaxed">
+                                {product.description}
+                            </p>
+                            <div class="text-center mt-auto">
+                                <a href={product.link} class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary-dark transition-colors duration-150">
+                                    Learn More
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <div class="bg-indigo-900 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-extrabold text-white sm:text-4xl font-heading mb-4">
+                Ready to secure your AI?
+            </h2>
+            <p class="text-lg text-indigo-200 mb-8 max-w-2xl mx-auto">
+                Contact us to learn more about how our products can help your organization.
+            </p>
+            <a href="/contact" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-900 bg-white hover:bg-indigo-50 md:py-4 md:text-lg md:px-10">
+                Get in Touch
+            </a>
+        </div>
+    </div>
+
+    <Footer slot="footer" />
+</Layout>
