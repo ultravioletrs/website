@@ -19,7 +19,7 @@ category: announcement
 
 In an era where AI is transforming industries, the challenge of **data privacy** remains a significant hurdle. Organizations often find themselves choosing between the power of state-of-the-art AI and the security of their most sensitive data. 
 
-Today, we are bridging that gap with the launch of the **Prism Public Beta**.
+Today, we are bridging that gap with the launch of the [**Prism Public Beta**](https://cloud.prism.ultraviolet.rs/).
 
 Prism is our web-based SaaS platform designed to make **Confidential Computing** accessible, secure, and collaborative. By leveraging Trusted Execution Environments (TEEs), Prism ensures that your data and AI models are protected at the hardware level, even while they are being processed.
 
@@ -54,15 +54,15 @@ Prism is already being used to solve critical privacy challenges in high-stakes 
 
 We invite developers, data scientists, and organizations to experience the future of secure AI. The Prism Public Beta is now open for sign-ups.
 
-*   **Get Started for Free**: Sign up at [cloud.prism.ultraviolet.rs](https://cloud.prism.ultraviolet.rs/) and start running your first confidential computations.
-*   **Explore the Docs**: Dive into the technical details at [docs.prism.ultraviolet.rs](https://docs.prism.ultraviolet.rs/).
-*   **Join the Community**: Follow our progress on [GitHub](https://github.com/ultravioletrs/cocos) and help us shape the next generation of privacy-preserving AI.
+*   🚀 **Get Started for Free**: Sign up at [cloud.prism.ultraviolet.rs](https://cloud.prism.ultraviolet.rs/) and start running your first confidential computations.
+*   📚 **Explore the Docs**: Dive into the technical details at [docs.prism.ultraviolet.rs](https://docs.prism.ultraviolet.rs/).
+*   🤝 **Join the Community**: Follow our progress on [GitHub](https://github.com/ultravioletrs/cocos) and help us shape the next generation of privacy-preserving AI.
 
 The era of choosing between AI and privacy is over. With Prism, you can have both.
 
 ---
 
 **Learn More:**
-- [Prism Website](https://prism.ultraviolet.rs/)
-- [Cocos AI Documentation](https://docs.cocos.ultraviolet.rs/)
-- [Ultraviolet RS](https://ultraviolet.rs/)
+- 🌐 [Prism Website](https://prism.ultraviolet.rs/)
+- 📖 [Cocos AI Documentation](https://docs.cocos.ultraviolet.rs/)
+- 💜 [Ultraviolet RS](https://ultraviolet.rs/)
