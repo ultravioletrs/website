@@ -19,13 +19,13 @@ category: announcement
 
 In an era where AI is transforming industries, the challenge of **data privacy** remains a significant hurdle. Organizations often find themselves choosing between the power of state-of-the-art AI and the security of their most sensitive data. 
 
-Today, we are bridging that gap with the launch of the [**Prism Public Beta**](https://cloud.prism.ultraviolet.rs/).
+Today, we are thrilled to bridge that gap with the launch of the [**Prism Public Beta**](https://cloud.prism.ultraviolet.rs/).
 
-Prism is our web-based SaaS platform designed to make **Confidential Computing** accessible, secure, and collaborative. By leveraging Trusted Execution Environments (TEEs), Prism ensures that your data and AI models are protected at the hardware level, even while they are being processed.
+Prism is much more than just a platform; it's a revolutionary way to handle **Confidential Computing**, making it accessible, powerful, and truly collaborative. By leveraging the latest breakthroughs in Trusted Execution Environments (TEEs), Prism ensures that your most valuable data and AI models are protected at the hardware level—guaranteeing privacy without sacrificing performance.
 
 <!--truncate-->
 
-## Why Prism?
+## Why Prism is a Game-Changer
 
 Traditional AI workflows require you to trust your infrastructure provider. Whether you're using a public cloud or a third-party API, your data is visible to the underlying system. Prism changes this paradigm by moving from **policy-based security** ("we promise not to look") to **technology-based security** ("it is physically impossible for us to look").
 
@@ -53,15 +53,15 @@ Prism is already being used to solve critical privacy challenges in high-stakes 
 *   **Finance**: Collaborative fraud detection and risk assessment across institutions without sharing proprietary data.
 *   **Governments**: Enabling secure data sharing between agencies for public safety and research while maintaining strict data sovereignty.
 
-## Join the Beta
+## Join the Mission for Secure AI
 
-We invite developers, data scientists, and organizations to experience the future of secure AI. The Prism Public Beta is now open for sign-ups.
+We’re on a mission to make privacy the default for artificial intelligence, and we’d love for you to be a part of it. The Prism Public Beta is officially live, and we can’t wait to see what you build.
 
 *   🚀 **Get Started for Free**: Sign up at [cloud.prism.ultraviolet.rs](https://cloud.prism.ultraviolet.rs/) and start running your first confidential computations.
 *   📚 **Explore the Docs**: Dive into the technical details at [docs.prism.ultraviolet.rs](https://docs.prism.ultraviolet.rs/).
 *   🤝 **Join the Community**: Follow our progress on [GitHub](https://github.com/ultravioletrs/cocos) and help us shape the next generation of privacy-preserving AI.
 
-The era of choosing between AI and privacy is over. With Prism, you can have both.
+The era of choosing between powerful AI and strict privacy is finally over. With Prism, you can have both—fearlessly.
 
 ---
 
