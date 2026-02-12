@@ -16,7 +16,6 @@ featured: true
 category: announcement
 ---
 
-![Prism Public Beta Launch](/img/prism-beta-launch-cover.png)
 
 In an era where AI is transforming industries, the challenge of **data privacy** remains a significant hurdle. Organizations often find themselves choosing between the power of state-of-the-art AI and the security of their most sensitive data. 
 
