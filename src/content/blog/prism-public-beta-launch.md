@@ -6,7 +6,7 @@ description: "Discover Prism AI, the web-based SaaS platform for secure, collabo
 author:
   name: "sammy oina"
   picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
-tags: [confidential-computing, ai, privacy, prism-ai, beta-launch]
+tags: [confidential-computing, ai, privacy, "prism ai", beta-launch]
 date: 2026-02-12
 image: /img/prism-beta-launch-cover.png
 coverImage: /img/prism-beta-launch-cover.png
