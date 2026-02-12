@@ -29,14 +29,17 @@ Prism is our web-based SaaS platform designed to make **Confidential Computing**
 
 Traditional AI workflows require you to trust your infrastructure provider. Whether you're using a public cloud or a third-party API, your data is visible to the underlying system. Prism changes this paradigm by moving from **policy-based security** ("we promise not to look") to **technology-based security** ("it is physically impossible for us to look").
 
-### Key Features of the Prism Platform
+### The Anatomy of a Technical Guarantee
 
-Prism provides an intuitive interface and enterprise-grade tools built on top of the open-source [Cocos AI](https://github.com/ultravioletrs/cocos) core:
+Prism isn't just a layer of software; it's a bridge to hardware-level security. Here is how the platform ensures your data remains confidential:
 
-*   **Multi-Party Secure Collaboration**: Securely combine datasets from multiple participants for joint analysis and model training without any party ever seeing the raw data.
-*   **Hardware-Verified Trust**: Every computation in Prism runs inside a TEE (like **AMD SEV-SNP** or **Intel TDX**). Prism provides **Remote Attestation**, a cryptographic proof that your code is running on untampered, secure hardware.
-*   **Zero-Knowledge Workflows**: Data and algorithms are uploaded into encrypted enclaves using **Attested TLS (aTLS)**. The handshake itself validates the integrity of the TEE and its software before any data is transmitted, ensuring a hardware-verified secure channel.
-*   **Intuitive Orchestration**: Manage users, workspaces, and computation lifecycles through a seamless web interface.
+1.  **Hardware-Level Isolation (TEEs)**: Prism orchestrates **Confidential VMs** (CVMs) powered by **AMD SEV-SNP** or **Intel TDX**. This means your data and AI models are encrypted in the system's RAM. The decryption keys are managed by a secure, hardware-embedded processor that is inaccessible even to the cloud provider's core operating system or hypervisor.
+
+2.  **The TEE Manager**: Running on host hardware, the TEE Manager is a critical open-source microservice that dynamically provisions and configures the secure enclaves. Once a computation is finished, it ensures the TEE is securely destroyed, leaving no trace of the sensitive data behind.
+
+3.  **Attested TLS (aTLS) & The In-Enclave Agent**: Before any data or algorithm is uploaded, Prism performs a **Remote Attestation** handshake. The In-Enclave Agent (running inside the secure VM) provides a cryptographic "quote" signed by the hardware. Prism verifies this quote against strict security policies. Only after the hardware’s identity and software’s integrity are proven is a secure aTLS tunnel established for data transmission.
+
+4.  **Policy-Driven Orchestration**: Prism’s control plane ensures that computations only run if every participant’s security requirements are met. This moves the trust model from human promises to high-assurance, mathematical proofs.
 
 ## Built on an Open Source Core
 
