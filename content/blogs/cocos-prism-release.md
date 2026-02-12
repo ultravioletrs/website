@@ -6,7 +6,7 @@ description: "Learn about the new features in Cocos AI v0.8.0 and Prism v0.6.0, 
 author:
   name: "sammy oina"
   picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
-tags: [confidential-computing, ai, cocos, prism, privacy]
+tags: [confidential-computing, ai, "cocos ai", "prism ai", privacy]
 date: 2026-02-06
 image: /img/prism-cocos.png
 ogImage: /img/prism-cocos.png
