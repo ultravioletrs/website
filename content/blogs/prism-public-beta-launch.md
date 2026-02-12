@@ -21,7 +21,9 @@ In an era where AI is transforming industries, the challenge of **data privacy**
 
 Today, we are thrilled to bridge that gap with the launch of the [**Prism AI Public Beta**](https://cloud.prism.ultraviolet.rs/).
 
-Prism AI is much more than just a platform; it's a revolutionary way to handle **Confidential Computing**, making it accessible, powerful, and truly collaborative. By leveraging the latest breakthroughs in Trusted Execution Environments (TEEs), Prism AI ensures that your most valuable data and AI models are protected at the hardware level—guaranteeing privacy without sacrificing performance.
+[Prism AI](https://prism.ultraviolet.rs) is a web-based SaaS platform designed to make **Confidential Computing** accessible, powerful, and truly collaborative. It provides an enterprise-ready interface for orchestrating **zero-trust collaboration** via **Secure Multiparty Computation (SMPC)**, powered by Trusted Execution Environments (TEEs). 
+
+Through the technical guarantees of hardware-level isolation, Prism AI allows multiple organizations to jointly train models or run private inferences in a shared TEE. Critically, raw datasets and proprietary algorithms are technically shielded from *every* other party in the computation—including collaborators and the cloud provider itself—ensuring absolute privacy throughout the entire lifecycle. Built on the open-source **Cocos AI** foundation, Prism AI turns trust from a policy into a physical law.
 
 <!--truncate-->
 
