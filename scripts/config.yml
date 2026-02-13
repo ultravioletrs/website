@@ -6,7 +6,7 @@ site:
     twitter: "https://twitter.com/ultravioletrs"
     github: "https://github.com/ultravioletrs"
     linkedin: "linkedin.com/company/ultravioletrs/"
-  
+
 blog:
   posts_per_page: 10
   date_format: "%B %d, %Y"
@@ -14,13 +14,13 @@ blog:
 
   # Category colors (Bootstrap color names)
   category_colors:
-      blog: "primary"
-      announcement: "success"
-      news: "info"
-      tutorial: "warning"
+    blog: "primary"
+    announcement: "success"
+    news: "info"
+    tutorial: "warning"
 
 seo:
-  default_og_image: "https://www.ultraviolet.rs/img/header.avif"
+  default_og_image: "/img/header.avif"
   twitter_handle: "@ultraviolet"
 
 theme:
