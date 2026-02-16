@@ -12,131 +12,160 @@ const description = "Cube AI is an open-source framework for securing Large Lang
 <Layout title={title} description={description}>
     <Header slot="header" />
 
-    <div class="pt-20">
-        <Hero 
-            title="Introducing Cube AI"
-            description="Open-source framework designed to enable the secure deployment of Large Language Models (LLMs) in privacy-sensitive applications by leveraging Confidential Computing."
-            image="/img/cube-ai.png"
-            ctaText="Contact Us"
-            ctaLink="mailto:info@ultraviolet.rs"
-        />
-    </div>
+    <!-- Header Section matching legacy -->
+    <section id="header" class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-center h-[400px] overflow-hidden">
+                <img src="/img/header.avif" alt="pattern-white" class="w-full h-full object-cover" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section id="cube-ai" class="py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="flex items-center justify-center mt-12 md:mt-0">
+                     <img src="/img/cube-ai.png" alt="Cube AI Concept" class="w-full max-w-lg" />
+                </div>
+                <div class="flex flex-col justify-center mt-12 md:mt-0">
+                    <h1 class="text-3xl text-text-main sm:text-4xl font-heading mb-4">Introducing Cube AI</h1>
+                     <div class="space-y-4 text-lg text-text-muted">
+                        <p>
+                          Cube AI is an open-source framework designed to enable the
+                          secure deployment of Large Language Models (LLMs) in
+                          privacy-sensitive applications by leveraging Confidential
+                          Computing. It utilizes Trusted Execution Environments (TEEs) to
+                          safeguard user data and AI models, ensuring confidentiality and
+                          integrity during processing. By isolating sensitive computations
+                          within secure enclaves, Cube AI protects against unauthorized
+                          access and tampering while supporting both open-source LLMs,
+                          such as Llama and Falcon, and proprietary models. This makes
+                          Cube AI a versatile and reliable solution for industries like
+                          healthcare, finance, and enterprise AI, where data security and
+                          compliance are paramount.
+                        </p>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </section>
 
     <!-- Features Grid -->
     <section class="py-16 bg-background transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-text-main sm:text-4xl font-heading">Cube AI Features</h2>
+                <h2 class="text-3xl text-text-main sm:text-4xl font-heading">Cube AI Features</h2>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                            <i class="fas fa-lock text-xl"></i>
+                         <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                            <i class="fas fa-lock text-3xl"></i>
                         </div>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg leading-6 font-medium text-text-main font-heading">Secure Data Protection</h3>
+                        <h3 class="text-lg leading-6 text-text-main font-heading">Secure Data Protection</h3>
                         <p class="mt-2 text-base text-text-muted">
-                             Uses Trusted Execution Environments (TEEs) to protect both user data and AI models from unauthorized access.
+                             Cube AI uses Trusted Execution Environments (TEEs) to protect both user data and AI models from unauthorized access, ensuring data confidentiality and code integrity during execution.
                         </p>
                     </div>
                 </div>
 
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                            <i class="fas fa-cogs text-xl"></i>
+                        <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                            <i class="fas fa-cogs text-3xl"></i>
                         </div>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg leading-6 font-medium text-text-main font-heading">Model Agnosticism</h3>
+                        <h3 class="text-lg leading-6 text-text-main font-heading">Model Agnosticism</h3>
                         <p class="mt-2 text-base text-text-muted">
-                            Supports a range of popular open-source LLMs like Llama, Falcon, and Mistral, as well as proprietary models.
+                            Cube AI is agnostic to the underlying model, supporting a range of popular open-source LLMs like Llama, Falcon, and Mistral, as well as proprietary models, offering great flexibility for diverse applications.
                         </p>
                     </div>
                 </div>
 
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                            <i class="fas fa-users-cog text-xl"></i>
+                        <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                            <i class="fas fa-users-cog text-3xl"></i>
                         </div>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg leading-6 font-medium text-text-main font-heading">Access Control</h3>
+                        <h3 class="text-lg leading-6 text-text-main font-heading">Access Control</h3>
                         <p class="mt-2 text-base text-text-muted">
-                            Fine-grained access control with role-based or attribute-based access for sensitive workloads.
+                            Cube AI provides fine-grained access control, allowing you to manage user permissions with role-based or attribute-based access. This ensures that only authorized users can access sensitive workloads and data, enhancing security.
                         </p>
                     </div>
                 </div>
 
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                            <i class="fas fa-tachometer-alt text-xl"></i>
+                         <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                            <i class="fas fa-tachometer-alt text-3xl"></i>
                         </div>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg leading-6 font-medium text-text-main font-heading">Scalable and Performant</h3>
+                        <h3 class="text-lg leading-6 text-text-main font-heading">Scalable and Performant</h3>
                         <p class="mt-2 text-base text-text-muted">
-                            Designed to handle large-scale workloads and demanding AI applications while ensuring privacy.
+                            Cube AI is designed to handle large-scale workloads and demanding AI applications, providing high-performance capabilities while ensuring privacy and security for users.
                         </p>
                     </div>
                 </div>
 
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                            <i class="fas fa-shield-alt text-xl"></i>
+                         <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                            <i class="fas fa-shield-alt text-3xl"></i>
                         </div>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg leading-6 font-medium text-text-main font-heading">End-to-End Encryption</h3>
+                        <h3 class="text-lg leading-6 text-text-main font-heading">End-to-End Encryption</h3>
                         <p class="mt-2 text-base text-text-muted">
-                            Ensures that all traffic is encrypted end-to-end, safeguarding sensitive data during transmission.
+                            Cube AI ensures that all traffic is encrypted end-to-end, safeguarding sensitive data during transmission between systems, providing secure communication for your AI-powered applications.
                         </p>
                     </div>
                 </div>
 
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                            <i class="fas fa-plug text-xl"></i>
+                         <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                            <i class="fas fa-plug text-3xl"></i>
                         </div>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg leading-6 font-medium text-text-main font-heading">Seamless Integration</h3>
+                        <h3 class="text-lg leading-6 text-text-main font-heading">Seamless Integration</h3>
                         <p class="mt-2 text-base text-text-muted">
-                            User-friendly SDK and API for easy integration with existing systems and AI workflows.
+                            Cube AI provides a user-friendly SDK and API, making it easy to integrate with existing systems and AI workflows, enabling secure deployment of AI models without extensive rework.
                         </p>
                     </div>
                 </div>
 
                 <div class="flex items-start">
                     <div class="flex-shrink-0">
-                         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                            <i class="fas fa-check-circle text-xl"></i>
+                         <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                            <i class="fas fa-check-circle text-3xl"></i>
                         </div>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg leading-6 font-medium text-text-main font-heading">Remote Attestation</h3>
+                        <h3 class="text-lg leading-6 text-text-main font-heading">Remote Attestation</h3>
                         <p class="mt-2 text-base text-text-muted">
-                            Robust remote attestation mechanism ensuring the integrity of the system during execution.
+                            Cube AI includes a robust remote attestation mechanism that ensures the integrity of the system during execution, verifying that AI models are running in a trusted environment, even in distributed or untrusted networks.
                         </p>
                     </div>
                 </div>
 
                  <div class="flex items-start">
                     <div class="flex-shrink-0">
-                         <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
-                            <i class="fas fa-code-branch text-xl"></i>
+                         <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                            <i class="fas fa-code-branch text-3xl"></i>
                         </div>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg leading-6 font-medium text-text-main font-heading">Open Source</h3>
+                        <h3 class="text-lg leading-6 text-text-main font-heading">Open Source</h3>
                         <p class="mt-2 text-base text-text-muted">
-                           Open-source and released under the Apache 2.0 license, promoting transparency and collaboration.
+                           Cube AI is open-source and released under the Apache 2.0 license. This promotes transparency, collaboration, and innovation in the developer community, empowering users to customize and contribute to the platform.
                         </p>
                     </div>
                 </div>
@@ -153,81 +182,144 @@ const description = "Cube AI is an open-source framework for securing Large Lang
     <!-- Architecture Section -->
     <section class="py-16 bg-surface transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-             <h2 class="text-3xl font-extrabold text-text-main sm:text-4xl font-heading mb-6">Cube AI Architecture</h2>
+             <h2 class="text-3xl text-text-main sm:text-4xl font-heading mb-6">Cube AI Architecture</h2>
              <p class="max-w-4xl mx-auto text-lg text-text-muted mb-10">
-                Groundbreaking architecture focused on protecting LLMs, user prompts, and data through TEEs.
+                Cube AI delivers a groundbreaking architecture focused on
+                protecting large language models (LLMs), user prompts, and
+                associated data through Trusted Execution Environments (TEEs). It
+                ensures the secure handling of sensitive requests and datasets,
+                empowering organizations to confidently deploy and use advanced AI
+                models in a protected environment.
              </p>
-             <div class="relative rounded-xl overflow-hidden shadow-2xl mb-12 bg-white p-4 dark:bg-slate-800">
-                 <img src="/img/cube-architecture.png" alt="Cube AI Architecture" class="mx-auto w-full md:w-3/4">
+             <div class="mb-12 flex justify-center mt-5">
+                 <img src="/img/cube-architecture.png" alt="Cube AI Architecture" class="w-full md:w-3/4 h-auto">
              </div>
              
              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
                  <div class="bg-card p-6 rounded-lg shadow-sm border border-border">
-                     <h4 class="font-bold text-lg mb-2 text-text-main">1. User Management and Access Control</h4>
-                     <p class="text-text-muted text-sm">Robust user management features with granular access control for sensitive LLM operations.</p>
+                     <h4 class="text-lg mb-2 text-text-main font-heading">1. User Management and Access Control</h4>
+                     <p class="text-text-muted text-sm">Cube AI includes robust user management features, allowing granular access control for sensitive LLM operations. Role-based permissions ensure that only authorized users can interact with protected models and data.</p>
                  </div>
                  <div class="bg-card p-6 rounded-lg shadow-sm border border-border">
-                     <h4 class="font-bold text-lg mb-2 text-text-main">2. Flexible Model Deployment</h4>
-                     <p class="text-text-muted text-sm">Supports dynamic deployment of AI models, enabling users to upload, manage, and execute models securely.</p>
+                     <h4 class="text-lg mb-2 text-text-main font-heading">2. Flexible Model Deployment</h4>
+                     <p class="text-text-muted text-sm">The platform supports dynamic deployment of AI models, enabling users to upload, manage, and execute models securely. This flexibility allows organizations to adapt to changing needs while ensuring the confidentiality of their intellectual property.</p>
                  </div>
                  <div class="bg-card p-6 rounded-lg shadow-sm border border-border">
-                     <h4 class="font-bold text-lg mb-2 text-text-main">3. HAL (Hardware Abstraction Layer)</h4>
-                     <p class="text-text-muted text-sm">Seamless interaction with a variety of TEE-enabled hardware platforms like AMD SEV and Intel TDX.</p>
+                     <h4 class="text-lg mb-2 text-text-main font-heading">3. HAL (Hardware Abstraction Layer)</h4>
+                     <p class="text-text-muted text-sm">The Hardware Abstraction Layer provides seamless interaction with a variety of TEE-enabled hardware platforms, including AMD SEV and Intel TDX. This abstraction ensures consistency and efficiency in managing secure computations across different infrastructures.</p>
                  </div>
                  <div class="bg-card p-6 rounded-lg shadow-sm border border-border">
-                     <h4 class="font-bold text-lg mb-2 text-text-main">4. Private and Public Cloud Support</h4>
-                     <p class="text-text-muted text-sm">Designed for hybrid environments, allowing deployment in both private and public clouds.</p>
+                     <h4 class="text-lg mb-2 text-text-main font-heading">4. Private and Public Cloud Support</h4>
+                     <p class="text-text-muted text-sm">Cube AI is designed for hybrid environments, allowing deployment in both private and public clouds. This flexibility ensures scalability and meets diverse operational requirements while maintaining data privacy and security.</p>
                  </div>
              </div>
         </div>
     </section>
 
-    <FeatureSection title="Deploy Any LLM" image="/img/ollama.png" imageSide="right" background="white">
-        <p>
-            Cube AI empowers organizations to deploy any Large Language Model (LLM) securely and efficiently, integrating seamlessly with leading platforms like Ollama and Hugging Face.
-        </p>
-        <p class="mt-4">
-            Protect sensitive user prompts and data by leveraging Trusted Execution Environments (TEEs), ensuring optimal performance and confidentiality.
-        </p>
-    </FeatureSection>
+    <!-- Deploy Any LLM Section -->
+    <section class="py-16 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                <div class="relative lg:order-1 flex items-center justify-center">
+                    <img class="w-full max-w-lg rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-transform duration-500 hover:scale-105" src="/img/ollama.png" alt="Deploy Any LLM with Cube AI">
+                </div>
+                <div class="mt-10 lg:mt-0 lg:order-2">
+                    <h1 class="text-3xl text-text-main sm:text-4xl font-heading mb-4">
+                        Deploy Any LLM
+                    </h1>
+                    <div class="prose prose-lg text-text-muted">
+                        <p>
+                            Cube AI empowers organizations to deploy any Large Language Model
+                            (LLM) securely and efficiently, integrating seamlessly with
+                            leading platforms like Ollama and Hugging Face.
+                        </p>
+                        <p class="mt-4">
+                            With Cube AI, you can protect sensitive user prompts and data by
+                            leveraging Trusted Execution Environments (TEEs). This ensures
+                            that your AI applications not only perform optimally but also
+                            uphold the highest standards of confidentiality and security.
+                        </p>
+                         <p class="mt-4">
+                            Whether you're working with pre-trained models or fine-tuning your
+                            own, Cube AI simplifies the deployment process, enabling secure,
+                            scalable, and compliant AI solutions for diverse applications.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <FeatureSection title="AI Gateway" image="/img/ai-gateway.png" imageSide="left" background="gray">
-        <p>
-            Delivering built-in <strong>Security, Observability, and Governance</strong> to AI workloads. Powered by CubeProxy’s Policy Enforcement Point (PEP) service.
-        </p>
-        <p class="mt-4">
-            Safeguards API communications, ensuring that data flows to LLMs are handled with confidentiality and integrity.
-        </p>
-    </FeatureSection>
+    <!-- AI Gateway Section -->
+    <section class="py-16 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                <div class="relative lg:order-2 flex items-center justify-center">
+                    <img class="w-full max-w-lg rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-transform duration-500 hover:scale-105" src="/img/ai-gateway.png" alt="AI Gateway in Cube AI">
+                </div>
+                <div class="mt-10 lg:mt-0 lg:order-1">
+                    <h1 class="text-3xl text-text-main sm:text-4xl font-heading mb-4">
+                        AI Gateway
+                    </h1>
+                    <div class="prose prose-lg text-text-muted">
+                        <p>
+                            The AI Gateway is a critical component of Cube AI, delivering
+                            built-in
+                            <strong>Security, Observability, and Governance</strong> to AI
+                            workloads. It is powered by CubeProxy’s Policy Enforcement Point
+                            (PEP) service, optimized for proxying API calls to Large Language
+                            Models (LLMs).
+                        </p>
+                        <p class="mt-4">
+                            This gateway safeguards API communications by implementing
+                            advanced security measures, ensuring that data flows and requests
+                            to LLMs are handled with confidentiality and integrity. It also
+                            provides robust observability, enabling real-time monitoring and
+                            logging of API interactions for compliance and operational
+                            insights.
+                        </p>
+                        <p class="mt-4">
+                            In addition, the AI Gateway enforces governance policies, allowing
+                            organizations to control access, usage, and compliance with
+                            internal and external regulations. By integrating seamlessly with
+                            Cube AI, it enhances the trustworthiness of LLM applications while
+                            maintaining high performance and scalability.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Use Cases -->
     <section class="py-16 bg-background transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-             <h2 class="text-3xl font-extrabold text-text-main sm:text-4xl font-heading mb-12">Cube AI Use Cases</h2>
+             <h2 class="text-3xl text-text-main sm:text-4xl font-heading mb-12">Cube AI Use Cases</h2>
              <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                 <div class="p-4">
-                      <div class="text-primary mb-4 text-4xl"><i class="fas fa-heartbeat"></i></div>
-                      <h3 class="text-xl font-bold mb-2 text-text-main">Healthcare</h3>
-                      <p class="text-text-muted text-sm">Process sensitive patient records securely and generate insights without exposing private data.</p>
+                 <div class="p-4 flex flex-col items-center">
+                      <div class="text-black dark:text-white mb-4 text-4xl"><i class="fas fa-heartbeat"></i></div>
+                      <h3 class="text-xl mb-2 text-text-main font-heading">Healthcare</h3>
+                      <p class="text-text-muted text-sm text-justify">Process sensitive patient records securely and generate valuable insights for diagnostics and research without exposing private data. Cube AI ensures compliance with stringent healthcare privacy regulations.</p>
                  </div>
-                 <div class="p-4">
-                      <div class="text-primary mb-4 text-4xl"><i class="fas fa-chart-line"></i></div>
-                      <h3 class="text-xl font-bold mb-2 text-text-main">Finance</h3>
-                      <p class="text-text-muted text-sm">Analyze confidential financial transactions and detect fraud with robust protections.</p>
+                 <div class="p-4 flex flex-col items-center">
+                      <div class="text-black dark:text-white mb-4 text-4xl"><i class="fas fa-chart-line"></i></div>
+                      <h3 class="text-xl mb-2 text-text-main font-heading">Finance</h3>
+                      <p class="text-text-muted text-sm text-justify">Analyze confidential financial transactions, detect fraud, and produce secure financial reports with Cube AI's robust protections for sensitive data and computational integrity.</p>
                  </div>
-                 <div class="p-4">
-                      <div class="text-primary mb-4 text-4xl"><i class="fas fa-headset"></i></div>
-                      <h3 class="text-xl font-bold mb-2 text-text-main">Customer Support</h3>
-                      <p class="text-text-muted text-sm">Deploy intelligent chatbots capable of handling sensitive user queries privately.</p>
+                 <div class="p-4 flex flex-col items-center">
+                      <div class="text-black dark:text-white mb-4 text-4xl"><i class="fas fa-headset"></i></div>
+                      <h3 class="text-xl mb-2 text-text-main font-heading">Customer Support</h3>
+                      <p class="text-text-muted text-sm text-justify">Deploy intelligent chatbots capable of handling sensitive user queries, providing personalized and private support, backed by Cube AI's secure data processing capabilities.</p>
                  </div>
-                 <div class="p-4">
-                      <div class="text-primary mb-4 text-4xl"><i class="fas fa-building"></i></div>
-                      <h3 class="text-xl font-bold mb-2 text-text-main">Enterprise AI</h3>
-                      <p class="text-text-muted text-sm">Build proprietary AI tools and workflows with confidence, securing models and data.</p>
+                 <div class="p-4 flex flex-col items-center">
+                      <div class="text-black dark:text-white mb-4 text-4xl"><i class="fas fa-building"></i></div>
+                      <h3 class="text-xl mb-2 text-text-main font-heading">Enterprise AI</h3>
+                      <p class="text-text-muted text-sm text-justify">Build proprietary AI tools and workflows with confidence. Cube AI ensures the security of both proprietary models and sensitive enterprise data during AI development and deployment.</p>
                  </div>
              </div>
              
              <div class="mt-12">
+                 <p class="mb-4 text-lg text-text-main">Have questions or want to learn more?</p>
                  <a href="mailto:info@ultraviolet.rs" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-primary-dark transition-colors">
                     Contact Us
                 </a>

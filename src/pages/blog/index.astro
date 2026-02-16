@@ -9,6 +9,8 @@ const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 
+const allTags = [...new Set(posts.flatMap(post => post.data.tags || []))].sort();
+
 const title = "Ultraviolet Blog";
 const description = "Latest news, updates, and insights from the Ultraviolet team on confidential computing and secure AI.";
 ---
@@ -19,15 +21,52 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
     <div class="pt-20">
         <Hero 
             title="Ultraviolet Blog"
-            description="Insights, updates, and technical deep-dives into Confidential Computing and Secure AI."
+            description="Technical articles, product updates, and engineering deep dives from the Ultraviolet team on building open-source confidential computing & secure AI Platforms."
         />
     </div>
 
-	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-		<div class="grid gap-16 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-12">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Search and Filter Section -->
+        <div class="mb-12 space-y-6">
+            <div class="relative max-w-lg mx-auto lg:mx-0">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search blogs..." 
+                    class="w-full px-4 py-3 rounded-lg border border-border bg-surface text-text-main focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                />
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-text-muted">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2" id="categoryFilters">
+                <button 
+                    class="category-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-primary text-white" 
+                    data-category="all"
+                >
+                    All
+                </button>
+                {allTags.map(tag => (
+                    <button 
+                        class="category-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-surface border border-border text-text-muted hover:bg-gray-100 dark:hover:bg-gray-800"
+                        data-category={tag}
+                    >
+                        {tag}
+                    </button>
+                ))}
+            </div>
+        </div>
+
+		<div class="grid gap-16 lg:grid-cols-3 lg:gap-x-5 lg:gap-y-12" id="blogGrid">
 			{
 				posts.map((post) => (
-					<div class="flex flex-col rounded-lg shadow-lg overflow-hidden transition-transform hover:-translate-y-1 border border-border bg-card">
+					<div 
+                        class="blog-card flex flex-col rounded-lg shadow-lg overflow-hidden transition-transform hover:-translate-y-1 border border-border bg-card"
+                        data-title={post.data.title.toLowerCase()}
+                        data-tags={post.data.tags?.join(',').toLowerCase() || ''}
+                        data-excerpt={(post.data.excerpt || post.data.description).toLowerCase()}
+                    >
 						{post.data.image && (
                             <div class="flex-shrink-0">
                                 <img class="h-48 w-full object-cover" src={post.data.image} alt={post.data.title} />
@@ -36,16 +75,16 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 						<div class="flex-1 bg-card p-6 flex flex-col justify-between">
 							<div class="flex-1">
                                 {post.data.tags && (
-                                    <div class="text-sm font-medium text-primary mb-2">
+                                    <div class="text-sm font-medium mb-2">
                                         {post.data.tags.map(tag => (
-                                            <span class="mr-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
+                                            <span class="mr-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300">
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
                                 )}
 								<a href={`/blog/${post.slug}`} class="block mt-2">
-									<p class="text-xl font-semibold text-text-main font-heading">{post.data.title}</p>
+									<p class="text-xl text-text-main font-heading">{post.data.title}</p>
 									<p class="mt-3 text-base text-text-muted line-clamp-3">{post.data.excerpt || post.data.description}</p>
 								</a>
 							</div>
@@ -83,4 +122,56 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 	</div>
 
 	<Footer slot="footer" />
+
+    <script is:inline>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const categoryButtons = document.querySelectorAll('.category-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+            let currentCategory = 'all';
+
+            function filterPosts() {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+
+                blogCards.forEach(card => {
+                    const title = card.dataset.title;
+                    const tags = card.dataset.tags;
+                    const excerpt = card.dataset.excerpt;
+                    const matchesSearch = title.includes(searchTerm) || tags.includes(searchTerm) || excerpt.includes(searchTerm);
+                    const matchesCategory = currentCategory === 'all' || tags.split(',').includes(currentCategory.toLowerCase());
+
+                    if (matchesSearch && matchesCategory) {
+                        card.style.display = '';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            searchInput.addEventListener('input', filterPosts);
+
+            categoryButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active state
+                    categoryButtons.forEach(b => {
+                        b.classList.remove('bg-primary', 'text-white');
+                        b.classList.add('bg-surface', 'text-text-muted');
+                    });
+                    btn.classList.remove('bg-surface', 'text-text-muted');
+                    btn.classList.add('bg-primary', 'text-white');
+
+                    currentCategory = btn.dataset.category;
+                    filterPosts();
+                });
+            });
+
+            // Check URL params for category
+            const params = new URLSearchParams(window.location.search);
+            const categoryFromURL = params.get('category');
+            if (categoryFromURL) {
+                const btn = document.querySelector(`.category-btn[data-category="${categoryFromURL}"]`);
+                if (btn) btn.click();
+            }
+        });
+    </script>
 </Layout>
