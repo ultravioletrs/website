@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Newsletter from '../components/Newsletter.astro';
 import Hero from '../components/Hero.astro';
 import Newsletter from '../components/Newsletter.astro';
 
@@ -12,78 +13,77 @@ const description = "Contact Ultraviolet for inquiries about confidential comput
 <Layout title={title} description={description}>
     <Header slot="header" />
 
-    <div class="pt-20">
-        <Hero 
-            title="Contact Us"
-            description="We're here to help you navigate the future of confidential computing."
-        />
-    </div>
+    <!-- Header section -->
+    <section id="header" class="py-12 lg:pb-0 lg:pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center h-[400px] overflow-hidden w-full relative">
+                <img src="/img/header.avif" alt="pattern-white" class="max-w-full h-auto" style="width: 100%" loading="lazy" />
+            </div>
+        </div>
+    </section>
 
-    <section class="py-16 bg-background overflow-hidden transition-colors duration-300">
+    <!-- Contact section -->
+    <section id="contact" class="py-12 lg:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Get in Touch -->
+                 <!-- Get In Touch -->
                 <div>
-                    <h2 class="text-3xl font-extrabold text-text-main font-heading mb-6">Get In Touch</h2>
-                    <ul class="space-y-4 text-lg text-text-muted">
-                        <li class="flex items-center">
-                            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary mr-4">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <a href="mailto:info@ultraviolet.rs" class="text-primary hover:text-primary-dark transition-colors">info@ultraviolet.rs</a>
+                     <h2 class="text-3xl font-heading mb-6">Get In Touch</h2>
+                     <p class="mb-4 text-lg">
+                        <i class="fas fa-envelope mr-2"></i><a href="mailto:info@ultraviolet.rs" class="text-primary hover:text-primary-dark hover:underline">info@ultraviolet.rs</a>
+                     </p>
+                     <p class="mb-4 text-lg">
+                        <i class="fab fa-gitter mr-2"></i><a href="https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im"
+                        target="_blank" class="text-primary hover:text-primary-dark hover:underline">Chat on Gitter</a>
+                     </p>
+                </div>
+                 <!-- Follow Us -->
+                <div>
+                    <h2 class="text-3xl font-heading mb-6">Follow Us</h2>
+                    <ul class="flex flex-wrap list-none p-0 m-0">
+                        <li class="mr-6 mb-4">
+                             <a href="https://twitter.com/ultravioletrs" target="_blank" class="flex items-center text-text-main hover:text-primary transition-colors">
+                                <i class="fab fa-twitter fa-2x mr-2"></i>Twitter
+                            </a>
                         </li>
-                        <li class="flex items-center">
-                            <div class="w-8 h-8 flex items-center justify-center rounded-full bg-primary/10 text-primary mr-4">
-                                <i class="fab fa-gitter"></i>
-                            </div>
-                            <a href="https://app.gitter.im/#/room/#Ultraviolet:mainflux.io" target="_blank" class="text-primary hover:text-primary-dark transition-colors">Chat on Gitter</a>
+                        <li class="mr-6 mb-4">
+                            <a href="https://www.linkedin.com/company/ultravioletrs" target="_blank" class="flex items-center text-text-main hover:text-primary transition-colors">
+                                <i class="fab fa-linkedin fa-2x mr-2"></i>LinkedIn
+                            </a>
+                        </li>
+                        <li class="mr-6 mb-4">
+                             <a href="https://github.com/ultravioletrs" target="_blank" class="flex items-center text-text-main hover:text-primary transition-colors">
+                                <i class="fab fa-github fa-2x mr-2"></i>GitHub
+                            </a>
                         </li>
                     </ul>
-
-                    <h2 class="text-3xl font-extrabold text-text-main font-heading mt-12 mb-6">Follow Us</h2>
-                    <div class="flex space-x-6">
-                        <a href="https://twitter.com/ultravioletrs" target="_blank" class="text-text-muted hover:text-primary transition-colors">
-                            <span class="sr-only">Twitter</span>
-                            <i class="fab fa-twitter fa-2x"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/ultravioletrs" target="_blank" class="text-text-muted hover:text-primary transition-colors">
-                            <span class="sr-only">LinkedIn</span>
-                            <i class="fab fa-linkedin fa-2x"></i>
-                        </a>
-                        <a href="https://github.com/ultravioletrs" target="_blank" class="text-text-muted hover:text-text-main transition-colors">
-                            <span class="sr-only">GitHub</span>
-                            <i class="fab fa-github fa-2x"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Address -->
-                <div>
-                    <h2 class="text-3xl font-extrabold text-text-main font-heading mb-6">Our Office</h2>
-                    <div class="bg-surface rounded-lg p-6 mb-6 border border-border">
-                        <h3 class="text-xl font-bold text-text-main mb-2">ULTRAVIOLET</h3>
-                        <p class="text-text-muted">
-                            Bulevar Arsenija Carnojevica 103<br>
-                            11000 Belgrade<br>
-                            Serbia
-                        </p>
-                    </div>
-                    <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden shadow-lg border border-border">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2268.377985058479!2d20.409364951467016!3d44.82032882973188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a709e828cd3b7%3A0x5c11252c64fcf58a!2sBulevar%20Arsenija%20Carnojevica%20103%2C%2011070%2C%20Novi%20Beograd!5e0!3m2!1sen!2srs!4v1661888661151!5m2!1sen!2srs" 
-                            width="100%" 
-                            height="300" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy"
-                            class="w-full h-full"
-                        ></iframe>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Address section -->
+    <section id="address" class="py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+                <div class="md:col-span-4">
+                     <h3 class="text-2xl font-heading mb-4">ULTRAVIOLET</h3>
+                     <p class="text-lg">
+                        Bulevar Arsenija Carnojevica 103<br>
+                        11000 Belgrade<br>
+                        Serbia
+                     </p>
+                </div>
+                <div class="md:col-span-8">
+                     <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2268.377985058479!2d20.409364951467016!3d44.82032882973188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a709e828cd3b7%3A0x5c11252c64fcf58a!2sBulevar%20Arsenija%20Carnojevica%20103%2C%2011070%2C%20Novi%20Beograd!5e0!3m2!1sen!2srs!4v1661888661151!5m2!1sen!2srs"
+                        width="100%" height="400" style="border: 0" allowfullscreen="" loading="lazy" class="rounded-lg shadow-lg"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter section -->
     <Newsletter />
 
     <Footer slot="footer" />

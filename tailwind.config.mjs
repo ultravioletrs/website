@@ -7,7 +7,7 @@ export default {
 			fontFamily: {
 				sans: ['Sen', 'sans-serif'],
 				mono: ['Roboto Mono', 'monospace'],
-				heading: ['Outfit', 'sans-serif'],
+				heading: ['Sen', 'sans-serif'],
 				body: ['Roboto Mono', 'monospace'],
 			},
 			colors: {
@@ -16,8 +16,8 @@ export default {
 				'surface-hover': 'rgb(var(--color-surface-hover) / <alpha-value>)',
 				
 				primary: {
-					DEFAULT: 'rgb(var(--color-primary) / <alpha-value>)',
-					dark: 'rgb(var(--color-primary-dark) / <alpha-value>)',
+					DEFAULT: '#0d6efd',
+					dark: '#0b5ed7',
 				},
 				secondary: {
 					DEFAULT: 'rgb(var(--color-secondary) / <alpha-value>)',

@@ -11,17 +11,17 @@ interface Props {
 const { title, description, image, ctaText, ctaLink, layout = 'split' } = Astro.props;
 ---
 
-<section class="bg-background transition-colors duration-300 py-12 lg:py-20">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section class="bg-background transition-colors duration-300 py-3 lg:py-3">
+  <div class="max-w-7xl mx-auto px-0 sm:px-0 lg:px-0">
     {layout === 'stacked' ? (
         <div class="flex flex-col gap-8">
             {image && (
-                <div class="w-full relative">
-                    <img class="w-full h-auto object-cover rounded-none shadow-none" src={image} alt="Hero Image">
+                <div class="flex items-center justify-center h-[400px] overflow-hidden w-full relative">
+                    <img class="max-w-full h-auto" src={image} alt={title} loading="lazy">
                 </div>
             )}
             <div class="max-w-4xl">
-                 <h1 class="text-4xl tracking-tight font-extrabold text-text-main sm:text-5xl md:text-6xl mb-6 font-heading">
+                 <h1 class="text-4xl tracking-tight text-text-main sm:text-5xl md:text-6xl mb-6 font-heading">
                     <span class="block xl:inline">{title}</span>
                 </h1>
                 <p class="mt-4 text-lg text-text-muted sm:mt-5 sm:max-w-3xl md:mt-5 md:text-xl">
@@ -41,7 +41,7 @@ const { title, description, image, ctaText, ctaLink, layout = 'split' } = Astro.
     ) : (
         <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
             <div>
-                <h1 class="text-4xl tracking-tight font-extrabold text-text-main sm:text-5xl md:text-6xl mb-6 font-heading">
+                <h1 class="text-4xl tracking-tight text-text-main sm:text-5xl md:text-6xl mb-6 font-heading">
                     <span class="block xl:inline">{title}</span>
                 </h1>
                 <p class="mt-4 text-lg text-text-muted sm:mt-5 sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
