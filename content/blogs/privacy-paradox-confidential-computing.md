@@ -6,7 +6,7 @@ description: "Discover why AI teams need Confidential Computing to protect sensi
 author:
   name: "Jilks Smith"
   picture: "https://avatars.githubusercontent.com/u/41241359?v=4"
-tags: [confidential-computing, ai-security, privacy, tee, enterprise-ai]
+tags: [confidential-computing, ai-security, privacy, tee, enterprise-ai, cube-ai]
 image: /img/privacy-paradox/privacy-paradox.jpg
 coverImage: /img/privacy-paradox/privacy-paradox.jpg
 ogImage:
