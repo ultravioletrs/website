@@ -16,7 +16,10 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
+const image = post.data.image || post.data.coverImage || (typeof post.data.ogImage === 'string' ? post.data.ogImage : post.data.ogImage?.url);
+---
+
+<Layout title={post.data.title} description={post.data.description} image={image}>
 	<Header slot="header" />
 
     <article class="pt-32 pb-16 bg-background overflow-hidden transition-colors duration-300">
