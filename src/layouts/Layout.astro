@@ -4,9 +4,10 @@ import '../styles/global.css';
 interface Props {
 	title: string;
 	description?: string;
+	image?: string;
 }
 
-const { title, description = "Ultraviolet - Open Source Confidential Computing AI Platform" } = Astro.props;
+const { title, description = "Ultraviolet - Open Source Confidential Computing AI Platform", image } = Astro.props;
 ---
 
 <!doctype html>
@@ -23,6 +24,14 @@ const { title, description = "Ultraviolet - Open Source Confidential Computing A
 		<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Outfit:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sen:wght@400..800&display=swap" rel="stylesheet">
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
 		<title>{title}</title>
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		{Astro.props.image && <meta property="og:image" content={new URL(Astro.props.image, Astro.site)} />}
+		{Astro.props.image && <meta name="twitter:image" content={new URL(Astro.props.image, Astro.site)} />}
 	</head>
 	<body class="flex flex-col min-h-screen bg-background text-text-main transition-colors duration-300">
         <script is:inline>
