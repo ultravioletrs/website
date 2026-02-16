@@ -326,6 +326,7 @@
 <p>Training or running inference on LLMs requires loading massive datasets into memory for extended periods. The &quot;context window&quot; of an LLM becomes a &quot;vulnerability window.&quot;</p>
 <p>If an attacker gains access, the entire contents of memory are available for exfiltration in cleartext. The models themselves have become high-value assets worth hundreds of millions in R&amp;D investment.</p>
 <p>This creates a paradox: organizations must use cloud scale to train models, but cannot trust the cloud with secrets and sensitive data.</p>
+<p><img src="/img/privacy-paradox/confidential-computing-stack.png" alt="Confidential Computing Stack"></p>
 <h2 id="real-world-breach-forensics">Real-World Breach Forensics</h2>
 <p>The fragility of AI data pipelines isn't theoretical. Recent incidents demonstrate the urgent need for architectural change.</p>
 <h3 id="microsoft-ai-research-exposure-2023">Microsoft AI Research Exposure (2023)</h3>
@@ -343,6 +344,7 @@
 <p>Engineers leaked proprietary source code and meeting notes into ChatGPT, demonstrating how &quot;Shadow AI&quot; bypasses IT governance. Once data enters the &quot;AI black box,&quot; organizations lose visibility and control.</p>
 <p><strong>The Lesson</strong>: Without architectural safeguards like Confidential Computing, sensitive data can flow into uncontrolled environments with no audit trail or protection.</p>
 <h2 id="ai-specific-attack-vectors">AI-Specific Attack Vectors</h2>
+<p><img src="/img/privacy-paradox/ai-threat-shield.png" alt="AI Threat Shield"></p>
 <p>Beyond traditional breaches, AI systems face unique adversarial attacks:</p>
 <h3 id="model-inversion--membership-inference">Model Inversion &amp; Membership Inference</h3>
 <p>Attackers can query API-exposed models to reconstruct training data. &quot;Model Inversion&quot; recreates specific training examples (faces, patient records). &quot;Membership Inference&quot; determines if specific data was used in training.</p>

@@ -41,6 +41,8 @@ If an attacker gains access, the entire contents of memory are available for exf
 
 This creates a paradox: organizations must use cloud scale to train models, but cannot trust the cloud with secrets and sensitive data.
 
+![Confidential Computing Stack](/img/privacy-paradox/confidential-computing-stack.png)
+
 ## Real-World Breach Forensics
 
 The fragility of AI data pipelines isn't theoretical. Recent incidents demonstrate the urgent need for architectural change.
@@ -68,6 +70,8 @@ Engineers leaked proprietary source code and meeting notes into ChatGPT, demonst
 **The Lesson**: Without architectural safeguards like Confidential Computing, sensitive data can flow into uncontrolled environments with no audit trail or protection.
 
 ## AI-Specific Attack Vectors
+
+![AI Threat Shield](/img/privacy-paradox/ai-threat-shield.png)
 
 Beyond traditional breaches, AI systems face unique adversarial attacks:
 
@@ -140,6 +144,8 @@ Remote attestation proves a workload is running in a genuine TEE:
 
 This ensures keys are never released unless the environment is proven secure and untampered. If malware is injected, the hash changes, verification fails, and keys remain locked.
 
+
+
 ## Industry Applications
 
 ### Healthcare: Clinical AI Development
@@ -149,6 +155,7 @@ This ensures keys are never released unless the environment is proven secure and
 **How Confidential Computing Helps**: Secure enclaves enable a data escrow model where hospitals encrypt data and upload to TEEs. Algorithm developers upload models to the same enclave. Models execute against data inside the TEE—developers receive performance reports but never access raw data.
 
 **Potential Benefits**:
+
 - Reduced time-to-insight from months to days
 - Lower costs by avoiding synthetic data purchases and extensive legal review
 - Access to rare disease datasets previously inaccessible due to privacy fragmentation
@@ -160,6 +167,7 @@ This ensures keys are never released unless the environment is proven secure and
 **How Confidential Computing Helps**: Federated Learning in secure enclaves allows models to move to banks' secure environments, learn from local data without data leaving custody, then aggregate to form more accurate global detectors.
 
 **Potential Benefits**:
+
 - Significant reduction in false positive rates
 - Improved detection accuracy across institutions
 - Ability to identify cross-institutional money laundering patterns
