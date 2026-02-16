@@ -22,8 +22,8 @@ const textOrderClass = imageSide === 'left' ? 'lg:order-2' : 'lg:order-1';
 				<img class="w-full rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-transform duration-500 hover:scale-105" src={image} alt={imageAlt}>
 			</div>
 			<div class={`mt-10 lg:mt-0 ${textOrderClass}`}>
-				{subtitle && <div class="text-primary font-semibold tracking-wide uppercase mb-2">{subtitle}</div>}
-				<h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl font-heading mb-4">
+				{subtitle && <div class="text-primary font-medium tracking-wide uppercase mb-2">{subtitle}</div>}
+				<h2 class="text-3xl text-text-main sm:text-4xl font-heading mb-4">
 					{title}
 				</h2>
 				<div class="prose prose-lg text-gray-500">
