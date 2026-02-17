@@ -1,19 +1,19 @@
 .PHONY: help install dev build preview check clean
 
 install:
-	npm install
+	pnpm install
 
 dev:
-	npm run dev
+	pnpm run dev
 
 build:
-	npm run build
+	pnpm run build
 
 preview:
-	npm run preview
+	pnpm run preview
 
 check:
-	npx astro check
+	pnpm astro check
 
 clean:
 	rm -rf dist

@@ -14,12 +14,11 @@ export async function getStaticPaths() {
 
 const post = Astro.props;
 const { Content } = await post.render();
+
+const pageImage = post.data.image || post.data.coverImage || (typeof post.data.ogImage === 'string' ? post.data.ogImage : post.data.ogImage?.url);
 ---
 
-const image = post.data.image || post.data.coverImage || (typeof post.data.ogImage === 'string' ? post.data.ogImage : post.data.ogImage?.url);
----
-
-<Layout title={post.data.title} description={post.data.description} image={image}>
+<Layout title={post.data.title} description={post.data.description} image={pageImage}>
 	<Header slot="header" />
 
     <article class="pt-32 pb-16 bg-background overflow-hidden transition-colors duration-300">
@@ -87,7 +86,7 @@ const image = post.data.image || post.data.coverImage || (typeof post.data.ogIma
                     </div>
                      {post.data.image && (
                          <figure class="mt-8">
-                             <img class="w-full rounded-lg shadow-lg object-cover" src={post.data.image} alt={post.data.title} style="max-height: 400px;">
+                             <img class="w-full rounded-lg shadow-lg object-cover" src={post.data.image} alt={post.data.title} style="max-height: 400px;" />
                          </figure>
                     )}
                 </div>

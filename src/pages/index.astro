@@ -11,58 +11,13 @@ const title = "Open Source Confidential Computing & Secure AI Platform | Ultravi
 <Layout title={title}>
 	<Header slot="header" />
 	
-	<!-- Header section -->
-    <section id="header" class="py-12 lg:pb-0 lg:pt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-center h-[400px] overflow-hidden w-full relative">
-                <img src="/img/header.avif" alt="Ultraviolet Open Source Confidential Computing AI Platform" class="max-w-full h-auto" loading="lazy" />
-            </div>
-        </div>
-    </section>
+	<Hero
+		title="Secure Your AI with Ultraviolet"
+		description="At Ultraviolet, we are dedicated to ensuring the security of your AI and data. We specialize in confidential computing technologies, providing hardware and software enablement of Trusted Execution Environments (TEEs) across various CPU architectures and platforms."
+		ctaText="Learn More about Cocos AI"
+		ctaLink="/cocos"
+	/>
 
-    <!-- Your AI Is Now Protected section -->
-    <section id="ai-protection" class="py-12 lg:py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mt-8">
-                <div class="w-full">
-                    <h1 class="text-4xl lg:text-5xl font-heading mb-6">Secure Your AI with Ultraviolet - Open Source Confidential Computing Platform</h1>
-                    <p class="mb-4 text-lg">
-                        At Ultraviolet, we are dedicated to ensuring the security of your
-                        AI and data. We specialize in confidential computing technologies,
-                        providing hardware and software enablement of Trusted Execution
-                        Environments (TEEs) across various CPU architectures and
-                        platforms.
-                    </p>
-                    <p class="mb-4 text-lg">
-                        Introducing cocos.ai, an open-source platform for confidential computing for secure
-                        multi-party collaborative AI.
-                    </p>
-                    <div class="mt-8">
-                        <a href="/cocos" class="inline-block px-6 py-3 bg-green-600 text-white font-bold rounded-md hover:bg-green-700 transition-colors"
-                            title="Learn more about Cocos AI – Open Source Confidential Computing Platform">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-	<!-- Membership section -->
-	<section class="py-8">
-		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-heading mb-8">Our Memberships</h2>
-			<div class="flex justify-center flex-wrap gap-8 items-center">
-				<a href="https://www.linuxfoundation.org/" target="_blank" class="mx-8 my-4">
-                    <img src="/img/logos/lf.png" alt="Linux Foundation Logo" class="h-16 object-contain">
-                </a>
-                <a href="https://confidentialcomputing.io/" target="_blank" class="mx-8 my-4">
-                    <img src="/img/logos/ccc.png" alt="Confidential Computing Consortium Logo" class="h-16 object-contain">
-                </a>
-			</div>
-             <p class="mt-6 mx-auto max-w-3xl text-lg">
-                Ultraviolet is a proud member of the Linux Foundation (LF) and the Confidential Computing Consortium (CCC), contributing to the advancement of confidential computing platforms and collaborative AI technologies.
-            </p>
-		</div>
-	</section>
 
 	<!-- Confidential Computing Section -->
     <section id="confidential-computing" class="py-12 lg:py-20 bg-surface">
@@ -174,11 +129,29 @@ const title = "Open Source Confidential Computing & Secure AI Platform | Ultravi
         </div>
     </section>
 
+	<!-- Membership section -->
+	<section class="py-8">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-heading mb-8">Our Memberships</h2>
+			<div class="flex justify-center flex-wrap gap-16 items-center">
+				<a href="https://www.linuxfoundation.org/" target="_blank" class="mx-8 my-4">
+                    <img src="/img/logos/lf.png" alt="Linux Foundation Logo" class="h-16 object-contain">
+                </a>
+                <a href="https://confidentialcomputing.io/" target="_blank" class="mx-8 my-4">
+                    <img src="/img/logos/ccc.png" alt="Confidential Computing Consortium Logo" class="h-16 object-contain">
+                </a>
+			</div>
+             <p class="mt-6 mx-auto max-w-3xl text-lg">
+                Ultraviolet is a proud member of the Linux Foundation (LF) and the Confidential Computing Consortium (CCC), contributing to the advancement of confidential computing platforms and collaborative AI technologies.
+            </p>
+		</div>
+	</section>
+
     <!-- Clients Section -->
-    <section class="py-12 bg-white">
+    <section class="py-12 bg-white dark:bg-slate-900 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-heading text-center mb-8">Our Clients and Partners</h2>
-            <div class="flex flex-wrap justify-center items-center gap-8">
+            <div class="flex flex-wrap justify-center items-center gap-12 dark:brightness-0 dark:invert">
                  <img src="/img/logos/if.png" alt="IF" class="h-16 object-contain">
                  <img src="/img/logos/etf.png" alt="ETF" class="h-20 object-contain">
                  <img src="/img/logos/eu.png" alt="EU" class="h-16 object-contain">
