@@ -86,6 +86,8 @@ For CPU and memory utilization and management, Horizontal Pod Autoscaler is used
 
 Prism AI goes beyond standard GitOps by implementing Progressive Delivery using Argo Rollouts.
 
+![Prism AI GitOps Workflow](/img/prism-kubernetes/prism-gitops-flow.png)
+
 - **Production Strategy (Canary)**: Releases are rolled out in stepped phases (e.g., 20% -> pause -> 40% -> ...). This allows the team to validate metrics before exposing the new version to 100% of traffic.
 - **Staging Strategy**: Uses a simplified rolling update strategy to ensure rapid iteration loops. ArgoCD synchronizes these definitions from Git, ensuring that the cluster always matches the declarative state.
 
