@@ -36,57 +36,69 @@ const title = "Open Source Confidential Computing & Secure AI Platform | Ultravi
 	
 	<Hero
 		title="Secure Your AI with Ultraviolet - Open Source Confidential Computing Platform"
-		description="At Ultraviolet, we are dedicated to ensuring the security of your AI and data. We specialize in confidential computing technologies, providing hardware and software enablement of Trusted Execution Environments (TEEs) across various CPU architectures and platforms. \n\nIntroducing cocos.ai, an open-source platform for confidential computing for secure multi-party collaborative AI."
-		ctaText="Learn More about Cocos AI"
-		ctaLink="/cocos"
+		description="At Ultraviolet, we empower organizations to secure their AI models and sensitive data. Our comprehensive suite of products—Cube AI, Prism AI, and Cocos AI—leverages confidential computing technologies to ensure privacy, compliance, and integrity for your AI workloads."
+		ctaText="Explore Our Products"
+		ctaLink="/products"
 	/>
 
 
-	<!-- Confidential Computing Section -->
-    <section id="confidential-computing" class="py-12 lg:py-20 bg-surface">
+	<!-- Cube AI Section -->
+    <section id="cube-ai" class="py-12 lg:py-20 bg-surface">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
                 <div class="flex justify-center items-center mb-8 lg:mb-0">
-                     <Image class="w-full h-auto" src={ccImage} alt="Trusted Execution Environment (TEE) diagram for confidential computing AI" loading="eager" />
+                     <Image class="w-full h-auto" src={ccImage} alt="Cube AI diagram" loading="eager" />
                 </div>
                 <div>
                     <h2 class="text-3xl font-bold font-heading mb-6">
-                        Confidential Computing
+                        Cube AI - Secure LLM Platform
                     </h2>
                     <p class="mb-4 text-lg text-text-muted">
-                        Confidential computing is a field at the intersection of computer science and cybersecurity, enabling secure multi-party computation and confidential collaborative AI on protected platforms.
+                        Cube AI is a comprehensive platform designed to protect Large Language Models (LLMs) and their inputs/outputs using Trusted Execution Environments (TEEs).
                     </p>
                     <p class="mb-4 text-lg text-text-muted">
-                        Trusted Execution Environments (TEEs) are isolated, secure environments within a CPU, designed to safeguard sensitive data and computations from unauthorized access, ensuring confidentiality.
+                        It combines security, observability, and governance to ensure safe and scalable deployment of LLMs. By isolating sensitive computations within secure enclaves, Cube AI protects against unauthorized access and tampering.
                     </p>
                      <p class="mb-4 text-lg text-text-muted">
-                        These secure enclaves allow critical operations such as encryption, decryption, and data processing to take place in a protected space immune to external attacks, making them essential for confidential computing AI platforms and collaborative AI projects.
+                        Support for popular open-source models and seamless integration with tools like Ollama makes Cube AI the ideal choice for privacy-sensitive GenAI applications.
                     </p>
+                    <div class="mt-8">
+                        <a href="/cube" class="text-primary font-medium hover:text-primary-dark transition-colors inline-flex items-center">
+                            Learn more about Cube AI
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Secure Collaborative AI Section -->
-    <section id="secure-collaborative-ai" class="py-12 lg:py-20">
+    <!-- Prism AI Section -->
+    <section id="prism-ai" class="py-12 lg:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
                  <div class="order-2 lg:order-1 lg:mt-0 mt-8">
                     <h2 class="text-3xl font-bold font-heading mb-6">
-                        Secure Collaborative AI
+                        Prism AI - Secure Collaboration
                     </h2>
                     <p class="mb-4 text-lg text-text-muted">
-                        Explore secure collaborative AI within our confidential computing platform, powered by Trusted Execution Environments (TEEs) and secure enclaves. This technology ensures maximum confidentiality, integrity, and privacy of your AI workloads and multi-party data exchanges.
+                        Prism AI is a distributed system for orchestrating secure, privacy-preserving collaborative AI training and inference. It empowers organizations to work together on sensitive data without ever exposing it.
                     </p>
                     <p class="mb-4 text-lg text-text-muted">
-                        TEEs provide isolated, secure environments within the CPU, protecting your AI computations from unauthorized access. Multi-party computation becomes possible as TEEs allow multiple parties to process data collaboratively without exposing sensitive information.
+                        Using TEEs, Prism AI enables secure multi-party computation (SMPC), allowing multiple parties to process data collaboratively.
                     </p>
                     <p class="mb-4 text-lg text-text-muted">
-                        With TEE secure enclaves, your AI workloads run confidentially and encrypted, safeguarding data against external threats. Experience the future of collaborative AI with security, privacy, and trust at its core on our confidential computing platform.
+                        Whether in private, hybrid, or public cloud environments, Prism AI provisions secure encrypted VMs for your workloads, ensuring that your data remains protected throughout its lifecycle.
                     </p>
+                    <div class="mt-8">
+                        <a href="/prism" class="text-primary font-medium hover:text-primary-dark transition-colors inline-flex items-center">
+                            Learn more about Prism AI
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
                 </div>
                 <div class="order-1 lg:order-2 flex justify-center items-center">
-                     <Image class="w-full h-auto" src={prismConceptImage} alt="Secure Collaborative AI platform powered by TEEs and confidential computing" />
+                     <Image class="w-full h-auto" src={prismConceptImage} alt="Prism AI Secure Collaborative AI platform" />
                 </div>
             </div>
         </div>
