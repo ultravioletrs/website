@@ -34,9 +34,10 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
                     id="searchInput" 
                     placeholder="Search blogs..." 
                     class="w-full px-4 py-3 rounded-lg border border-border bg-surface text-text-main focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all"
+                    aria-label="Search blogs"
                 />
                 <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none text-text-muted">
-                    <i class="fas fa-search"></i>
+                    <i class="fas fa-search" aria-hidden="true"></i>
                 </div>
             </div>
 
@@ -44,6 +45,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
                 <button 
                     class="category-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-primary text-white" 
                     data-category="all"
+                    aria-label="Filter by all categories"
                 >
                     All
                 </button>
@@ -51,6 +53,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
                     <button 
                         class="category-btn px-4 py-2 rounded-full text-sm font-medium transition-colors bg-surface border border-border text-text-muted hover:bg-gray-100 dark:hover:bg-gray-800"
                         data-category={tag}
+                        aria-label={`Filter by category ${tag}`}
                     >
                         {tag}
                     </button>
@@ -83,7 +86,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
                                         ))}
                                     </div>
                                 )}
-								<a href={`/blog/${post.slug}`} class="block mt-2">
+								<a href={`/blog/${post.slug}`} class="block mt-2" aria-label={`Read more about ${post.data.title}`}>
 									<p class="text-xl text-text-main font-heading">{post.data.title}</p>
 									<p class="mt-3 text-base text-text-muted line-clamp-3">{post.data.excerpt || post.data.description}</p>
 								</a>
@@ -91,9 +94,9 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 							<div class="mt-6 flex items-center">
                                 {post.data.author && post.data.author.picture && (
                                     <div class="flex-shrink-0">
-                                        <a href="#">
+                                        <a href="#" aria-label={`View profile of ${post.data.author.name}`}>
                                             <span class="sr-only">{post.data.author.name}</span>
-                                            <img class="h-10 w-10 rounded-full" src={post.data.author.picture} alt="" />
+                                            <img class="h-10 w-10 rounded-full" src={post.data.author.picture} alt={`Picture of ${post.data.author.name}`} />
                                         </a>
                                     </div>
                                 )}
