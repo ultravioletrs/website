@@ -1,0 +1,96 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+
+const title = "About Ultraviolet - Confidential Computing & AI Security";
+const description = "Ultraviolet specializes in confidential computing, cloud security, AI/ML, multi-party computation, and secure data sharing.";
+---
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <!-- Header section -->
+    <section id="header" class="py-12 lg:pb-0 lg:pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center h-[400px] overflow-hidden w-full relative">
+                <img src="/img/header.avif" alt="pattern-white" class="max-w-full h-auto" style="width: 100%" loading="lazy" />
+            </div>
+        </div>
+    </section>
+
+    <!-- About section -->
+    <section id="amdm" class="py-12 lg:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mt-8">
+                <div class="w-full">
+                    <h1 class="text-4xl lg:text-5xl font-heading mb-6">About Us</h1>
+                    <p class="mb-4 text-lg">
+                        Ultraviolet is a European-based company headquartered in Belgrade,
+                        Serbia, specializing in cutting-edge technologies such as cloud
+                        computing, AI/ML, multi-party computation, secure data sharing,
+                        and Trusted Execution Environments (TEEs). We are dedicated to
+                        developing open-source software and tools that empower
+                        organizations and developers to harness the power of these
+                        technologies while ensuring the highest levels of security and
+                        privacy.
+                    </p>
+                    <p class="mb-4 text-lg">
+                        Security and privacy are at the core of Ultraviolet's mission. Our
+                        team is highly committed to creating software that guarantees the
+                        confidentiality and integrity of data in cloud environments. We
+                        specialize in multi-party computation, enabling secure and
+                        collaborative data processing without compromising privacy.
+                        Ultraviolet also excels in developing AI/ML solutions that can
+                        operate on sensitive data while preserving individual privacy.
+                    </p>
+                    <p class="mb-4 text-lg">
+                        As a proud member of the open-source community, Ultraviolet
+                        actively contributes to advancing these technologies. We
+                        collaborate with leading organizations and consortia, including
+                        the
+                        <a href="https://confidentialcomputing.io/" class="text-primary hover:underline">Confidential Computing Consortium (CCC)</a>
+                        and the Linux Foundation, to drive innovation and set industry
+                        standards. Our commitment extends to hosting events, creating
+                        discussion forums, and offering training and support to developers
+                        and businesses interested in adopting secure and privacy-focused
+                        solutions.
+                    </p>
+                    <p class="mb-4 text-lg">
+                        Ultraviolet is deeply engaged in highly sophisticated and advanced
+                        large-scale EU research projects. We partner with some of the
+                        world's largest companies in these endeavors. For instance,
+                        Ultraviolet plays a pivotal role in the
+                        <a href="https://confidential6g.eu/" class="text-primary hover:underline">CONFIDENTIAL6G EU project</a>, which researches Confidential Computing
+                        for 6G networks. This
+                        project showcases our commitment to pushing the boundaries of
+                        technology and security in collaboration with global leaders.
+                        Additionally, Ultraviolet contributes to the
+                        <a href="https://titan-eosc.eu/" class="text-primary hover:underline">TITAN EOSC project</a>, funded by
+                        the European Commission, which aims to enrich the
+                        <a
+                          href="https://research-and-innovation.ec.europa.eu/strategy/strategy-2020-2024/our-digital-future/open-science/european-open-science-cloud-eosc_en" class="text-primary hover:underline">European
+                          Open Science Cloud (EOSC)</a>
+                        Interoperability Framework (IF) by developing a software platform
+                        solution for confidential collaboration and privacy-preserving
+                        data processing. We are also involved in the
+                        <a href="https://elasticproject.eu/" class="text-primary hover:underline">ELASTIC project</a>, which
+                        pioneers next-gen network orchestration, harnessing WebAssembly
+                        and Confidential Computing to ensure efficient, secure service
+                        delivery across 6G infrastructures.
+                    </p>
+                    <p class="mb-4 text-lg">
+                        At Ultraviolet, we envision a future where cloud computing, AI/ML,
+                        multi-party computation, secure data sharing, TEEs, and advanced
+                        research converge to create a safer and more collaborative digital
+                        world. Join us on this transformative journey toward a more secure
+                        and connected future.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <Footer slot="footer" />
+</Layout>
