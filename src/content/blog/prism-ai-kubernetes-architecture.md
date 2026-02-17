@@ -15,8 +15,6 @@ ogImage:
 featured: false
 ---
 
-![PRISM AI Kubernetes Architecture](/img/prism-kubernetes/prism-kubernetes.png)
-
 Here we'll explore the DevOps and Kubernetes architecture powering Prism AI, a confidential computing platform that enables secure collaborative AI workloads. We'll dive deep into the technical decisions and tooling choices that enable reliable scaling while maintaining enterprise-grade security and observability.
 
 ---
