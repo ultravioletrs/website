@@ -1,0 +1,291 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import Newsletter from '../../components/Newsletter.astro';
+
+const project = {
+    title: "TITAN",
+    tagline: "Trusted AI systems through confidential computing and privacy-preserving technologies",
+    description: "TITAN is a 36-month project that proposes to develop secure and trustworthy confidential data processing and sharing capabilities, and demonstrate them in the EOSC ecosystem. The sharing of sensitive data will follow FAIR data and open science principles.",
+    duration: "1 February 2024 - 31 January 2027",
+    budget: "€5 Million",
+    status: "Active",
+    funding: "Horizon Europe",
+    coordinator: "UNIVERSIDAD DE MURCIA",
+    logo: "/img/logos/titan.svg",
+    site: "https://titan-eosc.eu/",
+    cordis: "https://cordis.europa.eu/project/id/101129822"
+};
+
+const title = "TITAN - Trusted AI & Privacy-Preserving Technologies";
+const description = "TITAN is an EU-funded project building trusted AI systems using confidential computing, TEEs, and privacy-preserving technologies for secure collaboration.";
+---
+
+<Layout title={title} description={description}>
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <!-- Header section -->
+    <section id="header" class="py-12 lg:pb-0 lg:pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center h-[400px] overflow-hidden w-full relative">
+                <img src="/img/header.avif" alt="pattern-white" class="max-w-full h-auto" style="width: 100%" loading="lazy" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Title section -->
+    <section id="project-title" class="py-12 lg:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <img src="/img/logos/titan.svg" alt="TITAN Logo" class="mb-8 mx-auto dark:brightness-0 dark:invert" style="max-height: 120px" />
+            <h1 class="text-4xl lg:text-5xl font-heading mb-6">TITAN</h1>
+            <p class="text-xl text-text-muted">
+                Trusted AI systems through confidential computing and privacy-preserving technologies
+            </p>
+        </div>
+    </section>
+
+    <!-- Project Details Summary section -->
+    <section id="project-details" class="py-12 lg:py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-heading mb-8">Project Details</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div class="bg-card p-6 rounded-lg shadow-sm border border-border h-full flex flex-col">
+                    <h5 class="text-lg font-heading mb-4 flex items-center">
+                        <i class="fas fa-calendar-alt mr-2 text-primary"></i>Duration
+                    </h5>
+                    <p class="text-text-muted">1 February 2024 - 31 January 2027</p>
+                </div>
+                <div class="bg-card p-6 rounded-lg shadow-sm border border-border h-full flex flex-col">
+                    <h5 class="text-lg font-heading mb-4 flex items-center">
+                         <i class="fas fa-euro-sign mr-2 text-primary"></i>Total Budget
+                    </h5>
+                    <p class="text-text-muted">€5 Million</p>
+                </div>
+                <div class="bg-card p-6 rounded-lg shadow-sm border border-border h-full flex flex-col">
+                    <h5 class="text-lg font-heading mb-4 flex items-center">
+                        <i class="fas fa-flag mr-2 text-primary"></i>Status
+                    </h5>
+                    <p class="text-text-muted">
+                        <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">Active</span>
+                    </p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-card p-6 rounded-lg shadow-sm border border-border h-full flex flex-col">
+                    <h5 class="text-lg font-heading mb-4 flex items-center">
+                        <i class="fas fa-landmark mr-2 text-primary"></i>Funding Program
+                    </h5>
+                    <p class="text-text-muted">Horizon Europe</p>
+                </div>
+                <div class="bg-card p-6 rounded-lg shadow-sm border border-border h-full flex flex-col">
+                     <h5 class="text-lg font-heading mb-4 flex items-center">
+                        <i class="fas fa-user-tie mr-2 text-primary"></i>Project Coordinator
+                    </h5>
+                    <p class="text-text-muted">UNIVERSIDAD DE MURCIA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Description section -->
+    <section id="project-description" class="py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-heading mb-6">Project Description</h2>
+            <p class="mb-4 text-lg text-text-muted">
+                TITAN is a 36-month project that proposes to develop secure and trustworthy confidential data processing and sharing capabilities, and demonstrate them in the EOSC ecosystem.
+            </p>
+            <p class="mb-4 text-lg text-text-muted">
+                The sharing of sensitive data will follow FAIR data and open science principles. The project puts significant emphasis on privacy preservation and AI technological solutions in line with existing ethical, regulatory and legal EU boundaries.
+            </p>
+            <p class="mb-4 text-lg text-text-muted">
+                The developed open-source software platform will focus mostly on the two use cases present in the project: government data and healthcare.
+            </p>
+        </div>
+    </section>
+
+    <!-- Project Summary section -->
+    <section id="project-summary" class="py-12 lg:py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-heading mb-8">Project Summary</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                     <h4 class="text-xl font-heading mb-4">Key Objectives</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                             <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check-circle text-green-600"></i>
+                            </div>
+                            <p class="ml-3 text-lg text-text-muted">
+                                <strong>Trusted AI Infrastructure:</strong> Develop secure infrastructure for AI/ML workloads using confidential computing technologies.
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                             <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check-circle text-green-600"></i>
+                            </div>
+                            <p class="ml-3 text-lg text-text-muted">
+                                <strong>Privacy-Preserving Machine Learning:</strong> Enable collaborative machine learning while preserving data privacy across multiple stakeholders.
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                             <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check-circle text-green-600"></i>
+                            </div>
+                             <p class="ml-3 text-lg text-text-muted">
+                                <strong>Secure Data Sharing:</strong> Implement secure multi-party computation protocols for confidential data exchange and processing.
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                             <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check-circle text-green-600"></i>
+                            </div>
+                             <p class="ml-3 text-lg text-text-muted">
+                                <strong>TEE Integration:</strong> Leverage hardware-based security features for protecting AI models and training data.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-heading mb-4">Expected Outcomes</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-star text-primary"></i>
+                            </div>
+                             <p class="ml-3 text-lg text-text-muted">
+                                <strong>Confidential AI platform:</strong> Secure platform for training and deploying AI models in untrusted environments.
+                            </p>
+                        </li>
+                         <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-star text-primary"></i>
+                            </div>
+                            <p class="ml-3 text-lg text-text-muted">
+                                <strong>Privacy-preserving protocols:</strong> Advanced protocols for secure collaborative AI across organizations.
+                            </p>
+                        </li>
+                         <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-star text-primary"></i>
+                            </div>
+                             <p class="ml-3 text-lg text-text-muted">
+                                <strong>TEE-enabled ML:</strong> Machine learning frameworks optimized for Trusted Execution Environments.
+                            </p>
+                        </li>
+                         <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-star text-primary"></i>
+                            </div>
+                            <p class="ml-3 text-lg text-text-muted">
+                                <strong>Secure model deployment:</strong> Tools and frameworks for deploying AI models with confidentiality guarantees.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Involvement section -->
+    <section id="our-involvement" class="py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-heading mb-6">Our Involvement</h2>
+            <p class="mb-6 text-lg text-text-muted">
+                Ultraviolet brings extensive expertise in confidential computing and privacy-preserving technologies to the TITAN project. Our experience with Trusted Execution Environments (TEEs), secure multi-party computation, and collaborative AI platforms positions us as a key contributor to developing trusted AI systems.
+            </p>
+            <h4 class="text-xl font-heading mb-4">Our Responsibilities:</h4>
+            <ul class="list-disc pl-5 space-y-2 mb-8 text-lg text-text-muted">
+                <li><strong>Confidential Computing Architecture:</strong> Designing and implementing TEE-based architectures for secure AI workloads.</li>
+                <li><strong>Privacy-Preserving AI Frameworks:</strong> Developing frameworks for secure collaborative machine learning using SMPC and confidential computing.</li>
+                <li><strong>Secure Model Training:</strong> Implementing secure protocols for distributed AI model training across multiple parties.</li>
+                <li><strong>Data Protection:</strong> Ensuring data confidentiality and integrity throughout the AI lifecycle using hardware-based security.</li>
+                <li><strong>Platform Integration:</strong> Integrating confidential computing capabilities into existing AI/ML platforms and workflows.</li>
+            </ul>
+
+            <div class="mt-8 flex flex-wrap gap-4">
+                 <a href="https://titan-eosc.eu/" target="_blank" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition-colors">
+                    <i class="fas fa-external-link-alt mr-2"></i>Visit Project Site
+                </a>
+                 <a href="https://cordis.europa.eu/project/id/101129822" target="_blank" class="inline-flex items-center px-6 py-3 border border-green-600 text-base font-medium rounded-md text-green-600 bg-transparent hover:bg-green-50 transition-colors">
+                    <i class="fas fa-info-circle mr-2"></i>View on CORDIS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Partners section -->
+    <section id="project-partners" class="py-12 lg:py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-heading mb-4">Project Partners</h2>
+                <p class="text-xl text-text-muted">
+                    Collaborating with leading organizations across Europe
+                </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center dark:brightness-0 dark:invert">
+                 <div class="flex justify-center">
+                    <img src="/img/logos/Universidad-de-Murcia.png" alt="Universidad de Murcia" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/fujitsu.png" alt="Fujitsu" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/zen.png" alt="Zentrix Labs" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/canarybit.png" alt="Canarybit" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/f6s.png" alt="F6S" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/universityofeastern.png" alt="University of Eastern Finland" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/odysseus.png" alt="Odysseus Data Services" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/Trilateral-Research.png" alt="Trilateral Research" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/charite.png" alt="Charité University Hospital" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/inserm.png" alt="Inserm" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/SARGA.png" alt="SARGA" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/regione-del-veneto.png" alt="Regione del Veneto" class="max-h-20 dark:invert" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/university-of-koblenz.png" alt="University of Koblenz" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/ITA.png" alt="ITA" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/fraunhofer.png" alt="Fraunhofer" class="max-h-20" />
+                </div>
+                <div class="flex justify-center">
+                    <img src="/img/logos/ultraviolet.png" alt="Ultraviolet" class="max-h-20" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Projects section -->
+    <section class="py-12 lg:py-20 text-center">
+         <a href="/projects" class="inline-flex items-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md text-text-main hover:bg-surface transition-colors">
+            <i class="fas fa-arrow-left mr-2"></i>Back to All Projects
+        </a>
+    </section>
+
+    <Newsletter />
+
+    <Footer slot="footer" />
+</Layout>
