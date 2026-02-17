@@ -11,8 +11,8 @@ interface Props {
 const { title, description, image, ctaText, ctaLink, layout = 'split' } = Astro.props;
 ---
 
-<section class="bg-background transition-colors duration-300 py-3 lg:py-3">
-  <div class="max-w-7xl mx-auto px-0 sm:px-0 lg:px-0">
+<section class="bg-background transition-colors duration-300 py-3 lg:py-3 pt-20 lg:pt-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     {layout === 'stacked' ? (
         <div class="flex flex-col gap-8">
             {image && (
@@ -40,15 +40,15 @@ const { title, description, image, ctaText, ctaLink, layout = 'split' } = Astro.
         </div>
     ) : (
         <div class={`lg:grid ${image ? 'lg:grid-cols-2 lg:gap-16' : ''} lg:items-center`}>
-            <div class={image ? '' : 'max-w-4xl mx-auto text-center'}>
+            <div class={image ? '' : 'w-full'}>
                 <h1 class="text-4xl tracking-tight text-text-main sm:text-5xl md:text-6xl mb-6 font-heading">
                     <span class="block xl:inline">{title}</span>
                 </h1>
-                <p class={`mt-4 text-lg text-text-muted sm:mt-5 sm:max-w-xl ${image ? 'sm:mx-auto lg:mx-0' : 'mx-auto'} md:mt-5 md:text-xl`}>
+                <p class={`mt-4 text-lg text-text-muted sm:mt-5 ${image ? 'sm:max-w-xl sm:mx-auto lg:mx-0' : ''} md:mt-5 md:text-xl`}>
                     {description}
                 </p>
                 {ctaText && ctaLink && (
-                    <div class={`mt-8 sm:mt-10 sm:flex sm:justify-center ${image ? 'lg:justify-start' : ''} gap-4`}>
+                    <div class={`mt-8 sm:mt-10 sm:flex ${image ? 'sm:justify-center lg:justify-start' : ''} gap-4`}>
                     <div class="rounded-lg shadow-lg">
                         <a href={ctaLink} class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-lg text-white bg-primary hover:bg-primary-dark md:py-4 md:text-lg md:px-10 transition-all hover:shadow-primary/30">
                         {ctaText}
