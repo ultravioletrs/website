@@ -17,7 +17,7 @@ const { title, description, image, ctaText, ctaLink, layout = 'split' } = Astro.
         <div class="flex flex-col gap-8">
             {image && (
                 <div class="flex items-center justify-center h-[400px] overflow-hidden w-full relative">
-                    <img class="max-w-full h-auto" src={image} alt={title} loading="lazy">
+                    <img class="max-w-full h-auto" src={image} alt={title} loading="eager">
                 </div>
             )}
             <div class="max-w-4xl">
@@ -64,7 +64,7 @@ const { title, description, image, ctaText, ctaLink, layout = 'split' } = Astro.
             </div>
             {image && (
                 <div class="mt-10 lg:mt-0 relative">
-                    <img class="w-full rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 ring-1 ring-border" src={image} alt="Hero Image">
+                    <img class="w-full rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 ring-1 ring-border" src={image} alt="Hero Image" loading="eager">
                 </div>
             )}
         </div>
