@@ -18,7 +18,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 <Layout title={title} description={description}>
 	<Header slot="header" />
 
-    <div class="pt-20">
+    <div class="pt-0">
         <Hero 
             title="Ultraviolet Blog"
             description="Technical articles, product updates, and engineering deep dives from the Ultraviolet team on building open-source confidential computing & secure AI Platforms."
@@ -28,7 +28,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Search and Filter Section -->
         <div class="mb-12 space-y-6">
-            <div class="relative max-w-lg mx-auto lg:mx-0">
+            <div class="relative w-full">
                 <input 
                     type="text" 
                     id="searchInput" 
@@ -65,7 +65,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
                         class="blog-card flex flex-col rounded-lg shadow-lg overflow-hidden transition-transform hover:-translate-y-1 border border-border bg-card"
                         data-title={post.data.title.toLowerCase()}
                         data-tags={post.data.tags?.join(',').toLowerCase() || ''}
-                        data-excerpt={(post.data.excerpt || post.data.description).toLowerCase()}
+                        data-excerpt={(post.data.excerpt || post.data.description || '').toLowerCase()}
                     >
 						{post.data.image && (
                             <div class="flex-shrink-0">
@@ -111,6 +111,8 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 												day: 'numeric',
 											})}
 										</time>
+                                        <span aria-hidden="true">&middot;</span>
+                                        <span>{Math.ceil(post.body.split(/\s+/).length / 200)} min read</span>
 									</div>
 								</div>
 							</div>
