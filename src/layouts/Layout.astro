@@ -30,8 +30,8 @@ const { title, description = "Ultraviolet - Open Source Confidential Computing A
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		{Astro.props.image && <meta property="og:image" content={new URL(Astro.props.image, Astro.site)} />}
-		{Astro.props.image && <meta name="twitter:image" content={new URL(Astro.props.image, Astro.site)} />}
+		{Astro.props.image && <meta property="og:image" content={new URL(Astro.props.image, Astro.site || 'https://ultraviolet.rs')} />}
+		{Astro.props.image && <meta name="twitter:image" content={new URL(Astro.props.image, Astro.site || 'https://ultraviolet.rs')} />}
 	</head>
 	<body class="flex flex-col min-h-screen bg-background text-text-main transition-colors duration-300">
         <script is:inline>
