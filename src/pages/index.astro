@@ -4,6 +4,29 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Hero from '../components/Hero.astro';
 import Newsletter from '../components/Newsletter.astro';
+import { Image } from 'astro:assets';
+
+import ccImage from '../assets/cc.png';
+import prismConceptImage from '../assets/prism-concept.png';
+import openSourceImage from '../assets/open-source.png';
+
+import lfLogo from '../assets/logos/lf.png';
+import cccLogo from '../assets/logos/ccc.png';
+
+import ifLogo from '../assets/logos/if.png';
+import etfLogo from '../assets/logos/etf.png';
+import euLogo from '../assets/logos/eu.png';
+import telefonicaLogo from '../assets/logos/telefonica.png';
+import vttLogo from '../assets/logos/vtt.png';
+import fujitsuLogo from '../assets/logos/fujitsu.png';
+import fraunhoferLogo from '../assets/logos/fraunhofer.png';
+import tnoLogo from '../assets/logos/tno.png';
+import ericssonLogo from '../assets/logos/ericsson.png';
+import nokiaLogo from '../assets/logos/nokia.png';
+import insermLogo from '../assets/logos/inserm.png';
+import tueLogo from '../assets/logos/tue.png';
+import thalesLogo from '../assets/logos/thales.png';
+import imdeaLogo from '../assets/logos/imdea.svg';
 
 const title = "Open Source Confidential Computing & Secure AI Platform | Ultraviolet";
 ---
@@ -24,7 +47,7 @@ const title = "Open Source Confidential Computing & Secure AI Platform | Ultravi
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
                 <div class="flex justify-center items-center mb-8 lg:mb-0">
-                     <img class="w-full h-auto" src="/img/cc.png" alt="Trusted Execution Environment (TEE) diagram for confidential computing AI">
+                     <Image class="w-full h-auto" src={ccImage} alt="Trusted Execution Environment (TEE) diagram for confidential computing AI" />
                 </div>
                 <div>
                     <h2 class="text-3xl font-bold font-heading mb-6">
@@ -63,7 +86,7 @@ const title = "Open Source Confidential Computing & Secure AI Platform | Ultravi
                     </p>
                 </div>
                 <div class="order-1 lg:order-2 flex justify-center items-center">
-                     <img class="w-full h-auto" src="/img/prism-concept.png" alt="Secure Collaborative AI platform powered by TEEs and confidential computing">
+                     <Image class="w-full h-auto" src={prismConceptImage} alt="Secure Collaborative AI platform powered by TEEs and confidential computing" />
                 </div>
             </div>
         </div>
@@ -74,7 +97,7 @@ const title = "Open Source Confidential Computing & Secure AI Platform | Ultravi
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
                 <div class="flex justify-center items-center mb-8 lg:mb-0">
-                     <img class="w-full h-auto" src="/img/open-source.png" alt="Cocos AI open source confidential computing platform for secure collaborative AI">
+                     <Image class="w-full h-auto" src={openSourceImage} alt="Cocos AI open source confidential computing platform for secure collaborative AI" />
                 </div>
                 <div>
                     <h2 class="text-3xl font-bold font-heading mb-6">
@@ -135,10 +158,10 @@ const title = "Open Source Confidential Computing & Secure AI Platform | Ultravi
             <h2 class="text-3xl font-heading mb-8">Our Memberships</h2>
 			<div class="flex justify-center flex-wrap gap-16 items-center">
 				<a href="https://www.linuxfoundation.org/" target="_blank" class="mx-8 my-4">
-                    <img src="/img/logos/lf.png" alt="Linux Foundation Logo" class="h-16 object-contain">
+                    <Image src={lfLogo} alt="Linux Foundation Logo" class="h-16 w-auto object-contain" />
                 </a>
                 <a href="https://confidentialcomputing.io/" target="_blank" class="mx-8 my-4">
-                    <img src="/img/logos/ccc.png" alt="Confidential Computing Consortium Logo" class="h-16 object-contain">
+                    <Image src={cccLogo} alt="Confidential Computing Consortium Logo" class="h-16 w-auto object-contain" />
                 </a>
 			</div>
              <p class="mt-6 mx-auto max-w-3xl text-lg">
@@ -148,24 +171,24 @@ const title = "Open Source Confidential Computing & Secure AI Platform | Ultravi
 	</section>
 
     <!-- Clients Section -->
-    <section class="py-12 bg-white dark:bg-slate-900 transition-colors duration-300">
+    <section class="py-12 bg-white dark:bg-zinc-900 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-3xl font-heading text-center mb-8">Our Clients and Partners</h2>
             <div class="flex flex-wrap justify-center items-center gap-12 dark:brightness-0 dark:invert">
-                 <img src="/img/logos/if.png" alt="IF" class="h-16 object-contain">
-                 <img src="/img/logos/etf.png" alt="ETF" class="h-20 object-contain">
-                 <img src="/img/logos/eu.png" alt="EU" class="h-16 object-contain">
-                 <img src="/img/logos/telefonica.png" alt="Telefonica" class="h-12 object-contain">
-                 <img src="/img/logos/vtt.png" alt="VTT" class="h-12 object-contain">
-                 <img src="/img/logos/fujitsu.png" alt="Fujitsu" class="h-12 object-contain">
-                 <img src="/img/logos/fraunhofer.png" alt="Fraunhofer" class="h-10 object-contain">
-                 <img src="/img/logos/tno.png" alt="TNO" class="h-12 object-contain">
-                 <img src="/img/logos/ericsson.png" alt="Ericsson" class="h-24 object-contain">
-                 <img src="/img/logos/nokia.png" alt="Nokia" class="h-24 object-contain">
-                 <img src="/img/logos/inserm.png" alt="Inserm" class="h-20 object-contain">
-                 <img src="/img/logos/tue.png" alt="TUE" class="h-12 object-contain">
-                 <img src="/img/logos/thales.png" alt="Thales" class="h-32 object-contain">
-                 <img src="/img/logos/imdea.svg" alt="Imdea" class="h-16 object-contain">
+                 <Image src={ifLogo} alt="IF" class="h-16 w-auto object-contain" />
+                 <Image src={etfLogo} alt="ETF" class="h-20 w-auto object-contain" />
+                 <Image src={euLogo} alt="EU" class="h-16 w-auto object-contain" />
+                 <Image src={telefonicaLogo} alt="Telefonica" class="h-12 w-auto object-contain" />
+                 <Image src={vttLogo} alt="VTT" class="h-12 w-auto object-contain" />
+                 <Image src={fujitsuLogo} alt="Fujitsu" class="h-12 w-auto object-contain" />
+                 <Image src={fraunhoferLogo} alt="Fraunhofer" class="h-10 w-auto object-contain" />
+                 <Image src={tnoLogo} alt="TNO" class="h-12 w-auto object-contain" />
+                 <Image src={ericssonLogo} alt="Ericsson" class="h-24 w-auto object-contain" />
+                 <Image src={nokiaLogo} alt="Nokia" class="h-24 w-auto object-contain" />
+                 <Image src={insermLogo} alt="Inserm" class="h-20 w-auto object-contain" />
+                 <Image src={tueLogo} alt="TUE" class="h-12 w-auto object-contain" />
+                 <Image src={thalesLogo} alt="Thales" class="h-32 w-auto object-contain" />
+                 <Image src={imdeaLogo} alt="Imdea" class="h-16 w-auto object-contain" />
             </div>
         </div>
     </section>
