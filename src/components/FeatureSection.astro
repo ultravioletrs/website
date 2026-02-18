@@ -1,0 +1,35 @@
+---
+interface Props {
+	title: string;
+	subtitle?: string; // Optional subtitle/small heading
+	image: string;
+	imageAlt?: string;
+	imageSide?: 'left' | 'right';
+	background?: 'white' | 'gray';
+}
+
+const { title, subtitle, image, imageAlt = "", imageSide = 'right', background = 'white' } = Astro.props;
+
+const bgColor = background === 'gray' ? 'bg-gray-50' : 'bg-white';
+const orderClass = imageSide === 'left' ? 'lg:order-1' : 'lg:order-2';
+const textOrderClass = imageSide === 'left' ? 'lg:order-2' : 'lg:order-1';
+---
+
+<section class={`py-16 ${bgColor}`}>
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+			<div class={`relative ${orderClass}`}>
+				<img class="w-full rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-transform duration-500 hover:scale-105" src={image} alt={imageAlt}>
+			</div>
+			<div class={`mt-10 lg:mt-0 ${textOrderClass}`}>
+				{subtitle && <div class="text-primary font-medium tracking-wide uppercase mb-2">{subtitle}</div>}
+				<h2 class="text-3xl text-text-main sm:text-4xl font-heading mb-4">
+					{title}
+				</h2>
+				<div class="prose prose-lg text-gray-500">
+					<slot />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

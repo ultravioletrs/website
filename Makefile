@@ -1,26 +1,20 @@
-.PHONY: help build clean serve
-PORT ?= 8080
+.PHONY: help install dev build preview check clean
 
-help: ## Show command options
-	@echo 'Usage: make [target]'
-	@echo ''
-	@echo 'Available targets:'
-	@awk 'BEGIN {FS = ":.*?## "} /^[a-zA-Z_-]+:.*?## / {printf "  %-15s %s\n", $$1, $$2}' $(MAKEFILE_LIST)
+install:
+	pnpm install
 
-build: ## Build the blogs
-	@echo "Building blogs..."
-	@cd scripts && go build -o ../blogs-builder
-	@./blogs-builder
-	@rm blogs-builder
+dev:
+	pnpm run dev
 
-clean: ## Clean generated files and cache
-	@echo "Cleaning generated files..."
-	rm -rf blog/*
-	rm -f blog/index.html
-	rm -f .blogcache
-	@echo "Clean complete!"
+build:
+	pnpm run build
 
-serve: ## Serve generated files locally
-	@echo "Serving generated files..."
-	@go run github.com/absmach/watchdoc@latest -port=$(PORT) -watch-dirs="content/blogs" -cmd="make build"
+preview:
+	pnpm run preview
 
+check:
+	pnpm astro check
+
+clean:
+	rm -rf dist
+	rm -rf node_modules

@@ -1,0 +1,271 @@
+---
+---
+
+---
+---
+
+<header class="fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent" id="main-header">
+  <div class="absolute inset-0 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md transition-colors duration-300"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo -->
+      <div class="flex-shrink-0 flex items-center">
+        <a href="/" aria-label="Home" class="flex items-center gap-2 group">
+          <img class="h-8 w-auto transition-transform duration-300 group-hover:scale-105 dark:brightness-0 dark:invert" src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Ultraviolet Logo" loading="eager" />
+        </a>
+      </div>
+
+      <!-- Desktop Menu -->
+      <nav class="hidden md:flex space-x-8 items-center">
+        <!-- Products Dropdown -->
+        <div class="relative group">
+          <button class="text-text-main hover:text-primary font-medium inline-flex items-center space-x-1 transition-colors font-heading" aria-label="Products Menu">
+            <span>PRODUCTS</span>
+            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="absolute left-0 mt-2 w-56 rounded-xl shadow-xl bg-white/90 dark:bg-zinc-800/90 backdrop-blur-xl ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 translate-y-2 group-hover:translate-y-0 text-left">
+            <div class="py-2">
+              <a href="https://prism.ultraviolet.rs" target="_blank" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" role="menuitem" aria-label="Prism AI">PRISM AI</a>
+              <a href="/cocos" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" role="menuitem" aria-label="Cocos AI">COCOS AI</a>
+              <a href="/cube" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" role="menuitem" aria-label="Cube AI">CUBE AI</a>
+              <div class="border-t border-border my-1"></div>
+              <a href="/products" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" role="menuitem">All Products</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Documentation Dropdown -->
+        <div class="relative group">
+          <button class="text-text-main hover:text-primary font-medium inline-flex items-center space-x-1 transition-colors font-heading" aria-label="Documentation Menu">
+            <span>DOCUMENTATION</span>
+            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+           <div class="absolute left-0 mt-2 w-56 rounded-xl shadow-xl bg-white/90 dark:bg-zinc-800/90 backdrop-blur-xl ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 translate-y-2 group-hover:translate-y-0 text-left">
+            <div class="py-2">
+              <a href="https://docs.prism.ultraviolet.rs/" target="_blank" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" aria-label="Prism AI Documentation">PRISM AI</a>
+              <a href="https://docs.cocos.ultraviolet.rs/" target="_blank" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" aria-label="Cocos AI Documentation">COCOS AI</a>
+              <a href="https://docs.cube.ultraviolet.rs/" target="_blank" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" aria-label="Cube AI Documentation">CUBE AI</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Projects Dropdown -->
+        <div class="relative group">
+          <button class="text-text-main hover:text-primary font-medium inline-flex items-center space-x-1 transition-colors font-heading" aria-label="Projects Menu">
+            <span>PROJECTS</span>
+             <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+           <div class="absolute left-0 mt-2 w-56 rounded-xl shadow-xl bg-white/90 dark:bg-zinc-800/90 backdrop-blur-xl ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 translate-y-2 group-hover:translate-y-0 text-left">
+            <div class="py-2">
+              <a href="/projects/confidential6g" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" aria-label="Confidential 6G">CONFIDENTIAL6G</a>
+              <a href="/projects/elastic" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" aria-label="Elastic">ELASTIC</a>
+               <a href="/projects/titan" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" aria-label="Titan">TITAN</a>
+              <div class="border-t border-border my-1"></div>
+              <a href="/projects" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary font-bold transition-colors font-heading" aria-label="All Projects">All Projects</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Company Dropdown (Mega Menu) -->
+        <div class="relative group">
+          <button class="text-text-main hover:text-primary font-medium inline-flex items-center space-x-1 transition-colors font-heading" aria-label="Company Menu">
+            <span>COMPANY</span>
+             <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+           <div class="absolute left-1/2 -translate-x-1/2 mt-2 w-[600px] rounded-xl shadow-xl bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top z-50 translate-y-2 group-hover:translate-y-0 text-left overflow-hidden">
+            <div class="flex">
+                <div class="w-2/3 p-6 grid grid-cols-2 gap-8 border-r border-border">
+                    <div>
+                        <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading mb-4" aria-label="Company">Company</h3>
+                        <div class="space-y-3">
+                             <a href="/company" class="block text-sm text-text-main hover:text-primary transition-colors font-heading" aria-label="About Us">About Us</a>
+                             <a href="/careers" class="block text-sm text-text-main hover:text-primary transition-colors font-heading" aria-label="Careers">Careers</a>
+                             <a href="/blog" class="block text-sm text-text-main hover:text-primary transition-colors font-heading" aria-label="Blog">Blog</a>
+                             <a href="/contact" class="block text-sm text-text-main hover:text-primary transition-colors font-heading" aria-label="Contact and Press">Contact & Press</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading mb-4" aria-label="Community">Community</h3>
+                         <div class="space-y-3">
+                             <a href="https://github.com/ultravioletrs" target="_blank" class="block text-sm text-text-main hover:text-primary transition-colors font-heading" aria-label="GitHub">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/3 bg-surface p-6 flex flex-col justify-center items-center text-center">
+                    <h3 class="text-lg font-bold text-text-main mb-2 font-heading" aria-label="We're Hiring!">We're Hiring!</h3>
+                    <p class="text-sm text-text-muted mb-4">Join our team building the future of confidential computing.</p>
+                    <a href="/careers" class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark transition-colors" aria-label="View career openings">
+                        View Openings
+                    </a>
+                </div>
+            </div>
+          </div>
+        </div>
+        <a href="/blog" class="text-text-main hover:text-primary font-medium font-heading transition-colors" aria-label="Blog">BLOG</a>
+
+        <!-- Icons & Dark Mode -->
+        <div class="flex items-center space-x-4 ml-4 border-l border-border pl-4">
+             <a href="https://github.com/ultravioletrs" target="_blank" class="text-text-muted hover:text-text-main transition-colors">
+                <span class="sr-only">GitHub</span>
+                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                </svg>
+             </a>
+             
+             <!-- Dark Mode Toggle -->
+             <button id="theme-toggle" class="text-text-muted hover:text-text-main transition-colors focus:outline-none" aria-label="Toggle Dark Mode">
+                <!-- Sun Icon (for dark mode) -->
+                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                <!-- Moon Icon (for light mode) -->
+                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            </button>
+        </div>
+      </nav>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center gap-4">
+        <!-- Dark Mode Toggle (Mobile) -->
+        <button id="theme-toggle-mobile" class="text-text-muted hover:text-text-main transition-colors focus:outline-none" aria-label="Toggle Dark Mode">
+            <svg id="theme-toggle-light-icon-mobile" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+            <svg id="theme-toggle-dark-icon-mobile" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        </button>
+
+        <button id="mobile-menu-button" type="button" class="group relative z-50 p-2 text-text-muted hover:text-text-main focus:outline-none" aria-expanded="false" aria-label="Open main menu">
+          <span class="sr-only">Open main menu</span>
+          <div class="w-6 h-6 flex flex-col justify-center items-end gap-1.5 transition-all duration-300 group-aria-[expanded=true]:gap-0">
+             <span class="w-6 h-0.5 bg-current transition-all duration-300 group-aria-[expanded=true]:rotate-45 group-aria-[expanded=true]:translate-y-0.5"></span>
+             <span class="w-4 h-0.5 bg-current transition-all duration-300 group-aria-[expanded=true]:opacity-0"></span>
+             <span class="w-6 h-0.5 bg-current transition-all duration-300 group-aria-[expanded=true]:-rotate-45 group-aria-[expanded=true]:-translate-y-0.5"></span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="fixed inset-0 z-40 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl transition-all duration-300 transform translate-x-full md:hidden flex flex-col pt-24 px-6 overflow-y-auto" id="mobile-menu">
+    <div class="space-y-8 pb-10">
+      
+      <!-- Products Section -->
+      <div class="space-y-4">
+        <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading border-b border-border pb-2">Products</h3>
+        <a href="/products" class="block text-3xl font-bold text-text-main hover:text-primary transition-colors font-heading" aria-label="View All Products">
+          All Products
+        </a>
+        <div class="space-y-3 pl-2">
+            <a href="https://prism.ultraviolet.rs" class="flex items-center justify-between text-xl font-medium text-text-muted hover:text-primary transition-colors group font-heading" aria-label="Prism AI Product">
+                <span>Prism AI</span>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+            </a>
+            <a href="/cocos" class="flex items-center justify-between text-xl font-medium text-text-muted hover:text-primary transition-colors group font-heading" aria-label="Cocos AI Product">
+                <span>Cocos AI</span>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+            </a>
+            <a href="/cube" class="flex items-center justify-between text-xl font-medium text-text-muted hover:text-primary transition-colors group font-heading" aria-label="Cube AI Product">
+                <span>Cube AI</span>
+                <span class="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+            </a>
+        </div>
+      </div>
+
+      <!-- Documentation Section -->
+      <div class="space-y-4">
+        <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading border-b border-border pb-2">Documentation</h3>
+         <div class="grid grid-cols-1 gap-3 pl-2">
+            <a href="https://docs.prism.ultraviolet.rs/" class="block text-lg font-medium text-text-muted hover:text-primary transition-colors font-heading" aria-label="Prism AI Documentation">Prism AI Docs</a>
+            <a href="https://docs.cocos.ultraviolet.rs/" class="block text-lg font-medium text-text-muted hover:text-primary transition-colors font-heading" aria-label="Cocos AI Documentation">Cocos AI Docs</a>
+            <a href="https://docs.cube.ultraviolet.rs/" class="block text-lg font-medium text-text-muted hover:text-primary transition-colors font-heading" aria-label="Cube AI Documentation">Cube AI Docs</a>
+         </div>
+       </div>
+
+      <!-- Projects Section -->
+      <div class="space-y-4">
+        <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading border-b border-border pb-2">Projects</h3>
+        <a href="/projects" class="block text-3xl font-bold text-text-main hover:text-primary transition-colors font-heading" aria-label="View All Projects">All Projects</a>
+      </div>
+
+      <!-- Footer Links -->
+      <div class="pt-8 mt-4 border-t border-border grid grid-cols-2 gap-y-6 gap-x-4">
+          <a href="/company" class="text-xl font-medium text-text-main hover:text-primary transition-colors font-heading" aria-label="Company Page">Company</a>
+          <a href="/careers" class="text-xl font-medium text-text-main hover:text-primary transition-colors font-heading" aria-label="Careers Page">Careers</a>
+          <a href="/contact" class="text-xl font-medium text-text-main hover:text-primary transition-colors font-heading" aria-label="Contact Page">Contact</a>
+          <a href="/blog" class="text-xl font-medium text-text-main hover:text-primary transition-colors font-heading" aria-label="Blog Page">Blog</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Mobile Menu Logic
+  const btn = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  const body = document.body;
+
+  if (btn && menu) {
+      btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isExpanded));
+      
+      if (!isExpanded) {
+        menu.classList.remove('translate-x-full');
+        body.classList.add('overflow-hidden'); // Prevent background scrolling
+      } else {
+        menu.classList.add('translate-x-full');
+        body.classList.remove('overflow-hidden');
+      }
+    });
+  }
+
+  // Scroll Effect Logic
+  const header = document.getElementById('main-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+       header?.classList.add('shadow-md');
+       header?.querySelector('.absolute')?.classList.add('opacity-100');
+    } else {
+       header?.classList.remove('shadow-md');
+       header?.querySelector('.absolute')?.classList.remove('opacity-100');
+    }
+  });
+
+  // Dark Mode Logic
+  const themeToggleMain = document.getElementById('theme-toggle');
+  const themeToggleMobile = document.getElementById('theme-toggle-mobile');
+  
+  const darkIcon = document.getElementById('theme-toggle-dark-icon');
+  const lightIcon = document.getElementById('theme-toggle-light-icon');
+  const darkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
+  const lightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
+
+  function updateIcons() {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+        lightIcon?.classList.remove('hidden');
+        darkIcon?.classList.add('hidden');
+        lightIconMobile?.classList.remove('hidden');
+        darkIconMobile?.classList.add('hidden');
+    } else {
+        lightIcon?.classList.add('hidden');
+        darkIcon?.classList.remove('hidden');
+        lightIconMobile?.classList.add('hidden');
+        darkIconMobile?.classList.remove('hidden');
+    }
+  }
+
+  function toggleTheme() {
+      if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('color-theme', 'light');
+      } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('color-theme', 'dark');
+      }
+      updateIcons();
+  }
+
+  themeToggleMain?.addEventListener('click', toggleTheme);
+  themeToggleMobile?.addEventListener('click', toggleTheme);
+  
+  // Initial icon update
+  updateIcons();
+</script>

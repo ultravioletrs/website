@@ -1,0 +1,211 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { Image } from 'astro:assets';
+
+import ccImage from '../assets/cc.png';
+import prismConceptImage from '../assets/prism-concept.png';
+import openSourceImage from '../assets/open-source.png';
+
+import lfLogo from '../assets/logos/lf.png';
+import cccLogo from '../assets/logos/ccc.png';
+
+import ifLogo from '../assets/logos/if.png';
+import etfLogo from '../assets/logos/etf.png';
+import euLogo from '../assets/logos/eu.png';
+import telefonicaLogo from '../assets/logos/telefonica.png';
+import vttLogo from '../assets/logos/vtt.png';
+import fujitsuLogo from '../assets/logos/fujitsu.png';
+import fraunhoferLogo from '../assets/logos/fraunhofer.png';
+import tnoLogo from '../assets/logos/tno.png';
+import ericssonLogo from '../assets/logos/ericsson.png';
+import nokiaLogo from '../assets/logos/nokia.png';
+import insermLogo from '../assets/logos/inserm.png';
+import tueLogo from '../assets/logos/tue.png';
+import thalesLogo from '../assets/logos/thales.png';
+import imdeaLogo from '../assets/logos/imdea.svg';
+
+const title = "Open Source Confidential Computing & Secure AI Platform | Ultraviolet";
+---
+
+<Layout title={title}>
+	<Header slot="header" />
+	
+	<Hero
+		title="Secure Your AI with Ultraviolet - Open Source Confidential Computing Platform"
+		description="At Ultraviolet, we empower organizations to secure their AI models and sensitive data. Our comprehensive suite of products—Cube AI, Prism AI, and Cocos AI—leverages confidential computing technologies to ensure privacy, compliance, and integrity for your AI workloads."
+		ctaText="Explore Our Products"
+		ctaLink="/products"
+	/>
+
+
+	<!-- Membership section -->
+	<section class="py-8">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-heading mb-8">Our Memberships</h2>
+			<div class="flex justify-center flex-wrap gap-16 items-center">
+				<a href="https://www.linuxfoundation.org/" target="_blank" class="mx-8 my-4">
+                    <Image src={lfLogo} alt="Linux Foundation Logo" class="h-16 w-auto object-contain" loading="eager" />
+                </a>
+                <a href="https://confidentialcomputing.io/" target="_blank" class="mx-8 my-4">
+                    <Image src={cccLogo} alt="Confidential Computing Consortium Logo" class="h-16 w-auto object-contain" loading="eager" />
+                </a>
+			</div>
+             <p class="mt-6 mx-auto max-w-3xl text-lg">
+                Ultraviolet is a proud member of the Linux Foundation (LF) and the Confidential Computing Consortium (CCC), contributing to the advancement of confidential computing platforms and collaborative AI technologies.
+            </p>
+		</div>
+	</section>
+
+	<!-- Clients Section -->
+    <section class="py-12 bg-white dark:bg-zinc-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-heading text-center mb-8">Our Clients and Partners</h2>
+            <div class="flex flex-wrap justify-center items-center gap-12">
+                 <Image src={ifLogo} alt="IF" class="h-16 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={etfLogo} alt="ETF" class="h-20 w-auto object-contain dark:invert dark:mix-blend-screen" loading="eager" />
+                 <Image src={euLogo} alt="EU" class="h-16 w-auto object-contain dark:invert dark:mix-blend-screen" loading="eager" />
+                 <Image src={telefonicaLogo} alt="Telefonica" class="h-12 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={vttLogo} alt="VTT" class="h-12 w-auto object-contain dark:invert dark:mix-blend-screen" loading="eager" />
+                 <Image src={fujitsuLogo} alt="Fujitsu" class="h-12 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={fraunhoferLogo} alt="Fraunhofer" class="h-10 w-auto object-contain dark:invert dark:mix-blend-screen" loading="eager" />
+                 <Image src={tnoLogo} alt="TNO" class="h-12 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={ericssonLogo} alt="Ericsson" class="h-24 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={nokiaLogo} alt="Nokia" class="h-24 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={insermLogo} alt="Inserm" class="h-20 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={tueLogo} alt="TUE" class="h-12 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={thalesLogo} alt="Thales" class="h-32 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={imdeaLogo} alt="Imdea" class="h-16 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+            </div>
+        </div>
+    </section>
+
+	<!-- Cube AI Section -->
+    <section id="cube-ai" class="py-12 lg:py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+                <div class="flex justify-center items-center mb-8 lg:mb-0">
+                     <Image class="w-full h-auto" src={ccImage} alt="Cube AI diagram" loading="lazy" />
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold font-heading mb-6">
+                        Cube AI - Secure LLM Platform
+                    </h2>
+                    <p class="mb-4 text-lg text-text-muted">
+                        Cube AI is a comprehensive platform designed to protect Large Language Models (LLMs) and their inputs/outputs using Trusted Execution Environments (TEEs).
+                    </p>
+                    <p class="mb-4 text-lg text-text-muted">
+                        It combines security, observability, and governance to ensure safe and scalable deployment of LLMs. By isolating sensitive computations within secure enclaves, Cube AI protects against unauthorized access and tampering.
+                    </p>
+                     <p class="mb-4 text-lg text-text-muted">
+                        Support for popular open-source models and seamless integration with tools like Ollama makes Cube AI the ideal choice for privacy-sensitive GenAI applications.
+                    </p>
+                    <div class="mt-8">
+                        <a href="/cube" class="text-primary font-medium hover:text-primary-dark transition-colors inline-flex items-center">
+                            Learn more about Cube AI
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prism AI Section -->
+    <section id="prism-ai" class="py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+                 <div class="order-2 lg:order-1 lg:mt-0 mt-8">
+                    <h2 class="text-3xl font-bold font-heading mb-6">
+                        Prism AI - Secure Collaboration
+                    </h2>
+                    <p class="mb-4 text-lg text-text-muted">
+                        Prism AI is a distributed system for orchestrating secure, privacy-preserving collaborative AI training and inference. It empowers organizations to work together on sensitive data without ever exposing it.
+                    </p>
+                    <p class="mb-4 text-lg text-text-muted">
+                        Using TEEs, Prism AI enables secure multi-party computation (SMPC), allowing multiple parties to process data collaboratively.
+                    </p>
+                    <p class="mb-4 text-lg text-text-muted">
+                        Whether in private, hybrid, or public cloud environments, Prism AI provisions secure encrypted VMs for your workloads, ensuring that your data remains protected throughout its lifecycle.
+                    </p>
+                    <div class="mt-8">
+                        <a href="/prism" class="text-primary font-medium hover:text-primary-dark transition-colors inline-flex items-center">
+                            Learn more about Prism AI
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 flex justify-center items-center">
+                     <Image class="w-full h-auto" src={prismConceptImage} alt="Prism AI Secure Collaborative AI platform" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Open Source Section -->
+    <section id="open-source" class="py-12 lg:py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+                <div class="flex justify-center items-center mb-8 lg:mb-0">
+                     <Image class="w-full h-auto" src={openSourceImage} alt="Cocos AI open source confidential computing platform for secure collaborative AI" />
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold font-heading mb-6">
+                        Cocos AI - Open Source Confidential Computing Platform
+                    </h2>
+                    <p class="mb-4 text-lg text-text-muted">
+                        Cocos AI, a leading open-source confidential computing platform, powers secure collaborative AI using Trusted Execution Environments (TEEs). It ensures integrity and confidentiality for AI workloads, even in untrusted or remote cloud and edge environments.
+                    </p>
+                    <p class="mb-4 text-lg text-text-muted">
+                        This open-source approach grants developers, organizations, and users the freedom to harness, customize, and contribute to Cocos AI. Our transparent deployment of TEEs creates a robust confidential AI infrastructure, supporting secure multi-party computation and collaborative AI projects across industries.
+                    </p>
+                    <p class="mb-4 text-lg text-text-muted">
+                        As an active member of the Linux Foundation and the Confidential Computing Consortium, we work with industry leaders to maintain and grow the Cocos AI platform. Our commitment to open source extends to the broader ecosystem, enabling secure AI platforms and tools that form the backbone of modern confidential computing and collaborative AI solutions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-bold font-heading mb-12">Ultraviolet Solutions for Confidential Computing</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="flex flex-col items-center">
+                    <div class="text-text-main mb-6 text-5xl">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-heading mb-3">TEE Enablement</h3>
+                    <p class="text-justify">Ultraviolet specializes in enabling Trusted Execution Environments (TEEs) across a wide range of CPU architectures and platforms. TEEs provide secure, isolated environments within the CPU, ensuring the confidentiality, integrity, and compliance of AI workloads, data processing, and sensitive computations.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="text-text-main mb-6 text-5xl">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="text-xl font-heading mb-3">Confidential Cloud</h3>
+                    <p class="text-justify">Experience the next generation of cybersecurity with Ultraviolet's confidential cloud solutions. Our platform protects cloud infrastructure, AI workloads, and sensitive data within secure enclaves, safeguarding against unauthorized access and external threats while enabling confidential computing at scale.</p>
+                </div>
+                <div class="flex flex-col items-center">
+                     <div class="text-text-main mb-6 text-5xl">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-xl font-heading mb-3">Secure Collaboration</h3>
+                    <p class="text-justify">Ultraviolet's secure multi-party computation (SMPC) platform enables multiple organizations to collaboratively process data without exposing sensitive information. Powered by TEEs, this secure AI platform ensures privacy, confidentiality, and integrity of AI workloads and confidential data exchanges.</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="/products" class="inline-block px-8 py-3 bg-green-600 text-white font-medium rounded-md hover:bg-green-700 transition-colors shadow-lg text-lg">
+                    Explore Our Products
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Newsletter section -->
+    <Newsletter />
+
+	<Footer slot="footer" />
+</Layout>

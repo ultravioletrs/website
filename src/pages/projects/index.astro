@@ -1,0 +1,167 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import Newsletter from '../../components/Newsletter.astro';
+
+const projects = [
+    {
+        name: "CONFIDENTIAL6G",
+        description: "Confidential Computing for 6G. Developing cryptographic protocols and security frameworks for the next generation of wireless networks.",
+        image: "/img/c6g.png", // Verify path, might be logos/c6g.png or just c6g.png. user ls says public/img/c6g.png
+        link: "/projects/confidential6g",
+        logoStyle: "max-height: 80px;" 
+    },
+    {
+        name: "ELASTIC",
+        description: "A software architecture for extreme-scale analytics. ELASTIC redefines service orchestration within 6G networks, integrating technologies like WebAssembly and Confidential Computing.",
+        image: "/img/logos/elastic.png",
+        link: "/projects/elastic",
+        logoStyle: "max-height: 60px; background: #323232; border-radius: 5px; padding: 5px;"
+    },
+    {
+        name: "TITAN",
+        description: "AI for Privacy. TITAN proposes to develop secure and trustworthy confidential data processing and sharing capabilities.",
+        image: "/img/logos/titan.svg",
+        link: "/projects/titan",
+        logoStyle: "max-height: 60px;"
+    }
+];
+
+const focusAreas = [
+    {
+        title: "Confidential Computing",
+        description: "We are developing frameworks and tools to enable secure data processing in untrusted environments, leveraging TEEs and advanced cryptography.",
+        icon: "fas fa-shield-alt"
+    },
+    {
+        title: "Artificial Intelligence",
+        description: "Our research focuses on privacy-preserving AI/ML, enabling collaborative training and inference without compromising data confidentiality.",
+        icon: "fas fa-brain"
+    },
+    {
+        title: "Cloud & Edge Computing",
+        description: "We are exploring new architectures for secure and efficient computing across the cloud-edge continuum, optimizing for performance and privacy.",
+        icon: "fas fa-cloud"
+    },
+    {
+        title: "Secure Data Sharing",
+        description: "We are building solutions for secure multi-party computation and data sharing, allowing organizations to collaborate on sensitive data.",
+        icon: "fas fa-share-alt"
+    }
+];
+
+const title = "Ultraviolet Projects - Research & Innovation";
+const description = "Explore Ultraviolet's research projects in confidential computing, AI, and 6G. We collaborate with leading organizations to drive innovation.";
+---
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <!-- Header section -->
+    <section id="header" class="py-12 lg:pb-0 lg:pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center h-[400px] overflow-hidden w-full relative">
+                <img src="/img/header.avif" alt="pattern-white" class="max-w-full h-auto" style="width: 100%" loading="lazy" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Introduction section -->
+    <section id="projects-intro" class="py-12 lg:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mt-8">
+                <div class="w-full">
+                    <h1 class="text-4xl lg:text-5xl font-heading mb-6">Research Projects</h1>
+                    <p class="mb-4 text-lg">
+                        Advancing confidential computing, AI security, and privacy-preserving technologies through
+                        EU-funded research initiatives
+                    </p>
+                    <p class="mb-4 text-lg">
+                        At Ultraviolet, we actively participate in cutting-edge research projects that push the
+                        boundaries of confidential computing, secure AI/ML, and privacy-preserving technologies.
+                        Our involvement in European Union-funded initiatives enables us to collaborate with leading
+                        research institutions and industry partners to develop next-generation security solutions
+                        for cloud, edge, and 6G networks.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Cards section -->
+    <section id="projects-cards" class="py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {projects.map((project) => (
+                    <div class="flex flex-col h-full mb-8">
+                        <div class="p-6 bg-surface border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                            <div class="text-center mb-6 h-[120px] flex items-center justify-center">
+                                <img src={project.image} alt={`${project.name} Logo`} style={project.logoStyle} class="max-w-full" />
+                            </div>
+                            <h3 class="text-center text-2xl font-heading mb-4">{project.name}</h3>
+                            <p class="text-text-muted mb-6 flex-grow">
+                                {project.description}
+                            </p>
+                            <div class="mt-auto text-center">
+                                <a href={project.link} class="inline-block px-6 py-2 bg-green-600 text-white font-medium rounded hover:bg-green-700 transition-colors">
+                                    View Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Focus Areas section -->
+    <section class="py-20 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl text-center mb-12 font-heading">Our Research Focus Areas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Confidential Computing -->
+                <div class="bg-card p-8 rounded-lg shadow-sm border border-border text-center">
+                    <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-6">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl mb-3 font-heading">Confidential Computing</h4>
+                    <p class="text-text-muted">
+                        Securing data in use through hardware-based Trusted Execution Environments (TEEs) and encrypted virtualization.
+                    </p>
+                </div>
+
+                <!-- 6G Security -->
+                <div class="bg-card p-8 rounded-lg shadow-sm border border-border text-center">
+                    <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-6">
+                        <i class="fas fa-network-wired text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl mb-3 font-heading">6G Security</h4>
+                    <p class="text-text-muted">
+                        Developing robust security architectures for next-generation networks, focusing on zero-trust principles and AI-driven defense.
+                    </p>
+                </div>
+
+                <!-- Privacy - Preserving AI -->
+                <div class="bg-card p-8 rounded-lg shadow-sm border border-border text-center">
+                    <div class="inline-flex items-center justify-center h-16 w-16 rounded-full bg-primary/10 text-primary mb-6">
+                        <i class="fas fa-brain text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl mb-3 font-heading">Privacy-Preserving AI</h4>
+                    <p class="text-lg">
+                        Creating secure frameworks for collaborative AI/ML, federated learning, and multi-party
+                        computation that preserve data privacy while enabling innovation.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <Newsletter />
+
+    <Footer slot="footer" />
+</Layout>
