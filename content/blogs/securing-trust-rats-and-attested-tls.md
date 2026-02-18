@@ -2,7 +2,7 @@
 slug: securing-trust-rats-and-attested-tls
 title: "Securing Trust: RATS and Attested TLS (aTLS)"
 excerpt: "COCOS AI leverages modern attestation standards to prove the integrity and operational state of the platform."
-description: "Learn about attestation, attested TLS and IETF document defining how a system can prove their integrity and operational state."
+description: "Learn about attestation, attested TLS and IETF document defining how a system can prove its integrity and operational state."
 author:
   name: "Jovan Djukic"
   picture: "https://avatars.githubusercontent.com/u/7561155?v=4"
@@ -249,16 +249,9 @@ During certificate creation, the **attestation report** is embedded
 directly into the **X.509 certificate** by passing it through the
 **Certificate Signing Request (CSR)** and including it in the issued
 certificate. The following Go
-[snippet](https://github.com/ultravioletrs/cocos/blob/654e22bba532ffb4fe979b285b1aa4bef4f0d467/pkg/atls/atls.go#L214) demonstrates how the CSR is generated.
+[snippet](https://github.com/ultravioletrs/cocos/blob/207bfd99af4b308a1609f3439317fbd83145f106/pkg/atls/certificate_provider.go#L143) demonstrates how the CSR is generated.
 
-``` {#8132 .graf .graf--pre .graf-after--p .graf--preV2 code-block-mode="1" spellcheck="false" code-block-lang="go" name="8132"}
-attestExtension, err := getCertificateExtension(provider, pubKeyDER, nonce, teeOid)
-if err != nil {
-  return nil, fmt.Errorf("failed to get certificate extension: %w", err)
-}
-
-[...]
-
+```go
 csrMetadata := certs.CSRMetadata{
 	Organization:    []string{p.subject.Organization},
 	Country:         []string{p.subject.Country},
@@ -276,9 +269,7 @@ if sdkerr != nil {
 }
 ```
 
-The behavior of the `getCertificateExtension`{.markup--code
-.markup--p-code} function depends on the underlying platform, such as
-**AMD SEV-SNP** or **Intel TDX**. Once the certificate is obtained, a
+Once the certificate is obtained, a
 standard **TLS connection** can be established. The key difference
 compared to a regular TLS setup is the inclusion of a **custom
 verification function** for the **X.509 certificate**. This function
@@ -286,23 +277,33 @@ ensures that the embedded **attestation extension** contains a valid
 attestation report.
 
 The following Go
-[snippet](https://github.com/ultravioletrs/cocos/blob/654e22bba532ffb4fe979b285b1aa4bef4f0d467/pkg/clients/grpc/atls.go#L71) demonstrates how to configure TLS to perform this
+[snippet](https://github.com/ultravioletrs/cocos/blob/207bfd99af4b308a1609f3439317fbd83145f106/pkg/tls/tls.go#L136) demonstrates how to configure TLS to perform this
 additional verification step.
 
-``` {#538b .graf .graf--pre .graf-after--p .graf--preV2 code-block-mode="1" spellcheck="false" code-block-lang="go" name="538b"}
- tlsConfig := &tls.Config{
-    InsecureSkipVerify: true,
-    RootCAs:            rootCAs,
-    ServerName:         sni,
-    VerifyPeerCertificate: func(rawCerts [][]byte, verifiedChains [][]*x509.Certificate) error {
-     return verifyPeerCertificateATLS(rawCerts, verifiedChains, nonce, rootCAs)
-    },
- }
+```go
+tlsConfig := &tls.Config{
+	InsecureSkipVerify: true,
+	RootCAs:            rootCAs,
+	ServerName:         sni,
+	VerifyPeerCertificate: func(rawCerts [][]byte, verifiedChains [][]*x509.Certificate) error {
+		return atls.NewCertificateVerifier(rootCAs).VerifyPeerCertificate(rawCerts, verifiedChains, nonce)
+	},
+}
 ```
+Note: setting `InsecureSkipVerify: true` disables Go's built‑in certificate
+verification. In this aTLS setup, that is intentional because
+`VerifyPeerCertificate` replaces the default verifier so it can both
+perform all the usual checks (build and validate the certificate chain
+against `rootCAs`, verify the peer identity via `ServerName`/SAN,
+check validity periods, key usage, etc.) and validate the embedded
+attestation evidence. Do **not** copy this configuration without
+implementing full certificate and hostname/SAN validation in your own
+`VerifyPeerCertificate` callback, otherwise TLS certificate checks will
+effectively be disabled.
 
-Similar to the `getCertificateExtension`
-function, the behavior of the `verifyPeerCertificateATLS` function, which verifies the attestation extension,
-also depends on the underlying platform, such as **AMD SEV-SNP** or
+
+The behavior of the `VerifyPeerCertificate` function, which verifies the attestation extension,
+depends on the underlying platform, such as **AMD SEV-SNP** or
 **Intel TDX**.
 
 ### Conclusion 

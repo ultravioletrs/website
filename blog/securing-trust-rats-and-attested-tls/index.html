@@ -7,7 +7,7 @@
 
   <title>Securing Trust: RATS and Attested TLS (aTLS) - Ultraviolet</title>
   <meta name="title" content="Securing Trust: RATS and Attested TLS (aTLS) - Ultraviolet" />
-  <meta name="description" content="Learn about attestation, attested TLS and IETF document defining how a system can prove their integrity and operational state." />
+  <meta name="description" content="Learn about attestation, attested TLS and IETF document defining how a system can prove its integrity and operational state." />
 
   <link rel="canonical" href="https://www.ultraviolet.rs/blog/securing-trust-rats-and-attested-tls/" />
 
@@ -15,14 +15,14 @@
   <meta property="og:site_name" content="Ultraviolet" />
   <meta property="og:url" content="https://www.ultraviolet.rs/blog/securing-trust-rats-and-attested-tls" />
   <meta property="og:title" content="Securing Trust: RATS and Attested TLS (aTLS)" />
-  <meta property="og:description" content="Learn about attestation, attested TLS and IETF document defining how a system can prove their integrity and operational state." />
-  <meta property="og:image" content="https://www.ultraviolet.rs/img/header.avif" />
+  <meta property="og:description" content="Learn about attestation, attested TLS and IETF document defining how a system can prove its integrity and operational state." />
+  <meta property="og:image" content="/img/securing-trust-rats-and-attested-tls/overview.png" />
 
   
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Securing Trust: RATS and Attested TLS (aTLS)" />
-  <meta name="twitter:description" content="Learn about attestation, attested TLS and IETF document defining how a system can prove their integrity and operational state." />
-  <meta name="twitter:image" content="https://www.ultraviolet.rs/img/header.avif" />
+  <meta name="twitter:description" content="Learn about attestation, attested TLS and IETF document defining how a system can prove its integrity and operational state." />
+  <meta name="twitter:image" content="/img/securing-trust-rats-and-attested-tls/overview.png" />
 
 
   
@@ -31,13 +31,13 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": "Securing Trust: RATS and Attested TLS (aTLS)",
-        "image": "https:\/\/www.ultraviolet.rs",
+        "image": "https:\/\/avatars.githubusercontent.com\/u'/7561155?v=4",
         "datePublished": "2026-02-09",
         "author": {
           "@type": "Person",
           "name": "Jovan Djukic"
         },
-        "description": "Learn about attestation, attested TLS and IETF document defining how a system can prove their integrity and operational state."
+        "description": "Learn about attestation, attested TLS and IETF document defining how a system can prove its integrity and operational state."
       }
     </script>
 
@@ -517,53 +517,51 @@ During certificate creation, the <strong>attestation report</strong> is embedded
 directly into the <strong>X.509 certificate</strong> by passing it through the
 <strong>Certificate Signing Request (CSR)</strong> and including it in the issued
 certificate. The following Go
-<a href="https://github.com/ultravioletrs/cocos/blob/654e22bba532ffb4fe979b285b1aa4bef4f0d467/pkg/atls/atls.go#L214">snippet</a> demonstrates how the CSR is generated.</p>
-<pre><code class="language-{#8132">attestExtension, err := getCertificateExtension(provider, pubKeyDER, nonce, teeOid)
-if err != nil {
-  return nil, fmt.Errorf(&quot;failed to get certificate extension: %w&quot;, err)
-}
-
-[...]
-
-csrMetadata := certs.CSRMetadata{
-	Organization:    []string{p.subject.Organization},
-	Country:         []string{p.subject.Country},
-	CommonName:      p.subject.CommonName,
-	Province:        []string{p.subject.Province},
-	Locality:        []string{p.subject.Locality},
-	StreetAddress:   []string{p.subject.StreetAddress},
-	PostalCode:      []string{p.subject.PostalCode},
-	ExtraExtensions: []pkix.Extension{extension},
-}
-
-csr, sdkerr := p.certsSDK.CreateCSR(ctx, csrMetadata, privateKey)
-if sdkerr != nil {
-	return nil, fmt.Errorf(&quot;failed to create CSR: %w&quot;, sdkerr)
-}
-</code></pre>
-<p>The behavior of the <code>getCertificateExtension</code>{.markup--code
-.markup--p-code} function depends on the underlying platform, such as
-<strong>AMD SEV-SNP</strong> or <strong>Intel TDX</strong>. Once the certificate is obtained, a
+<a href="https://github.com/ultravioletrs/cocos/blob/207bfd99af4b308a1609f3439317fbd83145f106/pkg/atls/certificate_provider.go#L143">snippet</a> demonstrates how the CSR is generated.</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>csrMetadata := certs.CSRMetadata{
+</span></span><span style="display:flex;"><span>	Organization:    []<span style="color:#fff;font-weight:bold">string</span>{p.subject.Organization},
+</span></span><span style="display:flex;"><span>	Country:         []<span style="color:#fff;font-weight:bold">string</span>{p.subject.Country},
+</span></span><span style="display:flex;"><span>	CommonName:      p.subject.CommonName,
+</span></span><span style="display:flex;"><span>	Province:        []<span style="color:#fff;font-weight:bold">string</span>{p.subject.Province},
+</span></span><span style="display:flex;"><span>	Locality:        []<span style="color:#fff;font-weight:bold">string</span>{p.subject.Locality},
+</span></span><span style="display:flex;"><span>	StreetAddress:   []<span style="color:#fff;font-weight:bold">string</span>{p.subject.StreetAddress},
+</span></span><span style="display:flex;"><span>	PostalCode:      []<span style="color:#fff;font-weight:bold">string</span>{p.subject.PostalCode},
+</span></span><span style="display:flex;"><span>	ExtraExtensions: []pkix.Extension{extension},
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>csr, sdkerr := p.certsSDK.CreateCSR(ctx, csrMetadata, privateKey)
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">if</span> sdkerr != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nil</span>, fmt.Errorf(<span style="color:#0ff;font-weight:bold">&#34;failed to create CSR: %w&#34;</span>, sdkerr)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>Once the certificate is obtained, a
 standard <strong>TLS connection</strong> can be established. The key difference
 compared to a regular TLS setup is the inclusion of a <strong>custom
 verification function</strong> for the <strong>X.509 certificate</strong>. This function
 ensures that the embedded <strong>attestation extension</strong> contains a valid
 attestation report.</p>
 <p>The following Go
-<a href="https://github.com/ultravioletrs/cocos/blob/654e22bba532ffb4fe979b285b1aa4bef4f0d467/pkg/clients/grpc/atls.go#L71">snippet</a> demonstrates how to configure TLS to perform this
+<a href="https://github.com/ultravioletrs/cocos/blob/207bfd99af4b308a1609f3439317fbd83145f106/pkg/tls/tls.go#L136">snippet</a> demonstrates how to configure TLS to perform this
 additional verification step.</p>
-<pre><code class="language-{#538b"> tlsConfig := &amp;tls.Config{
-    InsecureSkipVerify: true,
-    RootCAs:            rootCAs,
-    ServerName:         sni,
-    VerifyPeerCertificate: func(rawCerts [][]byte, verifiedChains [][]*x509.Certificate) error {
-     return verifyPeerCertificateATLS(rawCerts, verifiedChains, nonce, rootCAs)
-    },
- }
-</code></pre>
-<p>Similar to the <code>getCertificateExtension</code>
-function, the behavior of the <code>verifyPeerCertificateATLS</code> function, which verifies the attestation extension,
-also depends on the underlying platform, such as <strong>AMD SEV-SNP</strong> or
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>tlsConfig := &amp;tls.Config{
+</span></span><span style="display:flex;"><span>	InsecureSkipVerify: <span style="color:#fff;font-weight:bold">true</span>,
+</span></span><span style="display:flex;"><span>	RootCAs:            rootCAs,
+</span></span><span style="display:flex;"><span>	ServerName:         sni,
+</span></span><span style="display:flex;"><span>	VerifyPeerCertificate: <span style="color:#fff;font-weight:bold">func</span>(rawCerts [][]<span style="color:#fff;font-weight:bold">byte</span>, verifiedChains [][]*x509.Certificate) <span style="color:#fff;font-weight:bold">error</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">return</span> atls.NewCertificateVerifier(rootCAs).VerifyPeerCertificate(rawCerts, verifiedChains, nonce)
+</span></span><span style="display:flex;"><span>	},
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>Note: setting <code>InsecureSkipVerify: true</code> disables Go's built‑in certificate
+verification. In this aTLS setup, that is intentional because
+<code>VerifyPeerCertificate</code> replaces the default verifier so it can both
+perform all the usual checks (build and validate the certificate chain
+against <code>rootCAs</code>, verify the peer identity via <code>ServerName</code>/SAN,
+check validity periods, key usage, etc.) and validate the embedded
+attestation evidence. Do <strong>not</strong> copy this configuration without
+implementing full certificate and hostname/SAN validation in your own
+<code>VerifyPeerCertificate</code> callback, otherwise TLS certificate checks will
+effectively be disabled.</p>
+<p>The behavior of the <code>VerifyPeerCertificate</code> function, which verifies the attestation extension,
+depends on the underlying platform, such as <strong>AMD SEV-SNP</strong> or
 <strong>Intel TDX</strong>.</p>
 <h3 id="conclusion">Conclusion</h3>
 <p>As workloads move to <strong>untrusted environments</strong> like public clouds and
