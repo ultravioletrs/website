@@ -104,31 +104,37 @@
     </url>
     <url>
         <loc>https://www.ultraviolet.rs/blog/confidential-computing-meets-ai/</loc>
-        <lastmod>2026-02-16</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://www.ultraviolet.rs/blog/vllm-vs-ollama-in-cube-ai/</loc>
-        <lastmod>2026-02-16</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://www.ultraviolet.rs/blog/cocos-prism-release/</loc>
-        <lastmod>2026-02-16</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://www.ultraviolet.rs/blog/prism-public-beta-launch/</loc>
-        <lastmod>2026-02-16</lastmod>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://www.ultraviolet.rs/blog/privacy-paradox-confidential-computing/</loc>
-        <lastmod>2026-02-16</lastmod>
+        <lastmod>2026-02-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.ultraviolet.rs/blog/securing-trust-rats-and-attested-tls/</loc>
+        <lastmod>2026-02-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
