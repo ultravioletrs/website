@@ -4,6 +4,26 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Hero from '../../components/Hero.astro';
 import Newsletter from '../../components/Newsletter.astro';
+import { Image } from 'astro:assets';
+import headerImage from '../../../public/img/header.avif';
+import titanLogo from '../../assets/logos/titan.svg';
+import murciaLogo from '../../assets/logos/Universidad-de-Murcia.png';
+import fujitsuLogo from '../../assets/logos/fujitsu.png';
+import zenLogo from '../../assets/logos/zen.png';
+import canarybitLogo from '../../assets/logos/canarybit.png';
+import f6sLogo from '../../assets/logos/f6s.png';
+import easternLogo from '../../assets/logos/universityofeastern.png';
+import odysseusLogo from '../../assets/logos/odysseus.png';
+import trilateralLogo from '../../assets/logos/Trilateral-Research.png';
+import chariteLogo from '../../assets/logos/charite.png';
+import insermLogo from '../../assets/logos/inserm.png';
+import sargaLogo from '../../assets/logos/SARGA.png';
+import venetoLogo from '../../assets/logos/regione-del-veneto.png';
+import koblenzLogo from '../../assets/logos/university-of-koblenz.png';
+import itaLogo from '../../assets/logos/ITA.png';
+import fraunhoferLogo from '../../assets/logos/fraunhofer.png';
+import ultravioletLogo from '../../assets/logos/ultraviolet.png';
+
 
 const project = {
     title: "TITAN",
@@ -31,7 +51,7 @@ const description = "TITAN is an EU-funded project building trusted AI systems u
     <section id="header" class="py-12 lg:pb-0 lg:pt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-center h-[400px] overflow-hidden w-full relative">
-                <img src="/img/header.avif" alt="pattern-white" class="max-w-full h-auto" style="width: 100%" loading="lazy" />
+                <Image src={headerImage} alt="pattern-white" class="max-w-full h-auto" style="width: 100%" loading="eager" />
             </div>
         </div>
     </section>
@@ -39,7 +59,7 @@ const description = "TITAN is an EU-funded project building trusted AI systems u
     <!-- Project Title section -->
     <section id="project-title" class="py-12 lg:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <img src="/img/logos/titan.svg" alt="TITAN Logo" class="mb-8 mx-auto dark:brightness-0 dark:invert" style="max-height: 120px" />
+            <Image src={titanLogo} alt="TITAN Logo" class="mb-8 mx-auto dark:brightness-0 dark:invert" style="max-height: 120px" loading="eager" />
             <h1 class="text-4xl lg:text-5xl font-heading mb-6">TITAN</h1>
             <p class="text-xl text-text-muted">
                 Trusted AI systems through confidential computing and privacy-preserving technologies
@@ -227,52 +247,52 @@ const description = "TITAN is an EU-funded project building trusted AI systems u
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
                  <div class="flex justify-center">
-                    <img src="/img/logos/Universidad-de-Murcia.png" alt="Universidad de Murcia" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={murciaLogo} alt="Universidad de Murcia" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/fujitsu.png" alt="Fujitsu" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={fujitsuLogo} alt="Fujitsu" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/zen.png" alt="Zentrix Labs" class="max-h-20 dark:invert dark:mix-blend-screen" />
+                    <Image src={zenLogo} alt="Zentrix Labs" class="max-h-20 dark:invert dark:mix-blend-screen" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/canarybit.png" alt="Canarybit" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={canarybitLogo} alt="Canarybit" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/f6s.png" alt="F6S" class="max-h-20 dark:invert dark:mix-blend-screen" />
+                    <Image src={f6sLogo} alt="F6S" class="max-h-20 dark:invert dark:mix-blend-screen" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/universityofeastern.png" alt="University of Eastern Finland" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={easternLogo} alt="University of Eastern Finland" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/odysseus.png" alt="Odysseus Data Services" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={odysseusLogo} alt="Odysseus Data Services" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/Trilateral-Research.png" alt="Trilateral Research" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={trilateralLogo} alt="Trilateral Research" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/charite.png" alt="Charité University Hospital" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={chariteLogo} alt="Charité University Hospital" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/inserm.png" alt="Inserm" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={insermLogo} alt="Inserm" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/SARGA.png" alt="SARGA" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={sargaLogo} alt="SARGA" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/regione-del-veneto.png" alt="Regione del Veneto" class="max-h-20 dark:invert dark:mix-blend-screen" />
+                    <Image src={venetoLogo} alt="Regione del Veneto" class="max-h-20 dark:invert dark:mix-blend-screen" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/university-of-koblenz.png" alt="University of Koblenz" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={koblenzLogo} alt="University of Koblenz" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/ITA.png" alt="ITA" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={itaLogo} alt="ITA" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/fraunhofer.png" alt="Fraunhofer" class="max-h-20 dark:invert dark:mix-blend-screen" />
+                    <Image src={fraunhoferLogo} alt="Fraunhofer" class="max-h-20 dark:invert dark:mix-blend-screen" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/ultraviolet.png" alt="Ultraviolet" class="max-h-20 dark:invert dark:mix-blend-screen" />
+                    <Image src={ultravioletLogo} alt="Ultraviolet" class="max-h-20 dark:invert dark:mix-blend-screen" loading="lazy" />
                 </div>
             </div>
         </div>
