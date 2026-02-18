@@ -4,6 +4,21 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import Hero from '../../components/Hero.astro';
 import Newsletter from '../../components/Newsletter.astro';
+import { Image } from 'astro:assets';
+import headerImage from '../../../public/img/header.avif';
+import elasticLogo from '../../assets/logos/elastic.png';
+import tucLogo from '../../assets/logos/TUC.png';
+import ericssonLogo from '../../assets/logos/ericsson.png';
+import telefonicaLogo from '../../assets/logos/telefonica.png';
+import thalesLogo from '../../assets/logos/THALES.png';
+import imecLogo from '../../assets/logos/IMEC.png';
+import aalLogo from '../../assets/logos/AAL.png';
+import lundLogo from '../../assets/logos/LUND.png';
+import zenLogo from '../../assets/logos/zen.png';
+import politoLogo from '../../assets/logos/POLITO.png';
+import amaLogo from '../../assets/logos/AMA.png';
+import ultravioletLogo from '../../assets/logos/ultraviolet.png';
+
 
 const project = {
     title: "ELASTIC",
@@ -31,7 +46,7 @@ const description = "ELASTIC is an EU-funded project pioneering next-gen network
     <section id="header" class="py-12 lg:pb-0 lg:pt-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-center h-[400px] overflow-hidden w-full relative">
-                <img src="/img/header.avif" alt="pattern-white" class="max-w-full h-auto" style="width: 100%" loading="lazy" />
+                <Image src={headerImage} alt="pattern-white" class="max-w-full h-auto" style="width: 100%" loading="eager" />
             </div>
         </div>
     </section>
@@ -40,7 +55,7 @@ const description = "ELASTIC is an EU-funded project pioneering next-gen network
     <section id="project-title" class="py-12 lg:py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div class="inline-block p-2 bg-[#323232] rounded-lg mb-8">
-                 <img src="/img/logos/elastic.png" alt="ELASTIC Logo" class="mx-auto" style="max-height: 120px" />
+                 <Image src={elasticLogo} alt="ELASTIC Logo" class="mx-auto" style="max-height: 120px" loading="eager" />
             </div>
             <h1 class="text-4xl lg:text-5xl font-heading mb-6">ELASTIC</h1>
             <p class="text-xl text-text-muted">
@@ -293,37 +308,37 @@ const description = "ELASTIC is an EU-funded project pioneering next-gen network
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
                  <div class="flex justify-center">
-                    <img src="/img/logos/TUC.png" alt="Technical university of Crete" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={tucLogo} alt="Technical university of Crete" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/ericsson.png" alt="Ericsson" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={ericssonLogo} alt="Ericsson" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/telefonica.png" alt="Telefonica" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={telefonicaLogo} alt="Telefonica" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/THALES.png" alt="Thales" class="max-h-20 dark:invert dark:mix-blend-screen" />
+                    <Image src={thalesLogo} alt="Thales" class="max-h-20 dark:invert dark:mix-blend-screen" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/IMEC.png" alt="IMEC" class="max-h-20 dark:invert dark:mix-blend-screen" />
+                    <Image src={imecLogo} alt="IMEC" class="max-h-20 dark:invert dark:mix-blend-screen" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/AAL.png" alt="Aalto University" class="max-h-20 dark:brightness-0 dark:invert" />
+                    <Image src={aalLogo} alt="Aalto University" class="max-h-20 dark:brightness-0 dark:invert" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/LUND.png" alt="Lund university" class="max-h-20 dark:invert dark:mix-blend-screen" />
+                    <Image src={lundLogo} alt="Lund university" class="max-h-20 dark:invert dark:mix-blend-screen" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/zen.png" alt="Zentriz lab" class="max-h-20 dark:invert dark:mix-blend-screen" />
+                    <Image src={zenLogo} alt="Zentriz lab" class="max-h-20 dark:invert dark:mix-blend-screen" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/POLITO.png" alt="Politecnico di Torino" class="max-h-20 dark:invert dark:mix-blend-screen" />
+                    <Image src={politoLogo} alt="Politecnico di Torino" class="max-h-20 dark:invert dark:mix-blend-screen" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/AMA.png" alt="Wings" class="max-h-20 dark:invert dark:mix-blend-screen" />
+                    <Image src={amaLogo} alt="Wings" class="max-h-20 dark:invert dark:mix-blend-screen" loading="lazy" />
                 </div>
                 <div class="flex justify-center">
-                    <img src="/img/logos/ultraviolet.png" alt="Ultraviolet" class="max-h-20 dark:invert dark:mix-blend-screen" />
+                    <Image src={ultravioletLogo} alt="Ultraviolet" class="max-h-20 dark:invert dark:mix-blend-screen" loading="lazy" />
                 </div>
             </div>
         </div>
