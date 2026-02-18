@@ -1,5 +1,5 @@
 ---
-slug: securing-trus-rats-and-attested-tls
+slug: securing-trust-rats-and-attested-tls
 title: "Securing Trust: RATS and Attested TLS (aTLS)"
 excerpt: "COCOS AI leverages modern attestation standards to prove the integrity and operational state of the platform."
 description: "Learn about attestation, attested TLS and IETF document defining how a system can prove their integrity and operational state."
@@ -10,7 +10,6 @@ tags: [confidential-computing, attestation, aTLS, cocos ai]
 date: 2026-02-09
 image: /img/securing-trust-rats-and-attested-tls/overview.png
 ogImage: /img/securing-trust-rats-and-attested-tls/overview.png
-featured: true
 ---
 
 In this article, we'll explore **Remote ATtestation procedureS (RATS)**,
@@ -44,7 +43,7 @@ own operational state.
 
 -   Runs in a TEE, device, confidential VM, or enclave.
 -   Produces measurements like firmware hashes, kernel versions, or PCR
-    alues from a TPM.
+    values from a TPM.
 -   Uses **Attestation Keys** bound to hardware or firmware to sign
     this evidence.
 
@@ -101,7 +100,7 @@ separate the **Relying Party** from the **Relying Party Owner**:
 This distinction matters in multi-tenant or cloud scenarios where
 **service providers enforce policies defined by customers**.
 
-![RATS architecture diagram](/img/securing-trust-rats-annd-attested-tls/overview.png)
+![RATS architecture diagram](/img/securing-trust-rats-and-attested-tls/overview.png)
 
 To support different deployment models, RATS describe two primary
 patterns: the **passport model** and the **background-check model**. In
@@ -113,7 +112,7 @@ Party - it sends the evidence to the Verifier itself, ensuring
 independent validation. This flexibility allows RATS to fit into diverse
 ecosystems, from cloud platforms to IoT devices.
 
-![RATS patterns](/img/securing-trust-rats-annd-attested-tls/rats-patterns.png)
+![RATS patterns](/img/securing-trust-rats-and-attested-tls/rats-patterns.png)
 
 Another important aspect of RATS is its **layered and composite
 attestation model**. Modern systems often consist of multiple
@@ -243,7 +242,7 @@ Computing** and **Trusted Execution Environments (TEEs)** to enable
 an **attested TLS (aTLS)** connection with the **CLI**, ensuring both
 secure communication and runtime integrity.
 
-![COCOS AI architecture](/img/securing-trust-rats-annd-attested-tls/cocos-ai-architecture.png)
+![COCOS AI architecture](/img/securing-trust-rats-and-attested-tls/cocos-ai-architecture.png)
 
 **COCOS AI** adopts the **RATS passport model** for remote attestation.
 During certificate creation, the **attestation report** is embedded
@@ -260,19 +259,20 @@ if err != nil {
 
 [...]
 
-csrmd := certs.CSRMetadata{
-  Organization:    []string{organization},
-  Country:         []string{country},
-  Province:        []string{province},
-  Locality:        []string{locality},
-  StreetAddress:   []string{streetAddress},
-  PostalCode:      []string{postalCode},
-  ExtraExtensions: []pkix.Extension{attestExtension},
+csrMetadata := certs.CSRMetadata{
+	Organization:    []string{p.subject.Organization},
+	Country:         []string{p.subject.Country},
+	CommonName:      p.subject.CommonName,
+	Province:        []string{p.subject.Province},
+	Locality:        []string{p.subject.Locality},
+	StreetAddress:   []string{p.subject.StreetAddress},
+	PostalCode:      []string{p.subject.PostalCode},
+	ExtraExtensions: []pkix.Extension{extension},
 }
 
-csr, err := certscli.CreateCSR(csrmd, privateKey)
-if err != nil {
-  return nil, fmt.Errorf("failed to create CSR: %w", err)
+csr, sdkerr := p.certsSDK.CreateCSR(ctx, csrMetadata, privateKey)
+if sdkerr != nil {
+	return nil, fmt.Errorf("failed to create CSR: %w", sdkerr)
 }
 ```
 
@@ -301,8 +301,7 @@ additional verification step.
 ```
 
 Similar to the `getCertificateExtension`
-function, the behavior of the `verifyPeerCertificateATLS`{.markup--code
-.markup--p-code} function, which veryfies the attestation extension,
+function, the behavior of the `verifyPeerCertificateATLS` function, which verifies the attestation extension,
 also depends on the underlying platform, such as **AMD SEV-SNP** or
 **Intel TDX**.
 
