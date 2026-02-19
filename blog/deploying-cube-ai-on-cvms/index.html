@@ -16,13 +16,13 @@
   <meta property="og:url" content="https://www.ultraviolet.rs/blog/deploying-cube-ai-on-cvms" />
   <meta property="og:title" content="Deploying Cube AI on Confidential Virtual Machines: A Complete Guide to Secure LLM Inference on GCP and Azure" />
   <meta property="og:description" content="Walk through deploying Cube AI on AMD SEV-SNP confidential VMs on Google Cloud Platform and Microsoft Azure, covering KMS setup, cloud-init configuration, backend selection (Ollama vs vLLM), TLS certificates, GPU support, and verification steps." />
-  <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
+  <meta property="og:image" content="https://www.ultraviolet.rs/img/deploying-cube-ai-on-cvms/deploying_cube_ai_on_cvms_cover.png" />
 
   
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Deploying Cube AI on Confidential Virtual Machines: A Complete Guide to Secure LLM Inference on GCP and Azure" />
   <meta name="twitter:description" content="Walk through deploying Cube AI on AMD SEV-SNP confidential VMs on Google Cloud Platform and Microsoft Azure, covering KMS setup, cloud-init configuration, backend selection (Ollama vs vLLM), TLS certificates, GPU support, and verification steps." />
-  <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
+  <meta name="twitter:image" content="https://www.ultraviolet.rs/img/deploying-cube-ai-on-cvms/deploying_cube_ai_on_cvms_cover.png" />
 
 
   
@@ -31,7 +31,7 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": "Deploying Cube AI on Confidential Virtual Machines: A Complete Guide to Secure LLM Inference on GCP and Azure",
-        "image": "https:\/\/www.ultraviolet.rs",
+        "image": "https:\/\/www.ultraviolet.rs\/img\/deploying-cube-ai-on-cvms\/deploying_cube_ai_on_cvms_cover.png",
         "datePublished": "2026-02-11",
         "author": {
           "@type": "Person",
@@ -1111,7 +1111,9 @@ vm_public_ip = &quot;52.183.45.67&quot;
         }
       }
 
-      hljs.highlightAll();
+      if (typeof hljs !== 'undefined' && typeof hljs.highlightAll === 'function') {
+        hljs.highlightAll();
+      }
 
       const pres = document.querySelectorAll('.markdown-content pre');
 

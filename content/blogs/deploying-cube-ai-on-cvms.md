@@ -122,6 +122,8 @@ tofu plan -var-file="../../terraform.tfvars"
 tofu apply -var-file="../../terraform.tfvars"
 ```
 
+> **Note:** `terraform.tfvars` is your variables file containing GCP project ID, region, zone, machine type, disk encryption key ID, and cloud-init config path. You will create this file in Step 3.
+
 This creates the necessary encryption keys and outputs:
 
 ```
@@ -163,7 +165,7 @@ machine_type = "n2d-standard-4" # 4 vCPUs recommended for LLM inference
 
 ### Step 4: Customize Cloud-Init Configuration
 
-The cloud-init configuration (`hal/ubuntu/cube-agent-config.yml`) sets up Cube Agent with your chosen AI backend.
+The cloud-init configuration is located at `hal/ubuntu/cube-agent-config.yml` inside the Cube repository you cloned in Step 1 (`cube/hal/ubuntu/cube-agent-config.yml`). This file sets up Cube Agent with your chosen AI backend, configures systemd services, and handles model pulling on first boot.
 
 #### Choosing Your AI Backend
 
@@ -179,7 +181,7 @@ Perfect for getting started quickly and running multiple models:
 - Lower memory requirements due to quantization
 - Ideal for CPU or small GPU deployments
 
-No configuration changes needed. Default installs Ollama and pulls `tinyllama:1.1b`.
+No configuration changes needed. The default cloud-init config installs Ollama and pulls the current Cube default model on startup.
 
 To customize models:
 
@@ -242,7 +244,7 @@ UV_CUBE_AGENT_SERVER_KEY=/etc/cube/certs/server.key
 Navigate back to the GCP directory and deploy:
 
 ```bash
-cd ../ # Back to gcp directory
+cd gcp  # From the repo root (cocos-infra), navigate to the GCP Terraform directory
 tofu init
 tofu plan -var-file="../terraform.tfvars"
 tofu apply -var-file="../terraform.tfvars"
@@ -330,7 +332,7 @@ curl http://localhost:8000/health
 Start by authenticating with Azure and setting up key management:
 
 ```bash
-cd cocos-infra/azure/kms
+cd azure/kms
 az login
 tofu init
 tofu plan -var-file="../../terraform.tfvars"
