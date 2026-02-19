@@ -16,13 +16,13 @@
   <meta property="og:url" content="https://www.ultraviolet.rs/blog/scaling-confidential-ai-inference" />
   <meta property="og:title" content="Scaling Confidential AI Inference: Multi-Tenant Architecture in Cube" />
   <meta property="og:description" content="" />
-  <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
+  <meta property="og:image" content="https://www.ultraviolet.rs/img/header.avif" />
 
   
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Scaling Confidential AI Inference: Multi-Tenant Architecture in Cube" />
   <meta name="twitter:description" content="" />
-  <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
+  <meta name="twitter:image" content="https://www.ultraviolet.rs/img/header.avif" />
 
 
   
@@ -849,7 +849,9 @@
         }
       }
 
-      hljs.highlightAll();
+      if (typeof hljs !== 'undefined' && typeof hljs.highlightAll === 'function') {
+        hljs.highlightAll();
+      }
 
       const pres = document.querySelectorAll('.markdown-content pre');
 

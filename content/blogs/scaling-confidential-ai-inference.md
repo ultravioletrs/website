@@ -1,11 +1,16 @@
 ---
 slug: scaling-confidential-ai-inference
 title: "Scaling Confidential AI Inference: Multi-Tenant Architecture in Cube"
+excerpt: "How Cube uses confidential computing and domain-based multi-tenancy to securely scale AI inference across tenants at production."
+description: "An in-depth look at Cube's multi-tenant architecture for confidential AI inference, combining confidential computing, attested infrastructure, and strong observability to securely run AI workloads at production scale."
 author:
   name: "Washington Kamadi"
   picture: "https://avatars.githubusercontent.com/u/43080232?v=4&size=64"
 tags: [architecture, operations, multi-tenancy, confidential-computing, infrastructure, "cube ai"]
-image: /img/scaling-confidential-ai-inference/scaling_confidential_ai_inference_cover.png
+category: architecture
+coverImage: /img/scaling-confidential-ai-inference/scaling_confidential_ai_inference_cover.png
+ogImage:
+  url: /img/scaling-confidential-ai-inference/scaling_confidential_ai_inference_cover.png
 date: 2026-02-06
 ---
 
@@ -44,7 +49,9 @@ The result is an architecture where security is not bolted on as an afterthought
 
 ## Multi-Tenant Design Patterns in Cube
 
-Multi-tenancy in Cube begins with a simple but powerful abstraction:
+Multi-tenancy in Cube is built on top of **SuperMQ (SMQ)**, which serves as the multi-tenant identity and domain management provider. SMQ manages the domain abstraction that all tenant isolation is built upon, handling authentication, session management, and the relationship model that ties users, domains, and resources together.
+
+The core abstraction SMQ exposes is simple but powerful:
 
 > **Every tenant is a Domain.**
 
@@ -83,7 +90,8 @@ Cube supports multiple confidential computing platforms, ensuring broad compatib
 - **AMD SEV-SNP** — Secure Encrypted Virtualization with Secure Nested Paging, providing memory encryption and integrity protection at the hardware level
 - **Intel TDX** — Trust Domain Extensions, offering hardware-isolated virtual machines with cryptographic attestation
 - **Azure Confidential VMs** — Microsoft Azure's confidential computing offering, integrated through the Microsoft Azure Attestation (MAA) service
-- **vTPM-backed environments** — virtual Trusted Platform Module support for environments that use TPM-based attestation chains
+- **Google Cloud Confidential VMs** — Google Cloud Platform's confidential computing offering, leveraging AMD SEV-SNP to protect VM memory during processing
+- **vTPM** — virtual Trusted Platform Module, used in combination with AMD SEV-SNP to provide TPM-based attestation chains on supported platforms
 
 The verification process is strict: before a connection is established, the proxy validates the agent's cryptographic attestation report against the expected measurements. **Only workloads running inside verified, unmodified environments receive traffic.** Any agent that cannot prove its integrity — whether due to unauthorized code modifications, missing TEE support, or a failed attestation check — is silently rejected.
 
@@ -109,7 +117,7 @@ The proxy exposes a Prometheus-compatible `/metrics` endpoint that tracks reques
 
 The agent's reverse proxy (implemented in `agent/agent.go`) configures its HTTP transport layer for efficient connection reuse:
 
-```yaml
+```go
 MaxIdleConns: 100
 IdleConnTimeout: 90s
 ```
