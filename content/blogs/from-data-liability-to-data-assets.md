@@ -29,7 +29,7 @@ The very datasets that could generate a competitive advantage are kept away by v
 
 Confidential AI changes the security model entirely by ensuring that data remains encrypted even when being processed. By leveraging hardware-backed trusted execution environments (TEEs), workloads are executed entirely inside isolated enclaves where data is decrypted only within protected memory, infrastructure operators can not inspect it, and unauthorized access is cryptographically prevented. Additionally, through attestation, processing the integrity of the hardware can be remotely verified.
 This allows enterprises to collaborate with AI providers, research partners, and even other organizations without giving up control over their data. This effectively implies that companies can train their models on sensitive datasets without exposing them, multiple parties can jointly compute insights without compromising on the privacy of their sensitive data, LLMs can be used for code completion or insights on confidential code or data.
-With this in place, and hardware that supports trusted execution environments (Intel's TDX, Sev SNP, etc), security shifts from a policy promise to a technical guarantee that can be validated and verified.
+With this in place, and hardware that supports trusted execution environments (Intel's TDX, AMD SEV-SNP, etc), security shifts from a policy promise to a technical guarantee that can be validated and verified.
 
 ## Cube AI's role in Securing LLMs
 
@@ -48,7 +48,7 @@ Law and legal firms have historically been cautious about AI due to privilege an
 ## Setting yourself apart with Confidential AI & Proprietary Data
 
 While most AI models are becoming commoditized, access alone to these models is no longer a differentiator in industry - proprietary data and access is!
-Confidential AI allows organizations to fully leverage unique datasets that competitors cannot access, without increasing risk exposure. Having guaranteed and secure access to proprietary data allows a strategic position in industry where organizations and firms can securely use proprietary data, generate superior AI insights, improve products and decision-making, capture market share and collect more differentiated data. These, over time, widens the gap between enterprises that have proprietary data and those that lack.
+Confidential AI allows organizations to fully leverage unique datasets that competitors cannot access, without increasing risk exposure. Having guaranteed and secure access to proprietary data allows a strategic position in industry where organizations and firms can securely use proprietary data, generate superior AI insights, improve products and decision-making, capture market share and collect more differentiated data. These, over time, widen the gap between enterprises that have proprietary data and those that lack.
 When data can be safely used and shared, completely new revenue streams emerge. The potential to unlock additional revenue sources creates a whole new space that was hardly thought of as income generating.
 Some of these include:
 Data-as-a-Service (Secure Data): Organizations can monetize datasets without transferring ownership or exposing raw data to the participating parties.
