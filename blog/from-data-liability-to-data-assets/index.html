@@ -1,0 +1,797 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises - Ultraviolet</title>
+  <meta name="title" content="From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises - Ultraviolet" />
+  <meta name="description" content="" />
+
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/from-data-liability-to-data-assets/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Ultraviolet" />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/from-data-liability-to-data-assets" />
+  <meta property="og:title" content="From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises" />
+  <meta property="og:description" content="" />
+  <meta property="og:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
+
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises" />
+  <meta name="twitter:description" content="" />
+  <meta name="twitter:image" content="https://www.ultraviolet.rs{https://www.ultraviolet.rs/img/header.avif}" />
+
+
+  
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises",
+        "image": "https:\/\/www.ultraviolet.rs",
+        "datePublished": "2026-02-06",
+        "author": {
+          "@type": "Person",
+          "name": "Washington Kamadi"
+        },
+        "description": ""
+      }
+    </script>
+
+  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Ultraviolet" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen&display=swap" />
+
+  
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+  <style>
+    .navbar-nav .nav-link {
+      color: black !important;
+    }
+
+     
+    .markdown-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1.5rem 0;
+    }
+
+    .markdown-content h2,
+    .markdown-content h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #212529;
+    }
+
+    .markdown-content p {
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .markdown-content pre {
+      border-radius: 6px;
+      padding: 1rem;
+    }
+
+    .markdown-content blockquote {
+      border-left: 4px solid #ddd;
+      padding-left: 1rem;
+      color: #555;
+      margin: 1.5rem 0;
+      font-style: italic;
+    }
+
+    .markdown-content table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    .markdown-content th,
+    .markdown-content td {
+      border: 1px solid #ddd;
+      padding: 0.6rem 0.8rem;
+    }
+
+    .markdown-content th {
+      background: #f5f5f5;
+      font-weight: 600;
+    }
+
+    .code-wrapper {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .code-wrapper pre {
+      margin-bottom: 0;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+
+    .code-wrapper:hover .copy-button {
+      opacity: 1;
+    }
+
+    .copy-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .copy-button.copied {
+      background: #198754;
+      border-color: #198754;
+      color: #fff;
+      opacity: 1;
+    }
+
+     
+    .markdown-content pre[class*="language-mermaid"] {
+      background: transparent;
+      padding: 0;
+      border: none;
+    }
+
+    .markdown-content code[class*="language-mermaid"] {
+      display: none;
+    }
+
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #ffffff">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Magistrala" height="30" width="250" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PRODUCTS
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="productsDropdown">
+              <li><a class="dropdown-item" href="https://prism.ultraviolet.rs"
+                  title="Prism AI Multi-Party Confidential Computation Orchestration Platform" target="_blank">PRISM
+                  AI</a></li>
+              <li><a class="dropdown-item" href="/cocos"
+                  title="Cocos AI Open Source Confidential Computing Platform">COCOS AI</a></li>
+              <li><a class="dropdown-item" href="/cube"
+                  title="Cube AI Privacy-Preserving LLM Deployment Framework with Confidential Computing">CUBE AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/products">All Products</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              DOCUMENTATION
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="https://docs.prism.ultraviolet.rs/" target="_blank">PRISM AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://docs.cocos.ultraviolet.rs/" target="_blank">COCOS AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://docs.cube.ultraviolet.rs/" target="_blank">CUBE AI</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PROJECTS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+              <li>
+                <a class="dropdown-item" href="/projects/confidential6g">CONFIDENTIAL6G</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/elastic">ELASTIC</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/titan">TITAN</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects">All Projects</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/company" style="color: black">COMPANY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/careers" style="color: black">CAREERS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact" style="color: black">CONTACT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog" style="color: black">BLOG</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/ultravioletrs" target="_blank" style="color: black"><i
+                class="fab fa-github"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <article class="container py-5 mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        
+        <div class="mb-4">
+          <a href="/blog" class="text-decoration-none text-muted"><i class="fas fa-arrow-left me-2"></i>Back to Blog</a>
+        </div>
+
+        <div class="mb-3">
+          <span class="badge bg-primary fs-6"></span>
+          
+        </div>
+
+        <h1 class="display-4 fw-bold mb-4">From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises</h1>
+
+        <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
+          <img src="https://avatars.githubusercontent.com/u/43080232?v=4&amp;size=64" alt="Washington Kamadi" class="rounded-circle me-3" width="60" height="60"
+            loading="lazy" onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+          <div>
+            <div class="fw-bold fs-5">Washington Kamadi</div>
+            <div class="text-muted">
+              February 06, 2026 · 8 min read
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="markdown-content"><p><img src="/img/from-data-liability-to-data-assets/from_data_liability_to_data_assets_cover.png" alt="From Data Liability to Data Assets"></p>
+<p>Data has proven to be the most valuable strategic resource for all enterprises. With vast amounts of data, insightful and strategic decisions can be made by leveraging the power of Artificial Intelligence and Machine Learning. While this has been and continues to be the case, the rise of AI has transformed the same data into a potential liability.
+Executives today face a difficult dilemna: the more sensitive and proprietary the data, the greater the potential for AI driven insights. Yet handling more sensitive and proprietary data poses a risk to the executives; potential lawsuits, regulatory barriers, data leaks, reputational damage, and competitive leakage.
+Confidential AI comes in as a solution to the greatest challenge in handling proprietary data, adding an extra layer of security when handling such data that has the capability of revolutionizing enterprises. Confidential AI allows data in action to be protected, preventing malicious and accidental exposure to parties involved in confidential computing.
+The result being that data is no longer something to worry about protecting, but an asset that can be freely and safely used to drive key decisions in industry.</p>
+<!-- raw HTML omitted -->
+<h2 id="the-data-liability-problem-with-public-cloud-ai">The &quot;Data Liability&quot; Problem with Public Cloud AI</h2>
+<p>The pubclic cloud AI has significantly accelerated innovation in the field of collaborative AI, but it has introduced several key structural risks that many enterprises underestimated. Traditional AI environments send data to AI workloads while relinquishing meaningful control over where the data is processed, access control, the potential of data retention or model improvement, and how the data is protected in memory during computation. Inasmuch as data at rest and in transit is protected, this data is typically decrypted during processing which creates a window of exposure to malicious attacks.
+For regulated industries such as finance, health, and other industries which handle sensitive data - this creates serious concerns, as this data has to be handled securely. Financial institutions must safeguard transaction histories and trading strategies, healthcare providers have to protect patient records, legal firms have to preserve client confidentiality, and generally all data has to be protected against leakage.
+This has led to a quite decline by companies on their AI ambitions, not for the lack of data, but for the risk of using it in public cloud AI which risks leakage.
+The very datasets that could generate a competitive advantage are kept away by valid security and compliance fears.</p>
+<h2 id="how-confidential-ai-enables-safe-data-sharing-in-ai-workloads">How Confidential AI Enables Safe Data Sharing in AI Workloads</h2>
+<p>Confidential AI changes the security model entirely by ensuring that data remains encrypted even when being processed. By leveraging hardware-backed trusted execuiton environments (TEEs), workloads are executed entirely inside isolated enclaves wheredata is decrypted only within protected memory, infrastructure operators can not inspect it, and unauthorized access is cryptographically prevented. Additionally, through attestation, processing the integrity of the hardware can be remotely verified.
+This allows enterprises to collaborate with AI providers, research partners, and even other organizations without giving up control over their data. This effectively implies that companies can train their models on sensitive datasets without exposing them, multiple parties can jointly compute insights without compromising on the privacy of their sensitive data, LLMs can be used for code completion or insights on confidential code or data.
+With this in place, and hardware that supports trusted execution enviroments (Intel's TDX, Sev SNP, etc), security shifts from a policy promise to a technical guarantee that can be validated and verified.</p>
+<h2 id="cube-ais-role-in-securing-llms-and-vllms">Cube AI's role in Securing LLMs and vLLMs</h2>
+<p>Cube AI's core competence lies in the protection of LLMs and now even vLLMs in trusted execution environments (TEEs). Cube is designed to enable enterprises to maximize the unlimited potential of LLMs in creating a competitive advantage for themselves.
+The advent of LLMs has significantly bumped up the productivity of developers, with numerous organizations mandating the use of LLMs in product development. Engineers of all kinds are now able to focus on what matters, and leave the rest of the repetitive work to be done by LLMs. Financial institutions are now employing LLMs to derive insights from financial data, medical firms relying on LLMs to perform anomaly detection in medical data - all this conventionally coming with the risk of a security brecah.
+Cube AI allows LLMs to be deployed in secure enclaves, allowing organizations to make use of LLMs for code completion and chat, all while ensuring the security of the data input. Cube currently supports Llama3.2:3b for chat and code completion, StarCoder2:3b for code completion, and Nomic Embed text:137M, with the possibility of adding custom models and vLLMs.
+All LLM activity is run inside confidential vms, running on an Intel TDX host with the hardware backed support for TEEs.</p>
+<h2 id="industries-already-benefitting-from-confidential-ai">Industries Already Benefitting from Confidential AI</h2>
+<p>While still in early adoption, several sectors are quickly moving to adopt confidential AI to leverage the merits of confidential data, and guaranteed privacy.
+Banks and financial trading firms can run risk models on highly sensitive financial data while ensuring that proprietary strategies remain confidential. This opens the door to secure AI-powered fraud and anomaly detection, insights on tailored actions to perform to increase competitive advantage, collaborative anti-money-laundering analytics, and cross-institution risk modeling without data pooling.
+Healthcare organizations possess some of the richest datasets in the world, which makes it one of the most regulated dataset. Confidential AI enables privacy-preserving clinical research, secure diagnostic model training, multi-hospital data collaboration, and pharmaceutical research without exposing patient records. Confidential AI also allows aided medical practice, allowing healthcare workers to securely infer from trained models about real patient records.
+Law and legal firms have historically been cautious about AI dur to privilege and confidentiality requirements. Confidential AI allows these firms to analyze large case corpora, automate contract intelligence and development, extract insights from sensitive documents, and to build proprietary legal copilots and AI agents. Firms that can move early can create differentiated knowledge banks which competitors can not replicate.</p>
+<h2 id="setting-yourself-apart-with-confidential-ai--proprietary-data">Setting yourself apart with Confidential AI &amp; Proprietary Data</h2>
+<p>While most AI models are becoming commoditized, access alone to these models is no longer a differentiator in industry - proprietary data and access is!
+Confidential AI allows organizations to fully leverage unique datasets that competitors cannot access, without increasing risk exposure. Having guaranteed and secure access to proprietary data allows a strategic position in industry where organizations and firms can securely use proprietary data, generate superior AI insights, improve products and decision-making, capture market share and collect more differentiated data. These, over time, widens the gap between enterprises that have proprietary data and those that lack.
+When data can be safely used and shared, completely new revenue streams emerge. The potential to unlock additional revenue sources creates a whole new space that was hardly thought of as income generating.
+Some of these include:
+Data-as-a-Service (Secure Data): Organizations can monetize datasets without transferring ownership or exposing raw data to the participating parties.
+Regulated AI Products: Vendors can deliver AI solutions tailored for compliance-heavy sectors that previouslt avoided automation, all with the guarantee of security.
+Industry Data Consortia: Competitors can contribute encrypted datasets to produce a shared intelligence that benefits all participants - the dataset providers, the model owners, and the end users.</p>
+<h2 id="vendor-selection-criteria-for-enterprise-ai-infrastructure">Vendor Selection Criteria for Enterprise AI Infrastructure</h2>
+<p>Not all &quot;secure AI&quot; platforms provide true confidentiality. Executeves should evaluate vendors carefully across several dimensions:
+Hardware-Backed security: Enterprises should be able to cryptographically confirm that workloads are running in protected environments.
+Data sovereignity controls: Critical to confidential AI is the location where computations occur and operaitonal visibility.
+Performance at Scale: Security can not come at the expence of production readiness.
+Integration Flexibility: The platforms should not limit the users on which models to use or not to use, and what platforms to integrate with.
+Remotely verifiable attestation: For secure AI, attestation must be verified remotely with proper attestation reports and audits to give insights on the hardware where the models are running.</p>
+<p>Cube AI confidently provides all of these.</p>
+<hr>
+<p>Confidential AI marks a turning point in enterprise technology strategy. For the first time, organizations no longer have to choose between innovation and control - they can achieve both.
+The enterprises that will lead the next decade are not necessarily those with the most data, but those with the confidence and infrastructure to activate it securely. Proprietary data, when combined with trusted AI systems, becomes more than an operational asset - it becomes a durable competitive moat.
+The question facing executives is no longer whether to adopt AI. That future is already unfolding. The real question is whether your organization is prepared to use its most valuable data safely enough to unlock its full economic potential.
+In the shift from data liability to data asset, confidential AI is not merely a technological upgrade - it is the foundation for the next generation of intelligent, resilient, and market-leading enterprises.</p>
+<h2 id="learn-more-about-cube-ai">Learn More About Cube AI</h2>
+<p>Confidential AI is rapidly becoming foundational to enterprise infrastructure. To explore how secure AI workloads can be deployed using trusted execution environments, visit the resources below:</p>
+<ul>
+<li><a href="https://github.com/ultravioletrs/cube">Cube AI GitHub Repository</a> - Explore the open-source components, architecture, and deployment patterns.</li>
+<li><a href="https://docs.cube.ultraviolet.rs/architecture">Official Documentation</a> - Access detailed implementation guides, security architecture, and operational best practices.</li>
+<li><a href="https://docs.cube.ultraviolet.rs/getting-started">Getting Started Guide</a> - Learn how to deploy confidential AI workloads and integrate secure LLMs into your enterprise environment.</li>
+</ul>
+<p>Whether you are evaluating confidential computing or preparing for production deployment, these resources provide a practical starting point for building trusted AI systems.</p>
+</div>
+
+        <div class="mt-5 pt-4 border-top">
+          
+          <div>
+            <a href="/blog" class="btn btn-outline-secondary"><i class="fas fa-arrow-left me-2"></i>Back to
+              Blog</a>
+          </div>
+          <h5 class="mb-3 mt-3">Tags</h5>
+          <div>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential-computing</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">ai</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">enterprise</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">security</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">data-privacy</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">cube ai</span>
+            
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <h5 class="mb-3">Share this article</h5>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="https://twitter.com/intent/tweet?text=From&#43;Data&#43;Liability&#43;to&#43;Data&#43;Assets%3A&#43;How&#43;Confidential&#43;AI&#43;Changes&#43;the&#43;Game&#43;for&#43;Enterprises&url=https%3a%2f%2fwww.ultraviolet.rs/blog/from-data-liability-to-data-assets"
+              target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+              <i class="fab fa-twitter me-2"></i>Twitter
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/from-data-liability-to-data-assets"
+              target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+              <i class="fab fa-linkedin me-2"></i>LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  
+  <section id="newsletter" class="py-5">
+    <div class="container">
+      <div class="row mt-5 mb-5">
+        <div class="col-md-6 offset-md-3 text-center">
+          <h2>Subscribe to Our Newsletter</h2>
+          <p>Stay updated with the latest news, updates and announcements.</p>
+
+          
+          <form
+            action="https://absmach.us11.list-manage.com/subscribe/post?u=70b43c7181d005024187bfb31&amp;id=0a319b6b63&amp;f_id=002711e1f0"
+            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+            target="_blank">
+            <div class="input-group">
+              <input type="email" class="form-control" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email"
+                aria-label="Email" aria-describedby="subscribe-btn" required="" />
+              <div hidden="">
+                <input type="hidden" name="tags" value="8115258" />
+              </div>
+              <button class="btn bg-deep-blue" type="submit" id="subscribe-btn"
+                style="background-color: #073763; color: white;">
+                Subscribe
+              </button>
+            </div>
+            <div id="mce-responses" class="clear foot">
+              <div class="response" id="mce-error-response" style="display: none"></div>
+              <div class="response" id="mce-success-response" style="display: none"></div>
+            </div>
+            <div style="position: absolute; left: -5000px" aria-hidden="true">
+              
+              <input type="text" name="b_70b43c7181d005024187bfb31_0a319b6b63" tabindex="-1" value="" />
+            </div>
+
+            
+            <div class="mt-2">
+              <div class="mt-2">
+                <p class="mb-0" style="font-size: 0.75rem; color: #6c757d; line-height: 1.4">
+                  By subscribing, you agree to our
+                  <a href="/privacy" target="_blank" class="link-blue-sm">Privacy Policy</a>
+                  and
+                  <a href="/terms" target="_blank" class="link-blue-sm">Terms of Service</a>. <br />You can unsubscribe
+                  at any time.
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  
+  
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h3 class="mb-4 fw-bold">Next Read</h3>
+      <div class="row g-4">
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/confidential-computing-meets-ai" class="text-decoration-none text-dark">
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts
+                </h2>
+                <p class="card-text text-muted small">
+                  
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      sammy oina
+                    </div>
+                    <div class="text-muted">
+                      January 30, 2026 · 4 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">security</span>
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">ai</span>
+                  
+                  <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                  <span class="badge bg-light text-dark me-1">cube ai</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  
+  <footer class="bg-dark text-white py-3">
+    <div class="container">
+      <div class="row mt-3 mb-2">
+        <div class="col">
+          <h3>About Us</h3>
+          <p class="w-65">
+            Ultraviolet is a leading company specializing in confidential
+            computing, cloud security, AI/ML, multi-party computation, and
+            secure data sharing.
+          </p>
+        </div>
+
+        <div class="col">
+          <h3>Products</h3>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fas fa-network-wired me-2"></i><a href="prism/" class="text-white">Prism AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cog me-2"></i><a href="cocos/" class="text-white">Cocos AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cube"></i>
+              <a href="cube/" class="text-white">Cube AI</a>
+            </li>
+          </ul>
+          <h3>Resources</h3>
+          <ul class="list-unstyled">
+            <li>
+              <a href="https://docs.google.com/presentation/d/199CkKD4YpgfJ1CLWVyZ9TdmXLLvME7JHN4Kfjkbgmho/export/pdf"
+                class="text-white">
+                Prism AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1oZDjQjuzNR8PeI1AHS8tePaiA73SmjnjrFFEBoS6b68/export/pdf"
+                class="text-white">
+                Cocos AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1UJR6HKiBV3r56SyMNZvO3ylek8VFmNojbFkTC-bawBY/export/pdf"
+                class="text-white">
+                Cube AI Datasheet
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Legal</h3>
+          <ul class="list-unstyled">
+            Prism AI
+            <li>
+              <a href="/prism/terms" class="text-white"> Terms of Service</a>
+            </li>
+            <li>
+              <a href="/prism/privacy" class="text-white"> Privacy Policy</a>
+            </li>
+            <br />
+            Cube AI
+            <li>
+              <a href="/cube/terms" class="text-white">Terms of Service</a>
+            </li>
+            <li>
+              <a href="/cube/privacy" class="text-white">Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Connect With Us</h3>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fab fa-twitter me-2"></i><a href="https://twitter.com/ultravioletrs" class="text-white"
+                target="_blank">Twitter</a>
+            </li>
+            <li>
+              <i class="fab fa-linkedin me-2"></i><a href="https://www.linkedin.com/company/ultravioletrs"
+                class="text-white" target="_blank">LinkedIn</a>
+            </li>
+            <li>
+
+            <li>
+              <i class="fab fa-github me-2"></i><a href="https://github.com/ultravioletrs" class="text-white"
+                target="_blank">GitHub</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Contact Us</h3>
+          <p>
+            <i class="fas fa-envelope me-2"></i><a href="mailto:info@ultraviolet.rs"
+              class="text-white">info@ultraviolet.rs</a>
+          </p>
+          <p>
+            <i class="fab fa-gitter me-2"></i><a href="https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im"
+              class="text-white" target="_blank">Chat on Gitter</a>
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt me-2"></i>Bulevar Arsenija
+            Carnojevica 103, 11000 Belgrade, Serbia
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CH54M1Z8DY"></script>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+    function getCookie(name) {
+      var b = document.cookie.match(
+        "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)",
+      );
+      return b ? b.pop() : "";
+    }
+
+    function addAnalytics() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-CH54M1Z8DY");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      const cookieConsent = getCookie("cookieconsent_status");
+
+      
+      if (cookieConsent === "allow" || cookieConsent === "") {
+        addAnalytics();
+      }
+
+      if (typeof window.cookieconsent !== "undefined") {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: { background: "#000" },
+            button: { background: "#f1d600" },
+          },
+          revokable: true,
+          law: {
+            regionalLaw: {
+              EU: true, 
+              UK: true, 
+            },
+          },
+          location: true, 
+          type: "opt-out",
+          content: {
+            message:
+              "🍪 We use cookies to collect data to improve your experience on our site.",
+            allow: "Allow",
+            dismiss: "Allow",
+            deny: "Reject",
+          },
+          onStatusChange: function (status, chosenBefore) {
+            location.reload();
+          },
+        });
+      } else {
+        console.error("Cookie consent script not loaded.");
+      }
+    });
+  </script>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', async () => {
+      
+      if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: false, theme: 'default', logLevel: 'debug' });
+      }
+
+      
+      const markdownContent = document.querySelector('.markdown-content');
+      if (markdownContent) {
+        const pres = markdownContent.querySelectorAll('pre');
+        
+        pres.forEach(pre => {
+          const code = pre.querySelector('code');
+          if (code && code.className.includes('language-mermaid')) {
+            const mermaidDiv = document.createElement('div');
+            mermaidDiv.className = 'mermaid';
+            mermaidDiv.textContent = code.textContent;
+            pre.replaceWith(mermaidDiv);
+          }
+        });
+      }
+
+      
+      if (typeof mermaid !== 'undefined') {
+        try {
+          await mermaid.run();
+        } catch (e) {
+          console.error('Mermaid rendering error:', e);
+        }
+      }
+
+      hljs.highlightAll();
+
+      const pres = document.querySelectorAll('.markdown-content pre');
+
+      pres.forEach(pre => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        const btn = document.createElement('button');
+        btn.className = 'copy-button';
+        btn.type = 'button';
+        btn.innerHTML = '<i class="far fa-copy"></i>';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
+        btn.title = 'Copy code';
+
+        wrapper.appendChild(btn);
+      });
+    });
+
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.copy-button');
+      if (!btn) return;
+
+      const pre = btn.parentElement.querySelector('pre');
+      const code = pre.querySelector('code') || pre;
+      const text = code.textContent;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+        }
+
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        btn.classList.add('copied');
+        btn.title = 'Copied!';
+
+        setTimeout(() => {
+          btn.innerHTML = '<i class="far fa-copy"></i>';
+          btn.classList.remove('copied');
+          btn.title = 'Copy code';
+        }, 2000);
+
+      } catch (err) {
+        console.error('Copy failed', err);
+        btn.innerHTML = '<i class="fas fa-times"></i>';
+        setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i>', 2000);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
