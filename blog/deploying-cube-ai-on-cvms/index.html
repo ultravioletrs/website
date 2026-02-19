@@ -1,0 +1,1181 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Deploying Cube AI on Confidential Virtual Machines: A Complete Guide to Secure LLM Inference on GCP and Azure - Ultraviolet</title>
+  <meta name="title" content="Deploying Cube AI on Confidential Virtual Machines: A Complete Guide to Secure LLM Inference on GCP and Azure - Ultraviolet" />
+  <meta name="description" content="Walk through deploying Cube AI on AMD SEV-SNP confidential VMs on Google Cloud Platform and Microsoft Azure, covering KMS setup, cloud-init configuration, backend selection (Ollama vs vLLM), TLS certificates, GPU support, and verification steps." />
+
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/deploying-cube-ai-on-cvms/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Ultraviolet" />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/deploying-cube-ai-on-cvms" />
+  <meta property="og:title" content="Deploying Cube AI on Confidential Virtual Machines: A Complete Guide to Secure LLM Inference on GCP and Azure" />
+  <meta property="og:description" content="Walk through deploying Cube AI on AMD SEV-SNP confidential VMs on Google Cloud Platform and Microsoft Azure, covering KMS setup, cloud-init configuration, backend selection (Ollama vs vLLM), TLS certificates, GPU support, and verification steps." />
+  <meta property="og:image" content="https://www.ultraviolet.rs/img/deploying-cube-ai-on-cvms/deploying_cube_ai_on_cvms_cover.png" />
+
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Deploying Cube AI on Confidential Virtual Machines: A Complete Guide to Secure LLM Inference on GCP and Azure" />
+  <meta name="twitter:description" content="Walk through deploying Cube AI on AMD SEV-SNP confidential VMs on Google Cloud Platform and Microsoft Azure, covering KMS setup, cloud-init configuration, backend selection (Ollama vs vLLM), TLS certificates, GPU support, and verification steps." />
+  <meta name="twitter:image" content="https://www.ultraviolet.rs/img/deploying-cube-ai-on-cvms/deploying_cube_ai_on_cvms_cover.png" />
+
+
+  
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Deploying Cube AI on Confidential Virtual Machines: A Complete Guide to Secure LLM Inference on GCP and Azure",
+        "image": "https:\/\/www.ultraviolet.rs\/img\/deploying-cube-ai-on-cvms\/deploying_cube_ai_on_cvms_cover.png",
+        "datePublished": "2026-02-11",
+        "author": {
+          "@type": "Person",
+          "name": "Washington Kamadi"
+        },
+        "description": "Walk through deploying Cube AI on AMD SEV-SNP confidential VMs on Google Cloud Platform and Microsoft Azure, covering KMS setup, cloud-init configuration, backend selection (Ollama vs vLLM), TLS certificates, GPU support, and verification steps."
+      }
+    </script>
+
+  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Ultraviolet" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen&display=swap" />
+
+  
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+  <style>
+    .navbar-nav .nav-link {
+      color: black !important;
+    }
+
+     
+    .markdown-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1.5rem auto;
+      display: block;
+    }
+
+    .markdown-content h2,
+    .markdown-content h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #212529;
+    }
+
+    .markdown-content p {
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .markdown-content pre {
+      border-radius: 6px;
+      padding: 1rem;
+    }
+
+    .markdown-content blockquote {
+      border-left: 4px solid #ddd;
+      padding-left: 1rem;
+      color: #555;
+      margin: 1.5rem 0;
+      font-style: italic;
+    }
+
+    .markdown-content table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    .markdown-content th,
+    .markdown-content td {
+      border: 1px solid #ddd;
+      padding: 0.6rem 0.8rem;
+    }
+
+    .markdown-content th {
+      background: #f5f5f5;
+      font-weight: 600;
+    }
+
+    .code-wrapper {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .code-wrapper pre {
+      margin-bottom: 0;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+
+    .code-wrapper:hover .copy-button {
+      opacity: 1;
+    }
+
+    .copy-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .copy-button.copied {
+      background: #198754;
+      border-color: #198754;
+      color: #fff;
+      opacity: 1;
+    }
+
+     
+    .markdown-content pre[class*="language-mermaid"] {
+      background: transparent;
+      padding: 0;
+      border: none;
+    }
+
+    .markdown-content code[class*="language-mermaid"] {
+      display: none;
+    }
+
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #ffffff">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Magistrala" height="30" width="250" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PRODUCTS
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="productsDropdown">
+              <li><a class="dropdown-item" href="https://prism.ultraviolet.rs"
+                  title="Prism AI Multi-Party Confidential Computation Orchestration Platform" target="_blank">PRISM
+                  AI</a></li>
+              <li><a class="dropdown-item" href="/cocos"
+                  title="Cocos AI Open Source Confidential Computing Platform">COCOS AI</a></li>
+              <li><a class="dropdown-item" href="/cube"
+                  title="Cube AI Privacy-Preserving LLM Deployment Framework with Confidential Computing">CUBE AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/products">All Products</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              DOCUMENTATION
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="https://docs.prism.ultraviolet.rs/" target="_blank">PRISM AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://docs.cocos.ultraviolet.rs/" target="_blank">COCOS AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://docs.cube.ultraviolet.rs/" target="_blank">CUBE AI</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PROJECTS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+              <li>
+                <a class="dropdown-item" href="/projects/confidential6g">CONFIDENTIAL6G</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/elastic">ELASTIC</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/titan">TITAN</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects">All Projects</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/company" style="color: black">COMPANY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/careers" style="color: black">CAREERS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact" style="color: black">CONTACT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog" style="color: black">BLOG</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/ultravioletrs" target="_blank" style="color: black"><i
+                class="fab fa-github"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <article class="container py-5 mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        
+        <div class="mb-4">
+          <a href="/blog" class="text-decoration-none text-muted"><i class="fas fa-arrow-left me-2"></i>Back to Blog</a>
+        </div>
+
+        <div class="mb-3">
+          <span class="badge bg-primary fs-6"></span>
+          
+        </div>
+
+        <h1 class="display-4 fw-bold mb-4">Deploying Cube AI on Confidential Virtual Machines: A Complete Guide to Secure LLM Inference on GCP and Azure</h1>
+
+        <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
+          <img src="https://avatars.githubusercontent.com/u/43080232?v=4&amp;size=64" alt="Washington Kamadi" class="rounded-circle me-3" width="60" height="60"
+            loading="lazy" onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+          <div>
+            <div class="fw-bold fs-5">Washington Kamadi</div>
+            <div class="text-muted">
+              February 11, 2026 · 8 min read
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="markdown-content"><p><img src="/img/deploying-cube-ai-on-cvms/deploying_cube_ai_on_cvms_cover.png" alt="Deploying Cube AI on Confidential Virtual Machines"></p>
+<p>Confidential computing is transforming how we deploy and run AI workloads in cloud environments. As large language models (LLMs) become increasingly powerful and valuable, protecting the data they process and the models themselves has become paramount. Cube AI leverages confidential computing to provide secure, verifiable AI inference on hardware-encrypted confidential virtual machines (CVMs).</p>
+<p>This comprehensive guide walks you through deploying Cube AI on user-managed CVMs on both Google Cloud Platform (GCP) and Microsoft Azure, giving you complete control over your AI infrastructure while maintaining the highest security standards through hardware-based attestation and encryption.</p>
+<!-- raw HTML omitted -->
+<h2 id="why-deploy-cube-ai-on-confidential-vms">Why Deploy Cube AI on Confidential VMs?</h2>
+<p>Cube AI combines the power of modern LLMs with the security guarantees of confidential computing. By deploying on CVMs, you gain unprecedented protection for both your data and models.</p>
+<h3 id="key-advantages">Key Advantages</h3>
+<ul>
+<li><strong>Data Sovereignty and Privacy:</strong> Keep sensitive data encrypted even during processing, with hardware-level protection that prevents access even by cloud administrators</li>
+<li><strong>Model Protection:</strong> Safeguard proprietary models and intellectual property through memory encryption and attestation</li>
+<li><strong>Regulatory Compliance:</strong> Meet stringent compliance requirements (HIPAA, GDPR, financial regulations) with verifiable confidential computing</li>
+<li><strong>Flexible AI Backend Options:</strong> Choose between Ollama for ease of use or vLLM for high-performance inference, both running in a secure enclave</li>
+<li><strong>Infrastructure Control:</strong> Maintain complete control over compute resources, network configurations, and security policies</li>
+<li><strong>Multi-Cloud Flexibility:</strong> Deploy across multiple cloud providers or integrate with on-premises infrastructure</li>
+<li><strong>Cost Optimization:</strong> Leverage existing cloud commitments, reserved instances, and custom VM configurations</li>
+</ul>
+<h2 id="cube-ai-architecture">Cube AI Architecture</h2>
+<p>Cube AI is a secure, privacy-preserving AI platform that runs LLMs within Trusted Execution Environments (TEE) with comprehensive security, authentication, and audit capabilities.</p>
+<h3 id="core-architecture-layers">Core Architecture Layers</h3>
+<h4 id="1-tee-enclave-layer-inside-cvm---amd-sev-snp--intel-tdx">1. TEE Enclave Layer (Inside CVM - AMD SEV-SNP / Intel TDX)</h4>
+<p>The secure enclave provides hardware-based memory encryption and isolation:</p>
+<ul>
+<li><strong>LLM Engine:</strong> Ollama or vLLM runtime for model inference</li>
+<li><strong>Enclave Agent (Cube Agent):</strong> Handles attestation, key management, and secure communication</li>
+<li><strong>Secure Memory:</strong> Hardware-encrypted memory space preventing unauthorized access</li>
+<li><strong>Attestation Module:</strong> Generates and validates attestation reports to prove enclave integrity</li>
+<li><strong>Model Storage:</strong> Encrypted model weights and configurations</li>
+</ul>
+<h4 id="2-proxy-layer-outside-enclave">2. Proxy Layer (Outside Enclave)</h4>
+<ul>
+<li><strong>Cube Proxy:</strong> API gateway that routes requests to confidential agents</li>
+<li>Authentication integration with SuperMQ for user management and access control</li>
+<li>Request validation and forwarding with attested TLS</li>
+<li>Domain-based workspace isolation</li>
+</ul>
+<h4 id="3-authentication--authorization">3. Authentication &amp; Authorization</h4>
+<p>Cube AI integrates with SuperMQ for enterprise-grade authentication:</p>
+<ul>
+<li>JWT/Personal Access Token authentication</li>
+<li>Domain-based workspace isolation (multi-tenancy)</li>
+<li>Role-based access control (RBAC)</li>
+<li>Token validation and refresh capabilities</li>
+</ul>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before beginning deployment, ensure you have:</p>
+<h3 id="cloud-provider-access">Cloud Provider Access</h3>
+<ul>
+<li>Active GCP and/or Azure account with appropriate permissions</li>
+<li>Ability to create confidential VMs with AMD SEV-SNP support</li>
+</ul>
+<h3 id="required-tools">Required Tools</h3>
+<ul>
+<li>Terraform/OpenTofu installed (<code>v1.0+</code>)</li>
+<li>Git for cloning repositories</li>
+<li><code>cloud-init</code> tool for configuration validation (optional but recommended)</li>
+</ul>
+<h3 id="infrastructure-templates">Infrastructure Templates</h3>
+<ul>
+<li>Download from <a href="https://github.com/ultravioletrs/cocos-infra">cocos-infra repository</a></li>
+</ul>
+<h3 id="cube-configuration">Cube Configuration</h3>
+<ul>
+<li>Cloud-init configuration from <a href="https://github.com/ultravioletrs/cube">Cube repository</a></li>
+<li>Access to Cube platform (if using managed platform) or standalone deployment</li>
+</ul>
+<h3 id="certificates-optional">Certificates (Optional)</h3>
+<ul>
+<li>TLS/mTLS certificates for production deployments</li>
+<li>Can be generated or obtained from your certificate authority</li>
+</ul>
+<hr>
+<h2 id="deploying-cube-ai-on-google-cloud-platform">Deploying Cube AI on Google Cloud Platform</h2>
+<h3 id="step-1-clone-required-repositories">Step 1: Clone Required Repositories</h3>
+<p>First, clone the infrastructure templates and Cube repository:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="color:#007f7f"># Clone infrastructure templates</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/ultravioletrs/cocos-infra.git
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">cd</span> cocos-infra
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#007f7f"># Clone Cube repository (for cloud-init config)</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/ultravioletrs/cube.git
+</span></span></code></pre><h3 id="step-2-set-up-kms-infrastructure">Step 2: Set Up KMS Infrastructure</h3>
+<p>Navigate to the GCP KMS directory and create encryption keys:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">cd</span> gcp/kms
+</span></span><span style="display:flex;"><span>tofu init
+</span></span><span style="display:flex;"><span>tofu plan -var-file=<span style="color:#0ff;font-weight:bold">&#34;../../terraform.tfvars&#34;</span>
+</span></span><span style="display:flex;"><span>tofu apply -var-file=<span style="color:#0ff;font-weight:bold">&#34;../../terraform.tfvars&#34;</span>
+</span></span></code></pre><p>This creates the necessary encryption keys and outputs:</p>
+<pre><code>Outputs:
+disk_encryption_id = &quot;projects/&lt;project-id&gt;/locations/global/keyRings/vm-encryption-keyring/cryptoKeys/vm-encryption-key&quot;
+kms_keyring_id = &quot;projects/&lt;project-id&gt;/locations/global/keyRings/vm-encryption-keyring&quot;
+</code></pre>
+<p>Save the <code>disk_encryption_id</code> — you'll need it in the next step.</p>
+<h3 id="step-3-configure-terraform-variables">Step 3: Configure Terraform Variables</h3>
+<p>Create or update <code>terraform.tfvars</code> in the <code>cocos-infra</code> directory:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="color:#007f7f"># Common Configuration
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>vm_name = <span style="color:#0ff;font-weight:bold">&#34;cube-ai-vm&#34;</span><span style="color:#007f7f">
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"># GCP-specific
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>project_id = <span style="color:#0ff;font-weight:bold">&#34;your-gcp-project-id&#34;</span>
+</span></span><span style="display:flex;"><span>region = <span style="color:#0ff;font-weight:bold">&#34;us-central1&#34;</span>
+</span></span><span style="display:flex;"><span>zone = <span style="color:#0ff;font-weight:bold">&#34;us-central1-a&#34;</span>
+</span></span><span style="display:flex;"><span>min_cpu_platform = <span style="color:#0ff;font-weight:bold">&#34;AMD Milan&#34;</span>
+</span></span><span style="display:flex;"><span>confidential_instance_type = <span style="color:#0ff;font-weight:bold">&#34;SEV_SNP&#34;</span><span style="color:#007f7f">
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"># VM Configuration
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>disk_encryption_id = <span style="color:#0ff;font-weight:bold">&#34;projects/&lt;project-id&gt;/locations/global/keyRings/vm-encryption-keyring/cryptoKeys/vm-encryption-key&#34;</span>
+</span></span><span style="display:flex;"><span>cloud_init_config = <span style="color:#0ff;font-weight:bold">&#34;/path/to/cube/hal/ubuntu/cube-agent-config.yml&#34;</span>
+</span></span><span style="display:flex;"><span>machine_type = <span style="color:#0ff;font-weight:bold">&#34;n2d-standard-4&#34;</span><span style="color:#007f7f"> # 4 vCPUs recommended for LLM inference
+</span></span></span></code></pre><p><strong>Machine Type Recommendations:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Use Case</th>
+<th style="text-align:left">Machine Type</th>
+<th style="text-align:left">Specs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Development/Testing</td>
+<td style="text-align:left"><code>n2d-standard-2</code></td>
+<td style="text-align:left">2 vCPUs, 8GB RAM</td>
+</tr>
+<tr>
+<td style="text-align:left">Production (Ollama)</td>
+<td style="text-align:left"><code>n2d-standard-4</code></td>
+<td style="text-align:left">4 vCPUs, 16GB RAM</td>
+</tr>
+<tr>
+<td style="text-align:left">Production (vLLM)</td>
+<td style="text-align:left"><code>n2d-standard-8</code> or higher</td>
+<td style="text-align:left">8+ vCPUs, with GPU support</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-4-customize-cloud-init-configuration">Step 4: Customize Cloud-Init Configuration</h3>
+<p>The cloud-init configuration (<code>hal/ubuntu/cube-agent-config.yml</code>) sets up Cube Agent with your chosen AI backend.</p>
+<h4 id="choosing-your-ai-backend">Choosing Your AI Backend</h4>
+<p><strong>Ollama (Recommended for Ease of Use)</strong></p>
+<p>Perfect for getting started quickly and running multiple models:</p>
+<ul>
+<li>Simple model management: <code>ollama pull</code>, <code>ollama list</code>, <code>ollama rm</code></li>
+<li>Built-in quantization support: Q4_0, Q4_1, Q8_0 for reduced memory usage</li>
+<li>Automatic GPU detection and utilization</li>
+<li>Lightweight REST API</li>
+<li>Broad model support: Llama, Mistral, CodeLlama, Gemma, and more</li>
+<li>Lower memory requirements due to quantization</li>
+<li>Ideal for CPU or small GPU deployments</li>
+</ul>
+<p>No configuration changes needed. Default installs Ollama and pulls <code>tinyllama:1.1b</code>.</p>
+<p>To customize models:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="font-weight:bold">runcmd</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#007f7f"># ... other commands ...</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#007f7f"># Pull multiple models on startup</span>
+</span></span><span style="display:flex;"><span>  - export CUBE_MODELS=&#34;llama2:7b,mistral:latest,codellama:13b&#34;
+</span></span></code></pre><p><strong>vLLM (Recommended for High Performance)</strong></p>
+<p>Optimized for production workloads requiring maximum throughput:</p>
+<ul>
+<li><strong>Continuous batching:</strong> Higher throughput by batching multiple requests</li>
+<li><strong>PagedAttention:</strong> Efficient memory management for long contexts</li>
+<li><strong>Advanced sampling algorithms</strong> for better quality</li>
+<li><strong>Superior GPU utilization</strong> compared to standard inference</li>
+<li><strong>OpenAI-compatible API</strong></li>
+<li><strong>Tensor parallelism</strong> support for multi-GPU setups</li>
+<li>Best for large-scale production deployments</li>
+</ul>
+<p>Before deploying, set environment variables:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">export</span> CUBE_AI_BACKEND=vllm
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">export</span> CUBE_VLLM_MODEL=<span style="color:#0ff;font-weight:bold">&#34;meta-llama/Llama-2-7b-hf&#34;</span>
+</span></span></code></pre><h4 id="optional-add-tlsmtls-certificates">Optional: Add TLS/mTLS Certificates</h4>
+<p>For production deployments, uncomment and add certificates in the cloud-init file:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>- <span style="font-weight:bold">path</span>: /etc/cube/certs/server.crt
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">content</span>: |<span style="color:#0ff;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    -----BEGIN CERTIFICATE-----
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    MIIFbTCCBFWgAwIBAgIRALKEQiuQNmWdAUKriL2Ky60wDQYJKoZIhvcNAQELBQAw
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    [Your server certificate]
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    -----END CERTIFICATE-----</span>    
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">permissions</span>: <span style="color:#0ff;font-weight:bold">&#39;0644&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="font-weight:bold">path</span>: /etc/cube/certs/server.key
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">content</span>: |<span style="color:#0ff;font-weight:bold">
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    -----BEGIN PRIVATE KEY-----
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    [Your server private key]
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    -----END PRIVATE KEY-----</span>    
+</span></span><span style="display:flex;"><span>  <span style="font-weight:bold">permissions</span>: <span style="color:#0ff;font-weight:bold">&#39;0600&#39;</span>
+</span></span></code></pre><p>Then update <code>/etc/cube/agent.env.template</code>:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>UV_CUBE_AGENT_SERVER_CERT=/etc/cube/certs/server.crt
+</span></span><span style="display:flex;"><span>UV_CUBE_AGENT_SERVER_KEY=/etc/cube/certs/server.key
+</span></span></code></pre><h3 id="step-5-deploy-the-confidential-vm">Step 5: Deploy the Confidential VM</h3>
+<p>Navigate back to the GCP directory and deploy:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">cd</span> ../ <span style="color:#007f7f"># Back to gcp directory</span>
+</span></span><span style="display:flex;"><span>tofu init
+</span></span><span style="display:flex;"><span>tofu plan -var-file=<span style="color:#0ff;font-weight:bold">&#34;../terraform.tfvars&#34;</span>
+</span></span><span style="display:flex;"><span>tofu apply -var-file=<span style="color:#0ff;font-weight:bold">&#34;../terraform.tfvars&#34;</span>
+</span></span></code></pre><p>The deployment process creates:</p>
+<ul>
+<li>AMD SEV-SNP confidential compute instance</li>
+<li>Encrypted boot and data disks</li>
+<li>Firewall rules allowing TCP 7001 (Cube Agent)</li>
+<li>Network configurations for secure connectivity</li>
+</ul>
+<p>Upon successful completion:</p>
+<pre><code>Outputs:
+vm_public_ip = &quot;35.192.45.123&quot;
+</code></pre>
+<h3 id="step-6-verify-deployment">Step 6: Verify Deployment</h3>
+<p>After 2-3 minutes (depending on backend and models), verify the deployment:</p>
+<p><strong>Check cloud-init completion:</strong></p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>ssh cubeadmin@35.192.45.123
+</span></span><span style="display:flex;"><span>cloud-init status --wait
+</span></span></code></pre><p>Expected output:</p>
+<pre><code>status: done
+</code></pre>
+<p><strong>Verify Cube Agent status:</strong></p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>sudo systemctl status cube-agent
+</span></span></code></pre><p>Expected output:</p>
+<pre><code>● cube-agent.service - Cube Agent Service
+   Loaded: loaded (/etc/systemd/system/cube-agent.service; enabled)
+   Active: active (running) since...
+</code></pre>
+<p><strong>Test the Cube Agent API:</strong></p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>curl http://localhost:7001/health
+</span></span></code></pre><p>Expected response:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>{<span style="font-weight:bold">&#34;status&#34;</span>: <span style="color:#0ff;font-weight:bold">&#34;pass&#34;</span>}
+</span></span></code></pre><p><strong>Check AI backend status:</strong></p>
+<p>For Ollama:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>sudo systemctl status ollama
+</span></span><span style="display:flex;"><span>curl http://localhost:11434/api/version
+</span></span></code></pre><p>For vLLM:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>sudo systemctl status vllm
+</span></span><span style="display:flex;"><span>curl http://localhost:8000/health
+</span></span></code></pre><hr>
+<h2 id="deploying-cube-ai-on-microsoft-azure">Deploying Cube AI on Microsoft Azure</h2>
+<h3 id="step-1-azure-authentication-and-kms-setup">Step 1: Azure Authentication and KMS Setup</h3>
+<p>Start by authenticating with Azure and setting up key management:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">cd</span> cocos-infra/azure/kms
+</span></span><span style="display:flex;"><span>az login
+</span></span><span style="display:flex;"><span>tofu init
+</span></span><span style="display:flex;"><span>tofu plan -var-file=<span style="color:#0ff;font-weight:bold">&#34;../../terraform.tfvars&#34;</span>
+</span></span><span style="display:flex;"><span>tofu apply -var-file=<span style="color:#0ff;font-weight:bold">&#34;../../terraform.tfvars&#34;</span>
+</span></span></code></pre><p>This creates the disk encryption set and outputs:</p>
+<pre><code>Outputs:
+disk_encryption_id = &quot;/subscriptions/&lt;subscription-id&gt;/resourceGroups/cube-rg/providers/Microsoft.Compute/diskEncryptionSets/des-cube-ai&quot;
+</code></pre>
+<h3 id="step-2-configure-azure-specific-variables">Step 2: Configure Azure-Specific Variables</h3>
+<p>Update <code>terraform.tfvars</code> with Azure-specific configurations:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="color:#007f7f"># Common Configuration
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>vm_name = <span style="color:#0ff;font-weight:bold">&#34;cube-ai-vm&#34;</span><span style="color:#007f7f">
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"># Azure-specific
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>resource_group_name = <span style="color:#0ff;font-weight:bold">&#34;cube-ai-rg&#34;</span>
+</span></span><span style="display:flex;"><span>location = <span style="color:#0ff;font-weight:bold">&#34;westus&#34;</span>
+</span></span><span style="display:flex;"><span>subscription_id = <span style="color:#0ff;font-weight:bold">&#34;your-subscription-id&#34;</span><span style="color:#007f7f">
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f">
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"># VM Configuration
+</span></span></span><span style="display:flex;"><span><span style="color:#007f7f"></span>disk_encryption_id = <span style="color:#0ff;font-weight:bold">&#34;/subscriptions/&lt;subscription-id&gt;/resourceGroups/cube-rg/providers/Microsoft.Compute/diskEncryptionSets/des-cube-ai&#34;</span>
+</span></span><span style="display:flex;"><span>cloud_init_config = <span style="color:#0ff;font-weight:bold">&#34;/path/to/cube/hal/ubuntu/cube-agent-config.yml&#34;</span>
+</span></span><span style="display:flex;"><span>machine_type = <span style="color:#0ff;font-weight:bold">&#34;Standard_DC4ads_v5&#34;</span><span style="color:#007f7f"> # 4 vCPUs, AMD SEV-SNP
+</span></span></span></code></pre><p><strong>Azure Machine Type Recommendations:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Use Case</th>
+<th style="text-align:left">Machine Type</th>
+<th style="text-align:left">Specs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Development/Testing</td>
+<td style="text-align:left"><code>Standard_DC2ads_v5</code></td>
+<td style="text-align:left">2 vCPUs, 8GB RAM</td>
+</tr>
+<tr>
+<td style="text-align:left">Production (Ollama)</td>
+<td style="text-align:left"><code>Standard_DC4ads_v5</code></td>
+<td style="text-align:left">4 vCPUs, 16GB RAM</td>
+</tr>
+<tr>
+<td style="text-align:left">Production (vLLM)</td>
+<td style="text-align:left"><code>Standard_DC8ads_v5</code> or higher</td>
+<td style="text-align:left">8+ vCPUs, 32GB+ RAM</td>
+</tr>
+</tbody>
+</table>
+<h3 id="step-3-deploy-azure-cvm">Step 3: Deploy Azure CVM</h3>
+<p>Follow the same pattern as GCP:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">cd</span> ../ <span style="color:#007f7f"># Back to azure directory</span>
+</span></span><span style="display:flex;"><span>tofu init
+</span></span><span style="display:flex;"><span>tofu plan -var-file=<span style="color:#0ff;font-weight:bold">&#34;../terraform.tfvars&#34;</span>
+</span></span><span style="display:flex;"><span>tofu apply -var-file=<span style="color:#0ff;font-weight:bold">&#34;../terraform.tfvars&#34;</span>
+</span></span></code></pre><p>Azure deployment outputs:</p>
+<pre><code>Outputs:
+vm_fqdn = &quot;cube-ai-vm.westus.cloudapp.azure.com&quot;
+vm_public_ip = &quot;52.183.45.67&quot;
+</code></pre>
+<h3 id="step-4-verify-azure-deployment">Step 4: Verify Azure Deployment</h3>
+<p>Use the same verification steps as GCP:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>ssh cubeadmin@52.183.45.67
+</span></span><span style="display:flex;"><span>cloud-init status --wait
+</span></span><span style="display:flex;"><span>sudo systemctl status cube-agent
+</span></span><span style="display:flex;"><span>curl http://localhost:7001/health
+</span></span></code></pre><hr>
+<h2 id="testing-your-deployment">Testing Your Deployment</h2>
+<h3 id="chat-completion-ollama">Chat Completion (Ollama)</h3>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>curl http://&lt;vm-ip&gt;:7001/v1/chat/completions <span style="color:#0ff;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold"></span>  -H <span style="color:#0ff;font-weight:bold">&#34;Content-Type: application/json&#34;</span> <span style="color:#0ff;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold"></span>  -d <span style="color:#0ff;font-weight:bold">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    &#34;model&#34;: &#34;tinyllama:1.1b&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    &#34;messages&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">      {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;What is confidential computing?&#34;}
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    ]
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">  }&#39;</span>
+</span></span></code></pre><h3 id="chat-completion-vllm">Chat Completion (vLLM)</h3>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>curl http://&lt;vm-ip&gt;:7001/v1/chat/completions <span style="color:#0ff;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold"></span>  -H <span style="color:#0ff;font-weight:bold">&#34;Content-Type: application/json&#34;</span> <span style="color:#0ff;font-weight:bold">\
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold"></span>  -d <span style="color:#0ff;font-weight:bold">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    &#34;model&#34;: &#34;meta-llama/Llama-2-7b-hf&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    &#34;messages&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">      {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Explain secure AI inference&#34;}
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">    ]
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">  }&#39;</span>
+</span></span></code></pre><hr>
+<h2 id="advanced-configurations">Advanced Configurations</h2>
+<h3 id="custom-models-and-fine-tuning">Custom Models and Fine-Tuning</h3>
+<p><strong>For Ollama - Custom Modelfile:</strong></p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="color:#007f7f"># SSH into VM</span>
+</span></span><span style="display:flex;"><span>ssh cubeadmin@&lt;vm-ip&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#007f7f"># Create custom modelfile</span>
+</span></span><span style="display:flex;"><span>cat &gt; /tmp/Modelfile <span style="color:#0ff;font-weight:bold">&lt;&lt;EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">FROM llama2:7b
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">PARAMETER temperature 0.7
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">PARAMETER top_p 0.9
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">SYSTEM You are a helpful AI assistant specializing in cybersecurity.
+</span></span></span><span style="display:flex;"><span><span style="color:#0ff;font-weight:bold">EOF</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#007f7f"># Create custom model</span>
+</span></span><span style="display:flex;"><span>sudo -u ollama /usr/local/bin/ollama create cybersec-assistant -f /tmp/Modelfile
+</span></span></code></pre><p><strong>For vLLM - Custom Model from HuggingFace:</strong></p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="color:#007f7f"># Update cloud-init or manually</span>
+</span></span><span style="display:flex;"><span><span style="color:#fff;font-weight:bold">export</span> CUBE_VLLM_MODEL=<span style="color:#0ff;font-weight:bold">&#34;your-org/your-custom-model&#34;</span>
+</span></span><span style="display:flex;"><span>sudo systemctl restart vllm
+</span></span></code></pre><h3 id="gpu-support-vllm">GPU Support (vLLM)</h3>
+<p><strong>GCP with GPU:</strong></p>
+<p>Update <code>terraform.tfvars</code>:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>machine_type = <span style="color:#0ff;font-weight:bold">&#34;n1-standard-8&#34;</span>
+</span></span><span style="display:flex;"><span>gpu_type     = <span style="color:#0ff;font-weight:bold">&#34;nvidia-tesla-t4&#34;</span>
+</span></span><span style="display:flex;"><span>gpu_count    = <span style="color:#ff0;font-weight:bold">1</span>
+</span></span></code></pre><p><strong>Azure with GPU:</strong></p>
+<p>Update <code>terraform.tfvars</code>:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>machine_type = <span style="color:#0ff;font-weight:bold">&#34;Standard_NC6s_v3&#34;</span><span style="color:#007f7f"> # NVIDIA V100
+</span></span></span></code></pre><h3 id="multi-model-deployment">Multi-Model Deployment</h3>
+<p>Deploy multiple models on the same VM:</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span><span style="color:#007f7f"># In cloud-init</span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">runcmd</span>:
+</span></span><span style="display:flex;"><span>  - export CUBE_MODELS=&#34;llama2:7b,codellama:13b,mistral:latest,tinyllama:1.1b&#34;
+</span></span></code></pre><hr>
+<p>Deploying Cube AI on confidential virtual machines provides enterprise-grade security for AI workloads while maintaining complete infrastructure control.</p>
+<hr>
+<h2 id="next-steps">Next Steps</h2>
+<ol>
+<li><strong>Start Small:</strong> Deploy a development instance to familiarize yourself with the architecture</li>
+<li><strong>Test Thoroughly:</strong> Validate performance, security, and cost before production</li>
+<li><strong>Scale Gradually:</strong> Move to production with monitoring and backup strategies in place</li>
+<li><strong>Stay Updated:</strong> Keep cloud-init configurations, models, and infrastructure templates current</li>
+</ol>
+<h2 id="additional-resources">Additional Resources</h2>
+<ul>
+<li><strong>Cube Documentation:</strong> <a href="https://github.com/ultravioletrs/cube-docs">github.com/ultravioletrs/cube-docs</a></li>
+<li><strong>Infrastructure Templates:</strong> <a href="https://github.com/ultravioletrs/cocos-infra">github.com/ultravioletrs/cocos-infra</a></li>
+<li><strong>SuperMQ (Authentication):</strong> <a href="https://github.com/absmach/supermq">github.com/absmach/supermq</a></li>
+<li><strong>Ollama Models:</strong> <a href="https://ollama.com/library">ollama.com/library</a></li>
+<li><strong>vLLM Documentation:</strong> <a href="https://docs.vllm.ai">docs.vllm.ai</a></li>
+<li><strong>AMD SEV-SNP:</strong> <a href="https://www.amd.com/en/technologies/security-confidential-computing">AMD Confidential Computing</a></li>
+<li><strong>Intel TDX:</strong> <a href="https://www.intel.com/content/www/us/en/developer/tools/trust-domain-extensions/overview.html">Intel Trust Domain Extensions</a></li>
+</ul>
+<hr>
+<p>Ready to deploy? Start your confidential AI journey with Cube AI on secure CVMs today. Whether you're processing sensitive healthcare data, protecting proprietary models, or ensuring regulatory compliance, Cube AI provides the security foundation you need.</p>
+<p>For questions, issues, or contributions, visit our <a href="https://github.com/ultravioletrs/cube">GitHub repository</a> or join our community discussions.</p>
+<p><strong>Deploy confidently. Infer securely. Scale with Cube AI.</strong></p>
+</div>
+
+        <div class="mt-5 pt-4 border-top">
+          
+          <div>
+            <a href="/blog" class="btn btn-outline-secondary"><i class="fas fa-arrow-left me-2"></i>Back to
+              Blog</a>
+          </div>
+          <h5 class="mb-3 mt-3">Tags</h5>
+          <div>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential computing</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">deployment</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">gcp</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">azure</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">cube ai</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">infrastructure</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">security</span>
+            
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <h5 class="mb-3">Share this article</h5>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="https://twitter.com/intent/tweet?text=Deploying&#43;Cube&#43;AI&#43;on&#43;Confidential&#43;Virtual&#43;Machines%3A&#43;A&#43;Complete&#43;Guide&#43;to&#43;Secure&#43;LLM&#43;Inference&#43;on&#43;GCP&#43;and&#43;Azure&url=https%3a%2f%2fwww.ultraviolet.rs/blog/deploying-cube-ai-on-cvms"
+              target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+              <i class="fab fa-twitter me-2"></i>Twitter
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/deploying-cube-ai-on-cvms"
+              target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+              <i class="fab fa-linkedin me-2"></i>LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  
+  <section id="newsletter" class="py-5">
+    <div class="container">
+      <div class="row mt-5 mb-5">
+        <div class="col-md-6 offset-md-3 text-center">
+          <h2>Subscribe to Our Newsletter</h2>
+          <p>Stay updated with the latest news, updates and announcements.</p>
+
+          
+          <form
+            action="https://absmach.us11.list-manage.com/subscribe/post?u=70b43c7181d005024187bfb31&amp;id=0a319b6b63&amp;f_id=002711e1f0"
+            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate"
+            target="_blank">
+            <div class="input-group">
+              <input type="email" class="form-control" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email"
+                aria-label="Email" aria-describedby="subscribe-btn" required="" />
+              <div hidden="">
+                <input type="hidden" name="tags" value="8115258" />
+              </div>
+              <button class="btn bg-deep-blue" type="submit" id="subscribe-btn"
+                style="background-color: #073763; color: white;">
+                Subscribe
+              </button>
+            </div>
+            <div id="mce-responses" class="clear foot">
+              <div class="response" id="mce-error-response" style="display: none"></div>
+              <div class="response" id="mce-success-response" style="display: none"></div>
+            </div>
+            <div style="position: absolute; left: -5000px" aria-hidden="true">
+              
+              <input type="text" name="b_70b43c7181d005024187bfb31_0a319b6b63" tabindex="-1" value="" />
+            </div>
+
+            
+            <div class="mt-2">
+              <div class="mt-2">
+                <p class="mb-0" style="font-size: 0.75rem; color: #6c757d; line-height: 1.4">
+                  By subscribing, you agree to our
+                  <a href="/privacy" target="_blank" class="link-blue-sm">Privacy Policy</a>
+                  and
+                  <a href="/terms" target="_blank" class="link-blue-sm">Terms of Service</a>. <br />You can unsubscribe
+                  at any time.
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  
+  
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h3 class="mb-4 fw-bold">Next Read</h3>
+      <div class="row g-4">
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/cocos-prism-release" class="text-decoration-none text-dark">
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  Unleashing Confidential AI: Cocos v0.8.0 and Prism v0.6.0 Released
+                </h2>
+                <p class="card-text text-muted small">
+                  Ultraviolet releases Cocos AI v0.8.0 and Prism v0.6.0, enhancing the confidential computing ecosystem. These updates bring improved attestation, stronger security, and a better enterprise experience.
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      sammy oina
+                    </div>
+                    <div class="text-muted">
+                      February 06, 2026 · 4 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">ai</span>
+                  
+                  <span class="badge bg-light text-dark me-1">cocos</span>
+                  
+                  <span class="badge bg-light text-dark me-1">prism</span>
+                  
+                  <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/confidential-computing-meets-ai" class="text-decoration-none text-dark">
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts
+                </h2>
+                <p class="card-text text-muted small">
+                  Cube AI leverages confidential computing and TEEs to protect your sensitive AI workloads. Ensure your prompts remain private with hardware-verified security.
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      sammy oina
+                    </div>
+                    <div class="text-muted">
+                      January 30, 2026 · 4 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">security</span>
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">ai</span>
+                  
+                  <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                  <span class="badge bg-light text-dark me-1">cube ai</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  
+  <footer class="bg-dark text-white py-3">
+    <div class="container">
+      <div class="row mt-3 mb-2">
+        <div class="col">
+          <h3>About Us</h3>
+          <p class="w-65">
+            Ultraviolet is a leading company specializing in confidential
+            computing, cloud security, AI/ML, multi-party computation, and
+            secure data sharing.
+          </p>
+        </div>
+
+        <div class="col">
+          <h3>Products</h3>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fas fa-network-wired me-2"></i><a href="prism/" class="text-white">Prism AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cog me-2"></i><a href="cocos/" class="text-white">Cocos AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cube"></i>
+              <a href="cube/" class="text-white">Cube AI</a>
+            </li>
+          </ul>
+          <h3>Resources</h3>
+          <ul class="list-unstyled">
+            <li>
+              <a href="https://docs.google.com/presentation/d/199CkKD4YpgfJ1CLWVyZ9TdmXLLvME7JHN4Kfjkbgmho/export/pdf"
+                class="text-white">
+                Prism AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1oZDjQjuzNR8PeI1AHS8tePaiA73SmjnjrFFEBoS6b68/export/pdf"
+                class="text-white">
+                Cocos AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1UJR6HKiBV3r56SyMNZvO3ylek8VFmNojbFkTC-bawBY/export/pdf"
+                class="text-white">
+                Cube AI Datasheet
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Legal</h3>
+          <ul class="list-unstyled">
+            Prism AI
+            <li>
+              <a href="/prism/terms" class="text-white"> Terms of Service</a>
+            </li>
+            <li>
+              <a href="/prism/privacy" class="text-white"> Privacy Policy</a>
+            </li>
+            <br />
+            Cube AI
+            <li>
+              <a href="/cube/terms" class="text-white">Terms of Service</a>
+            </li>
+            <li>
+              <a href="/cube/privacy" class="text-white">Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Connect With Us</h3>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fab fa-twitter me-2"></i><a href="https://twitter.com/ultravioletrs" class="text-white"
+                target="_blank">Twitter</a>
+            </li>
+            <li>
+              <i class="fab fa-linkedin me-2"></i><a href="https://www.linkedin.com/company/ultravioletrs"
+                class="text-white" target="_blank">LinkedIn</a>
+            </li>
+            <li>
+
+            <li>
+              <i class="fab fa-github me-2"></i><a href="https://github.com/ultravioletrs" class="text-white"
+                target="_blank">GitHub</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Contact Us</h3>
+          <p>
+            <i class="fas fa-envelope me-2"></i><a href="mailto:info@ultraviolet.rs"
+              class="text-white">info@ultraviolet.rs</a>
+          </p>
+          <p>
+            <i class="fab fa-gitter me-2"></i><a href="https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im"
+              class="text-white" target="_blank">Chat on Gitter</a>
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt me-2"></i>Bulevar Arsenija
+            Carnojevica 103, 11000 Belgrade, Serbia
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CH54M1Z8DY"></script>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+    function getCookie(name) {
+      var b = document.cookie.match(
+        "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)",
+      );
+      return b ? b.pop() : "";
+    }
+
+    function addAnalytics() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-CH54M1Z8DY");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      const cookieConsent = getCookie("cookieconsent_status");
+
+      
+      if (cookieConsent === "allow" || cookieConsent === "") {
+        addAnalytics();
+      }
+
+      if (typeof window.cookieconsent !== "undefined") {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: { background: "#000" },
+            button: { background: "#f1d600" },
+          },
+          revokable: true,
+          law: {
+            regionalLaw: {
+              EU: true, 
+              UK: true, 
+            },
+          },
+          location: true, 
+          type: "opt-out",
+          content: {
+            message:
+              "🍪 We use cookies to collect data to improve your experience on our site.",
+            allow: "Allow",
+            dismiss: "Allow",
+            deny: "Reject",
+          },
+          onStatusChange: function (status, chosenBefore) {
+            location.reload();
+          },
+        });
+      } else {
+        console.error("Cookie consent script not loaded.");
+      }
+    });
+  </script>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', async () => {
+      
+      if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: false, theme: 'default', logLevel: 'debug' });
+      }
+
+      
+      const markdownContent = document.querySelector('.markdown-content');
+      if (markdownContent) {
+        const pres = markdownContent.querySelectorAll('pre');
+
+        pres.forEach(pre => {
+          const code = pre.querySelector('code');
+          if (code && code.className.includes('language-mermaid')) {
+            const mermaidDiv = document.createElement('div');
+            mermaidDiv.className = 'mermaid';
+            mermaidDiv.textContent = code.textContent;
+            pre.replaceWith(mermaidDiv);
+          }
+        });
+      }
+
+      
+      if (typeof mermaid !== 'undefined') {
+        try {
+          await mermaid.run();
+        } catch (e) {
+          console.error('Mermaid rendering error:', e);
+        }
+      }
+
+      if (typeof hljs !== 'undefined' && typeof hljs.highlightAll === 'function') {
+        hljs.highlightAll();
+      }
+
+      const pres = document.querySelectorAll('.markdown-content pre');
+
+      pres.forEach(pre => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        const btn = document.createElement('button');
+        btn.className = 'copy-button';
+        btn.type = 'button';
+        btn.innerHTML = '<i class="far fa-copy"></i>';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
+        btn.title = 'Copy code';
+
+        wrapper.appendChild(btn);
+      });
+    });
+
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.copy-button');
+      if (!btn) return;
+
+      const pre = btn.parentElement.querySelector('pre');
+      const code = pre.querySelector('code') || pre;
+      const text = code.textContent;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+        }
+
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        btn.classList.add('copied');
+        btn.title = 'Copied!';
+
+        setTimeout(() => {
+          btn.innerHTML = '<i class="far fa-copy"></i>';
+          btn.classList.remove('copied');
+          btn.title = 'Copy code';
+        }, 2000);
+
+      } catch (err) {
+        console.error('Copy failed', err);
+        btn.innerHTML = '<i class="fas fa-times"></i>';
+        setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i>', 2000);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
