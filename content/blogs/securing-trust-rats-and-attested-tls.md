@@ -7,9 +7,10 @@ author:
   name: "Jovan Djukic"
   picture: "https://avatars.githubusercontent.com/u/7561155?v=4"
 tags: [confidential-computing, attestation, aTLS, cocos ai]
-date: 2026-02-09
-image: /img/securing-trust-rats-and-attested-tls/overview.png
-ogImage: /img/securing-trust-rats-and-attested-tls/overview.png
+date: 2026-02-19
+coverImage: "/img/securing-trust-rats-and-attested-tls/overview.png"
+ogImage:
+    url: "/img/securing-trust-rats-and-attested-tls/overview.png"
 ---
 
 In this article, we'll explore **Remote ATtestation procedureS (RATS)**,
