@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Secure Multiparty Computation in Action: Training a COVID-19 Prediction Model with Prism - Ultraviolet</title>
+  <meta name="title" content="Secure Multiparty Computation in Action: Training a COVID-19 Prediction Model with Prism - Ultraviolet" />
+  <meta name="description" content="Explore how Prism combines secure multiparty computation and confidential computing to let competing institutions jointly train AI models while keeping their raw data fully private. Illustrated with a real-world COVID-19 prediction model scenario." />
+
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/prism-mpc-covid-prediction/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Ultraviolet" />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/prism-mpc-covid-prediction" />
+  <meta property="og:title" content="Secure Multiparty Computation in Action: Training a COVID-19 Prediction Model with Prism" />
+  <meta property="og:description" content="Explore how Prism combines secure multiparty computation and confidential computing to let competing institutions jointly train AI models while keeping their raw data fully private. Illustrated with a real-world COVID-19 prediction model scenario." />
+  <meta property="og:image" content="https://www.ultraviolet.rs/img/prism-mpc-covid-prediction/prism_mpc_covid_prediction_cover.png" />
+
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Secure Multiparty Computation in Action: Training a COVID-19 Prediction Model with Prism" />
+  <meta name="twitter:description" content="Explore how Prism combines secure multiparty computation and confidential computing to let competing institutions jointly train AI models while keeping their raw data fully private. Illustrated with a real-world COVID-19 prediction model scenario." />
+  <meta name="twitter:image" content="https://www.ultraviolet.rs/img/prism-mpc-covid-prediction/prism_mpc_covid_prediction_cover.png" />
+
+
+
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Secure Multiparty Computation in Action: Training a COVID-19 Prediction Model with Prism",
+        "image": "https:\/\/www.ultraviolet.rs\/img\/prism-mpc-covid-prediction\/prism_mpc_covid_prediction_cover.png",
+        "datePublished": "2026-02-19",
+        "author": {
+          "@type": "Person",
+          "name": "Washington Kamadi"
+        },
+        "description": "Explore how Prism combines secure multiparty computation and confidential computing to let competing institutions jointly train AI models while keeping their raw data fully private. Illustrated with a real-world COVID-19 prediction model scenario."
+      }
+    </script>
+
+
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Ultraviolet" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen&display=swap" />
+
+
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+  <style>
+    .navbar-nav .nav-link {
+      color: black !important;
+    }
+
+
+    .markdown-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1.5rem auto;
+      display: block;
+    }
+
+    .markdown-content h2,
+    .markdown-content h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #212529;
+    }
+
+    .markdown-content p {
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .markdown-content pre {
+      border-radius: 6px;
+      padding: 1rem;
+    }
+
+    .markdown-content blockquote {
+      border-left: 4px solid #ddd;
+      padding-left: 1rem;
+      color: #555;
+      margin: 1.5rem 0;
+      font-style: italic;
+    }
+
+    .markdown-content table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    .markdown-content th,
+    .markdown-content td {
+      border: 1px solid #ddd;
+      padding: 0.6rem 0.8rem;
+    }
+
+    .markdown-content th {
+      background: #f5f5f5;
+      font-weight: 600;
+    }
+
+    .code-wrapper {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .code-wrapper pre {
+      margin-bottom: 0;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+
+    .code-wrapper:hover .copy-button {
+      opacity: 1;
+    }
+
+    .copy-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .copy-button.copied {
+      background: #198754;
+      border-color: #198754;
+      color: #fff;
+      opacity: 1;
+    }
+
+
+    .markdown-content pre[class*="language-mermaid"] {
+      background: transparent;
+      padding: 0;
+      border: none;
+    }
+
+    .markdown-content code[class*="language-mermaid"] {
+      display: none;
+    }
+
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #ffffff">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Magistrala" height="30" width="250" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PRODUCTS
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="productsDropdown">
+              <li><a class="dropdown-item" href="https://prism.ultraviolet.rs"
+                  title="Prism AI Multi-Party Confidential Computation Orchestration Platform" target="_blank">PRISM
+                  AI</a></li>
+              <li><a class="dropdown-item" href="/cocos"
+                  title="Cocos AI Open Source Confidential Computing Platform">COCOS AI</a></li>
+              <li><a class="dropdown-item" href="/cube"
+                  title="Cube AI Privacy-Preserving LLM Deployment Framework with Confidential Computing">CUBE AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/products">All Products</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              DOCUMENTATION
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="https://docs.prism.ultraviolet.rs/" target="_blank">PRISM AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://docs.cocos.ultraviolet.rs/" target="_blank">COCOS AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://docs.cube.ultraviolet.rs/" target="_blank">CUBE AI</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PROJECTS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+              <li>
+                <a class="dropdown-item" href="/projects/confidential6g">CONFIDENTIAL6G</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/elastic">ELASTIC</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/titan">TITAN</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects">All Projects</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/company" style="color: black">COMPANY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/careers" style="color: black">CAREERS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact" style="color: black">CONTACT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog" style="color: black">BLOG</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/ultravioletrs" target="_blank" style="color: black"><i
+                class="fab fa-github"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <article class="container py-5 mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <div class="mb-4">
+          <a href="/blog" class="text-decoration-none text-muted"><i class="fas fa-arrow-left me-2"></i>Back to Blog</a>
+        </div>
+
+        <div class="mb-3">
+          <span class="badge bg-primary fs-6">blog</span>
+
+        </div>
+
+        <h1 class="display-4 fw-bold mb-4">Secure Multiparty Computation in Action: Training a COVID-19 Prediction Model with Prism</h1>
+
+        <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
+          <img src="https://avatars.githubusercontent.com/u/43080232?v=4&amp;size=64" alt="Washington Kamadi" class="rounded-circle me-3" width="60" height="60"
+            loading="lazy" onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+          <div>
+            <div class="fw-bold fs-5">Washington Kamadi</div>
+            <div class="text-muted">
+              February 19, 2026 · 5 min read
+            </div>
+          </div>
+        </div>
+
+
+        <img src="/img/prism-mpc-covid-prediction/prism_mpc_covid_prediction_cover.png" alt="Secure Multiparty Computation in Action: Training a COVID-19 Prediction Model with Prism" class="img-fluid rounded mb-5 w-100 shadow-sm" loading="lazy"
+          onerror="this.style.display = 'none'" />
+
+
+        <div class="markdown-content">
+<h2 id="in-the-age-of-ai-collaboration-meets-privacy">🌍 In the Age of AI, Collaboration Meets Privacy</h2>
+<p>Artificial intelligence thrives on data. The more diverse, representative, and high-quality the datasets, the better the models become. But there's a catch: most of this valuable data is sensitive.</p>
+<ul>
+<li>Hospitals cannot simply exchange patient records.</li>
+<li>Banks won't share transaction histories with competitors.</li>
+<li>Governments must abide by strict data protection regulations.</li>
+</ul>
+<p>The result? Datasets remain siloed, and models underperform because they lack the breadth of real-world diversity.</p>
+<p>Prism changes that equation. By combining secure multiparty computation (MPC) with confidential computing, Prism creates a system where organizations can contribute to AI training without ever exposing raw data.</p>
+<h2 id="why-this-matters">🔑 Why This Matters</h2>
+<p>Modern machine learning is collaborative by nature. No single hospital, bank, or utility has enough data diversity to capture the full picture on its own. Yet pooling data in the traditional sense — sharing it in raw form — is either:</p>
+<ul>
+<li><strong>Illegal</strong> (e.g., HIPAA, GDPR restrictions),</li>
+<li><strong>Commercially risky</strong> (revealing customer or transaction data), or</li>
+<li><strong>Politically sensitive</strong> (government or defense data).</li>
+</ul>
+<p>Prism provides a "third way." It allows institutions to train on combined knowledge while keeping their raw data locked inside their own boundaries.</p>
+<h2 id="the-covid-19-prediction-model-use-case">🦠 The COVID-19 Prediction Model Use Case</h2>
+<p>When the COVID-19 pandemic struck, hospitals worldwide faced the same urgent question: how can we predict patient risk and allocate resources more effectively?</p>
+<p><strong>The challenge:</strong></p>
+<ul>
+<li>Hospital A had thousands of local patient records.</li>
+<li>Hospital B had data from a different region.</li>
+<li>Hospital C had a different demographic mix.</li>
+</ul>
+<p>Separately, each dataset was incomplete. Together, they could produce a much more accurate predictive model — but privacy rules forbade raw sharing.</p>
+<p>With Prism, these hospitals could:</p>
+<ol>
+<li>Contribute their datasets securely into confidential compute environments.</li>
+<li>Run the training algorithm collectively, without revealing the underlying patient information.</li>
+<li>Retrieve a shared model that outperformed what any one hospital could build alone.</li>
+</ol>
+<p><strong>Impact:</strong> The collective model identified risk factors faster, supported triage decisions, and helped manage scarce resources like ventilators.</p>
+<h2 id="how-it-works-at-a-glance">🔄 How It Works at a Glance</h2>
+<p>While Prism is deeply technical under the hood, the user experience can be summarized in five phases:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Phase</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>Provisioning</strong></td>
+<td style="text-align:left">Define the collaborative project and onboard participants.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Asset Registration</strong></td>
+<td style="text-align:left">Each party contributes their dataset or training algorithm securely.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Confidential Compute Setup</strong></td>
+<td style="text-align:left">Secure Virtual Machines (CVMs) are created, ensuring encrypted processing.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Execution</strong></td>
+<td style="text-align:left">The training task runs inside the enclave; participants monitor results, not raw data.</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>Results</strong></td>
+<td style="text-align:left">The final model is shared only with authorized stakeholders.</td>
+</tr>
+</tbody>
+</table>
+<p>This simplicity hides a lot of cryptographic rigor: attestation guarantees that no tampering occurred, audit logs prove compliance, and results can only be consumed by whitelisted participants.</p>
+<h2 id="beyond-covid-19-sector-wide-potential">🌐 Beyond COVID-19: Sector-Wide Potential</h2>
+<p>The COVID-19 scenario is just one example. Prism's design applies across industries where data is valuable, but sensitive:</p>
+<ul>
+<li><strong>Healthcare</strong> → Train diagnostic AI models across multiple hospitals while patient records stay private.</li>
+<li><strong>Finance</strong> → Collaboratively build fraud-detection systems using transaction data from multiple banks — without ever seeing competitors' customers.</li>
+<li><strong>Insurance</strong> → Develop risk models using anonymized claims data pooled across providers.</li>
+<li><strong>Energy &amp; Utilities</strong> → Forecast demand with data from different operators while protecting business-sensitive usage patterns.</li>
+<li><strong>Public Sector</strong> → Enable agencies to run large-scale analytics on census, mobility, or defense data without violating regulations.</li>
+</ul>
+<h2 id="why-prism-stands-out">🚀 Why Prism Stands Out</h2>
+<p>There are other attempts at privacy-preserving collaboration, but Prism offers a distinctive blend of:</p>
+<ul>
+<li><strong>Privacy by design</strong> — Data owners never lose control. Their datasets never leave their custody unencrypted.</li>
+<li><strong>Auditability</strong> — Every action is cryptographically signed and verifiable. No black boxes.</li>
+<li><strong>Scalability</strong> — Built to support multi-institution, multi-geography collaborations across different compliance regimes.</li>
+<li><strong>Neutrality</strong> — Prism acts as a trusted facilitator, not a data broker.</li>
+</ul>
+<h2 id="the-strategic-value-for-organizations">🧭 The Strategic Value for Organizations</h2>
+<p>For CIOs, compliance officers, and innovation leads, Prism delivers tangible benefits:</p>
+<ul>
+<li><strong>Unlocks new partnerships</strong> → Collaborations that were previously "impossible" become feasible.</li>
+<li><strong>Accelerates AI adoption</strong> → More diverse datasets = more accurate and fairer models.</li>
+<li><strong>Reduces compliance risk</strong> → Stay aligned with HIPAA, GDPR, and emerging AI regulations.</li>
+<li><strong>Strengthens trust</strong> → Partners and customers see that privacy is protected by architecture, not just promises.</li>
+</ul>
+<h2 id="final-thoughts">📌 Final Thoughts</h2>
+<p>The future of AI is not just about bigger models — it's about better collaboration. But collaboration only works if privacy is guaranteed.</p>
+<p>Prism, powered by the Cocos framework, proves that this isn't just theory — it's practice. Hospitals, banks, governments, and enterprises can all contribute their knowledge without surrendering control of their data.</p>
+<p>In a world where data is both powerful and sensitive, Prism shows that organizations don't have to choose between innovation and privacy. They can have both.</p>
+<hr>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/ultravioletrs/ai">AI COVID-19 Training Repository</a></li>
+<li><a href="https://docs.cocos.ultraviolet.rs/">Cocos CLI Documentation</a></li>
+<li><a href="https://docs.prism.ultraviolet.rs/getting-started">Prism Getting Started Guide</a></li>
+</ul>
+</div>
+
+        <div class="mt-5 pt-4 border-top">
+
+          <div>
+            <a href="/blog" class="btn btn-outline-secondary"><i class="fas fa-arrow-left me-2"></i>Back to
+              Blog</a>
+          </div>
+          <h5 class="mb-3 mt-3">Tags</h5>
+          <div>
+
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">prism-ai</span>
+
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential-computing</span>
+
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">mpc</span>
+
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">privacy</span>
+
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">ai</span>
+
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">healthcare</span>
+
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <h5 class="mb-3">Share this article</h5>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="https://twitter.com/intent/tweet?text=Secure&#43;Multiparty&#43;Computation&#43;in&#43;Action%3A&#43;Training&#43;a&#43;COVID-19&#43;Prediction&#43;Model&#43;with&#43;Prism&url=https%3a%2f%2fwww.ultraviolet.rs/blog/prism-mpc-covid-prediction"
+              target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+              <i class="fab fa-twitter me-2"></i>Twitter
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/prism-mpc-covid-prediction"
+              target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+              <i class="fab fa-linkedin me-2"></i>LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+
+  <section id="newsletter" class="py-5">
+    <div class="container">
+      <div class="row mt-5 mb-5">
+        <div class="col-md-6 offset-md-3 text-center">
+          <h2>Subscribe to Our Newsletter</h2>
+          <p>Stay updated with the latest news, updates and announcements.</p>
+
+
+          <form
+            action="https://ultraviolet.us20.list-manage.com/subscribe/post?u=b35e6bdc7b2adf06c56da2265&amp;id=88ed6c4af0&amp;f_id=004f06eaf0"
+            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="mt-4"
+            target="_blank">
+            <div class="input-group">
+              <input type="email" class="form-control" name="EMAIL" placeholder="Enter your email" aria-label="Email"
+                aria-describedby="subscribe-btn" required="" />
+              <button class="btn btn-primary" type="submit" id="subscribe-btn">
+                Subscribe
+              </button>
+            </div>
+            <div style="position: absolute; left: -5000px" aria-hidden="true">
+              <input type="text" name="b_b35e6bdc7b2adf06c56da2265_88ed6c4af0" tabindex="-1" value="" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h3 class="mb-4 fw-bold">Next Read</h3>
+      <div class="row g-4">
+
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/prism-public-beta-launch" class="text-decoration-none text-dark">
+
+              <img src="/img/prism-beta-launch-cover.png" class="card-img-top" alt="Prism AI Public Beta: Empowering Secure AI Collaboration"
+                loading="lazy" onerror="this.style.display = 'none'" style="height: 200px; object-fit: cover;" />
+
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-success me-2">
+                    announcement
+                  </span>
+
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  Prism AI Public Beta: Empowering Secure AI Collaboration
+                </h2>
+                <p class="card-text text-muted small">
+                  We are thrilled to announce the public beta release of Prism AI, our confidential computing platform for secure AI collaboration. Build and deploy privacy-preserving AI with hardware-verified security.
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      sammy oina
+                    </div>
+                    <div class="text-muted">
+                      February 12, 2026 · 3 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+
+                  <span class="badge bg-light text-dark me-1">ai</span>
+
+                  <span class="badge bg-light text-dark me-1">privacy</span>
+
+                  <span class="badge bg-light text-dark me-1">prism ai</span>
+
+                  <span class="badge bg-light text-dark me-1">beta-launch</span>
+
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/securing-trust-rats-and-attested-tls" class="text-decoration-none text-dark">
+
+              <img src="/img/securing-trust-rats-and-attested-tls/overview.png" class="card-img-top" alt="Securing Trust: RATS and Attested TLS (aTLS)"
+                loading="lazy" onerror="this.style.display = 'none'" style="height: 200px; object-fit: cover;" />
+
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  Securing Trust: RATS and Attested TLS (aTLS)
+                </h2>
+                <p class="card-text text-muted small">
+                  COCOS AI leverages modern attestation standards to prove the integrity and operational state of the platform.
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/7561155?v=4" alt="Jovan Djukic"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      Jovan Djukic
+                    </div>
+                    <div class="text-muted">
+                      February 19, 2026 · 9 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+
+                  <span class="badge bg-light text-dark me-1">attestation</span>
+
+                  <span class="badge bg-light text-dark me-1">aTLS</span>
+
+                  <span class="badge bg-light text-dark me-1">cocos ai</span>
+
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/privacy-paradox-confidential-computing" class="text-decoration-none text-dark">
+
+              <img src="/img/privacy-paradox/privacy-paradox.jpg" class="card-img-top" alt="The Privacy Paradox: Why AI Teams Should Care About Confidential Computing"
+                loading="lazy" onerror="this.style.display = 'none'" style="height: 200px; object-fit: cover;" />
+
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  The Privacy Paradox: Why AI Teams Should Care About Confidential Computing
+                </h2>
+                <p class="card-text text-muted small">
+                  AI teams face a growing privacy paradox: they must process highly sensitive data at cloud scale while traditional architectures leave data in use exposed. This post explains how confidential computing and TEEs close that gap for enterprise AI workloads.
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/41241359?v=4" alt="Jilks Smith"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      Jilks Smith
+                    </div>
+                    <div class="text-muted">
+                      February 16, 2026 · 8 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+
+                  <span class="badge bg-light text-dark me-1">ai-security</span>
+
+                  <span class="badge bg-light text-dark me-1">privacy</span>
+
+                  <span class="badge bg-light text-dark me-1">tee</span>
+
+                  <span class="badge bg-light text-dark me-1">enterprise-ai</span>
+
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <footer class="bg-dark text-white py-3">
+    <div class="container">
+      <div class="row mt-3 mb-2">
+        <div class="col">
+          <h3>About Us</h3>
+          <p class="w-65">
+            Ultraviolet is a leading company specializing in confidential
+            computing, cloud security, AI/ML, multi-party computation, and
+            secure data sharing.
+          </p>
+        </div>
+
+        <div class="col">
+          <h3>Products</h3>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fas fa-network-wired me-2"></i><a href="prism/" class="text-white">Prism AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cog me-2"></i><a href="cocos/" class="text-white">Cocos AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cube"></i>
+              <a href="cube/" class="text-white">Cube AI</a>
+            </li>
+          </ul>
+          <h3>Resources</h3>
+          <ul class="list-unstyled">
+            <li>
+              <a href="https://docs.google.com/presentation/d/199CkKD4YpgfJ1CLWVyZ9TdmXLLvME7JHN4Kfjkbgmho/export/pdf"
+                class="text-white">
+                Prism AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1oZDjQjuzNR8PeI1AHS8tePaiA73SmjnjrFFEBoS6b68/export/pdf"
+                class="text-white">
+                Cocos AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1UJR6HKiBV3r56SyMNZvO3ylek8VFmNojbFkTC-bawBY/export/pdf"
+                class="text-white">
+                Cube AI Datasheet
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Legal</h3>
+          <ul class="list-unstyled">
+            Prism AI
+            <li>
+              <a href="/prism/terms" class="text-white"> Terms of Service</a>
+            </li>
+            <li>
+              <a href="/prism/privacy" class="text-white"> Privacy Policy</a>
+            </li>
+            <br />
+            Cube AI
+            <li>
+              <a href="/cube/terms" class="text-white">Terms of Service</a>
+            </li>
+            <li>
+              <a href="/cube/privacy" class="text-white">Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Connect With Us</h3>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fab fa-twitter me-2"></i><a href="https://twitter.com/ultravioletrs" class="text-white"
+                target="_blank">Twitter</a>
+            </li>
+            <li>
+              <i class="fab fa-linkedin me-2"></i><a href="https://www.linkedin.com/company/ultravioletrs"
+                class="text-white" target="_blank">LinkedIn</a>
+            </li>
+            <li>
+              <i class="fab fa-github me-2"></i><a href="https://github.com/ultravioletrs" class="text-white"
+                target="_blank">GitHub</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Contact Us</h3>
+          <p>
+            <i class="fas fa-envelope me-2"></i><a href="mailto:info@ultraviolet.rs"
+              class="text-white">info@ultraviolet.rs</a>
+          </p>
+          <p>
+            <i class="fab fa-gitter me-2"></i><a href="https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im"
+              class="text-white" target="_blank">Chat on Gitter</a>
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt me-2"></i>Bulevar Arsenija
+            Carnojevica 103, 11000 Belgrade, Serbia
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CH54M1Z8DY"></script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+    function getCookie(name) {
+      var b = document.cookie.match(
+        "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)",
+      );
+      return b ? b.pop() : "";
+    }
+
+    function addAnalytics() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-CH54M1Z8DY");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const cookieConsent = getCookie("cookieconsent_status");
+
+
+      if (cookieConsent === "allow" || cookieConsent === "") {
+        addAnalytics();
+      }
+
+      if (typeof window.cookieconsent !== "undefined") {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: { background: "#000" },
+            button: { background: "#f1d600" },
+          },
+          revokable: true,
+          law: {
+            regionalLaw: {
+              EU: true,
+              UK: true,
+            },
+          },
+          location: true,
+          type: "opt-out",
+          content: {
+            message:
+              "🍪 We use cookies to collect data to improve your experience on our site.",
+            allow: "Allow",
+            dismiss: "Allow",
+            deny: "Reject",
+          },
+          onStatusChange: function (status, chosenBefore) {
+            location.reload();
+          },
+        });
+      } else {
+        console.error("Cookie consent script not loaded.");
+      }
+    });
+  </script>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', async () => {
+
+      if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: false, theme: 'default', logLevel: 'debug' });
+      }
+
+
+      const markdownContent = document.querySelector('.markdown-content');
+      if (markdownContent) {
+        const pres = markdownContent.querySelectorAll('pre');
+
+        pres.forEach(pre => {
+          const code = pre.querySelector('code');
+          if (code && code.className.includes('language-mermaid')) {
+            const mermaidDiv = document.createElement('div');
+            mermaidDiv.className = 'mermaid';
+            mermaidDiv.textContent = code.textContent;
+            pre.replaceWith(mermaidDiv);
+          }
+        });
+      }
+
+
+      if (typeof mermaid !== 'undefined') {
+        try {
+          await mermaid.run();
+        } catch (e) {
+          console.error('Mermaid rendering error:', e);
+        }
+      }
+
+      if (typeof hljs !== 'undefined' && typeof hljs.highlightAll === 'function') {
+        hljs.highlightAll();
+      }
+
+      const pres = document.querySelectorAll('.markdown-content pre');
+
+      pres.forEach(pre => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        const btn = document.createElement('button');
+        btn.className = 'copy-button';
+        btn.type = 'button';
+        btn.innerHTML = '<i class="far fa-copy"></i>';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
+        btn.title = 'Copy code';
+
+        wrapper.appendChild(btn);
+      });
+    });
+
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.copy-button');
+      if (!btn) return;
+
+      const pre = btn.parentElement.querySelector('pre');
+      const code = pre.querySelector('code') || pre;
+      const text = code.textContent;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+        }
+
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        btn.classList.add('copied');
+        btn.title = 'Copied!';
+
+        setTimeout(() => {
+          btn.innerHTML = '<i class="far fa-copy"></i>';
+          btn.classList.remove('copied');
+          btn.title = 'Copy code';
+        }, 2000);
+
+      } catch (err) {
+        console.error('Copy failed', err);
+        btn.innerHTML = '<i class="fas fa-times"></i>';
+        setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i>', 2000);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
