@@ -1,15 +1,18 @@
 ---
 slug: from-data-liability-to-data-assets
 title: "From Data Liability to Data Assets: How Confidential AI Changes the Game for Enterprises"
+excerpt: "Enterprises sit on goldmines of sensitive data, but fear of breaches and compliance violations keeps it locked away. Confidential AI changes the equation entirely."
+description: "How Confidential AI transforms sensitive enterprise data from a compliance risk into a competitive asset — through hardware-backed TEEs that protect data even during computation."
 author:
   name: "Washington Kamadi"
   picture: "https://avatars.githubusercontent.com/u/43080232?v=4&size=64"
 tags: [confidential-computing, ai, enterprise, security, data-privacy, "cube ai"]
-image: /img/from-data-liability-to-data-assets/from_data_liability_to_data_assets_cover.png
-date: 2026-02-06
+category: blog
+coverImage: /img/from-data-liability-to-data-assets/from_data_liability_to_data_assets_cover.png
+ogImage:
+  url: /img/from-data-liability-to-data-assets/from_data_liability_to_data_assets_cover.png
+date: 2026-02-20
 ---
-
-![From Data Liability to Data Assets](/img/from-data-liability-to-data-assets/from_data_liability_to_data_assets_cover.png)
 
 Data has proven to be the most valuable strategic resource for all enterprises. With vast amounts of data, insightful and strategic decisions can be made by leveraging the power of Artificial Intelligence and Machine Learning. While this has been and continues to be the case, the rise of AI has transformed the same data into a potential liability.
 Executives today face a difficult dilemma: the more sensitive and proprietary the data, the greater the potential for AI driven insights. Yet handling more sensitive and proprietary data poses a risk to the executives; potential lawsuits, regulatory barriers, data leaks, reputational damage, and competitive leakage.
