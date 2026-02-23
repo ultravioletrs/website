@@ -245,7 +245,7 @@ secure communication and runtime integrity.
 
 ![COCOS AI architecture](/img/securing-trust-rats-and-attested-tls/cocos-ai-architecture.png)
 
-**COCOS AI** adopts the **RATS passport model** for remote attestation.
+**COCOS AI** adopts the **RATS background-check model** for remote attestation.
 During certificate creation, the **attestation report** is embedded
 directly into the **X.509 certificate** by passing it through the
 **Certificate Signing Request (CSR)** and including it in the issued
@@ -323,7 +323,7 @@ exchanging sensitive data.
 
 **COCOS AI** builds on this foundation by leveraging **Confidential
 Computing** and **Trusted Execution Environments** to enable **secure
-multiparty computation**. By adopting the **RATS passport model** and
+multiparty computation**. By adopting the **RATS background-check model** and
 embedding **attestation reports** directly into X.509 certificates,
 COCOS AI ensures that every connection is both **encrypted** and
 **verifiably trusted**.
