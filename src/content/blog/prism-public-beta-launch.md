@@ -9,7 +9,6 @@ author:
 tags: [confidential-computing, ai, privacy, "prism ai", beta-launch]
 date: 2026-02-12
 image: /img/prism-beta-launch-cover.png
-coverImage: /img/prism-beta-launch-cover.png
 ogImage:
   url: /img/prism-beta-launch-cover.png
 featured: true

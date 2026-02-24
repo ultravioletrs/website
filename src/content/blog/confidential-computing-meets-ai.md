@@ -8,13 +8,10 @@ author:
   picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
 tags: [security, confidential-computing, ai, privacy, "cube ai"]
 image: /img/confidential-computing-meets-ai/confidential-computing-cover.png
-coverImage: /img/confidential-computing-meets-ai/confidential-computing-cover.png
 ogImage:
   url: /img/confidential-computing-meets-ai/confidential-computing-cover.png
 date: 2026-01-30
 ---
-
-![Confidential Computing for AI](/img/confidential-computing-meets-ai/confidential-computing-cover.png)
 
 In the race to adopt Large Language Models (LLMs), enterprises and developers face a critical dilemma: **how to leverage the power of state-of-the-art AI without compromising the privacy of sensitive data.**
 
