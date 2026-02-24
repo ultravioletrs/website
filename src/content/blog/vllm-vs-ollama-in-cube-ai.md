@@ -333,4 +333,4 @@ That is the power of backend modularity, and it is built into the foundation of 
 
 ---
 
-*Explore Cube AI's backend architecture in the [Deployment Guide](https://docs.cube.ultraviolet.rs/getting-started) or learn more about [Cube AI Architecture](https://docs.cube.ultraviolet.rs/architecture).*
+*Explore Cube AI's backend architecture in the [Deployment Guide](https://cube.ultraviolet.rs/docs/getting-started) or learn more about [Cube AI Architecture](https://cube.ultraviolet.rs/docs/architecture).*
