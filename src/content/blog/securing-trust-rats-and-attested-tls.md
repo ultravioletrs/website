@@ -8,7 +8,7 @@ author:
   picture: "https://avatars.githubusercontent.com/u/7561155?v=4"
 tags: [confidential-computing, attestation, aTLS, cocos ai]
 date: 2026-02-19
-coverImage: "/img/securing-trust-rats-and-attested-tls/overview.png"
+image: "/img/securing-trust-rats-and-attested-tls/overview.png"
 ogImage:
     url: "/img/securing-trust-rats-and-attested-tls/overview.png"
 ---
