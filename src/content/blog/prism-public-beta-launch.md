@@ -59,7 +59,7 @@ Prism AI is already being used to solve critical privacy challenges in high-stak
 We’re on a mission to make privacy the default for artificial intelligence, and we’d love for you to be a part of it. The Prism AI Public Beta is officially live, and we can’t wait to see what you build.
 
 *   🚀 **Get Started for Free**: Sign up at [cloud.prism.ultraviolet.rs](https://cloud.prism.ultraviolet.rs/) and start running your first confidential computations.
-*   📚 **Explore the Docs**: Dive into the technical details at [docs.prism.ultraviolet.rs](https://docs.prism.ultraviolet.rs/).
+*   📚 **Explore the Docs**: Dive into the technical details at [docs.prism.ultraviolet.rs](https://prism.ultraviolet.rs/docs/).
 *   🤝 **Join the Community**: Follow our progress on [GitHub](https://github.com/ultravioletrs/cocos) and help us shape the next generation of privacy-preserving AI.
 
 The era of choosing between powerful AI and strict privacy is finally over. With Prism AI, you can have both—fearlessly.

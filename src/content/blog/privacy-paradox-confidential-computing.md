@@ -219,4 +219,4 @@ Confidential Computing is the "HTTPS for AI"—the protocol that builds the trus
 
 ---
 
-*Ready to secure your AI workloads? Learn more about [Cube AI's confidential computing architecture](https://docs.cube.ultraviolet.rs/architecture) or explore our [developer guides](https://docs.cube.ultraviolet.rs/developer-guide) to get started.*
+*Ready to secure your AI workloads? Learn more about [Cube AI's confidential computing architecture](https://cube.ultraviolet.rs/docs/architecture) or explore our [developer guides](https://cube.ultraviolet.rs/docs/developer-guide) to get started.*
