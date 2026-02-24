@@ -37,7 +37,7 @@
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://ultraviolet.rs/cube/</loc>
+        <loc>https://cube.ultraviolet.rs/</loc>
         <lastmod>2026-01-28</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
@@ -73,13 +73,13 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://ultraviolet.rs/cube/privacy/</loc>
+        <loc>https://cube.ultraviolet.rs/privacy/</loc>
         <lastmod>2026-01-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
-        <loc>https://ultraviolet.rs/cube/terms/</loc>
+        <loc>https://cube.ultraviolet.rs/terms/</loc>
         <lastmod>2026-01-28</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.5</priority>

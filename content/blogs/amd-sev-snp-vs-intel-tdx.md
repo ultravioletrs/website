@@ -121,4 +121,4 @@ You don't need to be a CPU architect to use Confidential Computing. Whether your
 
 ---
 
-*Ready to secure your AI infrastructure? Read our guide on [Architecture](https://docs.cube.ultraviolet.rs/architecture) or dive into the [Attestation specs](https://docs.cube.ultraviolet.rs/attestation).*
+*Ready to secure your AI infrastructure? Read our guide on [Architecture](https://cube.ultraviolet.rs/docs/architecture) or dive into the [Attestation specs](https://cube.ultraviolet.rs/docs/attestation).*
