@@ -5,11 +5,12 @@ author:
   name: "sammy oina"
   picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
 tags: [security, confidential-computing, amd, intel, technical-deep-dive, "cube ai"]
-image: /img/amd_sev_snp_vs_intel_tdx_cover.png
-date: 2026-02-05
+image: /img/amd-sev-snp-vs-intel-tdx/amd_sev_snp_vs_intel_tdx_cover.png
+coverImage: /img/amd-sev-snp-vs-intel-tdx/amd_sev_snp_vs_intel_tdx_cover.png
+ogImage: /img/amd-sev-snp-vs-intel-tdx/amd_sev_snp_vs_intel_tdx_cover.png
+date: 2026-02-24
 ---
 
-![AMD SEV-SNP vs Intel TDX](/img/amd-sev-snp-vs-intel-tdx/amd_sev_snp_vs_intel_tdx_cover.png)
 
 In the rapidly evolving landscape of [Confidential Computing](/blog/confidential-computing-meets-ai), hardware-based isolation is the foundation of trust. For security engineers and infrastructure teams, understanding the underlying Trusted Execution Environment (TEE) technologies is crucial for deploying secure AI workloads.
 
