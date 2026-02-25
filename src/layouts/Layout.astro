@@ -8,6 +8,9 @@ interface Props {
 }
 
 const { title, description = "Ultraviolet - Open Source Confidential Computing AI Platform", image } = Astro.props;
+const siteUrl = Astro.site || 'https://ultraviolet.rs';
+const defaultOgImage = '/img/og-default.png';
+const ogImage = image || defaultOgImage;
 ---
 
 <!doctype html>
@@ -27,11 +30,16 @@ const { title, description = "Ultraviolet - Open Source Confidential Computing A
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:site_name" content="Ultraviolet" />
+		<meta property="og:image" content={new URL(ogImage, siteUrl)} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
 		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@ultraaboretrs" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
-		{Astro.props.image && <meta property="og:image" content={new URL(Astro.props.image, Astro.site || 'https://ultraviolet.rs')} />}
-		{Astro.props.image && <meta name="twitter:image" content={new URL(Astro.props.image, Astro.site || 'https://ultraviolet.rs')} />}
+		<meta name="twitter:image" content={new URL(ogImage, siteUrl)} />
 	</head>
 	<body class="flex flex-col min-h-screen bg-background text-text-main transition-colors duration-300">
         <script is:inline>
