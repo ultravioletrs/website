@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>TLS and TEEs: How Cocos AI provides privacy and authentication - Ultraviolet</title>
+  <meta name="title" content="TLS and TEEs: How Cocos AI provides privacy and authentication - Ultraviolet" />
+  <meta name="description" content="Learn about attestation and the implementation of attested TLS in Cocos AI." />
+
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/tee-tls-privacy/" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Ultraviolet" />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/tee-tls-privacy" />
+  <meta property="og:title" content="TLS and TEEs: How Cocos AI provides privacy and authentication" />
+  <meta property="og:description" content="Learn about attestation and the implementation of attested TLS in Cocos AI." />
+  <meta property="og:image" content="https://www.ultraviolet.rs/img/tee-tls-privacy/atlas.png" />
+
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TLS and TEEs: How Cocos AI provides privacy and authentication" />
+  <meta name="twitter:description" content="Learn about attestation and the implementation of attested TLS in Cocos AI." />
+  <meta name="twitter:image" content="https://www.ultraviolet.rs/img/tee-tls-privacy/atlas.png" />
+
+
+  
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "TLS and TEEs: How Cocos AI provides privacy and authentication",
+        "image": "https:\/\/www.ultraviolet.rs\/img\/tee-tls-privacy\/atlas.png",
+        "datePublished": "2026-02-19",
+        "author": {
+          "@type": "Person",
+          "name": "Danko Miladinovic, Jovan Djukic"
+        },
+        "description": "Learn about attestation and the implementation of attested TLS in Cocos AI."
+      }
+    </script>
+
+  
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Ultraviolet" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen&display=swap" />
+
+  
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+  <style>
+    .navbar-nav .nav-link {
+      color: black !important;
+    }
+
+     
+    .markdown-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin: 1.5rem auto;
+      display: block;
+    }
+
+    .markdown-content h2,
+    .markdown-content h3 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      color: #212529;
+    }
+
+    .markdown-content p {
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    .markdown-content pre {
+      border-radius: 6px;
+      padding: 1rem;
+    }
+
+    .markdown-content blockquote {
+      border-left: 4px solid #ddd;
+      padding-left: 1rem;
+      color: #555;
+      margin: 1.5rem 0;
+      font-style: italic;
+    }
+
+    .markdown-content table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    .markdown-content th,
+    .markdown-content td {
+      border: 1px solid #ddd;
+      padding: 0.6rem 0.8rem;
+    }
+
+    .markdown-content th {
+      background: #f5f5f5;
+      font-weight: 600;
+    }
+
+    .code-wrapper {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .code-wrapper pre {
+      margin-bottom: 0;
+    }
+
+    .copy-button {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.85rem;
+      background: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.2s ease;
+      z-index: 10;
+    }
+
+    .code-wrapper:hover .copy-button {
+      opacity: 1;
+    }
+
+    .copy-button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .copy-button.copied {
+      background: #198754;
+      border-color: #198754;
+      color: #fff;
+      opacity: 1;
+    }
+
+     
+    .markdown-content pre[class*="language-mermaid"] {
+      background: transparent;
+      padding: 0;
+      border: none;
+    }
+
+    .markdown-content code[class*="language-mermaid"] {
+      display: none;
+    }
+
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      margin: 1.5rem 0;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  
+  <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #ffffff">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Magistrala" height="30" width="250" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PRODUCTS
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="productsDropdown">
+              <li><a class="dropdown-item" href="https://prism.ultraviolet.rs"
+                  title="Prism AI Multi-Party Confidential Computation Orchestration Platform" target="_blank">PRISM
+                  AI</a></li>
+              <li><a class="dropdown-item" href="/cocos"
+                  title="Cocos AI Open Source Confidential Computing Platform">COCOS AI</a></li>
+              <li><a class="dropdown-item" href="https://cube.ultraviolet.rs/"
+                  title="Cube AI Privacy-Preserving LLM Deployment Framework with Confidential Computing">CUBE AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/products">All Products</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              DOCUMENTATION
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item" href="https://prism.ultraviolet.rs/docs/" target="_blank">PRISM AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://docs.cocos.ultraviolet.rs/" target="_blank">COCOS AI</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="https://cube.ultraviolet.rs/docs/" target="_blank">CUBE AI</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="projectsDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false" style="color: black">
+              PROJECTS
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="projectsDropdown">
+              <li>
+                <a class="dropdown-item" href="/projects/confidential6g">CONFIDENTIAL6G</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/elastic">ELASTIC</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects/titan">TITAN</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="/projects">All Projects</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/company" style="color: black">COMPANY</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/careers" style="color: black">CAREERS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact" style="color: black">CONTACT</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog" style="color: black">BLOG</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/ultravioletrs" target="_blank" style="color: black"><i
+                class="fab fa-github"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <article class="container py-5 mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        
+        <div class="mb-4">
+          <a href="/blog" class="text-decoration-none text-muted"><i class="fas fa-arrow-left me-2"></i>Back to Blog</a>
+        </div>
+
+        <div class="mb-3">
+          <span class="badge bg-primary fs-6"></span>
+          
+        </div>
+
+        <h1 class="display-4 fw-bold mb-4">TLS and TEEs: How Cocos AI provides privacy and authentication</h1>
+
+        <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
+          <img src="/img/avatar.png" alt="Danko Miladinovic, Jovan Djukic" class="rounded-circle me-3" width="60" height="60"
+            loading="lazy" onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+          <div>
+            <div class="fw-bold fs-5">Danko Miladinovic, Jovan Djukic</div>
+            <div class="text-muted">
+              February 19, 2026 · 4 min read
+            </div>
+          </div>
+        </div>
+
+        
+        <img src="/img/tee-tls-privacy/atlas.png" alt="TLS and TEEs: How Cocos AI provides privacy and authentication" class="img-fluid rounded mb-5 w-100 shadow-sm" loading="lazy"
+          onerror="this.style.display = 'none'" />
+        
+
+        <div class="markdown-content"><h2 id="introduction">Introduction</h2>
+<p>Cocos AI is an advanced platform that leverages Confidential Computing and Trusted Execution Environments (TEEs) to enable secure multiparty computation (SMPC). Within its architecture, the Agent operates inside a TEE and plays a crucial role in establishing an attested TLS (aTLS) connection with the CLI, ensuring both secure communication and runtime integrity.</p>
+<h2 id="implementation">Implementation</h2>
+<p><img src="./architecture.png" alt="Cocos AI architecture" title="Cocos AI architecture"></p>
+<p>COCOS AI adopts the RATS background-check model for remote attestation and implements an Intra-handshake attested TLS. A secure TLS channel is established every time a command is issued via Cosos AI CLI tool. The following diagram explains the inner workings.</p>
+<p><img src="./atls.png" alt="aTLS flow" title="Attested TLS flow"></p>
+<p>As you can see the flow has a few differences compared to standard TLS.</p>
+<p>Firstly, to ensure a fresh attestation report, CLI tool sends a nonce to the Agent. Cosos uses the Server Name Indication (SNI) extension for this purpose. The SNI is chosen because no servers are running in the CVM besides the Agent.</p>
+<p>Secondly, the agent genearates a new ephemeral key pair for each connection regardless if that connection is with the same CLI user. During certificate creation, the attestation report is embedded directly into the X.509 certificate. By embedding the attestation report into the X.509 certificate, the TLS handshake remains unchanged. It is the job of the CLI user (the relaying party) to verify the attestation report extracted from the TLS certificate. Because the attestation report is bound to the X.509 certificate and the Agent is the only one with the private key of the X.509 certificate, the CLI user has enough proof that it is talking to the Agent.</p>
+<p>The Agent also verifies the CLI certificate, ensuring that only members of the Computation are allowed to communicate with the Agent. The public keys of the Computation members are part of the attestation report. Thus, the same members can check who can communicate with the Agent.</p>
+<p>The following Go snippet demonstrates how the certifiacate is generated.</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>    attestationData, err := p.attestationProvider.Attest(pubKeyDER, nonce)
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nil</span>, fmt.Errorf(<span style="color:#0ff;font-weight:bold">&#34;failed to get attestation: %w&#34;</span>, err)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	extension := pkix.Extension{
+</span></span><span style="display:flex;"><span>		Id:    p.attestationProvider.OID(),
+</span></span><span style="display:flex;"><span>		Value: attestationData,
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    [...]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    csrMetadata := certs.CSRMetadata{
+</span></span><span style="display:flex;"><span>		Organization:    []<span style="color:#fff;font-weight:bold">string</span>{p.subject.Organization},
+</span></span><span style="display:flex;"><span>		Country:         []<span style="color:#fff;font-weight:bold">string</span>{p.subject.Country},
+</span></span><span style="display:flex;"><span>		CommonName:      p.subject.CommonName,
+</span></span><span style="display:flex;"><span>		Province:        []<span style="color:#fff;font-weight:bold">string</span>{p.subject.Province},
+</span></span><span style="display:flex;"><span>		Locality:        []<span style="color:#fff;font-weight:bold">string</span>{p.subject.Locality},
+</span></span><span style="display:flex;"><span>		StreetAddress:   []<span style="color:#fff;font-weight:bold">string</span>{p.subject.StreetAddress},
+</span></span><span style="display:flex;"><span>		PostalCode:      []<span style="color:#fff;font-weight:bold">string</span>{p.subject.PostalCode},
+</span></span><span style="display:flex;"><span>		ExtraExtensions: []pkix.Extension{extension},
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	csr, sdkerr := p.certsSDK.CreateCSR(ctx, csrMetadata, privateKey)
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> sdkerr != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nil</span>, fmt.Errorf(<span style="color:#0ff;font-weight:bold">&#34;failed to create CSR: %w&#34;</span>, sdkerr)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	cert, err := p.certsSDK.IssueFromCSRInternal(ctx, p.cvmID, p.ttl.String(), <span style="color:#fff;font-weight:bold">string</span>(csr.CSR), p.agentToken)
+</span></span><span style="display:flex;"><span>	<span style="color:#fff;font-weight:bold">if</span> err != <span style="color:#fff;font-weight:bold">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#fff;font-weight:bold">return</span> <span style="color:#fff;font-weight:bold">nil</span>, err
+</span></span><span style="display:flex;"><span>	}
+</span></span></code></pre><p>The behavior of the <code>Attest()</code> function depends on the underlying platform, such as AMD SEV-SNP or Intel TDX. Regardless of the platform, the attestation report always includes the Agents public ephemeral key and the nonce generated by the CLI. Once the certificate is obtained, a standard TLS connection can be established. The key difference compared to a regular TLS setup is the inclusion of a custom verification function for the X.509 certificate. This function ensures that the embedded attestation extension contains a valid attestation report.</p>
+<p>The following Go snippet demonstrates how to configure TLS to perform this additional verification step.</p>
+<pre tabindex="0" style="color:#e5e5e5;background-color:#000;"><code><span style="display:flex;"><span>	tlsConfig := &amp;tls.Config{
+</span></span><span style="display:flex;"><span>		InsecureSkipVerify: <span style="color:#fff;font-weight:bold">true</span>,
+</span></span><span style="display:flex;"><span>		RootCAs:            rootCAs,
+</span></span><span style="display:flex;"><span>		ServerName:         sni,
+</span></span><span style="display:flex;"><span>		VerifyPeerCertificate: <span style="color:#fff;font-weight:bold">func</span>(rawCerts [][]<span style="color:#fff;font-weight:bold">byte</span>, verifiedChains [][]*x509.Certificate) <span style="color:#fff;font-weight:bold">error</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#fff;font-weight:bold">return</span> atls.NewCertificateVerifier(rootCAs).VerifyPeerCertificate(rawCerts, verifiedChains, nonce)
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>	}
+</span></span></code></pre><p>Similar to the <code>Attest()</code> function, the behavior of the <code>VerifyPeerCertificate()</code> function, which veryfies the attestation extension, also depends on the underlying platform, such as AMD SEV-SNP or Intel TDX.</p>
+<p>This approach relies on the assumption that the Agents private ephemeral key can't be stolen. If it can be stolen, then an attacker can This approach relies on the assumption that the Agents private ephemeral key can't be stolen. If it can be stolen, then an attacker can <a href="https://www.researchgate.net/publication/398839141_Identity_Crisis_in_Confidential_Computing_Formal_Analysis_of_Attested_TLS">imitate the Agent</a>. The consequnce of this would be the loss of confidential data or IP. Similar solutions that also use Cocos AI approach and who suffer from the same flaw are:</p>
+<ul>
+<li>Meta</li>
+<li>Edgeless Systems</li>
+<li>Islet project</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>As workloads move to untrusted environments like public clouds and edge platforms, securing communication is no longer just about encryption — it’s about verifiable trust. This is where RATS and aTLS come together.</p>
+<p>RATS provides the architectural framework for generating, evaluating, and sharing attestation evidence, while aTLS seamlessly integrates this attestation into the TLS handshake. The result is not just secure communication, but communication where each party can prove its integrity and runtime state before exchanging sensitive data.</p>
+<p>COCOS AI builds on this foundation by leveraging Confidential Computing and Trusted Execution Environments to enable secure multiparty computation. By adopting the RATS passport model and embedding attestation reports directly into X.509 certificates, COCOS AI ensures that every connection is both encrypted and verifiably trusted.</p>
+<p>Future work includes implementing a different variety of TLS protocol in order to remove the flaw menitoned in this article.</p>
+</div>
+
+        <div class="mt-5 pt-4 border-top">
+          
+          <div>
+            <a href="/blog" class="btn btn-outline-secondary"><i class="fas fa-arrow-left me-2"></i>Back to
+              Blog</a>
+          </div>
+          <h5 class="mb-3 mt-3">Tags</h5>
+          <div>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential-computing</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">attestation</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">aTLS</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">cocos ai</span>
+            
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <h5 class="mb-3">Share this article</h5>
+          <div class="d-flex gap-2 flex-wrap">
+            <a href="https://twitter.com/intent/tweet?text=TLS&#43;and&#43;TEEs%3A&#43;How&#43;Cocos&#43;AI&#43;provides&#43;privacy&#43;and&#43;authentication&url=https%3a%2f%2fwww.ultraviolet.rs/blog/tee-tls-privacy"
+              target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+              <i class="fab fa-twitter me-2"></i>Twitter
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/tee-tls-privacy"
+              target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
+              <i class="fab fa-linkedin me-2"></i>LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  
+  <section id="newsletter" class="py-5">
+    <div class="container">
+      <div class="row mt-5 mb-5">
+        <div class="col-md-6 offset-md-3 text-center">
+          <h2>Subscribe to Our Newsletter</h2>
+          <p>Stay updated with the latest news, updates and announcements.</p>
+
+          
+          <form
+            action="https://ultraviolet.us20.list-manage.com/subscribe/post?u=b35e6bdc7b2adf06c56da2265&amp;id=88ed6c4af0&amp;f_id=004f06eaf0"
+            method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="mt-4"
+            target="_blank">
+            <div class="input-group">
+              <input type="email" class="form-control" name="EMAIL" placeholder="Enter your email" aria-label="Email"
+                aria-describedby="subscribe-btn" required="" />
+              <button class="btn btn-primary" type="submit" id="subscribe-btn">
+                Subscribe
+              </button>
+            </div>
+            <div style="position: absolute; left: -5000px" aria-hidden="true">
+              <input type="text" name="b_b35e6bdc7b2adf06c56da2265_88ed6c4af0" tabindex="-1" value="" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  
+  
+  <section class="py-5 bg-light">
+    <div class="container">
+      <h3 class="mb-4 fw-bold">Next Read</h3>
+      <div class="row g-4">
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/prism-public-beta-launch" class="text-decoration-none text-dark">
+              
+              <img src="/img/prism-beta-launch-cover.png" class="card-img-top" alt="Prism AI Public Beta: Empowering Secure AI Collaboration"
+                loading="lazy" onerror="this.style.display = 'none'" style="height: 200px; object-fit: cover;" />
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-success me-2">
+                    announcement
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  Prism AI Public Beta: Empowering Secure AI Collaboration
+                </h2>
+                <p class="card-text text-muted small">
+                  We are thrilled to announce the public beta release of Prism AI, our confidential computing platform for secure AI collaboration. Build and deploy privacy-preserving AI with hardware-verified security.
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      sammy oina
+                    </div>
+                    <div class="text-muted">
+                      February 12, 2026 · 3 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">ai</span>
+                  
+                  <span class="badge bg-light text-dark me-1">privacy</span>
+                  
+                  <span class="badge bg-light text-dark me-1">prism ai</span>
+                  
+                  <span class="badge bg-light text-dark me-1">beta-launch</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/amd-sev-snp-vs-intel-tdx" class="text-decoration-none text-dark">
+              
+              <img src="/img/amd-sev-snp-vs-intel-tdx/amd_sev_snp_vs_intel_tdx_cover.png" class="card-img-top" alt="AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI"
+                loading="lazy" onerror="this.style.display = 'none'" style="height: 200px; object-fit: cover;" />
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI
+                </h2>
+                <p class="card-text text-muted small">
+                  
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      sammy oina
+                    </div>
+                    <div class="text-muted">
+                      February 24, 2026 · 4 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">security</span>
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">amd</span>
+                  
+                  <span class="badge bg-light text-dark me-1">intel</span>
+                  
+                  <span class="badge bg-light text-dark me-1">technical-deep-dive</span>
+                  
+                  <span class="badge bg-light text-dark me-1">cube ai</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/securing-trust-rats-and-attested-tls" class="text-decoration-none text-dark">
+              
+              <img src="/img/securing-trust-rats-and-attested-tls/overview.png" class="card-img-top" alt="Securing Trust: RATS and Attested TLS (aTLS)"
+                loading="lazy" onerror="this.style.display = 'none'" style="height: 200px; object-fit: cover;" />
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  Securing Trust: RATS and Attested TLS (aTLS)
+                </h2>
+                <p class="card-text text-muted small">
+                  COCOS AI leverages modern attestation standards to prove the integrity and operational state of the platform.
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <img src="https://avatars.githubusercontent.com/u/7561155?v=4" alt="Jovan Djukic"
+                    class="rounded-circle me-2" width="32" height="32" loading="lazy"
+                    onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                  <div class="small">
+                    <div class="fw-semibold">
+                      Jovan Djukic
+                    </div>
+                    <div class="text-muted">
+                      February 19, 2026 · 9 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">attestation</span>
+                  
+                  <span class="badge bg-light text-dark me-1">aTLS</span>
+                  
+                  <span class="badge bg-light text-dark me-1">cocos ai</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+  
+
+  
+  <footer class="bg-dark text-white py-3">
+    <div class="container">
+      <div class="row mt-3 mb-2">
+        <div class="col">
+          <h3>About Us</h3>
+          <p class="w-65">
+            Ultraviolet is a leading company specializing in confidential
+            computing, cloud security, AI/ML, multi-party computation, and
+            secure data sharing.
+          </p>
+        </div>
+
+        <div class="col">
+          <h3>Products</h3>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fas fa-network-wired me-2"></i><a href="prism/" class="text-white">Prism AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cog me-2"></i><a href="cocos/" class="text-white">Cocos AI</a>
+            </li>
+            <li>
+              <i class="fas fa-cube"></i>
+              <a href="https://cube.ultraviolet.rs/" class="text-white">Cube AI</a>
+            </li>
+          </ul>
+          <h3>Resources</h3>
+          <ul class="list-unstyled">
+            <li>
+              <a href="https://docs.google.com/presentation/d/199CkKD4YpgfJ1CLWVyZ9TdmXLLvME7JHN4Kfjkbgmho/export/pdf"
+                class="text-white">
+                Prism AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1oZDjQjuzNR8PeI1AHS8tePaiA73SmjnjrFFEBoS6b68/export/pdf"
+                class="text-white">
+                Cocos AI Datasheet
+              </a>
+            </li>
+            <li>
+              <a href="https://docs.google.com/presentation/d/1UJR6HKiBV3r56SyMNZvO3ylek8VFmNojbFkTC-bawBY/export/pdf"
+                class="text-white">
+                Cube AI Datasheet
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Legal</h3>
+          <ul class="list-unstyled">
+            Prism AI
+            <li>
+              <a href="https://prism.ultraviolet.rs/terms" class="text-white"> Terms of Service</a>
+            </li>
+            <li>
+              <a href="https://prism.ultraviolet.rs/privacy" class="text-white"> Privacy Policy</a>
+            </li>
+            <br />
+            Cube AI
+            <li>
+              <a href="https://cube.ultraviolet.rs/terms" class="text-white">Terms of Service</a>
+            </li>
+            <li>
+              <a href="https://cube.ultraviolet.rs/privacy" class="text-white">Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Connect With Us</h3>
+          <ul class="list-unstyled">
+            <li>
+              <i class="fab fa-twitter me-2"></i><a href="https://twitter.com/ultravioletrs" class="text-white"
+                target="_blank">Twitter</a>
+            </li>
+            <li>
+              <i class="fab fa-linkedin me-2"></i><a href="https://www.linkedin.com/company/ultravioletrs"
+                class="text-white" target="_blank">LinkedIn</a>
+            </li>
+            <li>
+
+            <li>
+              <i class="fab fa-github me-2"></i><a href="https://github.com/ultravioletrs" class="text-white"
+                target="_blank">GitHub</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3>Contact Us</h3>
+          <p>
+            <i class="fas fa-envelope me-2"></i><a href="mailto:info@ultraviolet.rs"
+              class="text-white">info@ultraviolet.rs</a>
+          </p>
+          <p>
+            <i class="fab fa-gitter me-2"></i><a href="https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im"
+              class="text-white" target="_blank">Chat on Gitter</a>
+          </p>
+          <p>
+            <i class="fas fa-map-marker-alt me-2"></i>Bulevar Arsenija
+            Carnojevica 103, 11000 Belgrade, Serbia
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CH54M1Z8DY"></script>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+    function getCookie(name) {
+      var b = document.cookie.match(
+        "(^|[^;]+)\\s*" + name + "\\s*=\\s*([^;]+)",
+      );
+      return b ? b.pop() : "";
+    }
+
+    function addAnalytics() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-CH54M1Z8DY");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      
+      const cookieConsent = getCookie("cookieconsent_status");
+
+      
+      if (cookieConsent === "allow" || cookieConsent === "") {
+        addAnalytics();
+      }
+
+      if (typeof window.cookieconsent !== "undefined") {
+        window.cookieconsent.initialise({
+          palette: {
+            popup: { background: "#000" },
+            button: { background: "#f1d600" },
+          },
+          revokable: true,
+          law: {
+            regionalLaw: {
+              EU: true, 
+              UK: true, 
+            },
+          },
+          location: true, 
+          type: "opt-out",
+          content: {
+            message:
+              "🍪 We use cookies to collect data to improve your experience on our site.",
+            allow: "Allow",
+            dismiss: "Allow",
+            deny: "Reject",
+          },
+          onStatusChange: function (status, chosenBefore) {
+            location.reload();
+          },
+        });
+      } else {
+        console.error("Cookie consent script not loaded.");
+      }
+    });
+  </script>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', async () => {
+      
+      if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: false, theme: 'default', logLevel: 'debug' });
+      }
+
+      
+      const markdownContent = document.querySelector('.markdown-content');
+      if (markdownContent) {
+        const pres = markdownContent.querySelectorAll('pre');
+
+        pres.forEach(pre => {
+          const code = pre.querySelector('code');
+          if (code && code.className.includes('language-mermaid')) {
+            const mermaidDiv = document.createElement('div');
+            mermaidDiv.className = 'mermaid';
+            mermaidDiv.textContent = code.textContent;
+            pre.replaceWith(mermaidDiv);
+          }
+        });
+      }
+
+      
+      if (typeof mermaid !== 'undefined') {
+        try {
+          await mermaid.run();
+        } catch (e) {
+          console.error('Mermaid rendering error:', e);
+        }
+      }
+
+      hljs.highlightAll();
+
+      const pres = document.querySelectorAll('.markdown-content pre');
+
+      pres.forEach(pre => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        const btn = document.createElement('button');
+        btn.className = 'copy-button';
+        btn.type = 'button';
+        btn.innerHTML = '<i class="far fa-copy"></i>';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
+        btn.title = 'Copy code';
+
+        wrapper.appendChild(btn);
+      });
+    });
+
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.copy-button');
+      if (!btn) return;
+
+      const pre = btn.parentElement.querySelector('pre');
+      const code = pre.querySelector('code') || pre;
+      const text = code.textContent;
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+        }
+
+        btn.innerHTML = '<i class="fas fa-check"></i>';
+        btn.classList.add('copied');
+        btn.title = 'Copied!';
+
+        setTimeout(() => {
+          btn.innerHTML = '<i class="far fa-copy"></i>';
+          btn.classList.remove('copied');
+          btn.title = 'Copy code';
+        }, 2000);
+
+      } catch (err) {
+        console.error('Copy failed', err);
+        btn.innerHTML = '<i class="fas fa-times"></i>';
+        setTimeout(() => btn.innerHTML = '<i class="far fa-copy"></i>', 2000);
+      }
+    });
+  </script>
+
+</body>
+
+</html>
