@@ -7,12 +7,13 @@ author:
   name: "Jilks Smith"
   picture: "https://avatars.githubusercontent.com/u/41241359?v=4"
 tags: ["prism ai", "access-control", "rbac", "confidential-computing", "security"]
-date: 2026-02-17
+date: 2026-02-25
 image: /img/prism-access-control/prism-access-control.png
 coverImage: /img/prism-access-control/prism-access-control.png
 ogImage:
   url: /img/prism-access-control/prism-access-control.png
 featured: false
+category: blog
 ---
 
 
