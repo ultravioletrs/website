@@ -1,6 +1,8 @@
 ---
 slug: amd-sev-snp-vs-intel-tdx
 title: "AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI"
+description: "A technical comparison of AMD SEV-SNP and Intel TDX confidential computing technologies, and how Cube AI abstracts their complexities to provide a unified, secure platform for AI workloads."
+excerpt: "A technical comparison of AMD SEV-SNP and Intel TDX confidential computing technologies, and how Cube AI abstracts their complexities to provide a unified, secure platform for AI workloads."
 author:
   name: "sammy oina"
   picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
