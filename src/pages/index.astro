@@ -1,0 +1,215 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Hero from '../components/Hero.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { Image } from 'astro:assets';
+
+import ccImage from '../assets/cc.png';
+import prismConceptImage from '../assets/prism-concept.png';
+import openSourceImage from '../assets/open-source.png';
+
+import ifLogo from '../assets/logos/if.png';
+import etfLogo from '../assets/logos/etf.png';
+import euLogo from '../assets/logos/eu.png';
+import telefonicaLogo from '../assets/logos/telefonica.png';
+import vttLogo from '../assets/logos/vtt.png';
+import fujitsuLogo from '../assets/logos/fujitsu.png';
+import fraunhoferLogo from '../assets/logos/fraunhofer.png';
+import tnoLogo from '../assets/logos/tno.png';
+import ericssonLogo from '../assets/logos/ericsson.png';
+import nokiaLogo from '../assets/logos/nokia.png';
+import insermLogo from '../assets/logos/inserm.png';
+import tueLogo from '../assets/logos/tue.png';
+import thalesLogo from '../assets/logos/thales.png';
+import imdeaLogo from '../assets/logos/imdea.svg';
+import lfLogo from '../assets/logos/lf.png';
+import cccLogo from '../assets/logos/ccc.png';
+
+const title = "Open Source Confidential Computing & Secure AI Platform | Ultraviolet";
+---
+
+<Layout title={title}>
+	<Header slot="header" />
+	
+	<Hero
+        alignment="center"
+		title="Confidential Computing<br />for Enterprise AI"
+		description="The open-source platform for secure collaborative AI and private LLM deployment. Protect your data in use, from edge to cloud."
+		ctaText="Explore Products"
+		ctaLink="/products"
+	/>
+
+	<!-- Membership section -->
+	<section class="pb-12 border-b border-border">
+		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+			<div class="flex justify-center flex-wrap gap-12 items-center opacity-80 hover:opacity-100 transition-opacity">
+				<a href="https://www.linuxfoundation.org/" target="_blank">
+                    <Image src={lfLogo} alt="Linux Foundation" class="h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all" loading="eager" />
+                </a>
+                <a href="https://confidentialcomputing.io/" target="_blank">
+                    <Image src={cccLogo} alt="Confidential Computing Consortium" class="h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all" loading="eager" />
+                </a>
+			</div>
+             <p class="mt-8 mx-auto max-w-2xl text-text-muted text-lg">
+                Proudly contributing to the future of confidential computing alongside industry leaders.
+            </p>
+		</div>
+	</section>
+
+	<!-- Clients Section -->
+    <section class="py-12 bg-white dark:bg-zinc-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-heading text-center mb-8">Our Clients and Partners</h2>
+            <div class="flex flex-wrap justify-center items-center gap-12">
+                 <Image src={ifLogo} alt="IF" class="h-16 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={etfLogo} alt="ETF" class="h-20 w-auto object-contain dark:invert dark:mix-blend-screen" loading="eager" />
+                 <Image src={euLogo} alt="EU" class="h-16 w-auto object-contain dark:invert dark:mix-blend-screen" loading="eager" />
+                 <Image src={telefonicaLogo} alt="Telefonica" class="h-12 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={vttLogo} alt="VTT" class="h-12 w-auto object-contain dark:invert dark:mix-blend-screen" loading="eager" />
+                 <Image src={fujitsuLogo} alt="Fujitsu" class="h-12 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={fraunhoferLogo} alt="Fraunhofer" class="h-10 w-auto object-contain dark:invert dark:mix-blend-screen" loading="eager" />
+                 <Image src={tnoLogo} alt="TNO" class="h-12 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={ericssonLogo} alt="Ericsson" class="h-24 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={nokiaLogo} alt="Nokia" class="h-24 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={insermLogo} alt="Inserm" class="h-20 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={tueLogo} alt="TUE" class="h-12 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={thalesLogo} alt="Thales" class="h-32 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+                 <Image src={imdeaLogo} alt="Imdea" class="h-16 w-auto object-contain dark:brightness-0 dark:invert" loading="eager" />
+            </div>
+        </div>
+    </section>
+
+	<!-- Cube AI Section -->
+    <section id="cube-ai" class="py-16 lg:py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                <div class="flex justify-center items-center mb-10 lg:mb-0">
+                     <Image class="w-full h-auto rounded-2xl shadow-lg ring-1 ring-border" src={ccImage} alt="Cube AI diagram" loading="lazy" />
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold font-heading mb-6 text-gray-400">
+                        Cube AI — Secure LLM Platform
+                    </h2>
+                    <p class="text-2xl font-medium mb-4 text-text-main">
+                        Run LLMs on sensitive data without exposing it
+                    </p>
+                    <p class="mb-6 text-lg text-text-muted leading-relaxed">
+                        Deploy and operate Large Language Models inside Trusted Execution Environments (TEEs). Cube AI protects your models and data at runtime—so you can process confidential workloads with hardware-backed security.
+                    </p>
+                    <ul class="mb-8 space-y-3 text-lg text-text-muted">
+                        <li class="flex items-start"><i class="fas fa-check text-primary mt-1 mr-3"></i> Secure inference on private data</li>
+                        <li class="flex items-start"><i class="fas fa-check text-primary mt-1 mr-3"></i> Model and data isolation by default</li>
+                        <li class="flex items-start"><i class="fas fa-check text-primary mt-1 mr-3"></i> Deploy across cloud, on-prem, or edge</li>
+                    </ul>
+                    <a href="/cube" class="text-primary font-medium hover:text-primary-dark transition-colors inline-flex items-center group">
+                        Run Secure LLMs
+                        <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prism AI Section -->
+    <section id="prism-ai" class="py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                 <div class="order-2 lg:order-1 lg:mt-0 mt-10">
+                    <h2 class="text-3xl font-bold font-heading mb-6 text-gray-400">
+                        Prism AI — Secure Collaboration
+                    </h2>
+                    <p class="text-2xl font-medium mb-4 text-text-main">
+                        Collaborate on data you can’t share
+                    </p>
+                    <p class="mb-6 text-lg text-text-muted leading-relaxed">
+                        Prism AI enables organizations to jointly train and run AI models without exposing raw data. Using Secure Multi-Party Computation (SMPC), each party keeps data private while contributing to shared outcomes.
+                    </p>
+                    <ul class="mb-8 space-y-3 text-lg text-text-muted">
+                        <li class="flex items-start"><i class="fas fa-check text-primary mt-1 mr-3"></i> Cross-organization AI without data leakage</li>
+                        <li class="flex items-start"><i class="fas fa-check text-primary mt-1 mr-3"></i> Privacy-preserving analytics and training</li>
+                        <li class="flex items-start"><i class="fas fa-check text-primary mt-1 mr-3"></i> Works across multiple clouds and environments</li>
+                    </ul>
+                    <a href="/prism" class="text-primary font-medium hover:text-primary-dark transition-colors inline-flex items-center group">
+                        Start Secure Collaboration
+                        <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+                <div class="order-1 lg:order-2 flex justify-center items-center">
+                     <Image class="w-full h-auto rounded-2xl shadow-lg ring-1 ring-border" src={prismConceptImage} alt="Prism AI Secure Collaborative AI platform" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Open Source Section -->
+    <section id="open-source" class="py-16 lg:py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                <div class="flex justify-center items-center mb-10 lg:mb-0">
+                     <Image class="w-full h-auto rounded-2xl shadow-lg ring-1 ring-border" src={openSourceImage} alt="Cocos AI open source confidential computing platform for secure collaborative AI" />
+                </div>
+                <div>
+                    <h2 class="text-3xl font-bold font-heading mb-6 text-gray-400">
+                        Cocos AI — Open Source Core
+                    </h2>
+                    <p class="text-2xl font-medium mb-4 text-text-main">
+                        Build confidential AI infrastructure anywhere
+                    </p>
+                    <p class="mb-6 text-lg text-text-muted leading-relaxed">
+                        Cocos AI is the open-source foundation for secure AI systems. It lets developers run workloads in confidential environments—from edge devices to cloud clusters—with full control and transparency.
+                    </p>
+                    <ul class="mb-8 space-y-3 text-lg text-text-muted">
+                        <li class="flex items-start"><i class="fas fa-check text-primary mt-1 mr-3"></i> Open-source confidential computing platform</li>
+                        <li class="flex items-start"><i class="fas fa-check text-primary mt-1 mr-3"></i> Runs across multiple CPU architectures</li>
+                        <li class="flex items-start"><i class="fas fa-check text-primary mt-1 mr-3"></i> Designed for scalable, distributed AI</li>
+                    </ul>
+                    <a href="https://github.com/ultravioletrs/cocos" target="_blank" rel="noopener noreferrer" class="text-primary font-medium hover:text-primary-dark transition-colors inline-flex items-center group">
+                        Explore the Platform
+                        <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="py-16 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold font-heading mb-16">Ultraviolet Solutions</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-16">
+                <div class="flex flex-col items-center p-8 bg-surface rounded-2xl shadow-sm hover:shadow-md transition-shadow ring-1 ring-border">
+                    <div class="text-black dark:text-white mb-6 text-5xl">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-4">TEE Enablement</h3>
+                    <p class="text-text-muted text-center leading-relaxed">Enabling Trusted Execution Environments (TEEs) across CPU architectures to ensure the confidentiality of your workloads.</p>
+                </div>
+                <div class="flex flex-col items-center p-8 bg-surface rounded-2xl shadow-sm hover:shadow-md transition-shadow ring-1 ring-border">
+                    <div class="text-black dark:text-white mb-6 text-5xl">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-4">Confidential Cloud</h3>
+                    <p class="text-text-muted text-center leading-relaxed">Protect your infrastructure and sensitive data within secure enclaves, safeguarding against unauthorized access at scale.</p>
+                </div>
+                <div class="flex flex-col items-center p-8 bg-surface rounded-2xl shadow-sm hover:shadow-md transition-shadow ring-1 ring-border">
+                     <div class="text-black dark:text-white mb-6 text-5xl">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold font-heading mb-4">Secure Collaboration</h3>
+                    <p class="text-text-muted text-center leading-relaxed">Secure Multi-Party Computation allows organizations to collaboratively process data without exposing sensitive information.</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <a href="/products" class="inline-block px-10 py-4 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors shadow-lg shadow-primary/30 text-lg">
+                    Explore Our Products
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Newsletter section -->
+    <Newsletter />
+
+	<Footer slot="footer" />
+</Layout>

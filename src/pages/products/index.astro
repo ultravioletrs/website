@@ -1,0 +1,92 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { Image } from 'astro:assets';
+import headerImage from '../../../public/img/header.avif';
+
+const products = [
+    {
+        name: "Prism AI",
+        description: "Prism AI is a distributed system for organizing and orchestrating secure, privacy-preserving collaborative AI training and inference using confidential computing and Trusted Execution Environments (TEEs). It enables efficient and secure management of sensitive data across various applications and industries.",
+        link: "/prism",
+        icon: "fas fa-users"
+    },
+    {
+        name: "Cocos AI",
+        description: "Cocos AI is an open-source system that enables a Hardware Abstraction Layer (HAL) and execution environment for confidential computing over various hardware architectures, including AMD SEV and Intel TDX. It provides enablers for secure VM management and monitoring, workload orchestration, and secure, encrypted data exchange.",
+        link: "/cocos",
+        icon: "fas fa-shield-alt"
+    },
+    {
+        name: "Cube AI",
+        description: "Cube AI is a comprehensive platform designed to protect Large Language Models (LLMs) and their inputs/outputs using Trusted Execution Environments (TEEs). It combines security, observability, and governance to ensure safe and scalable deployment of LLMs, supporting integration with APIs such as Hugging Face and Ollama.",
+        link: "/cube",
+        icon: "fas fa-cube"
+    }
+];
+
+const title = "Ultraviolet Products - Secure AI & Confidential Computing Solutions";
+const description = "Explore Ultraviolet's suite of secure AI products: Prism AI, Cocos AI, and Cube AI. Enable confidential computing and collaborative AI.";
+---
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <!-- Header section -->
+    <section id="header" class="py-12 lg:pb-0 lg:pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center h-[400px] overflow-hidden w-full relative">
+                <Image src={headerImage} alt="pattern-white" class="max-w-full h-auto" style="width: 100%" loading="eager" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Products section -->
+    <section id="our-products" class="py-12 lg:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mt-8">
+                <div class="w-full">
+                    <h1 class="text-5xl lg:text-7xl font-heading mb-6">Our Products</h1>
+                    <p class="mb-4 text-lg">
+                      Ultraviolet specializes in cutting-edge products that leverage
+                      Confidential Computing technology to address the evolving needs of
+                      organizations. Our suite of products empowers businesses with
+                      secure, collaborative, and privacy-preserving solutions, enabling
+                      them to harness the full potential of their data while
+                      safeguarding confidentiality and integrity.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Listing section -->
+    <section id="product-listing" class="py-12 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {products.map((product) => (
+                    <div class="flex flex-col h-full mb-8">
+                        <div class="p-6 bg-surface border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                            <i class={`${product.icon} fa-3x mb-6 text-dark`}></i>
+                            <h4 class="text-2xl font-heading mb-3">{product.name}</h4>
+                            <p class="text-text-muted mb-6 flex-grow">
+                                {product.description}
+                            </p>
+                            <a href={product.link} class="inline-block px-6 py-2 bg-primary text-white font-medium rounded hover:bg-primary-dark transition-colors text-center self-start">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter section -->
+    <Newsletter />
+
+    <Footer slot="footer" />
+</Layout>

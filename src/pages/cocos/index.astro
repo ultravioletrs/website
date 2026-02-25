@@ -1,0 +1,404 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FeatureSection from '../../components/FeatureSection.astro';
+import Hero from '../../components/Hero.astro';
+
+const title = "Cocos AI - Open Source Confidential Computing System";
+const description = "Cocos AI is an open-source system for running confidential workloads with a CVM manager, in-enclave Agent, and secure remote attestation.";
+---
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <!-- Header Section matching legacy -->
+    <section id="header" class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-center h-[400px] overflow-hidden">
+                <img src="/img/header.avif" alt="pattern-white" class="w-full h-full object-cover" loading="eager" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section id="cocos-ai" class="py-12">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="flex items-center justify-center mt-12 md:mt-0">
+                    <img src="/img/cocos-concept.png" alt="Cocos Concept" class="w-full max-w-lg" />
+                </div>
+                <div class="flex flex-col justify-center mt-12 md:mt-0">
+                     <h1 class="text-3xl text-text-main sm:text-4xl font-heading mb-4">Introducing Cocos AI</h1>
+                     <div class="space-y-4 text-lg text-text-muted">
+                        <p>
+                            <a href="https://github.com/ultravioletrs/cocos" class="text-primary hover:underline">Cocos AI</a> is
+                            an open-source system designed for running confidential
+                            workloads. It features a Confidential VM (CVM) manager, an
+                            in-enclave Agent, and a Command Line Interface (CLI) for secure
+                            communication with the enclave.
+                        </p>
+                        <p>
+                            Cocos AI implements and enables Remote Attestation procedures,
+                            ensuring the integrity and security of the execution
+                            environment. The platform also includes an open-source,
+                            Linux-based Hardware Abstraction Layer (HAL) and supports
+                            runtime environments within Trusted Execution Environments
+                            (TEEs) for Python, Docker, and WebAssembly (Wasm) workloads.
+                        </p>
+                        <p>
+                            With Cocos AI, organizations and developers can efficiently
+                            manage confidential workloads within secure enclaves,
+                            facilitating secure multi-party computation (SMPC) and ensuring
+                            the privacy of sensitive data. The platform provides a
+                            comprehensive set of tools, libraries, and software components
+                            to enable seamless and secure data exchange, promoting
+                            privacy-preserving collaborative AI initiatives.
+                        </p>
+                        <p>
+                            By leveraging Cocos AI, organizations can confidently
+                            collaborate, innovate, and harness the potential of AI within a
+                            confidential and protected environment. Experience secure data
+                            sharing and robust confidentiality with Cocos AI.
+                        </p>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="py-16 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl text-text-main sm:text-4xl font-heading">Cocos AI Features</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Feature 1 -->
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                            <i class="fas fa-server text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 text-text-main font-heading">Secure VM Provisioning</h3>
+                        <p class="mt-2 text-base text-text-muted">
+                            Cocos AI excels in secure VM provisioning, management, and monitoring, ensuring the confidentiality and integrity of virtualized environments. Seamlessly deploy and maintain secure Virtual Machines for your workloads.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                         <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                            <i class="fas fa-microchip text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 text-text-main font-heading">Hardware Abstraction Layer (HAL)</h3>
+                        <p class="mt-2 text-base text-text-muted">
+                           Cocos AI integrates a comprehensive Hardware Abstraction Layer (HAL) and runtime environment inside secure enclaves. This enables the execution of workloads with a focus on security and confidentiality.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3: In-Enclave Agent -->
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                            <i class="fas fa-network-wired text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 text-text-main font-heading">In-Enclave Agent</h3>
+                        <p class="mt-2 text-base text-text-muted">
+                            Cocos AI includes an In-Enclave Agent, serving as an execution scheduler and coordinator within secure enclaves. This agent enhances the efficiency and security of your workloads.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 4: Encrypted Traffic -->
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                             <i class="fas fa-lock text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 text-text-main font-heading">End-to-End Encrypted Traffic</h3>
+                        <p class="mt-2 text-base text-text-muted">
+                            Cocos AI ensures end-to-end encryption for traffic, safeguarding the confidentiality and integrity of data transmissions. Collaborate on AI projects with the assurance that your data remains secure.
+                        </p>
+                    </div>
+                </div>
+
+                 <!-- Feature 5: Remote Attestation -->
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                             <i class="fas fa-check-double text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 text-text-main font-heading">Remote Attestation Mechanism</h3>
+                        <p class="mt-2 text-base text-text-muted">
+                            Cocos AI implements a robust remote attestation mechanism, verifying the integrity of remote systems. This ensures that your workloads run in trusted environments, even in untrusted or remote settings.
+                        </p>
+                    </div>
+                </div>
+                 <!-- Feature 6: Multiple Runtimes -->
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                             <i class="fa-solid fa-cogs text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 text-text-main font-heading">Multiple Runtime Environments</h3>
+                        <p class="mt-2 text-base text-text-muted">
+                            Cocos AI supports a variety of runtime environments for executing confidential workloads within enclaves. This includes Python for flexible scripting and data manipulation, Docker for containerized applications ensuring isolation and consistency, and WebAssembly (Wasm) for running lightweight and secure code in a portable format.
+                        </p>
+                    </div>
+                </div>
+                 <!-- Feature 7: SDK and CLI -->
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                             <i class="fas fa-code text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 text-text-main font-heading">SDK and CLI</h3>
+                        <p class="mt-2 text-base text-text-muted">
+                            Cocos AI provides a comprehensive Software Development Kit (SDK) and Command-Line Interface (CLI), simplifying development and management tasks. Accelerate your workflows and interactions with the platform.
+                        </p>
+                    </div>
+                </div>
+                 <!-- Feature 8: Open Source -->
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-12 w-12 text-black dark:text-white">
+                             <i class="fas fa-code-branch text-3xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg leading-6 text-text-main font-heading">Open Source</h3>
+                        <p class="mt-2 text-base text-text-muted">
+                            Cocos AI is open source, published under the Apache 2.0 license, enabling transparency, rapid bug fixing, customization, and collaboration. It fosters heightened security and innovation within a thriving developer community.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                 <a href="https://github.com/ultravioletrs/cocos" target="_blank" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-600 md:py-4 md:text-lg md:px-10 transition-colors">
+                    Visit Cocos AI GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Architecture Section -->
+    <section class="py-16 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+             <h2 class="text-3xl text-text-main sm:text-4xl font-heading mb-6">Cocos AI Architecture</h2>
+             <p class="max-w-4xl mx-auto text-lg text-text-muted mb-10">
+                Cocos AI, the pinnacle of secure collaborative AI, boasts an
+                intricately designed architecture tailored to meet the complex
+                demands of confidential computing and collaborative artificial
+                intelligence. This architecture empowers developers and
+                organizations with a robust foundation for secure, scalable, and
+                innovative AI applications.
+             </p>
+             <div class="relative rounded-xl overflow-hidden shadow-2xl mb-12 bg-white p-4 dark:bg-slate-800">
+                 <img src="/img/cocos-architecture.png" alt="Cocos AI Architecture" class="mx-auto w-full md:w-3/4">
+             </div>
+             
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                 <div class="bg-card p-6 rounded-lg shadow-sm border border-border">
+                     <h4 class="text-lg mb-2 text-text-main font-heading">1. TEE Manager</h4>
+                     <p class="text-text-muted text-sm">
+                        The Trusted Execution Environment (TEE) Manager is a critical microservice running on host hardware equipped with TEE hardware. Its role is to dynamically deploy and configure TEEs required for confidential multi-party computations. Once a computation is deployed within a newly-created TEE, the Manager actively monitors its execution and health. After the computation is complete and the result is extracted from the enclave, the Manager ensures the secure destruction of the TEE and nullifies all associated data, maintaining confidentiality.
+                     </p>
+                 </div>
+                 <div class="bg-card p-6 rounded-lg shadow-sm border border-border">
+                     <h4 class="text-lg mb-2 text-text-main font-heading">2. In-Enclave Agent</h4>
+                     <p class="text-text-muted text-sm">
+                        The In-enclave Agent is an open-source, lightweight component running within the enclave. It serves as a coordinator for algorithm execution, establishing TLS-encrypted channels over which clients (Data Providers and Algorithm Providers) can securely upload AI algorithms and datasets. Additionally, the In-enclave Agent provides remote attestation for the TEE, ensuring the integrity of the execution environment.
+                     </p>
+                 </div>
+                 <div class="bg-card p-6 rounded-lg shadow-sm border border-border">
+                     <h4 class="text-lg mb-2 text-text-main font-heading">3. HAL (Hardware Abstraction Layer)</h4>
+                     <p class="text-text-muted text-sm">
+                        The Hardware Abstraction Layer (HAL) in Cocos AI provides a unified interface for interacting with various hardware architectures, including AMD SEV and Intel TDX. It abstracts the hardware-specific details to ensure seamless integration and operation of confidential computing tasks across different hardware platforms. This layer facilitates consistent and efficient management of hardware resources for secure computations.
+                     </p>
+                 </div>
+                 <div class="bg-card p-6 rounded-lg shadow-sm border border-border">
+                     <h4 class="text-lg mb-2 text-text-main font-heading">4. CLI (Command Line Interface)</h4>
+                     <p class="text-text-muted text-sm">
+                        The Command Line Interface (CLI) provides a text-based interface for interacting with the Cocos AI system. It allows users to configure, manage, and monitor confidential computations and TEEs through command-line commands. The CLI offers powerful scripting capabilities and detailed control over system operations, making it an essential tool for advanced users and administrators.
+                     </p>
+                 </div>
+             </div>
+        </div>
+    </section>
+
+    <!-- TEE Manager Section -->
+    <section class="py-16 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                <div class="relative lg:order-1 flex items-center justify-center">
+                    <img class="w-full max-w-lg rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-transform duration-500 hover:scale-105" src="/img/manager.png" alt="TEE Manager in Cocos AI">
+                </div>
+                <div class="mt-10 lg:mt-0 lg:order-2">
+                    <h1 class="text-3xl text-text-main sm:text-4xl font-heading mb-4">
+                        TEE Manager
+                    </h1>
+                    <div class="prose prose-lg text-text-muted">
+                        <p>
+                            TEE Manager is a pivotal component within the Cocos AI
+                            architecture, dedicated to enabling dynamic deployment and
+                            configuration of Trusted Execution Environments (TEEs) required
+                            for confidential multi-party computations.
+                        </p>
+                        <p class="mt-4">
+                            When a computation is initiated, TEE Manager orchestrates the
+                            creation of secure TEEs, equipping them with the necessary
+                            hardware and runtime support. It continually monitors the
+                            execution and health of each enclave, ensuring that computations
+                            run securely and efficiently.
+                        </p>
+                        <p class="mt-4">
+                            Once a computation is completed and its result is securely
+                            extracted from the enclave, TEE Manager is responsible for the
+                            timely destruction of the used TEEs and the erasure of all related
+                            data, preserving confidentiality and data integrity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- In-Enclave Agent Section -->
+    <section class="py-16 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                <div class="relative lg:order-2 flex items-center justify-center">
+                    <img class="w-full max-w-lg rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-transform duration-500 hover:scale-105" src="/img/agent.png" alt="In-enclave Agent in Cocos AI">
+                </div>
+                <div class="mt-10 lg:mt-0 lg:order-1">
+                    <h1 class="text-3xl text-text-main sm:text-4xl font-heading mb-4">
+                        In-enclave Agent
+                    </h1>
+                    <div class="prose prose-lg text-text-muted">
+                        <p>
+                            In-enclave Agent is a lightweight, open-source component at the
+                            heart of Cocos AI. Operating within secure enclaves, this agent
+                            plays a crucial role in coordinating the execution of algorithms
+                            and ensuring the secure exchange of data.
+                        </p>
+                        <p class="mt-4">
+                            The In-enclave Agent establishes TLS-encrypted channels, allowing
+                            clients such as Data Providers and Algorithm Providers to securely
+                            upload AI algorithms and datasets. It also facilitates remote
+                            attestation for Trusted Execution Environments (TEEs), ensuring
+                            the integrity and authenticity of the execution environment.
+                        </p>
+                        <p class="mt-4">
+                            With its capabilities, the In-enclave Agent contributes to the
+                            platform's robust security and efficient execution of AI
+                            computations, making it a key component for ensuring
+                            confidentiality and data protection.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Remote Attestation Section -->
+    <section class="py-16 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                <div class="relative lg:order-1 flex items-center justify-center">
+                    <img class="w-full max-w-lg rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-transform duration-500 hover:scale-105" src="/img/attestation.png" alt="Remote Attestation in Confidential Computing">
+                </div>
+                <div class="mt-10 lg:mt-0 lg:order-2">
+                    <h1 class="text-3xl text-text-main sm:text-4xl font-heading mb-4">
+                        Remote Attestation
+                    </h1>
+                    <div class="prose prose-lg text-text-muted">
+                        <p>
+                            Remote Attestation is a critical component of Confidential
+                            Computing, leveraging Trusted Execution Environments (TEEs) to
+                            ensure the integrity and security of remote systems and
+                            applications. It allows you to establish trust and verify the
+                            authenticity of your computing environment, even in untrusted or
+                            remote settings.
+                        </p>
+                        <p class="mt-4">
+                            With TEEs, remote attestation guarantees that your data and
+                            workloads run within secure enclaves, isolated from potential
+                            threats. This process involves verifying the identity of a remote
+                            system, ensuring it is running trusted and unaltered software, and
+                            encrypting data transmissions for secure communication.
+                        </p>
+                        <p class="mt-4">
+                            By using Remote Attestation in Confidential Computing, you can
+                            confidently collaborate and process data across untrusted networks
+                            while maintaining the highest level of security and privacy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CLI and SDK Section -->
+    <section class="py-16 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+                <div class="relative lg:order-2 flex items-center justify-center">
+                    <img class="w-full max-w-lg rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 transition-transform duration-500 hover:scale-105" src="/img/cli.png" alt="CLI and SDK in Cocos AI">
+                </div>
+                <div class="mt-10 lg:mt-0 lg:order-1">
+                    <h1 class="text-3xl text-text-main sm:text-4xl font-heading mb-4">
+                        CLI and SDK
+                    </h1>
+                    <div class="prose prose-lg text-text-muted">
+                        <p>
+                            Cocos AI offers a powerful Command Line Interface (CLI) and
+                            Software Development Kit (SDK) to streamline the development,
+                            deployment, and management of confidential workloads. These tools
+                            are designed to provide developers with the flexibility and
+                            control needed to efficiently interact with the Prism AI platform.
+                        </p>
+                        <p class="mt-4">
+                            The CLI allows for intuitive and scriptable management of secure
+                            enclaves, confidential VMs, and other key components. It enables
+                            automation of routine tasks, making it easier to integrate Prism
+                            AI into existing workflows and CI/CD pipelines.
+                        </p>
+                        <p class="mt-4">
+                            The SDK provides a comprehensive set of APIs and libraries,
+                            facilitating seamless integration of Cocos AI's capabilities into
+                            your applications. Whether you're building new solutions or
+                            enhancing existing ones, the SDK offers the tools you need to
+                            leverage the full power of confidential computing.
+                        </p>
+                        <p class="mt-4">
+                            With Cocos AI's CLI and SDK, developers can enhance their
+                            productivity, ensure security, and drive innovation in the realm
+                            of confidential computing.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <Footer slot="footer" />
+</Layout>

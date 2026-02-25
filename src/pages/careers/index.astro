@@ -1,0 +1,106 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Newsletter from '../../components/Newsletter.astro';
+
+
+const title = "Careers at Ultraviolet - Join Our Team";
+const description = "Join Ultraviolet's team of experts in confidential computing, AI/ML, and secure data sharing. View open positions and apply today.";
+---
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <!-- Header section -->
+    <section id="header" class="py-12 lg:pb-0 lg:pt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center h-[400px] overflow-hidden w-full relative">
+                <img src="/img/header.avif" alt="pattern-white" class="max-w-full h-auto" style="width: 100%" loading="lazy" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers section -->
+    <section id="careers" class="py-12 lg:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mt-8">
+                <div class="w-full">
+                    <h1 class="text-4xl lg:text-5xl font-heading mb-6">Careers at Ultraviolet</h1>
+                    <p class="mb-4 text-lg">
+                        Join our dynamic team and be a part of shaping the future of cloud
+                        computing, AI/ML, multi-party computation, and secure data
+                        sharing. At Ultraviolet, we're dedicated to pushing the boundaries
+                        of technology and creating innovative solutions in these domains.
+                        We're always looking for passionate individuals who thrive in a
+                        collaborative and challenging environment.
+                    </p>
+                    <p class="mb-4 text-lg">
+                        As a member of the Ultraviolet team, you'll have the opportunity
+                        to work on cutting-edge projects, collaborate with experts in
+                        cloud computing, AI/ML, and related fields, and contribute to the
+                        growth and success of our clients in these rapidly evolving
+                        landscapes.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <div class="w-full">
+                     <p class="mb-4 text-lg">
+                        We are always looking for talented engineers who are excited
+                        about cloud computing, AI/ML, multi-party computation, and
+                        secure data sharing and want to be part of our innovative
+                        team.
+                    </p>
+                    <div class="mt-8 text-center">
+                         <a href="mailto:careers@ultraviolet.rs" class="text-xl font-bold text-primary hover:text-primary-dark">
+                            <i class="fas fa-envelope mr-3"></i>careers@ultraviolet.rs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Join Ultraviolet Section -->
+    <section class="py-8 lg:py-12">
+         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h3 class="text-2xl font-heading mb-6">Why Join Ultraviolet?</h3>
+              <ul class="list-disc pl-6 space-y-4 text-lg">
+                <li>
+                    <strong>Innovative Technology Focus:</strong> Be a part of a
+                    team that's at the forefront of cloud computing, AI/ML,
+                    multi-party computation, and secure data sharing.
+                </li>
+                <li>
+                    <strong>Cross-Disciplinary Collaboration:</strong> Work
+                    alongside experts in cloud computing, AI/ML, and related
+                    domains, fostering continuous learning and growth in these
+                    fields.
+                </li>
+                <li>
+                    <strong>Impactful Projects:</strong> Contribute to projects that
+                    drive digital transformation and shape the future of cloud
+                    computing and secure data sharing.
+                </li>
+                <li>
+                    <strong>Professional Development:</strong> We invest in our
+                    team's growth through training, workshops, and skill development
+                    programs focused on cutting-edge technologies.
+                </li>
+                <li>
+                    <strong>Work-Life Balance:</strong> We value work-life balance
+                    and provide a flexible work environment to ensure your
+                    well-being while contributing to the exciting world of
+                    technology development.
+                </li>
+             </ul>
+        </div>
+    </section>
+
+    <!-- Newsletter section -->
+    <Newsletter />
+
+    <Footer slot="footer" />
+</Layout>
