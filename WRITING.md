@@ -19,9 +19,11 @@ slug: "url-friendly-slug"
 excerpt: "A compelling 2-3 sentence summary"
 description: "SEO meta description (150-160 characters)"
 date: "2024-01-15"
-author:
-  name: "Jane Doe"
-  picture: "/assets/team/jane-doe.jpg"
+authors:
+  - name: "Jane Doe"
+    picture: "https://github.com/janedoe.png"
+  - name: "John Smith"
+    picture: "https://github.com/johnsmith.png"
 coverImage: "/assets/blog/my-post-cover.jpg"
 ogImage:
   url: "/assets/blog/my-post-og.jpg"
@@ -48,8 +50,9 @@ Below the closing `---`, write in standard Markdown.
 | `excerpt`        | 2-3 sentences        | Listing page summary     | `"Learn how to..."`          |
 | `description`    | 150-160 chars        | SEO meta description     | `"A comprehensive guide..."` |
 | `date`           | YYYY-MM-DD           | Publication date         | `"2024-01-15"`               |
-| `author.name`    | String               | Author's full name       | `"John Smith"`               |
-| `author.picture` | Path                 | Avatar image path        | `"/assets/team/john.jpg"`    |
+| `authors`        | List                 | List of authors          | See example above            |
+| `authors.name`   | String               | Author's full name       | `"John Smith"`               |
+| `authors.picture`| URL/Path             | Avatar image path        | `"/assets/team/john.jpg"`    |
 
 ### Optional Fields
 

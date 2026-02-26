@@ -3,9 +3,13 @@ slug: tee-tls-privacy
 title: "TLS and TEEs: Cocos AI Attested TLS — Design, Limitations, and the Path Forward"
 excerpt: "A rigorous look at Cocos AI's attested TLS implementation, the relay attacks identified by formal analysis at IETF SEAT, and what we plan to do about them."
 description: "A detailed technical analysis of Cocos AI's attested TLS (aTLS) protocol — how it works, the relay attack vulnerabilities identified by Sardar et al. using ProVerif formal methods, and our roadmap for achieving stronger TLS-binding guarantees."
-author:
-  name: "Danko Miladinovic, Jovan Djukic"
-  # picture: "https://avatars.githubusercontent.com/u/7561155?v=4"
+authors:
+  - name: Danko Miladinovic
+    picture: https://avatars.githubusercontent.com/u/72250944?v=4
+  - name: Jovan Djukic
+    picture: https://avatars.githubusercontent.com/u/7561155?v=4
+  - name: Sammy Oina
+    picture: https://avatars.githubusercontent.com/u/44265300?v=4
 tags: [confidential-computing, attestation, aTLS, cocos ai, security analysis, RATS]
 date: 2026-02-19
 coverImage: "/img/tee-tls-privacy/atlas.png"
