@@ -243,7 +243,7 @@ func (b *Builder) parsePost(md goldmark.Markdown, filepathStr string) (*PostData
 	fm := Frontmatter{
 		Title:       getString(metaData, "title"),
 		Date:        getString(metaData, "date"), // Expecting string YYYY-MM-DD
-		Author:      getAuthor(metaData),
+		Authors:     getAuthors(metaData),
 		Category:    getString(metaData, "category"),
 		Description: getString(metaData, "description"),
 		Excerpt:     getString(metaData, "excerpt"),
@@ -368,44 +368,77 @@ func getGitHubAuthor() (string, string) {
 	return "", ""
 }
 
-func getAuthor(m map[string]interface{}) AuthorInfo {
+func getAuthors(m map[string]interface{}) []AuthorInfo {
 	const defaultAvatar = "/img/avatar.png"
+	var authors []AuthorInfo
 
-	author := AuthorInfo{
-		Picture: defaultAvatar,
-	}
-
-	if v, ok := m["author"]; ok {
-		switch am := v.(type) {
-
-		case map[interface{}]interface{}:
-			name := fmt.Sprintf("%v", am["name"])
-			if name != "" && name != "<nil>" {
-				author.Name = name
-			}
-
-			if pic := normalizePicture(fmt.Sprintf("%v", am["picture"])); pic != "" {
-				author.Picture = pic
-			}
-
-		case map[string]interface{}:
-			author.Name = getString(am, "name")
-
-			if pic := normalizePicture(getString(am, "picture")); pic != "" {
-				author.Picture = pic
+	if v, ok := m["authors"]; ok {
+		if authList, ok := v.([]interface{}); ok {
+			for _, authItem := range authList {
+				author := AuthorInfo{Picture: defaultAvatar}
+				switch am := authItem.(type) {
+				case map[interface{}]interface{}:
+					name := fmt.Sprintf("%v", am["name"])
+					if name != "" && name != "<nil>" {
+						author.Name = name
+					}
+					if pic := normalizePicture(fmt.Sprintf("%v", am["picture"])); pic != "" {
+						author.Picture = pic
+					}
+				case map[string]interface{}:
+					author.Name = getString(am, "name")
+					if pic := normalizePicture(getString(am, "picture")); pic != "" {
+						author.Picture = pic
+					}
+				}
+				if author.Name != "" {
+					authors = append(authors, author)
+				}
 			}
 		}
 	}
 
-	if author.Name == "" || author.Name == "<nil>" {
+	// Fallback to single "author" field if "authors" is missing or empty
+	if len(authors) == 0 {
+		if v, ok := m["author"]; ok {
+			author := AuthorInfo{Picture: defaultAvatar}
+			switch am := v.(type) {
+			case map[interface{}]interface{}:
+				name := fmt.Sprintf("%v", am["name"])
+				if name != "" && name != "<nil>" {
+					author.Name = name
+				}
+				if pic := normalizePicture(fmt.Sprintf("%v", am["picture"])); pic != "" {
+					author.Picture = pic
+				}
+			case map[string]interface{}:
+				author.Name = getString(am, "name")
+				if pic := normalizePicture(getString(am, "picture")); pic != "" {
+					author.Picture = pic
+				}
+			}
+			if author.Name != "" {
+				authors = append(authors, author)
+			}
+		}
+	}
+
+	if len(authors) == 0 {
 		name, pic := getGitHubAuthor()
 		if name != "" {
-			author.Name = name
-		}
-		if pic != "" && (author.Picture == "" || author.Picture == defaultAvatar) {
-			author.Picture = pic
+			authors = append(authors, AuthorInfo{
+				Name:    name,
+				Picture: pic,
+			})
 		}
 	}
 
-	return author
+	if len(authors) == 0 {
+		authors = append(authors, AuthorInfo{
+			Name:    "Ultraviolet Team",
+			Picture: defaultAvatar,
+		})
+	}
+
+	return authors
 }
