@@ -14,8 +14,6 @@ ogImage:
 date: 2026-01-30
 ---
 
-![Confidential Computing for AI](/img/confidential-computing-meets-ai/confidential-computing-cover.png)
-
 In the race to adopt Large Language Models (LLMs), enterprises and developers face a critical dilemma: **how to leverage the power of state-of-the-art AI without compromising the privacy of sensitive data.**
 
 When you send a prompt to a traditional AI provider, you are trusting them not to log, read, or train on your data. But in the world of high-stakes finance, healthcare, and proprietary R&D, "trust us" isn't good enough. You need **mathematical proof** that your data is private.
