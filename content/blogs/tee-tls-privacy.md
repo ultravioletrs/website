@@ -11,7 +11,7 @@ authors:
   - name: Sammy Oina
     picture: https://avatars.githubusercontent.com/u/44265300?v=4
 tags: [confidential-computing, attestation, aTLS, cocos ai, security analysis, RATS]
-date: 2026-02-19
+date: 2026-02-27
 coverImage: "/img/securing-trust-rats-and-attested-tls/overview.png"
 ogImage:
     url: "/img/securing-trust-rats-and-attested-tls/overview.png"
