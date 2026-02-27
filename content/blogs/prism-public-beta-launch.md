@@ -69,5 +69,5 @@ The era of choosing between powerful AI and strict privacy is finally over. With
 
 **Learn More:**
 - 🌐 [Prism AI Website](https://prism.ultraviolet.rs/)
-- 📖 [Cocos AI Documentation](https://docs.cocos.ultraviolet.rs/)
+- 📖 [Cocos AI Documentation](https://cocos.ai/docs/)
 - 💜 [Ultraviolet RS](https://ultraviolet.rs/)

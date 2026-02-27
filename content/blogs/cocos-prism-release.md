@@ -195,6 +195,6 @@ Stay tuned for more innovations in the confidential computing space!
 ---
 
 **Learn More:**
-- [Cocos AI Documentation](https://docs.cocos.ultraviolet.rs)
+- [Cocos AI Documentation](https://cocos.ai/docs)
 - [Prism Documentation](https://prism.ultraviolet.rs/docs/)
 - [Ultraviolet RS](https://ultraviolet.rs)
