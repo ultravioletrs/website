@@ -357,11 +357,11 @@
 <p>The specific variant Cocos AI implements is <strong>intra-handshake attestation</strong>: the attestation evidence is embedded into the TLS handshake itself (inside the X.509 certificate), rather than exchanged in a separate protocol step.</p>
 <h2 id="how-cocos-ai-atls-works-today">How Cocos AI aTLS Works Today</h2>
 <h3 id="architecture-overview">Architecture Overview</h3>
-<p><img src="./architecture.png" alt="Cocos AI architecture" title="Cocos AI architecture"></p>
+<p><img src="/img/tls-tee-privacy/architecture.png" alt="Cocos AI architecture" title="Cocos AI architecture"></p>
 <p>The Agent runs inside a CVM (Confidential VM) protected by hardware-level memory encryption and isolation (AMD SEV-SNP or Intel TDX). A new TLS connection is established every time a command is issued via the Cocos AI CLI. Each connection generates a fresh ephemeral key pair and a fresh attestation report — there is no certificate reuse.</p>
 <h3 id="the-handshake-flow">The Handshake Flow</h3>
 <p>The complete aTLS handshake flow is illustrated below:</p>
-<p><img src="./atls.png" alt="aTLS flow" title="Attested TLS flow"></p>
+<p><img src="/img/tls-tee-privacy/atls.png" alt="aTLS flow" title="Attested TLS flow"></p>
 <p>And here is the detailed sequence of operations:</p>
 <pre><code class="language-mermaid">sequenceDiagram
     participant CLI as CLI (Relying Party)
