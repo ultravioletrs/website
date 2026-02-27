@@ -12,9 +12,9 @@ authors:
     picture: https://avatars.githubusercontent.com/u/44265300?v=4
 tags: [confidential-computing, attestation, aTLS, cocos ai, security analysis, RATS]
 date: 2026-02-19
-coverImage: "/img/tee-tls-privacy/atlas.png"
+coverImage: "/img/securing-trust-rats-and-attested-tls/overview.png"
 ogImage:
-    url: "/img/tee-tls-privacy/atlas.png"
+    url: "/img/securing-trust-rats-and-attested-tls/overview.png"
 ---
 
 ## Introduction
