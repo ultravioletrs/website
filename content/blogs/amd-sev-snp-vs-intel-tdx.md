@@ -1,9 +1,9 @@
 ---
 slug: amd-sev-snp-vs-intel-tdx
 title: "AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI"
-author:
-  name: "sammy oina"
-  picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
+authors:
+  - name: sammy oina
+    picture: https://avatars.githubusercontent.com/u/44265300?v=4
 tags: [security, confidential-computing, amd, intel, technical-deep-dive, "cube ai"]
 image: /img/amd-sev-snp-vs-intel-tdx/amd_sev_snp_vs_intel_tdx_cover.png
 coverImage: /img/amd-sev-snp-vs-intel-tdx/amd_sev_snp_vs_intel_tdx_cover.png

@@ -3,9 +3,9 @@ slug: securing-trust-rats-and-attested-tls
 title: "Securing Trust: RATS and Attested TLS (aTLS)"
 excerpt: "COCOS AI leverages modern attestation standards to prove the integrity and operational state of the platform."
 description: "Learn about attestation, attested TLS and IETF document defining how a system can prove its integrity and operational state."
-author:
-  name: "Jovan Djukic"
-  picture: "https://avatars.githubusercontent.com/u/7561155?v=4"
+authors:
+  - name: Jovan Djukic
+    picture: https://avatars.githubusercontent.com/u/7561155?v=4
 tags: [confidential-computing, attestation, aTLS, cocos ai]
 date: 2026-02-19
 coverImage: "/img/securing-trust-rats-and-attested-tls/overview.png"
