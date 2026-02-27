@@ -177,7 +177,7 @@ The attestation report is embedded into the X.509 certificate as a custom extens
 
 | Platform       | OID              |
 |:---------------|:-----------------|
-| SEV-SNP + vTPM | `2.99999.1.0`    |
+| SEV-SNP + TPM | `2.99999.1.0`    |
 | Azure CVM      | `2.99999.1.1`    |
 | Intel TDX      | `2.99999.1.2`    |
 
@@ -281,7 +281,7 @@ func (v *certificateVerifier) verifyCertificateExtension(
 
 The attestation policy is a JSON file that the relying party uses to enforce expectations about the CVM's state. It covers:
 
-- **vTPM PCR values** (SHA-256 and SHA-384): golden measurements for each PCR register, covering firmware, bootloader, kernel, and initrd.
+- **TPM PCR values** (SHA-256 and SHA-384): golden measurements for each PCR register, covering firmware, bootloader, kernel, and initrd.
 - **SEV-SNP report fields**: chip ID, family ID, image ID, launch measurement, minimum TCB/build versions, VMPL level, guest policy flags.
 - **Root of trust**: AMD product line, CRL checking configuration.
 
@@ -329,7 +329,7 @@ The critical gap: **there is no cryptographic binding between the attestation ev
 
 ### The Formal Analysis
 
-Sardar et al. analyzed all known intra-handshake attestation implementations using [ProVerif](https://bblanche.gitlabpages.inria.fr/proverif/), a symbolic security analysis tool. Their key findings, presented at [IETF SEAT meeting 124](https://mailarchive.ietf.org/arch/msg/seat/x3eQxFjQFJLceae6l4_NgXnmsDY/) and documented in [draft-jiang-seat-dynamic-attestation](https://datatracker.ietf.org/doc/draft-jiang-seat-dynamic-attestation/):
+Sardar et al. analyzed all known intra-handshake attestation implementations using [ProVerif](https://bblanche.gitlabpages.inria.fr/proverif/), a symbolic security analysis tool. Their key findings, presented at [IETF SEAT meeting 124](https://mailarchive.ietf.org/arch/msg/seat/x3eQxFjQFJLceae6l4_NgXnmsDY/) and documented in [draft-usama-seat-intra-vs-post](https://datatracker.ietf.org/doc/draft-usama-seat-intra-vs-post/):
 
 1. **All** analyzed binding mechanisms fail to achieve even Level 1 binding (correlation of Evidence to the shared DH secret).
 2. Any binding that involves the server's public key requires the **additional assumption** that the server's private key does not leak.
@@ -350,32 +350,32 @@ sequenceDiagram
     CLI->>Attacker: TLS ClientHello (SNI = nonce.nonce)
     
     Attacker->>Agent: Forward ClientHello to real Agent
-    Agent->>Agent: Generate ephemeral key pair (pk_A, sk_A)
-    Agent->>Agent: SHA3-512(pk_A ‖ nonce) → report_data
+    Agent->>Agent: Generate ephemeral key pair (pubEK, privEK)
+    Agent->>Agent: SHA3-512(pubEK ‖ nonce) → report_data
     Agent->>Agent: Get TEE attestation report
     Agent->>Agent: Create certificate with attestation
     Agent-->>Attacker: Certificate with valid attestation
     
-    Note over Attacker: If sk_A can be extracted from TEE<br/>(the critical assumption)
+    Note over Attacker: If privEK can be extracted from TEE<br/>(the critical assumption)
     
-    Attacker->>Attacker: Use stolen sk_A to complete TLS handshake
+    Attacker->>Attacker: Use stolen privEK to complete TLS handshake
     Attacker-->>CLI: ServerHello + Certificate (valid attestation!)
     
     Note over CLI: CLI verifies attestation: ✓ PASSES<br/>Nonce matches ✓ PubKey matches ✓<br/>TEE report valid ✓ Policy matches ✓
     
     CLI->>Attacker: Encrypted traffic (CLI thinks it talks to Agent)
-    Attacker->>Attacker: Decrypt with sk_A, read/modify data
+    Attacker->>Attacker: Decrypt with privEK, read/modify data
 ```
 
-The attack relies on the adversary being able to extract the Agent's ephemeral private key (`sk_A`). While TEEs are specifically designed to prevent this, the formal analysis correctly points out that our protocol's security **reduces entirely** to this single assumption. The TLS attestation extension does not add a separate layer of binding — if the key leaks, the attestation provides no additional protection.
+The attack relies on the adversary being able to extract the Agent's ephemeral private key (`privEK`). While TEEs are specifically designed to prevent this, the formal analysis correctly points out that our protocol's security **reduces entirely** to this single assumption. The TLS attestation extension does not add a separate layer of binding — if the key leaks, the attestation provides no additional protection.
 
 ### Why This Matters
 
 This is not merely a theoretical concern. TEE key extraction has been demonstrated in practice:
 
-- **Side-channel attacks** on AMD SEV (e.g., [SEVered](https://arxiv.org/abs/1805.09604), [CacheOut](https://cacheoutattack.com/)) have shown that host-level attackers can sometimes extract secrets from TEE memory under specific conditions.
+- **Side-channel attacks** on AMD SEV (e.g., [SEVered](https://arxiv.org/abs/1805.09604)) have shown that host-level attackers can sometimes extract secrets from TEE memory under specific conditions.
+- **TEE vulnerability research** datasets such as [TEE.fail](https://tee.fail/) document a wide range of attacks across different hardware implementations.
 - **Firmware vulnerabilities** in TEE implementations could potentially expose in-memory keys to the host.
-- **VMPL escalation** bugs could allow a higher-privilege VMPL layer to read lower-layer memory.
 
 If the private key never leaves the TEE, our protocol is secure. But a defense-in-depth approach should not stake everything on a single assumption.
 
@@ -383,7 +383,7 @@ If the private key never leaves the TEE, our protocol is secure. But a defense-i
 
 Beyond the fundamental binding gap, the IETF analysis flagged two implementation-level concerns specific to Cocos AI:
 
-1. **SNI abuse**: We use the TLS Server Name Indication extension to carry the attestation nonce. SNI was designed for virtual hosting (routing requests to the correct server based on hostname). Using it to carry a 64-byte hex-encoded nonce is non-standard. While it works — the CVM runs only the Agent, so hostname routing is unnecessary — it could cause issues with middleboxes, TLS-intercepting proxies, or future TLS implementations that validate SNI format. The [draft-ietf-tls-attestation](https://datatracker.ietf.org/doc/draft-ietf-tls-attestation/) proposal defines a proper TLS extension for attestation evidence, which would be the correct mechanism.
+1. **SNI abuse**: We use the TLS Server Name Indication extension to carry the attestation nonce. SNI was designed for virtual hosting (routing requests to the correct server based on hostname). Using it to carry a 64-byte hex-encoded nonce is non-standard. While it works — the CVM runs only the Agent, so hostname routing is unnecessary — it could cause issues with middleboxes, TLS-intercepting proxies, or future TLS implementations that validate SNI format. The [draft-fossati-seat-expat](https://datatracker.ietf.org/doc/draft-fossati-seat-expat/) proposal (EXPAT) defines a proper mechanism for transporting evidence and expected evidence using exported authenticators, which would be a more robust alternative to our current intra-handshake approach. Alternatively, [draft-fossati-seat-early-attestation](https://datatracker.ietf.org/doc/draft-fossati-seat-early-attestation/) defines a proper TLS extension for attestation evidence during the initial handshake, which would also be a more standard mechanism than SNI abuse.
 
 2. **`InsecureSkipVerify: true`**: We disable Go's built-in certificate verification and rely entirely on our custom callback. While this is necessary for self-signed attested certificates, it means any bug in our custom verification logic would leave the connection completely unverified. CA-signed mode partially mitigates this since the CA chain provides an additional trust anchor.
 
@@ -396,7 +396,7 @@ The table below summarizes how Cocos AI compares to other implementations analyz
 | **Cocos AI** | `SHA3-512(pubKey ‖ attestation_nonce)` | SEV-SNP, TDX | SNI extension | Yes |
 | **Meta Private Processing** | Client's TLS nonce in report_data | SEV-SNP | TLS nonce (no separate attestation nonce) | Yes (also lacks freshness) |
 | **Edgeless Contrast** | `Hash(attestation_nonce ‖ pubKey)` | Intel TDX | ALPN extension | Yes |
-| **CCC PoC** | Per draft-fossati-tls-attestation | Various | TLS extension | Yes |
+| **CCC PoC** | Per draft-fossati-seat-early-attestation | Various | TLS extension | Yes |
 | **Proposed Mitigation (Sardar et al.)** | Cryptographic binder in CertificateVerify | Any | TLS extension | Achieves Level 2 |
 
 Notable: Meta's implementation was audited by Trail of Bits, who did not find the relay attack. As Sardar et al. note, no formal methods were used in that review, underscoring the value of symbolic analysis tools like ProVerif.
@@ -419,9 +419,9 @@ We take these findings seriously and are committed to improving the security gua
 
 ### Short-Term Mitigations
 
-1. **Adopt a dedicated TLS extension for nonce delivery**: Replace the SNI-based nonce mechanism with a proper TLS extension, aligning with [draft-ietf-tls-attestation](https://datatracker.ietf.org/doc/draft-ietf-tls-attestation/) as it matures. This eliminates the "SNI abuse" concern and improves interoperability.
+1. **Adopt a dedicated TLS extension for nonce delivery**: Replace the SNI-based nonce mechanism with a proper TLS extension, aligning with [draft-fossati-seat-early-attestation](https://datatracker.ietf.org/doc/draft-fossati-seat-early-attestation/) as it matures. This eliminates the "SNI abuse" concern and improves interoperability.
 
-2. **Strengthen TEE key protection**: Ensure ephemeral private keys are generated and used entirely within the TEE boundary, with explicit memory barriers preventing key material from being paged out. Leverage hardware-bound key storage where available (e.g., vTPM-based key sealing).
+2. **Strengthen TEE key protection**: Ensure ephemeral private keys are generated and used entirely within the TEE boundary, with explicit memory barriers preventing key material from being paged out. Leverage hardware-bound key storage where available (e.g., TPM-based key sealing).
 
 3. **Comprehensive CI/CD attestation testing**: Expand our test suite to verify the full attestation chain under adversarial conditions, including malformed nonces, expired reports, and tampered extensions.
 

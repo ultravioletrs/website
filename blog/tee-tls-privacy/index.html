@@ -326,7 +326,7 @@
 
         <div class="markdown-content"><h2 id="introduction">Introduction</h2>
 <p>Cocos AI is a platform that leverages Confidential Computing and Trusted Execution Environments (TEEs) to enable secure multiparty computation (SMPC). Within its architecture, the Agent operates inside a Confidential VM (CVM) — powered by AMD SEV-SNP or Intel TDX — and establishes an attested TLS (aTLS) connection with the CLI to provide both encrypted communication and runtime integrity guarantees.</p>
-<p>In January 2026, Dr. Muhammad Usama Sardar (TU Dresden), Dr. Viacheslav Dubeyko (IBM), and Prof. Jean-Marie Jacquet (University of Namur) <a href="https://mailarchive.ietf.org/arch/msg/seat/x3eQxFjQFJLceae6l4_NgXnmsDY/">presented findings to the IETF SEAT working group</a> demonstrating that <strong>all</strong> current intra-handshake attested TLS implementations — including Cocos AI, Meta's Private Processing, Edgeless Systems Contrast, and the CCC proof-of-concept — are vulnerable to relay attacks. Their formal analysis, conducted using <a href="https://bblanche.gitlabpages.inria.fr/proverif/">ProVerif</a>, proved that none of these implementations achieve even the weakest level of binding between the attestation evidence and the TLS connection itself.</p>
+<p>In January 2026, Dr. Muhammad Usama Sardar (TU Dresden), Dr. Viacheslav Dubeyko (IBM), and Prof. Jean-Marie Jacquet (University of Namur) — who are active contributors to the IETF SEAT working group — <a href="https://mailarchive.ietf.org/arch/msg/seat/x3eQxFjQFJLceae6l4_NgXnmsDY/">presented findings</a> demonstrating that <strong>all</strong> current intra-handshake attested TLS implementations — including Cocos AI, Meta's Private Processing, Edgeless Systems Contrast, and the CCC proof-of-concept — are vulnerable to relay attacks. Their formal analysis, conducted using <a href="https://bblanche.gitlabpages.inria.fr/proverif/">ProVerif</a>, proved that none of these implementations achieve even the weakest level of binding between the attestation evidence and the TLS connection itself.</p>
 <p>This post is our technical response. We explain exactly how Cocos AI's aTLS works today, we acknowledge the limitations that the formal analysis exposed, we analyze the gap between our current binding mechanism and the state of the art, and we lay out our plan to address these shortcomings.</p>
 <h2 id="background-rats-and-attested-tls">Background: RATS and Attested TLS</h2>
 <h3 id="the-rats-architecture">The RATS Architecture</h3>
@@ -351,7 +351,7 @@
         V2 --&gt;|Attestation Result| RP2
     end
 </code></pre>
-<p>Cocos AI uses the <strong>background-check model</strong>: the Agent (Attester) sends Evidence directly to the CLI (Relying Party), and the CLI performs verification locally using reference values from an attestation policy file.</p>
+<p>Cocos AI uses the <strong>background-check model</strong>: the Agent (Attester) sends Evidence directly to the CLI (Relying Party and Verifier), and the CLI performs verification locally using reference values from an attestation policy file.</p>
 <h3 id="what-is-attested-tls">What Is Attested TLS?</h3>
 <p>Attested TLS (aTLS) enriches a standard TLS handshake with attestation evidence. The goal is to let a client verify not just the identity of the server (as in standard TLS), but also the <strong>integrity and runtime state</strong> of the execution environment the server runs in. For Confidential Computing, this means proving the server is running inside a genuine TEE with the expected firmware, kernel, and application measurements.</p>
 <p>The specific variant Cocos AI implements is <strong>intra-handshake attestation</strong>: the attestation evidence is embedded into the TLS handshake itself (inside the X.509 certificate), rather than exchanged in a separate protocol step.</p>
@@ -364,7 +364,7 @@
 <p><img src="./atls.png" alt="aTLS flow" title="Attested TLS flow"></p>
 <p>And here is the detailed sequence of operations:</p>
 <pre><code class="language-mermaid">sequenceDiagram
-    participant CLI as CLI (Relying Party)
+    participant CLI as CLI (Relying Party and Verifier)
     participant Agent as Agent (inside CVM/TEE)
     participant TEE as TEE Hardware (SEV-SNP / TDX)
     
@@ -434,7 +434,7 @@
 </span></span><span style="display:flex;"><span>    hashNonce := sha3.Sum512(teeNonce)
 </span></span><span style="display:flex;"><span>    <span style="color:#fff;font-weight:bold">return</span> p.provider.Attestation(hashNonce[:], hashNonce[:<span style="color:#ff0;font-weight:bold">32</span>])
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre><p>For AMD SEV-SNP, the <code>Attestation()</code> call results in a hardware-signed report via the SEV guest firmware, with the certificate chain (VCEK → ASK → ARK) fetched from AMD's Key Distribution Service. For Intel TDX, it produces a TDX Quote signed by the platform's quoting enclave. The critical property is that the <code>report_data</code> field is included in the signed portion of the report and cannot be tampered with.</p>
+</span></span></code></pre><p>For AMD SEV-SNP, the <code>Attestation()</code> call results in a hardware-signed report the SEV-SNP firmware/PSP, with the certificate chain (ARK → ASK → VCEK) fetched from AMD's Key Distribution Service. For Intel TDX, it produces a TDX Quote signed by the platform's quoting enclave. The critical property is that the <code>report_data</code> field is included in the signed portion of the report and cannot be tampered with.</p>
 <h3 id="step-4-certificate-creation-with-attestation-extension">Step 4: Certificate Creation with Attestation Extension</h3>
 <p>The attestation report is embedded into the X.509 certificate as a custom extension identified by a platform-specific OID:</p>
 <table>
@@ -446,7 +446,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">SEV-SNP + vTPM</td>
+<td style="text-align:left">SEV-SNP + TPM</td>
 <td style="text-align:left"><code>2.99999.1.0</code></td>
 </tr>
 <tr>
@@ -536,7 +536,7 @@
 </span></span></code></pre><h3 id="what-the-attestation-policy-validates">What the Attestation Policy Validates</h3>
 <p>The attestation policy is a JSON file that the relying party uses to enforce expectations about the CVM's state. It covers:</p>
 <ul>
-<li><strong>vTPM PCR values</strong> (SHA-256 and SHA-384): golden measurements for each PCR register, covering firmware, bootloader, kernel, and initrd.</li>
+<li><strong>TPM PCR values</strong> (SHA-256 and SHA-384): golden measurements for each PCR register, covering firmware, bootloader, kernel, and initrd.</li>
 <li><strong>SEV-SNP report fields</strong>: chip ID, family ID, image ID, launch measurement, minimum TCB/build versions, VMPL level, guest policy flags.</li>
 <li><strong>Root of trust</strong>: AMD product line, CRL checking configuration.</li>
 </ul>
@@ -572,7 +572,7 @@
 <p>The critical gap: <strong>there is no cryptographic binding between the attestation evidence and the TLS session</strong>. The attestation proves that a legitimate TEE generated a specific public key, but it does not prove that this public key is the one actually used in the Diffie-Hellman key exchange that establishes the TLS session keys.</p>
 <h2 id="limitations-and-the-relay-attack">Limitations and the Relay Attack</h2>
 <h3 id="the-formal-analysis">The Formal Analysis</h3>
-<p>Sardar et al. analyzed all known intra-handshake attestation implementations using <a href="https://bblanche.gitlabpages.inria.fr/proverif/">ProVerif</a>, a symbolic security analysis tool. Their key findings, presented at <a href="https://mailarchive.ietf.org/arch/msg/seat/x3eQxFjQFJLceae6l4_NgXnmsDY/">IETF SEAT meeting 124</a> and documented in <a href="https://datatracker.ietf.org/doc/draft-jiang-seat-dynamic-attestation/">draft-jiang-seat-dynamic-attestation</a>:</p>
+<p>Sardar et al. analyzed all known intra-handshake attestation implementations using <a href="https://bblanche.gitlabpages.inria.fr/proverif/">ProVerif</a>, a symbolic security analysis tool. Their key findings, presented at <a href="https://mailarchive.ietf.org/arch/msg/seat/x3eQxFjQFJLceae6l4_NgXnmsDY/">IETF SEAT meeting 124</a> and documented in <a href="https://datatracker.ietf.org/doc/draft-usama-seat-intra-vs-post/">draft-usama-seat-intra-vs-post</a>:</p>
 <ol>
 <li><strong>All</strong> analyzed binding mechanisms fail to achieve even Level 1 binding (correlation of Evidence to the shared DH secret).</li>
 <li>Any binding that involves the server's public key requires the <strong>additional assumption</strong> that the server's private key does not leak.</li>
@@ -581,7 +581,7 @@
 <h3 id="the-relay-attack-scenario">The Relay Attack Scenario</h3>
 <p>Here is the concrete attack that the formal analysis proves is possible:</p>
 <pre><code class="language-mermaid">sequenceDiagram
-    participant CLI as CLI (Relying Party)
+    participant CLI as CLI (Relying Party and Verifier)
     participant Attacker as Attacker (Untrusted Host)
     participant Agent as Legitimate Agent (in TEE)
     
@@ -590,36 +590,36 @@
     CLI-&gt;&gt;Attacker: TLS ClientHello (SNI = nonce.nonce)
     
     Attacker-&gt;&gt;Agent: Forward ClientHello to real Agent
-    Agent-&gt;&gt;Agent: Generate ephemeral key pair (pk_A, sk_A)
-    Agent-&gt;&gt;Agent: SHA3-512(pk_A ‖ nonce) → report_data
+    Agent-&gt;&gt;Agent: Generate ephemeral key pair (pubEK, privEK)
+    Agent-&gt;&gt;Agent: SHA3-512(pubEK ‖ nonce) → report_data
     Agent-&gt;&gt;Agent: Get TEE attestation report
     Agent-&gt;&gt;Agent: Create certificate with attestation
     Agent--&gt;&gt;Attacker: Certificate with valid attestation
     
-    Note over Attacker: If sk_A can be extracted from TEE&lt;br/&gt;(the critical assumption)
+    Note over Attacker: If privEK can be extracted from TEE&lt;br/&gt;(the critical assumption)
     
-    Attacker-&gt;&gt;Attacker: Use stolen sk_A to complete TLS handshake
+    Attacker-&gt;&gt;Attacker: Use stolen privEK to complete TLS handshake
     Attacker--&gt;&gt;CLI: ServerHello + Certificate (valid attestation!)
     
     Note over CLI: CLI verifies attestation: ✓ PASSES&lt;br/&gt;Nonce matches ✓ PubKey matches ✓&lt;br/&gt;TEE report valid ✓ Policy matches ✓
     
     CLI-&gt;&gt;Attacker: Encrypted traffic (CLI thinks it talks to Agent)
-    Attacker-&gt;&gt;Attacker: Decrypt with sk_A, read/modify data
+    Attacker-&gt;&gt;Attacker: Decrypt with privEK, read/modify data
 </code></pre>
-<p>The attack relies on the adversary being able to extract the Agent's ephemeral private key (<code>sk_A</code>). While TEEs are specifically designed to prevent this, the formal analysis correctly points out that our protocol's security <strong>reduces entirely</strong> to this single assumption. The TLS attestation extension does not add a separate layer of binding — if the key leaks, the attestation provides no additional protection.</p>
+<p>The attack relies on the adversary being able to extract the Agent's ephemeral private key (<code>privEK</code>). While TEEs are specifically designed to prevent this, the formal analysis correctly points out that our protocol's security <strong>reduces entirely</strong> to this single assumption. The TLS attestation extension does not add a separate layer of binding — if the key leaks, the attestation provides no additional protection.</p>
 <h3 id="why-this-matters">Why This Matters</h3>
 <p>This is not merely a theoretical concern. TEE key extraction has been demonstrated in practice:</p>
 <ul>
-<li><strong>Side-channel attacks</strong> on AMD SEV (e.g., <a href="https://arxiv.org/abs/1805.09604">SEVered</a>, <a href="https://cacheoutattack.com/">CacheOut</a>) have shown that host-level attackers can sometimes extract secrets from TEE memory under specific conditions.</li>
+<li><strong>Side-channel attacks</strong> on AMD SEV (e.g., <a href="https://arxiv.org/abs/1805.09604">SEVered</a>) have shown that host-level attackers can sometimes extract secrets from TEE memory under specific conditions.</li>
+<li><strong>TEE vulnerability research</strong> datasets such as <a href="https://tee.fail/">TEE.fail</a> document a wide range of attacks across different hardware implementations.</li>
 <li><strong>Firmware vulnerabilities</strong> in TEE implementations could potentially expose in-memory keys to the host.</li>
-<li><strong>VMPL escalation</strong> bugs could allow a higher-privilege VMPL layer to read lower-layer memory.</li>
 </ul>
 <p>If the private key never leaves the TEE, our protocol is secure. But a defense-in-depth approach should not stake everything on a single assumption.</p>
 <h3 id="implementation-specific-issues">Implementation-Specific Issues</h3>
 <p>Beyond the fundamental binding gap, the IETF analysis flagged two implementation-level concerns specific to Cocos AI:</p>
 <ol>
 <li>
-<p><strong>SNI abuse</strong>: We use the TLS Server Name Indication extension to carry the attestation nonce. SNI was designed for virtual hosting (routing requests to the correct server based on hostname). Using it to carry a 64-byte hex-encoded nonce is non-standard. While it works — the CVM runs only the Agent, so hostname routing is unnecessary — it could cause issues with middleboxes, TLS-intercepting proxies, or future TLS implementations that validate SNI format. The <a href="https://datatracker.ietf.org/doc/draft-ietf-tls-attestation/">draft-ietf-tls-attestation</a> proposal defines a proper TLS extension for attestation evidence, which would be the correct mechanism.</p>
+<p><strong>SNI abuse</strong>: We use the TLS Server Name Indication extension to carry the attestation nonce. SNI was designed for virtual hosting (routing requests to the correct server based on hostname). Using it to carry a 64-byte hex-encoded nonce is non-standard. While it works — the CVM runs only the Agent, so hostname routing is unnecessary — it could cause issues with middleboxes, TLS-intercepting proxies, or future TLS implementations that validate SNI format. The <a href="https://datatracker.ietf.org/doc/draft-fossati-seat-expat/">draft-fossati-seat-expat</a> proposal (EXPAT) defines a proper mechanism for transporting evidence and expected evidence using exported authenticators, which would be a more robust alternative to our current intra-handshake approach. Alternatively, <a href="https://datatracker.ietf.org/doc/draft-fossati-seat-early-attestation/">draft-fossati-seat-early-attestation</a> defines a proper TLS extension for attestation evidence during the initial handshake, which would also be a more standard mechanism than SNI abuse.</p>
 </li>
 <li>
 <p><strong><code>InsecureSkipVerify: true</code></strong>: We disable Go's built-in certificate verification and rely entirely on our custom callback. While this is necessary for self-signed attested certificates, it means any bug in our custom verification logic would leave the connection completely unverified. CA-signed mode partially mitigates this since the CA chain provides an additional trust anchor.</p>
@@ -661,7 +661,7 @@
 </tr>
 <tr>
 <td style="text-align:left"><strong>CCC PoC</strong></td>
-<td style="text-align:left">Per draft-fossati-tls-attestation</td>
+<td style="text-align:left">Per draft-fossati-seat-early-attestation</td>
 <td style="text-align:left">Various</td>
 <td style="text-align:left">TLS extension</td>
 <td style="text-align:left">Yes</td>
@@ -690,10 +690,10 @@
 <h3 id="short-term-mitigations">Short-Term Mitigations</h3>
 <ol>
 <li>
-<p><strong>Adopt a dedicated TLS extension for nonce delivery</strong>: Replace the SNI-based nonce mechanism with a proper TLS extension, aligning with <a href="https://datatracker.ietf.org/doc/draft-ietf-tls-attestation/">draft-ietf-tls-attestation</a> as it matures. This eliminates the &quot;SNI abuse&quot; concern and improves interoperability.</p>
+<p><strong>Adopt a dedicated TLS extension for nonce delivery</strong>: Replace the SNI-based nonce mechanism with a proper TLS extension, aligning with <a href="https://datatracker.ietf.org/doc/draft-fossati-seat-early-attestation/">draft-fossati-seat-early-attestation</a> as it matures. This eliminates the &quot;SNI abuse&quot; concern and improves interoperability.</p>
 </li>
 <li>
-<p><strong>Strengthen TEE key protection</strong>: Ensure ephemeral private keys are generated and used entirely within the TEE boundary, with explicit memory barriers preventing key material from being paged out. Leverage hardware-bound key storage where available (e.g., vTPM-based key sealing).</p>
+<p><strong>Strengthen TEE key protection</strong>: Ensure ephemeral private keys are generated and used entirely within the TEE boundary, with explicit memory barriers preventing key material from being paged out. Leverage hardware-bound key storage where available (e.g., TPM-based key sealing).</p>
 </li>
 <li>
 <p><strong>Comprehensive CI/CD attestation testing</strong>: Expand our test suite to verify the full attestation chain under adversarial conditions, including malformed nonces, expired reports, and tampered extensions.</p>
@@ -702,7 +702,7 @@
 <h3 id="medium-term-achieving-level-2-binding">Medium-Term: Achieving Level 2 Binding</h3>
 <ol start="4">
 <li>
-<p><strong>Implement the CertificateVerify-based binder</strong>: Adopt the mitigation proposed by Sardar et al. — a cryptographic binder in the <code>CertificateVerify</code> message that ties the attestation evidence to the TLS handshake transcript. This would achieve Level 2 binding (correlation to client's handshake traffic key), closing the relay attack vector.</p>
+<p><strong>Implement the CertificateVerify-based binder</strong>: Adopt the mitigation proposed by Sardar et al. — a cryptographic binder in the <code>CertificateVerify</code> message that ties the attestation evidence to the TLS handshake transcript. This approach is being standardized within the SEAT working group and achieves Level 2 binding (correlation to client's handshake traffic key), closing the relay attack vector.</p>
 </li>
 <li>
 <p><strong>Contribute to IETF standardization</strong>: Actively participate in the SEAT working group to help standardize the binding mechanism, ensuring interoperability across implementations.</p>
@@ -730,7 +730,7 @@
 <h2 id="conclusion">Conclusion</h2>
 <p>Attested TLS is a powerful concept, but the formal analysis by Sardar et al. demonstrates that the current generation of implementations — ours included — have a fundamental gap: the attestation evidence is not cryptographically bound to the TLS session. This means the security of these implementations reduces to the assumption that the TEE's memory isolation is perfect.</p>
 <p>We believe transparency about these limitations is essential. Cocos AI's aTLS implementation provides strong attestation and ephemeral key management within the constraints of the current approach, but it does not yet achieve the binding guarantees that a formally verified protocol would provide.</p>
-<p>We are actively working on adopting the cryptographic binder proposed by the SEAT working group, which would achieve Level 2 binding and close the relay attack vector. We will also contribute to the ongoing IETF standardization efforts to ensure that the entire ecosystem converges on a secure, interoperable solution.</p>
+<p>We are actively working on adopting the cryptographic binder proposed by Sardar et al. within the SEAT working group, which would achieve Level 2 binding and close the relay attack vector. We will also contribute to the ongoing IETF standardization efforts to ensure that the entire ecosystem converges on a secure, interoperable solution.</p>
 <p>In the meantime, we encourage all users of Confidential Computing platforms to:</p>
 <ol>
 <li>Keep TEE firmware and microcode up to date to minimize the risk of key extraction.</li>
