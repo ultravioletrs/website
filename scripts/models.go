@@ -47,7 +47,7 @@ type AuthorInfo struct {
 type Frontmatter struct {
 	Title       string     `yaml:"title"`
 	Date        string     `yaml:"date"`
-	Author      AuthorInfo `yaml:"author"`
+	Authors     []AuthorInfo `yaml:"authors"`
 	Category    string     `yaml:"category"`
 	Tags        []string   `yaml:"tags"`
 	Description string     `yaml:"description"`

@@ -3,9 +3,9 @@ slug: prism-public-beta-launch
 title: "Prism AI Public Beta: Empowering Secure AI Collaboration"
 excerpt: "We are thrilled to announce the public beta release of Prism AI, our confidential computing platform for secure AI collaboration. Build and deploy privacy-preserving AI with hardware-verified security."
 description: "Discover Prism AI, the web-based SaaS platform for secure, collaborative AI workloads. Learn how Prism AI leverages Trusted Execution Environments (TEEs) to protect sensitive data and algorithms."
-author:
-  name: "sammy oina"
-  picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
+authors:
+  - name: sammy oina
+    picture: https://avatars.githubusercontent.com/u/44265300?v=4
 tags: [confidential-computing, ai, privacy, "prism ai", beta-launch]
 date: 2026-02-12
 image: /img/prism-beta-launch-cover.png
@@ -69,5 +69,5 @@ The era of choosing between powerful AI and strict privacy is finally over. With
 
 **Learn More:**
 - 🌐 [Prism AI Website](https://prism.ultraviolet.rs/)
-- 📖 [Cocos AI Documentation](https://docs.cocos.ultraviolet.rs/)
+- 📖 [Cocos AI Documentation](https://cocos.ai/docs/)
 - 💜 [Ultraviolet RS](https://ultraviolet.rs/)
