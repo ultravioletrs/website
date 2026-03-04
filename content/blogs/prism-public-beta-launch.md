@@ -12,7 +12,7 @@ image: /img/prism-beta-launch-cover.png
 coverImage: /img/prism-beta-launch-cover.png
 ogImage:
   url: /img/prism-beta-launch-cover.png
-featured: true
+featured: false
 category: announcement
 ---
 

@@ -5,24 +5,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI - Ultraviolet</title>
-  <meta name="title" content="AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI - Ultraviolet" />
-  <meta name="description" content="" />
+  <title>Cube AI Public Beta: The Future of Confidential LLM Inference is Here - Ultraviolet</title>
+  <meta name="title" content="Cube AI Public Beta: The Future of Confidential LLM Inference is Here - Ultraviolet" />
+  <meta name="description" content="Discover Cube AI, the open-source framework by Ultraviolet for secure, agentic LLM inference. Learn how we use AMD SEV-SNP and Intel TDX to secure vLLM and Ollama deployments." />
 
-  <link rel="canonical" href="https://www.ultraviolet.rs/blog/amd-sev-snp-vs-intel-tdx/" />
+  <link rel="canonical" href="https://www.ultraviolet.rs/blog/cube-ai-public-beta-launch/" />
 
   <meta property="og:type" content="article" />
   <meta property="og:site_name" content="Ultraviolet" />
-  <meta property="og:url" content="https://www.ultraviolet.rs/blog/amd-sev-snp-vs-intel-tdx" />
-  <meta property="og:title" content="AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI" />
-  <meta property="og:description" content="" />
-  <meta property="og:image" content="https://www.ultraviolet.rs" />
+  <meta property="og:url" content="https://www.ultraviolet.rs/blog/cube-ai-public-beta-launch" />
+  <meta property="og:title" content="Cube AI Public Beta: The Future of Confidential LLM Inference is Here" />
+  <meta property="og:description" content="Discover Cube AI, the open-source framework by Ultraviolet for secure, agentic LLM inference. Learn how we use AMD SEV-SNP and Intel TDX to secure vLLM and Ollama deployments." />
+  <meta property="og:image" content="https://www.ultraviolet.rs/img/cube-beta-launch-cover.png" />
 
   
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI" />
-  <meta name="twitter:description" content="" />
-  <meta name="twitter:image" content="https://www.ultraviolet.rs" />
+  <meta name="twitter:title" content="Cube AI Public Beta: The Future of Confidential LLM Inference is Here" />
+  <meta name="twitter:description" content="Discover Cube AI, the open-source framework by Ultraviolet for secure, agentic LLM inference. Learn how we use AMD SEV-SNP and Intel TDX to secure vLLM and Ollama deployments." />
+  <meta name="twitter:image" content="https://www.ultraviolet.rs/img/cube-beta-launch-cover.png" />
 
 
   
@@ -30,14 +30,14 @@
       {
         "@context": "https://schema.org",
         "@type": "BlogPosting",
-        "headline": "AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI",
-        "image": "https:\/\/www.ultraviolet.rs\/img\/amd-sev-snp-vs-intel-tdx\/amd_sev_snp_vs_intel_tdx_cover.png",
-        "datePublished": "2026-02-24",
+        "headline": "Cube AI Public Beta: The Future of Confidential LLM Inference is Here",
+        "image": "https:\/\/www.ultraviolet.rs\/img\/cube-beta-launch-cover.png",
+        "datePublished": "2026-03-04",
         "author": {
           "@type": "Person",
           "name": "sammy oina"
         },
-        "description": ""
+        "description": "Discover Cube AI, the open-source framework by Ultraviolet for secure, agentic LLM inference. Learn how we use AMD SEV-SNP and Intel TDX to secure vLLM and Ollama deployments."
       }
     </script>
 
@@ -287,11 +287,11 @@
         </div>
 
         <div class="mb-3">
-          <span class="badge bg-primary fs-6"></span>
+          <span class="badge bg-success fs-6">announcement</span>
           
         </div>
 
-        <h1 class="display-4 fw-bold mb-4">AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI</h1>
+        <h1 class="display-4 fw-bold mb-4">Cube AI Public Beta: The Future of Confidential LLM Inference is Here</h1>
 
         <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
           <div class="d-flex align-items-center avatar-group">
@@ -306,138 +306,67 @@
               sammy oina
             </div>
             <div class="text-muted">
-              February 24, 2026 · 4 min read
+              March 04, 2026 · 4 min read
             </div>
           </div>
         </div>
 
         
-        <img src="/img/amd-sev-snp-vs-intel-tdx/amd_sev_snp_vs_intel_tdx_cover.png" alt="AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI" class="img-fluid rounded mb-5 w-100 shadow-sm" loading="lazy"
+        <img src="/img/cube-beta-launch-cover.png" alt="Cube AI Public Beta: The Future of Confidential LLM Inference is Here" class="img-fluid rounded mb-5 w-100 shadow-sm" loading="lazy"
           onerror="this.style.display = 'none'" />
         
 
-        <div class="markdown-content"><p>In the rapidly evolving landscape of <a href="/blog/confidential-computing-meets-ai">Confidential Computing</a>, hardware-based isolation is the foundation of trust. For security engineers and infrastructure teams, understanding the underlying Trusted Execution Environment (TEE) technologies is crucial for deploying secure AI workloads.</p>
-<p>Cube AI is designed to run seamlessly on the two leading hardware-based TEE platforms: <strong>AMD SEV-SNP</strong> and <strong>Intel TDX</strong>.</p>
-<p>This post provides a technical comparison of these technologies and explains how Cube AI abstracts their complexities to provide a unified, secure platform for your AI models.</p>
+        <div class="markdown-content"><p>The maturation of generative artificial intelligence has arrived at a structural impasse. While Large Language Models (LLMs) offer unprecedented cognitive capabilities, their deployment within enterprise environments is fundamentally constrained by a crisis of digital sovereignty and data privacy.</p>
+<p>Organizations have been forced into a binary choice: sacrifice proprietary data and intellectual property to public cloud providers or forego the advantages of cutting-edge AI. Today, that choice is obsolete.</p>
+<p>We are incredibly excited to announce the <strong>Public Beta of Cube AI</strong>, an open-source framework developed by Ultraviolet that pioneers a &quot;Confidential-by-Design&quot; architecture. By leveraging hardware-based Trusted Execution Environments (TEEs), Cube AI secures the entire AI inference lifecycle.</p>
 <!-- raw HTML omitted -->
-<h2 id="overview-the-hardware-roots-of-trust">Overview: The Hardware Roots of Trust</h2>
-<p>Both AMD and Intel have developed robust technologies to solve the same problem: <strong>protecting data in use from the host infrastructure</strong>. However, they approach the architecture slightly differently.</p>
-<h3 id="amd-sev-snp-secure-encrypted-virtualization---secure-nested-paging">AMD SEV-SNP (Secure Encrypted Virtualization - Secure Nested Paging)</h3>
-<p>AMD SEV-SNP is the third generation of AMD's confidential computing technology. It builds upon the memory encryption of the original SEV and the register protection of SEV-ES.</p>
+<h2 id="the-imperative-of-confidential-computing">The Imperative of Confidential Computing</h2>
+<p>Traditional security models focus on data at rest and data in transit. However, the computational nature of LLMs requires data to be &quot;in use,&quot; which traditionally necessitates decryption within the system's memory. This moment of decryption creates a critical vulnerability: host operating systems, hypervisors, and cloud providers can potentially access sensitive prompts, model weights, and intermediate states.</p>
+<p>Confidential computing addresses this through <strong>Trusted Execution Environments (TEEs)</strong>. Cube AI utilizes these secure enclaves to create a hardware-enforced perimeter around the AI inference engine, shielding it from unauthorized access—even if the host environment is fully compromised.</p>
+<h3 id="hardware-rooted-trust">Hardware-Rooted Trust</h3>
+<p>Cube AI provides software enablement for leading TEE architectures: <strong><a href="/blog/amd-sev-snp-vs-intel-tdx">AMD SEV-SNP and Intel TDX</a></strong>. By integrating with Buildroot and custom Linux kernels, we minimize the Trusted Computing Base (TCB), thereby significantly reducing the attack surface.</p>
+<p>To achieve this deep hardware integration, Cube AI relies on the open-source <strong><a href="https://cocos.ai">Cocos AI</a></strong> framework—another flagship platform from Ultraviolet. Cocos AI provisions the secure <strong>Hardware Abstraction Layer (HAL)</strong> and manages the intricate <strong>Remote Attestation</strong> protocols. By leveraging Cocos, a client can cryptographically verify that the AI model is running inside a genuine hardware enclave with an unmodified software configuration. This establishes true &quot;Zero Trust&quot; at the hardware level.</p>
+<h2 id="architectural-innovation-the-cube-ai-stack">Architectural Innovation: The Cube AI Stack</h2>
+<p>Cube AI is not merely a wrapper around existing LLM backends; it is a multi-tenant, microservices-based framework designed for scalability and secure governance.</p>
+<h3 id="multi-tenancy-and-domain-isolation">Multi-Tenancy and Domain Isolation</h3>
+<p>At the heart of the platform's scalability is the <strong>SuperMQ</strong> microservices architecture. It handles identity management natively and ensures that each domain acts as a strictly isolated workspace, preventing data leakage between different departments or organizations.</p>
+<p><img src="https://cube.ultraviolet.rs/img/ui/domain-overview.png" alt="Domain Overview UI">
+<img src="https://cube.ultraviolet.rs/img/ui/routes.png" alt="Routes Management UI"></p>
+<h3 id="high-performance-inference-backends">High-Performance Inference Backends</h3>
+<p>We support two primary <a href="/blog/vllm-vs-ollama-in-cube-ai">inference backends</a> to suit varying computational needs:</p>
 <ul>
-<li><strong>Key Mechanism</strong>: Memory Encryption Key (MEK) management is handled by the <strong>AMD Secure Processor (ASP)</strong>, a dedicated ARM core on the die.</li>
-<li><strong>Integrity Protection</strong>: &quot;Secure Nested Paging&quot; (SNP) adds strong integrity protection to prevent hypervisors from remapping memory (e.g., integrity checks on page table lookups).</li>
-<li><strong>VMPL (Virtual Machine Privilege Levels)</strong>: SEV-SNP introduces VMPL rings (0-3), allowing a guest VM to run a &quot;paravisor&quot; or other privileged components within the CVM that are more privileged than the guest OS but less privileged than the hardware root of trust.</li>
+<li><strong>Ollama</strong>: Ideal for lightweight model management, local deployments, and rapid prototyping.</li>
+<li><strong>vLLM</strong>: Built for production environments requiring high throughput. Utilizing PagedAttention and continuous batching, vLLM maximizes memory efficiency and inference speed. When deployed within a Cube AI TEE, model weights and intermediate tensors remain encrypted throughout the execution cycle.</li>
 </ul>
-<p><strong>Further Reading</strong>: <a href="https://www.amd.com/en/technologies/se/secure-encrypted-virtualization">AMD SEV-SNP Specification</a> | <a href="https://developer.amd.com/sev/">AMD Secure Processor Technical Reference</a></p>
-<h3 id="intel-tdx-trust-domain-extensions">Intel TDX (Trust Domain Extensions)</h3>
-<p>Intel TDX creates an architectural isolation boundary known as a <strong>Trust Domain (TD)</strong>.</p>
-<ul>
-<li><strong>Key Mechanism</strong>: The <strong>Intel TDX Module</strong> is a software module that runs in a special CPU mode (SEAM - Secure Arbitration Mode) to manage valid transitions between the host and the guest (TD).</li>
-<li><strong>MKTME (Multi-Key Total Memory Encryption)</strong>: Uses AES-128-XTS encryption engines in the memory controller.</li>
-<li><strong>Measurement</strong>: TDX provides a comprehensive measurement of the initial VM state, including the firmware (TDVF) and the kernel.</li>
-</ul>
-<p><strong>Further Reading</strong>: <a href="https://www.intel.com/content/www/us/en/architecture-and-technology/trust-domain-extensions.html">Intel TDX Overview</a> | <a href="https://software.intel.com/content/www/us/en/develop/download/intel-trust-domain-extension-module-documentation.html">Intel TDX Module Documentation</a></p>
-<h2 id="feature-comparison">Feature Comparison</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Feature</th>
-<th style="text-align:left">AMD SEV-SNP</th>
-<th style="text-align:left">Intel TDX</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><strong>Isolation Boundary</strong></td>
-<td style="text-align:left">VM (with VMPLs)</td>
-<td style="text-align:left">Trust Domain (TD)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Memory Encryption</strong></td>
-<td style="text-align:left">AES-128 / AES-256 XTS (Engine in Memory Controller)</td>
-<td style="text-align:left">AES-128-XTS (MKTME)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Attestation Root</strong></td>
-<td style="text-align:left">AMD Secure Processor (ASP)</td>
-<td style="text-align:left">SGX Quoting Enclave (QE)</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Register State</strong></td>
-<td style="text-align:left">Encrypted (SEV-ES)</td>
-<td style="text-align:left">Managed by hardware/TDX Module</td>
-</tr>
-<tr>
-<td style="text-align:left"><strong>Key Management</strong></td>
-<td style="text-align:left">Cloud Provider independent (mostly)</td>
-<td style="text-align:left">Cloud Provider independent</td>
-</tr>
-</tbody>
-</table>
-<h2 id="security-guarantees--threat-model">Security Guarantees &amp; Threat Model</h2>
-<p>Both technologies operate under a similar threat model, designed to protect against powerful adversaries.</p>
-<h3 id="what-is-protected">What is Protected?</h3>
-<ul>
-<li><strong>Hypervisor Access</strong>: The cloud provider's hypervisor (KVM, Hyper-V) cannot read guest memory. Attempts to read encrypted pages result in ciphertext or exceptions.</li>
-<li><strong>Host Admin</strong>: Root access on the physical host does not grant access to the guest VM's memory.</li>
-<li><strong>Physical Attacks</strong>: Basic cold-boot attacks are mitigated, though sophisticated physical access to the die itself is often out of scope for standard cloud threat models.</li>
-</ul>
-<h3 id="what-is-out-of-scope">What is Out of Scope?</h3>
-<ul>
-<li><strong>Guest OS Vulnerabilities</strong>: If the software <em>inside</em> the TEE is compromised (e.g., a vulnerability in the Linux kernel running in the VM), the TEE protects the <em>execution</em>, but the attacker is &quot;inside the house.&quot; <strong>This is why Cube AI uses a minimal, hardened OS image.</strong></li>
-<li><strong>Denial of Service</strong>: The host can always turn off the VM.</li>
-</ul>
-<h2 id="cube-ai-architecture-the-unified-layer">Cube AI Architecture: The Unified Layer</h2>
-<p>Cube AI abstracts the differences between SEV-SNP and Intel TDX, allowing you to interface with a single &quot;Confidential AI&quot; API.</p>
-<pre><code class="language-mermaid">graph TD
-    User[&quot;User / Client App&quot;] --&gt; Proxy[&quot;Cube AI Proxy&quot;]
-    
-    subgraph CVM [&quot;Confidential VM (CVM)&quot;]
-        Agent[&quot;Cube Agent&quot;]
-        LLM[&quot;vLLM / Ollama&quot;]
-    end
-    
-    subgraph HAL [&quot;Hardware Abstraction Layer&quot;]
-        Detect[&quot;TEE Detection&quot;]
-        Attest[&quot;Attestation Report Gen&quot;]
-    end
-    
-    subgraph HW [&quot;Hardware&quot;]
-        AMD[&quot;AMD EPYC (SEV-SNP)&quot;]
-        Intel[&quot;Intel Xeon (TDX)&quot;]
-    end
-    
-    Proxy --&gt;|Attested TLS| Agent
-    Agent --&gt; LLM
-    Agent --&gt; Detect
-    Detect -.-&gt;|Calls| AMD
-    Detect -.-&gt;|Calls| Intel
-    
-    style CVM fill:#ecfdf5,stroke:#22c55e
-    style HW fill:#1e293b,stroke:#94a3b8,color:#fff
-</code></pre>
-<p>When Cube AI starts:</p>
-<ol>
-<li>It <strong>automatically detects</strong> the platform (AMD or Intel).</li>
-<li>It loads the appropriate kernel modules (e.g., <code>sev-guest</code> or <code>tdx-guest</code>). Supported by Cube's Hardware Abstraction Layer built on buildroot.</li>
-<li>It fetches the <strong>Attestation Report</strong> using a unified internal interface.</li>
-<li>It presents a standardized report format to the user, stripping away the binary complexity of the raw hardware quotes.</li>
-</ol>
-<h2 id="cloud-support--migration-strategies">Cloud Support &amp; Migration Strategies</h2>
-<p>While the hardware is standard, cloud providers expose these features differently.</p>
+<p><img src="https://cube.ultraviolet.rs/img/ui/models.png" alt="Models UI"></p>
+<h3 id="the-cube-proxy--security-guardrails">The Cube Proxy &amp; Security Guardrails</h3>
+<p>The Cube Proxy serves as the hardened gateway, providing an <strong>OpenAI-compatible API</strong>. This allows organizations to leverage existing Python or JavaScript SDKs effortlessly.</p>
+<p>Beyond hardware isolation, our integrated Guardrails Service enforces proactive defense against prompt injection, output sanitization, and automatic <strong>PII (Personally Identifiable Information) redaction</strong> through Microsoft Presidio. Hot-reload capabilities ensure administrators can update safety rules with zero downtime.</p>
+<p><img src="https://cube.ultraviolet.rs/img/ui/guardrails.png" alt="Guardrails UI">
+<img src="https://cube.ultraviolet.rs/img/ui/audit-logs.png" alt="Audit Logs UI"></p>
+<h2 id="benchmarking-performance">Benchmarking Performance</h2>
+<p>A critical concern for enterprise adoption is the performance overhead associated with TEE-based inference. Research demonstrates that these overheads are increasingly minimal.</p>
+<p>The total latency (<code>L_total</code>) of a confidential inference request can be modeled as:</p>
 <blockquote>
-<p>Cube AI has explicitly tested and verified support for <strong>Google Cloud Platform (Confidential Space)</strong>, <strong>Azure (Confidential VMs)</strong>, and <strong>On-Premises</strong> deployments. AWS implementation has not yet been verified by the Cube AI team.</p>
+<p><code>L_total = L_network + L_attestation + L_inference + L_encryption</code></p>
 </blockquote>
-<h2 id="key-takeaway">Key Takeaway</h2>
-<p>You don't need to be a CPU architect to use Confidential Computing. Whether your infrastructure runs on the red team (AMD) or the blue team (Intel), <strong>Cube AI</strong> provides the same high-level security guarantees:</p>
+<p>Where <code>L_attestation</code> represents the time taken for remote verification and <code>L_encryption</code> accounts for the hardware-level memory encryption overhead. With continuous batching in our vLLM backend, Cube AI achieves high throughput (approximately 85-95% of native performance) in multi-user scenarios.</p>
+<h2 id="tooling-ecosystem-ides-and-secure-rag">Tooling Ecosystem: IDEs and Secure RAG</h2>
+<p>We prioritize a &quot;developer-first&quot; approach to ensure seamless integration:</p>
 <ul>
-<li>Your model weights are protected.</li>
-<li>Your user prompts are encrypted in memory.</li>
-<li>The cloud provider is locked out.</li>
+<li><strong>IDE Support</strong>: Native integration with &quot;Continue&quot; and OpenCode IDE ensures safe AI-assisted development without intellectual property leakage.</li>
+<li><strong>Secure Embeddings (RAG)</strong>: Generate embeddings entirely within the TEE. This ensures that sensitive documents are properly vectorized for Retrieval-Augmented Generation architectures without ever exposing raw text to an external provider.</li>
+<li><strong>Secure Chat</strong>: Provide users with an end-to-end encrypted chat interface powered by verifiable hardware attestation for maximum privacy.</li>
 </ul>
-<hr>
-<p><em>Ready to secure your AI infrastructure? Read our guide on <a href="https://cube.ultraviolet.rs/docs/architecture">Architecture</a> or dive into the <a href="https://cube.ultraviolet.rs/docs/attestation">Attestation specs</a>.</em></p>
+<p><img src="https://cube.ultraviolet.rs/img/chat-ui.png" alt="Secure Chat UI"></p>
+<h2 id="the-future-is-confidential-join-the-beta">The Future is Confidential: Join the Beta</h2>
+<p>The launch of Cube AI is a major milestone towards securing agentic workflows. As we align with Ultraviolet's broader mission in the Confidential Computing Consortium, future iterations will include Model Context Protocol (MCP) integrations, scaling to H100 and Blackwell GPUs, and deep integration with <strong><a href="/blog/prism-public-beta-launch">Prism AI</a></strong> for Secure Multi-Party Collaborative computing.</p>
+<p>Cube AI represents a fundamental shift in how Large Language Models are deployed across healthcare, finance, and the enterprise at large. We refuse to compromise on data integrity.</p>
+<p>The future of AI is confidential. Welcome to the Cube AI Beta!</p>
+<ul>
+<li>🚀 <strong>Get Started</strong>: Visit <a href="https://cube.ultraviolet.rs">cube.ultraviolet.rs</a> to launch your first confidential AI stack.</li>
+<li>📚 <strong>Read the Docs</strong>: Dive deep into the <a href="https://cube.ultraviolet.rs/docs/">Cube AI Documentation</a> and <a href="https://cube.ultraviolet.rs/docs/user/getting-started/">Getting Started Guide</a>.</li>
+</ul>
 </div>
 
         <div class="mt-5 pt-4 border-top">
@@ -449,17 +378,17 @@
           <h5 class="mb-3 mt-3">Tags</h5>
           <div>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">security</span>
-            
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">confidential-computing</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">amd</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">ai</span>
             
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">intel</span>
-            
-            <span class="badge bg-light text-dark me-2 mb-2 fs-6">technical-deep-dive</span>
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">privacy</span>
             
             <span class="badge bg-light text-dark me-2 mb-2 fs-6">cube ai</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">beta-launch</span>
+            
+            <span class="badge bg-light text-dark me-2 mb-2 fs-6">open-source</span>
             
           </div>
         </div>
@@ -467,11 +396,11 @@
         <div class="mt-4">
           <h5 class="mb-3">Share this article</h5>
           <div class="d-flex gap-2 flex-wrap">
-            <a href="https://twitter.com/intent/tweet?text=AMD&#43;SEV-SNP&#43;vs&#43;Intel&#43;TDX%3A&#43;Understanding&#43;TEE&#43;Support&#43;in&#43;Cube&#43;AI&url=https%3a%2f%2fwww.ultraviolet.rs/blog/amd-sev-snp-vs-intel-tdx"
+            <a href="https://twitter.com/intent/tweet?text=Cube&#43;AI&#43;Public&#43;Beta%3A&#43;The&#43;Future&#43;of&#43;Confidential&#43;LLM&#43;Inference&#43;is&#43;Here&url=https%3a%2f%2fwww.ultraviolet.rs/blog/cube-ai-public-beta-launch"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-twitter me-2"></i>Twitter
             </a>
-            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/amd-sev-snp-vs-intel-tdx"
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3a%2f%2fwww.ultraviolet.rs/blog/cube-ai-public-beta-launch"
               target="_blank" rel="noopener" class="btn btn-outline-dark btn-sm">
               <i class="fab fa-linkedin me-2"></i>LinkedIn
             </a>
@@ -517,67 +446,6 @@
     <div class="container">
       <h3 class="mb-4 fw-bold">Next Read</h3>
       <div class="row g-4">
-        
-        <div class="col-md-6 col-lg-4">
-          <article class="card h-100 shadow-sm hover-lift border-0">
-            <a href="/blog/cube-ai-public-beta-launch" class="text-decoration-none text-dark">
-              
-              <img src="/img/cube-beta-launch-cover.png" class="card-img-top" alt="Cube AI Public Beta: The Future of Confidential LLM Inference is Here"
-                loading="lazy" onerror="this.style.display = 'none'" style="height: 200px; object-fit: cover;" />
-              
-
-              <div class="card-body">
-                <div class="mb-2">
-                  <span class="badge bg-success me-2">
-                    announcement
-                  </span>
-                  
-                </div>
-
-                <h2 class="card-title h5 fw-bold">
-                  Cube AI Public Beta: The Future of Confidential LLM Inference is Here
-                </h2>
-                <p class="card-text text-muted small">
-                  We are incredibly excited to announce the public beta release of Cube AI. Unlock the power of open-source, hardware-secured generative AI. Build and deploy agentic workflows with absolute data privacy using Trusted Execution Environments.
-                </p>
-
-                <div class="d-flex align-items-center mt-3">
-                  <div class="d-flex align-items-center avatar-group-sm">
-                    
-                    <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina" class="rounded-circle border border-1 border-white"
-                      width="32" height="32" loading="lazy" style="margin-right: -10px; position: relative;"
-                      onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
-                    
-                  </div>
-                  <div class="small ms-3">
-                    <div class="fw-semibold">
-                      sammy oina
-                    </div>
-                    <div class="text-muted">
-                      March 04, 2026 · 4 min
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mt-3">
-                  
-                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
-                  
-                  <span class="badge bg-light text-dark me-1">ai</span>
-                  
-                  <span class="badge bg-light text-dark me-1">privacy</span>
-                  
-                  <span class="badge bg-light text-dark me-1">cube ai</span>
-                  
-                  <span class="badge bg-light text-dark me-1">beta-launch</span>
-                  
-                  <span class="badge bg-light text-dark me-1">open-source</span>
-                  
-                </div>
-              </div>
-            </a>
-          </article>
-        </div>
         
         <div class="col-md-6 col-lg-4">
           <article class="card h-100 shadow-sm hover-lift border-0">
@@ -700,6 +568,67 @@
                   <span class="badge bg-light text-dark me-1">confidential-computing</span>
                   
                   <span class="badge bg-light text-dark me-1">security</span>
+                  
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        
+        <div class="col-md-6 col-lg-4">
+          <article class="card h-100 shadow-sm hover-lift border-0">
+            <a href="/blog/amd-sev-snp-vs-intel-tdx" class="text-decoration-none text-dark">
+              
+              <img src="/img/amd-sev-snp-vs-intel-tdx/amd_sev_snp_vs_intel_tdx_cover.png" class="card-img-top" alt="AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI"
+                loading="lazy" onerror="this.style.display = 'none'" style="height: 200px; object-fit: cover;" />
+              
+
+              <div class="card-body">
+                <div class="mb-2">
+                  <span class="badge bg-primary me-2">
+                    blog
+                  </span>
+                  
+                </div>
+
+                <h2 class="card-title h5 fw-bold">
+                  AMD SEV-SNP vs Intel TDX: Understanding TEE Support in Cube AI
+                </h2>
+                <p class="card-text text-muted small">
+                  
+                </p>
+
+                <div class="d-flex align-items-center mt-3">
+                  <div class="d-flex align-items-center avatar-group-sm">
+                    
+                    <img src="https://avatars.githubusercontent.com/u/44265300?v=4" alt="sammy oina" class="rounded-circle border border-1 border-white"
+                      width="32" height="32" loading="lazy" style="margin-right: -10px; position: relative;"
+                      onerror="this.onerror=null; this.src = '/assets/team/default-avatar.jpg'" />
+                    
+                  </div>
+                  <div class="small ms-3">
+                    <div class="fw-semibold">
+                      sammy oina
+                    </div>
+                    <div class="text-muted">
+                      February 24, 2026 · 4 min
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3">
+                  
+                  <span class="badge bg-light text-dark me-1">security</span>
+                  
+                  <span class="badge bg-light text-dark me-1">confidential-computing</span>
+                  
+                  <span class="badge bg-light text-dark me-1">amd</span>
+                  
+                  <span class="badge bg-light text-dark me-1">intel</span>
+                  
+                  <span class="badge bg-light text-dark me-1">technical-deep-dive</span>
+                  
+                  <span class="badge bg-light text-dark me-1">cube ai</span>
                   
                 </div>
               </div>

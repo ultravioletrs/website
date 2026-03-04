@@ -1,11 +1,12 @@
 {
-  "content\\blogs\\amd-sev-snp-vs-intel-tdx.md": "adb26b5b4b6b19abebdc222cd85ec19f",
-  "content\\blogs\\cocos-prism-release.md": "1fa09d32f9b408b753e222d0e57e561d",
-  "content\\blogs\\confidential-computing-meets-ai.md": "2b603738f1f7d5d931572d8c48637242",
-  "content\\blogs\\prism-ai-access-control.md": "3dcfb660acbb93869e6d1e521ec8d16e",
-  "content\\blogs\\prism-public-beta-launch.md": "20dfaad8b5d8dd54814558162534b8c4",
-  "content\\blogs\\privacy-paradox-confidential-computing.md": "a280adbb1240ba8f63173b61235a6085",
-  "content\\blogs\\securing-trust-rats-and-attested-tls.md": "d131f775e3130c3c39e55cff175d458b",
-  "content\\blogs\\tee-tls-privacy.md": "397bec523c99a69bca16d228bddbfcb3",
-  "content\\blogs\\vllm-vs-ollama-in-cube-ai.md": "c1cce17a019cee49176035866495eec5"
+  "content/blogs/amd-sev-snp-vs-intel-tdx.md": "aeb47df76f0b158b836b3b013cea4cc2",
+  "content/blogs/cocos-prism-release.md": "cb2d00715b0c2e61250127d3cc79b5c9",
+  "content/blogs/confidential-computing-meets-ai.md": "a1ec3c1f8d6249a933914b19f2ceef2a",
+  "content/blogs/cube-ai-public-beta-launch.md": "eff3e0cf4ca797add429b2cf96b2151f",
+  "content/blogs/prism-ai-access-control.md": "28925d1bded0b6f1bed4e55658899402",
+  "content/blogs/prism-public-beta-launch.md": "3a17c3745c8419917ce85ac4aacf11a2",
+  "content/blogs/privacy-paradox-confidential-computing.md": "3a60f49130404ecbd10f62b496a55030",
+  "content/blogs/securing-trust-rats-and-attested-tls.md": "67d3cbe16c4ddc405ff71d53b42750a0",
+  "content/blogs/tee-tls-privacy.md": "2d08acfb7f1d35858ee9eb71273a3b17",
+  "content/blogs/vllm-vs-ollama-in-cube-ai.md": "70efcef3096215ac0d1890430daf7b4c"
 }
