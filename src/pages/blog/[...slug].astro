@@ -21,7 +21,7 @@ const pageImage = post.data.image || post.data.coverImage || (typeof post.data.o
 <Layout title={post.data.title} description={post.data.description} image={pageImage}>
 	<Header slot="header" />
 
-    <article class="pt-32 pb-16 bg-background overflow-hidden transition-colors duration-300">
+    <article class="pt-32 pb-16 bg-background overflow-hidden transition-colors duration-300 flex-1">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
                 <div class="relative h-full text-lg w-full max-w-7xl mx-auto" aria-hidden="true">
@@ -108,25 +108,21 @@ const pageImage = post.data.image || post.data.coverImage || (typeof post.data.o
             theme: 'default',
         });
 
-        // Find all pre > code.language-mermaid blocks
         const mermaidBlocks = document.querySelectorAll('pre > code.language-mermaid');
         
         mermaidBlocks.forEach((block) => {
             const pre = block.parentElement;
             const content = block.textContent;
             
-            // Create a new div for mermaid
             const div = document.createElement('div');
             div.classList.add('mermaid');
             div.textContent = content;
             
-            // Replace the pre block with the new div
             if (pre) {
                 pre.replaceWith(div);
             }
         });
 
-        // Re-run mermaid to render the new divs
         mermaid.run({
             nodes: document.querySelectorAll('.mermaid')
         });

@@ -17,13 +17,13 @@ interface Props {
 const { title, description, image, ctaText, ctaLink, secondaryCtaText, secondaryCtaLink, announcementText, announcementLink, layout = 'split', alignment = 'left', titleClass = 'text-text-main' } = Astro.props;
 ---
 
-<section class={`transition-colors duration-300 relative ${layout === 'background' ? 'pt-24 pb-20 mt-12 lg:pt-36 lg:pb-32 lg:mt-20 overflow-hidden' : 'bg-background pt-32 lg:pt-48 pb-24 lg:pb-32'}`}>
+<section class={`transition-colors duration-300 relative ${layout === 'background' ? 'pt-24 pb-20 mt-12 lg:pt-36 lg:pb-32 lg:mt-20 overflow-hidden' : 'bg-background pt-32 lg:pt-48 pb-24 lg:pb-32 border-b border-border'}`}>
   {layout === 'background' && image && (
       <div class="absolute inset-0 z-0">
           <img src={image} alt="Background" class="w-full h-full object-cover object-top" />
       </div>
   )}
-  <div class={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ${layout === 'background' ? 'relative z-10' : ''}`}>
+  <div class={`w-full px-4 sm:px-6 lg:px-12 ${layout === 'background' ? 'relative z-10' : ''}`}>
     {layout === 'bottom-split' ? (
         <div class="flex flex-col py-12 md:py-20 lg:px-12">
             <h1 class={`text-5xl tracking-tight sm:text-6xl lg:text-7xl mb-12 font-heading font-medium text-left ${titleClass || 'text-text-main'}`}>
@@ -88,7 +88,7 @@ const { title, description, image, ctaText, ctaLink, secondaryCtaText, secondary
                 {ctaText && ctaLink && (
                     <div class="mt-8 sm:mt-10">
                         <div class="inline-flex rounded-md shadow">
-                            <a href={ctaLink} class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md text-white bg-green-600 hover:bg-green-700 md:py-4 md:text-lg md:px-10 transition-all">
+                            <a href={ctaLink} class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md text-white  md:py-4 md:text-lg md:px-10 transition-all">
                                 {ctaText}
                             </a>
                         </div>
@@ -106,19 +106,19 @@ const { title, description, image, ctaText, ctaLink, secondaryCtaText, secondary
                         </a>
                     </div>
                 )}
-                <h1 class={`text-5xl tracking-tight sm:text-6xl md:text-7xl mb-6 font-heading ${titleClass || 'text-text-main'}`} set:html={title}>
+                <h1 class={`text-5xl tracking-tight sm:text-6xl md:text-7xl mb-6 font-heading font-medium leading-[1.1] ${titleClass || 'text-text-main'}`} set:html={title}>
                 </h1>
-                <p class={`mt-4 text-lg text-text-muted sm:mt-5 ${image ? 'sm:max-w-xl sm:mx-auto lg:mx-0' : ''} md:mt-5 md:text-xl ${alignment === 'center' ? 'mx-auto' : ''}`} set:html={description}></p>
+                <p class={`mt-6 text-lg text-text-muted sm:mt-5 ${image ? 'sm:max-w-xl sm:mx-auto lg:mx-0' : ''} md:mt-8 md:text-xl font-body ${alignment === 'center' ? 'mx-auto' : ''}`} set:html={description}></p>
                 {ctaText && ctaLink && (
-                    <div class={`mt-8 sm:mt-10 sm:flex ${image ? 'sm:justify-center lg:justify-start' : (alignment === 'center' ? 'justify-center' : 'justify-start')} gap-4`}>
-                        <div class="rounded-lg shadow-lg">
-                            <a href={ctaLink} class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-lg text-white bg-primary hover:bg-primary-dark md:py-4 md:text-lg md:px-10 transition-all hover:shadow-primary/30">
+                    <div class={`mt-10 sm:mt-12 sm:flex ${image ? 'sm:justify-center lg:justify-start' : (alignment === 'center' ? 'justify-center' : 'justify-start')} gap-4`}>
+                        <div>
+                            <a href={ctaLink} class="w-full flex items-center justify-center px-10 py-4 border border-primary text-base font-medium text-black bg-primary hover:bg-primary-dark transition-all md:text-lg uppercase tracking-wide">
                                 {ctaText}
                             </a>
                         </div>
                         {secondaryCtaText && secondaryCtaLink && (
-                            <div class="rounded-lg shadow-sm">
-                                <a href={secondaryCtaLink} class="w-full flex items-center justify-center px-8 py-3 border border-border text-base font-medium rounded-lg text-text-main bg-surface hover:bg-surface-hover md:py-4 md:text-lg md:px-10 transition-all">
+                            <div>
+                                <a href={secondaryCtaLink} class="w-full flex items-center justify-center px-10 py-4 border border-border border-dashed text-base font-medium text-text-main bg-transparent hover:bg-surface-hover transition-all md:text-lg uppercase tracking-wide">
                                     {secondaryCtaText}
                                 </a>
                             </div>
@@ -127,8 +127,8 @@ const { title, description, image, ctaText, ctaLink, secondaryCtaText, secondary
                 )}
             </div>
             {image && (
-                <div class="mt-10 lg:mt-0 relative">
-                    <img class="w-full rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 ring-1 ring-border" src={image} alt="Hero Image" loading="eager" />
+                <div class="mt-12 lg:mt-0 relative">
+                    <img class="w-full border p-2 border-border bg-surface" src={image} alt="Hero Image" loading="eager" />
                 </div>
             )}
         </div>

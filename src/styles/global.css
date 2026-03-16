@@ -4,38 +4,79 @@
 
 @layer base {
   :root {
-    /* Ultraviolet Light Theme */
-    --color-background: 255 255 255; /* #ffffff */
-    --color-surface: 248 250 252; /* Slate 50 #f8fafc */
-    --color-surface-hover: 241 245 249; /* Slate 100 #f1f5f9 */
+    --color-background: 255 255 255;
+    --color-surface: 247 247 247;
+    --color-surface-hover: 240 240 240;
 
-    --color-text-main: 15 23 42; /* Slate 900 #0f172a */
-    --color-text-muted: 100 116 139; /* Slate 500 #64748b */
-    --color-text-inverted: 255 255 255; /* #ffffff */
+    --color-text-main: 13 13 13;
+    --color-text-muted: 102 102 102;
+    --color-text-inverted: 255 255 255;
 
-    --color-primary: 79 70 229; /* Indigo 600 #4f46e5 */
-    --color-primary-dark: 67 56 202; /* Indigo 700 #4338ca */
-    --color-secondary: 6 182 212; /* Cyan 500 #06b6d4 */
+    --color-primary: 176 255 0;
+    --color-primary-dark: 143 204 0;
+    --color-secondary: 13 13 13;
 
-    --color-border: 226 232 240; /* Slate 200 #e2e8f0 */
+    --color-border: 229 229 229;
   }
 
   html.dark {
-    /* Ultraviolet Dark Theme - Zinc Palette */
     color-scheme: dark;
-    --color-background: 24 24 27; /* Zinc 900 #18181b */
-    --color-surface: 39 39 42; /* Zinc 800 #27272a */
-    --color-surface-hover: 63 63 70; /* Zinc 700 #3f3f46 */
+    --color-background: 13 13 13;
+    --color-surface: 26 26 26;
+    --color-surface-hover: 38 38 38;
 
-    --color-text-main: 250 250 250; /* Zinc 50 #fafafa */
-    --color-text-muted: 161 161 170; /* Zinc 400 #a1a1aa */
-    --color-text-inverted: 24 24 27; /* Zinc 900 #18181b */
+    --color-text-main: 255 255 255;
+    --color-text-muted: 170 170 170;
+    --color-text-inverted: 13 13 13;
 
-    --color-primary: 99 102 241; /* Indigo 500 #6366f1 */
-    --color-primary-dark: 79 70 229; /* Indigo 600 #4f46e5 */
-    --color-secondary: 34 211 238; /* Cyan 400 #22d3ee */
+    --color-primary: 176 255 0;
+    --color-primary-dark: 143 204 0;
+    --color-secondary: 255 255 255;
 
-    --color-border: 63 63 70; /* Zinc 700 #3f3f46 */
+    --color-border: 63 63 70;
+  }
+}
+
+@layer components {
+  .project-page-section {
+    @apply py-16 bg-background border-b border-border;
+  }
+
+  .project-page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .project-page-heading {
+    @apply text-2xl lg:text-3xl font-heading mb-8 text-text-main font-medium border-b border-border pb-4;
+  }
+
+  .project-page-copy {
+    @apply max-w-5xl prose prose-lg text-text-muted font-body;
+  }
+
+  .clients-marquee-track {
+    animation: clients-marquee-rtl 36s linear infinite;
+    will-change: transform;
+  }
+
+  .clients-marquee-track:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes clients-marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients-marquee-track {
+    animation: none;
   }
 }
 
@@ -46,7 +87,7 @@ body {
 }
 
 body {
-  @apply font-body; /* Default to Roboto Mono */
+  @apply font-body;
 }
 
 h1,
@@ -55,5 +96,11 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-heading; /* Use Outfit/Sen for headings */
+  @apply font-heading;
+}
+.rounded-xl, .rounded-2xl, .rounded-lg, .rounded-md, .rounded-sm, .rounded-full, .rounded {
+  border-radius: 0 !important;
+}
+.shadow-lg, .shadow-md, .shadow-sm, .shadow-xl, .shadow-2xl, .shadow {
+  box-shadow: none !important;
 }

@@ -4,20 +4,16 @@
 ---
 ---
 
-<header class="fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent" id="main-header">
-  <div class="absolute inset-0 bg-white/70 dark:bg-zinc-900/70 backdrop-blur-md transition-colors duration-300"></div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<header class="fixed top-0 w-full max-w-[1200px] mx-auto z-50 bg-background border-b border-border transition-all duration-300" id="main-header">
+  <div class="relative w-full px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-20">
-      <!-- Logo -->
       <div class="flex-shrink-0 flex items-center">
         <a href="/" aria-label="Home" class="flex items-center gap-2 group">
-          <img class="h-8 w-auto transition-transform duration-300 group-hover:scale-105 dark:brightness-0 dark:invert" src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Ultraviolet Logo" loading="eager" />
+          <img class="h-8 w-auto transition-transform duration-300 dark:brightness-0 dark:invert" src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Ultraviolet Logo" loading="eager" />
         </a>
       </div>
 
-      <!-- Desktop Menu -->
       <nav class="hidden md:flex space-x-8 items-center">
-        <!-- Products Dropdown -->
         <div class="relative group">
           <button class="text-text-main hover:text-primary font-medium inline-flex items-center space-x-1 transition-colors font-heading" aria-label="Products Menu">
             <span>PRODUCTS</span>
@@ -34,7 +30,6 @@
           </div>
         </div>
 
-        <!-- Documentation Dropdown -->
         <div class="relative group">
           <button class="text-text-main hover:text-primary font-medium inline-flex items-center space-x-1 transition-colors font-heading" aria-label="Documentation Menu">
             <span>DOCUMENTATION</span>
@@ -49,7 +44,6 @@
           </div>
         </div>
 
-        <!-- Projects Dropdown -->
         <div class="relative group">
           <button class="text-text-main hover:text-primary font-medium inline-flex items-center space-x-1 transition-colors font-heading" aria-label="Projects Menu">
             <span>PROJECTS</span>
@@ -66,7 +60,6 @@
           </div>
         </div>
 
-        <!-- Company Dropdown (Mega Menu) -->
         <div class="relative group">
           <button class="text-text-main hover:text-primary font-medium inline-flex items-center space-x-1 transition-colors font-heading" aria-label="Company Menu">
             <span>COMPANY</span>
@@ -103,7 +96,6 @@
         </div>
         <a href="/blog" class="text-text-main hover:text-primary font-medium font-heading transition-colors" aria-label="Blog">BLOG</a>
 
-        <!-- Icons & Dark Mode -->
         <div class="flex items-center space-x-4 ml-4 border-l border-border pl-4">
              <a href="https://github.com/ultravioletrs" target="_blank" class="text-text-muted hover:text-text-main transition-colors">
                 <span class="sr-only">GitHub</span>
@@ -112,19 +104,14 @@
                 </svg>
              </a>
              
-             <!-- Dark Mode Toggle -->
              <button id="theme-toggle" class="text-text-muted hover:text-text-main transition-colors focus:outline-none" aria-label="Toggle Dark Mode">
-                <!-- Sun Icon (for dark mode) -->
                 <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                <!-- Moon Icon (for light mode) -->
                 <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
             </button>
         </div>
       </nav>
 
-      <!-- Mobile menu button -->
       <div class="md:hidden flex items-center gap-4">
-        <!-- Dark Mode Toggle (Mobile) -->
         <button id="theme-toggle-mobile" class="text-text-muted hover:text-text-main transition-colors focus:outline-none" aria-label="Toggle Dark Mode">
             <svg id="theme-toggle-light-icon-mobile" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
             <svg id="theme-toggle-dark-icon-mobile" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
@@ -142,11 +129,9 @@
     </div>
   </div>
 
-  <!-- Mobile Menu Overlay -->
   <div class="fixed inset-0 z-40 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl transition-all duration-300 transform translate-x-full md:hidden flex flex-col pt-24 px-6 overflow-y-auto" id="mobile-menu">
     <div class="space-y-8 pb-10">
       
-      <!-- Products Section -->
       <div class="space-y-4">
         <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading border-b border-border pb-2">Products</h3>
         <a href="/products" class="block text-3xl font-bold text-text-main hover:text-primary transition-colors font-heading" aria-label="View All Products">
@@ -168,7 +153,6 @@
         </div>
       </div>
 
-      <!-- Documentation Section -->
       <div class="space-y-4">
         <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading border-b border-border pb-2">Documentation</h3>
          <div class="grid grid-cols-1 gap-3 pl-2">
@@ -178,13 +162,11 @@
          </div>
        </div>
 
-      <!-- Projects Section -->
       <div class="space-y-4">
         <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading border-b border-border pb-2">Projects</h3>
         <a href="/projects" class="block text-3xl font-bold text-text-main hover:text-primary transition-colors font-heading" aria-label="View All Projects">All Projects</a>
       </div>
 
-      <!-- Footer Links -->
       <div class="pt-8 mt-4 border-t border-border grid grid-cols-2 gap-y-6 gap-x-4">
           <a href="/company" class="text-xl font-medium text-text-main hover:text-primary transition-colors font-heading" aria-label="Company Page">Company</a>
           <a href="/careers" class="text-xl font-medium text-text-main hover:text-primary transition-colors font-heading" aria-label="Careers Page">Careers</a>
@@ -196,7 +178,6 @@
 </header>
 
 <script>
-  // Mobile Menu Logic
   const btn = document.getElementById('mobile-menu-button');
   const menu = document.getElementById('mobile-menu');
   const body = document.body;
@@ -208,7 +189,7 @@
       
       if (!isExpanded) {
         menu.classList.remove('translate-x-full');
-        body.classList.add('overflow-hidden'); // Prevent background scrolling
+        body.classList.add('overflow-hidden');
       } else {
         menu.classList.add('translate-x-full');
         body.classList.remove('overflow-hidden');
@@ -216,19 +197,15 @@
     });
   }
 
-  // Scroll Effect Logic
   const header = document.getElementById('main-header');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 10) {
-       header?.classList.add('shadow-md');
-       header?.querySelector('.absolute')?.classList.add('opacity-100');
+       header?.classList.add('border-b');
     } else {
-       header?.classList.remove('shadow-md');
-       header?.querySelector('.absolute')?.classList.remove('opacity-100');
+       header?.classList.remove('border-b');
     }
   });
 
-  // Dark Mode Logic
   const themeToggleMain = document.getElementById('theme-toggle');
   const themeToggleMobile = document.getElementById('theme-toggle-mobile');
   
@@ -266,6 +243,5 @@
   themeToggleMain?.addEventListener('click', toggleTheme);
   themeToggleMobile?.addEventListener('click', toggleTheme);
   
-  // Initial icon update
   updateIcons();
 </script>

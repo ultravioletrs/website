@@ -1,41 +1,46 @@
-# Astro Starter Kit: Minimal
+# Ultraviolet Website
 
-pnpm create astro@latest -- --template minimal
+Marketing site and content hub for Ultraviolet, built with Astro and Tailwind CSS.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-## 🚀 Project Structure
+- Astro
+- Tailwind CSS
+- TypeScript
+- Sharp for image optimization
 
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure
 
 ```text
 /
-├── public/
+├── content/            # Long-form blog content and media
+├── public/             # Static assets served as-is
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── assets/         # Optimized local images and logos
+│   ├── components/     # Reusable Astro components
+│   ├── content/        # Astro content collection config
+│   ├── layouts/        # Shared page layouts
+│   ├── pages/          # Route entrypoints
+│   └── styles/         # Global styles
+├── astro.config.mjs
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Commands
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Run commands from the repository root:
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Command | Action |
+| :-- | :-- |
+| `pnpm install` | Install dependencies |
+| `pnpm run dev` | Start the local Astro development server |
+| `pnpm run build` | Build the production site |
+| `pnpm run preview` | Preview the production build locally |
+| `pnpm run check` | Run Astro and TypeScript checks |
 
-## 🧞 Commands
+## Content Notes
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`            | Installs dependencies                            |
-| `pnpm run dev`            | Starts local dev server at `localhost:4321`      |
-| `pnpm run build`          | Build your production site to `./dist/`          |
-| `pnpm run preview`        | Preview your build locally, before deploying     |
-| `pnpm run astro ...`      | Run CLI commands like `astro add`, `astro check` |
-| `pnpm run astro -- --help`| Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Page routes live in `src/pages/`.
+- Shared layout and UI primitives live in `src/layouts/` and `src/components/`.
+- Blog collection schema is defined in `src/content/config.ts`.
+- Static brand assets and icons live in `public/`.
