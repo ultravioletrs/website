@@ -93,7 +93,7 @@ const description = "Explore Ultraviolet's research projects in confidential com
                     <div class={`flex flex-col h-full ${index !== projects.length - 1 ? 'md:border-r border-border' : ''} border-b md:border-b-0 border-border reveal reveal-delay-${index + 1}`}>
                         <div class="p-8 lg:p-12 hover:bg-surface transition-colors h-full flex flex-col items-center text-center">
                             <div class="mb-8 h-[120px] flex items-center justify-center">
-                                <img src={project.image} alt={`${project.name} Logo`} style={project.logoStyle} class="max-w-full" />
+                                <img src={project.image} alt={`${project.name} Logo`} style={project.logoStyle} class="max-w-full dark:invert" />
                             </div>
                             <h3 class="text-xl font-heading mb-4 text-text-main font-medium">{project.name}</h3>
                             <p class="text-text-muted font-body mb-8 flex-grow">

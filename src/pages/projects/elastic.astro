@@ -66,7 +66,7 @@ const description = "ELASTIC is an EU-funded project pioneering next-gen network
     <section id="project-title" class="project-page-section">
         <div class="project-page-container text-center reveal-scale">
             <div class="mb-8">
-                 <Image src={elasticLogo} alt="ELASTIC Logo" class="mx-auto block" style="max-height: 120px" loading="eager" />
+                 <Image src={elasticLogo} alt="ELASTIC Logo" class="mx-auto block dark:invert" style="max-height: 120px" loading="eager" />
             </div>
             <h1 class="text-3xl lg:text-4xl font-heading mb-6 text-text-main font-medium">ELASTIC</h1>
             <p class="text-xl text-text-muted font-body">
@@ -322,7 +322,7 @@ const description = "ELASTIC is an EU-funded project pioneering next-gen network
 
                     return (
                         <div class="clients-marquee-item flex justify-center items-center px-10 py-6" aria-hidden={isDuplicate ? 'true' : undefined}>
-                            <Image src={logo.src} alt={logo.alt} class="h-10 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all dark:brightness-0 dark:invert" loading="lazy" />
+                            <Image src={logo.src} alt={logo.alt} class="h-10 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all dark:invert" loading="lazy" />
                         </div>
                     );
                 })}

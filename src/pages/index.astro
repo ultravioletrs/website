@@ -63,10 +63,10 @@ const clientLogos = [
       <h2 class="text-sm font-body text-text-muted mb-8 tracking-widest uppercase">Our Memberships</h2>
 			<div class="flex justify-center flex-wrap gap-12 items-center opacity-80 hover:opacity-100 transition-opacity">
 				<a href="https://www.linuxfoundation.org/" target="_blank">
-                    <Image src={lfLogo} alt="Linux Foundation" class="h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all" loading="eager" />
+                    <Image src={lfLogo} alt="Linux Foundation" class="h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all dark:invert" loading="eager" />
                 </a>
                 <a href="https://confidentialcomputing.io/" target="_blank">
-                    <Image src={cccLogo} alt="Confidential Computing Consortium" class="h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all" loading="eager" />
+                    <Image src={cccLogo} alt="Confidential Computing Consortium" class="h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all dark:invert" loading="eager" />
                 </a>
 			</div>
 		</div>
@@ -86,7 +86,7 @@ const clientLogos = [
                             class="clients-marquee-item flex justify-center items-center px-10 py-6"
                             aria-hidden={isDuplicate ? 'true' : undefined}
                         >
-                            <Image src={logo.src} alt={logo.alt} class={`${logo.class} w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all dark:brightness-0 dark:invert`} loading="lazy" />
+                            <Image src={logo.src} alt={logo.alt} class={`${logo.class} w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all dark:invert`} loading="lazy" />
                         </div>
                     );
                 })}
