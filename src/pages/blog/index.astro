@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -33,7 +34,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 				<div class="grid gap-6" id="blogGrid">
 					{featuredPost && (
 						<div
-							class="blog-card border border-border bg-card transition-colors duration-200 hover:bg-surface"
+							class="blog-card border border-border bg-card transition-colors duration-200 hover:bg-surface reveal"
 							data-title={featuredPost.data.title.toLowerCase()}
 							data-tags={featuredPost.data.tags?.join(',').toLowerCase() || ''}
 							data-excerpt={(featuredPost.data.excerpt || featuredPost.data.description || '').toLowerCase()}
@@ -41,7 +42,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 							<a href={`/blog/${featuredPost.slug}`} class="block">
 								{featuredPost.data.image && (
 									<div class="border-b border-border overflow-hidden">
-										<img class="block h-56 w-full object-cover" src={featuredPost.data.image} alt={featuredPost.data.title} loading="lazy" />
+										<Image class="block h-56 w-full object-cover" src={featuredPost.data.image} alt={featuredPost.data.title} loading="lazy" width={1200} height={630} />
 									</div>
 								)}
 								<div class="p-6">
@@ -58,17 +59,26 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 									<h2 class="text-2xl font-bold text-text-main font-heading mb-3">{featuredPost.data.title}</h2>
 									<p class="text-text-muted line-clamp-3 mb-4 font-body">{featuredPost.data.excerpt || featuredPost.data.description}</p>
 									<div class="flex items-center">
-										{featuredPost.data.author && featuredPost.data.author.picture && (
-											<img class="h-8 w-8 mr-3 rounded-full object-cover" src={featuredPost.data.author.picture} alt={featuredPost.data.author.name} loading="lazy" />
-										)}
-										<div class="text-sm">
-											{featuredPost.data.author && (
-												<p class="font-semibold text-text-main">{featuredPost.data.author.name}</p>
-											)}
-											<p class="text-text-muted">
-												{featuredPost.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · {Math.ceil(featuredPost.body.split(/\s+/).length / 200)} min
-											</p>
-										</div>
+										{(() => {
+											const authors = featuredPost.data.authors || (featuredPost.data.author ? [featuredPost.data.author] : []);
+											return (
+												<>
+													<div class="flex -space-x-2 mr-3 flex-shrink-0">
+														{authors.map((author) => (
+author.picture && <Image class="h-8 w-8 rounded-full object-cover ring-2 ring-background" src={author.picture} alt={author.name} loading="lazy" width={32} height={32} />
+															))}
+														</div>
+														<div class="text-sm">
+															<p class="font-semibold text-text-main">
+																{authors.map((a) => a.name).join(', ')}
+															</p>
+															<p class="text-text-muted">
+																{post.data.date.toLocaleDateString
+														</p>
+													</div>
+												</>
+											);
+										})()}
 									</div>
 									{featuredPost.data.tags && (
 										<div class="flex flex-wrap gap-2 mt-4">
@@ -87,15 +97,15 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 					<div class="grid md:grid-cols-2 gap-6">
 						{regularPosts.map((post) => (
 							<div
-								class="blog-card border border-border bg-card transition-colors duration-200 hover:bg-surface flex flex-col h-full"
+								class="blog-card border border-border bg-card transition-colors duration-200 hover:bg-surface flex flex-col h-full reveal"
 								data-title={post.data.title.toLowerCase()}
 								data-tags={post.data.tags?.join(',').toLowerCase() || ''}
 								data-excerpt={(post.data.excerpt || post.data.description || '').toLowerCase()}
 							>
-								<a href={`/blog/${post.slug}`} class="block flex-1 flex flex-col">
+								<a href={`/blog/${post.slug}`} class="flex-1 flex flex-col">
 									{post.data.image && (
 										<div class="border-b border-border overflow-hidden">
-											<img class="block h-48 w-full object-cover" src={post.data.image} alt={post.data.title} loading="lazy" />
+											<Image class="block h-48 w-full object-cover" src={post.data.image} alt={post.data.title} loading="lazy" width={800} height={420} />
 										</div>
 									)}
 									<div class="p-6">
@@ -109,17 +119,26 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 										<h2 class="text-lg font-bold text-text-main font-heading mb-2 line-clamp-2">{post.data.title}</h2>
 										<p class="text-sm text-text-muted line-clamp-3 mb-4 font-body">{post.data.excerpt || post.data.description}</p>
 										<div class="flex items-center mt-auto">
-											{post.data.author && post.data.author.picture && (
-												<img class="h-8 w-8 mr-3 rounded-full object-cover" src={post.data.author.picture} alt={post.data.author.name} loading="lazy" />
-											)}
-											<div class="text-sm">
-												{post.data.author && (
-													<p class="font-semibold text-text-main">{post.data.author.name}</p>
-												)}
-												<p class="text-text-muted">
-													{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · {Math.ceil(post.body.split(/\s+/).length / 200)} min
-												</p>
-											</div>
+											{(() => {
+												const authors = post.data.authors || (post.data.author ? [post.data.author] : []);
+												return (
+													<>
+														<div class="flex -space-x-2 mr-3 flex-shrink-0">
+															{authors.map((author) => (
+																author.picture && <Image class="h-8 w-8 rounded-full object-cover ring-2 ring-background" src={author.picture} alt={author.name} loading="lazy" width={32} height={32} inferSize />
+															))}
+														</div>
+														<div class="text-sm min-w-0">
+															<p class="font-semibold text-text-main truncate">
+																{authors.map((a) => a.name).join(', ')}
+															</p>
+															<p class="text-text-muted">
+																{post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · {Math.ceil(post.body.split(/\s+/).length / 200)} min
+															</p>
+														</div>
+													</>
+												);
+											})()}
 										</div>
 										{post.data.tags && (
 											<div class="flex flex-wrap gap-1 mt-3">
@@ -139,7 +158,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 			</div>
 
 			<div class="lg:w-1/3">
-				<div class="lg:pl-6 space-y-6">
+				<div class="lg:pl-6 space-y-6 reveal reveal-delay-2">
 					<div class="relative">
 						<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-text-muted">
 							<i class="fas fa-search" aria-hidden="true"></i>
@@ -185,7 +204,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 
 					<div class="border border-border bg-card p-6">
 						<a href="/">
-							<img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Ultraviolet" class="h-8 mb-4" />
+							<img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Ultraviolet" class="h-8 mb-4 dark:brightness-0 dark:invert" />
 						</a>
 						<p class="text-text-muted text-sm mb-4">
 							Ultraviolet is a leading company specializing in confidential computing, cloud security, AI/ML, multi-party computation, and secure data sharing.
@@ -214,6 +233,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 							action="https://ultraviolet.us20.list-manage.com/subscribe/post?u=b35e6bdc7b2adf06c56da2265&amp;id=88ed6c4af0&amp;f_id=004f06eaf0"
 							method="post"
 							target="_blank"
+							aria-label="Newsletter subscription"
 						>
 							<div class="flex flex-col gap-2 sm:flex-row sm:gap-0">
 								<input
@@ -221,6 +241,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 									name="EMAIL"
 									placeholder="Enter your email"
 									required
+									aria-label="Email address"
 									class="w-full sm:flex-1 px-3 py-2 border border-border sm:border-r-0 bg-background text-text-main focus:ring-1 focus:ring-primary focus:border-primary outline-none"
 								/>
 								<button type="submit" class="w-full sm:w-auto px-3 py-2 bg-primary text-black font-medium border border-primary hover:bg-primary-dark transition-colors uppercase tracking-wide">
@@ -228,7 +249,7 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 								</button>
 							</div>
 							<div style="position: absolute; left: -5000px" aria-hidden="true">
-								<input type="text" name="b_b35e6bdc7b2adf06c56da2265_88ed6c4af0" tabindex="-1" value="" />
+								<input type="text" name="b_b35e6bdc7b2adf06c56da2265_88ed6c4af0" tabindex="-1" value="" aria-label="Leave empty" />
 							</div>
 						</form>
 					</div>

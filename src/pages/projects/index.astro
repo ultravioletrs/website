@@ -67,43 +67,39 @@ const description = "Explore Ultraviolet's research projects in confidential com
         </div>
     </section>
 
-    <section id="projects-intro" class="py-16 bg-surface border-b border-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-background p-8 lg:p-12 border border-border">
-                <div class="w-full max-w-4xl">
-                    <h1 class="text-3xl lg:text-4xl font-heading mb-8 text-text-main font-medium border-b border-border pb-6">Research Projects</h1>
-                    <div class="prose prose-lg text-text-muted font-body">
-                        <p class="mb-6">
-                            Advancing confidential computing, AI security, and privacy-preserving technologies through
-                            EU-funded research initiatives
-                        </p>
-                        <p class="mb-0">
-                            At Ultraviolet, we actively participate in cutting-edge research projects that push the
-                            boundaries of confidential computing, secure AI/ML, and privacy-preserving technologies.
-                            Our involvement in European Union-funded initiatives enables us to collaborate with leading
-                            research institutions and industry partners to develop next-generation security solutions
-                            for cloud, edge, and 6G networks.
-                        </p>
-                    </div>
-                </div>
+    <section id="projects-intro" class="project-page-section">
+        <div class="project-page-container">
+            <h1 class="project-page-heading reveal">Research Projects</h1>
+            <div class="project-page-copy reveal">
+                <p class="mb-6">
+                    Advancing confidential computing, AI security, and privacy-preserving technologies through
+                    EU-funded research initiatives
+                </p>
+                <p class="mb-0">
+                    At Ultraviolet, we actively participate in cutting-edge research projects that push the
+                    boundaries of confidential computing, secure AI/ML, and privacy-preserving technologies.
+                    Our involvement in European Union-funded initiatives enables us to collaborate with leading
+                    research institutions and industry partners to develop next-generation security solutions
+                    for cloud, edge, and 6G networks.
+                </p>
             </div>
         </div>
     </section>
 
-    <section id="projects-cards" class="py-16 bg-background">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {projects.map((project) => (
-                    <div class="flex flex-col h-full bg-surface border border-border p-8 transition-colors hover:bg-card">
-                        <div class="text-center mb-8 h-[120px] flex items-center justify-center border-b border-border pb-6">
-                            <img src={project.image} alt={`${project.name} Logo`} style={project.logoStyle} class="max-w-full" />
-                        </div>
-                        <h3 class="text-center text-xl font-heading mb-4 text-text-main font-medium">{project.name}</h3>
-                        <p class="text-text-muted font-body mb-8 flex-grow text-center">
-                            {project.description}
-                        </p>
-                        <div class="mt-auto text-center pt-6 border-t border-border">
-                            <a href={project.link} class="inline-block px-8 py-3 bg-primary text-black font-medium border border-primary hover:bg-primary-dark transition-colors uppercase tracking-wide w-full">
+    <section id="projects-cards" class="bg-background border-b border-border">
+        <div class="w-full">
+            <div class="grid grid-cols-1 md:grid-cols-3">
+                {projects.map((project, index) => (
+                    <div class={`flex flex-col h-full ${index !== projects.length - 1 ? 'md:border-r border-border' : ''} border-b md:border-b-0 border-border reveal reveal-delay-${index + 1}`}>
+                        <div class="p-8 lg:p-12 hover:bg-surface transition-colors h-full flex flex-col items-center text-center">
+                            <div class="mb-8 h-[120px] flex items-center justify-center">
+                                <img src={project.image} alt={`${project.name} Logo`} style={project.logoStyle} class="max-w-full" />
+                            </div>
+                            <h3 class="text-xl font-heading mb-4 text-text-main font-medium">{project.name}</h3>
+                            <p class="text-text-muted font-body mb-8 flex-grow">
+                                {project.description}
+                            </p>
+                            <a href={project.link} class="inline-block px-8 py-3 bg-primary text-black font-medium border border-primary hover:bg-primary-dark transition-colors uppercase tracking-wide w-full mt-auto">
                                 View Details
                             </a>
                         </div>
@@ -113,11 +109,11 @@ const description = "Explore Ultraviolet's research projects in confidential com
         </div>
     </section>
 
-    <section class="py-16 bg-surface border-t border-b border-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-2xl lg:text-3xl text-center mb-12 font-heading text-text-main font-medium">Our Research Focus Areas</h2>
+    <section class="project-page-section">
+        <div class="project-page-container">
+            <h2 class="project-page-heading reveal">Our Research Focus Areas</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-background p-8 border border-border text-center flex flex-col items-center">
+                <div class="bg-surface p-8 border border-border flex flex-col items-center text-center reveal reveal-delay-1">
                     <div class="inline-flex items-center justify-center h-16 w-16 bg-primary/10 text-primary-text mb-6 border border-primary/20">
                         <i class="fas fa-shield-alt text-2xl" aria-hidden="true"></i>
                     </div>
@@ -127,7 +123,7 @@ const description = "Explore Ultraviolet's research projects in confidential com
                     </p>
                 </div>
 
-                <div class="bg-background p-8 border border-border text-center flex flex-col items-center">
+                <div class="bg-surface p-8 border border-border flex flex-col items-center text-center reveal reveal-delay-2">
                     <div class="inline-flex items-center justify-center h-16 w-16 bg-primary/10 text-primary-text mb-6 border border-primary/20">
                         <i class="fas fa-network-wired text-2xl" aria-hidden="true"></i>
                     </div>
@@ -137,7 +133,7 @@ const description = "Explore Ultraviolet's research projects in confidential com
                     </p>
                 </div>
 
-                <div class="bg-background p-8 border border-border text-center flex flex-col items-center">
+                <div class="bg-surface p-8 border border-border flex flex-col items-center text-center reveal reveal-delay-3">
                     <div class="inline-flex items-center justify-center h-16 w-16 bg-primary/10 text-primary-text mb-6 border border-primary/20">
                         <i class="fas fa-brain text-2xl" aria-hidden="true"></i>
                     </div>

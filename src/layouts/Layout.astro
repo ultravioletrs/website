@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 
 interface Props {
 	title: string;
@@ -21,6 +22,7 @@ const ogImage = image || defaultOgImage;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
+		<ClientRouter />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Outfit:wght@100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Sen:wght@400..800&display=swap" rel="stylesheet">
@@ -56,5 +58,49 @@ const ogImage = image || defaultOgImage;
             </main>
             <slot name="footer" />
         </div>
+
+        <script is:inline>
+        function initReveal() {
+          var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (reduced) {
+            document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(function(el) {
+              el.classList.add('is-visible');
+            });
+            document.querySelectorAll('.hero-entrance').forEach(function(el) {
+              el.classList.add('is-ready');
+            });
+            return;
+          }
+
+          var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+          document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-scale').forEach(function(el) {
+            observer.observe(el);
+          });
+
+          document.querySelectorAll('.hero-entrance').forEach(function(hero) {
+            requestAnimationFrame(function() {
+              requestAnimationFrame(function() {
+                hero.classList.add('is-ready');
+              });
+            });
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initReveal);
+        } else {
+          initReveal();
+        }
+
+        document.addEventListener('astro:after-swap', initReveal);
+        </script>
 	</body>
 </html>

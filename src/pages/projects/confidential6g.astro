@@ -43,7 +43,7 @@ const description = "CONFIDENTIAL6G is an EU-funded project developing quantum-r
 <Layout title={title} description={description}>
     <Header slot="header" />
 
-e     <section id="header" class="pt-20">
+    <section id="header" class="pt-20">
         <div class="w-full relative">
             <div class="flex items-center justify-center h-[300px] overflow-hidden border-b border-border bg-background">
                 <img src="/img/header.avif" alt="pattern-white" class="w-full h-full object-cover object-top" loading="lazy" />
@@ -52,7 +52,7 @@ e     <section id="header" class="pt-20">
     </section>
 
     <section id="project-title" class="project-page-section">
-        <div class="project-page-container text-center">
+        <div class="project-page-container text-center reveal-scale">
             <img src="/img/c6g.png" alt="CONFIDENTIAL6G Logo" class="mb-8 mx-auto dark:brightness-0 dark:invert" style="max-height: 120px" />
             <h1 class="text-3xl lg:text-4xl font-heading mb-6 text-text-main font-medium">CONFIDENTIAL6G</h1>
             <p class="text-xl text-text-muted font-body">
@@ -63,21 +63,21 @@ e     <section id="header" class="pt-20">
 
     <section id="project-details" class="project-page-section">
         <div class="project-page-container">
-            <h2 class="project-page-heading">Project Details</h2>
+            <h2 class="project-page-heading reveal">Project Details</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                <div class="bg-surface p-6 border border-border h-full flex flex-col">
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-1">
                     <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
                         <i class="fas fa-calendar-alt mr-3 text-primary-text"></i>Duration
                     </h5>
                     <p class="text-text-muted font-body">1 January 2023 - 31 December 2025</p>
                 </div>
-                <div class="bg-surface p-6 border border-border h-full flex flex-col">
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-2">
                     <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
                          <i class="fas fa-euro-sign mr-3 text-primary-text"></i>Total Budget
                     </h5>
                     <p class="text-text-muted font-body">€5 million</p>
                 </div>
-                <div class="bg-surface p-6 border border-border h-full flex flex-col">
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-3">
                     <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
                         <i class="fas fa-flag mr-3 text-primary-text"></i>Status
                     </h5>
@@ -87,13 +87,13 @@ e     <section id="header" class="pt-20">
                 </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-surface p-6 border border-border h-full flex flex-col">
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-1">
                     <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
                         <i class="fas fa-landmark mr-3 text-primary-text"></i>Funding Program
                     </h5>
                     <p class="text-text-muted font-body">Horizon Europe - HORIZON-JU-SNS-2022</p>
                 </div>
-                <div class="bg-surface p-6 border border-border h-full flex flex-col">
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-2">
                      <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
                         <i class="fas fa-user-tie mr-3 text-primary-text"></i>Project Coordinator
                     </h5>
@@ -105,8 +105,8 @@ e     <section id="header" class="pt-20">
 
     <section id="project-description" class="project-page-section">
         <div class="project-page-container">
-            <h2 class="project-page-heading">Project Description</h2>
-            <div class="project-page-copy">
+            <h2 class="project-page-heading reveal">Project Description</h2>
+            <div class="project-page-copy reveal">
                 <p class="mb-4">
                     In CONFIDENTIAL6G, our goal is to ensure secure and private
                     computation in the cloud-edge continuum of 6G by developing modern
@@ -127,9 +127,9 @@ e     <section id="header" class="pt-20">
 
     <section id="project-summary" class="project-page-section">
         <div class="project-page-container">
-            <h2 class="project-page-heading">Project Summary</h2>
+            <h2 class="project-page-heading reveal">Project Summary</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="bg-surface p-8 border border-border">
+                <div class="bg-surface p-8 border border-border reveal-left">
                     <h4 class="text-xl font-heading mb-6 text-text-main font-medium">Key Objectives</h4>
                     <ul class="space-y-6">
                         <li class="flex items-start">
@@ -181,7 +181,7 @@ e     <section id="header" class="pt-20">
                         </li>
                     </ul>
                 </div>
-                <div class="bg-surface p-8 border border-border">
+                <div class="bg-surface p-8 border border-border reveal-right">
                      <h4 class="text-xl font-heading mb-6 text-text-main font-medium">Expected Outcomes</h4>
                     <ul class="space-y-6">
                         <li class="flex items-start">
@@ -237,8 +237,8 @@ e     <section id="header" class="pt-20">
 
     <section id="our-involvement" class="project-page-section">
         <div class="project-page-container">
-            <h2 class="project-page-heading">Our Involvement</h2>
-            <div class="project-page-copy mb-8">
+            <h2 class="project-page-heading reveal">Our Involvement</h2>
+            <div class="project-page-copy mb-8 reveal">
                 <p class="mb-0">
                     In the CONFIDENTIAL6G project, Ultraviolet Consult works on
                     developing the Confidential Toolkit in WP2, collecting
@@ -282,7 +282,7 @@ e     <section id="header" class="pt-20">
                 </li>
             </ul>
 
-            <div class="mt-8 flex flex-wrap gap-4 pt-6 border-t border-border">
+            <div class="mt-8 flex flex-wrap gap-4 pt-6 border-t border-border reveal">
                  <a href="https://confidential6g.eu/" target="_blank" class="inline-flex items-center px-8 py-3 bg-primary text-black font-medium border border-primary hover:bg-primary-dark transition-colors uppercase tracking-wide">
                         Learn More
                 </a>
@@ -295,9 +295,9 @@ e     <section id="header" class="pt-20">
 
     <section id="project-impact" class="project-page-section">
         <div class="project-page-container">
-            <h2 class="project-page-heading">Project Goals & Impact</h2>
+            <h2 class="project-page-heading reveal">Project Goals & Impact</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-surface p-6 border border-border h-full flex flex-col">
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-1">
                     <h4 class="text-xl font-heading mb-4 flex items-center font-medium">
                         <i class="fas fa-key text-primary-text mr-3"></i>Cryptography
                     </h4>
@@ -307,7 +307,7 @@ e     <section id="header" class="pt-20">
                         Support for embedded edge devices and hardware.
                     </p>
                 </div>
-                 <div class="bg-surface p-6 border border-border h-full flex flex-col">
+                 <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-2">
                     <h4 class="text-xl font-heading mb-4 flex items-center font-medium">
                         <i class="fas fa-shield-alt text-primary-text mr-3"></i>Confidential Computing
                     </h4>
@@ -318,7 +318,7 @@ e     <section id="header" class="pt-20">
                         distribution.
                     </p>
                 </div>
-                 <div class="bg-surface p-6 border border-border h-full flex flex-col">
+                 <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-3">
                     <h4 class="text-xl font-heading mb-4 flex items-center font-medium">
                         <i class="fas fa-network-wired text-primary-text mr-3"></i>Confidential Networking
                     </h4>
@@ -333,7 +333,7 @@ e     <section id="header" class="pt-20">
     </section>
 
     <section id="project-partners" class="bg-background border-b border-border transition-colors duration-300">
-        <div class="py-16 border-b border-border text-center">
+        <div class="py-16 border-b border-border text-center reveal">
             <h2 class="text-2xl lg:text-3xl font-heading mb-2 text-text-main font-medium">Project Partners</h2>
             <p class="text-lg text-text-muted font-body">
                 Collaborating with leading organizations across Europe

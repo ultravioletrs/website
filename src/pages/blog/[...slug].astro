@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -16,6 +17,9 @@ const post = Astro.props;
 const { Content } = await post.render();
 
 const pageImage = post.data.image || post.data.coverImage || (typeof post.data.ogImage === 'string' ? post.data.ogImage : post.data.ogImage?.url);
+
+// Support both single author and multiple authors
+const authors = post.data.authors || (post.data.author ? [post.data.author] : []);
 ---
 
 <Layout title={post.data.title} description={post.data.description} image={pageImage}>
@@ -53,27 +57,22 @@ const pageImage = post.data.image || post.data.coverImage || (typeof post.data.o
             </div>
             
             <div class="relative px-4 sm:px-6 lg:px-8">
-                <div class="text-lg w-full max-w-none mx-auto">
+                <div class="text-lg w-full max-w-none mx-auto hero-entrance">
                     <h1>
-                        <span class="block text-base text-center text-primary-text font-semibold tracking-wide uppercase">{post.data.tags ? post.data.tags[0] : 'Blog'}</span>
-                        <span class="mt-2 block text-3xl text-center leading-8 tracking-tight text-text-main sm:text-4xl font-heading">{post.data.title}</span>
+                        <span class="block text-base text-center text-primary-text font-semibold tracking-wide uppercase hero-anim hero-anim-1">{post.data.tags ? post.data.tags[0] : 'Blog'}</span>
+                        <span class="mt-2 block text-3xl text-center leading-8 tracking-tight text-text-main sm:text-4xl font-heading hero-anim hero-anim-2">{post.data.title}</span>
                     </h1>
-                    <div class="mt-6 flex items-center justify-center">
-                        {post.data.author && (
-                            <div class="flex-shrink-0">
-                                <a href="#">
-                                    <span class="sr-only">{post.data.author.name}</span>
-                                    {post.data.author.picture && <img class="h-10 w-10 rounded-full" src={post.data.author.picture} alt="" />}
-                                </a>
-                            </div>
-                        )}
-                        <div class="ml-3">
-                             {post.data.author && (
-                                <p class="text-sm font-medium text-text-main">
-                                    <a href="#" class="hover:underline">{post.data.author.name}</a>
-                                </p>
-                             )}
-                            <div class="flex space-x-1 text-sm text-text-muted">
+                    <div class="mt-6 flex items-center justify-center hero-anim hero-anim-3">
+                        <div class="flex -space-x-3 mr-4">
+                            {authors.map((author) => (
+                                author.picture && <Image class="h-10 w-10 rounded-full ring-2 ring-background" src={author.picture} alt={author.name} width={40} height={40} />
+                            ))}
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-text-main">
+                                {authors.map((a) => a.name).join(', ')}
+                            </p>
+                            <p class="text-sm text-text-muted">
                                 <time datetime={post.data.date.toISOString()}>
                                     {post.data.date.toLocaleDateString('en-US', {
                                         year: 'numeric',
@@ -81,12 +80,14 @@ const pageImage = post.data.image || post.data.coverImage || (typeof post.data.o
                                         day: 'numeric',
                                     })}
                                 </time>
-                            </div>
+                                <span class="mx-1">·</span>
+                                <span>{Math.ceil(post.body.split(/\s+/).length / 200)} min read</span>
+                            </p>
                         </div>
                     </div>
                      {post.data.image && (
-                         <figure class="mt-8">
-                             <img class="w-full rounded-lg shadow-lg object-cover" src={post.data.image} alt={post.data.title} style="max-height: 600px;" />
+                         <figure class="mt-8 hero-anim hero-anim-4">
+                             <Image class="w-full rounded-lg shadow-lg object-cover" src={post.data.image} alt={post.data.title} style="max-height: 600px;" width={1200} height={630} />
                          </figure>
                     )}
                 </div>
@@ -102,29 +103,40 @@ const pageImage = post.data.image || post.data.coverImage || (typeof post.data.o
 
     <script type="module">
         import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        
-        mermaid.initialize({ 
-            startOnLoad: true,
-            theme: 'default',
-        });
 
-        const mermaidBlocks = document.querySelectorAll('pre > code.language-mermaid');
-        
-        mermaidBlocks.forEach((block) => {
-            const pre = block.parentElement;
-            const content = block.textContent;
-            
-            const div = document.createElement('div');
-            div.classList.add('mermaid');
-            div.textContent = content;
-            
-            if (pre) {
+        async function renderMermaid() {
+            const isDark = document.documentElement.classList.contains('dark');
+
+            mermaid.initialize({
+                startOnLoad: false,
+                theme: isDark ? 'dark' : 'default',
+            });
+
+            // Astro uses data-language attribute instead of class
+            const mermaidBlocks = document.querySelectorAll('pre[data-language="mermaid"]');
+
+            mermaidBlocks.forEach((pre) => {
+                const code = pre.querySelector('code');
+                const content = code ? code.textContent : pre.textContent;
+
+                const div = document.createElement('div');
+                div.classList.add('mermaid');
+                div.style.display = 'flex';
+                div.style.justifyContent = 'center';
+                div.textContent = content;
+
                 pre.replaceWith(div);
-            }
-        });
+            });
 
-        mermaid.run({
-            nodes: document.querySelectorAll('.mermaid')
-        });
+            await mermaid.run({
+                nodes: document.querySelectorAll('.mermaid')
+            });
+        }
+
+        // Run on initial load
+        renderMermaid();
+
+        // Re-run on View Transitions navigation
+        document.addEventListener('astro:after-swap', renderMermaid);
     </script>
 </Layout>

@@ -97,20 +97,20 @@ const { title, description, image, ctaText, ctaLink, secondaryCtaText, secondary
             </div>
         </div>
     ) : (
-        <div class={`lg:grid ${image ? 'lg:grid-cols-2 lg:gap-16' : ''} lg:items-center`}>
+        <div class={`hero-entrance lg:grid ${image ? 'lg:grid-cols-2 lg:gap-16' : ''} lg:items-center`}>
             <div class={`${image ? '' : 'w-full'} ${alignment === 'center' ? 'text-center mx-auto' : 'text-left'}`}>
                 {announcementText && (
-                    <div class="mb-4">
+                    <div class="mb-4 hero-anim hero-anim-1">
                         <a href={announcementLink || "#"} class="text-primary-text hover:underline font-medium text-sm sm:text-base">
                             {announcementText}
                         </a>
                     </div>
                 )}
-                <h1 class={`text-5xl tracking-tight sm:text-6xl md:text-7xl mb-6 font-heading font-medium leading-[1.1] ${titleClass || 'text-text-main'}`} set:html={title}>
+                <h1 class={`hero-anim hero-anim-1 text-5xl tracking-tight sm:text-6xl md:text-7xl mb-6 font-heading font-medium leading-[1.1] ${titleClass || 'text-text-main'}`} set:html={title}>
                 </h1>
-                <p class={`mt-6 text-lg text-text-muted sm:mt-5 ${image ? 'sm:max-w-xl sm:mx-auto lg:mx-0' : ''} md:mt-8 md:text-xl font-body ${alignment === 'center' ? 'mx-auto' : ''}`} set:html={description}></p>
+                <p class={`hero-anim hero-anim-2 mt-6 text-lg text-text-muted sm:mt-5 ${image ? 'sm:max-w-xl sm:mx-auto lg:mx-0' : ''} md:mt-8 md:text-xl font-body ${alignment === 'center' ? 'mx-auto' : ''}`} set:html={description}></p>
                 {ctaText && ctaLink && (
-                    <div class={`mt-10 sm:mt-12 sm:flex ${image ? 'sm:justify-center lg:justify-start' : (alignment === 'center' ? 'justify-center' : 'justify-start')} gap-4`}>
+                    <div class={`hero-anim hero-anim-3 mt-10 sm:mt-12 sm:flex ${image ? 'sm:justify-center lg:justify-start' : (alignment === 'center' ? 'justify-center' : 'justify-start')} gap-4`}>
                         <div>
                             <a href={ctaLink} class="w-full flex items-center justify-center px-10 py-4 border border-primary text-base font-medium text-black bg-primary hover:bg-primary-dark transition-all md:text-lg uppercase tracking-wide">
                                 {ctaText}
@@ -127,7 +127,7 @@ const { title, description, image, ctaText, ctaLink, secondaryCtaText, secondary
                 )}
             </div>
             {image && (
-                <div class="mt-12 lg:mt-0 relative">
+                <div class="mt-12 lg:mt-0 relative hero-anim hero-anim-4">
                     <img class="w-full border p-2 border-border bg-surface" src={image} alt="Hero Image" loading="eager" />
                 </div>
             )}

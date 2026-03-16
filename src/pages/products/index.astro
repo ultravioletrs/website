@@ -46,7 +46,7 @@ const description = "Explore Ultraviolet's suite of secure AI products: Prism AI
     <section id="our-products" class="py-16 bg-background border-b border-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="mt-8">
-                <div class="w-full">
+                <div class="w-full reveal">
                     <h1 class="text-5xl lg:text-7xl font-heading font-medium mb-6 text-text-main">Our Products</h1>
                     <p class="mb-4 text-lg text-text-muted max-w-4xl">
                       Ultraviolet specializes in cutting-edge products that leverage
@@ -65,7 +65,7 @@ const description = "Explore Ultraviolet's suite of secure AI products: Prism AI
         <div class="w-full">
             <div class="grid grid-cols-1 md:grid-cols-3">
                 {products.map((product, index) => (
-                    <div class={`flex flex-col h-full ${index !== products.length - 1 ? 'md:border-r border-border' : ''} border-b md:border-b-0 border-border`}>
+                    <div class={`flex flex-col h-full reveal reveal-delay-${index + 1} ${index !== products.length - 1 ? 'md:border-r border-border' : ''} border-b md:border-b-0 border-border`}>
                         <div class="p-8 lg:p-12 hover:bg-surface transition-colors h-full flex flex-col items-start">
                             <i class={`${product.icon} text-4xl mb-6 text-primary-text`}></i>
                             <h4 class="text-2xl font-heading font-medium text-text-main mb-4">{product.name}</h4>
