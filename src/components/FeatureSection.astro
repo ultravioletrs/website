@@ -1,0 +1,35 @@
+---
+interface Props {
+	title: string;
+	subtitle?: string;
+	image: string;
+	imageAlt?: string;
+	imageSide?: 'left' | 'right';
+	background?: 'white' | 'gray';
+}
+
+const { title, subtitle, image, imageAlt = "", imageSide = 'right', background = 'white' } = Astro.props;
+
+const sectionClass = `py-16 border-b border-border ${background === 'gray' ? 'bg-background' : 'bg-background'}`;
+const orderClass = imageSide === 'left' ? 'lg:order-1' : 'lg:order-2';
+const textOrderClass = imageSide === 'left' ? 'lg:order-2' : 'lg:order-1';
+---
+
+<section class={sectionClass}>
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="lg:grid lg:grid-cols-2 lg:gap-16 lg:items-center">
+			<div class={`relative ${orderClass} ${imageSide === 'left' ? 'reveal-left' : 'reveal-right'}`}>
+				<img class="w-full border p-2 border-border bg-background shadow-none" src={image} alt={imageAlt}>
+			</div>
+			<div class={`mt-10 lg:mt-0 ${textOrderClass} ${imageSide === 'left' ? 'reveal-right' : 'reveal-left'}`}>
+				{subtitle && <div class="text-primary-text font-medium tracking-wide uppercase mb-2">{subtitle}</div>}
+				<h2 class="text-3xl text-text-main sm:text-4xl font-heading mb-4">
+					{title}
+				</h2>
+				<div class="prose prose-lg text-text-muted">
+					<slot />
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,95 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Newsletter from '../../components/Newsletter.astro';
+
+
+const title = "Careers at Ultraviolet - Join Our Team";
+const description = "Join Ultraviolet's team of experts in confidential computing, AI/ML, and secure data sharing. View open positions and apply today.";
+---
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <section id="header" class="pt-20">
+        <div class="w-full relative">
+            <div class="flex items-center justify-center h-[300px] overflow-hidden border-b border-border bg-background">
+                <img src="/img/header.avif" alt="pattern-white" class="w-full h-full object-cover object-top" loading="lazy" />
+            </div>
+        </div>
+    </section>
+
+    <section id="careers" class="py-16 bg-background border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col items-center text-center">
+                <div class="w-full max-w-3xl reveal">
+                    <h1 class="text-3xl lg:text-4xl font-heading mb-8 text-text-main font-medium border-b border-border pb-6">Careers at Ultraviolet</h1>
+                    <div class="prose prose-lg text-text-muted font-body mb-8">
+                        <p class="mb-4">
+                            Join our dynamic team and be a part of shaping the future of cloud
+                            computing, AI/ML, multi-party computation, and secure data
+                            sharing. At Ultraviolet, we're dedicated to pushing the boundaries
+                            of technology and creating innovative solutions in these domains.
+                            We're always looking for passionate individuals who thrive in a
+                            collaborative and challenging environment.
+                        </p>
+                        <p class="mb-4">
+                            As a member of the Ultraviolet team, you'll have the opportunity
+                            to work on cutting-edge projects, collaborate with experts in
+                            cloud computing, AI/ML, and related fields, and contribute to the
+                            growth and success of our clients in these rapidly evolving
+                            landscapes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="w-full max-w-3xl mt-8 pt-8 border-t border-border reveal">
+                     <p class="mb-8 text-lg text-text-muted font-body">
+                        We are always looking for talented engineers who are excited
+                        about cloud computing, AI/ML, multi-party computation, and
+                        secure data sharing and want to be part of our innovative
+                        team.
+                    </p>
+                    <div>
+                         <a href="mailto:careers@ultraviolet.rs" class="inline-flex items-center justify-center px-10 py-4 border border-primary text-base font-medium text-black bg-primary hover:bg-primary-dark transition-colors uppercase tracking-wide">
+                            <i class="fas fa-envelope mr-3"></i>careers@ultraviolet.rs
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-background border-b border-border">
+         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h3 class="text-2xl lg:text-3xl font-heading mb-10 text-center text-text-main font-medium reveal">Why Join Ultraviolet?</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                <div class="bg-surface p-8 border border-border reveal reveal-delay-1">
+                    <h4 class="text-xl mb-4 text-text-main font-heading font-medium">Innovative Technology Focus</h4>
+                    <p class="text-text-muted font-body">Be a part of a team that's at the forefront of cloud computing, AI/ML, multi-party computation, and secure data sharing.</p>
+                </div>
+                <div class="bg-surface p-8 border border-border reveal reveal-delay-2">
+                    <h4 class="text-xl mb-4 text-text-main font-heading font-medium">Cross-Disciplinary Collaboration</h4>
+                    <p class="text-text-muted font-body">Work alongside experts in cloud computing, AI/ML, and related domains, fostering continuous learning and growth in these fields.</p>
+                </div>
+                <div class="bg-surface p-8 border border-border reveal reveal-delay-3">
+                    <h4 class="text-xl mb-4 text-text-main font-heading font-medium">Impactful Projects</h4>
+                    <p class="text-text-muted font-body">Contribute to projects that drive digital transformation and shape the future of cloud computing and secure data sharing.</p>
+                </div>
+                <div class="bg-surface p-8 border border-border reveal reveal-delay-1">
+                    <h4 class="text-xl mb-4 text-text-main font-heading font-medium">Professional Development</h4>
+                    <p class="text-text-muted font-body">We invest in our team's growth through training, workshops, and skill development programs focused on cutting-edge technologies.</p>
+                </div>
+                <div class="bg-surface p-8 border border-border reveal reveal-delay-2">
+                    <h4 class="text-xl mb-4 text-text-main font-heading font-medium">Work-Life Balance</h4>
+                    <p class="text-text-muted font-body">We value work-life balance and provide a flexible work environment to ensure your well-being while contributing to the exciting world of technology development.</p>
+                </div>
+             </div>
+        </div>
+    </section>
+
+    <Newsletter />
+
+    <Footer slot="footer" />
+</Layout>

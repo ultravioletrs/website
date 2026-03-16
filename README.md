@@ -1,42 +1,46 @@
 # Ultraviolet Website
 
-This repository contains the source code for the [Ultraviolet](https://ultraviolet.rs) website and blog.
+Marketing site and content hub for Ultraviolet, built with Astro and Tailwind CSS.
+
+## Stack
+
+- Astro
+- Tailwind CSS
+- TypeScript
+- Sharp for image optimization
 
 ## Project Structure
 
-- `content/blogs/`: Markdown files for blog posts.
-- `img/blogs/`: Images used in blog posts.
-- `scripts/`: The Go-based static site generator.
-- `scripts/templates/`: HTML templates for the blog listing and individual posts.
-- `blog/`: Generated static files (do not edit manually).
-- `index.html`: The main landing page.
-
-## Prerequisites
-
-- **Go**: Required to run the blog builder.
-- **Make**: Used for task automation.
-
-## Guidelines for Contributors
-
-To add a new blog post, follow these steps:
-
-1. Create your content in `content/blogs/` (see [WRITING.md](WRITING.md)).
-2. Build the site locally to generate the static files:
-   ```bash
-   make clean && make build
-   ```
-3. To run live reload server, use:
-   ```bash
-   make serve
-   ```
-   and open a browser at http://localhost:8080.
-4. To run on a different port (if, say, 8080 is taken), use:
-```bash
-   PORT=8081 make serve
+```text
+/
+├── content/            # Long-form blog content and media
+├── public/             # Static assets served as-is
+├── src/
+│   ├── assets/         # Optimized local images and logos
+│   ├── components/     # Reusable Astro components
+│   ├── content/        # Astro content collection config
+│   ├── layouts/        # Shared page layouts
+│   ├── pages/          # Route entrypoints
+│   └── styles/         # Global styles
+├── astro.config.mjs
+└── package.json
 ```
-5. Commit both the source Markdown files **and** the generated files in the `blog/` folder.
-6. Open a Pull Request.
 
-## Documentation
+## Commands
 
-- [How to Write a Blog Post](WRITING.md)
+Run commands from the repository root:
+
+| Command | Action |
+| :-- | :-- |
+| `pnpm install` | Install dependencies |
+| `pnpm run dev` | Start the local Astro development server |
+| `pnpm run build` | Build the production site |
+| `pnpm run preview` | Preview the production build locally |
+| `pnpm run check` | Run Astro and TypeScript checks |
+
+## Content Notes
+
+- Page routes live in `src/pages/`.
+- Shared layout and UI primitives live in `src/layouts/` and `src/components/`.
+- Blog collection schema is defined in `src/content/config.ts`.
+- Static brand assets and icons live in `public/`.

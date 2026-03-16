@@ -1,0 +1,366 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import Newsletter from '../../components/Newsletter.astro';
+
+const project = {
+    title: "CONFIDENTIAL6G",
+    tagline: "Quantum-Resistant Cryptography for 6G",
+    description: "Quantum-resistant cryptographic protocols and security frameworks for 6G confidential computing.",
+    duration: "1 January 2023 - 31 December 2025",
+    budget: "€5 million",
+    status: "Active",
+    funding: "Horizon Europe - HORIZON-JU-SNS-2022",
+    coordinator: "WINGS ICT SOLUTIONS TECHNOLOGIES",
+    logo: "/img/c6g.png",
+    site: "https://confidential6g.eu/",
+    cordis: "https://cordis.europa.eu/project/id/101096435"
+};
+
+const partners = [
+    { src: "/img/logos/wings-logo.png", alt: "Wings" },
+    { src: "/img/logos/nokia-1.png", alt: "Nokia" },
+    { src: "/img/logos/nokia-bellLabs.png", alt: "Nokia Bell Labs" },
+    { src: "/img/logos/telefonica.png", alt: "Telefonica" },
+    { src: "/img/logos/tue.png", alt: "TU Eindhoven" },
+    { src: "/img/logos/zen.png", alt: "Zenith" },
+    { src: "/img/logos/vtt.png", alt: "VTT" },
+    { src: "/img/logos/tno.png", alt: "TNO" },
+    { src: "/img/logos/imdea.png", alt: "IMDEA" },
+    { src: "/img/logos/tu-gratz.png", alt: "TU Graz" },
+    { src: "/img/logos/ucd-1.png", alt: "UCD" },
+    { src: "/img/logos/tuw.png", alt: "TU Wien" },
+    { src: "/img/logos/AMA.png", alt: "AMA" },
+    { src: "/img/logos/ultraviolet.png", alt: "Ultraviolet" }
+];
+
+const title = "CONFIDENTIAL6G - Quantum-Resistant Cryptography for 6G | Ultraviolet";
+const description = "CONFIDENTIAL6G is an EU-funded project developing quantum-resistant cryptographic protocols and security frameworks for 6G confidential computing.";
+---
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <section id="header" class="pt-20">
+        <div class="w-full relative">
+            <div class="flex items-center justify-center h-[300px] overflow-hidden border-b border-border bg-background">
+                <img src="/img/header.avif" alt="pattern-white" class="w-full h-full object-cover object-top" loading="lazy" />
+            </div>
+        </div>
+    </section>
+
+    <section id="project-title" class="project-page-section">
+        <div class="project-page-container text-center reveal-scale">
+            <img src="/img/c6g.png" alt="CONFIDENTIAL6G Logo" class="mb-8 mx-auto dark:invert" style="max-height: 120px" />
+            <h1 class="text-3xl lg:text-4xl font-heading mb-6 text-text-main font-medium">CONFIDENTIAL6G</h1>
+            <p class="text-xl text-text-muted font-body">
+                Quantum-resistant cryptographic protocols and security frameworks for 6G confidential computing
+            </p>
+        </div>
+    </section>
+
+    <section id="project-details" class="project-page-section">
+        <div class="project-page-container">
+            <h2 class="project-page-heading reveal">Project Details</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-1">
+                    <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
+                        <i class="fas fa-calendar-alt mr-3 text-primary-text"></i>Duration
+                    </h5>
+                    <p class="text-text-muted font-body">1 January 2023 - 31 December 2025</p>
+                </div>
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-2">
+                    <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
+                         <i class="fas fa-euro-sign mr-3 text-primary-text"></i>Total Budget
+                    </h5>
+                    <p class="text-text-muted font-body">€5 million</p>
+                </div>
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-3">
+                    <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
+                        <i class="fas fa-flag mr-3 text-primary-text"></i>Status
+                    </h5>
+                    <p class="text-text-muted font-body">
+                        <span class="inline-block px-3 py-1 bg-primary/10 text-primary-text border border-primary/20 text-sm font-semibold uppercase tracking-wide">Active</span>
+                    </p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-1">
+                    <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
+                        <i class="fas fa-landmark mr-3 text-primary-text"></i>Funding Program
+                    </h5>
+                    <p class="text-text-muted font-body">Horizon Europe - HORIZON-JU-SNS-2022</p>
+                </div>
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-2">
+                     <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
+                        <i class="fas fa-user-tie mr-3 text-primary-text"></i>Project Coordinator
+                    </h5>
+                    <p class="text-text-muted font-body">WINGS ICT SOLUTIONS TECHNOLOGIES</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-description" class="project-page-section">
+        <div class="project-page-container">
+            <h2 class="project-page-heading reveal">Project Description</h2>
+            <div class="project-page-copy reveal">
+                <p class="mb-4">
+                    In CONFIDENTIAL6G, our goal is to ensure secure and private
+                    computation in the cloud-edge continuum of 6G by developing modern
+                    cryptographic techniques, tools, and libraries. We recognize the
+                    importance of implementing privacy preservation and security of
+                    data in heterogeneous environments and contexts, and thus, we
+                    prioritize researching security enablers.
+                </p>
+                <p class="mb-0">
+                    We aim to tackle the potential danger posed by near-future quantum
+                    computers, which can break contemporary encryptions, by exploring
+                    novel cryptographic operations and developing quantum-resistant
+                    security solutions for next-generation networks.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-summary" class="project-page-section">
+        <div class="project-page-container">
+            <h2 class="project-page-heading reveal">Project Summary</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-surface p-8 border border-border reveal-left">
+                    <h4 class="text-xl font-heading mb-6 text-text-main font-medium">Key Objectives</h4>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                             <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-primary-text"></i>
+                            </div>
+                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Quantum-resistant security:</strong> Develop security
+                                tools and cryptographic libraries for 6G confidential computing
+                                and networking
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                             <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-primary-text"></i>
+                            </div>
+                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Privacy-preserving AI/ML:</strong> Create secure,
+                                GDPR-compliant methods in multi-stakeholder environments
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                             <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-primary-text"></i>
+                            </div>
+                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Edge-cloud networking:</strong> Build secure networking
+                                for confidential computing and federated machine learning
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-primary-text"></i>
+                            </div>
+                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Modular framework:</strong> Integrate all tools and test
+                                with real 6G use cases
+                            </p>
+                        </li>
+                         <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-primary-text"></i>
+                            </div>
+                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Standardization support:</strong> Support 6G security
+                                standards and promote EU capabilities in future cloud
+                                technologies
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-surface p-8 border border-border reveal-right">
+                     <h4 class="text-xl font-heading mb-6 text-text-main font-medium">Expected Outcomes</h4>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
+                            </div>
+                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Cryptographic libraries:</strong> Post-quantum libraries
+                                and SDKs for 6G
+                            </p>
+                        </li>
+                         <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
+                            </div>
+                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Computing framework:</strong> Confidential computing
+                                framework for cloud-edge environments
+                            </p>
+                        </li>
+                         <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
+                            </div>
+                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Privacy protocols:</strong> Privacy-preserving protocols
+                                for heterogeneous 6G networks
+                            </p>
+                        </li>
+                         <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
+                            </div>
+                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Security tools:</strong> Quantum-resistant security
+                                tools and artifacts
+                            </p>
+                        </li>
+                         <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
+                            </div>
+                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Security standards:</strong> Enhanced security standards
+                                for future 6G deployments
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="our-involvement" class="project-page-section">
+        <div class="project-page-container">
+            <h2 class="project-page-heading reveal">Our Involvement</h2>
+            <div class="project-page-copy mb-8 reveal">
+                <p class="mb-0">
+                    In the CONFIDENTIAL6G project, Ultraviolet Consult works on
+                    developing the Confidential Toolkit in WP2, collecting
+                    requirements needed for privacy-preserving computation, service
+                    orchestration, and secure collaborative AI/ML and networking in
+                    WP3 and WP4, and leads Use Case 2 in WP5.
+                </p>
+            </div>
+            <h4 class="text-xl font-heading mb-6 text-text-main font-medium">Key Contributions:</h4>
+            <ul class="space-y-6 mb-8 text-base text-text-muted font-body max-w-5xl">
+                <li class="flex items-start">
+                     <div class="flex-shrink-0 mt-1">
+                        <span class="w-2 h-2 bg-primary-text inline-block"></span>
+                    </div>
+                    <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                        <strong class="text-text-main">WP2 - Confidential Toolkit Development:</strong>
+                        Developing tools and libraries for confidential computing in 6G
+                        networks
+                    </p>
+                </li>
+                 <li class="flex items-start">
+                     <div class="flex-shrink-0 mt-1">
+                        <span class="w-2 h-2 bg-primary-text inline-block"></span>
+                    </div>
+                    <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                        <strong class="text-text-main">WP3 & WP4 - Requirements Collection:</strong> Gathering
+                        and defining requirements for privacy-preserving computation,
+                        service orchestration, and secure collaborative AI/ML and
+                        networking
+                    </p>
+                </li>
+                 <li class="flex items-start">
+                     <div class="flex-shrink-0 mt-1">
+                        <span class="w-2 h-2 bg-primary-text inline-block"></span>
+                    </div>
+                    <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                        <strong class="text-text-main">WP5 - Use Case 2 Leadership:</strong> Leading the
+                        implementation and validation of Use Case 2, demonstrating
+                        practical applications of confidential computing in 6G scenarios
+                    </p>
+                </li>
+            </ul>
+
+            <div class="mt-8 flex flex-wrap gap-4 pt-6 border-t border-border reveal">
+                 <a href="https://confidential6g.eu/" target="_blank" class="inline-flex items-center px-8 py-3 bg-primary text-black font-medium border border-primary hover:bg-primary-dark transition-colors uppercase tracking-wide">
+                        Learn More
+                </a>
+                 <a href="https://cordis.europa.eu/project/id/101096435" target="_blank" class="inline-flex items-center px-8 py-3 bg-transparent text-text-main font-medium border border-border border-dashed hover:bg-surface transition-colors uppercase tracking-wide">
+                    View on CORDIS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-impact" class="project-page-section">
+        <div class="project-page-container">
+            <h2 class="project-page-heading reveal">Project Goals & Impact</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-1">
+                    <h4 class="text-xl font-heading mb-4 flex items-center font-medium">
+                        <i class="fas fa-key text-primary-text mr-3"></i>Cryptography
+                    </h4>
+                    <p class="text-text-muted font-body leading-relaxed">
+                        Cryptographic enablers for confidential computing (FHE, SMPC,
+                        TEE) and post-quantum networking. DLT privacy enablers (ZKP).
+                        Support for embedded edge devices and hardware.
+                    </p>
+                </div>
+                 <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-2">
+                    <h4 class="text-xl font-heading mb-4 flex items-center font-medium">
+                        <i class="fas fa-shield-alt text-primary-text mr-3"></i>Confidential Computing
+                    </h4>
+                    <p class="text-text-muted font-body leading-relaxed">
+                        Confidential Computing via FHE, SMPC and HW TEEs.
+                        Collaborative AI/ML. Confidential containers. Remote
+                        attestations. Secure enclave abstractions. Secure key
+                        distribution.
+                    </p>
+                </div>
+                 <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-3">
+                    <h4 class="text-xl font-heading mb-4 flex items-center font-medium">
+                        <i class="fas fa-network-wired text-primary-text mr-3"></i>Confidential Networking
+                    </h4>
+                    <p class="text-text-muted font-body leading-relaxed">
+                        Post-quantum secure network protocols. Secure data sharing and
+                        access control. Private blockchain Smart Contracts, DIDs and
+                        VCs. Federated AI/ML orchestration.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-partners" class="bg-background border-b border-border transition-colors duration-300">
+        <div class="py-16 border-b border-border text-center reveal">
+            <h2 class="text-2xl lg:text-3xl font-heading mb-2 text-text-main font-medium">Project Partners</h2>
+            <p class="text-lg text-text-muted font-body">
+                Collaborating with leading organizations across Europe
+            </p>
+        </div>
+        <div class="overflow-hidden py-6">
+            <div class="clients-marquee-track flex w-max items-center">
+                {[...partners, ...partners].map((logo, index) => {
+                    const isDuplicate = index >= partners.length;
+
+                    return (
+                        <div class="clients-marquee-item flex justify-center items-center px-10 py-6" aria-hidden={isDuplicate ? 'true' : undefined}>
+                            <img src={logo.src} alt={logo.alt} class="h-10 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all dark:invert" loading="lazy" />
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    </section>
+
+    <section class="project-page-section text-center">
+         <a href="/projects" class="inline-flex items-center px-8 py-3 border border-border bg-transparent text-base font-medium text-text-main hover:bg-surface transition-colors uppercase tracking-wide">
+            <i class="fas fa-arrow-left mr-3"></i>Back to All Projects
+        </a>
+    </section>
+
+    <Newsletter />
+
+    <Footer slot="footer" />
+</Layout>

@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: 255 255 255;
+    --color-surface: 247 247 247;
+    --color-surface-hover: 240 240 240;
+
+    --color-text-main: 13 13 13;
+    --color-text-muted: 102 102 102;
+    --color-text-inverted: 255 255 255;
+
+    --color-primary: 176 255 0;
+    --color-primary-dark: 143 204 0;
+    --color-primary-text: 80 120 0;
+    --color-secondary: 13 13 13;
+
+    --color-border: 229 229 229;
+  }
+
+  html.dark {
+    color-scheme: dark;
+    --color-background: 13 13 13;
+    --color-surface: 26 26 26;
+    --color-surface-hover: 38 38 38;
+
+    --color-text-main: 255 255 255;
+    --color-text-muted: 170 170 170;
+    --color-text-inverted: 13 13 13;
+
+    --color-primary: 176 255 0;
+    --color-primary-dark: 143 204 0;
+    --color-primary-text: 143 204 0;
+    --color-secondary: 255 255 255;
+
+    --color-border: 63 63 70;
+  }
+}
+
+@layer components {
+  .project-page-section {
+    @apply py-16 bg-background border-b border-border;
+  }
+
+  .project-page-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .project-page-heading {
+    @apply text-2xl lg:text-3xl font-heading mb-8 text-text-main font-medium border-b border-border pb-4;
+  }
+
+  .project-page-copy {
+    @apply max-w-5xl prose prose-lg text-text-muted font-body;
+  }
+
+  .clients-marquee-track {
+    animation: clients-marquee-rtl 36s linear infinite;
+    will-change: transform;
+  }
+
+  .clients-marquee-track:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes clients-marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clients-marquee-track {
+    animation: none;
+  }
+
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-entrance .hero-anim {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+.reveal,
+.reveal-left,
+.reveal-right,
+.reveal-scale {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal {
+  transform: translateY(32px);
+}
+
+.reveal-left {
+  transform: translateX(-40px);
+}
+
+.reveal-right {
+  transform: translateX(40px);
+}
+
+.reveal-scale {
+  transform: scale(0.95);
+}
+
+.reveal.is-visible,
+.reveal-left.is-visible,
+.reveal-right.is-visible,
+.reveal-scale.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+.hero-entrance .hero-anim {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-entrance.is-ready .hero-anim {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-entrance .hero-anim-1 { transition-delay: 0.05s; }
+.hero-entrance .hero-anim-2 { transition-delay: 0.15s; }
+.hero-entrance .hero-anim-3 { transition-delay: 0.3s; }
+.hero-entrance .hero-anim-4 { transition-delay: 0.45s; }
+
+html,
+body {
+  height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-body;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-heading;
+}
+.rounded-xl, .rounded-2xl, .rounded-lg, .rounded-md, .rounded-sm, .rounded {
+  border-radius: 0 !important;
+}
+.shadow-lg, .shadow-md, .shadow-sm, .shadow-xl, .shadow-2xl, .shadow {
+  box-shadow: none !important;
+}

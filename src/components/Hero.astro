@@ -1,0 +1,137 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	image?: string;
+	ctaText?: string;
+	ctaLink?: string;
+    secondaryCtaText?: string;
+    secondaryCtaLink?: string;
+    announcementText?: string;
+    announcementLink?: string;
+    layout?: 'split' | 'stacked' | 'bottom-split' | 'background';
+    alignment?: 'left' | 'center';
+    titleClass?: string;
+}
+
+const { title, description, image, ctaText, ctaLink, secondaryCtaText, secondaryCtaLink, announcementText, announcementLink, layout = 'split', alignment = 'left', titleClass = 'text-text-main' } = Astro.props;
+---
+
+<section class={`transition-colors duration-300 relative ${layout === 'background' ? 'pt-24 pb-20 mt-12 lg:pt-36 lg:pb-32 lg:mt-20 overflow-hidden' : 'bg-background pt-32 lg:pt-48 pb-24 lg:pb-32 border-b border-border'}`}>
+  {layout === 'background' && image && (
+      <div class="absolute inset-0 z-0">
+          <img src={image} alt="Background" class="w-full h-full object-cover object-top" />
+      </div>
+  )}
+  <div class={`w-full px-4 sm:px-6 lg:px-12 ${layout === 'background' ? 'relative z-10' : ''}`}>
+    {layout === 'bottom-split' ? (
+        <div class="flex flex-col py-12 md:py-20 lg:px-12">
+            <h1 class={`text-5xl tracking-tight sm:text-6xl lg:text-7xl mb-12 font-heading font-medium text-left ${titleClass || 'text-text-main'}`}>
+                {title}
+            </h1>
+            
+            <div class="w-full h-px bg-border my-10 relative">
+                 <div class="absolute inset-x-0 bottom-0 border-b border-border opacity-50"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start pt-6">
+                <div class="md:col-span-4 lg:col-span-5 hidden sm:block">
+                    {announcementText && (
+                        <a href={announcementLink || "#"} class="text-blue-600 dark:text-blue-500 hover:underline font-medium text-sm sm:text-base">
+                            {announcementText}
+                        </a>
+                    )}
+                </div>
+                <div class="md:col-span-8 lg:col-span-7 flex flex-col gap-8">
+                    <p class="text-xl sm:text-2xl text-text-muted leading-relaxed font-normal" set:html={description}></p>
+                    <div class="flex flex-wrap items-center gap-4">
+                        {ctaText && ctaLink && (
+                            <a href={ctaLink} class="inline-flex items-center justify-center px-6 py-2.5 border border-transparent text-sm font-semibold rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-colors shadow-sm">
+                                {ctaText}
+                            </a>
+                        )}
+                        {secondaryCtaText && secondaryCtaLink && (
+                            <a href={secondaryCtaLink} class="inline-flex items-center justify-center px-6 py-2.5 border border-border text-sm font-medium rounded-full text-text-main bg-background hover:bg-surface-hover transition-colors">
+                                {secondaryCtaText}
+                            </a>
+                        )}
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    ) : layout === 'background' ? (
+        <div class="flex flex-col items-center justify-start text-center max-w-4xl mx-auto pt-10 pb-40 lg:pb-60">
+            <h1 class={`text-5xl tracking-tight sm:text-6xl lg:text-7xl mb-6 font-heading ${titleClass || 'text-text-main'}`} set:html={title}>
+            </h1>
+            <p class="text-xl sm:text-2xl text-text-muted leading-relaxed mb-10 max-w-3xl mx-auto" set:html={description}></p>
+            <div class="flex items-center justify-center gap-4">
+                 {ctaText && ctaLink && (
+                    <a href={ctaLink} class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-lg text-white bg-primary hover:bg-primary-dark transition-all hover:shadow-primary/30">
+                        {ctaText}
+                    </a>
+                )}
+            </div>
+        </div>
+    ) : layout === 'stacked' ? (
+        <div class="flex flex-col gap-8">
+            {image && (
+                <div class="flex items-center justify-center h-[400px] overflow-hidden w-full relative">
+                    <img class="max-w-full h-auto" src={image} alt={title} loading="eager" />
+                </div>
+            )}
+            <div class="max-w-4xl border border-transparent">
+                 <h1 class={`text-4xl tracking-tight sm:text-5xl md:text-6xl mb-6 font-heading text-center ${titleClass}`}>
+                    <span class="block xl:inline">{title}</span>
+                </h1>
+                <p class="mt-4 text-lg text-text-muted sm:mt-5 sm:max-w-3xl md:mt-5 md:text-xl" set:html={description}></p>
+                {ctaText && ctaLink && (
+                    <div class="mt-8 sm:mt-10">
+                        <div class="inline-flex rounded-md shadow">
+                            <a href={ctaLink} class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md text-white  md:py-4 md:text-lg md:px-10 transition-all">
+                                {ctaText}
+                            </a>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    ) : (
+        <div class={`hero-entrance lg:grid ${image ? 'lg:grid-cols-2 lg:gap-16' : ''} lg:items-center`}>
+            <div class={`${image ? '' : 'w-full'} ${alignment === 'center' ? 'text-center mx-auto' : 'text-left'}`}>
+                {announcementText && (
+                    <div class="mb-4 hero-anim hero-anim-1">
+                        <a href={announcementLink || "#"} class="text-primary-text hover:underline font-medium text-sm sm:text-base">
+                            {announcementText}
+                        </a>
+                    </div>
+                )}
+                <h1 class={`hero-anim hero-anim-1 text-5xl tracking-tight sm:text-6xl md:text-7xl mb-6 font-heading font-medium leading-[1.1] ${titleClass || 'text-text-main'}`} set:html={title}>
+                </h1>
+                <p class={`hero-anim hero-anim-2 mt-6 text-lg text-text-muted sm:mt-5 ${image ? 'sm:max-w-xl sm:mx-auto lg:mx-0' : ''} md:mt-8 md:text-xl font-body ${alignment === 'center' ? 'mx-auto' : ''}`} set:html={description}></p>
+                {ctaText && ctaLink && (
+                    <div class={`hero-anim hero-anim-3 mt-10 sm:mt-12 sm:flex ${image ? 'sm:justify-center lg:justify-start' : (alignment === 'center' ? 'justify-center' : 'justify-start')} gap-4`}>
+                        <div>
+                            <a href={ctaLink} class="w-full flex items-center justify-center px-10 py-4 border border-primary text-base font-medium text-black bg-primary hover:bg-primary-dark transition-all md:text-lg uppercase tracking-wide">
+                                {ctaText}
+                            </a>
+                        </div>
+                        {secondaryCtaText && secondaryCtaLink && (
+                            <div>
+                                <a href={secondaryCtaLink} class="w-full flex items-center justify-center px-10 py-4 border border-border border-dashed text-base font-medium text-text-main bg-transparent hover:bg-surface-hover transition-all md:text-lg uppercase tracking-wide">
+                                    {secondaryCtaText}
+                                </a>
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
+            {image && (
+                <div class="mt-12 lg:mt-0 relative hero-anim hero-anim-4">
+                    <img class="w-full border p-2 border-border bg-surface" src={image} alt="Hero Image" loading="eager" />
+                </div>
+            )}
+        </div>
+    )}
+  </div>
+</section>

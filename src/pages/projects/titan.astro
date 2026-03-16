@@ -1,0 +1,284 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Hero from '../../components/Hero.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { Image } from 'astro:assets';
+import headerImage from '../../../public/img/header.avif';
+import titanLogo from '../../assets/logos/titan.svg';
+import murciaLogo from '../../assets/logos/Universidad-de-Murcia.png';
+import fujitsuLogo from '../../assets/logos/fujitsu.png';
+import zenLogo from '../../assets/logos/zen.png';
+import canarybitLogo from '../../assets/logos/canarybit.png';
+import f6sLogo from '../../assets/logos/f6s.png';
+import easternLogo from '../../assets/logos/universityofeastern.png';
+import odysseusLogo from '../../assets/logos/odysseus.png';
+import trilateralLogo from '../../assets/logos/Trilateral-Research.png';
+import chariteLogo from '../../assets/logos/charite.png';
+import insermLogo from '../../assets/logos/inserm.png';
+import sargaLogo from '../../assets/logos/SARGA.png';
+import venetoLogo from '../../assets/logos/regione-del-veneto.png';
+import koblenzLogo from '../../assets/logos/university-of-koblenz.png';
+import itaLogo from '../../assets/logos/ITA.png';
+import fraunhoferLogo from '../../assets/logos/fraunhofer.png';
+import ultravioletLogo from '../../assets/logos/ultraviolet.png';
+
+
+const project = {
+    title: "TITAN",
+    tagline: "Trusted AI systems through confidential computing and privacy-preserving technologies",
+    description: "TITAN is a 36-month project that proposes to develop secure and trustworthy confidential data processing and sharing capabilities, and demonstrate them in the EOSC ecosystem. The sharing of sensitive data will follow FAIR data and open science principles.",
+    duration: "1 February 2024 - 31 January 2027",
+    budget: "€5 Million",
+    status: "Active",
+    funding: "Horizon Europe",
+    coordinator: "UNIVERSIDAD DE MURCIA",
+    logo: "/img/logos/titan.svg",
+    site: "https://titan-eosc.eu/",
+    cordis: "https://cordis.europa.eu/project/id/101129822"
+};
+
+const partners = [
+    { src: murciaLogo, alt: "Universidad de Murcia" },
+    { src: fujitsuLogo, alt: "Fujitsu" },
+    { src: zenLogo, alt: "Zentrix Labs" },
+    { src: canarybitLogo, alt: "Canarybit" },
+    { src: f6sLogo, alt: "F6S" },
+    { src: easternLogo, alt: "University of Eastern Finland" },
+    { src: odysseusLogo, alt: "Odysseus Data Services" },
+    { src: trilateralLogo, alt: "Trilateral Research" },
+    { src: chariteLogo, alt: "Charité University Hospital" },
+    { src: insermLogo, alt: "Inserm" },
+    { src: sargaLogo, alt: "SARGA" },
+    { src: venetoLogo, alt: "Regione del Veneto" },
+    { src: koblenzLogo, alt: "University of Koblenz" },
+    { src: itaLogo, alt: "ITA" },
+    { src: fraunhoferLogo, alt: "Fraunhofer" },
+    { src: ultravioletLogo, alt: "Ultraviolet" }
+];
+
+const title = "TITAN - Trusted AI & Privacy-Preserving Technologies";
+const description = "TITAN is an EU-funded project building trusted AI systems using confidential computing, TEEs, and privacy-preserving technologies for secure collaboration.";
+---
+
+<Layout title={title} description={description}>
+    <Header slot="header" />
+
+    <section id="header" class="pt-20">
+        <div class="w-full relative">
+            <div class="flex items-center justify-center h-[300px] overflow-hidden border-b border-border bg-background">
+                <Image src={headerImage} alt="pattern-white" class="w-full h-full object-cover object-top" loading="eager" />
+            </div>
+        </div>
+    </section>
+
+    <section id="project-title" class="project-page-section">
+        <div class="project-page-container text-center reveal-scale">
+            <Image src={titanLogo} alt="TITAN Logo" class="mb-8 mx-auto dark:invert" style="max-height: 120px" loading="eager" />
+            <h1 class="text-3xl lg:text-4xl font-heading mb-6 text-text-main font-medium">TITAN</h1>
+            <p class="text-xl text-text-muted font-body">
+                Trusted AI systems through confidential computing and privacy-preserving technologies
+            </p>
+        </div>
+    </section>
+
+    <section id="project-details" class="project-page-section">
+        <div class="project-page-container">
+            <h2 class="project-page-heading reveal">Project Details</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-1">
+                    <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
+                        <i class="fas fa-calendar-alt mr-3 text-primary-text"></i>Duration
+                    </h5>
+                    <p class="text-text-muted font-body">1 February 2024 - 31 January 2027</p>
+                </div>
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-2">
+                    <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
+                         <i class="fas fa-euro-sign mr-3 text-primary-text"></i>Total Budget
+                    </h5>
+                    <p class="text-text-muted font-body">€5 Million</p>
+                </div>
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-3">
+                    <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
+                        <i class="fas fa-flag mr-3 text-primary-text"></i>Status
+                    </h5>
+                    <p class="text-text-muted font-body">
+                        <span class="inline-block px-3 py-1 bg-primary/10 text-primary-text border border-primary/20 text-sm font-semibold uppercase tracking-wide">Active</span>
+                    </p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-1">
+                    <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
+                        <i class="fas fa-landmark mr-3 text-primary-text"></i>Funding Program
+                    </h5>
+                    <p class="text-text-muted font-body">Horizon Europe</p>
+                </div>
+                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-2">
+                     <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
+                        <i class="fas fa-user-tie mr-3 text-primary-text"></i>Project Coordinator
+                    </h5>
+                    <p class="text-text-muted font-body">UNIVERSIDAD DE MURCIA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-description" class="project-page-section">
+        <div class="project-page-container">
+            <h2 class="project-page-heading reveal">Project Description</h2>
+            <div class="project-page-copy reveal">
+                <p class="mb-4">
+                    TITAN is a 36-month project that proposes to develop secure and trustworthy confidential data processing and sharing capabilities, and demonstrate them in the EOSC ecosystem.
+                </p>
+                <p class="mb-4">
+                    The sharing of sensitive data will follow FAIR data and open science principles. The project puts significant emphasis on privacy preservation and AI technological solutions in line with existing ethical, regulatory and legal EU boundaries.
+                </p>
+                <p class="mb-0">
+                    The developed open-source software platform will focus mostly on the two use cases present in the project: government data and healthcare.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-summary" class="project-page-section">
+        <div class="project-page-container">
+            <h2 class="project-page-heading reveal">Project Summary</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-surface p-8 border border-border reveal-left">
+                     <h4 class="text-xl font-heading mb-6 text-text-main font-medium">Key Objectives</h4>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                             <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-primary-text"></i>
+                            </div>
+                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Trusted AI Infrastructure:</strong> Develop secure infrastructure for AI/ML workloads using confidential computing technologies.
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                             <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-primary-text"></i>
+                            </div>
+                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Privacy-Preserving Machine Learning:</strong> Enable collaborative machine learning while preserving data privacy across multiple stakeholders.
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                             <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-primary-text"></i>
+                            </div>
+                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Secure Data Sharing:</strong> Implement secure multi-party computation protocols for confidential data exchange and processing.
+                            </p>
+                        </li>
+                        <li class="flex items-start">
+                             <div class="flex-shrink-0 mt-1">
+                                <i class="fas fa-check text-primary-text"></i>
+                            </div>
+                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">TEE Integration:</strong> Leverage hardware-based security features for protecting AI models and training data.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-surface p-8 border border-border reveal-right">
+                    <h4 class="text-xl font-heading mb-6 text-text-main font-medium">Expected Outcomes</h4>
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
+                            </div>
+                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Confidential AI platform:</strong> Secure platform for training and deploying AI models in untrusted environments.
+                            </p>
+                        </li>
+                         <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
+                            </div>
+                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Privacy-preserving protocols:</strong> Advanced protocols for secure collaborative AI across organizations.
+                            </p>
+                        </li>
+                         <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
+                            </div>
+                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">TEE-enabled ML:</strong> Machine learning frameworks optimized for Trusted Execution Environments.
+                            </p>
+                        </li>
+                         <li class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
+                            </div>
+                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
+                                <strong class="text-text-main">Secure model deployment:</strong> Tools and frameworks for deploying AI models with confidentiality guarantees.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="our-involvement" class="project-page-section">
+        <div class="project-page-container">
+            <h2 class="project-page-heading reveal">Our Involvement</h2>
+            <p class="mb-6 text-lg text-text-muted font-body max-w-5xl reveal">
+                Ultraviolet brings extensive expertise in confidential computing and privacy-preserving technologies to the TITAN project. Our experience with Trusted Execution Environments (TEEs), secure multi-party computation, and collaborative AI platforms positions us as a key contributor to developing trusted AI systems.
+            </p>
+            <h4 class="text-xl font-heading mb-6 text-text-main font-medium">Our Responsibilities:</h4>
+            <ul class="list-disc pl-5 space-y-3 mb-8 text-base text-text-muted font-body max-w-5xl">
+                <li><strong class="text-text-main">Confidential Computing Architecture:</strong> Designing and implementing TEE-based architectures for secure AI workloads.</li>
+                <li><strong class="text-text-main">Privacy-Preserving AI Frameworks:</strong> Developing frameworks for secure collaborative machine learning using SMPC and confidential computing.</li>
+                <li><strong class="text-text-main">Secure Model Training:</strong> Implementing secure protocols for distributed AI model training across multiple parties.</li>
+                <li><strong class="text-text-main">Data Protection:</strong> Ensuring data confidentiality and integrity throughout the AI lifecycle using hardware-based security.</li>
+                <li><strong class="text-text-main">Platform Integration:</strong> Integrating confidential computing capabilities into existing AI/ML platforms and workflows.</li>
+            </ul>
+
+            <div class="mt-8 flex flex-wrap gap-4 pt-6 border-t border-border reveal">
+                 <a href="https://titan-eosc.eu/" target="_blank" class="inline-flex items-center px-8 py-3 bg-primary text-black font-medium border border-primary hover:bg-primary-dark transition-colors uppercase tracking-wide">
+                        Learn More
+                </a>
+                 <a href="https://cordis.europa.eu/project/id/101129822" target="_blank" class="inline-flex items-center px-8 py-3 bg-transparent text-text-main font-medium border border-border border-dashed hover:bg-surface transition-colors uppercase tracking-wide">
+                    View on CORDIS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="project-partners" class="bg-background border-b border-border transition-colors duration-300">
+        <div class="py-16 border-b border-border text-center reveal">
+            <h2 class="text-2xl lg:text-3xl font-heading mb-2 text-text-main font-medium">Project Partners</h2>
+            <p class="text-lg text-text-muted font-body">
+                Collaborating with leading organizations across Europe
+            </p>
+        </div>
+        <div class="overflow-hidden py-6">
+            <div class="clients-marquee-track flex w-max items-center">
+                {[...partners, ...partners].map((logo, index) => {
+                    const isDuplicate = index >= partners.length;
+
+                    return (
+                        <div class="clients-marquee-item flex justify-center items-center px-10 py-6" aria-hidden={isDuplicate ? 'true' : undefined}>
+                            <Image src={logo.src} alt={logo.alt} class="h-10 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all dark:invert" loading="lazy" />
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+    </section>
+
+    <section class="project-page-section text-center">
+         <a href="/projects" class="inline-flex items-center px-8 py-3 border border-border bg-transparent text-base font-medium text-text-main hover:bg-surface transition-colors uppercase tracking-wide">
+            <i class="fas fa-arrow-left mr-3"></i>Back to All Projects
+        </a>
+    </section>
+
+    <Newsletter />
+
+    <Footer slot="footer" />
+</Layout>
