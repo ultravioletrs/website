@@ -11,19 +11,19 @@ const products = [
     {
         name: "Prism AI",
         description: "Prism AI is a distributed system for organizing and orchestrating secure, privacy-preserving collaborative AI training and inference using confidential computing and Trusted Execution Environments (TEEs). It enables efficient and secure management of sensitive data across various applications and industries.",
-        link: "/prism",
+        link: "https://prism.ultraviolet.rs",
         icon: "fas fa-users"
     },
     {
         name: "Cocos AI",
         description: "Cocos AI is an open-source system that enables a Hardware Abstraction Layer (HAL) and execution environment for confidential computing over various hardware architectures, including AMD SEV and Intel TDX. It provides enablers for secure VM management and monitoring, workload orchestration, and secure, encrypted data exchange.",
-        link: "/cocos",
+        link: "https://cocos.ai",
         icon: "fas fa-shield-alt"
     },
     {
         name: "Cube AI",
         description: "Cube AI is a comprehensive platform designed to protect Large Language Models (LLMs) and their inputs/outputs using Trusted Execution Environments (TEEs). It combines security, observability, and governance to ensure safe and scalable deployment of LLMs, supporting integration with APIs such as Hugging Face and Ollama.",
-        link: "/cube",
+        link: "https://cube.ultraviolet.rs",
         icon: "fas fa-cube"
     }
 ];
@@ -67,12 +67,12 @@ const description = "Explore Ultraviolet's suite of secure AI products: Prism AI
                 {products.map((product, index) => (
                     <div class={`flex flex-col h-full ${index !== products.length - 1 ? 'md:border-r border-border' : ''} border-b md:border-b-0 border-border`}>
                         <div class="p-8 lg:p-12 hover:bg-surface transition-colors h-full flex flex-col items-start">
-                            <i class={`${product.icon} text-4xl mb-6 text-primary`}></i>
+                            <i class={`${product.icon} text-4xl mb-6 text-primary-text`}></i>
                             <h4 class="text-2xl font-heading font-medium text-text-main mb-4">{product.name}</h4>
                             <p class="text-text-muted mb-8 flex-grow leading-relaxed font-body">
                                 {product.description}
                             </p>
-                            <a href={product.link} class="inline-block px-8 py-3 bg-transparent border border-border border-dashed text-text-main font-medium hover:bg-surface transition-colors uppercase tracking-wide">
+                            <a href={product.link} target={product.link.startsWith('http') ? '_blank' : undefined} class="inline-block px-8 py-3 bg-transparent border border-border border-dashed text-text-main font-medium hover:bg-surface transition-colors uppercase tracking-wide">
                                 Learn More
                             </a>
                         </div>

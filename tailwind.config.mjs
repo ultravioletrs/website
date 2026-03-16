@@ -17,6 +17,7 @@ export default {
         primary: {
           DEFAULT: "rgb(var(--color-primary) / <alpha-value>)",
           dark: "rgb(var(--color-primary-dark) / <alpha-value>)",
+          text: "rgb(var(--color-primary-text) / <alpha-value>)",
         },
         secondary: {
           DEFAULT: "rgb(var(--color-secondary) / <alpha-value>)",

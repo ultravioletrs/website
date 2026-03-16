@@ -14,6 +14,7 @@
 
     --color-primary: 176 255 0;
     --color-primary-dark: 143 204 0;
+    --color-primary-text: 80 120 0;
     --color-secondary: 13 13 13;
 
     --color-border: 229 229 229;
@@ -31,6 +32,7 @@
 
     --color-primary: 176 255 0;
     --color-primary-dark: 143 204 0;
+    --color-primary-text: 143 204 0;
     --color-secondary: 255 255 255;
 
     --color-border: 63 63 70;
