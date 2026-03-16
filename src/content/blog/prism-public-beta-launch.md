@@ -11,7 +11,7 @@ date: 2026-02-12
 image: /img/prism-beta-launch-cover.png
 ogImage:
   url: /img/prism-beta-launch-cover.png
-featured: true
+featured: false
 category: announcement
 ---
 
@@ -68,5 +68,5 @@ The era of choosing between powerful AI and strict privacy is finally over. With
 
 **Learn More:**
 - 🌐 [Prism AI Website](https://prism.ultraviolet.rs/)
-- 📖 [Cocos AI Documentation](https://docs.cocos.ultraviolet.rs/)
-- 💜 [Ultraviolet RS](https://ultraviolet.rs/)
+- [Cocos AI Documentation](https://cocos.ai/docs/)
+- [Ultraviolet RS](https://ultraviolet.rs/)
