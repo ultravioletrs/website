@@ -44,11 +44,30 @@ const ogImage = image || defaultOgImage;
 	</head>
 	<body class="flex flex-col min-h-screen bg-surface font-body text-text-main transition-colors duration-300">
         <script is:inline>
-            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
+            (function() {
+                function getThemePreference() {
+                    return localStorage.getItem('color-theme') === 'dark' ||
+                        (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                }
+
+                function applyTheme(doc) {
+                    if (getThemePreference()) {
+                        doc.documentElement.classList.add('dark');
+                    } else {
+                        doc.documentElement.classList.remove('dark');
+                    }
+                }
+
+                applyTheme(document);
+
+                document.addEventListener('astro:before-swap', function(e) {
+                    applyTheme(e.newDocument);
+                });
+
+                document.addEventListener('astro:after-swap', function() {
+                    applyTheme(document);
+                });
+            })();
         </script>
         
         <div class="relative max-w-[1200px] w-full mx-auto flex flex-col min-h-screen bg-background border-x border-border shadow-none">

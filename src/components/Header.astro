@@ -241,4 +241,6 @@
   themeToggleMobile?.addEventListener('click', toggleTheme);
   
   updateIcons();
+
+  document.addEventListener('astro:after-swap', updateIcons);
 </script>
