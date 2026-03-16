@@ -63,17 +63,17 @@ const description = "Latest news, updates, and insights from the Ultraviolet tea
 											const authors = featuredPost.data.authors || (featuredPost.data.author ? [featuredPost.data.author] : []);
 											return (
 												<>
-													<div class="flex -space-x-2 mr-3 flex-shrink-0">
+													<div class="flex -space-x-2 mr-3">
 														{authors.map((author) => (
-author.picture && <Image class="h-8 w-8 rounded-full object-cover ring-2 ring-background" src={author.picture} alt={author.name} loading="lazy" width={32} height={32} />
-															))}
-														</div>
-														<div class="text-sm">
-															<p class="font-semibold text-text-main">
-																{authors.map((a) => a.name).join(', ')}
-															</p>
-															<p class="text-text-muted">
-																{post.data.date.toLocaleDateString
+															author.picture && <Image class="h-8 w-8 rounded-full object-cover ring-2 ring-background" src={author.picture} alt={author.name} loading="lazy" width={32} height={32} />
+														))}
+													</div>
+													<div class="text-sm">
+														<p class="font-semibold text-text-main">
+															{authors.map((a) => a.name).join(', ')}
+														</p>
+														<p class="text-text-muted">
+															{featuredPost.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} · {Math.ceil(featuredPost.body.split(/\s+/).length / 200)} min
 														</p>
 													</div>
 												</>
@@ -125,7 +125,7 @@ author.picture && <Image class="h-8 w-8 rounded-full object-cover ring-2 ring-ba
 													<>
 														<div class="flex -space-x-2 mr-3 flex-shrink-0">
 															{authors.map((author) => (
-																author.picture && <Image class="h-8 w-8 rounded-full object-cover ring-2 ring-background" src={author.picture} alt={author.name} loading="lazy" width={32} height={32} inferSize />
+																author.picture && <Image class="h-8 w-8 rounded-full object-cover ring-2 ring-background" src={author.picture} alt={author.name} loading="lazy" width={32} height={32} />
 															))}
 														</div>
 														<div class="text-sm min-w-0">
