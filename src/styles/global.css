@@ -5,8 +5,8 @@
 @layer base {
   :root {
     --color-background: 255 255 255;
-    --color-surface: 247 247 247;
-    --color-surface-hover: 240 240 240;
+    --color-surface: 255 255 255;
+    --color-surface-hover: 245 245 245;
 
     --color-text-main: 13 13 13;
     --color-text-muted: 102 102 102;
@@ -23,8 +23,8 @@
   html.dark {
     color-scheme: dark;
     --color-background: 13 13 13;
-    --color-surface: 26 26 26;
-    --color-surface-hover: 38 38 38;
+    --color-surface: 13 13 13;
+    --color-surface-hover: 30 30 30;
 
     --color-text-main: 255 255 255;
     --color-text-muted: 170 170 170;

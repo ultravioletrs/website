@@ -42,7 +42,7 @@ const ogImage = image || defaultOgImage;
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={new URL(ogImage, siteUrl)} />
 	</head>
-	<body class="flex flex-col min-h-screen bg-surface font-body text-text-main transition-colors duration-300">
+	<body class="flex flex-col min-h-screen bg-background font-body text-text-main transition-colors duration-300">
         <script is:inline>
             (function() {
                 function getThemePreference() {
@@ -70,7 +70,7 @@ const ogImage = image || defaultOgImage;
             })();
         </script>
         
-        <div class="relative max-w-[1200px] w-full mx-auto flex flex-col min-h-screen bg-background border-x border-border shadow-none">
+        <div class="relative max-w-[1440px] w-full mx-auto flex flex-col min-h-screen bg-background shadow-none">
             <slot name="header" />
 			<main class="flex-grow flex flex-col bg-background">
                 <slot />
