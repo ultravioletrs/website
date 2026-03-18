@@ -2,10 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Newsletter from '../components/Newsletter.astro';
 
 const title = "Contact Ultraviolet - Get in Touch for Secure AI Solutions";
 const description = "Contact Ultraviolet for inquiries about confidential computing, secure collaborative AI, and TEE solutions.";
+
+const email = "info@ultraviolet.rs";
+const githubOrg = "https://github.com/ultravioletrs";
+const linkedin = "https://www.linkedin.com/company/ultravioletrs";
+const twitter = "https://twitter.com/ultravioletrs";
+const gitter = "https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im";
+const contactApiEndpoint = "/api/contact";
 ---
 
 <Layout title={title} description={description}>
@@ -19,44 +25,187 @@ const description = "Contact Ultraviolet for inquiries about confidential comput
         </div>
     </section>
 
-    <section id="contact" class="py-16 bg-background border-b border-border">
+    <!-- Hero Section -->
+    <section class="py-16 bg-background border-b border-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="bg-background p-8 border border-border reveal-left">
-                     <h2 class="text-2xl font-heading mb-6 font-medium text-text-main">Get In Touch</h2>
-                     <p class="mb-4 text-lg font-body">
-                        <i class="fas fa-envelope mr-3 text-primary-text"></i><a href="mailto:info@ultraviolet.rs" class="text-text-muted hover:text-primary transition-colors">info@ultraviolet.rs</a>
-                     </p>
-                     <p class="mb-4 text-lg font-body">
-                        <i class="fab fa-gitter mr-3 text-primary-text"></i><a href="https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im"
-                        target="_blank" class="text-text-muted hover:text-primary transition-colors">Chat on Gitter</a>
-                     </p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div class="reveal-left">
+                    <p class="text-sm font-bold text-primary uppercase tracking-widest mb-4">Contact</p>
+                    <h1 class="text-4xl lg:text-5xl font-heading mb-6 text-text-main font-medium">Talk to our team</h1>
+                    <p class="text-xl text-text-muted font-body mb-8">
+                        Whether you're exploring confidential computing solutions or deploying secure AI infrastructure, reach out. We reply quickly.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href={`mailto:${email}`} class="inline-flex items-center px-8 py-3 bg-primary text-black font-medium border border-primary hover:bg-primary-dark transition-colors uppercase tracking-wide">
+                            Email Us
+                        </a>
+                        <a href={linkedin} target="_blank" class="inline-flex items-center px-8 py-3 bg-transparent text-text-main font-medium border border-border hover:bg-surface transition-colors uppercase tracking-wide">
+                            Connect on LinkedIn
+                        </a>
+                    </div>
                 </div>
-                <div class="bg-background p-8 border border-border reveal-right">
-                    <h2 class="text-2xl font-heading mb-6 font-medium text-text-main">Follow Us</h2>
-                    <ul class="flex flex-col space-y-4 list-none p-0 m-0 font-body">
-                        <li>
-                             <a href="https://twitter.com/ultravioletrs" target="_blank" class="flex items-center text-text-muted hover:text-primary transition-colors text-lg">
-                                <i class="fab fa-twitter text-2xl mr-4 w-8 text-center text-primary-text"></i>Twitter
+
+                <div class="bg-surface p-8 border border-border reveal-right">
+                    <!-- Primary contact -->
+                    <div>
+                        <p class="text-sm font-bold text-text-muted uppercase tracking-widest mb-2">Primary contact</p>
+                        <a href={`mailto:${email}`} class="text-xl font-semibold text-primary hover:text-primary-dark transition-colors">
+                            {email}
+                        </a>
+                        <p class="mt-2 text-sm text-text-muted">
+                            Best for architecture reviews, production deployments, and security discussions.
+                        </p>
+                    </div>
+
+                    <div class="my-6 border-t border-border"></div>
+
+                    <!-- Secondary channels -->
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center justify-between">
+                            <span class="text-text-muted">GitHub</span>
+                            <a href={githubOrg} target="_blank" rel="noopener noreferrer" class="font-medium text-text-main hover:text-primary transition-colors">
+                                github.com/ultravioletrs
                             </a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkedin.com/company/ultravioletrs" target="_blank" class="flex items-center text-text-muted hover:text-primary transition-colors text-lg">
-                                <i class="fab fa-linkedin text-2xl mr-4 w-8 text-center text-primary-text"></i>LinkedIn
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-text-muted">LinkedIn</span>
+                            <a href={linkedin} target="_blank" rel="noopener noreferrer" class="font-medium text-text-main hover:text-primary transition-colors">
+                                Ultraviolet
                             </a>
-                        </li>
-                        <li>
-                             <a href="https://github.com/ultravioletrs" target="_blank" class="flex items-center text-text-muted hover:text-primary transition-colors text-lg">
-                                <i class="fab fa-github text-2xl mr-4 w-8 text-center text-primary-text"></i>GitHub
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-text-muted">Twitter</span>
+                            <a href={twitter} target="_blank" rel="noopener noreferrer" class="font-medium text-text-main hover:text-primary transition-colors">
+                                @ultravioletrs
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-text-muted">Gitter</span>
+                            <a href={gitter} target="_blank" rel="noopener noreferrer" class="font-medium text-text-main hover:text-primary transition-colors">
+                                Ultraviolet Community
+                            </a>
+                        </div>
+                    </div>
+
+                    <p class="mt-6 text-xs text-text-muted">
+                        We typically respond within 1–2 business days.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="address" class="py-16 bg-background">
+    <!-- Contact Options -->
+    <section class="py-16 bg-background border-b border-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl font-heading mb-4 text-text-main font-medium">Choose the fastest path</h2>
+                <p class="text-lg text-text-muted font-body">Email works best for technical discussions. GitHub is ideal for issues and PRs.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <a href={`mailto:${email}`} class="bg-surface p-8 border border-border hover:border-primary transition-all group reveal reveal-delay-1">
+                    <p class="text-sm font-bold text-text-muted uppercase tracking-widest mb-2">Email</p>
+                    <h3 class="text-xl font-heading mb-4 text-text-main font-medium">Production & Deployments</h3>
+                    <p class="text-text-muted font-body mb-6">
+                        Architecture questions, rollout plans, security reviews, and enterprise deployments.
+                    </p>
+                    <p class="font-medium text-primary group-hover:text-primary-dark transition-colors">Email us →</p>
+                </a>
+
+                <a href={githubOrg} target="_blank" rel="noopener noreferrer" class="bg-surface p-8 border border-border hover:border-primary transition-all group reveal reveal-delay-2">
+                    <p class="text-sm font-bold text-text-muted uppercase tracking-widest mb-2">GitHub</p>
+                    <h3 class="text-xl font-heading mb-4 text-text-main font-medium">Open-source Support</h3>
+                    <p class="text-text-muted font-body mb-6">
+                        Bugs, feature requests, roadmap discussions, and contributions.
+                    </p>
+                    <p class="font-medium text-primary group-hover:text-primary-dark transition-colors">Open GitHub →</p>
+                </a>
+
+                <a href={linkedin} target="_blank" rel="noopener noreferrer" class="bg-surface p-8 border border-border hover:border-primary transition-all group reveal reveal-delay-3">
+                    <p class="text-sm font-bold text-text-muted uppercase tracking-widest mb-2">LinkedIn</p>
+                    <h3 class="text-xl font-heading mb-4 text-text-main font-medium">Partnerships</h3>
+                    <p class="text-text-muted font-body mb-6">
+                        Research collaboration, ecosystem partnerships, and business inquiries.
+                    </p>
+                    <p class="font-medium text-primary group-hover:text-primary-dark transition-colors">Visit LinkedIn →</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="py-16 bg-background border-b border-border">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl font-heading mb-4 text-text-main font-medium">Send a message</h2>
+                <p class="text-lg text-text-muted font-body">Send details directly from the form. If delivery fails, use email fallback.</p>
+            </div>
+
+            <form class="space-y-6 reveal" method="post" action={contactApiEndpoint} data-contact-form>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <label class="flex flex-col gap-2">
+                        <span class="text-sm text-text-muted font-medium">Name</span>
+                        <input
+                            class="w-full px-4 py-3 bg-surface border border-border text-text-main placeholder-text-muted focus:outline-none focus:border-primary transition-colors"
+                            name="name"
+                            autocomplete="name"
+                            required
+                        />
+                    </label>
+
+                    <label class="flex flex-col gap-2">
+                        <span class="text-sm text-text-muted font-medium">Email</span>
+                        <input
+                            class="w-full px-4 py-3 bg-surface border border-border text-text-main placeholder-text-muted focus:outline-none focus:border-primary transition-colors"
+                            name="email"
+                            type="email"
+                            autocomplete="email"
+                            required
+                        />
+                    </label>
+                </div>
+
+                <label class="flex flex-col gap-2">
+                    <span class="text-sm text-text-muted font-medium">Message</span>
+                    <textarea
+                        class="w-full px-4 py-3 bg-surface border border-border text-text-main placeholder-text-muted focus:outline-none focus:border-primary transition-colors min-h-[160px]"
+                        name="message"
+                        required
+                        placeholder="What are you building? What do you need help with? Any security or compliance requirements?"
+                    ></textarea>
+                </label>
+
+                <!-- Honeypot field for spam protection -->
+                <div class="hidden" aria-hidden="true">
+                    <label for="company">Company</label>
+                    <input id="company" name="company" tabindex="-1" autocomplete="off" />
+                </div>
+
+                <div class="flex flex-wrap items-center gap-4">
+                    <button class="inline-flex items-center px-8 py-3 bg-primary text-black font-medium border border-primary hover:bg-primary-dark transition-colors uppercase tracking-wide" type="submit" data-contact-submit>
+                        Send Message
+                    </button>
+
+                    <a class="inline-flex items-center px-8 py-3 bg-transparent text-text-main font-medium border border-border hover:bg-surface transition-colors uppercase tracking-wide" href={`mailto:${email}?subject=${encodeURIComponent("Ultraviolet — Inquiry")}`}>
+                        Send via Email
+                    </a>
+                </div>
+
+                <p class="text-sm text-text-muted">
+                    Prefer GitHub? Open an issue in our <a href={githubOrg} target="_blank" rel="noopener noreferrer" class="font-semibold text-primary hover:text-primary-dark transition-colors">repositories</a>.
+                </p>
+
+                <p class="min-h-6 text-sm text-text-muted" role="status" aria-live="polite" data-contact-status></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Address Section -->
+    <section id="address" class="py-16 bg-background border-b border-border">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
                 <div class="md:col-span-4 bg-surface p-8 border border-border h-full flex flex-col justify-center reveal-left">
@@ -76,7 +225,82 @@ const description = "Contact Ultraviolet for inquiries about confidential comput
         </div>
     </section>
 
-    <Newsletter />
-
     <Footer slot="footer" />
 </Layout>
+
+<script is:inline>
+(() => {
+    const form = document.querySelector("[data-contact-form]");
+    if (!(form instanceof HTMLFormElement)) return;
+
+    const statusEl = document.querySelector("[data-contact-status]");
+    const submitButton = form.querySelector("[data-contact-submit]");
+    if (!(statusEl instanceof HTMLElement)) return;
+    if (!(submitButton instanceof HTMLButtonElement)) return;
+
+    const defaultLabel = submitButton.textContent?.trim() || "Send Message";
+
+    const setStatus = (text, tone = "muted") => {
+        statusEl.textContent = text;
+        statusEl.classList.remove("text-text-muted", "text-red-500", "text-green-500");
+        if (tone === "success") {
+            statusEl.classList.add("text-green-500");
+            return;
+        }
+        if (tone === "error") {
+            statusEl.classList.add("text-red-500");
+            return;
+        }
+        statusEl.classList.add("text-text-muted");
+    };
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        submitButton.disabled = true;
+        submitButton.setAttribute("aria-busy", "true");
+        submitButton.textContent = "Sending...";
+        setStatus("Sending your message...");
+
+        try {
+            const response = await fetch(form.action, {
+                method: "POST",
+                body: new FormData(form),
+                headers: {
+                    Accept: "application/json",
+                },
+            });
+
+            let payload = null;
+            try {
+                payload = await response.json();
+            } catch {
+                payload = null;
+            }
+
+            if (!response.ok || !payload?.ok) {
+                throw new Error(
+                    payload?.error ||
+                    "Unable to send your message. Please use direct email."
+                );
+            }
+
+            form.reset();
+            setStatus(
+                payload?.message || "Thanks! Your message has been sent.",
+                "success"
+            );
+        } catch (error) {
+            setStatus(
+                error instanceof Error
+                    ? error.message
+                    : "Unable to send your message. Please use direct email.",
+                "error"
+            );
+        } finally {
+            submitButton.disabled = false;
+            submitButton.removeAttribute("aria-busy");
+            submitButton.textContent = defaultLabel;
+        }
+    });
+})();
+</script>
