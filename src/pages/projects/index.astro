@@ -18,7 +18,7 @@ const projects = [
         description: "A software architecture for extreme-scale analytics. ELASTIC redefines service orchestration within 6G networks, integrating technologies like WebAssembly and Confidential Computing.",
         image: "/img/logos/elastic.png",
         link: "/projects/elastic",
-        logoStyle: "max-height: 60px; background: #323232; border-radius: 5px; padding: 5px;"
+        logoStyle: "max-height: 60px;"
     },
     {
         name: "TITAN",
@@ -93,7 +93,9 @@ const description = "Explore Ultraviolet's research projects in confidential com
                     <div class={`flex flex-col h-full ${index !== projects.length - 1 ? 'md:border-r border-border' : ''} border-b md:border-b-0 border-border reveal reveal-delay-${index + 1}`}>
                         <div class="p-8 lg:p-12 hover:bg-surface transition-colors h-full flex flex-col items-center text-center">
                             <div class="mb-8 h-[120px] flex items-center justify-center">
-                                <img src={project.image} alt={`${project.name} Logo`} style={project.logoStyle} class="max-w-full" />
+                                <div class:list={[project.name === 'ELASTIC' ? 'bg-gray-800' : 'bg-white', 'px-6 py-4']}>
+                                    <img src={project.image} alt={`${project.name} Logo`} style={project.logoStyle} class="max-w-full" />
+                                </div>
                             </div>
                             <h3 class="text-xl font-heading mb-4 text-text-main font-medium">{project.name}</h3>
                             <p class="text-text-muted font-body mb-8 flex-grow">

@@ -111,10 +111,10 @@ const clientLogos = [
 		<div class="px-4 text-center reveal">
       <h2 class="text-sm font-body text-text-muted mb-8 tracking-widest uppercase">Our Memberships</h2>
 			<div class="flex justify-center flex-wrap gap-12 items-center transition-opacity">
-				<a href="https://www.linuxfoundation.org/" target="_blank">
+				<a href="https://www.linuxfoundation.org/" target="_blank" class="bg-white px-4 py-3">
                     <Image src={lfLogo} alt="Linux Foundation" class="h-14 w-auto object-contain transition-all" loading="eager" />
                 </a>
-                <a href="https://confidentialcomputing.io/" target="_blank">
+                <a href="https://confidentialcomputing.io/" target="_blank" class="bg-white px-4 py-3">
                     <Image src={cccLogo} alt="Confidential Computing Consortium" class="h-14 w-auto object-contain transition-all" loading="eager" />
                 </a>
 			</div>
@@ -135,7 +135,9 @@ const clientLogos = [
                             class="clients-marquee-item flex justify-center items-center px-10 py-6"
                             aria-hidden={isDuplicate ? 'true' : undefined}
                         >
-                            <Image src={logo.src} alt={logo.alt} class="h-14 w-auto object-contain transition-all" loading="lazy" />
+                            <div class="bg-white px-4 py-3">
+                                <Image src={logo.src} alt={logo.alt} class="h-14 w-auto object-contain transition-all" loading="lazy" />
+                            </div>
                         </div>
                     );
                 })}
