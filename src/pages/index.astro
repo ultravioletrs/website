@@ -110,12 +110,12 @@ const clientLogos = [
 	<section class="border-b border-border py-12">
 		<div class="px-4 text-center reveal">
       <h2 class="text-sm font-body text-text-muted mb-8 tracking-widest uppercase">Our Memberships</h2>
-			<div class="flex justify-center flex-wrap gap-12 items-center opacity-80 hover:opacity-100 transition-opacity">
+			<div class="flex justify-center flex-wrap gap-12 items-center transition-opacity">
 				<a href="https://www.linuxfoundation.org/" target="_blank">
-                    <Image src={lfLogo} alt="Linux Foundation" class="h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all dark:invert" loading="eager" />
+                    <Image src={lfLogo} alt="Linux Foundation" class="h-14 w-auto object-contain transition-all" loading="eager" />
                 </a>
                 <a href="https://confidentialcomputing.io/" target="_blank">
-                    <Image src={cccLogo} alt="Confidential Computing Consortium" class="h-14 w-auto object-contain grayscale hover:grayscale-0 transition-all dark:invert" loading="eager" />
+                    <Image src={cccLogo} alt="Confidential Computing Consortium" class="h-14 w-auto object-contain transition-all" loading="eager" />
                 </a>
 			</div>
 		</div>
@@ -135,7 +135,7 @@ const clientLogos = [
                             class="clients-marquee-item flex justify-center items-center px-10 py-6"
                             aria-hidden={isDuplicate ? 'true' : undefined}
                         >
-                            <Image src={logo.src} alt={logo.alt} class="h-14 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all dark:invert" loading="lazy" />
+                            <Image src={logo.src} alt={logo.alt} class="h-14 w-auto object-contain transition-all" loading="lazy" />
                         </div>
                     );
                 })}
@@ -144,9 +144,9 @@ const clientLogos = [
     </section>
 
     <section id="cube-ai" class="py-24 border-b border-border bg-background">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-12 xl:gap-16 lg:items-center">
-                <div class="mb-12 lg:mb-0 reveal-left">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-5 lg:gap-12 xl:gap-16 lg:items-center">
+                <div class="lg:col-span-2 mb-12 lg:mb-0 reveal-left">
                     <div class="mb-6 flex items-center text-sm font-bold text-primary-text uppercase tracking-wider">
                         <span class="w-2 h-1 bg-primary-text mr-3 inline-block"></span> Cube AI <span class="w-2 h-1 bg-primary-text ml-3 inline-block"></span>
                     </div>
@@ -175,17 +175,17 @@ const clientLogos = [
                         Explore Cube
                     </a>
                 </div>
-                <div class="flex justify-center items-center reveal-right">
-                     <Image class="w-full h-auto border border-border" src={ccImage} alt="Cube AI Dashboard" loading="lazy" />
+                <div class="lg:col-span-3 flex justify-center items-center reveal-right">
+                     <Image class="w-full h-auto rounded-lg border-2 border-gray-500" src={ccImage} alt="Cube AI Dashboard" loading="lazy" />
                 </div>
             </div>
         </div>
     </section>
 
     <section id="prism-ai" class="py-24 border-b border-border bg-background">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-12 xl:gap-16 lg:items-center">
-                <div class="mb-12 lg:mb-0 reveal-left">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-5 lg:gap-12 xl:gap-16 lg:items-center">
+                <div class="lg:col-span-2 mb-12 lg:mb-0 reveal-left">
                     <div class="mb-6 flex items-center text-sm font-bold text-primary-text uppercase tracking-wider">
                         <span class="w-2 h-1 bg-primary-text mr-3 inline-block"></span> Prism AI <span class="w-2 h-1 bg-primary-text ml-3 inline-block"></span>
                     </div>
@@ -217,17 +217,17 @@ const clientLogos = [
                         Explore Prism
                     </a>
                 </div>
-                <div class="flex justify-center items-center reveal-right">
-                     <Image class="w-full h-auto border border-border" src={prismConceptImage} alt="Prism AI Dashboard" loading="lazy" />
+                <div class="lg:col-span-3 flex justify-center items-center reveal-right">
+                     <Image class="w-full h-auto rounded-lg border-2 border-gray-500" src={prismConceptImage} alt="Prism AI Dashboard" loading="lazy" />
                 </div>
             </div>
         </div>
     </section>
 
     <section id="cocos-ai" class="py-24 border-b border-border bg-background">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="lg:grid lg:grid-cols-2 lg:gap-24 lg:items-center">
-                <div class="mb-10 lg:mb-0 reveal-left">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-5 lg:gap-16 lg:items-center">
+                <div class="lg:col-span-2 mb-10 lg:mb-0 reveal-left">
                     <div class="mb-6 flex items-center text-sm font-bold text-primary-text uppercase tracking-wider">
                         <span class="w-2 h-1 bg-primary-text mr-3 inline-block"></span> Cocos AI <span class="w-2 h-1 bg-primary-text ml-3 inline-block"></span>
                     </div>
@@ -242,8 +242,8 @@ const clientLogos = [
                         Explore Cocos
                     </a>
                 </div>
-                <div class="flex justify-center items-center reveal-right">
-                     <Image class="w-full h-auto border border-border opacity-80" src={openSourceImage} alt="Cocos AI architecture diagram" loading="lazy" />
+                <div class="lg:col-span-3 flex justify-center items-center reveal-right">
+                     <Image class="w-full h-auto rounded-lg border-2 border-gray-500 opacity-80" src={openSourceImage} alt="Cocos AI architecture diagram" loading="lazy" />
                 </div>
             </div>
         </div>

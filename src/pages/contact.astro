@@ -10,7 +10,6 @@ const email = "info@ultraviolet.rs";
 const githubOrg = "https://github.com/ultravioletrs";
 const linkedin = "https://www.linkedin.com/company/ultravioletrs";
 const twitter = "https://twitter.com/ultravioletrs";
-const gitter = "https://app.gitter.im/#/room/#Ultraviolet_community:gitter.im";
 const contactApiEndpoint = "/api/contact";
 ---
 
@@ -19,14 +18,13 @@ const contactApiEndpoint = "/api/contact";
 
     <section id="header" class="pt-20">
         <div class="w-full relative">
-            <div class="flex items-center justify-center h-[300px] overflow-hidden border-b border-border bg-background">
+            <div class="flex items-center justify-center h-[300px] overflow-hidden bg-background">
                 <img src="/img/header.avif" alt="pattern-white" class="w-full h-full object-cover object-top" loading="lazy" />
             </div>
         </div>
     </section>
 
-    <!-- Hero Section -->
-    <section class="py-16 bg-background border-b border-border">
+    <section class="py-16 bg-background">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 <div class="reveal-left">
@@ -46,7 +44,6 @@ const contactApiEndpoint = "/api/contact";
                 </div>
 
                 <div class="bg-surface p-8 border border-border reveal-right">
-                    <!-- Primary contact -->
                     <div>
                         <p class="text-sm font-bold text-text-muted uppercase tracking-widest mb-2">Primary contact</p>
                         <a href={`mailto:${email}`} class="text-xl font-semibold text-primary hover:text-primary-dark transition-colors">
@@ -59,7 +56,6 @@ const contactApiEndpoint = "/api/contact";
 
                     <div class="my-6 border-t border-border"></div>
 
-                    <!-- Secondary channels -->
                     <div class="space-y-3 text-sm">
                         <div class="flex items-center justify-between">
                             <span class="text-text-muted">GitHub</span>
@@ -81,13 +77,6 @@ const contactApiEndpoint = "/api/contact";
                                 @ultravioletrs
                             </a>
                         </div>
-
-                        <div class="flex items-center justify-between">
-                            <span class="text-text-muted">Gitter</span>
-                            <a href={gitter} target="_blank" rel="noopener noreferrer" class="font-medium text-text-main hover:text-primary transition-colors">
-                                Ultraviolet Community
-                            </a>
-                        </div>
                     </div>
 
                     <p class="mt-6 text-xs text-text-muted">
@@ -95,11 +84,11 @@ const contactApiEndpoint = "/api/contact";
                     </p>
                 </div>
             </div>
+            <hr class="border-border mt-16" />
         </div>
     </section>
 
-    <!-- Contact Options -->
-    <section class="py-16 bg-background border-b border-border">
+    <section class="py-16 bg-background">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 reveal">
                 <h2 class="text-3xl font-heading mb-4 text-text-main font-medium">Choose the fastest path</h2>
@@ -134,12 +123,12 @@ const contactApiEndpoint = "/api/contact";
                     <p class="font-medium text-primary group-hover:text-primary-dark transition-colors">Visit LinkedIn →</p>
                 </a>
             </div>
+            <hr class="border-border mt-16" />
         </div>
     </section>
 
-    <!-- Contact Form -->
-    <section class="py-16 bg-background border-b border-border">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="py-16 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 reveal">
                 <h2 class="text-3xl font-heading mb-4 text-text-main font-medium">Send a message</h2>
                 <p class="text-lg text-text-muted font-body">Send details directly from the form. If delivery fails, use email fallback.</p>
@@ -179,7 +168,6 @@ const contactApiEndpoint = "/api/contact";
                     ></textarea>
                 </label>
 
-                <!-- Honeypot field for spam protection -->
                 <div class="hidden" aria-hidden="true">
                     <label for="company">Company</label>
                     <input id="company" name="company" tabindex="-1" autocomplete="off" />
@@ -201,11 +189,11 @@ const contactApiEndpoint = "/api/contact";
 
                 <p class="min-h-6 text-sm text-text-muted" role="status" aria-live="polite" data-contact-status></p>
             </form>
+            <hr class="border-border mt-16" />
         </div>
     </section>
 
-    <!-- Address Section -->
-    <section id="address" class="py-16 bg-background border-b border-border">
+    <section id="address" class="py-16 bg-background">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
                 <div class="md:col-span-4 bg-surface p-8 border border-border h-full flex flex-col justify-center reveal-left">
