@@ -1,0 +1,117 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+	const entries = await getCollection('use-cases');
+	return entries.map((entry) => ({
+		params: { slug: entry.slug },
+		props: entry,
+	}));
+}
+
+const entry = Astro.props;
+const { Content } = await entry.render();
+---
+
+<Layout title={entry.data.title} description={entry.data.description}>
+	<Header slot="header" />
+
+    <article class="pt-32 pb-16 bg-background overflow-hidden transition-colors duration-300 flex-1">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
+                <div class="relative h-full text-lg w-full max-w-7xl mx-auto" aria-hidden="true">
+                    <svg class="absolute top-12 left-full transform translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
+                        <defs>
+                            <pattern id="uc-74b3fd99" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-border" fill="currentColor" />
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="384" fill="url(#uc-74b3fd99)" />
+                    </svg>
+                    <svg class="absolute top-1/2 right-full transform -translate-y-1/2 -translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
+                        <defs>
+                            <pattern id="uc-f210dbf6" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-border" fill="currentColor" />
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="384" fill="url(#uc-f210dbf6)" />
+                    </svg>
+                    <svg class="absolute bottom-12 left-full transform translate-x-32" width="404" height="384" fill="none" viewBox="0 0 404 384">
+                        <defs>
+                            <pattern id="uc-d3eb07ae" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                <rect x="0" y="0" width="4" height="4" class="text-border" fill="currentColor" />
+                            </pattern>
+                        </defs>
+                        <rect width="404" height="384" fill="url(#uc-d3eb07ae)" />
+                    </svg>
+                </div>
+            </div>
+            
+            <div class="relative px-4 sm:px-6 lg:px-8">
+                <div class="text-lg w-full max-w-none mx-auto hero-entrance">
+                    <h1>
+                        <span class="block text-base text-center text-primary-text font-semibold tracking-wide uppercase hero-anim hero-anim-1">{entry.data.category || 'Use Case'}</span>
+                        <span class="mt-2 block text-3xl text-center leading-8 tracking-tight text-text-main sm:text-4xl font-heading hero-anim hero-anim-2">{entry.data.title}</span>
+                    </h1>
+                    <div class="mt-4 flex items-center justify-center hero-anim hero-anim-3">
+                        <p class="text-sm text-text-muted">
+                            <time datetime={entry.data.date.toISOString()}>
+                                {entry.data.date.toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                })}
+                            </time>
+                            <span class="mx-1">·</span>
+                            <span>{Math.ceil(entry.body.split(/\s+/).length / 200)} min read</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 prose prose-indigo prose-lg text-text-muted mx-auto dark:prose-invert max-w-none">
+                    <Content />
+                </div>
+            </div>
+        </div>
+    </article>
+
+	<Footer slot="footer" />
+
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+
+        async function renderMermaid() {
+            const isDark = document.documentElement.classList.contains('dark');
+
+            mermaid.initialize({
+                startOnLoad: false,
+                theme: isDark ? 'dark' : 'default',
+            });
+
+            const mermaidBlocks = document.querySelectorAll('pre[data-language="mermaid"]');
+
+            mermaidBlocks.forEach((pre) => {
+                const code = pre.querySelector('code');
+                const content = code ? code.textContent : pre.textContent;
+
+                const div = document.createElement('div');
+                div.classList.add('mermaid');
+                div.style.display = 'flex';
+                div.style.justifyContent = 'center';
+                div.textContent = content;
+
+                pre.replaceWith(div);
+            });
+
+            await mermaid.run({
+                nodes: document.querySelectorAll('.mermaid')
+            });
+        }
+
+        renderMermaid();
+        document.addEventListener('astro:after-swap', renderMermaid);
+    </script>
+</Layout>
