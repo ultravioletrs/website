@@ -39,23 +39,25 @@ Cocos AI now achieves this through three major architectural shifts:
 ### 1. Exclusive TLS 1.3
 We have dropped support for older TLS versions in our aTLS paths. TLS 1.3 provides a cleaner handshake and superior key derivation functions (HKDF) which are essential for robust session export.
 
-### 2. TLS Exporters (RFC 5705)
-Instead of relying on a user-provided nonce or a public key hash delivered via SNI, the new protocol leverages **TLS Exporters**. We derive a unique, session-specific value directly from the TLS 1.3 master secret and the handshake transcript:
+### 2. TLS Exporters & Nonce Freshness (RFC 5705)
+A common misconception is that session binding replaces the need for a nonce. In the new Cocos aTLS flow (based on the [IETF EXPAT draft](https://datatracker.ietf.org/doc/draft-fossati-seat-expat/)), the nonce provided by the CLI is now carried within the `certificate_request_context`.
+
+This context is then used as the `context_value` for the TLS Exporter, ensuring that the derived value is both fresh (non-repeating) and cryptographically bound to the session:
 
 ```go
 // From pkg/atls/eaattestation/binding.go
 func ComputeBinding(st *tls.ConnectionState, label string, contextValue []byte, leaf *x509.Certificate) (exportedValue, aikPubHash, binding []byte, err error) {
+    // contextValue here contains the Verifier-provided nonce
     exportedValue, h, err := ExportAttestationValue(st, label, contextValue)
     // ...
     pub, _ := PublicKeyBytes(leaf)
-    aikPubHash = Hash(h, pub)
     binding = Hash(h, pub, exportedValue)
     return exportedValue, aikPubHash, binding, nil
 }
 ```
 
-The binding value is defined as:
-$$\text{Binding} = \text{Hash}(\text{PublicKey} \parallel \text{TLS-Exporter}(\text{Label, Context}))$$
+The binding value, which serves as the final attestation challenge, is defined as:
+$$\text{Binding} = \text{Hash}(\text{PublicKey} \parallel \text{TLS-Exporter}(\text{Label, Nonce}))$$
 
 ### 3. Level 2 Binding Logic
 By including this TLS-exported binder in the attestation's `report_data`, we achieve **Level 2 Binding** (Correlation to Handshake Traffic Keys). This ensures that the evidence is fundamentally bound to the cryptographic state of the *specific* TLS session.
@@ -72,10 +74,10 @@ sequenceDiagram
     
     Note over Client,Server: 2. Secure Channel Established
     
-    Client->>Server: AuthenticatorRequest (Context, Extensions)
+    Client->>Server: AuthenticatorRequest (Nonce, Extensions)
     
     Note over Server: 3. Compute Binding
-    Note over Server: ExportedValue = TLS-Exporter("Attestation", Context)
+    Note over Server: ExportedValue = TLS-Exporter("Attestation", Nonce)
     Note over Server: Binding = Hash(PubKey || ExportedValue)
     
     Server->>Server: Request TEE Report (report_data = Binding)
