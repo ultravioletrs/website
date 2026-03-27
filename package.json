@@ -7,6 +7,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "cf:dev": "astro build && wrangler pages dev dist",
+    "deploy": "astro build && wrangler pages deploy dist",
     "check": "astro check",
     "lint": "eslint . --report-unused-disable-directives",
     "lint:fix": "eslint . --fix --report-unused-disable-directives",
@@ -15,6 +17,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12",
+    "@astrojs/sitemap": "^3.7.2",
     "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.17.1"
   },
@@ -38,6 +42,7 @@
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.57.0"
+    "typescript-eslint": "^8.57.0",
+    "wrangler": "^4.77.0"
   }
 }
