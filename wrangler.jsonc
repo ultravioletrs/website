@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "uvc-website",
+  "main": "./dist/_worker.js/index.js",
+  "compatibility_date": "2026-02-24",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "./dist",
+    "binding": "UV_WEBSITE_ASSETS"
+  },
+  "vars": {
+    "TEAM_CONTACT_EMAIL": "info@ultraviolet.rs",
+    "MAIL_FROM_EMAIL": "noreply@ultraviolet.rs",
+    "SMTP_HOST": "mail.ultraviolet.rs",
+    "SMTP_PORT": "465",
+    "SMTP_SECURE": "true"
+  }
+}
