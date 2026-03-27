@@ -53,7 +53,9 @@ const description = "CONFIDENTIAL6G is an EU-funded project developing quantum-r
 
     <section id="project-title" class="project-page-section">
         <div class="project-page-container text-center reveal-scale">
-            <img src="/img/c6g.png" alt="CONFIDENTIAL6G Logo" class="mb-8 mx-auto dark:invert" style="max-height: 120px" />
+            <div class="bg-white px-6 py-4 inline-block mb-8">
+                <img src="/img/c6g.png" alt="CONFIDENTIAL6G Logo" class="mx-auto" style="max-height: 120px" />
+            </div>
             <h1 class="text-3xl lg:text-4xl font-heading mb-6 text-text-main font-medium">CONFIDENTIAL6G</h1>
             <p class="text-xl text-text-muted font-body">
                 Quantum-resistant cryptographic protocols and security frameworks for 6G confidential computing
@@ -346,7 +348,9 @@ const description = "CONFIDENTIAL6G is an EU-funded project developing quantum-r
 
                     return (
                         <div class="clients-marquee-item flex justify-center items-center px-10 py-6" aria-hidden={isDuplicate ? 'true' : undefined}>
-                            <img src={logo.src} alt={logo.alt} class="h-10 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all dark:invert" loading="lazy" />
+                            <div class="bg-white px-4 py-3">
+                                <img src={logo.src} alt={logo.alt} class="h-14 w-auto object-contain transition-all" loading="lazy" />
+                            </div>
                         </div>
                     );
                 })}

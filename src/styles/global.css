@@ -57,7 +57,7 @@
   }
 
   .clients-marquee-track {
-    animation: clients-marquee-rtl 36s linear infinite;
+    animation: clients-marquee-rtl 60s linear infinite;
     will-change: transform;
   }
 

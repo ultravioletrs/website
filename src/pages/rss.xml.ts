@@ -1,0 +1,30 @@
+import rss from "@astrojs/rss";
+import type { APIContext } from "astro";
+import { getCollection } from "astro:content";
+
+const DEFAULT_SITE = "https://www.ultraviolet.rs";
+
+export async function GET(context: APIContext) {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+
+  return rss({
+    title: "Ultraviolet Blog",
+    description:
+      "Technical articles, product updates, and engineering deep dives from the Ultraviolet team.",
+    site: context.site ?? DEFAULT_SITE,
+    customData: `<language>en-us</language>`,
+    items: posts
+      .map((post) => {
+        const slug = post.data.slug ?? post.slug;
+        return {
+          title: post.data.title,
+          pubDate: post.data.date,
+          description: post.data.description,
+          link: `/blog/${slug}/`,
+          categories: post.data.tags ?? [],
+          author: post.data.author?.name,
+        };
+      })
+      .sort((a, b) => (b.pubDate?.getTime() ?? 0) - (a.pubDate?.getTime() ?? 0)),
+  });
+}

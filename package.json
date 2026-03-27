@@ -20,7 +20,9 @@
     "@astrojs/cloudflare": "^12",
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/tailwind": "^6.0.2",
-    "astro": "^5.17.1"
+    "astro": "^5.17.1",
+    "node": "^25.6.1",
+    "nodemailer": "^8.0.4"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
@@ -29,6 +31,7 @@
     "@eslint/json": "^1.1.0",
     "@eslint/markdown": "^7.5.1",
     "@tailwindcss/typography": "^0.5.19",
+    "@types/nodemailer": "^7.0.11",
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
     "eslint": "^9.39.4",
