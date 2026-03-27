@@ -9,7 +9,7 @@ authors:
   - name: "Danko Miladinovic"
     picture: "https://avatars.githubusercontent.com/u/72250944?v=4"
 tags: [confidential-computing, attestation, aTLS, security, TLS-Exporters, IETF-SEAT]
-date: 2026-03-26
+date: 2026-03-27
 image: "/img/atls-milestone/cover.png"
 ---
 
@@ -105,6 +105,17 @@ The technical overhaul in Cocos AI v0.9.0 directly mitigates [GHSA-vfgg-mvxx-mgg
 As detailed in the advisory, the flaw was architectural: by binding attestation evidence only to the server's ephemeral public key—and not the TLS channel itself—the protocol remained vulnerable to relay attacks. An adversary capable of extracting the ephemeral private key (e.g., via side-channel or physical access) could divert an attested TLS session, leading the client to accept a connection with a malicious relay under the false assumption of TEE integrity.
 
 By implementing **Level 2 binding** with TLS 1.3 Exporters, we have fundamentally closed this vector. The attestation evidence is now cryptographically tied to the unique handshake transcript and session keys of the specific connection. Even in a hypothetical scenario where a private key leaks, the stolen evidence cannot be relayed to a different session; it is mathematically anchored to the secure channel it was generated for.
+
+## Cocos v0.9.0: A New Era of Modularity 
+
+While Level 2 session binding is a pivotal security milestone, it is just one part of the broader **Cocos v0.9.0** release. This version marks a significant architectural shift towards modularity and production-readiness:
+
+- **Modular Attestation Service**: We've transitioned to a dedicated, gRPC-based attestation service. This improves separation of concerns, allowing for independent scaling and easier integration.
+- **Enhanced Computation Infrastructure**: v0.9.0 introduces specialized services for computation management, including a new **computation runner**, **log forwarder**, and **ingress/egress proxies**.
+- **Entity Attestation Tokens (EAT)**: Native support for EAT (RFC 9334) aligns our attestation evidence with industry-standard formats.
+- **Agent Pull Mode**: The Cocos Agent now supports fetching remote resources directly, simplifying deployment workflows for decentralized AI workloads.
+
+These improvements, combined with the hardened aTLS protocol, make v0.9.0 our most robust and versatile release to date.
 
 ## Path Forward
 
