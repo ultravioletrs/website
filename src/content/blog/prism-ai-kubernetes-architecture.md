@@ -305,4 +305,12 @@ It is also worth mentioning a few areas of improvement:
 - **Kubernetes Operators**: Custom operators for application lifecycle management
 - **Advanced Scheduling**: Topology-aware scheduling and resource optimization
 
+
+---
+
+**Learn More:**
+
+- [Prism AI](https://prism.ultraviolet.rs/)
+- [Prism AI Documentation](https://docs.prism.ultraviolet.rs/)
+
 Happy Orchestrating 🙂!
