@@ -7,7 +7,7 @@ author:
   name: "Jilks Smith"
   picture: "https://avatars.githubusercontent.com/u/41241359?v=4"
 tags: ["prism ai", "kubernetes", "gitops", "devops", "cloud-native", "argocd", "devsecops"]
-date: 2026-02-17
+date: 2026-05-04
 image: /img/prism-kubernetes/prism-kubernetes.png
 coverImage: /img/prism-kubernetes/prism-kubernetes.png
 ogImage:
@@ -53,9 +53,9 @@ Prism AI's entire Kubernetes infrastructure is defined through Helm charts, Infr
 - SpiceDB for fine-grained authorization
 - PostgreSQL for persistence
 - Redis for caching
-- Nats for event streaming
-- Opensearch for log analytics
-- Fluentbit for log collection
+- NATS for event streaming
+- OpenSearch for log analytics
+- Fluent Bit for log collection
 
 This dependency management approach ensures consistent deployments across environments while maintaining version control and rollback capabilities.
 
@@ -87,14 +87,15 @@ Prism AI goes beyond standard GitOps by implementing Progressive Delivery using 
 ![Prism AI GitOps Workflow](/img/prism-kubernetes/prism-gitops-flow.png)
 
 - **Production Strategy (Canary)**: Releases are rolled out in stepped phases (e.g., 20% -> pause -> 40% -> ...). This allows the team to validate metrics before exposing the new version to 100% of traffic.
-- **Staging Strategy**: Uses a simplified rolling update strategy to ensure rapid iteration loops. ArgoCD synchronizes these definitions from Git, ensuring that the cluster always matches the declarative state.
+- **Staging Strategy**: Uses a simplified rolling update strategy to ensure rapid iteration loops. Argo CD synchronizes these definitions from Git, ensuring that the cluster always matches the declarative state.
 
 ### Automated Image Updates
 
-ArgoCD Image Updater is used to automatically monitor container registries and update the deployments when new images are available:
+Argo CD Image Updater is used to automatically monitor container registries and update the deployments when new images are available:
 
 ```yaml
 annotations:
+  argocd-image-updater.argoproj.io/image-list: auth=ghcr.io/example/auth
   argocd-image-updater.argoproj.io/auth.update-strategy: digest
   argocd-image-updater.argoproj.io/auth.force-update: "true"
   argocd-image-updater.argoproj.io/auth.ignore-tags: latest, mastery
@@ -219,7 +220,7 @@ For container security, the following measures have been applied:
 
 ### Backup with Velero
 
-In order to ensure resilience and availability of user data whenever an incident occurs, Prism AI uses Velero for disaster recovery. Backups are done regularly. You can have a look at [https://velero.io/](https://velero.io/) for more information on configuring back ups.
+In order to ensure resilience and availability of user data whenever an incident occurs, Prism AI uses Velero for disaster recovery. Backups are done regularly. You can have a look at [https://velero.io/](https://velero.io/) for more information on configuring backups.
 
 - Kubernetes object backup to DigitalOcean Spaces
 - Persistent volume snapshots
@@ -247,7 +248,7 @@ The container build and distribution process is automated through GitHub Actions
 1. Code commit triggers GitHub Actions
 2. Docker images built and tested
 3. Helm repository is updated with new image references
-4. ArgoCD detects changes and syncs to cluster
+4. Argo CD detects changes and syncs to cluster
 
 ## Deployment Environments and Configuration Management
 
@@ -274,7 +275,7 @@ Some best practices takeaway from the environment configurations:
 
 ## Conclusion
 
-There are a lot of lessons that can be drawn from the Prism AI architecture, CI/CD, and DevOps practices, especially when it comes to cost optimisation without compromising on excellence and security. The platform makes good use of open-source production-ready tools. They also utilize Digital Ocean primarily, which is a lot cheaper than other Cloud Providers. Let's look at some of the considerations below:
+There are a lot of lessons that can be drawn from the Prism AI architecture, CI/CD, and DevOps practices, especially when it comes to cost optimisation without compromising on excellence and security. The platform makes good use of open-source production-ready tools. They also utilize DigitalOcean primarily, which is a lot cheaper than other Cloud Providers. Let's look at some of the considerations below:
 
 ### Scalability Considerations
 
