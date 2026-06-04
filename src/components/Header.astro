@@ -76,54 +76,57 @@ import NavDropdown from './NavDropdown.astro';
     </div>
   </div>
 
-  <!-- Mobile drawer -->
-  <div class="hdr__mobile" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation">
-    <div class="hdr__mobile-backdrop" id="mobile-backdrop"></div>
-    <div class="hdr__mobile-panel">
-      <details class="hdr__mblock">
-        <summary class="hdr__mhead hdr__msummary">Products</summary>
-        <div class="hdr__mitems">
-          <a href="/products/cube-ai" class="hdr__mlink">Cube AI</a>
-          <a href="/products/prism-ai" class="hdr__mlink">Prism AI</a>
-          <a href="/products/cocos-ai" class="hdr__mlink">Cocos AI</a>
-        </div>
-      </details>
-      <details class="hdr__mblock">
-        <summary class="hdr__mhead hdr__msummary">Solutions</summary>
-        <div class="hdr__mitems">
-          <a href="/solutions/sovereign-ai" class="hdr__mlink">Sovereign AI</a>
-          <a href="/solutions/private-ai" class="hdr__mlink">Private AI</a>
-          <a href="/solutions/enterprise-ai" class="hdr__mlink">Enterprise AI</a>
-          <a href="/solutions/air-gapped-ai" class="hdr__mlink">Air-Gapped AI</a>
-          <a href="/solutions/secure-collaboration" class="hdr__mlink">Secure Collaboration</a>
-          <a href="/solutions/ai-governance" class="hdr__mlink">AI Governance</a>
-        </div>
-      </details>
-      <details class="hdr__mblock">
-        <summary class="hdr__mhead hdr__msummary">Industries</summary>
-        <div class="hdr__mitems">
-          <a href="/industries/government" class="hdr__mlink">Government</a>
-          <a href="/industries/defense" class="hdr__mlink">Defense</a>
-          <a href="/industries/healthcare" class="hdr__mlink">Healthcare</a>
-          <a href="/industries/financial-services" class="hdr__mlink">Financial Services</a>
-          <a href="/industries/telecommunications" class="hdr__mlink">Telecommunications</a>
-          <a href="/industries/research" class="hdr__mlink">Research</a>
-        </div>
-      </details>
-      <div class="hdr__mblock"><a href="/projects" class="hdr__mhead">Projects</a></div>
-      <div class="hdr__mblock"><a href="/blog" class="hdr__mhead">Blog</a></div>
-      <details class="hdr__mblock">
-        <summary class="hdr__mhead hdr__msummary">Company</summary>
-        <div class="hdr__mitems">
-          <a href="/company/about" class="hdr__mlink">About</a>
-          <a href="/company/careers" class="hdr__mlink">Careers</a>
-          <a href="/company/contact" class="hdr__mlink">Contact</a>
-        </div>
-      </details>
-      <a class="btn btn--primary" href="/company/contact" style="width:100%;margin-top:0.5rem">Contact sales</a>
-    </div>
-  </div>
 </header>
+
+<!-- Mobile drawer — placed outside <header> so the backdrop-filter on .hdr
+     does not act as a containing block and clip this fixed overlay to the
+     header's own bounds (a known Chrome/Safari bug with backdrop-filter). -->
+<div class="hdr__mobile" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="hdr__mobile-backdrop" id="mobile-backdrop"></div>
+  <div class="hdr__mobile-panel">
+    <details class="hdr__mblock">
+      <summary class="hdr__mhead hdr__msummary">Products</summary>
+      <div class="hdr__mitems">
+        <a href="/products/cube-ai" class="hdr__mlink">Cube AI</a>
+        <a href="/products/prism-ai" class="hdr__mlink">Prism AI</a>
+        <a href="/products/cocos-ai" class="hdr__mlink">Cocos AI</a>
+      </div>
+    </details>
+    <details class="hdr__mblock">
+      <summary class="hdr__mhead hdr__msummary">Solutions</summary>
+      <div class="hdr__mitems">
+        <a href="/solutions/sovereign-ai" class="hdr__mlink">Sovereign AI</a>
+        <a href="/solutions/private-ai" class="hdr__mlink">Private AI</a>
+        <a href="/solutions/enterprise-ai" class="hdr__mlink">Enterprise AI</a>
+        <a href="/solutions/air-gapped-ai" class="hdr__mlink">Air-Gapped AI</a>
+        <a href="/solutions/secure-collaboration" class="hdr__mlink">Secure Collaboration</a>
+        <a href="/solutions/ai-governance" class="hdr__mlink">AI Governance</a>
+      </div>
+    </details>
+    <details class="hdr__mblock">
+      <summary class="hdr__mhead hdr__msummary">Industries</summary>
+      <div class="hdr__mitems">
+        <a href="/industries/government" class="hdr__mlink">Government</a>
+        <a href="/industries/defense" class="hdr__mlink">Defense</a>
+        <a href="/industries/healthcare" class="hdr__mlink">Healthcare</a>
+        <a href="/industries/financial-services" class="hdr__mlink">Financial Services</a>
+        <a href="/industries/telecommunications" class="hdr__mlink">Telecommunications</a>
+        <a href="/industries/research" class="hdr__mlink">Research</a>
+      </div>
+    </details>
+    <div class="hdr__mblock"><a href="/projects" class="hdr__mhead">Projects</a></div>
+    <div class="hdr__mblock"><a href="/blog" class="hdr__mhead">Blog</a></div>
+    <details class="hdr__mblock">
+      <summary class="hdr__mhead hdr__msummary">Company</summary>
+      <div class="hdr__mitems">
+        <a href="/company/about" class="hdr__mlink">About</a>
+        <a href="/company/careers" class="hdr__mlink">Careers</a>
+        <a href="/company/contact" class="hdr__mlink">Contact</a>
+      </div>
+    </details>
+    <a class="btn btn--primary" href="/company/contact" style="width:100%;margin-top:0.5rem">Contact sales</a>
+  </div>
+</div>
 
 <script>
   const header = document.getElementById('site-header')!;

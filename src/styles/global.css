@@ -601,7 +601,7 @@ button {
 .hdr__mobile {
   position: fixed;
   inset: 0;
-  z-index: 99;
+  z-index: 200;
   pointer-events: none;
   visibility: hidden;
   overflow: hidden;
