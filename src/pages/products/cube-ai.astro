@@ -194,12 +194,20 @@ const faqs = [
                   <span class="browser__url">cube.ultraviolet.rs/dashboard</span
                   >
                 </div>
-                <img
-                  src="/img/cube_dashboard.png"
-                  alt="Cube AI dashboard showing model status, domains, and audit logs"
-                  loading="eager"
-                  style="width:100%;display:block"
-                />
+                <div class="cube-shot__img-wrap">
+                  <img
+                    src="/img/cube_dashboard.png"
+                    alt="Cube AI dashboard showing model status, domains, and audit logs"
+                    loading="eager"
+                    style="width:100%;display:block"
+                  />
+                  <button class="cube-shot__zoom-btn" data-zoom-src="/img/cube_dashboard.png" data-zoom-alt="Cube AI dashboard" aria-label="Zoom: Cube AI dashboard">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                      <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+                      <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+                    </svg>
+                  </button>
+                </div>
               </div>
               <div class="p-float mono">
                 <span class="hero__pulse"></span> 3 models online · 0 bytes egressed
@@ -218,12 +226,10 @@ const faqs = [
             <span class="eyebrow"
               ><span class="tick"></span>What is Cube AI</span
             >
-            <h2 class="comp__h2" style="margin-top:1.1rem">
+            <h2 class="comp__h2 mt-5">
               The complete operating environment for private, sovereign AI.
             </h2>
-          </div>
-          <div class="reveal" data-delay="1">
-            <div class="p-def__body" style="margin-bottom:2rem">
+            <div class="p-def__body my-10">
               <p>
                 Cube AI gives regulated and sovereign organizations everything
                 they need to build and run AI without sending a single byte to a
@@ -237,6 +243,9 @@ const faqs = [
                 built to support.
               </p>
             </div>
+          </div>
+          <div class="reveal" data-delay="1">
+            
             <div class="comp__proof p-proof">
               {
                 [

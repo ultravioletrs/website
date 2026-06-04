@@ -48,7 +48,15 @@ const caps = [
             <span class="browser__dot"></span>
             <span class="browser__url">cube.ultraviolet.rs/dashboard</span>
           </div>
-          <img src="/img/cube_dashboard.png" alt="Cube AI dashboard showing model status, domains, and audit logs" loading="lazy" style="width:100%;display:block" />
+          <div class="cube-shot__img-wrap">
+            <img src="/img/cube_dashboard.png" alt="Cube AI dashboard showing model status, domains, and audit logs" loading="lazy" style="width:100%;display:block" />
+            <button class="cube-shot__zoom-btn" data-zoom-src="/img/cube_dashboard.png" data-zoom-alt="Cube AI dashboard" aria-label="Zoom: Cube AI dashboard">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+                <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+              </svg>
+            </button>
+          </div>
         </div>
         <div class="cube__float surface mono">
           <span class="hero__pulse"></span> 3 models online · 0 bytes egressed
@@ -57,3 +65,39 @@ const caps = [
     </div>
   </div>
 </section>
+
+<div class="cube-lb" id="cube-lb" role="dialog" aria-modal="true" aria-label="Image zoom">
+  <div class="cube-lb__inner">
+    <img class="cube-lb__img" id="cube-lb-img" src="" alt="" />
+    <button class="cube-lb__close" id="cube-lb-close" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  const lb = document.getElementById('cube-lb')!;
+  const lbImg = document.getElementById('cube-lb-img') as HTMLImageElement;
+  const lbClose = document.getElementById('cube-lb-close')!;
+
+  const openLb = (src: string, alt: string) => {
+    lbImg.src = src;
+    lbImg.alt = alt;
+    lb.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeLb = () => {
+    lb.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as Element).closest<HTMLElement>('[data-zoom-src]');
+    if (btn) openLb(btn.dataset.zoomSrc!, btn.dataset.zoomAlt ?? '');
+  });
+  lbClose.addEventListener('click', closeLb);
+  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
+</script>
