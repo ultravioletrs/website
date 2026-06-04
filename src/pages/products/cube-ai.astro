@@ -14,7 +14,7 @@ const caps = [
   { Icon: Shield, t: 'Guardrails & PII redaction', d: 'NeMo guardrails, prompt-injection defense, output sanitization, and automatic PII redaction via Microsoft Presidio on every call.' },
   { Icon: Eye, t: 'Governance & audit', d: 'Full audit trail, role-based access, and per-domain usage accounting built in.' },
   { Icon: Zap, t: 'Model management', d: 'Register, version, and route across open models — Llama, Mistral, Qwen, DeepSeek, Phi, Gemma — from one control plane.' },
-  { Icon: Lock, t: 'Optional hardware TEE', d: 'Run the whole stack inside AMD SEV-SNP or Intel TDX enclaves — weights and tensors stay encrypted in use, even from the host.' },
+  { Icon: Lock, t: 'Hardware TEE', d: 'Run the whole stack inside AMD SEV-SNP or Intel TDX enclaves — weights and tensors stay encrypted in use, even from the host.' },
   { Icon: Server, t: 'Multi-tenancy & domains', d: 'SuperMQ-backed domain isolation gives every team or tenant a strictly separated workspace with its own identity and policies.' },
   { Icon: Globe, t: 'Secure chat', d: 'An end-to-end encrypted chat workspace backed by verifiable hardware attestation for everyday private AI.' },
   { Icon: Plug, t: 'OpenAI-compatible API', d: 'OpenAI-compatible endpoints and SDKs drop Cube AI into the apps and agents you already run.' },
@@ -52,6 +52,7 @@ const faqs = [
               <span><span class="hero__pulse"></span> Apache 2.0</span>
               <span>·</span><span>Air-gapped ready</span>
               <span>·</span><span>Model agnostic</span>
+              <span>·</span><span>TEE</span>
             </div>
           </div>
           <div class="hero__visual p-hero__visual">
@@ -126,7 +127,7 @@ const faqs = [
                 </div>
                 <span style="font-size:0.66rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);font-family:var(--font-mono);display:block;margin-bottom:1rem">Sovereign AI platform</span>
                 <div style="display:flex;flex-direction:column;gap:0.4rem">
-                  {['Inference — vLLM · Ollama', 'Retrieval — RAG on your data', 'Guardrails — policy on every call', 'Governance — audit · RBAC · usage'].map(label => (
+                  {['Inference — vLLM · Ollama', 'Retrieval — RAG on your data', 'Guardrails — policy on every call', 'Governance — audit · RBAC · usage', 'Hardware TEE — AMD SEV-SNP · Intel TDX'].map(label => (
                     <div style="display:flex;align-items:center;gap:0.6rem;font-family:var(--font-mono);font-size:0.78rem;color:var(--ink-2);border:1px solid var(--line);padding:0.7rem 0.85rem">
                       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.5l5 5L20 6" /></svg>
                       {label}
