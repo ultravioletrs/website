@@ -1,11 +1,12 @@
 ---
-import { Server, Layers, Shield, Eye } from 'lucide-astro';
+import { Server, Layers, Shield, Eye, Lock } from 'lucide-astro';
 
 const caps = [
   { Icon: Server, title: 'Private inference', desc: 'vLLM and Ollama runtimes serving open models on your own GPUs — no API keys, no egress.' },
   { Icon: Layers, title: 'RAG on your data', desc: 'Connect internal knowledge bases with retrieval that never copies a byte off-prem.' },
   { Icon: Shield, title: 'Guardrails & policy', desc: 'NeMo-based guardrails and policy enforcement on every prompt and response.' },
   { Icon: Eye, title: 'Governance & audit', desc: 'Full audit trail, role-based access, and usage accounting built into the platform.' },
+  { Icon: Lock, title: 'Hardware TEE', desc: 'Run the whole stack inside AMD SEV-SNP or Intel TDX enclaves — weights and tensors stay encrypted in use.' },
 ];
 ---
 
