@@ -1,246 +1,174 @@
 ---
+import NavDropdown from './NavDropdown.astro';
 ---
+<header class="hdr" id="site-header">
+  <div class="hdr__inner container">
+    <a href="/" class="hdr__logo" aria-label="Ultraviolet home">
+      <img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Ultraviolet" height="22" style="height:22px;width:auto;" />
+    </a>
 
-<header transition:persist class="fixed top-0 w-full max-w-[1440px] mx-auto z-50 bg-background border-b border-border transition-all duration-300" id="main-header">
-  <div class="relative w-full px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-20">
-      <div class="flex-shrink-0 flex items-center">
-        <a href="/" aria-label="Home" class="flex items-center gap-2 group">
-          <img class="h-8 w-auto transition-transform duration-300 dark:invert" src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Ultraviolet Logo" loading="eager" />
+    <nav class="hdr__nav" aria-label="Main">
+      <NavDropdown label="Products">
+        <a href="/products/cube-ai" class="hdr__mi" role="menuitem">
+          <span style="width:8px;height:8px;background:var(--cube);display:inline-block;flex-shrink:0;margin-top:5px"></span>
+          <span class="hdr__mi-body">
+            <span class="hdr__mi-name">Cube AI <em class="hdr__badge">Flagship</em></span>
+            <span class="hdr__mi-role">Sovereign AI Platform</span>
+          </span>
         </a>
-      </div>
+        <a href="/products/prism-ai" class="hdr__mi" role="menuitem">
+          <span style="width:8px;height:8px;background:var(--prism);display:inline-block;flex-shrink:0;margin-top:5px"></span>
+          <span class="hdr__mi-body">
+            <span class="hdr__mi-name">Prism AI</span>
+            <span class="hdr__mi-role">Secure AI Collaboration</span>
+          </span>
+        </a>
+        <a href="/products/cocos-ai" class="hdr__mi" role="menuitem">
+          <span style="width:8px;height:8px;background:var(--cocos);display:inline-block;flex-shrink:0;margin-top:5px"></span>
+          <span class="hdr__mi-body">
+            <span class="hdr__mi-name">Cocos AI</span>
+            <span class="hdr__mi-role">Confidential Computing Foundation</span>
+          </span>
+        </a>
+      </NavDropdown>
 
-      <nav class="hidden md:flex space-x-8 items-center">
-        <div class="relative group">
-          <button class="text-text-main hover:text-primary font-medium inline-flex items-center space-x-1 transition-colors font-heading" aria-label="Products Menu">
-            <span>PRODUCTS</span>
-            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-          </button>
-          <div class="absolute left-0 mt-2 w-56 rounded-xl shadow-xl bg-white/90 dark:bg-zinc-800/90 backdrop-blur-xl ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 translate-y-2 group-hover:translate-y-0 text-left">
-            <div class="py-2">
-              <a href="https://prism.ultraviolet.rs" target="_blank" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" role="menuitem" aria-label="Prism AI">PRISM AI</a>
-              <a href="https://cocos.ai" target="_blank" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" role="menuitem" aria-label="Cocos AI">COCOS AI</a>
-              <a href="https://cube.ultraviolet.rs" target="_blank" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" role="menuitem" aria-label="Cube AI">CUBE AI</a>
-              <div class="border-t border-border my-1"></div>
-              <a href="/products" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" role="menuitem">All Products</a>
-            </div>
-          </div>
-        </div>
+      <NavDropdown label="Solutions" panelClass="hdr__menu--grid">
+        <a href="/solutions/sovereign-ai" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Sovereign AI</span></span></a>
+        <a href="/solutions/private-ai" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Private AI</span></span></a>
+        <a href="/solutions/enterprise-ai" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Enterprise AI</span></span></a>
+        <a href="/solutions/air-gapped-ai" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Air-Gapped AI</span></span></a>
+        <a href="/solutions/secure-collaboration" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Secure Collaboration</span></span></a>
+        <a href="/solutions/ai-governance" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">AI Governance</span></span></a>
+        <a href="/solutions/agentic-ai" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Agentic AI</span></span></a>
+      </NavDropdown>
 
-        <div class="relative group">
-          <button class="text-text-main hover:text-primary font-medium inline-flex items-center space-x-1 transition-colors font-heading" aria-label="Documentation Menu">
-            <span>DOCUMENTATION</span>
-            <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-          </button>
-           <div class="absolute left-0 mt-2 w-56 rounded-xl shadow-xl bg-white/90 dark:bg-zinc-800/90 backdrop-blur-xl ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 translate-y-2 group-hover:translate-y-0 text-left">
-            <div class="py-2">
-              <a href="https://docs.prism.ultraviolet.rs/" target="_blank" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" aria-label="Prism AI Documentation">PRISM AI</a>
-              <a href="https://docs.cocos.ultraviolet.rs/" target="_blank" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" aria-label="Cocos AI Documentation">COCOS AI</a>
-              <a href="https://docs.cube.ultraviolet.rs/" target="_blank" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" aria-label="Cube AI Documentation">CUBE AI</a>
-            </div>
-          </div>
-        </div>
+      <NavDropdown label="Industries" panelClass="hdr__menu--grid">
+        <a href="/industries/government" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Government</span></span></a>
+        <a href="/industries/defense" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Defense</span></span></a>
+        <a href="/industries/healthcare" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Healthcare</span></span></a>
+        <a href="/industries/financial-services" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Financial Services</span></span></a>
+        <a href="/industries/telecommunications" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Telecommunications</span></span></a>
+        <a href="/industries/research" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Research</span></span></a>
+      </NavDropdown>
 
-        <div class="relative group">
-          <button class="text-text-main hover:text-primary font-medium inline-flex items-center space-x-1 transition-colors font-heading" aria-label="Projects Menu">
-            <span>PROJECTS</span>
-             <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-          </button>
-           <div class="absolute left-0 mt-2 w-56 rounded-xl shadow-xl bg-white/90 dark:bg-zinc-800/90 backdrop-blur-xl ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 translate-y-2 group-hover:translate-y-0 text-left">
-            <div class="py-2">
-              <a href="/projects/confidential6g" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" aria-label="Confidential 6G">CONFIDENTIAL6G</a>
-              <a href="/projects/elastic" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" aria-label="Elastic">ELASTIC</a>
-               <a href="/projects/titan" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary transition-colors font-heading" aria-label="Titan">TITAN</a>
-              <div class="border-t border-border my-1"></div>
-              <a href="/projects" class="block px-4 py-2 text-sm text-text-main hover:bg-surface-hover hover:text-primary font-bold transition-colors font-heading" aria-label="All Projects">All Projects</a>
-            </div>
-          </div>
-        </div>
+      <a href="/projects" class="hdr__link">Projects</a>
+      <a href="/blog" class="hdr__link">Blog</a>
 
-        <div class="relative group">
-          <button class="text-text-main hover:text-primary font-medium inline-flex items-center space-x-1 transition-colors font-heading" aria-label="Company Menu">
-            <span>COMPANY</span>
-             <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-          </button>
-           <div class="absolute left-1/2 -translate-x-1/2 mt-2 w-[600px] rounded-xl shadow-xl bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top z-50 translate-y-2 group-hover:translate-y-0 text-left overflow-hidden">
-            <div class="flex">
-                <div class="w-2/3 p-6 grid grid-cols-2 gap-8">
-                    <div>
-                        <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading mb-4" aria-label="Company">Company</h3>
-                        <div class="space-y-3">
-                             <a href="/company" class="block text-sm text-text-main hover:text-primary transition-colors font-heading" aria-label="About Us">About Us</a>
-                             <a href="/careers" class="block text-sm text-text-main hover:text-primary transition-colors font-heading" aria-label="Careers">Careers</a>
-                             <a href="/blog" class="block text-sm text-text-main hover:text-primary transition-colors font-heading" aria-label="Blog">Blog</a>
-                             <a href="/contact" class="block text-sm text-text-main hover:text-primary transition-colors font-heading" aria-label="Contact and Press">Contact & Press</a>
-                        </div>
-                    </div>
-                    <div>
-                        <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading mb-4" aria-label="Community">Community</h3>
-                         <div class="space-y-3">
-                             <a href="https://github.com/ultravioletrs" target="_blank" class="block text-sm text-text-main hover:text-primary transition-colors font-heading" aria-label="GitHub">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-1/3 p-6 flex flex-col justify-center items-center text-center">
-                    <h3 class="text-lg font-bold text-text-main mb-2 font-heading" aria-label="We're Hiring!">We're Hiring!</h3>
-                    <p class="text-sm text-text-muted mb-4">Join our team building the future of confidential computing.</p>
-                    <a href="/careers" class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark transition-colors" aria-label="View career openings">
-                        View Openings
-                    </a>
-                </div>
-            </div>
-          </div>
-        </div>
-        <a href="/blog" class="text-text-main hover:text-primary font-medium font-heading transition-colors" aria-label="Blog">BLOG</a>
+      <NavDropdown label="Company" panelClass="hdr__menu--grid">
+        <a href="/company/about" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">About</span></span></a>
+        <a href="/company/careers" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Careers</span></span></a>
+        <a href="/company/contact" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Contact</span></span></a>
+      </NavDropdown>
+    </nav>
 
-        <div class="flex items-center space-x-4 ml-4 border-l border-border pl-4">
-             <a href="https://github.com/ultravioletrs" target="_blank" class="text-text-muted hover:text-text-main transition-colors">
-                <span class="sr-only">GitHub</span>
-                <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-                </svg>
-             </a>
-             
-             <button id="theme-toggle" class="text-text-muted hover:text-text-main transition-colors focus:outline-none" aria-label="Toggle Dark Mode">
-                <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-            </button>
-        </div>
-      </nav>
-
-      <div class="md:hidden flex items-center gap-4">
-        <button id="theme-toggle-mobile" class="text-text-muted hover:text-text-main transition-colors focus:outline-none" aria-label="Toggle Dark Mode">
-            <svg id="theme-toggle-light-icon-mobile" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-            <svg id="theme-toggle-dark-icon-mobile" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-        </button>
-
-        <button id="mobile-menu-button" type="button" class="group relative z-50 p-2 text-text-muted hover:text-text-main focus:outline-none" aria-expanded="false" aria-label="Open main menu">
-          <span class="sr-only">Open main menu</span>
-          <div class="w-6 h-6 flex flex-col justify-center items-end gap-1.5 transition-all duration-300 group-aria-[expanded=true]:gap-0">
-             <span class="w-6 h-0.5 bg-current transition-all duration-300 group-aria-[expanded=true]:rotate-45 group-aria-[expanded=true]:translate-y-0.5"></span>
-             <span class="w-4 h-0.5 bg-current transition-all duration-300 group-aria-[expanded=true]:opacity-0"></span>
-             <span class="w-6 h-0.5 bg-current transition-all duration-300 group-aria-[expanded=true]:-rotate-45 group-aria-[expanded=true]:-translate-y-0.5"></span>
-          </div>
-        </button>
-      </div>
+    <div class="hdr__right">
+      <button class="hdr__icon" id="theme-toggle" aria-label="Toggle theme">
+        <svg id="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg id="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <a class="hdr__icon" href="https://github.com/ultravioletrs" target="_blank" rel="noopener" aria-label="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.8c.85 0 1.71.11 2.5.33 1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+      </a>
+      <a class="btn btn--primary hdr__cta" href="/company/contact">Contact sales</a>
+      <button class="hdr__burger" id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 
-  <div class="fixed inset-0 z-40 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-xl transition-all duration-300 transform translate-x-full md:hidden flex flex-col pt-24 px-6 overflow-y-auto" id="mobile-menu">
-    <div class="space-y-8 pb-10">
-      
-      <div class="space-y-4">
-        <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading border-b border-border pb-2">Products</h3>
-        <a href="/products" class="block text-3xl font-bold text-text-main hover:text-primary transition-colors font-heading" aria-label="View All Products">
-          All Products
-        </a>
-        <div class="space-y-3 pl-2">
-            <a href="https://prism.ultraviolet.rs" class="flex items-center justify-between text-xl font-medium text-text-muted hover:text-primary transition-colors group font-heading" aria-label="Prism AI Product">
-                <span>Prism AI</span>
-                <span class="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-            </a>
-            <a href="https://cocos.ai" target="_blank" class="flex items-center justify-between text-xl font-medium text-text-muted hover:text-primary transition-colors group font-heading" aria-label="Cocos AI Product">
-                <span>Cocos AI</span>
-                <span class="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-            </a>
-            <a href="https://cube.ultraviolet.rs" target="_blank" class="flex items-center justify-between text-xl font-medium text-text-muted hover:text-primary transition-colors group font-heading" aria-label="Cube AI Product">
-                <span>Cube AI</span>
-                <span class="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-            </a>
+  <!-- Mobile drawer -->
+  <div class="hdr__mobile" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation">
+    <div class="hdr__mobile-backdrop" id="mobile-backdrop"></div>
+    <div class="hdr__mobile-panel">
+      <details class="hdr__mblock">
+        <summary class="hdr__mhead hdr__msummary">Products</summary>
+        <div class="hdr__mitems">
+          <a href="/products/cube-ai" class="hdr__mlink">Cube AI</a>
+          <a href="/products/prism-ai" class="hdr__mlink">Prism AI</a>
+          <a href="/products/cocos-ai" class="hdr__mlink">Cocos AI</a>
         </div>
-      </div>
-
-      <div class="space-y-4">
-        <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading border-b border-border pb-2">Documentation</h3>
-         <div class="grid grid-cols-1 gap-3 pl-2">
-            <a href="https://docs.prism.ultraviolet.rs/" class="block text-lg font-medium text-text-muted hover:text-primary transition-colors font-heading" aria-label="Prism AI Documentation">Prism AI Docs</a>
-            <a href="https://docs.cocos.ultraviolet.rs/" class="block text-lg font-medium text-text-muted hover:text-primary transition-colors font-heading" aria-label="Cocos AI Documentation">Cocos AI Docs</a>
-            <a href="https://docs.cube.ultraviolet.rs/" class="block text-lg font-medium text-text-muted hover:text-primary transition-colors font-heading" aria-label="Cube AI Documentation">Cube AI Docs</a>
-         </div>
-       </div>
-
-      <div class="space-y-4">
-        <h3 class="text-xs font-bold text-text-muted uppercase tracking-widest font-heading border-b border-border pb-2">Projects</h3>
-        <a href="/projects" class="block text-3xl font-bold text-text-main hover:text-primary transition-colors font-heading" aria-label="View All Projects">All Projects</a>
-      </div>
-
-      <div class="pt-8 mt-4 border-t border-border grid grid-cols-2 gap-y-6 gap-x-4">
-          <a href="/company" class="text-xl font-medium text-text-main hover:text-primary transition-colors font-heading" aria-label="Company Page">Company</a>
-          <a href="/careers" class="text-xl font-medium text-text-main hover:text-primary transition-colors font-heading" aria-label="Careers Page">Careers</a>
-          <a href="/contact" class="text-xl font-medium text-text-main hover:text-primary transition-colors font-heading" aria-label="Contact Page">Contact</a>
-          <a href="/blog" class="text-xl font-medium text-text-main hover:text-primary transition-colors font-heading" aria-label="Blog Page">Blog</a>
-      </div>
+      </details>
+      <details class="hdr__mblock">
+        <summary class="hdr__mhead hdr__msummary">Solutions</summary>
+        <div class="hdr__mitems">
+          <a href="/solutions/sovereign-ai" class="hdr__mlink">Sovereign AI</a>
+          <a href="/solutions/private-ai" class="hdr__mlink">Private AI</a>
+          <a href="/solutions/enterprise-ai" class="hdr__mlink">Enterprise AI</a>
+          <a href="/solutions/air-gapped-ai" class="hdr__mlink">Air-Gapped AI</a>
+          <a href="/solutions/secure-collaboration" class="hdr__mlink">Secure Collaboration</a>
+          <a href="/solutions/ai-governance" class="hdr__mlink">AI Governance</a>
+        </div>
+      </details>
+      <details class="hdr__mblock">
+        <summary class="hdr__mhead hdr__msummary">Industries</summary>
+        <div class="hdr__mitems">
+          <a href="/industries/government" class="hdr__mlink">Government</a>
+          <a href="/industries/defense" class="hdr__mlink">Defense</a>
+          <a href="/industries/healthcare" class="hdr__mlink">Healthcare</a>
+          <a href="/industries/financial-services" class="hdr__mlink">Financial Services</a>
+          <a href="/industries/telecommunications" class="hdr__mlink">Telecommunications</a>
+          <a href="/industries/research" class="hdr__mlink">Research</a>
+        </div>
+      </details>
+      <div class="hdr__mblock"><a href="/projects" class="hdr__mhead">Projects</a></div>
+      <div class="hdr__mblock"><a href="/blog" class="hdr__mhead">Blog</a></div>
+      <details class="hdr__mblock">
+        <summary class="hdr__mhead hdr__msummary">Company</summary>
+        <div class="hdr__mitems">
+          <a href="/company/about" class="hdr__mlink">About</a>
+          <a href="/company/careers" class="hdr__mlink">Careers</a>
+          <a href="/company/contact" class="hdr__mlink">Contact</a>
+        </div>
+      </details>
+      <a class="btn btn--primary" href="/company/contact" style="width:100%;margin-top:0.5rem">Contact sales</a>
     </div>
   </div>
 </header>
 
 <script>
-  const btn = document.getElementById('mobile-menu-button');
-  const menu = document.getElementById('mobile-menu');
-  const body = document.body;
+  const header = document.getElementById('site-header')!;
 
-  if (btn && menu) {
-      btn.addEventListener('click', () => {
-      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!isExpanded));
-      
-      if (!isExpanded) {
-        menu.classList.remove('translate-x-full');
-        body.classList.add('overflow-hidden');
-      } else {
-        menu.classList.add('translate-x-full');
-        body.classList.remove('overflow-hidden');
-      }
-    });
-  }
-
-  const header = document.getElementById('main-header');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-       header?.classList.add('border-b');
-    } else {
-       header?.classList.remove('border-b');
-    }
+    header.classList.toggle('hdr--scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  // Mobile drawer
+  const toggle = document.getElementById('mobile-menu-toggle')!;
+  const drawer = document.getElementById('mobile-menu')!;
+  const backdrop = document.getElementById('mobile-backdrop')!;
+
+  const openDrawer = () => {
+    drawer.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.documentElement.style.overflow = 'hidden';
+  };
+  const closeDrawer = () => {
+    drawer.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.documentElement.style.overflow = '';
+  };
+
+  toggle.addEventListener('click', () => drawer.classList.contains('is-open') ? closeDrawer() : openDrawer());
+  backdrop.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
+  drawer.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeDrawer));
+
+  window.matchMedia('(min-width: 981px)').addEventListener('change', (e) => { if (e.matches) closeDrawer(); });
+
+  // Theme toggle
+  const themeToggle = document.getElementById('theme-toggle')!;
+  const moon = document.getElementById('icon-moon') as HTMLElement;
+  const sun = document.getElementById('icon-sun') as HTMLElement;
+
+  function applyTheme(dark: boolean) {
+    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+    localStorage.setItem('uv-theme', dark ? 'dark' : 'light');
+    moon.style.display = dark ? 'none' : '';
+    sun.style.display = dark ? '' : 'none';
+  }
+
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'dark');
+  themeToggle.addEventListener('click', () => {
+    applyTheme(document.documentElement.getAttribute('data-theme') !== 'dark');
   });
-
-  const themeToggleMain = document.getElementById('theme-toggle');
-  const themeToggleMobile = document.getElementById('theme-toggle-mobile');
-  
-  const darkIcon = document.getElementById('theme-toggle-dark-icon');
-  const lightIcon = document.getElementById('theme-toggle-light-icon');
-  const darkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
-  const lightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
-
-  function updateIcons() {
-    const isDark = document.documentElement.classList.contains('dark');
-    if (isDark) {
-        lightIcon?.classList.remove('hidden');
-        darkIcon?.classList.add('hidden');
-        lightIconMobile?.classList.remove('hidden');
-        darkIconMobile?.classList.add('hidden');
-    } else {
-        lightIcon?.classList.add('hidden');
-        darkIcon?.classList.remove('hidden');
-        lightIconMobile?.classList.add('hidden');
-        darkIconMobile?.classList.remove('hidden');
-    }
-  }
-
-  function toggleTheme() {
-      if (document.documentElement.classList.contains('dark')) {
-          document.documentElement.classList.remove('dark');
-          localStorage.setItem('color-theme', 'light');
-      } else {
-          document.documentElement.classList.add('dark');
-          localStorage.setItem('color-theme', 'dark');
-      }
-      updateIcons();
-  }
-
-  themeToggleMain?.addEventListener('click', toggleTheme);
-  themeToggleMobile?.addEventListener('click', toggleTheme);
-  
-  updateIcons();
-
-  document.addEventListener('astro:after-swap', updateIcons);
 </script>

@@ -1,0 +1,73 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import ProductCTA from '../../components/ProductCTA.astro';
+
+const why = [
+  ['Innovative technology', 'Work at the forefront of cloud computing, AI/ML, multi-party computation, and secure data sharing.'],
+  ['Cross-disciplinary', 'Collaborate with experts across confidential computing and AI, with continuous learning and growth.'],
+  ['Impactful projects', 'Contribute to work that drives digital transformation and shapes the future of secure computing.'],
+  ['Professional development', 'We invest in growth through training, workshops, and skill development on cutting-edge tech.'],
+  ['Work-life balance', 'A flexible environment that values your well-being while you build meaningful technology.'],
+  ['Open source', 'Your work ships in the open — Apache 2.0 software used and inspected around the world.'],
+];
+---
+
+<Layout title="Careers — Join Ultraviolet | Ultraviolet" description="Join the team building the future of confidential computing and sovereign AI. We're always looking for engineers excited about security, privacy, and open source.">
+  <Header />
+  <main>
+    <PageHero
+      center
+      eyebrow="Careers"
+      h1={`Build the future of<br /><span class="hero__accent">confidential AI.</span>`}
+      sub="Join a team shaping the future of cloud computing, AI/ML, multi-party computation, and secure data sharing. We look for people who thrive in a collaborative, challenging, open-source environment."
+      primaryLabel="careers@ultraviolet.rs"
+      primaryHref="mailto:careers@ultraviolet.rs"
+      secondaryLabel="About us"
+      secondaryHref="/company/about"
+    />
+
+    <section class="section divider-top">
+      <div class="container">
+        <div class="careers__intro reveal">
+          <p>As a member of the Ultraviolet team, you'll work on cutting-edge projects, collaborate with experts in cloud computing and AI/ML, and contribute to the growth and success of our clients across rapidly evolving landscapes.</p>
+          <p>We're always looking for talented engineers excited about cloud computing, AI/ML, multi-party computation, and secure data sharing who want to be part of our innovative team.</p>
+          <div class="careers__cta">
+            <a class="btn btn--primary" href="mailto:careers@ultraviolet.rs">Email careers@ultraviolet.rs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section divider-top dotgrid">
+      <div class="container">
+        <div class="ind__head reveal">
+          <span class="eyebrow"><span class="tick"></span>Why join</span>
+          <h2 class="ind__h2" style="margin-top:1.1rem">Why work at Ultraviolet?</h2>
+        </div>
+        <div class="why-grid" style="margin-top:3rem">
+          {why.map(([t, d], i) => (
+            <div class="why-card reveal" data-delay={i % 3}>
+              <span class="why-card__num">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="why-card__t">{t}</h3>
+              <p class="why-card__d">{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <ProductCTA
+      h2="Let's build<br />something secure."
+      sub="Tell us what excites you about confidential computing and secure AI. We'd love to hear from you."
+      primaryLabel="careers@ultraviolet.rs"
+      primaryHref="mailto:careers@ultraviolet.rs"
+      secondaryLabel="About Ultraviolet"
+      secondaryHref="/company/about"
+      note="Belgrade, Serbia · Remote-friendly · Open source"
+    />
+  </main>
+  <Footer />
+</Layout>

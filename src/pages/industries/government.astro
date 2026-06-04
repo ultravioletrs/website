@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import LensPage from '../../components/LensPage.astro';
+---
+<Layout title="Government — Sovereign AI for Public Administration | Ultraviolet" description="Sovereign AI for public administration and citizen services on national infrastructure under your jurisdiction.">
+  <Header />
+  <LensPage
+    eyebrow="Industry · Government"
+    h1={`Sovereign AI for<br /><span class="hero__accent">public administration.</span>`}
+    sub="AI for government and public services must run on national infrastructure under national jurisdiction — not in a foreign commercial cloud."
+    compH2="Foreign cloud AI creates<br />sovereignty risk for government."
+    compBody="Government AI workloads process citizen data, policy information, and sensitive operational content. Processing that in a foreign commercial cloud creates legal, sovereignty, and security risks that public institutions cannot accept."
+    compHeaders={['Commercial cloud AI', 'Ultraviolet Sovereign AI']}
+    compRows={[
+      ['Data jurisdiction', 'Foreign cloud; foreign laws; foreign access.', 'National infrastructure; your jurisdiction.'],
+      ['Data residency', 'Vendor-controlled; cannot guarantee residency.', 'Guaranteed residency on your own hardware.'],
+      ['Sovereignty', 'Operational dependency on a foreign vendor.', 'Full operational sovereignty — no external dependency.'],
+      ['Auditability', 'Vendor audit artifacts; hard to customize.', 'Full audit trail you own and control.'],
+    ]}
+    product={{
+      which: 'cube',
+      name: 'Cube AI',
+      role: 'Sovereign AI Platform',
+      blurb: 'The full-stack sovereign AI platform for government: private inference, RAG, guardrails, governance, and audit — deployed on national infrastructure.',
+      points: ['On-premises or national sovereign cloud', 'Citizen data never leaves national jurisdiction', 'Complete audit trail for regulatory compliance', 'Air-gapped deployment for classified workloads'],
+      supporting: [{ which: 'cocos', name: 'Cocos AI', role: 'Confidential Computing Foundation', blurb: 'Hardware TEE isolation for the most sensitive government workloads — classified data, sealed from even the operator.' }],
+    }}
+    ctaH2="AI under your flag,<br />under your control."
+    ctaSub="Talk to the team about government AI deployments, national cloud configurations, and sovereignty requirements."
+    ctaPrimaryLabel="Contact sales"
+    ctaPrimaryHref="/company/contact"
+  />
+  <Footer />
+</Layout>

@@ -2,341 +2,142 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import Hero from '../../components/Hero.astro';
-import Newsletter from '../../components/Newsletter.astro';
-import { Image } from 'astro:assets';
-import headerImage from '../../../public/img/header.avif';
-import elasticLogo from '../../assets/logos/elastic.png';
-import tucLogo from '../../assets/logos/TUC.png';
-import ericssonLogo from '../../assets/logos/ericsson.png';
-import telefonicaLogo from '../../assets/logos/telefonica.png';
-import thalesLogo from '../../assets/logos/THALES.png';
-import imecLogo from '../../assets/logos/IMEC.png';
-import aalLogo from '../../assets/logos/AAL.png';
-import lundLogo from '../../assets/logos/LUND.png';
-import zenLogo from '../../assets/logos/zen.png';
-import politoLogo from '../../assets/logos/POLITO.png';
-import amaLogo from '../../assets/logos/AMA.png';
-import ultravioletLogo from '../../assets/logos/ultraviolet.png';
+import ProductCTA from '../../components/ProductCTA.astro';
+import { Check } from 'lucide-astro';
 
-
-const project = {
-    title: "ELASTIC",
-    tagline: "Next-generation network orchestration with WebAssembly and Confidential Computing for 6G",
-    description: "ELASTIC redefines service orchestration within 6G networks, integrating cutting-edge technologies like WebAssembly and Confidential Computing to optimize network functionality and security. Our project not only aims to advance the capabilities and reach of connectivity services but also ensures robust security measures across diverse infrastructures.",
-    duration: "1 March 2024 - 28 February 2027",
-    budget: "€4 Million",
-    status: "Active",
-    funding: "Horizon Europe - HORIZON-JU-SNS-2022",
-    coordinator: "Technical University of Crete",
-    logo: "/img/logos/elastic.png",
-    site: "https://elasticproject.eu/",
-    cordis: "https://cordis.europa.eu/project/id/101139067"
-};
-
-const partners = [
-    { src: tucLogo, alt: "Technical university of Crete" },
-    { src: ericssonLogo, alt: "Ericsson" },
-    { src: telefonicaLogo, alt: "Telefonica" },
-    { src: thalesLogo, alt: "Thales" },
-    { src: imecLogo, alt: "IMEC" },
-    { src: aalLogo, alt: "Aalto University" },
-    { src: lundLogo, alt: "Lund university" },
-    { src: zenLogo, alt: "Zentriz lab" },
-    { src: politoLogo, alt: "Politecnico di Torino" },
-    { src: amaLogo, alt: "Wings" },
-    { src: ultravioletLogo, alt: "Ultraviolet" }
+const details = [
+  ['Duration', '1 Mar 2024 — 28 Feb 2027'],
+  ['Total budget', '€4 million'],
+  ['Status', 'Active'],
+  ['Funding programme', 'Horizon Europe — HORIZON-JU-SNS-2022'],
 ];
 
-const title = "ELASTIC - 6G Network Orchestration & Confidential Computing";
-const description = "ELASTIC is an EU-funded project pioneering next-gen network orchestration using WebAssembly, Confidential Computing, and Federated Learning for 6G infrastructures.";
+const objectives = [
+  ['Executable isolation', 'Improve efficiency, portability, and security of executable isolation across the lifecycle in in-network cloud and edge computing.'],
+  ['6G edge orchestration', 'Secure, efficient orchestration for edge and far-edge IoT workloads in critical 6G infrastructure.'],
+  ['Secure serverless FaaS', 'Architecture-agnostic, secure serverless FaaS orchestration ensuring data authenticity and trusted interactions.'],
+  ['Confidential execution', 'Secure, architecture-agnostic execution environments using confidential computing and privacy-enhancing technologies.'],
+  ['Standardization', 'Support the standardization and dissemination of 6G technologies aligned with EU supply capabilities.'],
+];
+
+const outcomes = [
+  ['Isolation runtimes', 'WebAssembly- and eBPF-based runtimes for portable, secure execution.'],
+  ['Orchestration framework', 'Secure orchestration across cloud, fog, and edge infrastructures.'],
+  ['Confidential execution', 'TEE-backed confidential and privacy-preserving execution environments.'],
+  ['Federated learning', 'Federated AI/ML orchestration across distributed 6G nodes.'],
+];
+
+const partners = [
+  ['TUC', 'Technical University of Crete'], ['ericsson', 'Ericsson'], ['telefonica', 'Telefónica'],
+  ['THALES', 'Thales'], ['IMEC', 'imec'], ['AAL', 'Aalto University'], ['LUND', 'Lund University'],
+  ['POLITO', 'Politecnico di Torino'],
+];
 ---
 
-<Layout title={title} description={description}>
-    <Header slot="header" />
-
-    <section id="header" class="pt-20">
-        <div class="w-full relative">
-            <div class="flex items-center justify-center h-[300px] overflow-hidden border-b border-border bg-background">
-                <Image src={headerImage} alt="pattern-white" class="w-full h-full object-cover object-top" loading="eager" />
-            </div>
+<Layout title="ELASTIC — EU Research Project | Ultraviolet" description="Next-generation network orchestration with WebAssembly and confidential computing for 6G. Horizon Europe project.">
+  <Header />
+  <main>
+    <section class="proj-hero section divider-top">
+      <div class="container">
+        <div class="proj-hero__inner reveal">
+          <div class="proj-hero__logo proj-hero__logo--dark">
+            <img src="/img/logos/elastic.png" alt="ELASTIC logo" />
+          </div>
+          <span class="eyebrow"><span class="tick"></span>EU research project</span>
+          <h1 class="proj-hero__name">ELASTIC</h1>
+          <p class="proj-hero__tagline">Next-generation network orchestration with WebAssembly and confidential computing for 6G.</p>
         </div>
+      </div>
     </section>
 
-    <section id="project-title" class="project-page-section">
-        <div class="project-page-container text-center reveal-scale">
-            <div class="mb-8 inline-flex items-center justify-center rounded-md px-8 py-5 shadow-sm border border-border" style="background-color: rgb(13 13 13);">
-                <Image src={elasticLogo} alt="ELASTIC Logo" class="mx-auto block" style="max-height: 120px" loading="eager" />
+    <section class="section--tight divider-top">
+      <div class="container">
+        <div class="proj-meta">
+          {details.map(([k, v]) => (
+            <div class="proj-meta__cell">
+              <div class="proj-meta__k">{k}</div>
+              <div class="proj-meta__v">{k === 'Status' ? <span class="proj-status">{v}</span> : v}</div>
             </div>
-            <h1 class="text-3xl lg:text-4xl font-heading mb-6 text-text-main font-medium">ELASTIC</h1>
-            <p class="text-xl text-text-muted font-body">
-                Next-generation network orchestration with WebAssembly and Confidential Computing for 6G
-            </p>
+          ))}
         </div>
+      </div>
     </section>
 
-    <section id="project-details" class="project-page-section">
-        <div class="project-page-container">
-            <h2 class="project-page-heading reveal">Project Details</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-1">
-                    <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
-                        <i class="fas fa-calendar-alt mr-3 text-primary-text"></i>Duration
-                    </h5>
-                    <p class="text-text-muted font-body">1 March 2024 - 28 February 2027</p>
-                </div>
-                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-2">
-                    <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
-                         <i class="fas fa-euro-sign mr-3 text-primary-text"></i>Total Budget
-                    </h5>
-                    <p class="text-text-muted font-body">€4 Million</p>
-                </div>
-                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-3">
-                    <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
-                        <i class="fas fa-flag mr-3 text-primary-text"></i>Status
-                    </h5>
-                    <p class="text-text-muted font-body">
-                        <span class="inline-block px-3 py-1 bg-primary/10 text-primary-text border border-primary/20 text-sm font-semibold uppercase tracking-wide">Active</span>
-                    </p>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-1">
-                    <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
-                        <i class="fas fa-landmark mr-3 text-primary-text"></i>Funding Program
-                    </h5>
-                    <p class="text-text-muted font-body">Horizon Europe - HORIZON-JU-SNS-2022</p>
-                </div>
-                <div class="bg-surface p-6 border border-border h-full flex flex-col reveal reveal-delay-2">
-                     <h5 class="text-lg font-heading mb-4 flex items-center font-medium">
-                        <i class="fas fa-user-tie mr-3 text-primary-text"></i>Project Coordinator
-                    </h5>
-                    <p class="text-text-muted font-body">Technical University of Crete</p>
-                </div>
-            </div>
+    <section class="section divider-top">
+      <div class="container">
+        <div class="p-def__grid">
+          <div class="comp__copy reveal">
+            <span class="eyebrow"><span class="tick"></span>Project description</span>
+            <h2 class="comp__h2" style="margin-top:1.1rem">What ELASTIC sets out to do.</h2>
+          </div>
+          <div class="p-def__body reveal" data-delay="1">
+            <p>ELASTIC redefines service orchestration within 6G networks, integrating cutting-edge technologies like WebAssembly and confidential computing to optimize network functionality and security across diverse infrastructures.</p>
+            <p>By combining emerging technologies such as WebAssembly, eBPF, Trusted Execution Environments, and Federated Learning, ELASTIC optimizes latency, throughput, and cybersecurity resilience — creating a more secure, efficient, and flexible networking environment.</p>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section id="project-description" class="project-page-section">
-        <div class="project-page-container">
-            <h2 class="project-page-heading reveal">Project Description</h2>
-            <div class="project-page-copy reveal">
-                <p class="mb-4">
-                    ELASTIC redefines service orchestration within 6G networks, integrating cutting-edge technologies
-                    like WebAssembly and Confidential Computing to optimize network functionality and security. Our
-                    project not only aims to advance the capabilities and reach of connectivity services but also
-                    ensures robust security measures across diverse infrastructures.
-                </p>
-                <p class="mb-0">
-                    By combining emerging technologies such as WebAssembly, eBPF, Trusted Execution Environments (TEEs),
-                    and Federated Learning, ELASTIC optimizes latency, throughput, and cybersecurity resilience, creating
-                    a more secure, efficient, and flexible networking environment for the future.
-                </p>
-            </div>
+    <section class="section divider-top dotgrid">
+      <div class="container">
+        <div class="proj-cols">
+          <div class="proj-col reveal">
+            <h3 class="proj-col__h">Key objectives</h3>
+            <ul class="proj-list">
+              {objectives.map(([t, x]) => (
+                <li><Check size={15} /><span><strong>{t}:</strong> {x}</span></li>
+              ))}
+            </ul>
+          </div>
+          <div class="proj-col reveal" data-delay="1">
+            <h3 class="proj-col__h">Expected outcomes</h3>
+            <ul class="proj-list">
+              {outcomes.map(([t, x]) => (
+                <li><span class="proj-sq" aria-hidden="true"></span><span><strong>{t}:</strong> {x}</span></li>
+              ))}
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section id="project-summary" class="project-page-section">
-        <div class="project-page-container">
-            <h2 class="project-page-heading reveal">Project Summary</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="bg-surface p-8 border border-border reveal-left">
-                     <h4 class="text-xl font-heading mb-6 text-text-main font-medium">Key Objectives</h4>
-                    <ul class="space-y-6">
-                        <li class="flex items-start">
-                             <div class="flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-primary-text"></i>
-                            </div>
-                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
-                                <strong class="text-text-main">Executable Isolation Techniques:</strong> Enhance efficiency, portability, and security
-                                in in-network cloud and edge computing by analyzing and improving executable isolation across
-                                the entire lifecycle
-                            </p>
-                        </li>
-                        <li class="flex items-start">
-                             <div class="flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-primary-text"></i>
-                            </div>
-                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
-                                <strong class="text-text-main">6G Edge Workload Orchestration:</strong> Develop secure and efficient orchestration for
-                                edge and far-edge IoT workloads in critical 6G infrastructure, ensuring reliability, trust, and
-                                resilience
-                            </p>
-                        </li>
-                        <li class="flex items-start">
-                             <div class="flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-primary-text"></i>
-                            </div>
-                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
-                                <strong class="text-text-main">Secure Serverless FaaS Orchestration:</strong> Design architecture-agnostic, secure
-                                serverless FaaS orchestration to support diverse artifacts and workloads, ensuring data
-                                authenticity and trusted digital interactions
-                            </p>
-                        </li>
-                        <li class="flex items-start">
-                             <div class="flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-primary-text"></i>
-                            </div>
-                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
-                                <strong class="text-text-main">6G Standardization and Technology Dissemination:</strong> Support the standardization
-                                and dissemination of 6G technologies, aligning with EU supply capabilities for efficient, secure
-                                service deployment
-                            </p>
-                         <li class="flex items-start">
-                             <div class="flex-shrink-0 mt-1">
-                                <i class="fas fa-check text-primary-text"></i>
-                            </div>
-                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
-                                <strong class="text-text-main">Confidential and Privacy-Preserving Execution:</strong> Implement secure,
-                                architecture-agnostic execution environments using confidential computing and privacy-enhancing
-                                technologies for multi-stakeholders
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-surface p-8 border border-border reveal-right">
-                    <h4 class="text-xl font-heading mb-6 text-text-main font-medium">Expected Outcomes</h4>
-                    <ul class="space-y-6">
-                        <li class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
-                            </div>
-                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
-                                <strong class="text-text-main">Cryptographic libraries:</strong> Post-quantum
-                                libraries and SDKs for 6G
-                            </p>
-                        </li>
-                         <li class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
-                            </div>
-                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
-                                <strong class="text-text-main">Computing framework:</strong> Confidential
-                                computing framework for cloud-edge environments
-                            </p>
-                        </li>
-                         <li class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
-                            </div>
-                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
-                                <strong class="text-text-main">Privacy protocols:</strong> Privacy-preserving
-                                protocols for heterogeneous 6G networks
-                            </p>
-                        </li>
-                         <li class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
-                            </div>
-                            <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
-                                <strong class="text-text-main">Security tools:</strong> Quantum-resistant
-                                security tools and artifacts
-                            </p>
-                        </li>
-                         <li class="flex items-start">
-                            <div class="flex-shrink-0 mt-1">
-                                <span class="w-2 h-2 bg-primary-text inline-block"></span>
-                            </div>
-                             <p class="ml-4 text-base text-text-muted font-body leading-relaxed">
-                                <strong class="text-text-main">Security standards:</strong> Enhanced security
-                                standards for future 6G deployments
-                            </p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    <section class="section divider-top">
+      <div class="container">
+        <div class="reveal" style="max-width:60ch">
+          <span class="eyebrow"><span class="tick"></span>Our involvement</span>
+          <h2 class="comp__h2" style="margin-top:1.1rem">Ultraviolet's role.</h2>
         </div>
+        <div class="reveal" data-delay="1" style="margin-top:2rem">
+          <p class="proj-inv__p">Ultraviolet is an SME from Belgrade, Serbia, specializing in cloud computing, AI/ML, multi-party computation, secure data sharing, and Trusted Execution Environments. In ELASTIC, we focus on confidential computing and secure multi-party computation — enhancing our Cocos AI platform through improvements in remote attestation and lightweight in-enclave runtimes, and developing a secure Software Management Agent (SMA) that manages AI/ML workloads within secure enclaves using TEE technologies.</p>
+        </div>
+      </div>
     </section>
 
-    <section id="our-involvement" class="project-page-section">
-        <div class="project-page-container">
-            <h2 class="project-page-heading reveal">Our Involvement</h2>
-            <div class="project-page-copy mb-8 reveal">
-                <p class="mb-4">
-                    We are a SME from Belgrade, Serbia, specializing in <strong class="text-text-main">cutting-edge technologies</strong>
-                    such as cloud computing, AI/ML, multi-party computation, secure data sharing, and Trusted
-                    Execution Environments (TEEs).
-                </p>
-            </div>
-            <h4 class="text-xl font-heading mb-6 text-text-main font-medium">Our Role in the ELASTIC Project:</h4>
-            <div class="project-page-copy">
-                <p class="mb-0">
-                    In the ELASTIC project, we focus on confidential computing and secure multi-party computation.
-                    We are enhancing our Cocos AI platform through improvements in remote attestations and lightweight
-                    in-enclave runtimes. We are also developing a secure Software Management Agent (SMA) capable of
-                    managing AI/ML workloads within secure enclaves using TEE technologies.
-                </p>
-            </div>
-
-            <div class="mt-8 flex flex-wrap gap-4 pt-6 border-t border-border reveal">
-                 <a href="https://elasticproject.eu/" target="_blank" class="inline-flex items-center px-8 py-3 bg-primary text-black font-medium border border-primary hover:bg-primary-dark transition-colors uppercase tracking-wide">
-                    Learn More
-                </a>
-                 <a href="https://cordis.europa.eu/project/id/101139067" target="_blank" class="inline-flex items-center px-8 py-3 bg-transparent text-text-main font-medium border border-border border-dashed hover:bg-surface transition-colors uppercase tracking-wide">
-                    View on CORDIS
-                </a>
-            </div>
+    <section class="section--tight divider-top">
+      <div class="container" style="text-align:center">
+        <span class="eyebrow"><span class="tick"></span>Project partners</span>
+        <p class="proj-pw__sub">Collaborating with leading organizations across Europe.</p>
+      </div>
+      <div class="marquee proj-pw__marquee">
+        <div class="marquee__track">
+          {[...partners, ...partners].map(([f, n], i) => (
+            <span class="proj-pw__logo" aria-hidden={i >= partners.length ? 'true' : undefined}>
+              <img src={`/img/logos/${f}.png`} alt={i < partners.length ? n : ''} loading="lazy" />
+            </span>
+          ))}
         </div>
+      </div>
     </section>
 
-    <section id="project-impact" class="project-page-section">
-        <div class="project-page-container">
-            <h2 class="project-page-heading reveal">Project Goals & Impact</h2>
-            <h4 class="text-xl font-heading mb-6 text-text-main font-medium max-w-5xl">
-              Elevating Cloud-to-Edge Orchestration with Security and Privacy
-              at its Core
-            </h4>
-            <div class="project-page-copy reveal">
-                <p class="mb-4">
-                  ELASTIC addresses key challenges in orchestrating secure,
-                  efficient services across cloud, fog, and edge infrastructures.
-                  By combining emerging technologies like WebAssembly, eBPF,
-                  Trusted Execution Environments (TEEs), and Federated Learning,
-                  ELASTIC optimizes latency, throughput, and cybersecurity
-                  resilience.
-                </p>
-                <p class="mb-0">
-                  Through targeted research and innovation, the project
-                  strengthens data privacy and integrity, enabling secure
-                  collaboration and scalable service delivery across digital and
-                  physical domains. These technologies form the backbone of
-                  ELASTIC's approach to revolutionizing 6G service orchestration,
-                  aiming to create a more secure, efficient, and flexible
-                  networking environment.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="project-partners" class="bg-background border-b border-border transition-colors duration-300">
-        <div class="py-16 border-b border-border text-center reveal">
-            <h2 class="text-2xl lg:text-3xl font-heading mb-2 text-text-main font-medium">Project Partners</h2>
-            <p class="text-lg text-text-muted font-body">
-                Collaborating with leading organizations across Europe
-            </p>
-        </div>
-        <div class="overflow-hidden py-6">
-            <div class="clients-marquee-track flex w-max items-center">
-                {[...partners, ...partners].map((logo, index) => {
-                    const isDuplicate = index >= partners.length;
-
-                    return (
-                        <div class="clients-marquee-item flex justify-center items-center px-10 py-6" aria-hidden={isDuplicate ? 'true' : undefined}>
-                            <Image src={logo.src} alt={logo.alt} class="h-10 w-auto object-contain" loading="lazy" />
-                        </div>
-                    );
-                })}
-            </div>
-        </div>
-    </section>
-
-    <section class="project-page-section text-center">
-         <a href="/projects" class="inline-flex items-center px-8 py-3 border border-border bg-transparent text-base font-medium text-text-main hover:bg-surface transition-colors uppercase tracking-wide">
-            <i class="fas fa-arrow-left mr-3"></i>Back to All Projects
-        </a>
-    </section>
-
-    <Newsletter />
-
-    <Footer slot="footer" />
+    <ProductCTA
+      h2="6G-ready confidential<br />computing infrastructure."
+      sub="ELASTIC's research advances Cocos AI's WebAssembly and TEE capabilities. Talk to the team."
+      primaryLabel="Contact us"
+      primaryHref="/company/contact"
+      secondaryLabel="View Cocos AI"
+      secondaryHref="/products/cocos-ai"
+      note="Horizon Europe · Apache 2.0"
+    />
+  </main>
+  <Footer />
 </Layout>

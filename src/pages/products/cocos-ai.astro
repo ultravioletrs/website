@@ -1,0 +1,300 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import SectionHead from '../../components/SectionHead.astro';
+import ProductCTA from '../../components/ProductCTA.astro';
+import { Check, Server, Lock, Globe, Shield, Layers, Eye, Zap, Plug } from 'lucide-astro';
+
+const caps = [
+  { Icon: Lock, t: 'AMD SEV-SNP support', d: 'Full hardware memory encryption for confidential VMs on AMD processors — weights and tensors stay opaque to the host.' },
+  { Icon: Layers, t: 'Intel TDX support', d: 'Confidential VM execution on Intel processors with hardware-enforced isolation of workloads from the hypervisor.' },
+  { Icon: Check, t: 'Remote attestation', d: 'Generate and verify cryptographic attestation reports that prove the exact state and integrity of any running enclave.' },
+  { Icon: Server, t: 'Manager & agent', d: 'A Manager process orchestrates CVMs from outside while an in-enclave Agent handles execution inside, coordinating the full workload lifecycle.' },
+  { Icon: Shield, t: 'Attested TLS (aTLS)', d: 'Level 2 session-bound aTLS channels that cryptographically tie a TLS session to the enclave\'s attestation, preventing relay attacks.' },
+  { Icon: Globe, t: 'Algorithm & dataset sealing', d: 'Algorithms and datasets are encrypted for the enclave, decrypted only inside — opaque to the host and transit network.' },
+  { Icon: Zap, t: 'WASM runtime support', d: 'Run WebAssembly workloads inside a confidential enclave for language-agnostic, secure execution.' },
+  { Icon: Eye, t: 'Event & log streaming', d: 'In-enclave event streaming and log management for operational visibility without breaking isolation.' },
+  { Icon: Plug, t: 'Hardware-agnostic HAL', d: 'A single abstraction layer that runs the same workloads on AMD SEV-SNP and Intel TDX without TEE-specific code paths.' },
+];
+
+const faqs = [
+  ['What is Cocos AI?', 'Cocos AI is an open-source hardware abstraction layer for Trusted Execution Environments (TEEs). It turns AMD SEV-SNP and Intel TDX confidential-computing hardware into a clean, auditable foundation for running private AI workloads.'],
+  ['How does Cocos AI relate to Cube AI and Prism AI?', 'Cocos AI is the confidential-computing substrate the other Ultraviolet products run on. Cube AI uses Cocos AI when hardware TEE isolation is required; Prism AI runs its multi-party computation inside Cocos AI CVMs for every workload.'],
+  ['What hardware does Cocos AI support?', 'Cocos AI supports AMD SEV-SNP and Intel TDX, and abstracts both behind a single API so workloads port across hardware without changes.'],
+  ['Is Cocos AI really open source?', 'Yes. The entire project is Apache 2.0 — inspect, fork, and extend it freely. No proprietary lock-in.'],
+  ['Who funds and governs Cocos AI?', 'Cocos AI was initiated with support from ETF University of Belgrade and the Serbian Innovation Fund, and has been developed through EU Horizon Europe projects: CONFIDENTIAL6G, TITAN, and ELASTIC. Ultraviolet is a member of the Linux Foundation and the Confidential Computing Consortium.'],
+];
+---
+
+<Layout title="Cocos AI — Confidential Computing Foundation | Ultraviolet" description="Cocos AI is the open-source hardware abstraction layer for Trusted Execution Environments — the transparent, auditable substrate beneath Cube and Prism AI." prod="cocos">
+  <Header />
+  <main>
+    <!-- Hero -->
+    <section class="hero p-hero" id="top">
+      <div class="container">
+        <div class="hero__split">
+          <div class="hero__lead">
+            <span class="eyebrow p-hero__tag" style="color:var(--cocos)">
+              <span class="plogo" style="height:20px;width:30px;background-color:currentColor;-webkit-mask-image:url('/img/logos/cocos-icon-trim.png');mask-image:url('/img/logos/cocos-icon-trim.png')" role="img" aria-label="Cocos AI"></span>
+              Cocos AI — Confidential Computing Foundation
+            </span>
+            <h1 class="hero__h1">The open foundation<br /><span class="hero__accent" style="color:var(--cocos)">the stack runs on.</span></h1>
+            <p class="hero__sub">Cocos AI is the open-source hardware abstraction layer for Trusted Execution Environments — the transparent, auditable substrate beneath Cube and Prism. Inspect it, fork it, extend it.</p>
+            <div class="hero__ctas">
+              <a class="btn btn--primary" href="https://github.com/ultravioletrs/cocos" target="_blank" rel="noopener" style="background:var(--cocos)">View on GitHub</a>
+              <a class="btn btn--ghost" href="https://cocos.ai" target="_blank" rel="noopener">cocos.ai ↗</a>
+            </div>
+            <div class="hero__meta mono">
+              <span><span class="hero__pulse" style="background:var(--cocos)"></span> Apache 2.0</span>
+              <span>·</span><span>AMD SEV-SNP</span>
+              <span>·</span><span>Intel TDX</span>
+            </div>
+          </div>
+          <div class="hero__visual p-hero__visual">
+            <div class="reveal" style="--prod:var(--cocos)">
+              <div class="p-code" style="border:1px solid var(--line);background:var(--accent-deep);overflow:hidden">
+                <div style="display:flex;align-items:center;gap:0.5rem;padding:0.6rem 0.9rem;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(0,0,0,.25)">
+                  <span style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18)"></span>
+                  <span style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18)"></span>
+                  <span style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18)"></span>
+                  <span style="margin-left:0.6rem;font-family:var(--font-mono);font-size:0.7rem;color:rgba(241,243,236,0.6);letter-spacing:0.02em">cocos — remote attestation</span>
+                </div>
+                <pre style="padding:1.25rem 1.4rem;font-family:var(--font-mono);font-size:0.82rem;line-height:1.85;color:rgba(241,243,236,0.86);margin:0;white-space:pre;overflow-x:auto">$ <span style="color:#5fbe7a">cocos</span> attest --verify
+<span style="color:rgba(241,243,236,0.42)"># measuring the confidential VM…</span>
+platform     <span style="color:#b9c6f5">AMD SEV-SNP</span>
+measurement  <span style="color:#b9c6f5">0x9f3c…a17b</span>
+policy       debug=off · migrate=off
+<span style="color:#5fbe7a">✓ attestation report verified</span>
+<span style="color:#5fbe7a">✓ workload sealed — host cannot read memory</span>
+<span style="color:#5fbe7a">✓ ready to load model</span></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Foundation -->
+    <section class="comp section divider-top">
+      <div class="container">
+        <div class="comp__grid">
+          <div class="comp__copy reveal">
+            <span class="eyebrow"><span class="tick"></span>Open standards</span>
+            <h2 class="comp__h2" style="margin:1.1rem 0 1.3rem">The substrate the whole stack runs on.</h2>
+            <p class="comp__desc">Cocos AI is the open-source hardware abstraction layer for Trusted Execution Environments. It turns confidential-computing hardware into a clean, auditable foundation that Cube AI and Prism AI build on — and that anyone can inspect, fork, and extend.</p>
+            <div class="comp__badges">
+              {['Apache 2.0', 'ETF University of Belgrade', 'Serbian Innovation Fund', 'Horizon Europe'].map(b => (
+                <span class="chip"><Check size={13} />{b}</span>
+              ))}
+            </div>
+          </div>
+          <div class="reveal" data-delay="1">
+            <div class="pc__found" style="--prod:var(--cocos)">
+              {[['AMD SEV-SNP', 'Hardware memory encryption'], ['Intel TDX', 'Confidential virtual machines'], ['Remote attestation', 'Verifiable, provable trust'], ['Apache 2.0', 'Open, auditable, forkable']].map(([t, d]) => (
+                <div class="pc__found-item">
+                  <div class="pc__found-t" style="color:var(--cocos)">{t}</div>
+                  <div class="pc__found-d">{d}</div>
+                </div>
+              ))}
+            </div>
+            <div style="display:flex;align-items:center;gap:0.5rem;padding:0.85rem 1.4rem;border:1px solid var(--line);border-top:0;background:var(--bg-sunken);font-size:0.7rem;color:var(--muted);font-family:var(--font-mono)">
+              <span style="width:8px;height:8px;background:var(--cocos);display:inline-block"></span>
+              Powers Cube AI and Prism AI
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Cocos -->
+    <section class="problem section divider-top dotgrid">
+      <div class="container">
+        <div class="problem__head">
+          <span class="eyebrow"><span class="tick"></span>Why Cocos AI</span>
+          <h2 class="problem__h2 reveal">Confidential by design,<br />not confidential by promise.</h2>
+          <p class="problem__intro reveal" data-delay="1">Conventional cloud AI asks you to trust the operator with your data in the clear. Cocos AI removes that trust assumption entirely — the hardware itself enforces and proves your isolation.</p>
+        </div>
+        <div class="problem__table reveal" data-delay="1">
+          <div class="problem__thead">
+            <span></span><span>Traditional cloud AI</span><span>Confidential by design</span>
+          </div>
+          {[
+            ['Data in use', 'Decrypted in host memory — visible to the provider and hypervisor.', 'Encrypted in use inside a hardware enclave, opaque to the host.'],
+            ['Trust model', '"Trust us" — policies, contracts, and good intentions.', '"Verify" — cryptographic remote attestation of what runs.'],
+            ['Who can see your data', 'The provider, its subprocessors, and a foreign jurisdiction.', 'Only you. Sealed by the CPU, even from the operator.'],
+            ['Transparency', 'A closed, proprietary stack you cannot inspect.', 'Open source, Apache 2.0 — audit every line yourself.'],
+            ['Portability', 'Per-vendor lock-in and bespoke integrations.', 'One HAL across AMD SEV-SNP and Intel TDX.'],
+          ].map(([q, a, b]) => (
+            <div class="problem__row">
+              <span class="problem__q">{q}</span>
+              <span class="problem__a problem__a--bad"><span class="problem__x">✕</span>{a}</span>
+              <span class="problem__a problem__a--good"><Check size={16} />{b}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="section divider-top">
+      <div class="container">
+        <SectionHead eyebrow="How it works" title="From bare hardware<br />to a sealed workload." />
+        <div class="hiw__grid" style="--prod:var(--cocos)">
+          {[
+            ['01', 'Provision a CVM', 'The Manager spins up a Confidential VM on AMD SEV-SNP or Intel TDX, with the workload\'s memory encrypted by the CPU from the first instruction.'],
+            ['02', 'Attest the enclave', 'Remote attestation measures the VM and verifies it against an expected value; attested TLS then binds a secure channel to that proof.'],
+            ['03', 'Load data & code', 'Algorithms and datasets travel over the attested channel and are decrypted only inside the enclave — never visible to the host or operator.'],
+            ['04', 'Run & return results', 'The in-enclave agent executes the workload and returns only the agreed output, with cryptographic proof of exactly what ran.'],
+          ].map(([n, t, d], i) => (
+            <div class="hiw__step reveal" data-delay={i}>
+              <div class="hiw__num" style="color:var(--cocos)">{n}</div>
+              <h3 class="hiw__t">{t}</h3>
+              <p class="hiw__d">{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Capabilities -->
+    <section class="ind section divider-top" style="--prod:var(--cocos)">
+      <div class="container">
+        <SectionHead eyebrow="Capabilities" title="Everything TEE, abstracted." intro="Cocos AI provides the full confidential-computing lifecycle — from hardware provisioning to workload execution — in one open, auditable library." />
+        <div class="ind__grid" style="margin-top:3rem">
+          {caps.map(({ Icon, t, d }, i) => (
+            <div class="ind__cell reveal" data-delay={i % 3}>
+              <span class="ind__ic" style="color:var(--cocos)"><Icon size={20} /></span>
+              <h3 class="ind__t">{t}</h3>
+              <p class="ind__d">{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Consortium -->
+    <section class="section divider-top">
+      <div class="container">
+        <SectionHead eyebrow="Consortium & backing" title="Backed by a consortium,<br />not a single vendor." />
+        <div class="cons__grid" style="margin-top:3rem">
+          <article class="cons__lead reveal">
+            <span style="font-size:0.66rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--cocos);font-family:var(--font-mono)">// Lead developer</span>
+            <div style="margin:1.3rem 0 1.4rem">
+              <img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Ultraviolet" height="30" style="height:30px;width:auto" />
+            </div>
+            <p class="cons__lead-desc">Ultraviolet coordinates the project, builds the user experience, and manages the SaaS offering — leading the development and commercialization of the Cocos AI platform.</p>
+            <a class="arrow-link" href="/">Visit Ultraviolet<span aria-hidden="true">→</span></a>
+          </article>
+          <div class="cons__partners">
+            {[
+              { tag: 'Research', name: 'ETF Belgrade', logo: 'etf', desc: 'Original research partner and expertise provider for TEE and cryptographic protocols.' },
+              { tag: 'EU Project', name: 'CONFIDENTIAL6G', logo: 'c6g', desc: 'Quantum-resistant cryptography and security frameworks for 6G confidential computing.' },
+              { tag: 'EU Project', name: 'ELASTIC', logo: 'elastic', desc: 'Next-gen network orchestration using WebAssembly and confidential computing for 6G.' },
+              { tag: 'EU Project', name: 'TITAN', logo: 'titan', desc: 'Trusted AI & privacy-preserving technologies building secure AI systems via TEEs.' },
+            ].map(p => (
+              <article class="cons__card">
+                <span style="font-size:0.66rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--cocos);font-family:var(--font-mono)">// {p.tag}</span>
+                <div class="cons__card-logo">
+                  <img src={`/img/logos/${p.logo}.${p.logo === 'titan' ? 'svg' : 'png'}`} alt={p.name} loading="lazy" />
+                </div>
+                <h3 class="cons__card-name">{p.name}</h3>
+                <p class="cons__card-desc">{p.desc}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+        <div class="cons__fund reveal" data-delay="2">
+          <div>
+            <span style="font-size:0.66rem;text-transform:uppercase;letter-spacing:0.14em;color:var(--cocos);font-family:var(--font-mono)">// Funded by</span>
+            <p class="cons__fund-text" style="margin-top:0.7rem">Initiated with support from ETF University of Belgrade and funded by the Innovation Fund from the Republic of Serbia (Project ID 50314). Further developed through EU-funded projects: <strong>CONFIDENTIAL6G</strong>, <strong>TITAN</strong>, and <strong>ELASTIC</strong>.</p>
+          </div>
+          <div class="cons__fund-logos">
+            <img src="/img/logos/etf.png" alt="ETF University of Belgrade" loading="lazy" />
+            <img src="/img/logos/if.png" alt="Innovation Fund Republic of Serbia" loading="lazy" />
+            <img src="/img/logos/eu.png" alt="European Union" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section divider-top dotgrid">
+      <div class="container">
+        <div class="prin__head reveal" style="margin-bottom:2.6rem">
+          <span class="eyebrow"><span class="tick"></span>FAQ</span>
+          <h2 class="prin__h2" style="margin-top:1.1rem">Questions about<br />Cocos AI.</h2>
+        </div>
+        <div class="p-faq__grid reveal" data-delay="1" id="faq" style="--prod:var(--cocos)">
+          {faqs.map(([q, a], i) => (
+            <div class="p-faq__item" data-faq-item>
+              <button class="p-faq__q" aria-expanded={i === 0}>{q}<span class="p-faq__sign" aria-hidden="true"></span></button>
+              <div class={`p-faq__a${i === 0 ? ' is-open' : ''}`}>
+                <div class="p-faq__inner"><p class="p-faq__text">{a}</p></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Cross-sell -->
+    <section class="stack section divider-top p-cross">
+      <div class="container">
+        <SectionHead eyebrow="One ecosystem" title="Part of the Ultraviolet<br />sovereign AI stack." intro="Three products, designed to work as one." />
+        <div class="stack__grid" style="margin-top:3rem">
+          <a href="/products/cube-ai" class="stack__card">
+            <div class="stack__card-top">
+              <span class="p-cross__role" style="color:var(--cube)"><span style="width:8px;height:8px;background:var(--cube);display:inline-block"></span> Sovereign AI Platform</span>
+              <h3 style="font-size:1.7rem;margin:0.7rem 0 0">Cube AI</h3>
+            </div>
+            <p class="stack__desc">Full-stack private LLM platform — inference, RAG, guardrails, governance, audit.</p>
+            <span class="arrow-link" style="margin-top:auto">Explore Cube AI<span aria-hidden="true">→</span></span>
+          </a>
+          <a href="/products/prism-ai" class="stack__card">
+            <div class="stack__card-top">
+              <span class="p-cross__role" style="color:var(--prism)"><span style="width:8px;height:8px;background:var(--prism);display:inline-block"></span> Secure AI Collaboration</span>
+              <h3 style="font-size:1.7rem;margin:0.7rem 0 0">Prism AI</h3>
+            </div>
+            <p class="stack__desc">Run joint AI workloads across organizations without exposing any party's data.</p>
+            <span class="arrow-link" style="margin-top:auto">Explore Prism AI<span aria-hidden="true">→</span></span>
+          </a>
+          <div class="stack__card stack__card--here">
+            <div class="stack__card-top">
+              <span class="p-cross__role" style="color:var(--cocos)"><span style="width:8px;height:8px;background:var(--cocos);display:inline-block"></span> Confidential Computing Foundation</span>
+              <h3 style="font-size:1.7rem;margin:0.7rem 0 0">Cocos AI</h3>
+            </div>
+            <p class="stack__desc">The open-source TEE abstraction layer the rest of the stack is built on.</p>
+            <span class="p-cross__here-tag">You are here</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <ProductCTA
+      h2="The foundation is open.<br />Build on it."
+      sub="Inspect the source, contribute to the project, or talk to the team about deploying Cocos AI as the foundation for your confidential workloads."
+      primaryLabel="View on GitHub"
+      primaryHref="https://github.com/ultravioletrs/cocos"
+      primaryExternal
+      secondaryLabel="Read the docs"
+      secondaryHref="https://cocos.ai"
+      secondaryExternal
+      note="Apache 2.0 · AMD SEV-SNP · Intel TDX"
+    />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  document.querySelectorAll('[data-faq-item]').forEach((item) => {
+    const btn = item.querySelector('.p-faq__q') as HTMLButtonElement;
+    const answer = item.querySelector('.p-faq__a') as HTMLElement;
+    btn?.addEventListener('click', () => {
+      const isOpen = answer?.classList.contains('is-open');
+      document.querySelectorAll('.p-faq__a.is-open').forEach(a => a.classList.remove('is-open'));
+      document.querySelectorAll('.p-faq__q').forEach(b => b.setAttribute('aria-expanded', 'false'));
+      if (!isOpen) { answer?.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); }
+    });
+  });
+</script>

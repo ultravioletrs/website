@@ -1,0 +1,79 @@
+---
+const stats = [
+  { val: "€10M+", lbl: "EU research funding" },
+  { val: "3", lbl: "Horizon Europe projects" },
+  { val: "15+", lbl: "Research partners" },
+];
+
+const partners = [
+  ["nokia-1", "Nokia"],
+  ["ericsson", "Ericsson"],
+  ["thales", "Thales"],
+  ["fujitsu", "Fujitsu"],
+  ["telefonica", "Telefónica"],
+  ["fraunhofer", "Fraunhofer"],
+  ["tno", "TNO"],
+  ["vtt", "VTT"],
+  ["inserm", "Inserm"],
+  ["eu", "European Commission"],
+];
+---
+
+<section class="trust divider-top">
+  <div class="container">
+    <p class="trust__line reveal">
+      Built on EU-funded research. Trusted across government, defense,
+      healthcare, telecommunications, and research institutions.
+    </p>
+    <div class="trust__stats reveal" data-delay="1">
+      {
+        stats.map((s) => (
+          <div class="trust__stat">
+            <div class="trust__val">{s.val}</div>
+            <div class="trust__lbl">{s.lbl}</div>
+          </div>
+        ))
+      }
+      <div class="trust__stat trust__stat--mem justify-center">
+        <div class="trust__mem-logos flex flex-col md:flex-row gap-4">
+          <a href="https://www.linuxfoundation.org/">
+            <img
+              src="/img/logos/lf.png"
+              alt="The Linux Foundation"
+              title="The Linux Foundation"
+              loading="lazy"
+            />
+          </a>
+          <a href="https://confidentialcomputing.io/">
+            <img
+              src="/img/logos/ccc.png"
+              alt="Confidential Computing Consortium"
+              title="Confidential Computing Consortium"
+              loading="lazy"
+            />
+          </a>
+        </div>
+        <div class="trust__lbl">Memberships</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust__marquee marquee reveal" data-delay="2">
+    <div class="marquee__track">
+      {
+        [...partners, ...partners].map(([f, n], i) => (
+          <span
+            class="trust__logo"
+            aria-hidden={i >= partners.length ? "true" : undefined}
+          >
+            <img
+              src={`/img/logos/${f}.png`}
+              alt={i < partners.length ? n : ""}
+              loading="lazy"
+            />
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</section>

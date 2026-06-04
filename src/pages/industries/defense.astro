@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import LensPage from '../../components/LensPage.astro';
+---
+<Layout title="Defense — Air-Gapped AI for Classified Missions | Ultraviolet" description="Disconnected, hardware-isolated AI for classified and mission-critical environments where nothing may leave.">
+  <Header />
+  <LensPage
+    eyebrow="Industry · Defense"
+    h1={`Air-gapped AI for<br /><span class="hero__accent">classified missions.</span>`}
+    sub="Disconnected, hardware-isolated AI for classified and mission-critical environments where no data may leave and no connectivity to external systems is acceptable."
+    compH2="Defense AI demands zero egress<br />and maximum hardware isolation."
+    compBody="Defense and classified environments have zero tolerance for data leaving the network. Commercial AI APIs fail this requirement by design — they require internet connectivity and process data on infrastructure you do not control."
+    compHeaders={['Commercial cloud AI', 'Ultraviolet Defense AI']}
+    compRows={[
+      ['Connectivity requirement', 'Requires internet access for every call.', 'Zero outbound — runs fully disconnected.'],
+      ['Hardware isolation', 'Software-level isolation only.', 'Hardware TEE — CPU encrypts workload memory.'],
+      ['Classification compatibility', 'Incompatible with classified environments.', 'Designed for classified and air-gapped deployment.'],
+      ['Attestation', 'Trust-us model; no cryptographic proof.', 'Hardware attestation proves workload integrity.'],
+    ]}
+    product={{
+      which: 'cube',
+      name: 'Cube AI',
+      role: 'Sovereign AI Platform',
+      blurb: 'The complete AI stack packaged for air-gapped, classified deployment — inference, RAG, guardrails, and governance with zero outbound connectivity.',
+      points: ['Full air-gapped operation after deployment', 'AMD SEV-SNP / Intel TDX hardware isolation', 'Mission-critical deployment hardening', 'Same governance model in all environments'],
+      supporting: [{ which: 'cocos', name: 'Cocos AI', role: 'Confidential Computing Foundation', blurb: 'Hardware TEE isolation and remote attestation — the cryptographic proof that workload memory is sealed from the host.' }],
+    }}
+    ctaH2="Classified environments<br />deserve classified infrastructure."
+    ctaSub="Talk to the team about defense deployments, air-gap requirements, and hardware isolation configurations."
+    ctaPrimaryLabel="Contact sales"
+    ctaPrimaryHref="/company/contact"
+  />
+  <Footer />
+</Layout>
