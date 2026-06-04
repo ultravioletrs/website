@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import SectionHead from '../../components/SectionHead.astro';
 import ProductCTA from '../../components/ProductCTA.astro';
+import FAQAccordion from '../../components/FAQAccordion.astro';
 import { Check, Zap, Lock, Layers, Globe, Shield, Server, Eye } from 'lucide-astro';
 
 const caps = [
@@ -178,16 +179,7 @@ const faqs = [
           <span class="eyebrow"><span class="tick"></span>FAQ</span>
           <h2 class="prin__h2" style="margin-top:1.1rem">Questions about secure<br />collaboration.</h2>
         </div>
-        <div class="p-faq__grid reveal" data-delay="1" id="faq" style="--prod:var(--prism)">
-          {faqs.map(([q, a], i) => (
-            <div class="p-faq__item" data-faq-item>
-              <button class="p-faq__q" aria-expanded={i === 0}>{q}<span class="p-faq__sign" aria-hidden="true"></span></button>
-              <div class={`p-faq__a${i === 0 ? ' is-open' : ''}`}>
-                <div class="p-faq__inner"><p class="p-faq__text">{a}</p></div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <FAQAccordion items={faqs} prod="prism" reveal delay={1} id="faq" />
       </div>
     </section>
 
@@ -237,16 +229,3 @@ const faqs = [
   </main>
   <Footer />
 </Layout>
-
-<script>
-  document.querySelectorAll('[data-faq-item]').forEach((item) => {
-    const btn = item.querySelector('.p-faq__q') as HTMLButtonElement;
-    const answer = item.querySelector('.p-faq__a') as HTMLElement;
-    btn?.addEventListener('click', () => {
-      const isOpen = answer?.classList.contains('is-open');
-      document.querySelectorAll('.p-faq__a.is-open').forEach(a => a.classList.remove('is-open'));
-      document.querySelectorAll('.p-faq__q').forEach(b => b.setAttribute('aria-expanded', 'false'));
-      if (!isOpen) { answer?.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); }
-    });
-  });
-</script>

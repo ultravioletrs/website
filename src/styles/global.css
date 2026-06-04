@@ -1762,7 +1762,6 @@ details[open] .hdr__msummary::after {
 .p-faq__grid {
   border: 1px solid var(--line);
   background: var(--bg-alt);
-  max-width: 920px;
 }
 .p-faq__item {
   border-bottom: 1px solid var(--line);
@@ -1786,6 +1785,10 @@ details[open] .hdr__msummary::after {
   font-size: clamp(1.02rem, 1.6vw, 1.18rem);
   color: var(--ink);
   transition: color 0.2s var(--ease);
+  list-style: none;
+}
+.p-faq__q::-webkit-details-marker {
+  display: none;
 }
 .p-faq__q:hover {
   color: var(--prod);
@@ -1820,7 +1823,7 @@ details[open] .hdr__msummary::after {
   width: 1.5px;
   transform: translateX(-50%);
 }
-.p-faq__item.is-open .p-faq__sign::after {
+details.p-faq__item[open] .p-faq__sign::after {
   transform: translateX(-50%) scaleY(0);
   opacity: 0;
 }
@@ -1829,7 +1832,7 @@ details[open] .hdr__msummary::after {
   grid-template-rows: 0fr;
   transition: grid-template-rows 0.3s var(--ease);
 }
-.p-faq__item.is-open .p-faq__a {
+details.p-faq__item[open] > .p-faq__a {
   grid-template-rows: 1fr;
 }
 .p-faq__inner {
@@ -1840,7 +1843,6 @@ details[open] .hdr__msummary::after {
   color: var(--ink-2);
   font-size: 1rem;
   line-height: 1.6;
-  max-width: 70ch;
 }
 
 /* Cube UI showcase */
