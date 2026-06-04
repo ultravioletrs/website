@@ -1,35 +1,145 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import SectionHead from '../../components/SectionHead.astro';
-import ProductCTA from '../../components/ProductCTA.astro';
-import Deployment from '../../components/Deployment.astro';
-import FAQAccordion from '../../components/FAQAccordion.astro';
-import { Check, Server, Layers, Shield, Eye, Globe, Lock, Zap, Plug } from 'lucide-astro';
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SectionHead from "../../components/SectionHead.astro";
+import ProductCTA from "../../components/ProductCTA.astro";
+import Deployment from "../../components/Deployment.astro";
+import FAQAccordion from "../../components/FAQAccordion.astro";
+import {
+  Check,
+  Server,
+  Layers,
+  Shield,
+  Eye,
+  Globe,
+  Lock,
+  Zap,
+  Plug,
+} from "lucide-astro";
+
+const platformFeatures = [
+  {
+    Icon: Eye,
+    title: "Unified dashboard",
+    desc: "Model status, domain members, token accounting, and live activity in one operational console.",
+    url: "cube.ultraviolet.rs/dashboard",
+    src: "/img/cube_dashboard.png",
+  },
+  {
+    Icon: Layers,
+    title: "Model management",
+    desc: "Register, version, and route across open models from a single control plane — bring your own weights in GGUF or safetensors.",
+    url: "cube.ultraviolet.rs/models",
+    src: "/img/cube-ui/models.png",
+  },
+  {
+    Icon: Plug,
+    title: "AI gateway & routes",
+    desc: "The Cube Proxy exposes an OpenAI-compatible gateway and routes every request through your guardrails and policies.",
+    url: "cube.ultraviolet.rs/routes",
+    src: "/img/cube-ui/routes.png",
+  },
+  {
+    Icon: Shield,
+    title: "Guardrails & policy",
+    desc: "Prompt-injection defense, output sanitization, and PII redaction — authored visually and hot-reloaded with zero downtime.",
+    url: "cube.ultraviolet.rs/guardrails",
+    src: "/img/cube-ui/guardrails.png",
+  },
+  {
+    Icon: Zap,
+    title: "Audit logs",
+    desc: "A complete, queryable trail of every prompt, response, and administrative action across every domain.",
+    url: "cube.ultraviolet.rs/audit-logs",
+    src: "/img/cube-ui/audit-logs.png",
+  },
+  {
+    Icon: Globe,
+    title: "Secure chat",
+    desc: "An end-to-end encrypted chat workspace, backed by verifiable hardware attestation, for everyday private AI.",
+    url: "cube.ultraviolet.rs/chat",
+    src: "/img/cube-ui/chat.png",
+  },
+];
 
 const caps = [
-  { Icon: Server, t: 'Private inference', d: 'vLLM and Ollama runtimes serve open models on your own GPUs — no API keys, no egress, no rate limits but your own.' },
-  { Icon: Layers, t: 'RAG on your data', d: 'Generate embeddings inside the environment and connect internal knowledge bases with retrieval that never copies a byte off-premises.' },
-  { Icon: Shield, t: 'Guardrails & PII redaction', d: 'NeMo guardrails, prompt-injection defense, output sanitization, and automatic PII redaction via Microsoft Presidio on every call.' },
-  { Icon: Eye, t: 'Governance & audit', d: 'Full audit trail, role-based access, and per-domain usage accounting built in.' },
-  { Icon: Zap, t: 'Model management', d: 'Register, version, and route across open models — Llama, Mistral, Qwen, DeepSeek, Phi, Gemma — from one control plane.' },
-  { Icon: Lock, t: 'Hardware TEE', d: 'Run the whole stack inside AMD SEV-SNP or Intel TDX enclaves — weights and tensors stay encrypted in use, even from the host.' },
-  { Icon: Server, t: 'Multi-tenancy & domains', d: 'SuperMQ-backed domain isolation gives every team or tenant a strictly separated workspace with its own identity and policies.' },
-  { Icon: Globe, t: 'Secure chat', d: 'An end-to-end encrypted chat workspace backed by verifiable hardware attestation for everyday private AI.' },
-  { Icon: Plug, t: 'OpenAI-compatible API', d: 'OpenAI-compatible endpoints and SDKs drop Cube AI into the apps and agents you already run.' },
+  {
+    Icon: Server,
+    t: "Private inference",
+    d: "vLLM and Ollama runtimes serve open models on your own GPUs — no API keys, no egress, no rate limits but your own.",
+  },
+  {
+    Icon: Layers,
+    t: "RAG on your data",
+    d: "Generate embeddings inside the environment and connect internal knowledge bases with retrieval that never copies a byte off-premises.",
+  },
+  {
+    Icon: Shield,
+    t: "Guardrails & PII redaction",
+    d: "NeMo guardrails, prompt-injection defense, output sanitization, and automatic PII redaction via Microsoft Presidio on every call.",
+  },
+  {
+    Icon: Eye,
+    t: "Governance & audit",
+    d: "Full audit trail, role-based access, and per-domain usage accounting built in.",
+  },
+  {
+    Icon: Zap,
+    t: "Model management",
+    d: "Register, version, and route across open models — Llama, Mistral, Qwen, DeepSeek, Phi, Gemma — from one control plane.",
+  },
+  {
+    Icon: Lock,
+    t: "Hardware TEE",
+    d: "Run the whole stack inside AMD SEV-SNP or Intel TDX enclaves — weights and tensors stay encrypted in use, even from the host.",
+  },
+  {
+    Icon: Server,
+    t: "Multi-tenancy & domains",
+    d: "SuperMQ-backed domain isolation gives every team or tenant a strictly separated workspace with its own identity and policies.",
+  },
+  {
+    Icon: Globe,
+    t: "Secure chat",
+    d: "An end-to-end encrypted chat workspace backed by verifiable hardware attestation for everyday private AI.",
+  },
+  {
+    Icon: Plug,
+    t: "OpenAI-compatible API",
+    d: "OpenAI-compatible endpoints and SDKs drop Cube AI into the apps and agents you already run.",
+  },
 ];
 
 const faqs = [
-  ['What is Cube AI?', 'Cube AI is a self-hosted platform for running large language models privately. It bundles inference, retrieval-augmented generation, guardrails, governance, audit, and a production UI into one stack that runs entirely on infrastructure you control.'],
-  ['How is it different from a hosted API like OpenAI or Anthropic?', 'With a hosted API, your prompts and data leave your organization and are processed in someone else\'s cloud and jurisdiction. Cube AI runs inside your own perimeter — on-prem, air-gapped, or in a sovereign cloud — so data never leaves, and you own the models, the policies, and the audit trail.'],
-  ['Which models can I run?', 'Cube AI is model-agnostic. It serves open-weight models such as Llama, Mistral, Qwen, DeepSeek, Phi, and Gemma — plus custom fine-tunes in GGUF or safetensors format — through vLLM, Ollama, and Hugging Face, all from a single control plane.'],
-  ['Where can I deploy it?', 'Anywhere your data has to live: on-premises behind your firewall, fully air-gapped for classified environments, in an EU or national sovereign cloud, in your own private VPC, or at the edge — with the same governance everywhere.'],
-  ['Is Cube AI really open source?', 'Yes. The core is Apache 2.0. You can inspect the source, fork it, and run it indefinitely with no vendor lock-in. Commercial support and enterprise features are available from Ultraviolet.'],
+  [
+    "What is Cube AI?",
+    "Cube AI is a self-hosted platform for running large language models privately. It bundles inference, retrieval-augmented generation, guardrails, governance, audit, and a production UI into one stack that runs entirely on infrastructure you control.",
+  ],
+  [
+    "How is it different from a hosted API like OpenAI or Anthropic?",
+    "With a hosted API, your prompts and data leave your organization and are processed in someone else's cloud and jurisdiction. Cube AI runs inside your own perimeter — on-prem, air-gapped, or in a sovereign cloud — so data never leaves, and you own the models, the policies, and the audit trail.",
+  ],
+  [
+    "Which models can I run?",
+    "Cube AI is model-agnostic. It serves open-weight models such as Llama, Mistral, Qwen, DeepSeek, Phi, and Gemma — plus custom fine-tunes in GGUF or safetensors format — through vLLM, Ollama, and Hugging Face, all from a single control plane.",
+  ],
+  [
+    "Where can I deploy it?",
+    "Anywhere your data has to live: on-premises behind your firewall, fully air-gapped for classified environments, in an EU or national sovereign cloud, in your own private VPC, or at the edge — with the same governance everywhere.",
+  ],
+  [
+    "Is Cube AI really open source?",
+    "Yes. The core is Apache 2.0. You can inspect the source, fork it, and run it indefinitely with no vendor lock-in. Commercial support and enterprise features are available from Ultraviolet.",
+  ],
 ];
 ---
 
-<Layout title="Cube AI — Sovereign AI Platform | Ultraviolet" description="Cube AI is Ultraviolet's flagship platform for private LLM deployment — inference, RAG, guardrails, governance, and a production workspace, all inside your perimeter." prod="cube">
+<Layout
+  title="Cube AI — Sovereign AI Platform | Ultraviolet"
+  description="Cube AI is Ultraviolet's flagship platform for private LLM deployment — inference, RAG, guardrails, governance, and a production workspace, all inside your perimeter."
+  prod="cube"
+>
   <Header />
   <main>
     <!-- Hero -->
@@ -38,15 +148,35 @@ const faqs = [
         <div class="hero__split">
           <div class="hero__lead">
             <span class="eyebrow p-hero__tag" style="color:var(--cube)">
-              <span class="plogo" style="height:17px;width:63px;background-color:currentColor;-webkit-mask-image:url('/img/logos/cube-ai-trim.png');mask-image:url('/img/logos/cube-ai-trim.png')" role="img" aria-label="Cube AI"></span>
+              <span
+                class="plogo"
+                style="height:17px;width:63px;background-color:currentColor;-webkit-mask-image:url('/img/logos/cube-ai-trim.png');mask-image:url('/img/logos/cube-ai-trim.png')"
+                role="img"
+                aria-label="Cube AI"></span>
               — Sovereign AI Platform
               <em class="p-badge">Flagship</em>
             </span>
-            <h1 class="hero__h1">Run frontier AI entirely<br /><span class="hero__accent">on your own hardware.</span></h1>
-            <p class="hero__sub">Cube AI is Ultraviolet's flagship platform for private LLM deployment — inference, retrieval, guardrails, governance, and a production workspace, all inside your perimeter. Nothing leaves your network.</p>
+            <h1 class="hero__h1">
+              Run frontier AI entirely<br /><span class="hero__accent"
+                >on your own hardware.</span
+              >
+            </h1>
+            <p class="hero__sub">
+              Cube AI is Ultraviolet's flagship platform for private LLM
+              deployment — inference, retrieval, guardrails, governance, and a
+              production workspace, all inside your perimeter. Nothing leaves
+              your network.
+            </p>
             <div class="hero__ctas">
-              <a class="btn btn--primary" href="/company/contact">Talk to sales</a>
-              <a class="btn btn--ghost" href="https://docs.cube.ultraviolet.rs" target="_blank" rel="noopener">Read the docs</a>
+              <a class="btn btn--primary" href="/company/contact"
+                >Talk to sales</a
+              >
+              <a
+                class="btn btn--ghost"
+                href="https://docs.cube.ultraviolet.rs"
+                target="_blank"
+                rel="noopener">Read the docs</a
+              >
             </div>
             <div class="hero__meta mono">
               <span><span class="hero__pulse"></span> Apache 2.0</span>
@@ -59,10 +189,17 @@ const faqs = [
             <div class="hero__shots">
               <div class="browser reveal">
                 <div class="browser__bar">
-                  <span class="browser__dot"></span><span class="browser__dot"></span><span class="browser__dot"></span>
-                  <span class="browser__url">cube.ultraviolet.rs/dashboard</span>
+                  <span class="browser__dot"></span><span class="browser__dot"
+                  ></span><span class="browser__dot"></span>
+                  <span class="browser__url">cube.ultraviolet.rs/dashboard</span
+                  >
                 </div>
-                <img src="/img/cube_dashboard.png" alt="Cube AI dashboard showing model status, domains, and audit logs" loading="eager" style="width:100%;display:block" />
+                <img
+                  src="/img/cube_dashboard.png"
+                  alt="Cube AI dashboard showing model status, domains, and audit logs"
+                  loading="eager"
+                  style="width:100%;display:block"
+                />
               </div>
               <div class="p-float mono">
                 <span class="hero__pulse"></span> 3 models online · 0 bytes egressed
@@ -78,26 +215,54 @@ const faqs = [
       <div class="container">
         <div class="p-def__grid">
           <div class="comp__copy reveal">
-            <span class="eyebrow"><span class="tick"></span>What is Cube AI</span>
-            <h2 class="comp__h2" style="margin-top:1.1rem">The complete operating environment for private, sovereign AI.</h2>
+            <span class="eyebrow"
+              ><span class="tick"></span>What is Cube AI</span
+            >
+            <h2 class="comp__h2" style="margin-top:1.1rem">
+              The complete operating environment for private, sovereign AI.
+            </h2>
           </div>
           <div class="reveal" data-delay="1">
             <div class="p-def__body" style="margin-bottom:2rem">
-              <p>Cube AI gives regulated and sovereign organizations everything they need to build and run AI without sending a single byte to a third party. Open models serve from your own GPUs, retrieval runs over your own knowledge bases, and every prompt is policed by your guardrails and recorded in your audit trail.</p>
-              <p>It is the flagship of the Ultraviolet ecosystem — the product most teams start with, and the one the rest of the stack is built to support.</p>
+              <p>
+                Cube AI gives regulated and sovereign organizations everything
+                they need to build and run AI without sending a single byte to a
+                third party. Open models serve from your own GPUs, retrieval
+                runs over your own knowledge bases, and every prompt is policed
+                by your guardrails and recorded in your audit trail.
+              </p>
+              <p>
+                It is the flagship of the Ultraviolet ecosystem — the product
+                most teams start with, and the one the rest of the stack is
+                built to support.
+              </p>
             </div>
             <div class="comp__proof p-proof">
-              {[
-                ['Private', 'Every prompt, embedding, and response stays inside your perimeter. Zero outbound by default.'],
-                ['Sovereign', 'Data residency, compliance, and control governed by your policies and jurisdiction.'],
-                ['Open', 'Apache 2.0 core. Inspect the source, fork the platform, extend it for your environment.'],
-                ['Portable', 'One platform across on-prem, air-gapped, sovereign cloud, private cloud, and edge.'],
-              ].map(([t, d]) => (
-                <div class="comp__proof-item">
-                  <div class="comp__proof-t">{t}</div>
-                  <div class="comp__proof-d">{d}</div>
-                </div>
-              ))}
+              {
+                [
+                  [
+                    "Private",
+                    "Every prompt, embedding, and response stays inside your perimeter. Zero outbound by default.",
+                  ],
+                  [
+                    "Sovereign",
+                    "Data residency, compliance, and control governed by your policies and jurisdiction.",
+                  ],
+                  [
+                    "Open",
+                    "Apache 2.0 core. Inspect the source, fork the platform, extend it for your environment.",
+                  ],
+                  [
+                    "Portable",
+                    "One platform across on-prem, air-gapped, sovereign cloud, private cloud, and edge.",
+                  ],
+                ].map(([t, d]) => (
+                  <div class="comp__proof-item">
+                    <div class="comp__proof-t">{t}</div>
+                    <div class="comp__proof-d">{d}</div>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
@@ -110,33 +275,88 @@ const faqs = [
         <div class="comp__grid">
           <div class="comp__copy reveal">
             <span class="eyebrow"><span class="tick"></span>How it works</span>
-            <h2 class="comp__h2" style="margin:1.1rem 0 1.3rem">One platform, top to bottom of the stack.</h2>
-            <p class="comp__desc">Cube AI bundles everything an organization needs to operate AI privately: model serving, retrieval, policy enforcement, and governance — all running on the same confidential-computing substrate as the rest of Ultraviolet.</p>
+            <h2 class="comp__h2" style="margin:1.1rem 0 1.3rem">
+              One platform, top to bottom of the stack.
+            </h2>
+            <p class="comp__desc">
+              Cube AI bundles everything an organization needs to operate AI
+              privately: model serving, retrieval, policy enforcement, and
+              governance — all running on the same confidential-computing
+              substrate as the rest of Ultraviolet.
+            </p>
             <div class="comp__badges">
-              {['vLLM', 'Ollama', 'NeMo Guardrails', 'OpenAI-compatible API', 'RBAC + ABAC'].map(b => (
-                <span class="chip"><Check size={13} />{b}</span>
-              ))}
+              {
+                [
+                  "vLLM",
+                  "Ollama",
+                  "NeMo Guardrails",
+                  "OpenAI-compatible API",
+                  "RBAC + ABAC",
+                ].map((b) => (
+                  <span class="chip">
+                    <Check size={13} />
+                    {b}
+                  </span>
+                ))
+              }
             </div>
           </div>
           <div class="reveal" data-delay="1">
             <div style="border:1px solid var(--line);background:var(--bg-alt)">
               <div style="padding:1.4rem;border-bottom:1px solid var(--line)">
-                <div style="display:flex;align-items:center;gap:0.6rem;color:var(--cube);margin-bottom:0.3rem">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" /><path d="M12 3v18M4 7.5l8 4.5 8-4.5" /></svg>
-                  <span style="font-family:var(--font-display);font-weight:600">Cube AI</span>
+                <div
+                  style="display:flex;align-items:center;gap:0.6rem;color:var(--cube);margin-bottom:0.3rem"
+                >
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    ><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z"></path><path
+                      d="M12 3v18M4 7.5l8 4.5 8-4.5"></path></svg
+                  >
+                  <span style="font-family:var(--font-display);font-weight:600"
+                    >Cube AI</span
+                  >
                 </div>
-                <span style="font-size:0.66rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);font-family:var(--font-mono);display:block;margin-bottom:1rem">Sovereign AI platform</span>
+                <span
+                  style="font-size:0.66rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--muted);font-family:var(--font-mono);display:block;margin-bottom:1rem"
+                  >Sovereign AI platform</span
+                >
                 <div style="display:flex;flex-direction:column;gap:0.4rem">
-                  {['Inference — vLLM · Ollama', 'Retrieval — RAG on your data', 'Guardrails — policy on every call', 'Governance — audit · RBAC · usage', 'Hardware TEE — AMD SEV-SNP · Intel TDX'].map(label => (
-                    <div style="display:flex;align-items:center;gap:0.6rem;font-family:var(--font-mono);font-size:0.78rem;color:var(--ink-2);border:1px solid var(--line);padding:0.7rem 0.85rem">
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.5l5 5L20 6" /></svg>
-                      {label}
-                    </div>
-                  ))}
+                  {
+                    [
+                      "Inference — vLLM · Ollama",
+                      "Retrieval — RAG on your data",
+                      "Guardrails — policy on every call",
+                      "Governance — audit · RBAC · usage",
+                      "Hardware TEE — AMD SEV-SNP · Intel TDX",
+                    ].map((label) => (
+                      <div style="display:flex;align-items:center;gap:0.6rem;font-family:var(--font-mono);font-size:0.78rem;color:var(--ink-2);border:1px solid var(--line);padding:0.7rem 0.85rem">
+                        <svg
+                          width="15"
+                          height="15"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                        >
+                          <path d="M5 12.5l5 5L20 6" />
+                        </svg>
+                        {label}
+                      </div>
+                    ))
+                  }
                 </div>
               </div>
-              <div style="display:flex;align-items:center;gap:0.5rem;padding:0.85rem 1.4rem;background:var(--bg-sunken);font-size:0.7rem;color:var(--muted);font-family:var(--font-mono)">
-                <span style="width:8px;height:8px;background:var(--cocos);display:inline-block;border-radius:0"></span>
+              <div
+                style="display:flex;align-items:center;gap:0.5rem;padding:0.85rem 1.4rem;background:var(--bg-sunken);font-size:0.7rem;color:var(--muted);font-family:var(--font-mono)"
+              >
+                <span
+                  style="width:8px;height:8px;background:var(--cocos);display:inline-block;border-radius:0"
+                ></span>
                 Runs on Cocos AI — TEEs, remote attestation, hardware isolation
               </div>
             </div>
@@ -148,41 +368,224 @@ const faqs = [
     <!-- Capabilities -->
     <section class="ind section divider-top p-caps">
       <div class="container">
-        <SectionHead eyebrow="Capabilities" title="Everything you need to<br />operate AI in production." intro="Cube AI is not a model — it is the full platform around your models: serving, retrieval, safety, governance, and the interfaces your teams actually use." />
+        <SectionHead
+          eyebrow="Capabilities"
+          title="Everything you need to<br />operate AI in production."
+          intro="Cube AI is not a model — it is the full platform around your models: serving, retrieval, safety, governance, and the interfaces your teams actually use."
+        />
         <div class="ind__grid" style="margin-top:3rem">
-          {caps.map(({ Icon, t, d }, i) => (
-            <div class="ind__cell reveal" data-delay={i % 3}>
-              <span class="ind__ic"><Icon size={20} /></span>
-              <h3 class="ind__t">{t}</h3>
-              <p class="ind__d">{d}</p>
-            </div>
-          ))}
+          {
+            caps.map(({ Icon, t, d }, i) => (
+              <div class="ind__cell reveal" data-delay={i % 3}>
+                <span class="ind__ic">
+                  <Icon size={20} />
+                </span>
+                <h3 class="ind__t">{t}</h3>
+                <p class="ind__d">{d}</p>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
 
+    <!-- Platform -->
+    <section class="cube-ui section divider-top">
+      <div class="container">
+        <SectionHead
+          eyebrow="The platform"
+          title="A production workspace,<br />not just an endpoint."
+          intro="Cube AI ships with the interfaces your teams actually use — operations, model management, safety, audit, and chat. Pick a surface to see it."
+        />
+        <div class="cube-ui__body" style="margin-top:3rem">
+          <div class="cube-ui__visual" id="cube-ui-visual">
+            {
+              platformFeatures.map((f, i) => (
+                <div
+                  data-shot={i}
+                  style={i !== 0 ? "display:none;width:100%" : "width:100%"}
+                >
+                  {f.src ? (
+                    <div class="browser cube-shot">
+                      <div class="browser__bar">
+                        <span class="browser__dot" />
+                        <span class="browser__dot" />
+                        <span class="browser__dot" />
+                        <span class="browser__url">{f.url}</span>
+                      </div>
+                      <div class="cube-shot__img-wrap">
+                        <img
+                          src={f.src}
+                          alt={f.title}
+                          loading="lazy"
+                          style="width:100%;display:block"
+                        />
+                        <button class="cube-shot__zoom-btn" data-zoom-src={f.src} data-zoom-alt={f.title} aria-label={`Zoom: ${f.title}`}>
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+                            <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div class="cube-shot__ph">
+                      <span class="cube-shot__ph-label">{f.title}</span>
+                      <span class="cube-shot__ph-note mono">
+                        platform UI · coming soon
+                      </span>
+                    </div>
+                  )}
+                </div>
+              ))
+            }
+          </div>
+          <div
+            class="cube-ui__list"
+            role="tablist"
+            aria-label="Platform features"
+          >
+            {
+              platformFeatures.map((f, i) => (
+                <button
+                  role="tab"
+                  aria-selected={i === 0}
+                  class={`cube-ui__item${i === 0 ? " is-active" : ""}`}
+                  data-item={i}
+                >
+                  <span class="cube-ui__item-ic">
+                    <f.Icon size={18} />
+                  </span>
+                  <span class="cube-ui__item-body">
+                    <span class="cube-ui__item-t">{f.title}</span>
+                    <span class="cube-ui__item-d">{f.desc}</span>
+                  </span>
+                  <span class="cube-ui__item-idx">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </button>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="cube-lb" id="cube-lb" role="dialog" aria-modal="true" aria-label="Image zoom">
+      <div class="cube-lb__inner">
+        <img class="cube-lb__img" id="cube-lb-img" src="" alt="" />
+        <button class="cube-lb__close" id="cube-lb-close" aria-label="Close">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const list = document.querySelector(".cube-ui__list");
+      const visual = document.getElementById("cube-ui-visual");
+      if (list && visual) {
+        list.addEventListener("click", (e) => {
+          const btn = (e.target as Element).closest<HTMLElement>("[data-item]");
+          if (!btn) return;
+          const idx = Number(btn.dataset.item);
+          list.querySelectorAll(".cube-ui__item").forEach((el, i) => {
+            el.classList.toggle("is-active", i === idx);
+            el.setAttribute("aria-selected", String(i === idx));
+          });
+          visual.querySelectorAll<HTMLElement>("[data-shot]").forEach((el) => {
+            el.style.display =
+              Number(el.dataset.shot) === idx ? "block" : "none";
+          });
+        });
+      }
+
+      // Lightbox
+      const lb = document.getElementById("cube-lb")!;
+      const lbImg = document.getElementById("cube-lb-img") as HTMLImageElement;
+      const lbClose = document.getElementById("cube-lb-close")!;
+
+      const openLb = (src: string, alt: string) => {
+        lbImg.src = src;
+        lbImg.alt = alt;
+        lb.classList.add("is-open");
+        document.body.style.overflow = "hidden";
+      };
+      const closeLb = () => {
+        lb.classList.remove("is-open");
+        document.body.style.overflow = "";
+      };
+
+      document.addEventListener("click", (e) => {
+        const zoomBtn = (e.target as Element).closest<HTMLElement>("[data-zoom-src]");
+        if (zoomBtn) {
+          openLb(zoomBtn.dataset.zoomSrc!, zoomBtn.dataset.zoomAlt ?? "");
+        }
+      });
+
+      lbClose.addEventListener("click", closeLb);
+      lb.addEventListener("click", (e) => { if (e.target === lb) closeLb(); });
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLb(); });
+    </script>
+
     <!-- Models & Infra -->
     <section class="comp section divider-top">
       <div class="container">
-        <SectionHead eyebrow="Models & infrastructure" title="The models you choose,<br />on the hardware you own." intro="Cube AI is model-agnostic and infrastructure-agnostic. Serve open-weight models through the runtime that fits your workload, on everything from a single GPU to an air-gapped confidential cluster." />
+        <SectionHead
+          eyebrow="Models & infrastructure"
+          title="The models you choose,<br />on the hardware you own."
+          intro="Cube AI is model-agnostic and infrastructure-agnostic. Serve open-weight models through the runtime that fits your workload, on everything from a single GPU to an air-gapped confidential cluster."
+        />
         <div class="spec__grid">
           <div class="spec__col">
-            <div class="spec__col-head"><Server size={20} />Models & runtimes</div>
-            {[['Open models', ['Llama', 'Mistral', 'Qwen', 'DeepSeek', 'Phi', 'Gemma']], ['Embeddings', ['Nomic Embed', 'BGE', 'Custom']], ['Runtimes', ['vLLM', 'Ollama', 'Hugging Face']], ['Formats', ['GGUF', 'safetensors', 'Fine-tunes']]].map(([k, vals]) => (
-              <div class="spec__row">
-                <div class="spec__row-k">{k as string}</div>
-                <div class="spec__row-v">{(vals as string[]).map(v => <span class="chip">{v}</span>)}</div>
-              </div>
-            ))}
+            <div class="spec__col-head">
+              <Server size={20} />Models & runtimes
+            </div>
+            {
+              [
+                [
+                  "Open models",
+                  ["Llama", "Mistral", "Qwen", "DeepSeek", "Phi", "Gemma"],
+                ],
+                ["Embeddings", ["Nomic Embed", "BGE", "Custom"]],
+                ["Runtimes", ["vLLM", "Ollama", "Hugging Face"]],
+                ["Formats", ["GGUF", "safetensors", "Fine-tunes"]],
+              ].map(([k, vals]) => (
+                <div class="spec__row">
+                  <div class="spec__row-k">{k as string}</div>
+                  <div class="spec__row-v">
+                    {(vals as string[]).map((v) => (
+                      <span class="chip">{v}</span>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
           </div>
           <div class="spec__col">
             <div class="spec__col-head"><Server size={20} />Infrastructure</div>
-            {[['GPUs', ['NVIDIA A100', 'H100', 'Blackwell']], ['Compute', ['GPU', 'CPU inference', 'Edge']], ['Confidential HW', ['AMD SEV-SNP', 'Intel TDX']], ['Deploy', ['On-prem', 'Air-gapped', 'Sovereign cloud', 'Private VPC']]].map(([k, vals]) => (
-              <div class="spec__row">
-                <div class="spec__row-k">{k as string}</div>
-                <div class="spec__row-v">{(vals as string[]).map(v => <span class="chip">{v}</span>)}</div>
-              </div>
-            ))}
+            {
+              [
+                ["GPUs", ["NVIDIA A100", "H100", "Blackwell"]],
+                ["Compute", ["GPU", "CPU inference", "Edge"]],
+                ["Confidential HW", ["AMD SEV-SNP", "Intel TDX"]],
+                [
+                  "Deploy",
+                  ["On-prem", "Air-gapped", "Sovereign cloud", "Private VPC"],
+                ],
+              ].map(([k, vals]) => (
+                <div class="spec__row">
+                  <div class="spec__row-k">{k as string}</div>
+                  <div class="spec__row-v">
+                    {(vals as string[]).map((v) => (
+                      <span class="chip">{v}</span>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
           </div>
         </div>
       </div>
@@ -191,25 +594,47 @@ const faqs = [
     <!-- Integrations -->
     <section class="ind section divider-top dotgrid">
       <div class="container">
-        <SectionHead eyebrow="Integrations" title="Plugs into the tools<br />your developers already use." intro="Because Cube AI speaks the OpenAI API, it slots into existing developer workflows — IDEs, agents, and SDKs — while keeping every prompt inside your perimeter." />
+        <SectionHead
+          eyebrow="Integrations"
+          title="Plugs into the tools<br />your developers already use."
+          intro="Because Cube AI speaks the OpenAI API, it slots into existing developer workflows — IDEs, agents, and SDKs — while keeping every prompt inside your perimeter."
+        />
         <div class="intg__grid">
-          {[
-            { mark: '⟶', name: 'Continue', tag: 'IDE assistant', desc: 'AI-assisted coding inside VS Code and JetBrains, served by your own private Cube models — autocomplete and chat with zero IP leakage.' },
-            { mark: '◳', name: 'OpenCode', tag: 'Agentic coding', desc: 'Point the OpenCode terminal agent at Cube for confidential, in-perimeter pair-programming on your own infrastructure.' },
-            { mark: '/v1', name: 'OpenAI-compatible API', tag: 'SDKs & clients', desc: 'Drop-in OpenAI-compatible endpoints mean the OpenAI SDK, LangChain, and custom HTTP clients all work unchanged — just repoint the base URL.' },
-          ].map(it => (
-            <div class="intg__card">
-              <div class="intg__top">
-                <span class="intg__mark">{it.mark}</span>
-                <span class="intg__tag">{it.tag}</span>
+          {
+            [
+              {
+                mark: "⟶",
+                name: "Continue",
+                tag: "IDE assistant",
+                desc: "AI-assisted coding inside VS Code and JetBrains, served by your own private Cube models — autocomplete and chat with zero IP leakage.",
+              },
+              {
+                mark: "◳",
+                name: "OpenCode",
+                tag: "Agentic coding",
+                desc: "Point the OpenCode terminal agent at Cube for confidential, in-perimeter pair-programming on your own infrastructure.",
+              },
+              {
+                mark: "/v1",
+                name: "OpenAI-compatible API",
+                tag: "SDKs & clients",
+                desc: "Drop-in OpenAI-compatible endpoints mean the OpenAI SDK, LangChain, and custom HTTP clients all work unchanged — just repoint the base URL.",
+              },
+            ].map((it) => (
+              <div class="intg__card">
+                <div class="intg__top">
+                  <span class="intg__mark">{it.mark}</span>
+                  <span class="intg__tag">{it.tag}</span>
+                </div>
+                <h3 class="intg__name">{it.name}</h3>
+                <p class="intg__desc">{it.desc}</p>
               </div>
-              <h3 class="intg__name">{it.name}</h3>
-              <p class="intg__desc">{it.desc}</p>
-            </div>
-          ))}
+            ))
+          }
         </div>
         <div class="intg__foot mono">
-          <Check size={14} /> Any OpenAI-compatible client connects — your data never leaves the enclave.
+          <Check size={14} /> Any OpenAI-compatible client connects — your data never
+          leaves the enclave.
         </div>
       </div>
     </section>
@@ -221,7 +646,9 @@ const faqs = [
       <div class="container">
         <div class="prin__head reveal" style="margin-bottom:2.6rem">
           <span class="eyebrow"><span class="tick"></span>FAQ</span>
-          <h2 class="prin__h2" style="margin-top:1.1rem">Questions teams ask<br />before they deploy.</h2>
+          <h2 class="prin__h2" style="margin-top:1.1rem">
+            Questions teams ask<br />before they deploy.
+          </h2>
         </div>
         <FAQAccordion items={faqs} reveal delay={1} id="faq" />
       </div>
@@ -230,31 +657,60 @@ const faqs = [
     <!-- Cross-sell -->
     <section class="stack section divider-top p-cross">
       <div class="container">
-        <SectionHead eyebrow="One ecosystem" title="Part of the Ultraviolet<br />sovereign AI stack." intro="Three products, designed to work as one. Each runs on the same confidential-computing foundation, shares the same governance model, and deploys anywhere your data must live." />
+        <SectionHead
+          eyebrow="One ecosystem"
+          title="Part of the Ultraviolet<br />sovereign AI stack."
+          intro="Three products, designed to work as one. Each runs on the same confidential-computing foundation, shares the same governance model, and deploys anywhere your data must live."
+        />
         <div class="stack__grid" style="margin-top:3rem">
           <div class="stack__card stack__card--here">
             <div class="stack__card-top">
-              <span class="p-cross__role" style="color:var(--cube)"><span style="width:8px;height:8px;background:var(--cube);display:inline-block"></span> Sovereign AI Platform</span>
+              <span class="p-cross__role" style="color:var(--cube)"
+                ><span
+                  style="width:8px;height:8px;background:var(--cube);display:inline-block"
+                ></span> Sovereign AI Platform</span
+              >
               <h3 style="font-size:1.7rem;margin:0.7rem 0 0">Cube AI</h3>
             </div>
-            <p class="stack__desc">Full-stack private LLM platform — inference, RAG, guardrails, governance, audit.</p>
+            <p class="stack__desc">
+              Full-stack private LLM platform — inference, RAG, guardrails,
+              governance, audit.
+            </p>
             <span class="p-cross__here-tag">You are here</span>
           </div>
           <a href="/products/prism-ai" class="stack__card">
             <div class="stack__card-top">
-              <span class="p-cross__role" style="color:var(--prism)"><span style="width:8px;height:8px;background:var(--prism);display:inline-block"></span> Secure AI Collaboration</span>
+              <span class="p-cross__role" style="color:var(--prism)"
+                ><span
+                  style="width:8px;height:8px;background:var(--prism);display:inline-block"
+                ></span> Secure AI Collaboration</span
+              >
               <h3 style="font-size:1.7rem;margin:0.7rem 0 0">Prism AI</h3>
             </div>
-            <p class="stack__desc">Run joint AI workloads across organizations without exposing any party's data.</p>
-            <span class="arrow-link" style="margin-top:auto">Explore Prism AI<span aria-hidden="true">→</span></span>
+            <p class="stack__desc">
+              Run joint AI workloads across organizations without exposing any
+              party's data.
+            </p>
+            <span class="arrow-link" style="margin-top:auto"
+              >Explore Prism AI<span aria-hidden="true">→</span></span
+            >
           </a>
           <a href="/products/cocos-ai" class="stack__card">
             <div class="stack__card-top">
-              <span class="p-cross__role" style="color:var(--cocos)"><span style="width:8px;height:8px;background:var(--cocos);display:inline-block"></span> Confidential Computing Foundation</span>
+              <span class="p-cross__role" style="color:var(--cocos)"
+                ><span
+                  style="width:8px;height:8px;background:var(--cocos);display:inline-block"
+                ></span> Confidential Computing Foundation</span
+              >
               <h3 style="font-size:1.7rem;margin:0.7rem 0 0">Cocos AI</h3>
             </div>
-            <p class="stack__desc">The open-source TEE abstraction layer the rest of the stack is built on.</p>
-            <span class="arrow-link" style="margin-top:auto">Explore Cocos AI<span aria-hidden="true">→</span></span>
+            <p class="stack__desc">
+              The open-source TEE abstraction layer the rest of the stack is
+              built on.
+            </p>
+            <span class="arrow-link" style="margin-top:auto"
+              >Explore Cocos AI<span aria-hidden="true">→</span></span
+            >
           </a>
         </div>
       </div>
