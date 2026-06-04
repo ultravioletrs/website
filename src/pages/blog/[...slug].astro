@@ -32,7 +32,7 @@ const author = post.data.author || (post.data.authors && post.data.authors[0]);
 <Layout
   title={`${post.data.title} | Ultraviolet Blog`}
   description={post.data.excerpt || post.data.description}
-  image={coverImage}
+  ogImage={coverImage}
 >
   <Header />
   <main>
