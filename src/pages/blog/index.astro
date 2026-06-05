@@ -38,7 +38,7 @@ function getProduct(post: (typeof posts)[0]) {
 }
 
 const [featuredPost, ...restPosts] = posts;
-const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
+// const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
 ---
 
 <Layout title="Blog — Confidential AI Field Notes | Ultraviolet" description="Technical deep dives, product updates, and engineering notes from the Ultraviolet team on confidential computing and sovereign AI.">

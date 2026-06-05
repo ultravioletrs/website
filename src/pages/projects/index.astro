@@ -55,7 +55,7 @@ const projects = [
       </div>
       <div class="marquee proj-pw__marquee">
         <div class="marquee__track">
-          {(logos => [...logos, ...logos])(['nokia-1', 'ericsson', 'telefonica', 'thales', 'fujitsu', 'fraunhofer', 'tno', 'vtt', 'inserm', 'tuw', 'tue']).map((f, i) => (
+          {(logos => [...logos, ...logos])(['nokia-1', 'ericsson', 'telefonica', 'thales', 'fujitsu', 'fraunhofer', 'tno', 'vtt', 'inserm', 'tuw', 'tue']).map((f) => (
             <span class="proj-pw__logo">
               <img src={`/img/logos/${f}.png`} alt={f} loading="lazy" />
             </span>
