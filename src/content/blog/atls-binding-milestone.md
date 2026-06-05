@@ -8,7 +8,15 @@ authors:
     picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
   - name: "Danko Miladinovic"
     picture: "https://avatars.githubusercontent.com/u/72250944?v=4"
-tags: [confidential-computing, attestation, aTLS, security, TLS-Exporters, IETF-SEAT]
+tags:
+  [
+    confidential-computing,
+    attestation,
+    aTLS,
+    security,
+    TLS-Exporters,
+    IETF-SEAT,
+  ]
 date: 2026-03-27
 image: "/img/atls-milestone/cover.png"
 ---
@@ -24,6 +32,7 @@ Today, we are thrilled to announce that we have fulfilled our roadmap. With [PR 
 The previous vulnerability (and the class of attacks identified by Sardar et al. using ProVerif) stemmed from the fact that an attacker who could extract a TEE's ephemeral private key — even momentarily — could relay that TEE's attestation report to a different connection.
 
 In the old design:
+
 1. Evidence tied to `Hash(ServerPubKey ‖ Nonce)`.
 2. Nonce delivered via SNI (a non-standard hack).
 3. Verification happened in a custom callback that "bolted on" trust.
@@ -37,9 +46,11 @@ The gold standard for aTLS, as defined by the IETF SEAT (Secure Evidence ATtesta
 Cocos AI now achieves this through three major architectural shifts:
 
 ### 1. Exclusive TLS 1.3
+
 We have dropped support for older TLS versions in our aTLS paths. TLS 1.3 provides a cleaner handshake and superior key derivation functions (HKDF) which are essential for robust session export.
 
 ### 2. TLS Exporters & Nonce Freshness (RFC 5705)
+
 A common misconception is that session binding replaces the need for a nonce. In the new Cocos aTLS flow (based on the [IETF EXPAT draft](https://datatracker.ietf.org/doc/draft-fossati-seat-expat/)), the nonce provided by the CLI is now carried within the `certificate_request_context`.
 
 This context is then used as the `context_value` for the TLS Exporter, ensuring that the derived value is both fresh (non-repeating) and cryptographically bound to the session:
@@ -60,30 +71,31 @@ The binding value, which serves as the final attestation challenge, is defined a
 $$\text{Binding} = \text{Hash}(\text{PublicKey} \parallel \text{TLS-Exporter}(\text{Label, Nonce}))$$
 
 ### 3. Level 2 Binding Logic
-By including this TLS-exported binder in the attestation's `report_data`, we achieve **Level 2 Binding** (Correlation to Handshake Traffic Keys). This ensures that the evidence is fundamentally bound to the cryptographic state of the *specific* TLS session.
+
+By including this TLS-exported binder in the attestation's `report_data`, we achieve **Level 2 Binding** (Correlation to Handshake Traffic Keys). This ensures that the evidence is fundamentally bound to the cryptographic state of the _specific_ TLS session.
 
 ```mermaid
 sequenceDiagram
     participant Client
     participant Server
-    
+
     Note over Client,Server: 1. Standard TLS 1.3 Handshake
     Client->>Server: ClientHello
     Server-->>Client: ServerHello... Finished
     Client-->>Server: [Certificate]... Finished
-    
+
     Note over Client,Server: 2. Secure Channel Established
-    
+
     Client->>Server: AuthenticatorRequest (Nonce, Extensions)
-    
+
     Note over Server: 3. Compute Binding
     Note over Server: ExportedValue = TLS-Exporter("Attestation", Nonce)
     Note over Server: Binding = Hash(PubKey || ExportedValue)
-    
+
     Server->>Server: Request TEE Report (report_data = Binding)
-    
+
     Server-->>Client: Authenticator (Certificate + Attestation Payload + Finished)
-    
+
     Note over Client: 4. Formal Verification
     Note over Client: Verify report_data == Hash(PubKey || Client-Side Exporter)
 ```
@@ -95,6 +107,7 @@ Even if an adversary manages to extract the ephemeral private key, they **cannot
 Standardization and protocol hygiene were also key goals. The previous use of the SNI (Server Name Indication) field to transport nonces was a pragmatic but fragile hack.
 
 The new implementation moves away from SNI abuse. Instead, it utilizes a sophisticated frame-based protocol over the TLS connection or **Exported Authenticators** (RFC 9162). This allows for a clean separation of concerns:
+
 - **TLS** handles the secure channel.
 - **Exported Authenticators** handle the platform identity and evidence exchange.
 
@@ -106,7 +119,7 @@ As detailed in the advisory, the flaw was architectural: by binding attestation 
 
 By implementing **Level 2 binding** with TLS 1.3 Exporters, we have fundamentally closed this vector. The attestation evidence is now cryptographically tied to the unique handshake transcript and session keys of the specific connection. Even in a hypothetical scenario where a private key leaks, the stolen evidence cannot be relayed to a different session; it is mathematically anchored to the secure channel it was generated for.
 
-## Cocos v0.9.0: A New Era of Modularity 
+## Cocos v0.9.0: A New Era of Modularity
 
 While Level 2 session binding is a pivotal security milestone, it is just one part of the broader **Cocos v0.9.0** release. This version marks a significant architectural shift towards modularity and production-readiness:
 
@@ -130,4 +143,5 @@ Cocos AI is now more than just "attested." It is **formally bound**. By migratin
 Upgrade your CLI and Agent to the latest version (v0.9.0+) to take advantage of these security enhancements.
 
 ---
-*For more technical details, check out the [Cocos repository](https://github.com/ultravioletrs/cocos) and the [new aTLS implementation](https://github.com/ultravioletrs/cocos/tree/main/pkg/atls).*
+
+_For more technical details, check out the [Cocos repository](https://github.com/ultravioletrs/cocos) and the [new aTLS implementation](https://github.com/ultravioletrs/cocos/tree/main/pkg/atls)._

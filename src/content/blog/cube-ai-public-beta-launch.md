@@ -40,19 +40,23 @@ To achieve this deep hardware integration, Cube AI relies on the open-source **[
 Cube AI is not merely a wrapper around existing LLM backends; it is a multi-tenant, microservices-based framework designed for scalability and secure governance.
 
 ### Multi-Tenancy and Domain Isolation
+
 At the heart of the platform's scalability is the **SuperMQ** microservices architecture. It handles identity management natively and ensures that each domain acts as a strictly isolated workspace, preventing data leakage between different departments or organizations.
 
 ![Domain Overview UI](https://cube.ultraviolet.rs/img/ui/domain-overview.png)
 ![Routes Management UI](https://cube.ultraviolet.rs/img/ui/routes.png)
 
 ### High-Performance Inference Backends
+
 We support two primary [inference backends](/blog/vllm-vs-ollama-in-cube-ai) to suit varying computational needs:
-*   **Ollama**: Ideal for lightweight model management, local deployments, and rapid prototyping.
-*   **vLLM**: Built for production environments requiring high throughput. Utilizing PagedAttention and continuous batching, vLLM maximizes memory efficiency and inference speed. When deployed within a Cube AI TEE, model weights and intermediate tensors remain encrypted throughout the execution cycle.
+
+- **Ollama**: Ideal for lightweight model management, local deployments, and rapid prototyping.
+- **vLLM**: Built for production environments requiring high throughput. Utilizing PagedAttention and continuous batching, vLLM maximizes memory efficiency and inference speed. When deployed within a Cube AI TEE, model weights and intermediate tensors remain encrypted throughout the execution cycle.
 
 ![Models UI](https://cube.ultraviolet.rs/img/ui/models.png)
 
 ### The Cube Proxy & Security Guardrails
+
 The Cube Proxy serves as the hardened gateway, providing an **OpenAI-compatible API**. This allows organizations to leverage existing Python or JavaScript SDKs effortlessly.
 
 Beyond hardware isolation, our integrated Guardrails Service enforces proactive defense against prompt injection, output sanitization, and automatic **PII (Personally Identifiable Information) redaction** through Microsoft Presidio. Hot-reload capabilities ensure administrators can update safety rules with zero downtime.
@@ -73,9 +77,10 @@ Where `L_attestation` represents the time taken for remote verification and `L_e
 ## Tooling Ecosystem: IDEs and Secure RAG
 
 We prioritize a "developer-first" approach to ensure seamless integration:
-*   **IDE Support**: Native integration with "Continue" and OpenCode IDE ensures safe AI-assisted development without intellectual property leakage.
-*   **Secure Embeddings (RAG)**: Generate embeddings entirely within the TEE. This ensures that sensitive documents are properly vectorized for Retrieval-Augmented Generation architectures without ever exposing raw text to an external provider.
-*   **Secure Chat**: Provide users with an end-to-end encrypted chat interface powered by verifiable hardware attestation for maximum privacy.
+
+- **IDE Support**: Native integration with "Continue" and OpenCode IDE ensures safe AI-assisted development without intellectual property leakage.
+- **Secure Embeddings (RAG)**: Generate embeddings entirely within the TEE. This ensures that sensitive documents are properly vectorized for Retrieval-Augmented Generation architectures without ever exposing raw text to an external provider.
+- **Secure Chat**: Provide users with an end-to-end encrypted chat interface powered by verifiable hardware attestation for maximum privacy.
 
 ![Secure Chat UI](https://cube.ultraviolet.rs/img/chat-ui.png)
 
@@ -87,5 +92,5 @@ Cube AI represents a fundamental shift in how Large Language Models are deployed
 
 The future of AI is confidential. Welcome to the Cube AI Beta!
 
-* **Get Started**: Visit [cube.ultraviolet.rs](https://cube.ultraviolet.rs) to launch your first confidential AI stack.
-* **Read the Docs**: Dive deep into the [Cube AI Documentation](https://cube.ultraviolet.rs/docs/) and [Getting Started Guide](https://cube.ultraviolet.rs/docs/user/getting-started/).
+- **Get Started**: Visit [cube.ultraviolet.rs](https://cube.ultraviolet.rs) to launch your first confidential AI stack.
+- **Read the Docs**: Dive deep into the [Cube AI Documentation](https://cube.ultraviolet.rs/docs/) and [Getting Started Guide](https://cube.ultraviolet.rs/docs/user/getting-started/).

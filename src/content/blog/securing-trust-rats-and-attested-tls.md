@@ -10,7 +10,7 @@ tags: [confidential-computing, attestation, aTLS, cocos ai]
 date: 2026-02-19
 image: "/img/securing-trust-rats-and-attested-tls/overview.png"
 ogImage:
-    url: "/img/securing-trust-rats-and-attested-tls/overview.png"
+  url: "/img/securing-trust-rats-and-attested-tls/overview.png"
 ---
 
 In this article, we'll explore **Remote ATtestation procedureS (RATS)**,
@@ -42,61 +42,61 @@ RATS define several key **roles** in this process:
 1\. The **Attester** is the entity that generates **Evidence** about its
 own operational state.
 
--   Runs in a TEE, device, confidential VM, or enclave.
--   Produces measurements like firmware hashes, kernel versions, or PCR
-    values from a TPM.
--   Uses **Attestation Keys** bound to hardware or firmware to sign
-    this evidence.
+- Runs in a TEE, device, confidential VM, or enclave.
+- Produces measurements like firmware hashes, kernel versions, or PCR
+  values from a TPM.
+- Uses **Attestation Keys** bound to hardware or firmware to sign
+  this evidence.
 
 2\. The **Verifier** evaluates the **Evidence** received from the
 Attester.
 
--   Uses **Endorsements** (e.g., TPM vendor certificates) and
-    **Reference Values** (known-good measurements) to check
-    validity.
--   Produces an **Attestation Result** - a signed statement about the
-    Attester's trustworthiness.
--   Often operated by a trusted authority, like a cloud provider or
-    security service.
+- Uses **Endorsements** (e.g., TPM vendor certificates) and
+  **Reference Values** (known-good measurements) to check
+  validity.
+- Produces an **Attestation Result** - a signed statement about the
+  Attester's trustworthiness.
+- Often operated by a trusted authority, like a cloud provider or
+  security service.
 
 3\. The **Relying Party** consumes the **Attestation Result** from the
 Verifier and **makes trust decisions**. Examples:
 
--   A cloud orchestration platform deciding whether to schedule
-    workloads on a VM.
--   A client deciding whether to connect to a server running inside a
-    TEE.
--   Does **not** need to understand raw evidence, only the Verifier's
-    signed results.
+- A cloud orchestration platform deciding whether to schedule
+  workloads on a VM.
+- A client deciding whether to connect to a server running inside a
+  TEE.
+- Does **not** need to understand raw evidence, only the Verifier's
+  signed results.
 
 4\. The **Endorser** vouches for the trustworthiness of an **Attesting
 Environment** by providing **Endorsements**. Typically the hardware or
 firmware vendor. Examples:
 
--   Intel SGX/TDX provisioning services signing enclave keys.
--   AMD providing ARK and ASK certificates for SEV-SNP.
+- Intel SGX/TDX provisioning services signing enclave keys.
+- AMD providing ARK and ASK certificates for SEV-SNP.
 
 5\. The **Reference Value Provider** supplies **Reference
 Values** - known-good measurements used by the Verifier. Ensures the
 Verifier knows what a "trusted state" looks like. Examples:
 
--   BIOS vendors providing approved firmware hashes.
--   Container registries providing signed digests of container
-    images.
+- BIOS vendors providing approved firmware hashes.
+- Container registries providing signed digests of container
+  images.
 
 6\. The **Verifier Owner** defines **appraisal policies** for a device
 or environment. Determines **what evidence matters** and **what
 constitutes a trustworthy state**. Could be:
 
--   A cloud tenant defining which OS images are approved.
--   An IoT fleet operator defining minimum firmware
-    requirements.
+- A cloud tenant defining which OS images are approved.
+- An IoT fleet operator defining minimum firmware
+  requirements.
 
 7\. **Relying Party Owner** (optional, less explicit). Some deployments
 separate the **Relying Party** from the **Relying Party Owner**:
 
--   The **Relying Party** executes policy decisions.
--   The **Owner** defines those policies.
+- The **Relying Party** executes policy decisions.
+- The **Owner** defines those policies.
 
 This distinction matters in multi-tenant or cloud scenarios where
 **service providers enforce policies defined by customers**.
@@ -139,9 +139,9 @@ it**. Whether you're securing IoT devices, protecting cloud workloads,
 or enabling confidential computing, RATS provide the architectural
 foundation for verifiable trust at scale.
 
-### From TLS to aTLS: Embedding Trust into Secure Channels 
+### From TLS to aTLS: Embedding Trust into Secure Channels
 
-#### TLS Recap - The Foundation of Secure Communication 
+#### TLS Recap - The Foundation of Secure Communication
 
 Transport Layer Security (**TLS**) is the backbone of secure
 communication on the internet. It establishes an encrypted channel
@@ -168,7 +168,7 @@ outdated firmware or malicious code, and the client has no way of
 knowing. In highly sensitive environments - like confidential
 computing, IoT, and secure AI workloads - this isn't enough.
 
-#### What Is aTLS? - Attested TLS 
+#### What Is aTLS? - Attested TLS
 
 **Attested TLS (aTLS)** extends TLS by embedding **remote attestation**
 into the TLS handshake, enabling endpoints to prove not just **who**
@@ -179,17 +179,17 @@ extension - includes **attestation evidence** or **attestation
 results**. This allows one party to verify not only the cryptographic
 identity of the other, but also:
 
--   Whether it's running in a **Trusted Execution Environment
-    (TEE)**.
--   Whether the **firmware and software stack** match known-good
-    configurations.
--   Whether **security policies** are being enforced.
+- Whether it's running in a **Trusted Execution Environment
+  (TEE)**.
+- Whether the **firmware and software stack** match known-good
+  configurations.
+- Whether **security policies** are being enforced.
 
 This builds on the **RATS architecture** defined in [RFC
 9334](https://datatracker.ietf.org/doc/rfc9334/), which standardizes how evidence, endorsements, and
 attestation results are produced and consumed.
 
-#### How aTLS Uses RATS 
+#### How aTLS Uses RATS
 
 aTLS doesn't invent a new attestation framework - it **integrates RATS
 into TLS**. The flow depends on which RATS model is used. The Passport
@@ -219,22 +219,22 @@ This flexibility makes aTLS suitable for cloud workloads, IoT
 deployments, and secure AI environments - each with different trust
 relationships.
 
-#### The Bigger Picture 
+#### The Bigger Picture
 
 By combining **TLS** with **RATS**, aTLS transforms "secure
 communication" into **"secure and verifiable communication."** It
 ensures that:
 
--   **Who you're talking to** is verified.
--   **What they're running** is trustworthy.
--   **How your data is handled** respects your security
-    policies.
+- **Who you're talking to** is verified.
+- **What they're running** is trustworthy.
+- **How your data is handled** respects your security
+  policies.
 
 This is especially critical for **confidential computing**, where trust
 must extend beyond identities to include the **state of the runtime
 environment**.
 
-### Real-World Example - Confidential Computing & AI in COCOS AI 
+### Real-World Example - Confidential Computing & AI in COCOS AI
 
 **Cocos AI** is an advanced platform that leverages **Confidential
 Computing** and **Trusted Execution Environments (TEEs)** to enable
@@ -291,6 +291,7 @@ tlsConfig := &tls.Config{
 	},
 }
 ```
+
 Note: setting `InsecureSkipVerify: true` disables Go's built‑in certificate
 verification. In this aTLS setup, that is intentional because
 `VerifyPeerCertificate` replaces the default verifier so it can both
@@ -302,12 +303,11 @@ implementing full certificate and hostname/SAN validation in your own
 `VerifyPeerCertificate` callback, otherwise TLS certificate checks will
 effectively be disabled.
 
-
 The behavior of the `VerifyPeerCertificate` function, which verifies the attestation extension,
 depends on the underlying platform, such as **AMD SEV-SNP** or
 **Intel TDX**.
 
-### Conclusion 
+### Conclusion
 
 As workloads move to **untrusted environments** like public clouds and
 edge platforms, securing communication is no longer just about

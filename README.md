@@ -30,13 +30,13 @@ Marketing site and content hub for Ultraviolet, built with Astro and Tailwind CS
 
 Run commands from the repository root:
 
-| Command | Action |
-| :-- | :-- |
-| `pnpm install` | Install dependencies |
-| `pnpm run dev` | Start the local Astro development server |
-| `pnpm run build` | Build the production site |
-| `pnpm run preview` | Preview the production build locally |
-| `pnpm run check` | Run Astro and TypeScript checks |
+| Command            | Action                                   |
+| :----------------- | :--------------------------------------- |
+| `pnpm install`     | Install dependencies                     |
+| `pnpm run dev`     | Start the local Astro development server |
+| `pnpm run build`   | Build the production site                |
+| `pnpm run preview` | Preview the production build locally     |
+| `pnpm run check`   | Run Astro and TypeScript checks          |
 
 ## Content Notes
 

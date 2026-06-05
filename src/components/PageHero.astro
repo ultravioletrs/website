@@ -14,63 +14,113 @@ interface Props {
 }
 
 const {
-  eyebrow, h1, sub,
-  primaryLabel, primaryHref, primaryExternal,
-  secondaryLabel, secondaryHref, secondaryExternal,
-  center, meta,
+  eyebrow,
+  h1,
+  sub,
+  primaryLabel,
+  primaryHref,
+  primaryExternal,
+  secondaryLabel,
+  secondaryHref,
+  secondaryExternal,
+  center,
+  meta,
 } = Astro.props;
 ---
 
-{center ? (
-  <section class="hero hero--diagram" id="top">
-    <div class="container">
-      <div class="hero__centered">
-        <span class="eyebrow"><span class="tick" aria-hidden="true"></span>{eyebrow}</span>
-        <h1 class="hero__h1" set:html={h1} />
-        <p class="hero__sub hero__sub--center">{sub}</p>
-        <div class="hero__ctas">
-          <a class={`btn btn--primary`} href={primaryHref} {...(primaryExternal ? { target:'_blank', rel:'noopener' } : {})}>{primaryLabel}</a>
-          {secondaryLabel && (
-            <a class="btn btn--ghost" href={secondaryHref} {...(secondaryExternal ? { target:'_blank', rel:'noopener' } : {})}>{secondaryLabel}</a>
-          )}
-        </div>
-        {Astro.slots.has('default') && (
-          <div class="hero__diagram reveal">
-            <slot />
-          </div>
-        )}
-      </div>
-    </div>
-  </section>
-) : (
-  <section class="hero p-hero" id="top">
-    <div class="container">
-      <div class="hero__split">
-        <div class="hero__lead">
-          <span class="eyebrow"><span class="tick" aria-hidden="true"></span>{eyebrow}</span>
+{
+  center ? (
+    <section class="hero hero--diagram" id="top">
+      <div class="container">
+        <div class="hero__centered">
+          <span class="eyebrow">
+            <span class="tick" aria-hidden="true" />
+            {eyebrow}
+          </span>
           <h1 class="hero__h1" set:html={h1} />
-          <p class="hero__sub">{sub}</p>
+          <p class="hero__sub hero__sub--center">{sub}</p>
           <div class="hero__ctas">
-            <a class="btn btn--primary" href={primaryHref} {...(primaryExternal ? { target:'_blank', rel:'noopener' } : {})}>{primaryLabel}</a>
+            <a
+              class={`btn btn--primary`}
+              href={primaryHref}
+              {...(primaryExternal
+                ? { target: "_blank", rel: "noopener" }
+                : {})}
+            >
+              {primaryLabel}
+            </a>
             {secondaryLabel && (
-              <a class="btn btn--ghost" href={secondaryHref} {...(secondaryExternal ? { target:'_blank', rel:'noopener' } : {})}>{secondaryLabel}</a>
+              <a
+                class="btn btn--ghost"
+                href={secondaryHref}
+                {...(secondaryExternal
+                  ? { target: "_blank", rel: "noopener" }
+                  : {})}
+              >
+                {secondaryLabel}
+              </a>
             )}
           </div>
-          {meta && (
-            <div class="hero__meta mono">
-              {meta.map((m, i) => (
-                <>
-                  {i > 0 && <span>·</span>}
-                  <span>{i === 0 && <span class="hero__pulse"></span>}{m}</span>
-                </>
-              ))}
+          {Astro.slots.has("default") && (
+            <div class="hero__diagram reveal">
+              <slot />
             </div>
           )}
         </div>
-        <div class="hero__visual p-hero__visual">
-          <slot />
+      </div>
+    </section>
+  ) : (
+    <section class="hero p-hero" id="top">
+      <div class="container">
+        <div class="hero__split">
+          <div class="hero__lead">
+            <span class="eyebrow">
+              <span class="tick" aria-hidden="true" />
+              {eyebrow}
+            </span>
+            <h1 class="hero__h1" set:html={h1} />
+            <p class="hero__sub">{sub}</p>
+            <div class="hero__ctas">
+              <a
+                class="btn btn--primary"
+                href={primaryHref}
+                {...(primaryExternal
+                  ? { target: "_blank", rel: "noopener" }
+                  : {})}
+              >
+                {primaryLabel}
+              </a>
+              {secondaryLabel && (
+                <a
+                  class="btn btn--ghost"
+                  href={secondaryHref}
+                  {...(secondaryExternal
+                    ? { target: "_blank", rel: "noopener" }
+                    : {})}
+                >
+                  {secondaryLabel}
+                </a>
+              )}
+            </div>
+            {meta && (
+              <div class="hero__meta mono">
+                {meta.map((m, i) => (
+                  <>
+                    {i > 0 && <span>·</span>}
+                    <span>
+                      {i === 0 && <span class="hero__pulse" />}
+                      {m}
+                    </span>
+                  </>
+                ))}
+              </div>
+            )}
+          </div>
+          <div class="hero__visual p-hero__visual">
+            <slot />
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-)}
+    </section>
+  )
+}

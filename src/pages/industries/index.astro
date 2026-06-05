@@ -1,37 +1,78 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import PageHero from '../../components/PageHero.astro';
-import ProductCTA from '../../components/ProductCTA.astro';
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PageHero from "../../components/PageHero.astro";
+import ProductCTA from "../../components/ProductCTA.astro";
 
 const industries = [
-  { name: 'Government', href: '/industries/government', hero: 'cube', supporting: ['cocos'],
-    problem: 'Digital sovereignty for public services.',
-    blurb: 'Sovereign AI for public administration and citizen services, on national infrastructure under your jurisdiction.' },
-  { name: 'Defense', href: '/industries/defense', hero: 'cube', supporting: ['cocos'],
-    problem: 'Air-gapped AI for classified missions.',
-    blurb: 'Disconnected, hardware-isolated AI for classified and mission-critical environments where nothing may leave.' },
-  { name: 'Healthcare', href: '/industries/healthcare', hero: 'cube', supporting: ['prism'],
-    problem: 'HIPAA-grade AI on data that never leaves.',
-    blurb: 'Run AI on protected health data inside the hospital — and collaborate across institutions without pooling records.' },
-  { name: 'Financial Services', href: '/industries/financial-services', hero: 'cube', supporting: ['prism'],
-    problem: 'Private AI under strict data residency.',
-    blurb: 'Risk, fraud, and analysis on confidential data, plus cross-bank collaboration for AML without sharing raw records.' },
-  { name: 'Telecommunications', href: '/industries/telecommunications', hero: 'cube', supporting: ['cocos'],
-    problem: 'Confidential AI across operator networks.',
-    blurb: 'Multi-operator and 6G workloads on a confidential substrate — validated through EU Horizon Europe research.' },
-  { name: 'Research', href: '/industries/research', hero: 'prism', supporting: ['cube'],
-    problem: 'Collaborate across institutions and borders.',
-    blurb: 'Privacy-preserving collaboration on shared datasets, so institutions can study together without exposing data.' },
+  {
+    name: "Government",
+    href: "/industries/government",
+    hero: "cube",
+    supporting: ["cocos"],
+    problem: "Digital sovereignty for public services.",
+    blurb:
+      "Sovereign AI for public administration and citizen services, on national infrastructure under your jurisdiction.",
+  },
+  {
+    name: "Defense",
+    href: "/industries/defense",
+    hero: "cube",
+    supporting: ["cocos"],
+    problem: "Air-gapped AI for classified missions.",
+    blurb:
+      "Disconnected, hardware-isolated AI for classified and mission-critical environments where nothing may leave.",
+  },
+  {
+    name: "Healthcare",
+    href: "/industries/healthcare",
+    hero: "cube",
+    supporting: ["prism"],
+    problem: "HIPAA-grade AI on data that never leaves.",
+    blurb:
+      "Run AI on protected health data inside the hospital — and collaborate across institutions without pooling records.",
+  },
+  {
+    name: "Financial Services",
+    href: "/industries/financial-services",
+    hero: "cube",
+    supporting: ["prism"],
+    problem: "Private AI under strict data residency.",
+    blurb:
+      "Risk, fraud, and analysis on confidential data, plus cross-bank collaboration for AML without sharing raw records.",
+  },
+  {
+    name: "Telecommunications",
+    href: "/industries/telecommunications",
+    hero: "cube",
+    supporting: ["cocos"],
+    problem: "Confidential AI across operator networks.",
+    blurb:
+      "Multi-operator and 6G workloads on a confidential substrate — validated through EU Horizon Europe research.",
+  },
+  {
+    name: "Research",
+    href: "/industries/research",
+    hero: "prism",
+    supporting: ["cube"],
+    problem: "Collaborate across institutions and borders.",
+    blurb:
+      "Privacy-preserving collaboration on shared datasets, so institutions can study together without exposing data.",
+  },
 ];
 
 const products: Record<string, { name: string }> = {
-  cube: { name: 'Cube AI' }, prism: { name: 'Prism AI' }, cocos: { name: 'Cocos AI' },
+  cube: { name: "Cube AI" },
+  prism: { name: "Prism AI" },
+  cocos: { name: "Cocos AI" },
 };
 ---
 
-<Layout title="Industries — Regulated AI Deployment | Ultraviolet" description="Ultraviolet's sovereign AI infrastructure for government, defense, healthcare, financial services, telecommunications, and research.">
+<Layout
+  title="Industries — Regulated AI Deployment | Ultraviolet"
+  description="Ultraviolet's sovereign AI infrastructure for government, defense, healthcare, financial services, telecommunications, and research."
+>
   <Header />
   <main>
     <PageHero
@@ -48,30 +89,37 @@ const products: Record<string, { name: string }> = {
     <section class="lens section divider-top">
       <div class="container">
         <div class="lens__grid" style="margin-top:3rem">
-          {industries.map((s, i) => {
-            const prods = [s.hero, ...s.supporting];
-            return (
-              <a class="lens__card reveal" data-delay={i % 3} href={s.href}>
-                <div class="lens__card-top">
-                  <h3 class="lens__name">{s.name}</h3>
-                  <span class="lens__go mono" aria-hidden="true">→</span>
-                </div>
-                <p class="lens__problem">{s.problem}</p>
-                <p class="lens__blurb">{s.blurb}</p>
-                <div class="lens__foot">
-                  <span class="lens__plabel">Powered by</span>
-                  <span class="lens__chips">
-                    {prods.map(w => (
-                      <span class="lens__chip">
-                        <span style={`width:7px;height:7px;background:var(--${w});display:inline-block`} aria-hidden="true"></span>
-                        {products[w].name}
-                      </span>
-                    ))}
-                  </span>
-                </div>
-              </a>
-            );
-          })}
+          {
+            industries.map((s, i) => {
+              const prods = [s.hero, ...s.supporting];
+              return (
+                <a class="lens__card reveal" data-delay={i % 3} href={s.href}>
+                  <div class="lens__card-top">
+                    <h3 class="lens__name">{s.name}</h3>
+                    <span class="lens__go mono" aria-hidden="true">
+                      →
+                    </span>
+                  </div>
+                  <p class="lens__problem">{s.problem}</p>
+                  <p class="lens__blurb">{s.blurb}</p>
+                  <div class="lens__foot">
+                    <span class="lens__plabel">Powered by</span>
+                    <span class="lens__chips">
+                      {prods.map((w) => (
+                        <span class="lens__chip">
+                          <span
+                            style={`width:7px;height:7px;background:var(--${w});display:inline-block`}
+                            aria-hidden="true"
+                          />
+                          {products[w].name}
+                        </span>
+                      ))}
+                    </span>
+                  </div>
+                </a>
+              );
+            })
+          }
         </div>
       </div>
     </section>

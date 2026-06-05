@@ -1,39 +1,71 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import ProductCTA from '../../components/ProductCTA.astro';
-import { Check } from '@lucide/astro';
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import ProductCTA from "../../components/ProductCTA.astro";
+import { Check } from "@lucide/astro";
 
 const details = [
-  ['Duration', '1 Feb 2024 — 31 Jan 2027'],
-  ['Total budget', '€5 million'],
-  ['Status', 'Active'],
-  ['Funding programme', 'Horizon Europe'],
+  ["Duration", "1 Feb 2024 — 31 Jan 2027"],
+  ["Total budget", "€5 million"],
+  ["Status", "Active"],
+  ["Funding programme", "Horizon Europe"],
 ];
 
 const objectives = [
-  ['Trusted AI infrastructure', 'Secure infrastructure for AI/ML workloads using confidential computing technologies.'],
-  ['Privacy-preserving ML', 'Collaborative machine learning that preserves data privacy across multiple stakeholders.'],
-  ['Secure data sharing', 'Secure multi-party computation protocols for confidential data exchange and processing.'],
-  ['TEE integration', 'Hardware-based security features that protect AI models and training data.'],
+  [
+    "Trusted AI infrastructure",
+    "Secure infrastructure for AI/ML workloads using confidential computing technologies.",
+  ],
+  [
+    "Privacy-preserving ML",
+    "Collaborative machine learning that preserves data privacy across multiple stakeholders.",
+  ],
+  [
+    "Secure data sharing",
+    "Secure multi-party computation protocols for confidential data exchange and processing.",
+  ],
+  [
+    "TEE integration",
+    "Hardware-based security features that protect AI models and training data.",
+  ],
 ];
 
 const outcomes = [
-  ['Confidential AI platform', 'A secure platform for training and deploying AI models in untrusted environments.'],
-  ['Privacy-preserving protocols', 'Advanced protocols for secure collaborative AI across organizations.'],
-  ['TEE-enabled ML', 'Machine-learning frameworks optimized for Trusted Execution Environments.'],
-  ['Secure model deployment', 'Tools and frameworks for deploying AI models with confidentiality guarantees.'],
+  [
+    "Confidential AI platform",
+    "A secure platform for training and deploying AI models in untrusted environments.",
+  ],
+  [
+    "Privacy-preserving protocols",
+    "Advanced protocols for secure collaborative AI across organizations.",
+  ],
+  [
+    "TEE-enabled ML",
+    "Machine-learning frameworks optimized for Trusted Execution Environments.",
+  ],
+  [
+    "Secure model deployment",
+    "Tools and frameworks for deploying AI models with confidentiality guarantees.",
+  ],
 ];
 
 const partners = [
-  ['Universidad-de-Murcia', 'Universidad de Murcia'], ['fujitsu', 'Fujitsu'], ['canarybit', 'CanaryBit'],
-  ['universityofeastern', 'University of Eastern Finland'], ['Trilateral-Research', 'Trilateral Research'],
-  ['charite', 'Charité'], ['inserm', 'Inserm'], ['fraunhofer', 'Fraunhofer'],
+  ["Universidad-de-Murcia", "Universidad de Murcia"],
+  ["fujitsu", "Fujitsu"],
+  ["canarybit", "CanaryBit"],
+  ["universityofeastern", "University of Eastern Finland"],
+  ["Trilateral-Research", "Trilateral Research"],
+  ["charite", "Charité"],
+  ["inserm", "Inserm"],
+  ["fraunhofer", "Fraunhofer"],
 ];
 ---
 
-<Layout title="TITAN — EU Research Project | Ultraviolet" description="Trusted AI systems through confidential data processing and privacy-preserving technologies. €5M Horizon Europe project.">
+<Layout
+  title="TITAN — EU Research Project | Ultraviolet"
+  description="Trusted AI systems through confidential data processing and privacy-preserving technologies. €5M Horizon Europe project."
+>
   <Header />
   <main>
     <section class="proj-hero section divider-top">
@@ -42,12 +74,30 @@ const partners = [
           <div class="proj-hero__logo proj-hero__logo--box">
             <img src="/img/logos/titan.svg" alt="TITAN logo" />
           </div>
-          <span class="eyebrow"><span class="tick"></span>EU research project</span>
+          <span class="eyebrow"
+            ><span class="tick"></span>EU research project</span
+          >
           <h1 class="proj-hero__name">TITAN</h1>
-          <p class="proj-hero__tagline">Trusted AI systems through confidential computing and privacy-preserving technologies.</p>
-          <div class="hero__ctas" style="justify-content:center;margin-top:2rem">
-            <a class="btn btn--primary" href="https://titan-eosc.eu/" target="_blank" rel="noopener">View project</a>
-            <a class="btn btn--ghost" href="https://cordis.europa.eu/project/id/101129822" target="_blank" rel="noopener">View on Cordis</a>
+          <p class="proj-hero__tagline">
+            Trusted AI systems through confidential computing and
+            privacy-preserving technologies.
+          </p>
+          <div
+            class="hero__ctas"
+            style="justify-content:center;margin-top:2rem"
+          >
+            <a
+              class="btn btn--primary"
+              href="https://titan-eosc.eu/"
+              target="_blank"
+              rel="noopener">View project</a
+            >
+            <a
+              class="btn btn--ghost"
+              href="https://cordis.europa.eu/project/id/101129822"
+              target="_blank"
+              rel="noopener">View on Cordis</a
+            >
           </div>
         </div>
       </div>
@@ -56,12 +106,16 @@ const partners = [
     <section class="section--tight divider-top">
       <div class="container">
         <div class="proj-meta">
-          {details.map(([k, v]) => (
-            <div class="proj-meta__cell">
-              <div class="proj-meta__k">{k}</div>
-              <div class="proj-meta__v">{k === 'Status' ? <span class="proj-status">{v}</span> : v}</div>
-            </div>
-          ))}
+          {
+            details.map(([k, v]) => (
+              <div class="proj-meta__cell">
+                <div class="proj-meta__k">{k}</div>
+                <div class="proj-meta__v">
+                  {k === "Status" ? <span class="proj-status">{v}</span> : v}
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -70,12 +124,26 @@ const partners = [
       <div class="container">
         <div class="p-def__grid">
           <div class="comp__copy reveal">
-            <span class="eyebrow"><span class="tick"></span>Project description</span>
-            <h2 class="comp__h2" style="margin-top:1.1rem">What TITAN sets out to do.</h2>
+            <span class="eyebrow"
+              ><span class="tick"></span>Project description</span
+            >
+            <h2 class="comp__h2" style="margin-top:1.1rem">
+              What TITAN sets out to do.
+            </h2>
           </div>
           <div class="p-def__body reveal" data-delay="1">
-            <p>TITAN is a 36-month project that develops secure and trustworthy confidential data processing and sharing capabilities, and demonstrates them in the EOSC ecosystem.</p>
-            <p>The sharing of sensitive data follows FAIR data and open-science principles, with significant emphasis on privacy preservation and AI solutions aligned to EU ethical, regulatory, and legal boundaries. The open-source software platform focuses on two use cases: government data and healthcare.</p>
+            <p>
+              TITAN is a 36-month project that develops secure and trustworthy
+              confidential data processing and sharing capabilities, and
+              demonstrates them in the EOSC ecosystem.
+            </p>
+            <p>
+              The sharing of sensitive data follows FAIR data and open-science
+              principles, with significant emphasis on privacy preservation and
+              AI solutions aligned to EU ethical, regulatory, and legal
+              boundaries. The open-source software platform focuses on two use
+              cases: government data and healthcare.
+            </p>
           </div>
         </div>
       </div>
@@ -87,17 +155,35 @@ const partners = [
           <div class="proj-col reveal">
             <h3 class="proj-col__h">Key objectives</h3>
             <ul class="proj-list">
-              {objectives.map(([t, x]) => (
-                <li><Check size={15} /><span><strong>{t}:</strong> {x}</span></li>
-              ))}
+              {
+                objectives.map(([t, x]) => (
+                  <li>
+                    <>
+                      <Check size={15} />
+                      <span>
+                        <strong>{t}:</strong> {x}
+                      </span>
+                    </>
+                  </li>
+                ))
+              }
             </ul>
           </div>
           <div class="proj-col reveal" data-delay="1">
             <h3 class="proj-col__h">Expected outcomes</h3>
             <ul class="proj-list">
-              {outcomes.map(([t, x]) => (
-                <li><span class="proj-sq" aria-hidden="true"></span><span><strong>{t}:</strong> {x}</span></li>
-              ))}
+              {
+                outcomes.map(([t, x]) => (
+                  <li>
+                    <>
+                      <span class="proj-sq" aria-hidden="true" />
+                      <span>
+                        <strong>{t}:</strong> {x}
+                      </span>
+                    </>
+                  </li>
+                ))
+              }
             </ul>
           </div>
         </div>
@@ -108,14 +194,42 @@ const partners = [
       <div class="container">
         <div class="reveal" style="max-width:60ch">
           <span class="eyebrow"><span class="tick"></span>Our involvement</span>
-          <h2 class="comp__h2" style="margin-top:1.1rem">Ultraviolet's role.</h2>
+          <h2 class="comp__h2" style="margin-top:1.1rem">
+            Ultraviolet's role.
+          </h2>
         </div>
         <div class="reveal" data-delay="1" style="margin-top:2rem">
-          <p class="proj-inv__p">Ultraviolet brings extensive expertise in confidential computing and privacy-preserving technologies to TITAN. Our experience with TEEs, secure multi-party computation, and collaborative AI platforms positions us as a key contributor to developing trusted AI systems.</p>
+          <p class="proj-inv__p">
+            Ultraviolet brings extensive expertise in confidential computing and
+            privacy-preserving technologies to TITAN. Our experience with TEEs,
+            secure multi-party computation, and collaborative AI platforms
+            positions us as a key contributor to developing trusted AI systems.
+          </p>
           <div class="proj-contrib">
-            <div class="proj-contrib__item"><div class="proj-contrib__t">Confidential computing architecture</div><div class="proj-contrib__d">Designing and implementing TEE-based architectures for secure AI workloads.</div></div>
-            <div class="proj-contrib__item"><div class="proj-contrib__t">Privacy-preserving AI frameworks</div><div class="proj-contrib__d">Frameworks for secure collaborative ML using SMPC and confidential computing.</div></div>
-            <div class="proj-contrib__item"><div class="proj-contrib__t">Platform integration</div><div class="proj-contrib__d">Integrating confidential computing into existing AI/ML platforms and workflows.</div></div>
+            <div class="proj-contrib__item">
+              <div class="proj-contrib__t">
+                Confidential computing architecture
+              </div><div class="proj-contrib__d">
+                Designing and implementing TEE-based architectures for secure AI
+                workloads.
+              </div>
+            </div>
+            <div class="proj-contrib__item">
+              <div class="proj-contrib__t">
+                Privacy-preserving AI frameworks
+              </div><div class="proj-contrib__d">
+                Frameworks for secure collaborative ML using SMPC and
+                confidential computing.
+              </div>
+            </div>
+            <div class="proj-contrib__item">
+              <div class="proj-contrib__t">Platform integration</div><div
+                class="proj-contrib__d"
+              >
+                Integrating confidential computing into existing AI/ML platforms
+                and workflows.
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -124,15 +238,26 @@ const partners = [
     <section class="section--tight divider-top">
       <div class="container" style="text-align:center">
         <span class="eyebrow"><span class="tick"></span>Project partners</span>
-        <p class="proj-pw__sub">Collaborating with leading organizations across Europe.</p>
+        <p class="proj-pw__sub">
+          Collaborating with leading organizations across Europe.
+        </p>
       </div>
       <div class="marquee proj-pw__marquee">
         <div class="marquee__track">
-          {[...partners, ...partners].map(([f, n], i) => (
-            <span class="proj-pw__logo" aria-hidden={i >= partners.length ? 'true' : undefined}>
-              <img src={`/img/logos/${f}.png`} alt={i < partners.length ? n : ''} loading="lazy" />
-            </span>
-          ))}
+          {
+            [...partners, ...partners].map(([f, n], i) => (
+              <span
+                class="proj-pw__logo"
+                aria-hidden={i >= partners.length ? "true" : undefined}
+              >
+                <img
+                  src={`/img/logos/${f}.png`}
+                  alt={i < partners.length ? n : ""}
+                  loading="lazy"
+                />
+              </span>
+            ))
+          }
         </div>
       </div>
     </section>

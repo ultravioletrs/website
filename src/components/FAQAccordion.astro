@@ -8,20 +8,26 @@ interface Props {
 }
 const { items, prod, id, reveal = false, delay } = Astro.props;
 ---
+
 <div
-  class:list={['p-faq__grid', { reveal }]}
+  class:list={["p-faq__grid", { reveal }]}
   data-delay={delay}
   id={id}
   style={prod ? `--prod:var(--${prod})` : undefined}
 >
-  {items.map(([q, a], i) => (
-    <details class="p-faq__item" open={i === 0}>
-      <summary class="p-faq__q">
-        {q}<span class="p-faq__sign" aria-hidden="true"></span>
-      </summary>
-      <div class="p-faq__a">
-        <div class="p-faq__inner"><p class="p-faq__text">{a}</p></div>
-      </div>
-    </details>
-  ))}
+  {
+    items.map(([q, a], i) => (
+      <details class="p-faq__item" open={i === 0}>
+        <summary class="p-faq__q">
+          {q}
+          <span class="p-faq__sign" aria-hidden="true" />
+        </summary>
+        <div class="p-faq__a">
+          <div class="p-faq__inner">
+            <p class="p-faq__text">{a}</p>
+          </div>
+        </div>
+      </details>
+    ))
+  }
 </div>

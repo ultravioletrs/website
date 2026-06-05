@@ -1965,7 +1965,9 @@ details.p-faq__item[open] > .p-faq__a {
   place-items: center;
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.2s var(--ease), background 0.2s var(--ease);
+  transition:
+    opacity 0.2s var(--ease),
+    background 0.2s var(--ease);
   padding: 0;
 }
 .cube-shot__img-wrap:hover .cube-shot__zoom-btn,
@@ -2118,7 +2120,11 @@ details.p-faq__item[open] > .p-faq__a {
   justify-content: center;
   gap: 0.6rem;
   background-color: var(--bg-alt);
-  background-image: repeating-linear-gradient(135deg, var(--bg-sunken) 0 14px, transparent 14px 28px);
+  background-image: repeating-linear-gradient(
+    135deg,
+    var(--bg-sunken) 0 14px,
+    transparent 14px 28px
+  );
 }
 .cube-shot__ph-label {
   font-family: var(--font-display);
@@ -2204,7 +2210,9 @@ details.p-faq__item[open] > .p-faq__a {
   text-decoration: none;
   color: inherit;
   border: 1px solid transparent;
-  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+  transition:
+    border-color 0.2s var(--ease),
+    background-color 0.2s var(--ease);
 }
 .intg__card:hover {
   border-color: var(--line);
@@ -3179,7 +3187,9 @@ details.p-faq__item[open] > .p-faq__a {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
 }
 .blog-nl__btn:hover {
   background: var(--ink-2);

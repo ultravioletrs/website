@@ -10,11 +10,12 @@ authors:
     picture: "https://avatars.githubusercontent.com/u/7561155?v=4"
   - name: "Sammy Oina"
     picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
-tags: [confidential-computing, attestation, aTLS, cocos ai, security analysis, RATS]
+tags:
+  [confidential-computing, attestation, aTLS, cocos ai, security analysis, RATS]
 date: 2026-02-27
 image: "/img/tls-tee-privacy/cover_minimal.png"
 ogImage:
-    url: "/img/tls-tee-privacy/cover_minimal.png"
+  url: "/img/tls-tee-privacy/cover_minimal.png"
 ---
 
 ## Introduction
@@ -175,11 +176,11 @@ For AMD SEV-SNP, the `Attestation()` call results in a hardware-signed report vi
 
 The attestation report is embedded into the X.509 certificate as a custom extension identified by a platform-specific OID:
 
-| Platform       | OID              |
-|:---------------|:-----------------|
-| SEV-SNP + TPM | `2.99999.1.0`    |
-| Azure CVM      | `2.99999.1.1`    |
-| Intel TDX      | `2.99999.1.2`    |
+| Platform      | OID           |
+| :------------ | :------------ |
+| SEV-SNP + TPM | `2.99999.1.0` |
+| Azure CVM     | `2.99999.1.1` |
+| Intel TDX     | `2.99999.1.2` |
 
 ```go
 extension := pkix.Extension{
@@ -391,13 +392,13 @@ Beyond the fundamental binding gap, the IETF analysis flagged two implementation
 
 The table below summarizes how Cocos AI compares to other implementations analyzed by Sardar et al.:
 
-| Implementation | Binding Mechanism | Platform | Nonce Delivery | Vulnerable to Relay? |
-|:---|:---|:---|:---|:---|
-| **Cocos AI** | `SHA3-512(pubKey ‖ attestation_nonce)` | SEV-SNP, TDX | SNI extension | Yes |
-| **Meta Private Processing** | Client's TLS nonce in report_data | SEV-SNP | TLS nonce (no separate attestation nonce) | Yes (also lacks freshness) |
-| **Edgeless Contrast** | `Hash(attestation_nonce ‖ pubKey)` | Intel TDX | ALPN extension | Yes |
-| **CCC PoC** | Per draft-fossati-seat-early-attestation | Various | TLS extension | Yes |
-| **Proposed Mitigation (Sardar et al.)** | Cryptographic binder in CertificateVerify | Any | TLS extension | Achieves Level 2 |
+| Implementation                          | Binding Mechanism                         | Platform     | Nonce Delivery                            | Vulnerable to Relay?       |
+| :-------------------------------------- | :---------------------------------------- | :----------- | :---------------------------------------- | :------------------------- |
+| **Cocos AI**                            | `SHA3-512(pubKey ‖ attestation_nonce)`    | SEV-SNP, TDX | SNI extension                             | Yes                        |
+| **Meta Private Processing**             | Client's TLS nonce in report_data         | SEV-SNP      | TLS nonce (no separate attestation nonce) | Yes (also lacks freshness) |
+| **Edgeless Contrast**                   | `Hash(attestation_nonce ‖ pubKey)`        | Intel TDX    | ALPN extension                            | Yes                        |
+| **CCC PoC**                             | Per draft-fossati-seat-early-attestation  | Various      | TLS extension                             | Yes                        |
+| **Proposed Mitigation (Sardar et al.)** | Cryptographic binder in CertificateVerify | Any          | TLS extension                             | Achieves Level 2           |
 
 Notable: Meta's implementation was audited by Trail of Bits, who did not find the relay attack. As Sardar et al. note, no formal methods were used in that review, underscoring the value of symbolic analysis tools like ProVerif.
 
