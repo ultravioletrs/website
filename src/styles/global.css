@@ -993,10 +993,6 @@ details[open] .hdr__msummary::after {
   object-fit: contain;
   object-position: left;
 }
-[data-theme="dark"] .trust__mem-logos img {
-  filter: brightness(0) invert(1);
-  opacity: 0.82;
-}
 .trust__marquee {
   margin-top: 3rem;
 }
