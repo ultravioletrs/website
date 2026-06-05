@@ -23,8 +23,10 @@ const productTags: Record<string, string> = {
   'cocos': 'Cocos AI',
 };
 
-function getAuthor(post: (typeof posts)[0]) {
-  return post.data.author || (post.data.authors && post.data.authors[0]);
+function getAuthors(post: (typeof posts)[0]): { name: string; picture?: string }[] {
+  if (post.data.authors && post.data.authors.length > 0) return post.data.authors;
+  if (post.data.author) return [post.data.author];
+  return [];
 }
 
 function getProduct(post: (typeof posts)[0]) {
@@ -73,11 +75,15 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
                   <h3 class="blog-card__title">{featuredPost.data.title}</h3>
                   <p class="blog-card__excerpt">{featuredPost.data.excerpt || featuredPost.data.description}</p>
                   <div class="blog-meta">
-                    {getAuthor(featuredPost)?.picture && (
-                      <img class="blog-av" src={getAuthor(featuredPost)!.picture!} alt={getAuthor(featuredPost)!.name} loading="lazy" />
+                    {getAuthors(featuredPost).some(a => a.picture) && (
+                      <div class="blog-av-stack">
+                        {getAuthors(featuredPost).filter(a => a.picture).map(a => (
+                          <img class="blog-av" src={a.picture!} alt={a.name} loading="lazy" />
+                        ))}
+                      </div>
                     )}
                     <div class="blog-meta__txt">
-                      <div class="blog-meta__author">{getAuthor(featuredPost)?.name}</div>
+                      <div class="blog-meta__author">{getAuthors(featuredPost).map(a => a.name).join(', ')}</div>
                       <div class="blog-meta__sub">{fmtDate(featuredPost.data.date)}</div>
                     </div>
                   </div>
@@ -104,11 +110,15 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
                     <h3 class="blog-card__title">{p.data.title}</h3>
                     <p class="blog-card__excerpt">{p.data.excerpt || p.data.description}</p>
                     <div class="blog-meta">
-                      {getAuthor(p)?.picture && (
-                        <img class="blog-av" src={getAuthor(p)!.picture!} alt={getAuthor(p)!.name} loading="lazy" />
+                      {getAuthors(p).some(a => a.picture) && (
+                        <div class="blog-av-stack">
+                          {getAuthors(p).filter(a => a.picture).map(a => (
+                            <img class="blog-av" src={a.picture!} alt={a.name} loading="lazy" />
+                          ))}
+                        </div>
                       )}
                       <div class="blog-meta__txt">
-                        <div class="blog-meta__author">{getAuthor(p)?.name}</div>
+                        <div class="blog-meta__author">{getAuthors(p).map(a => a.name).join(', ')}</div>
                         <div class="blog-meta__sub">{fmtDate(p.data.date)}</div>
                       </div>
                     </div>
@@ -136,14 +146,14 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
                 ))}
               </div>
             </div>
-            <div class="blog-side__block">
+            <!-- <div class="blog-side__block">
               <div class="blog-side__h">Tags</div>
               <div class="blog-cats" id="blog-tags">
                 {allTags.map(tag => (
                   <button class="blog-chip blog-chip--btn" data-tag={tag.toLowerCase()}>{tag}</button>
                 ))}
               </div>
-            </div>
+            </div> -->
             <div class="blog-side__card surface">
               <img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Ultraviolet" height="22" style="height:22px;width:auto;" />
               <p class="blog-side__txt">Ultraviolet builds sovereign AI infrastructure — confidential computing, private LLM deployment, and secure collaboration.</p>
@@ -151,6 +161,23 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
                 <a href="https://github.com/ultravioletrs" target="_blank" rel="noopener">GitHub ↗</a>
                 <a href="https://www.linkedin.com/company/ultravioletrs" target="_blank" rel="noopener">LinkedIn ↗</a>
               </div>
+            </div>
+            <div class="blog-side__card surface">
+              <div class="blog-side__h" style="margin-bottom:0.5rem">Stay in the loop</div>
+              <p class="blog-side__txt" style="margin-bottom:1rem">Get new posts on confidential computing and sovereign AI delivered to your inbox.</p>
+              <form
+                class="blog-nl"
+                action="https://ultraviolet.us20.list-manage.com/subscribe/post?u=b35e6bdc7b2adf06c56da2265&id=88ed6c4af0&f_id=004f06eaf0"
+                method="post"
+                target="_blank"
+                aria-label="Newsletter subscription"
+              >
+                <input type="email" name="EMAIL" placeholder="Your email" required aria-label="Email address" class="blog-nl__input" />
+                <button type="submit" class="blog-nl__btn">Subscribe</button>
+                <div style="position:absolute;left:-5000px" aria-hidden="true">
+                  <input type="text" name="b_b35e6bdc7b2adf06c56da2265_88ed6c4af0" tabindex="-1" value="" aria-label="Leave empty" />
+                </div>
+              </form>
             </div>
           </aside>
         </div>

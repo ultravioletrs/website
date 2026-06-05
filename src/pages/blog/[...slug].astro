@@ -26,7 +26,12 @@ function fmtDate(d: Date) {
 
 const coverImage = post.data.image || post.data.coverImage || `/img/blog/${post.slug}.png`;
 const eyebrow = post.data.category || (post.data.tags || [])[0] || 'Blog';
-const author = post.data.author || (post.data.authors && post.data.authors[0]);
+const authors: { name: string; picture?: string }[] =
+  post.data.authors?.length ? post.data.authors : post.data.author ? [post.data.author] : [];
+
+function getPostAuthors(p: typeof post): { name: string; picture?: string }[] {
+  return p.data.authors?.length ? p.data.authors : p.data.author ? [p.data.author] : [];
+}
 ---
 
 <Layout
@@ -44,13 +49,17 @@ const author = post.data.author || (post.data.authors && post.data.authors[0]);
         <div class="post__head reveal">
           <div class="post__eyebrow">{eyebrow}</div>
           <h1 class="post__title">{post.data.title}</h1>
-          {author && (
+          {authors.length > 0 && (
             <div class="post__byline">
-              {author.picture && (
-                <img class="blog-av blog-av--lg" src={author.picture} alt={author.name} loading="lazy" />
+              {authors.some(a => a.picture) && (
+                <div class="blog-av-stack blog-av-stack--lg">
+                  {authors.filter(a => a.picture).map(a => (
+                    <img class="blog-av blog-av--lg" src={a.picture!} alt={a.name} loading="lazy" />
+                  ))}
+                </div>
               )}
               <div>
-                <div class="post__author">{author.name}</div>
+                <div class="post__author">{authors.map(a => a.name).join(', ')}</div>
                 <div class="post__date">{fmtDate(post.data.date)}</div>
               </div>
             </div>
@@ -78,6 +87,7 @@ const author = post.data.author || (post.data.authors && post.data.authors[0]);
             {nextPosts.map((p, i) => {
               const nCover = p.data.image || p.data.coverImage || `/img/blog/${p.slug}.png`;
               const nEyebrow = p.data.category || (p.data.tags || [])[0] || 'Blog';
+              const nAuthors = getPostAuthors(p);
               return (
                 <a class="nr-card reveal" data-delay={i} href={`/blog/${p.slug}`}>
                   <div class="nr-card__media">
@@ -86,7 +96,22 @@ const author = post.data.author || (post.data.authors && post.data.authors[0]);
                   <div class="nr-card__body">
                     <span class="blog-badge">{nEyebrow}</span>
                     <h3 class="nr-card__title">{p.data.title}</h3>
-                    <div class="nr-card__meta">{fmtDate(p.data.date)}</div>
+                    {(p.data.excerpt || p.data.description) && (
+                      <p class="nr-card__excerpt">{p.data.excerpt || p.data.description}</p>
+                    )}
+                    <div class="blog-meta" style="margin-top:auto">
+                      {nAuthors.some(a => a.picture) && (
+                        <div class="blog-av-stack">
+                          {nAuthors.filter(a => a.picture).map(a => (
+                            <img class="blog-av" src={a.picture!} alt={a.name} loading="lazy" />
+                          ))}
+                        </div>
+                      )}
+                      <div class="blog-meta__txt">
+                        <div class="blog-meta__author">{nAuthors.map(a => a.name).join(', ')}</div>
+                        <div class="blog-meta__sub">{fmtDate(p.data.date)}</div>
+                      </div>
+                    </div>
                     <span class="nr-card__cue">Read article <span class="ar" aria-hidden="true">→</span></span>
                   </div>
                 </a>

@@ -2932,8 +2932,15 @@ details.p-faq__item[open] > .p-faq__a {
   border-radius: 50%;
   object-fit: cover;
   background: var(--bg-sunken);
-  border: 1px solid var(--line);
+  border: 2px solid var(--bg);
   flex-shrink: 0;
+}
+.blog-av-stack {
+  display: flex;
+  flex-shrink: 0;
+}
+.blog-av-stack .blog-av + .blog-av {
+  margin-left: -10px;
 }
 .blog-meta__author {
   font-family: var(--font-display);
@@ -3058,6 +3065,42 @@ details.p-faq__item[open] > .p-faq__a {
 .blog-side__links a:hover {
   color: var(--prod);
 }
+.blog-nl {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+.blog-nl__input {
+  width: 100%;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.blog-nl__input:focus {
+  border-color: var(--ink-2);
+}
+.blog-nl__btn {
+  padding: 0.55rem 0.8rem;
+  background: var(--ink);
+  color: var(--bg);
+  border: 1px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+.blog-nl__btn:hover {
+  background: var(--ink-2);
+  border-color: var(--ink-2);
+}
 .blog-empty {
   color: var(--muted);
   font-size: 0.9rem;
@@ -3069,6 +3112,18 @@ details.p-faq__item[open] > .p-faq__a {
 .blog-av--lg {
   width: 44px;
   height: 44px;
+}
+.blog-av-stack--lg .blog-av--lg + .blog-av--lg {
+  margin-left: -14px;
+}
+.nr-card__excerpt {
+  font-size: 0.82rem;
+  color: var(--ink-2);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .post {
   padding-block: clamp(2.5rem, 6vw, 4.5rem);
