@@ -184,9 +184,7 @@ const faqs = [
               your network.
             </p>
             <div class="hero__ctas">
-              <a class="btn btn--primary" href="/company/contact"
-                >Talk to sales</a
-              >
+              <button class="btn btn--primary" id="cube-demo-open" style="cursor:pointer">Schedule Demo</button>
               <a
                 class="btn btn--ghost"
                 href="https://cube.ultraviolet.rs/docs/"
@@ -805,8 +803,8 @@ const faqs = [
     <ProductCTA
       h2="Bring frontier AI inside<br />your perimeter."
       sub="Talk to the team about pilots, deployment architectures, and regulated-industry rollouts — on your hardware, on your terms."
-      primaryLabel="Talk to sales"
-      primaryHref="/company/contact"
+      primaryLabel="Schedule Demo"
+      primaryHref="#cube-demo"
       secondaryLabel="Read the docs"
       secondaryHref="https://cube.ultraviolet.rs/docs/"
       secondaryExternal
@@ -815,3 +813,66 @@ const faqs = [
   </main>
   <Footer />
 </Layout>
+
+<!-- Cube AI demo booking modal -->
+<div class="prism-demo-modal" id="cube-demo-modal" role="dialog" aria-modal="true" aria-label="Schedule a Cube AI demo">
+  <div class="prism-demo-modal__backdrop" id="cube-demo-backdrop"></div>
+  <div class="prism-demo-modal__panel">
+    <div class="prism-demo-modal__head">
+      <div>
+        <h2 class="prism-demo-modal__title">Book a <span style="color:var(--cube)">Demo</span></h2>
+        <p class="prism-demo-modal__sub">Schedule your live demo session with the Cube AI team.</p>
+      </div>
+      <button class="prism-demo-modal__close" id="cube-demo-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="prism-demo-modal__cal">
+      <iframe
+        id="cube-demo-iframe"
+        title="Schedule a Demo with Cube AI"
+        style="width:100%;height:100%;border:0"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <div class="prism-demo-modal__foot mono">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Secured via Google Calendar
+    </div>
+  </div>
+</div>
+
+<script>
+  // TODO: replace with the Cube AI appointment schedule URL from Google Calendar
+  const CUBE_CAL_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2go-uvRkTNc0XR_6kDLKXLBgBoTZ4AgevaBshsjgQqxSFmuV7DJCMp2HWvOLu5EdeJtHPCguCz';
+
+  const modal = document.getElementById('cube-demo-modal')!;
+  const backdrop = document.getElementById('cube-demo-backdrop')!;
+  const closeBtn = document.getElementById('cube-demo-close')!;
+  const iframe = document.getElementById('cube-demo-iframe') as HTMLIFrameElement;
+
+  const openDemo = () => {
+    if (!iframe.src || iframe.src === 'about:blank') iframe.src = CUBE_CAL_URL;
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    iframe.style.filter = isDark ? 'invert(1) hue-rotate(180deg)' : 'none';
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeDemo = () => {
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  document.getElementById('cube-demo-open')?.addEventListener('click', openDemo);
+
+  // Intercept the ProductCTA anchor that links to #cube-demo
+  document.querySelectorAll('a[href="#cube-demo"]').forEach(a => {
+    a.addEventListener('click', (e) => { e.preventDefault(); openDemo(); });
+  });
+
+  closeBtn.addEventListener('click', closeDemo);
+  backdrop.addEventListener('click', closeDemo);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDemo(); });
+</script>

@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -13,10 +13,10 @@ interface Props {
 
 const {
   title,
-  description = 'Ultraviolet is a sovereign AI infrastructure company. Build, deploy, govern, and operate AI on infrastructure you control.',
-  ogType = 'website',
-  ogImage = '/img/og-default.png',
-  ogImageAlt = 'Ultraviolet',
+  description = "Ultraviolet is a sovereign AI infrastructure company. Build, deploy, govern, and operate AI on infrastructure you control.",
+  ogType = "website",
+  ogImage = "/img/og-default.png",
+  ogImageAlt = "Ultraviolet",
   canonical,
   prod,
 } = Astro.props;
@@ -32,11 +32,17 @@ const resolveMetaUrl = (value: string | undefined) => {
 
 const canonicalUrl = resolveMetaUrl(canonical ?? Astro.url.pathname);
 const ogImageUrl = resolveMetaUrl(ogImage);
+console.log("og image url: ", ogImageUrl);
 ---
 
 <!doctype html>
-<html lang="en" data-theme="light" data-density="comfortable" data-display="grotesk"
-      style={prod ? `--prod: var(--${prod});` : ''}>
+<html
+  lang="en"
+  data-theme="light"
+  data-density="comfortable"
+  data-display="grotesk"
+  style={prod ? `--prod: var(--${prod});` : ""}
+>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -53,7 +59,10 @@ const ogImageUrl = resolveMetaUrl(ogImage);
     {ogImageUrl && <meta property="og:image:alt" content={ogImageAlt} />}
 
     <!-- Twitter -->
-    <meta name="twitter:card" content={ogImageUrl ? 'summary_large_image' : 'summary'} />
+    <meta
+      name="twitter:card"
+      content={ogImageUrl ? "summary_large_image" : "summary"}
+    />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
@@ -63,8 +72,18 @@ const ogImageUrl = resolveMetaUrl(ogImage);
     <!-- Fonts (non-render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" /></noscript>
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap"
+      /></noscript
+    >
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -75,9 +94,12 @@ const ogImageUrl = resolveMetaUrl(ogImage);
 
     <script is:inline>
       (function () {
-        const saved = localStorage.getItem('uv-theme');
-        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-          document.documentElement.setAttribute('data-theme', 'dark');
+        const saved = localStorage.getItem("uv-theme");
+        if (
+          saved === "dark" ||
+          (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.setAttribute("data-theme", "dark");
         }
       })();
     </script>
@@ -87,25 +109,27 @@ const ogImageUrl = resolveMetaUrl(ogImage);
 
     <script>
       function initReveal() {
-        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const reduced = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
         const showEl = (el: Element) => {
-          el.classList.add('in');
-          (el as HTMLElement).style.opacity = '1';
-          (el as HTMLElement).style.transform = 'none';
+          el.classList.add("in");
+          (el as HTMLElement).style.opacity = "1";
+          (el as HTMLElement).style.transform = "none";
         };
 
         if (reduced) {
-          document.querySelectorAll('.reveal').forEach(showEl);
+          document.querySelectorAll(".reveal").forEach(showEl);
           return;
         }
 
         // Show viewport-visible elements immediately (no transition) to fix Speed Index.
         // Elements already on screen at load time should not be hidden.
         const vh = window.innerHeight;
-        document.querySelectorAll('.reveal').forEach((el) => {
+        document.querySelectorAll(".reveal").forEach((el) => {
           const r = el.getBoundingClientRect();
           if (r.top < vh && r.bottom > 0) {
-            (el as HTMLElement).style.transition = 'none';
+            (el as HTMLElement).style.transition = "none";
             showEl(el);
           }
         });
@@ -113,16 +137,24 @@ const ogImageUrl = resolveMetaUrl(ogImage);
         let ticking = false;
         const check = () => {
           ticking = false;
-          document.querySelectorAll('.reveal:not(.in)').forEach((el) => {
+          document.querySelectorAll(".reveal:not(.in)").forEach((el) => {
             const r = el.getBoundingClientRect();
             if (r.top < vh * 0.92 && r.bottom > 0) showEl(el);
           });
         };
-        const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(check); } };
+        const onScroll = () => {
+          if (!ticking) {
+            ticking = true;
+            requestAnimationFrame(check);
+          }
+        };
 
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll, { passive: true });
-        setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(showEl), 2600);
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll, { passive: true });
+        setTimeout(
+          () => document.querySelectorAll(".reveal:not(.in)").forEach(showEl),
+          2600,
+        );
       }
 
       initReveal();

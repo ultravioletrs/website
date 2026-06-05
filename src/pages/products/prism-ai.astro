@@ -139,12 +139,10 @@ const faqs = [
               exactly what ran.
             </p>
             <div class="hero__ctas">
-              <a
+              <button
                 class="btn btn--primary"
-                href="https://prism.ultraviolet.rs"
-                target="_blank"
-                rel="noopener">Try Prism Cloud</a
-              >
+                id="prism-demo-open"
+                style="cursor:pointer">Schedule Demo</button>
               <a
                 class="btn btn--ghost"
                 href="https://prism.ultraviolet.rs/docs/"
@@ -550,4 +548,61 @@ const faqs = [
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeLb();
   });
+</script>
+
+<!-- Demo booking modal -->
+<div class="prism-demo-modal" id="prism-demo-modal" role="dialog" aria-modal="true" aria-label="Schedule a demo">
+  <div class="prism-demo-modal__backdrop" id="prism-demo-backdrop"></div>
+  <div class="prism-demo-modal__panel">
+    <div class="prism-demo-modal__head">
+      <div>
+        <h2 class="prism-demo-modal__title">Book a <span style="color:var(--prism)">Demo</span></h2>
+        <p class="prism-demo-modal__sub">Schedule your live demo session with the Prism AI team.</p>
+      </div>
+      <button class="prism-demo-modal__close" id="prism-demo-close" aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="prism-demo-modal__cal">
+      <iframe
+        id="prism-demo-iframe"
+        title="Schedule a Demo with Prism AI"
+        style="width:100%;height:100%;border:0"
+        allowfullscreen
+      ></iframe>
+    </div>
+    <div class="prism-demo-modal__foot mono">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      Secured via Google Calendar
+    </div>
+  </div>
+</div>
+
+<script>
+  const demoModal = document.getElementById('prism-demo-modal')!;
+  const demoBackdrop = document.getElementById('prism-demo-backdrop')!;
+  const demoClose = document.getElementById('prism-demo-close')!;
+  const demoIframe = document.getElementById('prism-demo-iframe') as HTMLIFrameElement;
+  const demoOpen = document.getElementById('prism-demo-open')!;
+
+  const CAL_URL = 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ2go-uvRkTNc0XR_6kDLKXLBgBoTZ4AgevaBshsjgQqxSFmuV7DJCMp2HWvOLu5EdeJtHPCguCz';
+
+  const openDemo = () => {
+    if (!demoIframe.src || demoIframe.src === 'about:blank') demoIframe.src = CAL_URL;
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    demoIframe.style.filter = isDark ? 'invert(1) hue-rotate(180deg)' : 'none';
+    demoModal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeDemo = () => {
+    demoModal.classList.remove('is-open');
+    document.body.style.overflow = '';
+  };
+
+  demoOpen.addEventListener('click', openDemo);
+  demoClose.addEventListener('click', closeDemo);
+  demoBackdrop.addEventListener('click', closeDemo);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDemo(); });
 </script>
