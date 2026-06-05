@@ -1,34 +1,118 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import SectionHead from '../../components/SectionHead.astro';
-import ProductCTA from '../../components/ProductCTA.astro';
-import FAQAccordion from '../../components/FAQAccordion.astro';
-import { Check, Zap, Lock, Layers, Globe, Shield, Server, Eye } from 'lucide-astro';
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SectionHead from "../../components/SectionHead.astro";
+import ProductCTA from "../../components/ProductCTA.astro";
+import FAQAccordion from "../../components/FAQAccordion.astro";
+import {
+  Check,
+  Zap,
+  Lock,
+  Layers,
+  Globe,
+  Shield,
+  Server,
+  Eye,
+} from "lucide-astro";
 
 const caps = [
-  { Icon: Zap, t: 'Multi-party computation', d: 'Run joint workloads across organizations with each party\'s inputs sealed from the others.' },
-  { Icon: Lock, t: 'Confidential VMs', d: 'Provision, manage, and monitor hardware-isolated CVMs that the host operator cannot inspect.' },
-  { Icon: Layers, t: 'Hardware abstraction layer', d: 'A unified HAL and runtime inside the enclave runs your workloads across AMD SEV-SNP and Intel TDX.' },
-  { Icon: Server, t: 'In-enclave agent', d: 'An execution scheduler and coordinator runs inside each secure enclave, driving the workload and its attestation end to end.' },
-  { Icon: Globe, t: 'End-to-end encryption', d: 'Data stays encrypted in transit, at rest, and in use — algorithms and datasets are only ever decrypted inside an attested enclave.' },
-  { Icon: Shield, t: 'RBAC + ABAC', d: 'Fine-grained access control with separate roles for dataset and algorithm providers — no party sees another\'s raw data.' },
-  { Icon: Layers, t: 'Asset & computation management', d: 'Register, version, and govern datasets and algorithms, and define workloads as manifests of users and assets.' },
-  { Icon: Check, t: 'Remote attestation', d: 'Cryptographic proof of exactly which code processed which data, for every run.' },
-  { Icon: Eye, t: 'Logging & instrumentation', d: 'Enclave monitoring, event tracking, and audit logging give you operational visibility into every confidential computation.' },
+  {
+    Icon: Zap,
+    t: "Multi-party computation",
+    d: "Run joint workloads across organizations with each party's inputs sealed from the others.",
+  },
+  {
+    Icon: Lock,
+    t: "Confidential VMs",
+    d: "Provision, manage, and monitor hardware-isolated CVMs that the host operator cannot inspect.",
+  },
+  {
+    Icon: Layers,
+    t: "Hardware abstraction layer",
+    d: "A unified HAL and runtime inside the enclave runs your workloads across AMD SEV-SNP and Intel TDX.",
+  },
+  {
+    Icon: Server,
+    t: "In-enclave agent",
+    d: "An execution scheduler and coordinator runs inside each secure enclave, driving the workload and its attestation end to end.",
+  },
+  {
+    Icon: Globe,
+    t: "End-to-end encryption",
+    d: "Data stays encrypted in transit, at rest, and in use — algorithms and datasets are only ever decrypted inside an attested enclave.",
+  },
+  {
+    Icon: Shield,
+    t: "RBAC + ABAC",
+    d: "Fine-grained access control with separate roles for dataset and algorithm providers — no party sees another's raw data.",
+  },
+  {
+    Icon: Layers,
+    t: "Asset & computation management",
+    d: "Register, version, and govern datasets and algorithms, and define workloads as manifests of users and assets.",
+  },
+  {
+    Icon: Check,
+    t: "Remote attestation",
+    d: "Cryptographic proof of exactly which code processed which data, for every run.",
+  },
+  {
+    Icon: Eye,
+    t: "Logging & instrumentation",
+    d: "Enclave monitoring, event tracking, and audit logging give you operational visibility into every confidential computation.",
+  },
 ];
 
 const faqs = [
-  ['What is Prism AI?', 'Prism AI is a platform for secure multi-party AI computation. It lets multiple organizations run a shared model or analysis on their combined data without any of them exposing their raw data to the others or to the platform operator.'],
-  ['How is data kept private between parties?', 'Each computation runs inside a Confidential VM in a Trusted Execution Environment. Every party\'s inputs are encrypted and isolated in hardware. Other parties — and the host — only ever see the agreed final result, never the underlying data.'],
-  ['How do I know the right code actually ran?', 'Prism uses remote attestation to produce a cryptographic proof of exactly which code executed inside the TEE and on which sealed inputs. Every participant can independently verify that proof before trusting the result.'],
-  ['Is there a free tier?', 'Yes. Prism Cloud\'s free tier runs on managed infrastructure with up to a 10-minute execution lifecycle and up to 5 workspace members — ideal for developers, researchers, and teams evaluating the platform. Enterprise tiers add custom infrastructure, unlimited members and runs, SLAs, and on-premise deployment.'],
-  ['How does Prism relate to Cube and Cocos?', 'Prism AI is the collaboration layer of the Ultraviolet stack. It uses the same confidential-computing primitives as Cocos AI and complements Cube AI, which handles private single-organization AI.'],
+  [
+    "What is Prism AI?",
+    "Prism AI is a platform for secure multi-party AI computation. It lets multiple organizations run a shared model or analysis on their combined data without any of them exposing their raw data to the others or to the platform operator.",
+  ],
+  [
+    "How is data kept private between parties?",
+    "Each computation runs inside a Confidential VM in a Trusted Execution Environment. Every party's inputs are encrypted and isolated in hardware. Other parties — and the host — only ever see the agreed final result, never the underlying data.",
+  ],
+  [
+    "How do I know the right code actually ran?",
+    "Prism uses remote attestation to produce a cryptographic proof of exactly which code executed inside the TEE and on which sealed inputs. Every participant can independently verify that proof before trusting the result.",
+  ],
+  [
+    "Is there a free tier?",
+    "Yes. Prism Cloud's free tier runs on managed infrastructure with up to a 10-minute execution lifecycle and up to 5 workspace members — ideal for developers, researchers, and teams evaluating the platform. Enterprise tiers add custom infrastructure, unlimited members and runs, SLAs, and on-premise deployment.",
+  ],
+  [
+    "How does Prism relate to Cube and Cocos?",
+    "Prism AI is the collaboration layer of the Ultraviolet stack. It uses the same confidential-computing primitives as Cocos AI and complements Cube AI, which handles private single-organization AI.",
+  ],
+  [
+    "What is a Confidential VM (CVM)?",
+    "A Confidential VM is a virtual machine backed by hardware-level memory encryption — AMD SEV-SNP or Intel TDX. The hypervisor and host OS cannot read the VM's memory, so even the infrastructure operator has no access to the data or model weights running inside. Prism provisions and manages these CVMs on your behalf.",
+  ],
+  [
+    "What kinds of workloads can I run on Prism?",
+    "Any computation that processes sensitive data from multiple parties: joint model training, federated inference, cross-organizational analytics, privacy-preserving record linkage, and confidential data-sharing for research or compliance. You bring your algorithm and datasets as versioned assets; Prism handles the enclave orchestration.",
+  ],
+  [
+    "Can I run Prism on my own infrastructure?",
+    "Yes. Prism Cloud offers a managed option for quick evaluation, but the Enterprise tier supports bring-your-own CVM infrastructure — on-premises servers with AMD SEV-SNP or Intel TDX support, sovereign cloud, or private VPC. Your CVMs, your hardware, your jurisdiction.",
+  ],
+  [
+    "What does remote attestation actually prove?",
+    "Before any party's data is released into the enclave, the TEE generates a hardware-signed attestation report. That report contains a cryptographic measurement of the exact code loaded, the enclave configuration, and the platform firmware. Any participant — or an independent verifier — can check this report against the expected values to confirm the right algorithm is running unchanged, before releasing their data.",
+  ],
+  [
+    "How are roles and access controlled?",
+    "Prism uses both RBAC (role-based) and ABAC (attribute-based) access control. Dataset providers, algorithm providers, and computation consumers have separate roles with strictly scoped permissions. No party can access another's raw assets — only the agreed output is shared, and the access policy is enforced inside the enclave.",
+  ],
 ];
 ---
 
-<Layout title="Prism AI — Secure AI Collaboration | Ultraviolet" description="Prism AI runs joint AI workloads across organizational boundaries inside Trusted Execution Environments. Each party keeps its data private and shares only the result." prod="prism">
+<Layout
+  title="Prism AI — Secure AI Collaboration | Ultraviolet"
+  description="Prism AI runs joint AI workloads across organizational boundaries inside Trusted Execution Environments. Each party keeps its data private and shares only the result."
+  prod="prism"
+>
   <Header />
   <main>
     <!-- Hero -->
@@ -37,14 +121,36 @@ const faqs = [
         <div class="hero__split">
           <div class="hero__lead">
             <span class="eyebrow p-hero__tag" style="color:var(--prism)">
-              <span class="plogo" style="height:17px;width:90px;background-color:currentColor;-webkit-mask-image:url('/img/logos/prism-ai-trim.png');mask-image:url('/img/logos/prism-ai-trim.png')" role="img" aria-label="Prism AI"></span>
+              <span
+                class="plogo"
+                style="height:17px;width:90px;background-color:currentColor;-webkit-mask-image:url('/img/logos/prism-ai-trim.png');mask-image:url('/img/logos/prism-ai-trim.png')"
+                role="img"
+                aria-label="Prism AI"></span>
               — Secure AI Collaboration
             </span>
-            <h1 class="hero__h1">Collaborate on AI<br /><span class="hero__accent">without exposing data.</span></h1>
-            <p class="hero__sub">Prism AI runs joint AI workloads across organizational boundaries inside Trusted Execution Environments. Each party keeps its data private and shares only the result — with cryptographic proof of exactly what ran.</p>
+            <h1 class="hero__h1">
+              Collaborate on AI<br /><span class="hero__accent"
+                >without exposing data.</span>
+            </h1>
+            <p class="hero__sub">
+              Prism AI runs joint AI workloads across organizational boundaries
+              inside Trusted Execution Environments. Each party keeps its data
+              private and shares only the result — with cryptographic proof of
+              exactly what ran.
+            </p>
             <div class="hero__ctas">
-              <a class="btn btn--primary" href="https://prism.ultraviolet.rs" target="_blank" rel="noopener">Try Prism Cloud</a>
-              <a class="btn btn--ghost" href="https://docs.prism.ultraviolet.rs" target="_blank" rel="noopener">Read the docs</a>
+              <a
+                class="btn btn--primary"
+                href="https://prism.ultraviolet.rs"
+                target="_blank"
+                rel="noopener">Try Prism Cloud</a
+              >
+              <a
+                class="btn btn--ghost"
+                href="https://prism.ultraviolet.rs/docs/"
+                target="_blank"
+                rel="noopener">Read the docs</a
+              >
             </div>
             <div class="hero__meta mono">
               <span><span class="hero__pulse"></span> Free tier available</span>
@@ -56,10 +162,42 @@ const faqs = [
             <div class="hero__shots">
               <div class="browser reveal">
                 <div class="browser__bar">
-                  <span class="browser__dot"></span><span class="browser__dot"></span><span class="browser__dot"></span>
+                  <span class="browser__dot"></span><span class="browser__dot"
+                  ></span><span class="browser__dot"></span>
                   <span class="browser__url">prism.ultraviolet.rs</span>
                 </div>
-                <img src="/img/prism_dashboard.png" alt="Prism AI dashboard showing confidential computations and CVM status" loading="eager" style="width:100%;display:block" />
+                <div class="cube-shot__img-wrap">
+                  <img
+                    src="/img/prism_dashboard.png"
+                    alt="Prism AI dashboard showing confidential computations and CVM status"
+                    loading="eager"
+                    style="width:100%;display:block"
+                  />
+                  <button
+                    class="cube-shot__zoom-btn"
+                    data-zoom-src="/img/prism_dashboard.png"
+                    data-zoom-alt="Prism AI dashboard"
+                    aria-label="Zoom: Prism AI dashboard"
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      aria-hidden="true"
+                    >
+                      <polyline points="15 3 21 3 21 9"></polyline><polyline
+                        points="9 21 3 21 3 15"></polyline>
+                      <line x1="21" y1="3" x2="14" y2="10"></line><line
+                        x1="3"
+                        y1="21"
+                        x2="10"
+                        y2="14"></line>
+                    </svg>
+                  </button>
+                </div>
               </div>
               <div class="p-float mono" style="--prod:var(--prism)">
                 <span class="hero__pulse"></span> 2 parties · 0 inputs revealed
@@ -75,26 +213,54 @@ const faqs = [
       <div class="container">
         <div class="p-def__grid">
           <div class="comp__copy reveal">
-            <span class="eyebrow"><span class="tick"></span>What is Prism AI</span>
-            <h2 class="comp__h2" style="margin-top:1.1rem">Secure multi-party AI for data that can't be pooled.</h2>
+            <span class="eyebrow"
+              ><span class="tick"></span>What is Prism AI</span
+            >
+            <h2 class="comp__h2" style="margin-top:1.1rem">
+              Secure multi-party AI for data that can't be pooled.
+            </h2>
+            <div class="p-def__body" style="margin-bottom:2rem">
+              <p>
+                Some of the most valuable AI work spans organizations that
+                cannot legally or commercially share raw data — hospitals,
+                banks, telcos, research consortia. Prism AI lets them run a
+                shared model or analysis together, with every input sealed
+                inside a Trusted Execution Environment.
+              </p>
+              <p>
+                It is the collaboration layer of the Ultraviolet ecosystem: a
+                commercial platform, with a free tier to start and enterprise
+                tiers for production multi-party deployments.
+              </p>
+            </div>
           </div>
           <div class="reveal" data-delay="1">
-            <div class="p-def__body" style="margin-bottom:2rem">
-              <p>Some of the most valuable AI work spans organizations that cannot legally or commercially share raw data — hospitals, banks, telcos, research consortia. Prism AI lets them run a shared model or analysis together, with every input sealed inside a Trusted Execution Environment.</p>
-              <p>It is the collaboration layer of the Ultraviolet ecosystem: a commercial platform, with a free tier to start and enterprise tiers for production multi-party deployments.</p>
-            </div>
             <div class="comp__proof p-proof" style="--prod:var(--prism)">
-              {[
-                ['Private inputs', 'Each party\'s data stays encrypted and isolated — invisible to other parties and to the host.'],
-                ['Shared result', 'Only the agreed output is released. The raw data never leaves any organization\'s perimeter.'],
-                ['Verifiable', 'Remote attestation proves which code ran on which data, so every party can trust the outcome.'],
-                ['Free to start', 'Begin on the free tier; scale to enterprise for production multi-party workloads.'],
-              ].map(([t, d]) => (
-                <div class="comp__proof-item">
-                  <div class="comp__proof-t">{t}</div>
-                  <div class="comp__proof-d">{d}</div>
-                </div>
-              ))}
+              {
+                [
+                  [
+                    "Private inputs",
+                    "Each party's data stays encrypted and isolated — invisible to other parties and to the host.",
+                  ],
+                  [
+                    "Shared result",
+                    "Only the agreed output is released. The raw data never leaves any organization's perimeter.",
+                  ],
+                  [
+                    "Verifiable",
+                    "Remote attestation proves which code ran on which data, so every party can trust the outcome.",
+                  ],
+                  [
+                    "Free to start",
+                    "Begin on the free tier; scale to enterprise for production multi-party workloads.",
+                  ],
+                ].map(([t, d]) => (
+                  <div class="comp__proof-item">
+                    <div class="comp__proof-t">{t}</div>
+                    <div class="comp__proof-d">{d}</div>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
@@ -106,20 +272,38 @@ const faqs = [
       <div class="container">
         <div class="prin__head reveal">
           <span class="eyebrow"><span class="tick"></span>How it works</span>
-          <h2 class="prin__h2" style="margin-top:1.1rem">Compute together.<br />Reveal nothing.</h2>
+          <h2 class="prin__h2" style="margin-top:1.1rem">
+            Compute together.<br />Reveal nothing.
+          </h2>
         </div>
         <div class="prin__grid">
-          {[
-            ['01', 'Each party brings its data', 'Every organization keeps its dataset inside its own boundary. Nothing is pooled, copied, or shared in the clear.'],
-            ['02', 'Computation runs inside a TEE', 'A Confidential VM loads the agreed workload in a Trusted Execution Environment. Inputs are sealed — even the host cannot read them.'],
-            ['03', 'Only the result comes out', 'Parties receive the agreed output and a remote-attestation proof of exactly what ran. Raw data never leaves any perimeter.'],
-          ].map(([n, t, d], i) => (
-            <div class="prin__cell reveal" data-delay={i}>
-              <div class="prin__num" style="color:var(--prism)">{n}</div>
-              <h3 class="prin__t">{t}</h3>
-              <p class="prin__d">{d}</p>
-            </div>
-          ))}
+          {
+            [
+              [
+                "01",
+                "Each party brings its data",
+                "Every organization keeps its dataset inside its own boundary. Nothing is pooled, copied, or shared in the clear.",
+              ],
+              [
+                "02",
+                "Computation runs inside a TEE",
+                "A Confidential VM loads the agreed workload in a Trusted Execution Environment. Inputs are sealed — even the host cannot read them.",
+              ],
+              [
+                "03",
+                "Only the result comes out",
+                "Parties receive the agreed output and a remote-attestation proof of exactly what ran. Raw data never leaves any perimeter.",
+              ],
+            ].map(([n, t, d], i) => (
+              <div class="prin__cell reveal" data-delay={i}>
+                <div class="prin__num" style="color:var(--prism)">
+                  {n}
+                </div>
+                <h3 class="prin__t">{t}</h3>
+                <p class="prin__d">{d}</p>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -127,15 +311,23 @@ const faqs = [
     <!-- Capabilities -->
     <section class="ind section divider-top p-caps" style="--prod:var(--prism)">
       <div class="container">
-        <SectionHead eyebrow="Capabilities" title="Built for collaboration<br />across boundaries." intro="Prism AI handles the hard parts of multi-party computation — isolation, access control, attestation, and orchestration — so partners can focus on the work, not the trust problem." />
+        <SectionHead
+          eyebrow="Capabilities"
+          title="Built for collaboration<br />across boundaries."
+          intro="Prism AI handles the hard parts of multi-party computation — isolation, access control, attestation, and orchestration — so partners can focus on the work, not the trust problem."
+        />
         <div class="ind__grid" style="margin-top:3rem">
-          {caps.map(({ Icon, t, d }, i) => (
-            <div class="ind__cell reveal" data-delay={i % 3}>
-              <span class="ind__ic" style="color:var(--prism)"><Icon size={20} /></span>
-              <h3 class="ind__t">{t}</h3>
-              <p class="ind__d">{d}</p>
-            </div>
-          ))}
+          {
+            caps.map(({ Icon, t, d }, i) => (
+              <div class="ind__cell reveal" data-delay={i % 3}>
+                <span class="ind__ic" style="color:var(--prism)">
+                  <Icon size={20} />
+                </span>
+                <h3 class="ind__t">{t}</h3>
+                <p class="ind__d">{d}</p>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -143,30 +335,71 @@ const faqs = [
     <!-- Pricing -->
     <section class="section divider-top" id="pricing">
       <div class="container">
-        <SectionHead eyebrow="Pricing" title="Choose your plan." intro="Flexible pricing tailored to your security needs — start free in Prism Cloud, or scale to a custom enterprise deployment on your own infrastructure." />
+        <SectionHead
+          eyebrow="Pricing"
+          title="Choose your plan."
+          intro="Flexible pricing tailored to your security needs — start free in Prism Cloud, or scale to a custom enterprise deployment on your own infrastructure."
+        />
         <div class="price__grid" style="--prod:var(--prism)">
           <div class="price__card">
             <div class="price__name">Trial</div>
             <div class="price__amt">Free</div>
-            <p class="price__tagline">Evaluate confidential AI on managed or your own infrastructure.</p>
+            <p class="price__tagline">
+              Evaluate confidential AI on managed or your own infrastructure.
+            </p>
             <div class="price__feats">
-              {['Managed or BYO CVM infrastructure', 'Max 10 minutes per lifecycle (Managed)', '5 workspace members', 'Community support'].map(f => (
-                <div class="price__feat"><Check size={14} style="color:var(--prism);flex-shrink:0;margin-top:4px" />{f}</div>
-              ))}
+              {
+                [
+                  "Managed or BYO CVM infrastructure",
+                  "Max 10 minutes per lifecycle (Managed)",
+                  "5 workspace members",
+                  "Community support",
+                ].map((f) => (
+                  <div class="price__feat">
+                    <Check
+                      size={14}
+                      style="color:var(--prism);flex-shrink:0;margin-top:4px"
+                    />
+                    {f}
+                  </div>
+                ))
+              }
             </div>
-            <a class="btn btn--ghost price__cta" href="https://prism.ultraviolet.rs" target="_blank" rel="noopener">Get started</a>
+            <a
+              class="btn btn--ghost price__cta"
+              href="https://prism.ultraviolet.rs"
+              target="_blank"
+              rel="noopener">Get started</a
+            >
           </div>
           <div class="price__card price__card--feat">
             <span class="price__pop">Recommended</span>
             <div class="price__name">Enterprise</div>
             <div class="price__amt">Contact Us</div>
-            <p class="price__tagline">Production multi-party deployments, tailored to your organization.</p>
+            <p class="price__tagline">
+              Production multi-party deployments, tailored to your organization.
+            </p>
             <div class="price__feats">
-              {['Custom infrastructure allocation', 'Unlimited members & runs', 'Dedicated support & SLAs', 'Custom integration options'].map(f => (
-                <div class="price__feat"><Check size={14} style="color:var(--prism);flex-shrink:0;margin-top:4px" />{f}</div>
-              ))}
+              {
+                [
+                  "Custom infrastructure allocation",
+                  "Unlimited members & runs",
+                  "Dedicated support & SLAs",
+                  "Custom integration options",
+                ].map((f) => (
+                  <div class="price__feat">
+                    <Check
+                      size={14}
+                      style="color:var(--prism);flex-shrink:0;margin-top:4px"
+                    />
+                    {f}
+                  </div>
+                ))
+              }
             </div>
-            <a class="btn btn--primary price__cta" href="/company/contact">Contact sales</a>
+            <a class="btn btn--primary price__cta" href="/company/contact"
+              >Contact sales</a
+            >
           </div>
         </div>
       </div>
@@ -177,7 +410,9 @@ const faqs = [
       <div class="container">
         <div class="prin__head reveal" style="margin-bottom:2.6rem">
           <span class="eyebrow"><span class="tick"></span>FAQ</span>
-          <h2 class="prin__h2" style="margin-top:1.1rem">Questions about secure<br />collaboration.</h2>
+          <h2 class="prin__h2" style="margin-top:1.1rem">
+            Questions about secure<br />collaboration.
+          </h2>
         </div>
         <FAQAccordion items={faqs} prod="prism" reveal delay={1} id="faq" />
       </div>
@@ -186,31 +421,60 @@ const faqs = [
     <!-- Cross-sell -->
     <section class="stack section divider-top p-cross">
       <div class="container">
-        <SectionHead eyebrow="One ecosystem" title="Part of the Ultraviolet<br />sovereign AI stack." intro="Three products, designed to work as one." />
+        <SectionHead
+          eyebrow="One ecosystem"
+          title="Part of the Ultraviolet<br />sovereign AI stack."
+          intro="Three products, designed to work as one."
+        />
         <div class="stack__grid" style="margin-top:3rem">
           <a href="/products/cube-ai" class="stack__card">
             <div class="stack__card-top">
-              <span class="p-cross__role" style="color:var(--cube)"><span style="width:8px;height:8px;background:var(--cube);display:inline-block"></span> Sovereign AI Platform</span>
+              <span class="p-cross__role" style="color:var(--cube)"
+                ><span
+                  style="width:8px;height:8px;background:var(--cube);display:inline-block"
+                ></span> Sovereign AI Platform</span
+              >
               <h3 style="font-size:1.7rem;margin:0.7rem 0 0">Cube AI</h3>
             </div>
-            <p class="stack__desc">Full-stack private LLM platform — inference, RAG, guardrails, governance, audit.</p>
-            <span class="arrow-link" style="margin-top:auto">Explore Cube AI<span aria-hidden="true">→</span></span>
+            <p class="stack__desc">
+              Full-stack private LLM platform — inference, RAG, guardrails,
+              governance, audit.
+            </p>
+            <span class="arrow-link" style="margin-top:auto"
+              >Explore Cube AI<span aria-hidden="true">→</span></span
+            >
           </a>
           <div class="stack__card stack__card--here">
             <div class="stack__card-top">
-              <span class="p-cross__role" style="color:var(--prism)"><span style="width:8px;height:8px;background:var(--prism);display:inline-block"></span> Secure AI Collaboration</span>
+              <span class="p-cross__role" style="color:var(--prism)"
+                ><span
+                  style="width:8px;height:8px;background:var(--prism);display:inline-block"
+                ></span> Secure AI Collaboration</span
+              >
               <h3 style="font-size:1.7rem;margin:0.7rem 0 0">Prism AI</h3>
             </div>
-            <p class="stack__desc">Run joint AI workloads across organizations without exposing any party's data.</p>
+            <p class="stack__desc">
+              Run joint AI workloads across organizations without exposing any
+              party's data.
+            </p>
             <span class="p-cross__here-tag">You are here</span>
           </div>
           <a href="/products/cocos-ai" class="stack__card">
             <div class="stack__card-top">
-              <span class="p-cross__role" style="color:var(--cocos)"><span style="width:8px;height:8px;background:var(--cocos);display:inline-block"></span> Confidential Computing Foundation</span>
+              <span class="p-cross__role" style="color:var(--cocos)"
+                ><span
+                  style="width:8px;height:8px;background:var(--cocos);display:inline-block"
+                ></span> Confidential Computing Foundation</span
+              >
               <h3 style="font-size:1.7rem;margin:0.7rem 0 0">Cocos AI</h3>
             </div>
-            <p class="stack__desc">The open-source TEE abstraction layer the rest of the stack is built on.</p>
-            <span class="arrow-link" style="margin-top:auto">Explore Cocos AI<span aria-hidden="true">→</span></span>
+            <p class="stack__desc">
+              The open-source TEE abstraction layer the rest of the stack is
+              built on.
+            </p>
+            <span class="arrow-link" style="margin-top:auto"
+              >Explore Cocos AI<span aria-hidden="true">→</span></span
+            >
           </a>
         </div>
       </div>
@@ -229,3 +493,61 @@ const faqs = [
   </main>
   <Footer />
 </Layout>
+
+<div
+  class="cube-lb"
+  id="prism-lb"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Image zoom"
+>
+  <div class="cube-lb__inner">
+    <img class="cube-lb__img" id="prism-lb-img" src="" alt="" />
+    <button class="cube-lb__close" id="prism-lb-close" aria-label="Close">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line><line
+          x1="6"
+          y1="6"
+          x2="18"
+          y2="18"></line>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+  const lb = document.getElementById("prism-lb")!;
+  const lbImg = document.getElementById("prism-lb-img") as HTMLImageElement;
+  const lbClose = document.getElementById("prism-lb-close")!;
+
+  const openLb = (src: string, alt: string) => {
+    lbImg.src = src;
+    lbImg.alt = alt;
+    lb.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  };
+  const closeLb = () => {
+    lb.classList.remove("is-open");
+    document.body.style.overflow = "";
+  };
+
+  document.addEventListener("click", (e) => {
+    const btn = (e.target as Element).closest<HTMLElement>("[data-zoom-src]");
+    if (btn) openLb(btn.dataset.zoomSrc!, btn.dataset.zoomAlt ?? "");
+  });
+  lbClose.addEventListener("click", closeLb);
+  lb.addEventListener("click", (e) => {
+    if (e.target === lb) closeLb();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLb();
+  });
+</script>

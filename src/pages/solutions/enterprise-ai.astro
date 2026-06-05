@@ -1,10 +1,14 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import LensPage from '../../components/LensPage.astro';
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LensPage from "../../components/LensPage.astro";
 ---
-<Layout title="Enterprise AI — Governed AI at Scale | Ultraviolet" description="Production AI with governance teams can trust. Audit, RBAC, usage accounting, and guardrails that scale across every team and domain.">
+
+<Layout
+  title="Enterprise AI — Governed AI at Scale | Ultraviolet"
+  description="Production AI with governance teams can trust. Audit, RBAC, usage accounting, and guardrails that scale across every team and domain."
+>
   <Header />
   <LensPage
     eyebrow="Solution · Enterprise AI"
@@ -12,25 +16,55 @@ import LensPage from '../../components/LensPage.astro';
     sub="A governed platform — audit, RBAC, usage accounting, and guardrails — that scales across every team and domain, without sending a byte off-prem."
     compH2="Hosted AI lacks the governance<br />enterprise needs."
     compBody="Enterprise AI rollouts fail not on capability but on governance. Audit trails, access control, usage accounting, and policy enforcement are afterthoughts in hosted APIs — but requirements for regulated organizations."
-    compHeaders={['Hosted AI APIs', 'Ultraviolet Enterprise AI']}
+    compHeaders={["Hosted AI APIs", "Ultraviolet Enterprise AI"]}
     compRows={[
-      ['Audit trail', 'Limited; vendor-controlled; incomplete.', 'Full, queryable audit of every prompt and action.'],
-      ['Access control', 'API-key level; no fine-grained control.', 'RBAC + ABAC with per-domain isolation.'],
-      ['Usage accounting', 'Billing metrics; no team-level breakdown.', 'Per-domain usage accounting built in.'],
-      ['Policy enforcement', 'Prompt filtering at best.', 'NeMo guardrails on every prompt and response.'],
+      [
+        "Audit trail",
+        "Limited; vendor-controlled; incomplete.",
+        "Full, queryable audit of every prompt and action.",
+      ],
+      [
+        "Access control",
+        "API-key level; no fine-grained control.",
+        "RBAC + ABAC with per-domain isolation.",
+      ],
+      [
+        "Usage accounting",
+        "Billing metrics; no team-level breakdown.",
+        "Per-domain usage accounting built in.",
+      ],
+      [
+        "Policy enforcement",
+        "Prompt filtering at best.",
+        "NeMo guardrails on every prompt and response.",
+      ],
     ]}
     product={{
-      which: 'cube',
-      name: 'Cube AI',
-      role: 'Sovereign AI Platform',
-      blurb: 'The full enterprise AI platform: inference, RAG, guardrails, governance, and audit — with multi-tenancy and domain isolation for every team.',
-      points: ['Complete audit trail for every interaction', 'RBAC + ABAC with domain isolation', 'NeMo guardrails and PII redaction', 'Usage accounting per team and domain'],
-      supporting: [{ which: 'prism', name: 'Prism AI', role: 'Secure AI Collaboration', blurb: 'Add cross-organizational AI collaboration when teams need to work across boundaries without sharing raw data.' }],
+      which: "cube",
+      name: "Cube AI",
+      role: "Sovereign AI Platform",
+      blurb:
+        "The full enterprise AI platform: inference, RAG, guardrails, governance, and audit — with multi-tenancy and domain isolation for every team.",
+      points: [
+        "Complete audit trail for every interaction",
+        "RBAC + ABAC with domain isolation",
+        "NeMo guardrails and PII redaction",
+        "Usage accounting per team and domain",
+      ],
+      supporting: [
+        {
+          which: "prism",
+          name: "Prism AI",
+          role: "Secure AI Collaboration",
+          blurb:
+            "Add cross-organizational AI collaboration when teams need to work across boundaries without sharing raw data.",
+        },
+      ],
     }}
     ctaH2="AI your compliance team<br />will approve."
     ctaSub="Talk to the team about enterprise deployments, governance requirements, and regulatory rollouts."
-    ctaPrimaryLabel="Contact sales"
-    ctaPrimaryHref="/company/contact"
+    ctaLabel="View Cube AI"
+    ctaHref="/products/cube-ai"
   />
   <Footer />
 </Layout>

@@ -1,10 +1,14 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import LensPage from '../../components/LensPage.astro';
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LensPage from "../../components/LensPage.astro";
 ---
-<Layout title="Sovereign AI — Build AI Under Your Jurisdiction | Ultraviolet" description="Deploy AI entirely inside your national or organizational boundary. No foreign cloud, no data egress, full sovereignty guaranteed by hardware.">
+
+<Layout
+  title="Sovereign AI — Build AI Under Your Jurisdiction | Ultraviolet"
+  description="Deploy AI entirely inside your national or organizational boundary. No foreign cloud, no data egress, full sovereignty guaranteed by hardware."
+>
   <Header />
   <LensPage
     eyebrow="Solution · Sovereign AI"
@@ -12,25 +16,55 @@ import LensPage from '../../components/LensPage.astro';
     sub="Build, run, and govern AI entirely inside your national or organizational boundary — on hardware you control, with nothing leaving your network, ever."
     compH2="The problem with hosted AI<br />for sovereign organizations."
     compBody="Every request to a hosted AI service is data leaving your jurisdiction. For governments, defense, and regulated organizations, that is not a feature trade-off — it is a structural compliance failure."
-    compHeaders={['Hosted AI APIs', 'Ultraviolet']}
+    compHeaders={["Hosted AI APIs", "Ultraviolet"]}
     compRows={[
-      ['Where is your data processed?', 'A foreign cloud under foreign jurisdiction and laws.', 'Inside your own perimeter, on your own hardware.'],
-      ['Who sets governance policy?', 'The vendor\'s terms of service govern what runs.', 'Your organization\'s policies govern everything.'],
-      ['Can regulators audit it?', 'You inherit the vendor\'s audit artifacts.', 'A complete, hardware-attested audit trail you own.'],
-      ['What is the sovereignty risk?', 'Data egress creates ongoing legal exposure.', 'Zero outbound by default — no egress risk.'],
+      [
+        "Where is your data processed?",
+        "A foreign cloud under foreign jurisdiction and laws.",
+        "Inside your own perimeter, on your own hardware.",
+      ],
+      [
+        "Who sets governance policy?",
+        "The vendor's terms of service govern what runs.",
+        "Your organization's policies govern everything.",
+      ],
+      [
+        "Can regulators audit it?",
+        "You inherit the vendor's audit artifacts.",
+        "A complete, hardware-attested audit trail you own.",
+      ],
+      [
+        "What is the sovereignty risk?",
+        "Data egress creates ongoing legal exposure.",
+        "Zero outbound by default — no egress risk.",
+      ],
     ]}
     product={{
-      which: 'cube',
-      name: 'Cube AI',
-      role: 'Sovereign AI Platform',
-      blurb: 'The full-stack platform for private, sovereign AI deployment — inference, retrieval, guardrails, governance, and a production workspace, entirely inside your boundary.',
-      points: ['On-premises, air-gapped, or sovereign cloud', 'Jurisdictional data residency guaranteed', 'Hardware TEE isolation available', 'Apache 2.0 — inspect and own the stack'],
-      supporting: [{ which: 'cocos', name: 'Cocos AI', role: 'Confidential Computing Foundation', blurb: 'The open TEE foundation beneath Cube AI — hardware-enforced isolation and remote attestation for maximum assurance.' }],
+      which: "cube",
+      name: "Cube AI",
+      role: "Sovereign AI Platform",
+      blurb:
+        "The full-stack platform for private, sovereign AI deployment — inference, retrieval, guardrails, governance, and a production workspace, entirely inside your boundary.",
+      points: [
+        "On-premises, air-gapped, or sovereign cloud",
+        "Jurisdictional data residency guaranteed",
+        "Hardware TEE isolation available",
+        "Apache 2.0 — inspect and own the stack",
+      ],
+      supporting: [
+        {
+          which: "cocos",
+          name: "Cocos AI",
+          role: "Confidential Computing Foundation",
+          blurb:
+            "The open TEE foundation beneath Cube AI — hardware-enforced isolation and remote attestation for maximum assurance.",
+        },
+      ],
     }}
     ctaH2="Your AI. Your jurisdiction.<br />Your rules."
     ctaSub="Talk to the team about sovereign AI deployments, national cloud configurations, and regulatory compliance."
-    ctaPrimaryLabel="Contact sales"
-    ctaPrimaryHref="/company/contact"
+    ctaLabel="View Cube AI"
+    ctaHref="/products/cube-ai"
   />
   <Footer />
 </Layout>

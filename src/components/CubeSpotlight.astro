@@ -1,12 +1,32 @@
 ---
-import { Server, Layers, Shield, Eye, Lock } from 'lucide-astro';
+import { Server, Layers, Shield, Eye, Lock } from "lucide-astro";
 
 const caps = [
-  { Icon: Server, title: 'Private inference', desc: 'vLLM and Ollama runtimes serving open models on your own GPUs — no API keys, no egress.' },
-  { Icon: Layers, title: 'RAG on your data', desc: 'Connect internal knowledge bases with retrieval that never copies a byte off-prem.' },
-  { Icon: Shield, title: 'Guardrails & policy', desc: 'NeMo-based guardrails and policy enforcement on every prompt and response.' },
-  { Icon: Eye, title: 'Governance & audit', desc: 'Full audit trail, role-based access, and usage accounting built into the platform.' },
-  { Icon: Lock, title: 'Hardware TEE', desc: 'Run the whole stack inside AMD SEV-SNP or Intel TDX enclaves — weights and tensors stay encrypted in use.' },
+  {
+    Icon: Server,
+    title: "Private inference",
+    desc: "vLLM and Ollama runtimes serving open models on your own GPUs — no API keys, no egress.",
+  },
+  {
+    Icon: Layers,
+    title: "RAG on your data",
+    desc: "Connect internal knowledge bases with retrieval that never copies a byte off-prem.",
+  },
+  {
+    Icon: Shield,
+    title: "Guardrails & policy",
+    desc: "NeMo-based guardrails and policy enforcement on every prompt and response.",
+  },
+  {
+    Icon: Eye,
+    title: "Governance & audit",
+    desc: "Full audit trail, role-based access, and usage accounting built into the platform.",
+  },
+  {
+    Icon: Lock,
+    title: "Hardware TEE",
+    desc: "Run the whole stack inside AMD SEV-SNP or Intel TDX enclaves — weights and tensors stay encrypted in use.",
+  },
 ];
 ---
 
@@ -15,29 +35,43 @@ const caps = [
     <div class="cube__grid">
       <div class="cube__copy">
         <span class="eyebrow" style="color:var(--cube)">
-          <span style="width:8px;height:8px;background:var(--cube);display:inline-block" aria-hidden="true"></span>
+          <span
+            style="width:8px;height:8px;background:var(--cube);display:inline-block"
+            aria-hidden="true"></span>
           Cube AI — Flagship
         </span>
-        <h2 class="cube__h2 reveal">Your AI operating environment,<br />running entirely on your hardware.</h2>
+        <h2 class="cube__h2 reveal">
+          Your AI operating environment,<br />running entirely on your hardware.
+        </h2>
         <p class="cube__lead reveal" data-delay="1">
-          Cube AI is the full-stack platform for sovereign AI: inference, retrieval, guardrails,
-          governance, audit, and a production-ready workspace — deployed inside your perimeter and
-          governed by your policies, not a vendor&rsquo;s terms of service.
+          Cube AI is the full-stack platform for sovereign AI: inference,
+          retrieval, guardrails, TEE, governance, audit, and a production-ready
+          workspace — deployed inside your perimeter and governed by your
+          policies, not a vendor&rsquo;s terms of service.
         </p>
         <div class="cube__caps reveal" data-delay="2">
-          {caps.map(({ Icon, title, desc }) => (
-            <div class="cube__cap">
-              <span class="cube__cap-ic"><Icon size={18} /></span>
-              <div>
-                <div class="cube__cap-t">{title}</div>
-                <div class="cube__cap-d">{desc}</div>
+          {
+            caps.map(({ Icon, title, desc }) => (
+              <div class="cube__cap">
+                <span class="cube__cap-ic">
+                  <Icon size={18} />
+                </span>
+                <div>
+                  <div class="cube__cap-t">{title}</div>
+                  <div class="cube__cap-d">{desc}</div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
         <div class="cube__ctas">
           <a class="btn btn--primary" href="/company/contact">Request a demo</a>
-          <a class="arrow-link" href="https://docs.cube.ultraviolet.rs" target="_blank" rel="noopener">Read the docs<span aria-hidden="true">→</span></a>
+          <a
+            class="arrow-link"
+            href="https://cube.ultraviolet.rs/docs/"
+            target="_blank"
+            rel="noopener">Read the docs<span aria-hidden="true">→</span></a
+          >
         </div>
       </div>
       <div class="cube__visual reveal" data-delay="1">
@@ -49,11 +83,34 @@ const caps = [
             <span class="browser__url">cube.ultraviolet.rs/dashboard</span>
           </div>
           <div class="cube-shot__img-wrap">
-            <img src="/img/cube_dashboard.png" alt="Cube AI dashboard showing model status, domains, and audit logs" loading="lazy" style="width:100%;display:block" />
-            <button class="cube-shot__zoom-btn" data-zoom-src="/img/cube_dashboard.png" data-zoom-alt="Cube AI dashboard" aria-label="Zoom: Cube AI dashboard">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
-                <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+            <img
+              src="/img/cube_dashboard.png"
+              alt="Cube AI dashboard showing model status, domains, and audit logs"
+              loading="lazy"
+              style="width:100%;display:block"
+            />
+            <button
+              class="cube-shot__zoom-btn"
+              data-zoom-src="/img/cube_dashboard.png"
+              data-zoom-alt="Cube AI dashboard"
+              aria-label="Zoom: Cube AI dashboard"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <polyline points="15 3 21 3 21 9"></polyline><polyline
+                  points="9 21 3 21 3 15"></polyline>
+                <line x1="21" y1="3" x2="14" y2="10"></line><line
+                  x1="3"
+                  y1="21"
+                  x2="10"
+                  y2="14"></line>
               </svg>
             </button>
           </div>
@@ -66,38 +123,60 @@ const caps = [
   </div>
 </section>
 
-<div class="cube-lb" id="cube-lb" role="dialog" aria-modal="true" aria-label="Image zoom">
+<div
+  class="cube-lb"
+  id="cube-lb"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Image zoom"
+>
   <div class="cube-lb__inner">
     <img class="cube-lb__img" id="cube-lb-img" src="" alt="" />
     <button class="cube-lb__close" id="cube-lb-close" aria-label="Close">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        aria-hidden="true"
+      >
+        <line x1="18" y1="6" x2="6" y2="18"></line><line
+          x1="6"
+          y1="6"
+          x2="18"
+          y2="18"></line>
       </svg>
     </button>
   </div>
 </div>
 
 <script>
-  const lb = document.getElementById('cube-lb')!;
-  const lbImg = document.getElementById('cube-lb-img') as HTMLImageElement;
-  const lbClose = document.getElementById('cube-lb-close')!;
+  const lb = document.getElementById("cube-lb")!;
+  const lbImg = document.getElementById("cube-lb-img") as HTMLImageElement;
+  const lbClose = document.getElementById("cube-lb-close")!;
 
   const openLb = (src: string, alt: string) => {
     lbImg.src = src;
     lbImg.alt = alt;
-    lb.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
+    lb.classList.add("is-open");
+    document.body.style.overflow = "hidden";
   };
   const closeLb = () => {
-    lb.classList.remove('is-open');
-    document.body.style.overflow = '';
+    lb.classList.remove("is-open");
+    document.body.style.overflow = "";
   };
 
-  document.addEventListener('click', (e) => {
-    const btn = (e.target as Element).closest<HTMLElement>('[data-zoom-src]');
-    if (btn) openLb(btn.dataset.zoomSrc!, btn.dataset.zoomAlt ?? '');
+  document.addEventListener("click", (e) => {
+    const btn = (e.target as Element).closest<HTMLElement>("[data-zoom-src]");
+    if (btn) openLb(btn.dataset.zoomSrc!, btn.dataset.zoomAlt ?? "");
   });
-  lbClose.addEventListener('click', closeLb);
-  lb.addEventListener('click', (e) => { if (e.target === lb) closeLb(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLb(); });
+  lbClose.addEventListener("click", closeLb);
+  lb.addEventListener("click", (e) => {
+    if (e.target === lb) closeLb();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLb();
+  });
 </script>

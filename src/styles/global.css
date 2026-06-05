@@ -1009,7 +1009,8 @@ details[open] .hdr__msummary::after {
   flex-shrink: 0;
 }
 .trust__logo img {
-  max-height: 40px;
+  height: 36px;
+  max-width: 140px;
   width: auto;
   object-fit: contain;
   opacity: 0.55;
@@ -1026,7 +1027,7 @@ details[open] .hdr__msummary::after {
 
 /* ============ PROBLEM ============ */
 .problem__head {
-  max-width: 56ch;
+  /* max-width: 56ch; */
   margin-bottom: 3.5rem;
 }
 .problem__h2 {
@@ -2116,6 +2117,14 @@ details.p-faq__item[open] > .p-faq__a {
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid transparent;
+  transition: border-color 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+.intg__card:hover {
+  border-color: var(--line);
+  background: var(--bg-sunken);
 }
 .intg__top {
   display: flex;
@@ -2782,7 +2791,8 @@ details.p-faq__item[open] > .p-faq__a {
   flex-shrink: 0;
 }
 .proj-pw__logo img {
-  max-height: 40px;
+  height: 36px;
+  max-width: 140px;
   width: auto;
   object-fit: contain;
   opacity: 0.58;

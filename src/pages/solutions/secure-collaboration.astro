@@ -1,10 +1,14 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import LensPage from '../../components/LensPage.astro';
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LensPage from "../../components/LensPage.astro";
 ---
-<Layout title="Secure Collaboration — Joint AI Without Exposing Data | Ultraviolet" description="Run shared AI across organizational boundaries. Every party's inputs sealed inside a TEE — only the result is shared.">
+
+<Layout
+  title="Secure Collaboration — Joint AI Without Exposing Data | Ultraviolet"
+  description="Run shared AI across organizational boundaries. Every party's inputs sealed inside a TEE — only the result is shared."
+>
   <Header />
   <LensPage
     eyebrow="Solution · Secure Collaboration"
@@ -12,26 +16,55 @@ import LensPage from '../../components/LensPage.astro';
     sub="Run shared models and analyses across organizational boundaries with every party's inputs sealed inside a Trusted Execution Environment."
     compH2="Data sharing for AI collaboration<br />creates unacceptable risk."
     compBody="Organizations with complementary data cannot pool it for AI workloads without creating legal, commercial, and security exposure. The result: valuable insights left on the table because no one can trust a shared platform."
-    compHeaders={['Data pooling approach', 'Ultraviolet Secure Collaboration']}
+    compHeaders={["Data pooling approach", "Ultraviolet Secure Collaboration"]}
     compRows={[
-      ['Data access', 'All parties see all data in the clear.', 'Each party\'s data is sealed in a TEE — others see nothing.'],
-      ['Trust model', 'Contractual — hope everyone complies.', 'Cryptographic — attestation proves it.'],
-      ['Legal risk', 'Data sharing creates ongoing IP and regulatory exposure.', 'No raw data shared; only the agreed result.'],
-      ['Auditability', 'Hard to prove what happened to shared data.', 'Remote attestation proves exactly what ran.'],
+      [
+        "Data access",
+        "All parties see all data in the clear.",
+        "Each party's data is sealed in a TEE — others see nothing.",
+      ],
+      [
+        "Trust model",
+        "Contractual — hope everyone complies.",
+        "Cryptographic — attestation proves it.",
+      ],
+      [
+        "Legal risk",
+        "Data sharing creates ongoing IP and regulatory exposure.",
+        "No raw data shared; only the agreed result.",
+      ],
+      [
+        "Auditability",
+        "Hard to prove what happened to shared data.",
+        "Remote attestation proves exactly what ran.",
+      ],
     ]}
     product={{
-      which: 'prism',
-      name: 'Prism AI',
-      role: 'Secure AI Collaboration',
-      blurb: 'Run joint AI workloads across organizations inside Trusted Execution Environments — each party keeps its data private, shares only the result.',
-      points: ['Multi-party computation inside TEEs', 'RBAC + ABAC for dataset and algorithm providers', 'Remote attestation proves what ran', 'Free tier; enterprise tiers for production'],
-      supporting: [{ which: 'cocos', name: 'Cocos AI', role: 'Confidential Computing Foundation', blurb: 'The TEE infrastructure Prism AI runs on — hardware-enforced isolation, open-source, Apache 2.0.' }],
+      which: "prism",
+      name: "Prism AI",
+      role: "Secure AI Collaboration",
+      blurb:
+        "Run joint AI workloads across organizations inside Trusted Execution Environments — each party keeps its data private, shares only the result.",
+      points: [
+        "Multi-party computation inside TEEs",
+        "RBAC + ABAC for dataset and algorithm providers",
+        "Remote attestation proves what ran",
+        "Free tier; enterprise tiers for production",
+      ],
+      supporting: [
+        {
+          which: "cocos",
+          name: "Cocos AI",
+          role: "Confidential Computing Foundation",
+          blurb:
+            "The TEE infrastructure Prism AI runs on — hardware-enforced isolation, open-source, Apache 2.0.",
+        },
+      ],
     }}
     ctaH2="Collaborate without<br />giving up your data."
     ctaSub="Talk to the team about Prism AI deployments, multi-party AI workloads, and free tier access."
-    ctaPrimaryLabel="Try Prism Cloud"
-    ctaPrimaryHref="https://prism.ultraviolet.rs"
-    ctaPrimaryExternal
+    ctaLabel="View Prism AI"
+    ctaHref="/products/prism"
   />
   <Footer />
 </Layout>

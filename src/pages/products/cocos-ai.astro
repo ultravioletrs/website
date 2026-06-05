@@ -86,6 +86,26 @@ const faqs = [
     "Who funds and governs Cocos AI?",
     "Cocos AI was initiated with support from ETF University of Belgrade and the Serbian Innovation Fund, and has been developed through EU Horizon Europe projects: CONFIDENTIAL6G, TITAN, and ELASTIC. Ultraviolet is a member of the Linux Foundation and the Confidential Computing Consortium.",
   ],
+  [
+    "What is a Trusted Execution Environment?",
+    "A TEE is a hardware-isolated region of a CPU where code and data are protected by memory encryption enforced by the processor itself — not by software. The hypervisor, host OS, and cloud operator cannot read or tamper with what runs inside, even with physical access to the machine. AMD SEV-SNP and Intel TDX are the two dominant TEE technologies for confidential VMs.",
+  ],
+  [
+    "What is remote attestation, and why does it matter?",
+    "Remote attestation is a process where the CPU generates a hardware-signed report describing exactly what code is loaded inside a TEE, including the firmware, kernel, and workload measurement. Any party — a data owner, a regulator, an auditor — can verify this report against expected values before releasing sensitive data into the enclave. It is the cryptographic guarantee that the right code is running unmodified.",
+  ],
+  [
+    "What is attested TLS (aTLS)?",
+    "Attested TLS is a TLS extension where the TLS handshake is bound to an attestation report from the enclave. This means the remote party can verify not just that the connection is encrypted, but that the server on the other end is a legitimate, unmodified enclave — preventing relay and impersonation attacks that standard TLS cannot catch.",
+  ],
+  [
+    "What workloads can I run on Cocos AI?",
+    "Cocos AI supports Python and Go workloads natively, and any language that compiles to WebAssembly via its WASM runtime. Common workloads include private model inference, federated learning, confidential data analytics, and multi-party computation. The in-enclave agent coordinates execution, so Cocos AI handles the full workload lifecycle — not just the isolation layer.",
+  ],
+  [
+    "How do I get started?",
+    "The quickest path is to clone the repository on GitHub, follow the quickstart in the docs, and run a sample workload against a local AMD SEV-SNP or Intel TDX machine. If you don't have confidential hardware, the simulator mode lets you develop and test the full attestation flow on any Linux machine. The free tier of Prism AI also uses Cocos AI under the hood if you want a managed starting point.",
+  ],
 ];
 ---
 
@@ -130,9 +150,9 @@ const faqs = [
               >
               <a
                 class="btn btn--ghost"
-                href="https://cocos.ai"
+                href="https://cocos.ai/docs/"
                 target="_blank"
-                rel="noopener">cocos.ai ↗</a
+                rel="noopener">Docs ↗</a
               >
             </div>
             <div class="hero__meta mono">
@@ -402,8 +422,8 @@ policy       debug=off · migrate=off
             </div>
             <p class="cons__lead-desc">
               Ultraviolet coordinates the project, builds the user experience,
-              and manages the SaaS offering — leading the development and
-              commercialization of the Cocos AI platform.
+              and leads the development and commercialization of the Cocos AI
+              platform.
             </p>
             <a class="arrow-link" href="/"
               >Visit Ultraviolet<span aria-hidden="true">→</span></a
@@ -423,18 +443,21 @@ policy       debug=off · migrate=off
                   name: "CONFIDENTIAL6G",
                   logo: "/img/logos/c6g.png",
                   desc: "Quantum-resistant cryptography and security frameworks for 6G confidential computing.",
+                  url: "/projects/confidential6g",
                 },
                 {
                   tag: "EU Project",
                   name: "ELASTIC",
                   logo: "/img/logos/elastic.png",
                   desc: "Next-gen network orchestration using WebAssembly and confidential computing for 6G.",
+                  url: "/projects/elastic",
                 },
                 {
                   tag: "EU Project",
                   name: "TITAN",
                   logo: "/img/logos/titan.svg",
                   desc: "Trusted AI & privacy-preserving technologies building secure AI systems via TEEs.",
+                  url: "/projects/titan",
                 },
               ].map((p) => (
                 <article class="cons__card">
@@ -443,15 +466,30 @@ policy       debug=off · migrate=off
                   </span>
                   <div class="cons__card-logo">
                     {p.name === "ELASTIC" ? (
-                      <img class="cons__elastic-logo" src={p.logo} alt={p.name} loading="lazy" />
+                      <img
+                        class="cons__elastic-logo"
+                        src={p.logo}
+                        alt={p.name}
+                        loading="lazy"
+                      />
                     ) : p.name === "TITAN" ? (
-                      <img class="cons__titan-logo" src={p.logo} alt={p.name} loading="lazy" />
+                      <img
+                        class="cons__titan-logo"
+                        src={p.logo}
+                        alt={p.name}
+                        loading="lazy"
+                      />
                     ) : (
                       <img src={p.logo} alt={p.name} loading="lazy" />
                     )}
                   </div>
                   <h3 class="cons__card-name">{p.name}</h3>
                   <p class="cons__card-desc">{p.desc}</p>
+                  {p.url && (
+                    <a class="arrow-link mt-3 text-sm" href={p.url}>
+                      Visit project<span aria-hidden="true">→</span>
+                    </a>
+                  )}
                 </article>
               ))
             }
@@ -570,7 +608,7 @@ policy       debug=off · migrate=off
       primaryHref="https://github.com/ultravioletrs/cocos"
       primaryExternal
       secondaryLabel="Read the docs"
-      secondaryHref="https://cocos.ai"
+      secondaryHref="https://cocos.ai/docs/"
       secondaryExternal
       note="Apache 2.0 · AMD SEV-SNP · Intel TDX"
     />
@@ -579,8 +617,14 @@ policy       debug=off · migrate=off
 </Layout>
 
 <style>
-  .cons__elastic-logo { filter: invert(1); }
-  :global([data-theme="dark"]) .cons__elastic-logo { filter: none; }
+  .cons__elastic-logo {
+    filter: invert(1);
+  }
+  :global([data-theme="dark"]) .cons__elastic-logo {
+    filter: none;
+  }
 
-  :global([data-theme="dark"]) .cons__titan-logo { filter: invert(1); }
+  :global([data-theme="dark"]) .cons__titan-logo {
+    filter: invert(1);
+  }
 </style>

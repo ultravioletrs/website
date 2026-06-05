@@ -129,7 +129,23 @@ const faqs = [
     "Anywhere your data has to live: on-premises behind your firewall, fully air-gapped for classified environments, in an EU or national sovereign cloud, in your own private VPC, or at the edge — with the same governance everywhere.",
   ],
   [
-    "Is Cube AI really open source?",
+    "What are guardrails?",
+    "Guardrails are policy rules that sit between your users and the model — inspecting every prompt and response before it is processed or returned. They can block harmful inputs, detect prompt-injection attempts, filter profanity or off-topic requests, and enforce domain-specific rules your organization defines.",
+  ],
+  [
+    "How do guardrails work in Cube AI?",
+    "Cube AI uses NVIDIA NeMo Guardrails as its policy engine, augmented with Microsoft Presidio for automatic PII detection and redaction. You author guardrail configurations as YAML-based Colang rules through the Cube dashboard — no code required. Rules hot-reload with zero downtime, and every guardrail decision is recorded in the audit trail so you can see exactly what was allowed, blocked, or redacted on every call.",
+  ],
+  [
+    "What is a Trusted Execution Environment (TEE)?",
+    "A TEE is a hardware-isolated region inside a CPU — such as an AMD SEV-SNP confidential VM or an Intel TDX Trust Domain — where code and data are encrypted in memory at all times. Even the hypervisor and the host OS cannot read the contents. Remote attestation lets you cryptographically verify that the correct, unmodified software is running inside the enclave before trusting it with sensitive data.",
+  ],
+  [
+    "How do I enable TEE support in Cube AI?",
+    "Deploy Cube AI on a host with AMD SEV-SNP or Intel TDX hardware — available on several cloud providers and on-prem servers. Cube AI runs on top of Cocos AI, Ultraviolet's open-source confidential-computing layer, which handles enclave provisioning, remote attestation, and key management automatically. Once running inside a TEE, every model weight, prompt, and response is encrypted in use, and clients can verify the enclave before sending any data.",
+  ],
+  [
+    "Is Cube AI open source?",
     "Yes. The core is Apache 2.0. You can inspect the source, fork it, and run it indefinitely with no vendor lock-in. Commercial support and enterprise features are available from Ultraviolet.",
   ],
 ];
@@ -173,7 +189,7 @@ const faqs = [
               >
               <a
                 class="btn btn--ghost"
-                href="https://docs.cube.ultraviolet.rs"
+                href="https://cube.ultraviolet.rs/docs/"
                 target="_blank"
                 rel="noopener">Read the docs</a
               >
@@ -201,10 +217,28 @@ const faqs = [
                     loading="eager"
                     style="width:100%;display:block"
                   />
-                  <button class="cube-shot__zoom-btn" data-zoom-src="/img/cube_dashboard.png" data-zoom-alt="Cube AI dashboard" aria-label="Zoom: Cube AI dashboard">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                      <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
-                      <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+                  <button
+                    class="cube-shot__zoom-btn"
+                    data-zoom-src="/img/cube_dashboard.png"
+                    data-zoom-alt="Cube AI dashboard"
+                    aria-label="Zoom: Cube AI dashboard"
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      aria-hidden="true"
+                    >
+                      <polyline points="15 3 21 3 21 9"></polyline><polyline
+                        points="9 21 3 21 3 15"></polyline>
+                      <line x1="21" y1="3" x2="14" y2="10"></line><line
+                        x1="3"
+                        y1="21"
+                        x2="10"
+                        y2="14"></line>
                     </svg>
                   </button>
                 </div>
@@ -245,7 +279,6 @@ const faqs = [
             </div>
           </div>
           <div class="reveal" data-delay="1">
-            
             <div class="comp__proof p-proof">
               {
                 [
@@ -299,6 +332,7 @@ const faqs = [
                   "vLLM",
                   "Ollama",
                   "NeMo Guardrails",
+                  "TEE",
                   "OpenAI-compatible API",
                   "RBAC + ABAC",
                 ].map((b) => (
@@ -429,10 +463,25 @@ const faqs = [
                           loading="lazy"
                           style="width:100%;display:block"
                         />
-                        <button class="cube-shot__zoom-btn" data-zoom-src={f.src} data-zoom-alt={f.title} aria-label={`Zoom: ${f.title}`}>
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
-                            <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+                        <button
+                          class="cube-shot__zoom-btn"
+                          data-zoom-src={f.src}
+                          data-zoom-alt={f.title}
+                          aria-label={`Zoom: ${f.title}`}
+                        >
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            aria-hidden="true"
+                          >
+                            <polyline points="15 3 21 3 21 9" />
+                            <polyline points="9 21 3 21 3 15" />
+                            <line x1="21" y1="3" x2="14" y2="10" />
+                            <line x1="3" y1="21" x2="10" y2="14" />
                           </svg>
                         </button>
                       </div>
@@ -481,12 +530,30 @@ const faqs = [
     </section>
 
     <!-- Lightbox -->
-    <div class="cube-lb" id="cube-lb" role="dialog" aria-modal="true" aria-label="Image zoom">
+    <div
+      class="cube-lb"
+      id="cube-lb"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image zoom"
+    >
       <div class="cube-lb__inner">
         <img class="cube-lb__img" id="cube-lb-img" src="" alt="" />
         <button class="cube-lb__close" id="cube-lb-close" aria-label="Close">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line><line
+              x1="6"
+              y1="6"
+              x2="18"
+              y2="18"></line>
           </svg>
         </button>
       </div>
@@ -528,15 +595,21 @@ const faqs = [
       };
 
       document.addEventListener("click", (e) => {
-        const zoomBtn = (e.target as Element).closest<HTMLElement>("[data-zoom-src]");
+        const zoomBtn = (e.target as Element).closest<HTMLElement>(
+          "[data-zoom-src]",
+        );
         if (zoomBtn) {
           openLb(zoomBtn.dataset.zoomSrc!, zoomBtn.dataset.zoomAlt ?? "");
         }
       });
 
       lbClose.addEventListener("click", closeLb);
-      lb.addEventListener("click", (e) => { if (e.target === lb) closeLb(); });
-      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLb(); });
+      lb.addEventListener("click", (e) => {
+        if (e.target === lb) closeLb();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLb();
+      });
     </script>
 
     <!-- Models & Infra -->
@@ -616,28 +689,32 @@ const faqs = [
                 name: "Continue",
                 tag: "IDE assistant",
                 desc: "AI-assisted coding inside VS Code and JetBrains, served by your own private Cube models — autocomplete and chat with zero IP leakage.",
+                link: "https://cube.ultraviolet.rs/docs/developer/integrations/continue/",
               },
               {
                 mark: "◳",
                 name: "OpenCode",
                 tag: "Agentic coding",
                 desc: "Point the OpenCode terminal agent at Cube for confidential, in-perimeter pair-programming on your own infrastructure.",
+                link: "https://cube.ultraviolet.rs/docs/developer/integrations/opencode/",
               },
               {
                 mark: "/v1",
                 name: "OpenAI-compatible API",
                 tag: "SDKs & clients",
                 desc: "Drop-in OpenAI-compatible endpoints mean the OpenAI SDK, LangChain, and custom HTTP clients all work unchanged — just repoint the base URL.",
+                link: "https://cube.ultraviolet.rs/docs/developer/api/overview/",
               },
             ].map((it) => (
-              <div class="intg__card">
+              <a class="intg__card" href={it.link} target="_blank" rel="noopener">
                 <div class="intg__top">
                   <span class="intg__mark">{it.mark}</span>
                   <span class="intg__tag">{it.tag}</span>
                 </div>
                 <h3 class="intg__name">{it.name}</h3>
                 <p class="intg__desc">{it.desc}</p>
-              </div>
+                <span class="arrow-link" style="margin-top:auto;font-size:0.82rem">Read the docs<span aria-hidden="true">→</span></span>
+              </a>
             ))
           }
         </div>
@@ -731,7 +808,7 @@ const faqs = [
       primaryLabel="Talk to sales"
       primaryHref="/company/contact"
       secondaryLabel="Read the docs"
-      secondaryHref="https://docs.cube.ultraviolet.rs"
+      secondaryHref="https://cube.ultraviolet.rs/docs/"
       secondaryExternal
       note="Apache 2.0 · Deploy anywhere · No vendor lock-in"
     />
