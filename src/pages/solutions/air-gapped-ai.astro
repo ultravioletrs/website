@@ -1,0 +1,70 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LensPage from "../../components/LensPage.astro";
+---
+
+<Layout
+  title="Air-Gapped AI — Fully Disconnected AI Deployment | Ultraviolet"
+  description="Deploy AI with no outbound connectivity at all. For classified, regulated, and isolated networks where nothing may leave."
+>
+  <Header />
+  <LensPage
+    eyebrow="Solution · Air-Gapped AI"
+    h1={`AI for fully<br /><span class="hero__accent">disconnected environments.</span>`}
+    sub="Deploy the entire AI stack with no outbound connectivity at all — for classified, regulated, and isolated networks where nothing may leave."
+    compH2="Hosted AI is structurally<br />incompatible with air-gapped requirements."
+    compBody="Air-gapped environments are defined by the absence of outbound connectivity. Hosted AI — which requires internet access to cloud APIs — is fundamentally incompatible. You need a stack that installs once and runs forever with zero outbound."
+    compHeaders={["Hosted AI APIs", "Ultraviolet Air-Gapped AI"]}
+    compRows={[
+      [
+        "Connectivity required",
+        "Internet access required for every API call.",
+        "Zero outbound required once deployed.",
+      ],
+      [
+        "Model updates",
+        "Automatic, uncontrolled by you.",
+        "You control when and how models update.",
+      ],
+      [
+        "Classified data safety",
+        "Data leaves your network on every request.",
+        "Data never leaves the isolated environment.",
+      ],
+      [
+        "Regulatory compliance",
+        "Incompatible with strict air-gap mandates.",
+        "Designed for classified and regulated contexts.",
+      ],
+    ]}
+    product={{
+      which: "cube",
+      name: "Cube AI",
+      role: "Sovereign AI Platform",
+      blurb:
+        "The full AI stack — inference, retrieval, guardrails, governance — packaged for completely disconnected deployment on your own hardware.",
+      points: [
+        "Full stack runs offline after initial deployment",
+        "On-premises or classified network deployment",
+        "Hardware TEE isolation available via Cocos AI",
+        "Same governance model as connected deployments",
+      ],
+      supporting: [
+        {
+          which: "cocos",
+          name: "Cocos AI",
+          role: "Confidential Computing Foundation",
+          blurb:
+            "TEE-based hardware isolation for environments where even the operator cannot be trusted.",
+        },
+      ],
+    }}
+    ctaH2="AI for environments where<br />nothing may leave."
+    ctaSub="Talk to the team about air-gapped deployments, hardware requirements, and classified environments."
+    ctaLabel="View Cube AI"
+    ctaHref="/products/cube-ai"
+  />
+  <Footer />
+</Layout>

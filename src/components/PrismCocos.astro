@@ -1,0 +1,61 @@
+---
+---
+<section class="pc section divider-top" id="prism">
+  <div class="container">
+    <div class="pc__grid">
+      <article class="pc__card reveal">
+        <span class="eyebrow" style="color:var(--prism)">
+          <span style="width:8px;height:8px;background:var(--prism);display:inline-block;flex-shrink:0" aria-hidden="true"></span>
+          Prism AI
+        </span>
+        <h3 class="pc__h3">Collaborate on AI<br />without exposing data.</h3>
+        <p class="pc__desc">
+          Prism AI runs joint AI workloads across organizational boundaries inside Trusted Execution
+          Environments. Each party keeps its data private while sharing only the result. A commercial
+          platform with free and enterprise tiers.
+        </p>
+        <div class="browser pc__shot">
+          <div class="browser__bar">
+            <span class="browser__dot"></span>
+            <span class="browser__dot"></span>
+            <span class="browser__dot"></span>
+            <span class="browser__url">prism.ultraviolet.rs</span>
+          </div>
+          <img src="/img/prism_dashboard.png" alt="Prism AI dashboard showing confidential computations and CVM status" loading="lazy" style="width:100%;display:block" />
+        </div>
+        <div class="pc__tags">
+          <span class="chip">Multi-party computation</span>
+          <span class="chip">RBAC + ABAC</span>
+          <span class="chip">Free + Enterprise</span>
+        </div>
+        <a class="arrow-link" href="/products/prism-ai">Explore Prism AI<span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="pc__card pc__card--cocos reveal" data-delay="1" id="cocos">
+        <span class="eyebrow" style="color:var(--cocos)">
+          <span style="width:8px;height:8px;background:var(--cocos);display:inline-block;flex-shrink:0" aria-hidden="true"></span>
+          Cocos AI
+        </span>
+        <h3 class="pc__h3">The open foundation<br />the stack runs on.</h3>
+        <p class="pc__desc">
+          Cocos AI is the open-source hardware abstraction layer for Trusted Execution Environments —
+          the transparent, auditable substrate beneath Cube and Prism. Inspect it, fork it, extend it.
+        </p>
+        <div class="pc__found">
+          {[
+            ['AMD SEV-SNP', 'Hardware memory encryption'],
+            ['Intel TDX', 'Confidential VMs'],
+            ['Remote attestation', 'Verifiable trust'],
+            ['Apache 2.0', 'Consortium-backed'],
+          ].map(([t, d]) => (
+            <div class="pc__found-item">
+              <div class="pc__found-t">{t}</div>
+              <div class="pc__found-d">{d}</div>
+            </div>
+          ))}
+        </div>
+        <a class="arrow-link" href="/products/cocos-ai">Explore Cocos AI<span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>

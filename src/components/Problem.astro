@@ -1,0 +1,35 @@
+---
+import { Check } from 'lucide-astro';
+
+const rows = [
+  ['Where do prompts go?', 'To a third-party cloud, logged and retained on someone else\'s terms.', 'Never leave your perimeter. Zero outbound by default.'],
+  ['Who can see your data?', 'The provider, their subprocessors, and a foreign jurisdiction.', 'Only you. Hardware-isolated inside Trusted Execution Environments.'],
+  ['Can you prove compliance?', 'You inherit a vendor\'s policies and hope for the best.', 'Compliance by architecture — GDPR, HIPAA, the EU AI Act.'],
+  ['What happens at renewal?', 'Prices rise, models change, lock-in deepens.', 'Apache 2.0. Own it, fork it, run it forever.'],
+];
+---
+
+<section class="problem section divider-top dotgrid">
+  <div class="container">
+    <div class="problem__head">
+      <span class="eyebrow"><span class="tick" aria-hidden="true"></span>The status quo is a liability</span>
+      <h2 class="problem__h2 reveal">Frontier AI shouldn&rsquo;t mean<br />surrendering your data.</h2>
+      <p class="problem__intro reveal" data-delay="1">
+        Every prompt sent to a hosted model is data leaving your control. For regulated
+        and sovereign organizations, that&rsquo;s not a feature trade-off — it&rsquo;s an unacceptable risk.
+      </p>
+    </div>
+    <div class="problem__table reveal" data-delay="1">
+      <div class="problem__thead">
+        <span></span><span>Hosted AI APIs</span><span>Ultraviolet</span>
+      </div>
+      {rows.map(([q, a, b]) => (
+        <div class="problem__row">
+          <span class="problem__q">{q}</span>
+          <span class="problem__a problem__a--bad"><span class="problem__x">✕</span>{a}</span>
+          <span class="problem__a problem__a--good"><Check size={16} />{b}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

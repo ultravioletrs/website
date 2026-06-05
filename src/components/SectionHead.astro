@@ -1,0 +1,16 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro?: string;
+  class?: string;
+}
+
+const { eyebrow, title, intro, class: className = '' } = Astro.props;
+---
+
+<div class={`stack__head ${className}`}>
+  <span class="eyebrow"><span class="tick" aria-hidden="true"></span>{eyebrow}</span>
+  <h2 class="stack__h2 reveal" set:html={title} />
+  {intro && <p class="stack__intro reveal" data-delay="1">{intro}</p>}
+</div>

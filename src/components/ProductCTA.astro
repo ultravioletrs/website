@@ -1,0 +1,32 @@
+---
+interface Props {
+  h2: string;
+  sub: string;
+  primaryLabel: string;
+  primaryHref: string;
+  primaryExternal?: boolean;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  secondaryExternal?: boolean;
+  note?: string;
+}
+
+const { h2, sub, primaryLabel, primaryHref, primaryExternal, secondaryLabel, secondaryHref, secondaryExternal, note } = Astro.props;
+---
+
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="cta__inner">
+      <span class="eyebrow" style="color:var(--accent-signal)">— Get started</span>
+      <h2 class="cta__h2" set:html={h2} />
+      <p class="cta__sub">{sub}</p>
+      <div class="cta__btns">
+        <a class="btn btn--onaccent" href={primaryHref} {...(primaryExternal ? { target:'_blank', rel:'noopener' } : {})}>{primaryLabel}</a>
+        {secondaryLabel && (
+          <a class="btn btn--ghost-onaccent" href={secondaryHref} {...(secondaryExternal ? { target:'_blank', rel:'noopener' } : {})}>{secondaryLabel}</a>
+        )}
+      </div>
+      {note && <div class="cta__note">{note}</div>}
+    </div>
+  </div>
+</section>

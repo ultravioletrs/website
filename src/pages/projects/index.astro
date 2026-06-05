@@ -2,152 +2,77 @@
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import Hero from '../../components/Hero.astro';
-import Newsletter from '../../components/Newsletter.astro';
+import PageHero from '../../components/PageHero.astro';
+import ProductCTA from '../../components/ProductCTA.astro';
 
 const projects = [
-    {
-        name: "CONFIDENTIAL6G",
-        description: "Confidential Computing for 6G. Developing cryptographic protocols and security frameworks for the next generation of wireless networks.",
-        image: "/img/c6g.png",
-        link: "/projects/confidential6g",
-        logoStyle: "max-height: 80px;" 
-    },
-    {
-        name: "ELASTIC",
-        description: "A software architecture for extreme-scale analytics. ELASTIC redefines service orchestration within 6G networks, integrating technologies like WebAssembly and Confidential Computing.",
-        image: "/img/logos/elastic.png",
-        link: "/projects/elastic",
-        logoStyle: "max-height: 60px; background: #323232; border-radius: 5px; padding: 5px;"
-    },
-    {
-        name: "TITAN",
-        description: "AI for Privacy. TITAN proposes to develop secure and trustworthy confidential data processing and sharing capabilities.",
-        image: "/img/logos/titan.svg",
-        link: "/projects/titan",
-        logoStyle: "max-height: 60px;"
-    }
+  { slug: 'confidential6g', name: 'CONFIDENTIAL6G', logo: '/img/logos/c6g.png', logoClass: 'proj-card__logo--invert',
+    desc: 'Quantum-resistant cryptographic protocols and security frameworks for 6G confidential computing. €5M, Horizon Europe.', href: '/projects/confidential6g' },
+  { slug: 'elastic', name: 'ELASTIC', logo: '/img/logos/elastic.png', logoClass: 'proj-card__logo--dark',
+    desc: 'Next-generation network orchestration with WebAssembly and confidential computing for 6G. Horizon Europe.', href: '/projects/elastic' },
+  { slug: 'titan', name: 'TITAN', logo: '/img/logos/titan.svg', logoClass: 'proj-card__logo--box',
+    desc: 'Trusted AI systems through confidential data processing and privacy-preserving technologies for the EOSC ecosystem. €5M, Horizon Europe.', href: '/projects/titan' },
 ];
-
-const focusAreas = [
-    {
-        title: "Confidential Computing",
-        description: "We are developing frameworks and tools to enable secure data processing in untrusted environments, leveraging TEEs and advanced cryptography.",
-        icon: "fas fa-shield-alt"
-    },
-    {
-        title: "Artificial Intelligence",
-        description: "Our research focuses on privacy-preserving AI/ML, enabling collaborative training and inference without compromising data confidentiality.",
-        icon: "fas fa-brain"
-    },
-    {
-        title: "Cloud & Edge Computing",
-        description: "We are exploring new architectures for secure and efficient computing across the cloud-edge continuum, optimizing for performance and privacy.",
-        icon: "fas fa-cloud"
-    },
-    {
-        title: "Secure Data Sharing",
-        description: "We are building solutions for secure multi-party computation and data sharing, allowing organizations to collaborate on sensitive data.",
-        icon: "fas fa-share-alt"
-    }
-];
-
-const title = "Ultraviolet Projects - Research & Innovation";
-const description = "Explore Ultraviolet's research projects in confidential computing, AI, and 6G. We collaborate with leading organizations to drive innovation.";
 ---
 
-<Layout title={title} description={description}>
-    <Header slot="header" />
+<Layout title="Projects — EU Research | Ultraviolet" description="Ultraviolet's EU Horizon Europe research projects: CONFIDENTIAL6G, ELASTIC, and TITAN.">
+  <Header />
+  <main>
+    <PageHero
+      center
+      eyebrow="EU Research Projects"
+      h1={`Validated through<br /><span class="hero__accent">European research.</span>`}
+      sub="Ultraviolet plays a pivotal role in three EU Horizon Europe research projects, collaborating with leading institutions across government, industry, and academia."
+      primaryLabel="Learn about Ultraviolet"
+      primaryHref="/company/about"
+      secondaryLabel="Contact us"
+      secondaryHref="/company/contact"
+    />
 
-    <section id="header" class="pt-20">
-        <div class="w-full relative">
-            <div class="flex items-center justify-center h-[300px] overflow-hidden border-b border-border bg-background">
-                <img src="/img/header.avif" alt="pattern-white" class="w-full h-full object-cover object-top" loading="lazy" />
-            </div>
+    <section class="section divider-top">
+      <div class="container">
+        <div class="proj-cards">
+          {projects.map((p, i) => (
+            <a href={p.href} class="proj-card reveal" data-delay={i}>
+              <div class={`proj-card__logo ${p.logoClass}`}>
+                <img src={p.logo} alt={`${p.name} logo`} loading="lazy" />
+              </div>
+              <h3 class="proj-card__name">{p.name}</h3>
+              <p class="proj-card__desc">{p.desc}</p>
+              <span class="arrow-link">Learn more<span aria-hidden="true">→</span></span>
+            </a>
+          ))}
         </div>
+      </div>
     </section>
 
-    <section id="projects-intro" class="project-page-section">
-        <div class="project-page-container">
-            <h1 class="project-page-heading reveal">Research Projects</h1>
-            <div class="project-page-copy reveal">
-                <p class="mb-6">
-                    Advancing confidential computing, AI security, and privacy-preserving technologies through
-                    EU-funded research initiatives
-                </p>
-                <p class="mb-0">
-                    At Ultraviolet, we actively participate in cutting-edge research projects that push the
-                    boundaries of confidential computing, secure AI/ML, and privacy-preserving technologies.
-                    Our involvement in European Union-funded initiatives enables us to collaborate with leading
-                    research institutions and industry partners to develop next-generation security solutions
-                    for cloud, edge, and 6G networks.
-                </p>
-            </div>
+    <section class="section--tight divider-top">
+      <div class="container" style="text-align:center">
+        <span class="eyebrow"><span class="tick"></span>EU funding</span>
+        <p style="font-size:1.1rem;color:var(--ink-2);margin-top:1rem;max-width:60ch;margin-inline:auto">
+          Ultraviolet has received over €10M in EU Horizon Europe research funding, validating our confidential computing approach with some of Europe's leading technology organizations.
+        </p>
+      </div>
+      <div class="marquee proj-pw__marquee">
+        <div class="marquee__track">
+          {(logos => [...logos, ...logos])(['nokia-1', 'ericsson', 'telefonica', 'thales', 'fujitsu', 'fraunhofer', 'tno', 'vtt', 'inserm', 'tuw', 'tue']).map((f, i) => (
+            <span class="proj-pw__logo">
+              <img src={`/img/logos/${f}.png`} alt={f} loading="lazy" />
+            </span>
+          ))}
         </div>
+      </div>
     </section>
 
-    <section id="projects-cards" class="bg-background border-b border-border">
-        <div class="w-full">
-            <div class="grid grid-cols-1 md:grid-cols-3">
-                {projects.map((project, index) => (
-                    <div class={`flex flex-col h-full ${index !== projects.length - 1 ? 'md:border-r border-border' : ''} border-b md:border-b-0 border-border reveal reveal-delay-${index + 1}`}>
-                        <div class="p-8 lg:p-12 hover:bg-surface transition-colors h-full flex flex-col items-center text-center">
-                            <div class="mb-8 h-[120px] flex items-center justify-center">
-                                <img src={project.image} alt={`${project.name} Logo`} style={project.logoStyle} class="max-w-full" />
-                            </div>
-                            <h3 class="text-xl font-heading mb-4 text-text-main font-medium">{project.name}</h3>
-                            <p class="text-text-muted font-body mb-8 flex-grow">
-                                {project.description}
-                            </p>
-                            <a href={project.link} class="inline-block px-8 py-3 bg-primary text-black font-medium border border-primary hover:bg-primary-dark transition-colors uppercase tracking-wide w-full mt-auto">
-                                View Details
-                            </a>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-    </section>
-
-    <section class="project-page-section">
-        <div class="project-page-container">
-            <h2 class="project-page-heading reveal">Our Research Focus Areas</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-surface p-8 border border-border flex flex-col items-center text-center reveal reveal-delay-1">
-                    <div class="inline-flex items-center justify-center h-16 w-16 bg-primary/10 text-primary-text mb-6 border border-primary/20">
-                        <i class="fas fa-shield-alt text-2xl" aria-hidden="true"></i>
-                    </div>
-                    <h4 class="text-xl mb-3 font-heading font-medium text-text-main">Confidential Computing</h4>
-                    <p class="text-text-muted font-body">
-                        Securing data in use through hardware-based Trusted Execution Environments (TEEs) and encrypted virtualization.
-                    </p>
-                </div>
-
-                <div class="bg-surface p-8 border border-border flex flex-col items-center text-center reveal reveal-delay-2">
-                    <div class="inline-flex items-center justify-center h-16 w-16 bg-primary/10 text-primary-text mb-6 border border-primary/20">
-                        <i class="fas fa-network-wired text-2xl" aria-hidden="true"></i>
-                    </div>
-                    <h4 class="text-xl mb-3 font-heading font-medium text-text-main">6G Security</h4>
-                    <p class="text-text-muted font-body">
-                        Developing robust security architectures for next-generation networks, focusing on zero-trust principles and AI-driven defense.
-                    </p>
-                </div>
-
-                <div class="bg-surface p-8 border border-border flex flex-col items-center text-center reveal reveal-delay-3">
-                    <div class="inline-flex items-center justify-center h-16 w-16 bg-primary/10 text-primary-text mb-6 border border-primary/20">
-                        <i class="fas fa-brain text-2xl" aria-hidden="true"></i>
-                    </div>
-                    <h4 class="text-xl mb-3 font-heading font-medium text-text-main">Privacy-Preserving AI</h4>
-                    <p class="text-text-muted font-body">
-                        Creating secure frameworks for collaborative AI/ML, federated learning, and multi-party
-                        computation that preserve data privacy while enabling innovation.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <Newsletter />
-
-    <Footer slot="footer" />
+    <ProductCTA
+      h2="Research-validated,<br />production-ready."
+      sub="The same technology validated through EU research powers our commercial products. Talk to the team about what that means for your deployment."
+      primaryLabel="Contact us"
+      primaryHref="/company/contact"
+      secondaryLabel="Explore products"
+      secondaryHref="/products/cube-ai"
+      note="Apache 2.0 · 3 active projects · €10M+ funded"
+    />
+  </main>
+  <Footer />
 </Layout>

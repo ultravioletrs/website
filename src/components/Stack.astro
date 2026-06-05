@@ -1,0 +1,121 @@
+---
+const products = [
+  {
+    which: "cube",
+    name: "Cube AI",
+    role: "Sovereign AI Platform",
+    flagship: true,
+    desc: "Ultraviolet's flagship platform for private LLM deployment — inference, RAG, guardrails, TEE, governance, audit, and a production UI. Runs on your hardware. Nothing leaves your perimeter.",
+    tags: [
+      "Inference",
+      "RAG",
+      "Guardrails",
+      "TEE",
+      "Governance",
+      "Audit",
+      "Apache 2.0",
+    ],
+    href: "/products/cube-ai",
+    docs: "https://cube.ultraviolet.rs/docs/",
+    logoSrc: "/img/logos/cube-ai-trim.png",
+    logoH: 28,
+    logoAr: 3.721,
+  },
+  {
+    which: "prism",
+    name: "Prism AI",
+    role: "Secure AI Collaboration",
+    desc: "Run joint AI workloads across organizational boundaries without exposing data. Multi-party computation inside Trusted Execution Environments, with free and enterprise tiers.",
+    tags: ["Multi-party", "RBAC + ABAC", "TEE", "Free + Enterprise"],
+    href: "/products/prism-ai",
+    docs: "https://prism.ultraviolet.rs/docs/",
+    logoSrc: "/img/logos/prism-ai-trim.png",
+    logoH: 22,
+    logoAr: 5.314,
+  },
+  {
+    which: "cocos",
+    name: "Cocos AI",
+    role: "Confidential Computing Foundation",
+    desc: "The open-source hardware abstraction layer for TEEs — the auditable confidential-computing substrate the rest of the stack runs on.",
+    tags: ["AMD SEV-SNP", "Intel TDX", "Apache 2.0"],
+    href: "/products/cocos-ai",
+    docs: "https://cocos.ai/docs/",
+    logoSrc: "/img/logos/cocos-lockup-trim.png",
+    logoH: 52,
+    logoAr: 1.117,
+  },
+];
+---
+
+<section class="stack section divider-top" id="stack">
+  <div class="container">
+    <div class="stack__head">
+      <span class="eyebrow"
+        ><span class="tick" aria-hidden="true"></span>Products</span
+      >
+      <h2 class="stack__h2 reveal">
+        Three products.<br />Built to work as one.
+      </h2>
+      <p class="stack__intro reveal" data-delay="1">
+        Ultraviolet builds three sovereign AI products. Cube AI is the flagship
+        platform. Prism AI adds secure collaboration across organizations. Cocos
+        AI is the open confidential-computing foundation beneath them —
+        together, AI you can fully own.
+      </p>
+    </div>
+    <div class="stack__grid">
+      {
+        products.map((p, i) => (
+          <article
+            class={`stack__card reveal${p.flagship ? " stack__card--flag" : ""}`}
+            data-delay={i}
+          >
+            {p.flagship && <span class="stack__flag">Flagship</span>}
+            <div class="stack__card-top">
+              <span class="stack__role" style={`color:var(--${p.which})`}>
+                <span
+                  style={`width:8px;height:8px;background:var(--${p.which});display:inline-block;flex-shrink:0`}
+                  aria-hidden="true"
+                />
+                {p.role}
+              </span>
+              <div class="stack__logo">
+                <span
+                  class="plogo"
+                  style={`height:${p.logoH}px;width:${Math.round(p.logoH * p.logoAr)}px;background-color:var(--ink);-webkit-mask-image:url('${p.logoSrc}');mask-image:url('${p.logoSrc}')`}
+                  role="img"
+                  aria-label={p.name}
+                />
+              </div>
+            </div>
+            <p class="stack__desc">{p.desc}</p>
+            <div class="stack__tags">
+              {p.tags.map((t) => (
+                <span class="chip">{t}</span>
+              ))}
+            </div>
+            <div class="stack__links">
+              <a class="arrow-link" href={p.href}>
+                Learn more<span aria-hidden="true">→</span>
+              </a>
+              <a
+                class="stack__docs"
+                href={p.docs}
+                target="_blank"
+                rel="noopener"
+              >
+                Docs ↗
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+    <div class="stack__foot reveal">
+      <span class="stack__rail"></span>
+      deploy anywhere — on-prem · air-gapped · sovereign cloud · edge
+      <span class="stack__rail"></span>
+    </div>
+  </div>
+</section>

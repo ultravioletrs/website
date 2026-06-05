@@ -1,0 +1,124 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PageHero from '../../components/PageHero.astro';
+import ProductCTA from '../../components/ProductCTA.astro';
+import { Check, Shield, Zap, Layers, Globe, Lock, Layers as Cube } from 'lucide-astro';
+
+const facts = [
+  ['Headquarters', 'Belgrade, Serbia'],
+  ['Focus', 'Sovereign & confidential AI'],
+  ['License', 'Open core — Apache 2.0'],
+  ['Member of', 'Linux Foundation · CCC'],
+];
+
+const focus = [
+  { Icon: Shield, t: 'Confidential computing', d: 'Securing data in use with hardware Trusted Execution Environments and encrypted virtualization.' },
+  { Icon: Zap, t: 'AI / ML', d: 'Privacy-preserving AI that operates on sensitive data while protecting confidentiality.' },
+  { Icon: Layers, t: 'Multi-party computation', d: 'Secure, collaborative data processing across organizations without exposing inputs.' },
+  { Icon: Globe, t: 'Secure data sharing', d: 'Tools and protocols for confidential collaboration across boundaries and borders.' },
+  { Icon: Lock, t: 'Trusted Execution Environments', d: 'AMD SEV-SNP and Intel TDX abstracted into one auditable, open foundation.' },
+  { Icon: Cube, t: 'Open-source software', d: 'A proud member of the open-source community, contributing upstream and setting standards.' },
+];
+---
+
+<Layout title="About Ultraviolet — Sovereign AI, Built in the Open" description="Ultraviolet is a European company headquartered in Belgrade, Serbia, building open-source confidential computing and sovereign AI.">
+  <Header />
+  <main>
+    <PageHero
+      center
+      eyebrow="Company"
+      h1={`Sovereign AI,<br /><span class="hero__accent">built in the open.</span>`}
+      sub="Ultraviolet is a European company headquartered in Belgrade, Serbia, building open-source confidential computing and sovereign AI — so organizations can use frontier AI without surrendering their data."
+      primaryLabel="Contact us"
+      primaryHref="/company/contact"
+      secondaryLabel="Careers"
+      secondaryHref="/company/careers"
+    />
+
+    <section class="section divider-top">
+      <div class="container">
+        <div class="about__grid">
+          <div class="about__prose reveal">
+            <p>Ultraviolet specializes in cutting-edge technologies — cloud computing, AI/ML, multi-party computation, secure data sharing, and Trusted Execution Environments. We develop open-source software and tools that let organizations and developers harness these technologies while ensuring the highest levels of security and privacy.</p>
+            <p>Security and privacy are at the core of our mission. Our team builds software that guarantees the confidentiality and integrity of data in cloud environments, specializing in multi-party computation that enables secure, collaborative processing — and AI/ML solutions that operate on sensitive data while preserving privacy.</p>
+            <p>As a proud member of the open-source community, we collaborate with leading organizations and consortia — including the <a href="https://confidentialcomputing.io/" target="_blank" rel="noopener">Confidential Computing Consortium</a> and the Linux Foundation — to drive innovation and set industry standards, hosting events and offering training and support to developers and businesses adopting privacy-focused solutions.</p>
+            <p>We are deeply engaged in large-scale EU research, partnering with some of the world's largest companies. Ultraviolet plays a pivotal role in <a href="/projects/confidential6g">CONFIDENTIAL6G</a> (confidential computing for 6G), contributes to the <a href="/projects/titan">TITAN</a> EOSC project for confidential collaboration and privacy-preserving data processing, and is involved in <a href="/projects/elastic">ELASTIC</a>, pioneering next-gen network orchestration with WebAssembly and confidential computing for 6G.</p>
+            <p>We envision a future where cloud computing, AI/ML, multi-party computation, secure data sharing, and TEEs converge to create a safer, more collaborative digital world.</p>
+          </div>
+          <aside class="reveal" data-delay="1">
+            <div class="about__facts-card surface">
+              {facts.map(([k, v]) => (
+                <div class="about__fact">
+                  <div class="about__fact-k">{k}</div>
+                  <div class="about__fact-v">{v}</div>
+                </div>
+              ))}
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="ind section divider-top dotgrid">
+      <div class="container">
+        <div class="ind__head reveal">
+          <span class="eyebrow"><span class="tick"></span>What we do</span>
+          <h2 class="ind__h2" style="margin-top:1.1rem">Our areas of expertise.</h2>
+        </div>
+        <div class="ind__grid" style="margin-top:3rem">
+          {focus.map(({ Icon, t, d }, i) => (
+            <div class="ind__cell reveal" data-delay={i % 3}>
+              <span class="ind__ic"><Icon size={20} /></span>
+              <h3 class="ind__t">{t}</h3>
+              <p class="ind__d">{d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Proof block -->
+    <section class="comp section divider-top">
+      <div class="container">
+        <div class="comp__grid">
+          <div class="comp__copy reveal">
+            <span class="eyebrow"><span class="tick"></span>Backing & governance</span>
+            <h2 class="comp__h2" style="margin:1.1rem 0 1.3rem">Open, funded,<br />and accountable.</h2>
+            <p class="comp__desc">Ultraviolet builds in the open and is validated through EU Horizon Europe research, as a member of the Linux Foundation and the Confidential Computing Consortium.</p>
+            <div class="comp__badges">
+              {['Apache 2.0', 'Linux Foundation', 'Confidential Computing Consortium', 'Horizon Europe', 'GDPR', 'EU AI Act'].map(b => (
+                <span class="chip"><Check size={13} />{b}</span>
+              ))}
+            </div>
+          </div>
+          <div class="comp__proof reveal" data-delay="1">
+            {[
+              ['CONFIDENTIAL6G', 'Quantum-resistant cryptography for 6G', '€5M · Horizon Europe'],
+              ['TITAN', 'Confidential data collaboration & privacy-preserving AI', '€5M · Horizon Europe'],
+              ['ELASTIC', 'WebAssembly + confidential computing for 6G', '€4M · Horizon Europe'],
+            ].map(([t, d, m]) => (
+              <div class="comp__proof-item">
+                <div class="comp__proof-t">{t}</div>
+                <div class="comp__proof-d">{d}</div>
+                <div class="comp__proof-m">{m}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <ProductCTA
+      h2="Build the sovereign<br />future with us."
+      sub="Talk to the team about products and deployments, or join us — we're always looking for people excited about confidential computing and secure AI."
+      primaryLabel="Contact us"
+      primaryHref="/company/contact"
+      secondaryLabel="View careers"
+      secondaryHref="/company/careers"
+      note="Belgrade, Serbia · Open source · Apache 2.0"
+    />
+  </main>
+  <Footer />
+</Layout>

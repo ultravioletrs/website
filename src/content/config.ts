@@ -23,4 +23,7 @@ const blog = defineCollection({
 	}),
 });
 
-export const collections = { blog };
+const industries = defineCollection({ type: 'content', schema: z.object({ title: z.string() }) });
+const solutions = defineCollection({ type: 'content', schema: z.object({ title: z.string() }) });
+
+export const collections = { blog, industries, solutions };

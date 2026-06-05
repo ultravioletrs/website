@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import LensPage from '../../components/LensPage.astro';
+---
+<Layout title="Research — Privacy-Preserving Collaboration Across Institutions | Ultraviolet" description="Collaborate on shared datasets across institutions and borders. Study together without exposing raw research data.">
+  <Header />
+  <LensPage
+    eyebrow="Industry · Research"
+    h1={`Collaborate across institutions<br /><span class="hero__accent">without exposing data.</span>`}
+    sub="Privacy-preserving collaboration on shared datasets, so research institutions can study together without pooling records or exposing participant data."
+    compH2="Research collaboration requires<br />sharing data without exposing it."
+    compBody="Multi-institution research creates value by combining datasets — but participant data, proprietary methodologies, and institutional IP cannot be pooled in a shared cloud environment. Researchers need a way to collaborate without exposure."
+    compHeaders={['Data pooling approach', 'Ultraviolet Research AI']}
+    compRows={[
+      ['Participant data', 'Shared in the clear — ethics and legal risk.', 'Each institution\'s data stays sealed in a TEE.'],
+      ['Methodology exposure', 'Research methods visible to all parties.', 'Algorithms sealed; only results shared.'],
+      ['IRB/Ethics requirements', 'Data sharing creates ongoing compliance burden.', 'No raw data shared; attestation proves it.'],
+      ['Cross-border collaboration', 'Complex data transfer agreements required.', 'Computation happens locally; only results cross borders.'],
+    ]}
+    product={{
+      which: 'prism',
+      name: 'Prism AI',
+      role: 'Secure AI Collaboration',
+      blurb: 'The collaboration layer for multi-institution research: run shared AI workloads across institutional boundaries inside TEEs, with each institution\'s data sealed from the others.',
+      points: ['Multi-institution computation without data pooling', 'Each party\'s data sealed in a TEE', 'Remote attestation for research reproducibility', 'Free tier for research evaluation'],
+      supporting: [{ which: 'cube', name: 'Cube AI', role: 'Sovereign AI Platform', blurb: 'When individual institutions need private AI inference on their own data, Cube AI provides the full platform.' }],
+    }}
+    ctaH2="Research that advances science<br />without compromising privacy."
+    ctaSub="Talk to the team about multi-institution AI collaboration, privacy-preserving research methods, and free tier access."
+    ctaLabel="View Prism AI"
+    ctaHref="/products/prism-ai"
+  />
+  <Footer />
+</Layout>

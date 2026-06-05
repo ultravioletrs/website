@@ -1,0 +1,182 @@
+---
+import PageHero from "./PageHero.astro";
+import SectionHead from "./SectionHead.astro";
+import ProductCTA from "./ProductCTA.astro";
+import { Check } from "lucide-astro";
+
+interface ProductDef {
+  which: string;
+  name: string;
+  role: string;
+  blurb: string;
+  points: string[];
+  supporting?: { which: string; name: string; role: string; blurb: string }[];
+}
+
+interface Props {
+  eyebrow: string;
+  h1: string;
+  sub: string;
+  compH2: string;
+  compBody: string;
+  compBadges?: string[];
+  compRows: [string, string, string][];
+  compHeaders: [string, string];
+  product: ProductDef;
+  ctaH2: string;
+  ctaSub: string;
+  ctaLabel: string;
+  ctaHref: string;
+  ctaExternal?: boolean;
+}
+
+const {
+  eyebrow,
+  h1,
+  sub,
+  compH2,
+  compBody,
+  compBadges,
+  compRows,
+  compHeaders,
+  product,
+  ctaH2,
+  ctaSub,
+  ctaLabel,
+  ctaHref,
+  ctaExternal,
+} = Astro.props;
+
+const prodHref = `/products/${product.which}-ai`;
+---
+
+<main>
+  <PageHero
+    center
+    eyebrow={eyebrow}
+    h1={h1}
+    sub={sub}
+    primaryLabel="Contact Sales"
+    primaryHref="/company/contact"
+    secondaryLabel={ctaLabel}
+    secondaryHref={ctaHref}
+    secondaryExternal={ctaExternal}
+  />
+
+  <!-- Comparison -->
+  <section class="problem section divider-top dotgrid">
+    <div class="container">
+      <div class="problem__head">
+        <span class="eyebrow"><span class="tick"></span>The challenge</span>
+        <h2 class="problem__h2 reveal" set:html={compH2} />
+        <p class="problem__intro reveal" data-delay="1">{compBody}</p>
+      </div>
+      <div class="problem__table reveal" data-delay="1">
+        <div class="problem__thead">
+          <span></span><span>{compHeaders[0]}</span><span>{compHeaders[1]}</span
+          >
+        </div>
+        {
+          compRows.map(([q, a, b]) => (
+            <div class="problem__row">
+              <span class="problem__q">{q}</span>
+              <span class="problem__a problem__a--bad">
+                <span class="problem__x">✕</span>
+                {a}
+              </span>
+              <span class="problem__a problem__a--good">
+                <Check size={16} />
+                {b}
+              </span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Product mapping -->
+  <section class="pmap section divider-top">
+    <div class="container">
+      <SectionHead
+        eyebrow="How Ultraviolet solves it"
+        title={`Leading with ${product.name}.`}
+      />
+      <div class="pmap__grid" style="margin-top:3rem">
+        <article class="pmap__hero reveal">
+          <span class="pmap__role" style={`color:var(--${product.which})`}>
+            <span
+              style={`width:8px;height:8px;background:var(--${product.which});display:inline-block`}
+              aria-hidden="true"></span>
+            Leads with
+          </span>
+          <h3 class="pmap__name">{product.name}</h3>
+          <div class="pmap__role-sub">{product.role}</div>
+          <p class="pmap__blurb">{product.blurb}</p>
+          <ul class="pmap__points">
+            {
+              product.points.map((p) => (
+                <li>
+                  <Check size={15} style={`color:var(--${product.which})`} />
+                  {p}
+                </li>
+              ))
+            }
+          </ul>
+          <a class="arrow-link" href={prodHref}
+            >Explore {product.name}<span aria-hidden="true">→</span></a
+          >
+        </article>
+        <div class="pmap__support">
+          {
+            (product.supporting || []).map((s) => (
+              <article class="pmap__sup reveal" data-delay="1">
+                <span class="pmap__role" style={`color:var(--${s.which})`}>
+                  <span
+                    style={`width:8px;height:8px;background:var(--${s.which});display:inline-block`}
+                    aria-hidden="true"
+                  />
+                  Supported by
+                </span>
+                <h4 class="pmap__sup-name">{s.name}</h4>
+                <p class="pmap__sup-blurb">{s.blurb}</p>
+                <a class="arrow-link" href={`/products/${s.which}-ai`}>
+                  Explore {s.name}
+                  <span aria-hidden="true">→</span>
+                </a>
+              </article>
+            ))
+          }
+          {
+            (product.supporting || []).length === 0 && (
+              <article class="pmap__sup reveal" data-delay="1">
+                <span class="pmap__role" style="color:var(--muted)">
+                  Also available
+                </span>
+                <h4 class="pmap__sup-name">Prism AI</h4>
+                <p class="pmap__sup-blurb">
+                  Add secure multi-party collaboration to your deployment when
+                  you need cross-organizational AI workloads.
+                </p>
+                <a class="arrow-link" href="/products/prism-ai">
+                  Explore Prism AI<span aria-hidden="true">→</span>
+                </a>
+              </article>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProductCTA
+    h2={ctaH2}
+    sub={ctaSub}
+    primaryLabel="Contact sales"
+    primaryHref="/company/contact"
+    secondaryLabel={ctaLabel}
+    secondaryHref={ctaHref}
+    secondaryExternal={ctaExternal}
+    note="Apache 2.0 · Deploy anywhere · No vendor lock-in"
+  />
+</main>
