@@ -153,9 +153,46 @@ const faqs = [
 
 <Layout
   title="Cube AI — Sovereign AI Platform | Ultraviolet"
-  description="Cube AI is Ultraviolet's flagship platform for private LLM deployment — inference, RAG, guardrails, governance, and a production workspace, all inside your perimeter."
+  description="Cube AI is Ultraviolet's flagship private LLM platform — inference, RAG, guardrails, governance, and a production workspace, all inside your perimeter."
   prod="cube"
 >
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify([
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "Cube AI",
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Linux",
+        url: "https://www.ultraviolet.rs/products/cube-ai",
+        description:
+          "Cube AI is Ultraviolet's flagship platform for private LLM deployment — inference, RAG, guardrails, governance, and a production workspace, all inside your perimeter.",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "EUR",
+          description: "Open-source core under Apache 2.0 license",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "Ultraviolet",
+          url: "https://www.ultraviolet.rs",
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(([q, a]) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+    ])}
+  />
   <Header />
   <main>
     <!-- Hero -->

@@ -52,7 +52,42 @@ function getPostAuthors(p: typeof post): { name: string; picture?: string }[] {
   title={`${post.data.title} | Ultraviolet Blog`}
   description={post.data.excerpt || post.data.description}
   ogImage={coverImage}
+  ogType="article"
 >
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: post.data.title,
+      description: post.data.excerpt || post.data.description,
+      image: coverImage
+        ? `https://www.ultraviolet.rs${coverImage}`
+        : undefined,
+      datePublished: new Date(post.data.date).toISOString(),
+      dateModified: new Date(post.data.date).toISOString(),
+      author: authors.map((a) => ({
+        "@type": "Person",
+        name: a.name,
+        ...(a.picture ? { image: a.picture } : {}),
+      })),
+      publisher: {
+        "@type": "Organization",
+        name: "Ultraviolet",
+        url: "https://www.ultraviolet.rs",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://www.ultraviolet.rs/img/logos/ultraviolet.png",
+        },
+      },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": `https://www.ultraviolet.rs/blog/${post.slug}`,
+      },
+    })}
+  />
   <Header />
   <main>
     <article class="post">

@@ -110,9 +110,46 @@ const faqs = [
 
 <Layout
   title="Prism AI — Secure AI Collaboration | Ultraviolet"
-  description="Prism AI runs joint AI workloads across organizational boundaries inside Trusted Execution Environments. Each party keeps its data private and shares only the result."
+  description="Prism AI lets organizations run shared AI workloads in Trusted Execution Environments — each party's data stays sealed, only the agreed result exits."
   prod="prism"
 >
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify([
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "Prism AI",
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Linux",
+        url: "https://www.ultraviolet.rs/products/prism-ai",
+        description:
+          "Prism AI runs joint AI workloads across organizational boundaries inside Trusted Execution Environments. Each party keeps its data private and shares only the result.",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "EUR",
+          description: "Free tier available; enterprise tiers for custom infrastructure",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "Ultraviolet",
+          url: "https://www.ultraviolet.rs",
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(([q, a]) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+    ])}
+  />
   <Header />
   <main>
     <!-- Hero -->

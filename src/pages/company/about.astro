@@ -57,8 +57,40 @@ const focus = [
 
 <Layout
   title="About Ultraviolet — Sovereign AI, Built in the Open"
-  description="Ultraviolet is a European company headquartered in Belgrade, Serbia, building open-source confidential computing and sovereign AI."
+  description="Ultraviolet is a European company headquartered in Belgrade, Serbia, building open-source confidential computing and sovereign AI. Apache 2.0, no lock-in."
 >
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Ultraviolet",
+      url: "https://www.ultraviolet.rs",
+      logo: "https://www.ultraviolet.rs/img/logos/ultraviolet.png",
+      foundingDate: "2023",
+      description:
+        "Ultraviolet is a sovereign AI infrastructure company headquartered in Belgrade, Serbia, building open-source confidential computing and sovereign AI platforms.",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Bulevar Arsenija Čarnojevića 103",
+        addressLocality: "Belgrade",
+        postalCode: "11000",
+        addressCountry: "RS",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: "info@ultraviolet.rs",
+      },
+      sameAs: [
+        "https://github.com/ultravioletrs",
+        "https://www.linkedin.com/company/ultravioletrs",
+        "https://x.com/ultravioletrs",
+      ],
+    })}
+  />
   <Header />
   <main>
     <PageHero
