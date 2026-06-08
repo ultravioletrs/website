@@ -1,25 +1,41 @@
 ---
 const items = [
-  ['01', 'Private', 'Every prompt, embedding, and response stays inside your perimeter. Zero outbound by default. No hidden telemetry, no training on your data.'],
-  ['02', 'Sovereign', 'Data residency, compliance, and operational control governed by your policies and your jurisdiction — never a vendor\'s terms of service.'],
-  ['03', 'Open', 'Open core. Cube AI and Cocos AI are Apache 2.0 — inspect the source, fork the platform, extend it for your environment. No black boxes, no lock-in.'],
+  [
+    "01",
+    "Private",
+    "Every prompt, embedding, and response stays inside your perimeter. Zero outbound by default. No hidden telemetry, no training on your data.",
+  ],
+  [
+    "02",
+    "Sovereign",
+    "Data residency, compliance, and operational control governed by your policies and your jurisdiction — never a vendor's terms of service.",
+  ],
+  [
+    "03",
+    "Open",
+    "Open core. Cube AI and Cocos AI are Apache 2.0 — inspect the source, fork the platform, extend it for your environment. No black boxes, no lock-in.",
+  ],
 ];
 ---
 
 <section class="prin section divider-top">
   <div class="container">
     <div class="prin__head reveal">
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span>First principles</span>
+      <span class="eyebrow"
+        ><span class="tick" aria-hidden="true"></span>First principles</span
+      >
       <h2 class="prin__h2">Three commitments<br />behind every product.</h2>
     </div>
     <div class="prin__grid">
-      {items.map(([n, t, d], i) => (
-        <div class="prin__cell reveal" data-delay={i}>
-          <div class="prin__num">{n}</div>
-          <h3 class="prin__t">{t}</h3>
-          <p class="prin__d">{d}</p>
-        </div>
-      ))}
+      {
+        items.map(([n, t, d], i) => (
+          <div class="prin__cell reveal" data-delay={i}>
+            <div class="prin__num">{n}</div>
+            <h3 class="prin__t">{t}</h3>
+            <p class="prin__d">{d}</p>
+          </div>
+        ))
+      }
     </div>
   </div>
 </section>

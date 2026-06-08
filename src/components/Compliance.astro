@@ -1,13 +1,32 @@
 ---
-import { Check } from 'lucide-astro';
+import { Check } from "@lucide/astro";
 
-const badges = ['GDPR', 'HIPAA', 'EU AI Act', 'TEE Attestation', 'AMD SEV-SNP', 'Intel TDX'];
+const badges = [
+  "GDPR",
+  "HIPAA",
+  "EU AI Act",
+  "TEE Attestation",
+  "AMD SEV-SNP",
+  "Intel TDX",
+];
 
 const proof = [
-  ['CONFIDENTIAL6G', 'Quantum-resistant cryptography for 6G security', '€5M · Horizon Europe'],
-  ['TITAN', 'Confidential data collaboration & privacy-preserving AI', '€5M · Horizon Europe'],
-  ['ELASTIC', 'WebAssembly + confidential computing for 6G', 'Horizon Europe'],
-  ['Open governance', 'Linux Foundation · Confidential Computing Consortium', 'Apache 2.0'],
+  [
+    "CONFIDENTIAL6G",
+    "Quantum-resistant cryptography for 6G security",
+    "€5M · Horizon Europe",
+  ],
+  [
+    "TITAN",
+    "Confidential data collaboration & privacy-preserving AI",
+    "€5M · Horizon Europe",
+  ],
+  ["ELASTIC", "WebAssembly + confidential computing for 6G", "Horizon Europe"],
+  [
+    "Open governance",
+    "Linux Foundation · Confidential Computing Consortium",
+    "Apache 2.0",
+  ],
 ];
 ---
 
@@ -15,28 +34,41 @@ const proof = [
   <div class="container">
     <div class="comp__grid">
       <div class="comp__copy reveal">
-        <span class="eyebrow"><span class="tick" aria-hidden="true"></span>Trust, by architecture</span>
-        <h2 class="comp__h2">Compliance you can prove —<br />not just promise.</h2>
+        <span class="eyebrow"
+          ><span class="tick" aria-hidden="true"></span>Trust, by architecture</span
+        >
+        <h2 class="comp__h2">
+          Compliance you can prove —<br />not just promise.
+        </h2>
         <p class="comp__desc">
-          Sovereignty is enforced in hardware. Trusted Execution Environments isolate every workload,
-          remote attestation makes that isolation verifiable, and a complete audit trail makes it
-          provable to a regulator. Validated through three EU Horizon Europe research projects and built
-          as a member of the Linux Foundation and Confidential Computing Consortium.
+          Sovereignty is enforced in hardware. Trusted Execution Environments
+          isolate every workload, remote attestation makes that isolation
+          verifiable, and a complete audit trail makes it provable to a
+          regulator. Validated through three EU Horizon Europe research projects
+          and built as a member of the Linux Foundation and Confidential
+          Computing Consortium.
         </p>
         <div class="comp__badges">
-          {badges.map(b => (
-            <span class="chip"><Check size={13} />{b}</span>
-          ))}
+          {
+            badges.map((b) => (
+              <span class="chip">
+                <Check size={13} />
+                {b}
+              </span>
+            ))
+          }
         </div>
       </div>
       <div class="comp__proof reveal" data-delay="1">
-        {proof.map(([t, d, m]) => (
-          <div class="comp__proof-item">
-            <div class="comp__proof-t">{t}</div>
-            <div class="comp__proof-d">{d}</div>
-            <div class="comp__proof-m">{m}</div>
-          </div>
-        ))}
+        {
+          proof.map(([t, d, m]) => (
+            <div class="comp__proof-item">
+              <div class="comp__proof-t">{t}</div>
+              <div class="comp__proof-d">{d}</div>
+              <div class="comp__proof-m">{m}</div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </div>

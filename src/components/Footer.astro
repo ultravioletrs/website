@@ -2,32 +2,44 @@
 const year = new Date().getFullYear();
 
 const cols = [
-  { head: 'Products', links: [
-    { label: 'Cube AI', href: '/products/cube-ai' },
-    { label: 'Prism AI', href: '/products/prism-ai' },
-    { label: 'Cocos AI', href: '/products/cocos-ai' },
-  ]},
-  { head: 'Solutions', links: [
-    { label: 'Sovereign AI', href: '/solutions/sovereign-ai' },
-    { label: 'Private AI', href: '/solutions/private-ai' },
-    { label: 'Air-Gapped AI', href: '/solutions/air-gapped-ai' },
-    { label: 'AI Governance', href: '/solutions/ai-governance' },
-    { label: 'Agentic AI', href: '/solutions/agentic-ai' },
-  ]},
-  { head: 'Industries', links: [
-    { label: 'Government', href: '/industries/government' },
-    { label: 'Defense', href: '/industries/defense' },
-    { label: 'Healthcare', href: '/industries/healthcare' },
-    { label: 'Financial Services', href: '/industries/financial-services' },
-    { label: 'Research', href: '/industries/research' },
-  ]},
-  { head: 'Company', links: [
-    { label: 'About', href: '/company/about' },
-    { label: 'Careers', href: '/company/careers' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Projects', href: '/projects' },
-    { label: 'Contact', href: '/company/contact' },
-  ]},
+  {
+    head: "Products",
+    links: [
+      { label: "Cube AI", href: "/products/cube-ai" },
+      { label: "Prism AI", href: "/products/prism-ai" },
+      { label: "Cocos AI", href: "/products/cocos-ai" },
+    ],
+  },
+  {
+    head: "Solutions",
+    links: [
+      { label: "Sovereign AI", href: "/solutions/sovereign-ai" },
+      { label: "Private AI", href: "/solutions/private-ai" },
+      { label: "Air-Gapped AI", href: "/solutions/air-gapped-ai" },
+      { label: "AI Governance", href: "/solutions/ai-governance" },
+      { label: "Agentic AI", href: "/solutions/agentic-ai" },
+    ],
+  },
+  {
+    head: "Industries",
+    links: [
+      { label: "Government", href: "/industries/government" },
+      { label: "Defense", href: "/industries/defense" },
+      { label: "Healthcare", href: "/industries/healthcare" },
+      { label: "Financial Services", href: "/industries/financial-services" },
+      { label: "Research", href: "/industries/research" },
+    ],
+  },
+  {
+    head: "Company",
+    links: [
+      { label: "About", href: "/company/about" },
+      { label: "Careers", href: "/company/careers" },
+      { label: "Blog", href: "/blog" },
+      { label: "Projects", href: "/projects" },
+      { label: "Contact", href: "/company/contact" },
+    ],
+  },
 ];
 ---
 
@@ -36,20 +48,32 @@ const cols = [
     <div class="ft__top">
       <div class="ft__brand">
         <a href="/" aria-label="Ultraviolet home">
-          <img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Ultraviolet" height="24" style="height:24px;width:auto" />
+          <img
+            src="/img/logos/UltraViolet_logo-horizontal.svg"
+            alt="Ultraviolet"
+            height="24"
+            style="height:24px;width:auto"
+          />
         </a>
-        <p class="ft__tag">Sovereign AI infrastructure. Build, deploy, govern, and operate AI on infrastructure you control.</p>
+        <p class="ft__tag">
+          Sovereign AI infrastructure. Build, deploy, govern, and operate AI on
+          infrastructure you control.
+        </p>
         <div class="ft__meta">Belgrade, Serbia · Apache 2.0</div>
       </div>
       <div class="ft__cols">
-        {cols.map(col => (
-          <div class="ft__col">
-            <div class="ft__head">{col.head}</div>
-            {col.links.map(link => (
-              <a href={link.href} class="ft__link">{link.label}</a>
-            ))}
-          </div>
-        ))}
+        {
+          cols.map((col) => (
+            <div class="ft__col">
+              <div class="ft__head">{col.head}</div>
+              {col.links.map((link) => (
+                <a href={link.href} class="ft__link">
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          ))
+        }
       </div>
     </div>
     <div class="ft__bottom">
@@ -57,7 +81,11 @@ const cols = [
       <span class="ft__legal">
         <a href="/cube/privacy">Privacy</a>
         <a href="/cube/terms">Terms</a>
-        <a href="https://github.com/ultravioletrs" target="_blank" rel="noopener">GitHub ↗</a>
+        <a
+          href="https://github.com/ultravioletrs"
+          target="_blank"
+          rel="noopener">GitHub ↗</a
+        >
       </span>
     </div>
   </div>

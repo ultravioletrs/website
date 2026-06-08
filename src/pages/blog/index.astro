@@ -1,36 +1,45 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import PageHero from '../../components/PageHero.astro';
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PageHero from "../../components/PageHero.astro";
 
-const allPosts = await getCollection('blog');
-const posts = allPosts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const allPosts = await getCollection("blog");
+const posts = allPosts.sort(
+  (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+);
 
 function fmtDate(d: Date) {
-  return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  return new Date(d).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
 
-const cats = ['All', 'Cube AI', 'Prism AI', 'Cocos AI'];
+const cats = ["All", "Cube AI", "Prism AI", "Cocos AI"];
 
 const productTags: Record<string, string> = {
-  'cube ai': 'Cube AI',
-  'cube': 'Cube AI',
-  'prism ai': 'Prism AI',
-  'prism': 'Prism AI',
-  'cocos ai': 'Cocos AI',
-  'cocos': 'Cocos AI',
+  "cube ai": "Cube AI",
+  cube: "Cube AI",
+  "prism ai": "Prism AI",
+  prism: "Prism AI",
+  "cocos ai": "Cocos AI",
+  cocos: "Cocos AI",
 };
 
-function getAuthors(post: (typeof posts)[0]): { name: string; picture?: string }[] {
-  if (post.data.authors && post.data.authors.length > 0) return post.data.authors;
+function getAuthors(
+  post: (typeof posts)[0],
+): { name: string; picture?: string }[] {
+  if (post.data.authors && post.data.authors.length > 0)
+    return post.data.authors;
   if (post.data.author) return [post.data.author];
   return [];
 }
 
 function getProduct(post: (typeof posts)[0]) {
-  for (const tag of (post.data.tags || [])) {
+  for (const tag of post.data.tags || []) {
     const p = productTags[tag.toLowerCase()];
     if (p) return p;
   }
@@ -38,10 +47,13 @@ function getProduct(post: (typeof posts)[0]) {
 }
 
 const [featuredPost, ...restPosts] = posts;
-const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
+// const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
 ---
 
-<Layout title="Blog — Confidential AI Field Notes | Ultraviolet" description="Technical deep dives, product updates, and engineering notes from the Ultraviolet team on confidential computing and sovereign AI.">
+<Layout
+  title="Blog — Confidential AI Field Notes | Ultraviolet"
+  description="Technical deep dives, product updates, and engineering notes from the Ultraviolet team on confidential computing and sovereign AI."
+>
   <Header />
   <main>
     <PageHero
@@ -59,91 +71,191 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
       <div class="container">
         <div class="blog-layout">
           <div class="blog-main">
-            {featuredPost && (
-              <a class="blog-card blog-card--feat reveal" href={`/blog/${featuredPost.slug}`}
-                data-search={`${featuredPost.data.title} ${featuredPost.data.excerpt || featuredPost.data.description || ''} ${(featuredPost.data.tags || []).join(' ')}`}
-                data-product={getProduct(featuredPost) || 'All'}
-                data-tags={(featuredPost.data.tags || []).join(',').toLowerCase()}>
-                <div class="blog-card__media">
-                  <img src={featuredPost.data.image || featuredPost.data.coverImage || `/img/blog/${featuredPost.slug}.png`} alt={featuredPost.data.title} loading="eager" />
-                </div>
-                <div class="blog-card__body">
-                  <div class="blog-card__tags">
-                    {featuredPost.data.category && <span class="blog-badge">{featuredPost.data.category}</span>}
-                    <span class="blog-badge blog-badge--feat">Featured</span>
-                  </div>
-                  <h3 class="blog-card__title">{featuredPost.data.title}</h3>
-                  <p class="blog-card__excerpt">{featuredPost.data.excerpt || featuredPost.data.description}</p>
-                  <div class="blog-meta">
-                    {getAuthors(featuredPost).some(a => a.picture) && (
-                      <div class="blog-av-stack">
-                        {getAuthors(featuredPost).filter(a => a.picture).map(a => (
-                          <img class="blog-av" src={a.picture!} alt={a.name} loading="lazy" />
-                        ))}
-                      </div>
-                    )}
-                    <div class="blog-meta__txt">
-                      <div class="blog-meta__author">{getAuthors(featuredPost).map(a => a.name).join(', ')}</div>
-                      <div class="blog-meta__sub">{fmtDate(featuredPost.data.date)}</div>
-                    </div>
-                  </div>
-                  <div class="blog-card__chips">
-                    {(featuredPost.data.tags || []).slice(0, 4).map(t => <span class="blog-chip">{t}</span>)}
-                  </div>
-                </div>
-              </a>
-            )}
-            <div class="blog-grid">
-              {restPosts.map((p, i) => (
-                <a class="blog-card reveal" data-delay={i % 2} href={`/blog/${p.slug}`}
-                  data-search={`${p.data.title} ${p.data.excerpt || p.data.description || ''} ${(p.data.tags || []).join(' ')}`}
-                  data-product={getProduct(p) || 'All'}
-                  data-tags={(p.data.tags || []).join(',').toLowerCase()}>
+            {
+              featuredPost && (
+                <a
+                  class="blog-card blog-card--feat reveal"
+                  href={`/blog/${featuredPost.slug}`}
+                  data-search={`${featuredPost.data.title} ${featuredPost.data.excerpt || featuredPost.data.description || ""} ${(featuredPost.data.tags || []).join(" ")}`}
+                  data-product={getProduct(featuredPost) || "All"}
+                  data-tags={(featuredPost.data.tags || [])
+                    .join(",")
+                    .toLowerCase()}
+                >
                   <div class="blog-card__media">
-                    <img src={p.data.image || p.data.coverImage || `/img/blog/${p.slug}.png`} alt={p.data.title} loading="lazy" />
+                    <img
+                      src={
+                        featuredPost.data.image ||
+                        featuredPost.data.coverImage ||
+                        `/img/blog/${featuredPost.slug}.png`
+                      }
+                      alt={featuredPost.data.title}
+                      loading="eager"
+                    />
                   </div>
                   <div class="blog-card__body">
                     <div class="blog-card__tags">
-                      {p.data.category && <span class="blog-badge">{p.data.category}</span>}
-                      {getProduct(p) && <span class="blog-badge">{getProduct(p)}</span>}
+                      {featuredPost.data.category && (
+                        <span class="blog-badge">
+                          {featuredPost.data.category}
+                        </span>
+                      )}
+                      <span class="blog-badge blog-badge--feat">Featured</span>
                     </div>
-                    <h3 class="blog-card__title">{p.data.title}</h3>
-                    <p class="blog-card__excerpt">{p.data.excerpt || p.data.description}</p>
+                    <h3 class="blog-card__title">{featuredPost.data.title}</h3>
+                    <p class="blog-card__excerpt">
+                      {featuredPost.data.excerpt ||
+                        featuredPost.data.description}
+                    </p>
                     <div class="blog-meta">
-                      {getAuthors(p).some(a => a.picture) && (
+                      {getAuthors(featuredPost).some((a) => a.picture) && (
                         <div class="blog-av-stack">
-                          {getAuthors(p).filter(a => a.picture).map(a => (
-                            <img class="blog-av" src={a.picture!} alt={a.name} loading="lazy" />
-                          ))}
+                          {getAuthors(featuredPost)
+                            .filter((a) => a.picture)
+                            .map((a) => (
+                              <img
+                                class="blog-av"
+                                src={a.picture!}
+                                alt={a.name}
+                                loading="lazy"
+                              />
+                            ))}
                         </div>
                       )}
                       <div class="blog-meta__txt">
-                        <div class="blog-meta__author">{getAuthors(p).map(a => a.name).join(', ')}</div>
-                        <div class="blog-meta__sub">{fmtDate(p.data.date)}</div>
+                        <div class="blog-meta__author">
+                          {getAuthors(featuredPost)
+                            .map((a) => a.name)
+                            .join(", ")}
+                        </div>
+                        <div class="blog-meta__sub">
+                          {fmtDate(featuredPost.data.date)}
+                        </div>
                       </div>
                     </div>
                     <div class="blog-card__chips">
-                      {(p.data.tags || []).slice(0, 4).map(t => <span class="blog-chip">{t}</span>)}
+                      {(featuredPost.data.tags || []).slice(0, 4).map((t) => (
+                        <span class="blog-chip">{t}</span>
+                      ))}
                     </div>
                   </div>
                 </a>
-              ))}
+              )
+            }
+            <div class="blog-grid">
+              {
+                restPosts.map((p, i) => (
+                  <a
+                    class="blog-card reveal"
+                    data-delay={i % 2}
+                    href={`/blog/${p.slug}`}
+                    data-search={`${p.data.title} ${p.data.excerpt || p.data.description || ""} ${(p.data.tags || []).join(" ")}`}
+                    data-product={getProduct(p) || "All"}
+                    data-tags={(p.data.tags || []).join(",").toLowerCase()}
+                  >
+                    <div class="blog-card__media">
+                      <img
+                        src={
+                          p.data.image ||
+                          p.data.coverImage ||
+                          `/img/blog/${p.slug}.png`
+                        }
+                        alt={p.data.title}
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="blog-card__body">
+                      <div class="blog-card__tags">
+                        {p.data.category && (
+                          <span class="blog-badge">{p.data.category}</span>
+                        )}
+                        {getProduct(p) && (
+                          <span class="blog-badge">{getProduct(p)}</span>
+                        )}
+                      </div>
+                      <h3 class="blog-card__title">{p.data.title}</h3>
+                      <p class="blog-card__excerpt">
+                        {p.data.excerpt || p.data.description}
+                      </p>
+                      <div class="blog-meta">
+                        {getAuthors(p).some((a) => a.picture) && (
+                          <div class="blog-av-stack">
+                            {getAuthors(p)
+                              .filter((a) => a.picture)
+                              .map((a) => (
+                                <img
+                                  class="blog-av"
+                                  src={a.picture!}
+                                  alt={a.name}
+                                  loading="lazy"
+                                />
+                              ))}
+                          </div>
+                        )}
+                        <div class="blog-meta__txt">
+                          <div class="blog-meta__author">
+                            {getAuthors(p)
+                              .map((a) => a.name)
+                              .join(", ")}
+                          </div>
+                          <div class="blog-meta__sub">
+                            {fmtDate(p.data.date)}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="blog-card__chips">
+                        {(p.data.tags || []).slice(0, 4).map((t) => (
+                          <span class="blog-chip">{t}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </a>
+                ))
+              }
             </div>
           </div>
 
           <aside class="blog-side">
             <div class="blog-search">
               <span class="blog-search__ic" aria-hidden="true">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="11" cy="11" r="8"></circle><line
+                    x1="21"
+                    y1="21"
+                    x2="16.65"
+                    y2="16.65"></line></svg
+                >
               </span>
-              <input type="text" id="blog-search-input" placeholder="Search posts…" aria-label="Search posts" class="blog-search__input" autocomplete="off" />
+              <input
+                type="text"
+                id="blog-search-input"
+                placeholder="Search posts…"
+                aria-label="Search posts"
+                class="blog-search__input"
+                autocomplete="off"
+              />
             </div>
             <div class="blog-side__block">
               <div class="blog-side__h">Categories</div>
               <div class="blog-cats" id="blog-filter">
-                {cats.map(cat => (
-                  <button class={`blog-cat${cat === 'All' ? ' is-active' : ''}`} data-cat={cat}>{cat}</button>
-                ))}
+                {
+                  cats.map((cat) => (
+                    <button
+                      class={`blog-cat${cat === "All" ? " is-active" : ""}`}
+                      data-cat={cat}
+                    >
+                      {cat}
+                    </button>
+                  ))
+                }
               </div>
             </div>
             <!-- <div class="blog-side__block">
@@ -155,16 +267,37 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
               </div>
             </div> -->
             <div class="blog-side__card surface">
-              <img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Ultraviolet" height="22" style="height:22px;width:auto;" />
-              <p class="blog-side__txt">Ultraviolet builds sovereign AI infrastructure — confidential computing, private LLM deployment, and secure collaboration.</p>
+              <img
+                src="/img/logos/UltraViolet_logo-horizontal.svg"
+                alt="Ultraviolet"
+                height="22"
+                style="height:22px;width:auto;"
+              />
+              <p class="blog-side__txt">
+                Ultraviolet builds sovereign AI infrastructure — confidential
+                computing, private LLM deployment, and secure collaboration.
+              </p>
               <div class="blog-side__links">
-                <a href="https://github.com/ultravioletrs" target="_blank" rel="noopener">GitHub ↗</a>
-                <a href="https://www.linkedin.com/company/ultravioletrs" target="_blank" rel="noopener">LinkedIn ↗</a>
+                <a
+                  href="https://github.com/ultravioletrs"
+                  target="_blank"
+                  rel="noopener">GitHub ↗</a
+                >
+                <a
+                  href="https://www.linkedin.com/company/ultravioletrs"
+                  target="_blank"
+                  rel="noopener">LinkedIn ↗</a
+                >
               </div>
             </div>
             <div class="blog-side__card surface">
-              <div class="blog-side__h" style="margin-bottom:0.5rem">Stay in the loop</div>
-              <p class="blog-side__txt" style="margin-bottom:1rem">Get new posts on confidential computing and sovereign AI delivered to your inbox.</p>
+              <div class="blog-side__h" style="margin-bottom:0.5rem">
+                Stay in the loop
+              </div>
+              <p class="blog-side__txt" style="margin-bottom:1rem">
+                Get new posts on confidential computing and sovereign AI
+                delivered to your inbox.
+              </p>
               <form
                 class="blog-nl"
                 action="https://ultraviolet.us20.list-manage.com/subscribe/post?u=b35e6bdc7b2adf06c56da2265&id=88ed6c4af0&f_id=004f06eaf0"
@@ -172,10 +305,23 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
                 target="_blank"
                 aria-label="Newsletter subscription"
               >
-                <input type="email" name="EMAIL" placeholder="Your email" required aria-label="Email address" class="blog-nl__input" />
+                <input
+                  type="email"
+                  name="EMAIL"
+                  placeholder="Your email"
+                  required
+                  aria-label="Email address"
+                  class="blog-nl__input"
+                />
                 <button type="submit" class="blog-nl__btn">Subscribe</button>
                 <div style="position:absolute;left:-5000px" aria-hidden="true">
-                  <input type="text" name="b_b35e6bdc7b2adf06c56da2265_88ed6c4af0" tabindex="-1" value="" aria-label="Leave empty" />
+                  <input
+                    type="text"
+                    name="b_b35e6bdc7b2adf06c56da2265_88ed6c4af0"
+                    tabindex="-1"
+                    value=""
+                    aria-label="Leave empty"
+                  />
                 </div>
               </form>
             </div>
@@ -188,49 +334,59 @@ const allTags = [...new Set(posts.flatMap(p => p.data.tags || []))].sort();
 </Layout>
 
 <script>
-  const cards = Array.from(document.querySelectorAll('.blog-card')) as HTMLElement[];
-  let activeCat = 'All';
-  let activeTag = '';
-  let searchTerm = '';
+  const cards = Array.from(
+    document.querySelectorAll(".blog-card"),
+  ) as HTMLElement[];
+  let activeCat = "All";
+  let activeTag = "";
+  let searchTerm = "";
 
   function filterCards() {
-    cards.forEach(card => {
-      const product = card.dataset.product || 'All';
-      const cardTags = (card.dataset.tags || '').split(',').map(t => t.trim());
-      const searchable = (card.dataset.search || '').toLowerCase();
-      const matchCat = activeCat === 'All' || product === activeCat;
+    cards.forEach((card) => {
+      const product = card.dataset.product || "All";
+      const cardTags = (card.dataset.tags || "")
+        .split(",")
+        .map((t) => t.trim());
+      const searchable = (card.dataset.search || "").toLowerCase();
+      const matchCat = activeCat === "All" || product === activeCat;
       const matchTag = !activeTag || cardTags.includes(activeTag);
       const matchSearch = !searchTerm || searchable.includes(searchTerm);
-      card.style.display = matchCat && matchTag && matchSearch ? '' : 'none';
+      card.style.display = matchCat && matchTag && matchSearch ? "" : "none";
     });
   }
 
-  document.getElementById('blog-filter')?.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest('[data-cat]') as HTMLElement;
+  document.getElementById("blog-filter")?.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest("[data-cat]") as HTMLElement;
     if (!btn) return;
-    document.querySelectorAll('[data-cat]').forEach(b => b.classList.remove('is-active'));
-    btn.classList.add('is-active');
-    activeCat = btn.dataset.cat || 'All';
+    document
+      .querySelectorAll("[data-cat]")
+      .forEach((b) => b.classList.remove("is-active"));
+    btn.classList.add("is-active");
+    activeCat = btn.dataset.cat || "All";
     filterCards();
   });
 
-  document.getElementById('blog-tags')?.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest('[data-tag]') as HTMLElement;
+  document.getElementById("blog-tags")?.addEventListener("click", (e) => {
+    const btn = (e.target as HTMLElement).closest("[data-tag]") as HTMLElement;
     if (!btn) return;
-    const tag = btn.dataset.tag || '';
+    const tag = btn.dataset.tag || "";
     if (activeTag === tag) {
-      activeTag = '';
-      btn.classList.remove('is-active');
+      activeTag = "";
+      btn.classList.remove("is-active");
     } else {
-      document.querySelectorAll('#blog-tags [data-tag]').forEach(b => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
+      document
+        .querySelectorAll("#blog-tags [data-tag]")
+        .forEach((b) => b.classList.remove("is-active"));
+      btn.classList.add("is-active");
       activeTag = tag;
     }
     filterCards();
   });
 
-  document.getElementById('blog-search-input')?.addEventListener('input', (e) => {
-    searchTerm = (e.target as HTMLInputElement).value.toLowerCase().trim();
-    filterCards();
-  });
+  document
+    .getElementById("blog-search-input")
+    ?.addEventListener("input", (e) => {
+      searchTerm = (e.target as HTMLInputElement).value.toLowerCase().trim();
+      filterCards();
+    });
 </script>

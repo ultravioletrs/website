@@ -27,6 +27,7 @@ Cocos AI (Confidential Computing System for AI) is a comprehensive software plat
 ![Cocos Architecture](https://raw.githubusercontent.com/ultravioletrs/cocos-docs/main/static/img/arch.png)
 
 The platform enables:
+
 - **Model training and inference on sensitive data** without ever exposing that data
 - **Secure Multi-Party Computation (SMPC)** for collaborative analysis across different data sources
 - **Hardware attestation** to verify the integrity and trustworthiness of computations
@@ -43,16 +44,19 @@ While Cocos AI provides the core confidential computing infrastructure, **Prism*
 ### What Prism Brings to the Table
 
 **1. User & Workspace Management**
+
 - Create and manage users across workspaces (consortiums)
 - Fine-grained role-based access control (RBAC)
 - Multi-tenant isolation for collaborative environments
 
 **2. Policy Management**
+
 - Define access control policies between users, workspaces, and computations
 - Manage asset access and computational workflows
 - Enforce data governance rules seamlessly
 
 **3. Asset Management**
+
 - Organize and search datasets and algorithms
 - Track asset usage across computations
 - Maintain metadata and audit trails
@@ -60,16 +64,19 @@ While Cocos AI provides the core confidential computing infrastructure, **Prism*
 ![Asset Management Dashboard](https://raw.githubusercontent.com/ultravioletrs/prism-docs/main/static/img/asset_management.png)
 
 **4. Computation Orchestration**
+
 - Submit and monitor confidential computations
 - View computation results with audit logs
 - Track computation policies and resource allocation
 
 **5. Billing & Subscription Management**
+
 - Manage subscription tiers and payment information
 - Track resource usage and costs
 - Email notifications for important events
 
 **6. Secure Infrastructure**
+
 - Leverage TEE-based secure VM provisioning
 - End-to-end encryption throughout the workflow
 - Comprehensive logging and monitoring
@@ -83,6 +90,7 @@ Cocos v0.8.0 brings significant improvements focused on attestation, security, a
 ### Key Highlights
 
 **Enhanced Attestation Policy**
+
 - Improved CLI attestation policy tools for better developer experience
 - Updated configurations for AMD SEV-SNP and Intel TDX platforms
 - Added reported TCB (Trusted Computing Base) support for more comprehensive security validation
@@ -91,21 +99,23 @@ Cocos v0.8.0 brings significant improvements focused on attestation, security, a
 ![SEV-SNP Threat Model](https://raw.githubusercontent.com/ultravioletrs/cocos-docs/main/static/img/SEVSNPThreatModel.png)
 
 **Performance Innovations**
+
 - **VCEK Caching on aTLS Verification**: Significantly improves performance by caching VCEK (Versioned Chip Endorsement Key) certificates during attestation TLS verification
 - Optimized certificate handling and verification workflows
 - Enhanced HTTP and gRPC client reusability
 
 **Architecture Enhancements**
+
 - Refactored attestation handling: `AttestationResult` renamed to `AzureAttestationToken` for clarity
 - New `CertificateProvider` interface for flexible certificate handling
 - Improved aTLS and gRPC server architecture
 - Better code reusability across components
 
 **Security Updates**
+
 - Major dependency upgrades (gRPC 1.74.2 → 1.75.0, Docker SDK 28.3.2 → 28.5.0)
 - Updated SMQ library to 0.18.1 with security patches
 - Enhanced certificate library integration
-
 
 ### Patch Updates
 
@@ -120,11 +130,13 @@ Prism v0.6.0 focuses on user experience, asset discovery, and operational improv
 ### What's New
 
 **Advanced Search & Discovery**
+
 - **Comprehensive Asset Search**: New asset search functionality with full UI and backend support
 - Find and manage algorithms, datasets, and computational resources effortlessly
 - Enhanced search performance and filtering options
 
 **User Management Enhancements**
+
 - **Subscription Management Button**: Dedicated UI for easier subscription control access
 - **Email Notifications**: Introduced notifications for email events, keeping users informed of critical updates
 - Better visibility into account and subscription status
@@ -141,14 +153,17 @@ We've polished the interface with cleaner styling for asset templates, improved 
 ## Why These Releases Matter
 
 ### For Data Scientists & Researchers
+
 - **Cocos**: Attestable proof that their sensitive algorithms and data are executed in protected enclaves
 - **Prism**: Intuitive interface to run confidential computations without infrastructure complexity
 
 ### For Enterprises & Organizations
+
 - **Cocos**: Hardware-validated security guarantees for regulatory compliance (HIPAA, GDPR, etc.)
 - **Prism**: Enterprise features like billing, user management, and audit logs for governance
 
 ### For Security Teams
+
 - **Cocos**: Advanced attestation validation, updated security policies, and dependency management
 - **Prism**: Fine-grained access control, comprehensive logging, and policy enforcement
 
@@ -173,9 +188,11 @@ Together, Cocos and Prism enable a new paradigm for AI:
 ## Getting Started
 
 ### Explore Cocos AI
+
 Visit the [Cocos GitHub repository](https://github.com/ultravioletrs/cocos) to deploy and integrate confidential computing into your infrastructure.
 
 ### Experience Prism
+
 Access [Prism's web interface](https://prism.ultraviolet.rs/) to manage users, policies, and computations in a secure, user-friendly environment.
 
 ---
@@ -183,6 +200,7 @@ Access [Prism's web interface](https://prism.ultraviolet.rs/) to manage users, p
 ## What's Next?
 
 Both projects continue to evolve. The roadmap includes:
+
 - Enhanced multi-party computation capabilities
 - Support for additional TEE technologies
 - Expanded analytics and reporting features
@@ -193,6 +211,7 @@ Stay tuned for more innovations in the confidential computing space!
 ---
 
 **Learn More:**
+
 - [Cocos AI Documentation](https://cocos.ultraviolet.rs/docs/)
 - [Prism Documentation](https://prism.ultraviolet.rs/docs/)
 - [Ultraviolet RS](https://ultraviolet.rs)

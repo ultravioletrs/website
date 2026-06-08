@@ -1,31 +1,70 @@
 ---
-import { Shield, Lock, Eye, Zap, Plug, Layers } from 'lucide-astro';
+import { Shield, Lock, Eye, Zap, Plug, Layers } from "@lucide/astro";
 
 const list = [
-  { Icon: Shield, t: 'Government', d: 'Sovereign AI for public administration and citizen services.', href: '/industries/government' },
-  { Icon: Lock, t: 'Defense', d: 'Air-gapped AI for classified and mission-critical environments.', href: '/industries/defense' },
-  { Icon: Eye, t: 'Healthcare', d: 'HIPAA-aligned AI on protected health data that never leaves the hospital.', href: '/industries/healthcare' },
-  { Icon: Zap, t: 'Financial Services', d: 'Private AI for risk, fraud, and analysis under strict data residency.', href: '/industries/financial-services' },
-  { Icon: Plug, t: 'Telecommunications', d: 'Confidential AI across multi-operator and 6G networks.', href: '/industries/telecommunications' },
-  { Icon: Layers, t: 'Research', d: 'Privacy-preserving collaboration across institutions and borders.', href: '/industries/research' },
+  {
+    Icon: Shield,
+    t: "Government",
+    d: "Sovereign AI for public administration and citizen services.",
+    href: "/industries/government",
+  },
+  {
+    Icon: Lock,
+    t: "Defense",
+    d: "Air-gapped AI for classified and mission-critical environments.",
+    href: "/industries/defense",
+  },
+  {
+    Icon: Eye,
+    t: "Healthcare",
+    d: "HIPAA-aligned AI on protected health data that never leaves the hospital.",
+    href: "/industries/healthcare",
+  },
+  {
+    Icon: Zap,
+    t: "Financial Services",
+    d: "Private AI for risk, fraud, and analysis under strict data residency.",
+    href: "/industries/financial-services",
+  },
+  {
+    Icon: Plug,
+    t: "Telecommunications",
+    d: "Confidential AI across multi-operator and 6G networks.",
+    href: "/industries/telecommunications",
+  },
+  {
+    Icon: Layers,
+    t: "Research",
+    d: "Privacy-preserving collaboration across institutions and borders.",
+    href: "/industries/research",
+  },
 ];
 ---
 
 <section class="ind section divider-top dotgrid">
   <div class="container">
     <div class="ind__head reveal">
-      <span class="eyebrow"><span class="tick" aria-hidden="true"></span>Built for regulated reality</span>
+      <span class="eyebrow"
+        ><span class="tick" aria-hidden="true"></span>Built for regulated
+        reality</span
+      >
       <h2 class="ind__h2">Where sovereignty isn&rsquo;t optional.</h2>
     </div>
     <div class="ind__grid">
-      {list.map(({ Icon, t, d, href }, i) => (
-        <a href={href} class="ind__cell reveal" data-delay={i % 3}>
-          <span class="ind__ic"><Icon size={20} /></span>
-          <h3 class="ind__t">{t}</h3>
-          <p class="ind__d">{d}</p>
-          <span class="ind__go mono" aria-hidden="true">→</span>
-        </a>
-      ))}
+      {
+        list.map(({ Icon, t, d, href }, i) => (
+          <a href={href} class="ind__cell reveal" data-delay={i % 3}>
+            <span class="ind__ic">
+              <Icon size={20} />
+            </span>
+            <h3 class="ind__t">{t}</h3>
+            <p class="ind__d">{d}</p>
+            <span class="ind__go mono" aria-hidden="true">
+              →
+            </span>
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>

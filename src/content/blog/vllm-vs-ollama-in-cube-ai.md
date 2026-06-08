@@ -85,7 +85,7 @@ When measuring single-request latency in isolation, Ollama performs well for ind
 vLLM shines under load due to its batching efficiency. Because it processes multiple requests simultaneously, the amortized latency per request can actually decrease as more requests arrive — the GPU processes a batch of requests in roughly the same time it would take to process a single one.
 
 **Important Insight:**
-If your system experiences burst traffic patterns — where many requests arrive in a short window — vLLM's latency often *improves* relative to sequential engines. While a sequential engine queues requests and processes them one at a time (leading to linearly increasing wait times), vLLM absorbs the burst into a batch and processes it as a unit.
+If your system experiences burst traffic patterns — where many requests arrive in a short window — vLLM's latency often _improves_ relative to sequential engines. While a sequential engine queues requests and processes them one at a time (leading to linearly increasing wait times), vLLM absorbs the burst into a batch and processes it as a unit.
 
 ### Memory Usage
 
@@ -106,10 +106,10 @@ Ollama takes a different approach, handling memory management automatically base
 
 **Trade-off:**
 
-| Goal | Better Choice |
-| :--- | :--- |
-| Deterministic GPU planning | vLLM |
-| Operational simplicity | Ollama |
+| Goal                       | Better Choice |
+| :------------------------- | :------------ |
+| Deterministic GPU planning | vLLM          |
+| Operational simplicity     | Ollama        |
 
 ---
 
@@ -161,12 +161,12 @@ One of Ollama's most significant advantages over vLLM is its ability to manage m
 
 Ollama is designed to run across a wide range of hardware configurations, which makes it far more versatile than vLLM in terms of deployment targets:
 
-| Capability | Ollama |
-| :--- | :--- |
-| CPU-only | Supported |
-| NVIDIA GPU | Supported |
+| Capability     | Ollama    |
+| :------------- | :-------- |
+| CPU-only       | Supported |
+| NVIDIA GPU     | Supported |
 | AMD GPU (ROCm) | Supported |
-| Edge devices | Supported |
+| Edge devices   | Supported |
 
 This broad hardware compatibility makes Ollama extremely attractive for deployment scenarios where GPU availability cannot be guaranteed. Confidential Virtual Machines (CVMs) running in Trusted Execution Environments may not have GPU passthrough configured, edge inference nodes may be running on commodity ARM hardware, on-premises deployments may need to operate on whatever hardware is available, and secure or air-gapped environments may have strict procurement constraints that limit GPU options. In all of these cases, Ollama's ability to run on CPU-only nodes provides a viable path to deploying LLM inference without GPU dependencies.
 
@@ -206,14 +206,14 @@ When building a multi-tenant SaaS product where hundreds or thousands of concurr
 
 Understanding the cost profile of each backend is essential for making financially sound infrastructure decisions, especially as LLM workloads grow from experimental to production scale.
 
-| Dimension | vLLM | Ollama |
-| :--- | :--- | :--- |
-| **Upfront Cost** | High (requires NVIDIA GPUs, GPU orchestration) | Low (runs on CPU, standard instances) |
-| **Cost per Token** | Lower at scale (continuous batching) | Higher under load (sequential processing) |
-| **Idle Cost** | Expensive (reserved GPU capacity) | Minimal (standard compute) |
-| **Best For** | Sustained high traffic, predictable workloads | Early-stage, sporadic traffic, PoC |
-| **Scaling Model** | Vertical (GPU utilization) | Horizontal (more instances) |
-| **Infrastructure** | Specialized (NVIDIA runtime, GPU drivers) | Standard (no specialized requirements) |
+| Dimension          | vLLM                                           | Ollama                                    |
+| :----------------- | :--------------------------------------------- | :---------------------------------------- |
+| **Upfront Cost**   | High (requires NVIDIA GPUs, GPU orchestration) | Low (runs on CPU, standard instances)     |
+| **Cost per Token** | Lower at scale (continuous batching)           | Higher under load (sequential processing) |
+| **Idle Cost**      | Expensive (reserved GPU capacity)              | Minimal (standard compute)                |
+| **Best For**       | Sustained high traffic, predictable workloads  | Early-stage, sporadic traffic, PoC        |
+| **Scaling Model**  | Vertical (GPU utilization)                     | Horizontal (more instances)               |
+| **Infrastructure** | Specialized (NVIDIA runtime, GPU drivers)      | Standard (no specialized requirements)    |
 
 ### vLLM Cost Profile
 
@@ -278,18 +278,18 @@ This HAL integration enables bare-metal CVM deployments where Docker is not avai
 
 ## Side-by-Side Comparison
 
-| Dimension | Ollama | vLLM |
-| :--- | :--- | :--- |
-| **Version** | 0.12.3 | 0.10.2 |
-| **API** | Native `/api/*` | OpenAI `/v1/*` |
-| **GPU** | Optional | Required (NVIDIA) |
-| **CPU Support** | Yes | No |
-| **Model Mgmt** | Runtime | Startup |
-| **Batching** | Sequential | Continuous |
-| **Default Model** | `llama3.2:3b` | `DialoGPT-medium` |
-| **Memory Config** | Automatic | Explicit |
-| **Guardrails** | Native adapter | Via OpenAI |
-| **Compose Profile** | default | vllm |
+| Dimension           | Ollama          | vLLM              |
+| :------------------ | :-------------- | :---------------- |
+| **Version**         | 0.12.3          | 0.10.2            |
+| **API**             | Native `/api/*` | OpenAI `/v1/*`    |
+| **GPU**             | Optional        | Required (NVIDIA) |
+| **CPU Support**     | Yes             | No                |
+| **Model Mgmt**      | Runtime         | Startup           |
+| **Batching**        | Sequential      | Continuous        |
+| **Default Model**   | `llama3.2:3b`   | `DialoGPT-medium` |
+| **Memory Config**   | Automatic       | Explicit          |
+| **Guardrails**      | Native adapter  | Via OpenAI        |
+| **Compose Profile** | default         | vllm              |
 
 ---
 
@@ -333,4 +333,4 @@ That is the power of backend modularity, and it is built into the foundation of 
 
 ---
 
-*Explore Cube AI's backend architecture in the [Deployment Guide](https://cube.ultraviolet.rs/docs/getting-started) or learn more about [Cube AI Architecture](https://cube.ultraviolet.rs/docs/architecture).*
+_Explore Cube AI's backend architecture in the [Deployment Guide](https://cube.ultraviolet.rs/docs/getting-started) or learn more about [Cube AI Architecture](https://cube.ultraviolet.rs/docs/architecture)._

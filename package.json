@@ -2,7 +2,7 @@
   "name": "ultraviolet-website",
   "type": "module",
   "version": "0.0.1",
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@11.5.2",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -20,8 +20,8 @@
     "@astrojs/cloudflare": "^12",
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/tailwind": "^6.0.2",
-    "astro": "^5.17.1",
-    "lucide-astro": "^0.556.0"
+    "@lucide/astro": "^1.17.0",
+    "astro": "^5.17.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",

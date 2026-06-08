@@ -1,21 +1,42 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
-import PageHero from '../../components/PageHero.astro';
-import ProductCTA from '../../components/ProductCTA.astro';
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PageHero from "../../components/PageHero.astro";
+import ProductCTA from "../../components/ProductCTA.astro";
 
 const projects = [
-  { slug: 'confidential6g', name: 'CONFIDENTIAL6G', logo: '/img/logos/c6g.png', logoClass: 'proj-card__logo--invert',
-    desc: 'Quantum-resistant cryptographic protocols and security frameworks for 6G confidential computing. €5M, Horizon Europe.', href: '/projects/confidential6g' },
-  { slug: 'elastic', name: 'ELASTIC', logo: '/img/logos/elastic.png', logoClass: 'proj-card__logo--dark',
-    desc: 'Next-generation network orchestration with WebAssembly and confidential computing for 6G. Horizon Europe.', href: '/projects/elastic' },
-  { slug: 'titan', name: 'TITAN', logo: '/img/logos/titan.svg', logoClass: 'proj-card__logo--box',
-    desc: 'Trusted AI systems through confidential data processing and privacy-preserving technologies for the EOSC ecosystem. €5M, Horizon Europe.', href: '/projects/titan' },
+  {
+    slug: "confidential6g",
+    name: "CONFIDENTIAL6G",
+    logo: "/img/logos/c6g.png",
+    logoClass: "proj-card__logo--invert",
+    desc: "Quantum-resistant cryptographic protocols and security frameworks for 6G confidential computing. €5M, Horizon Europe.",
+    href: "/projects/confidential6g",
+  },
+  {
+    slug: "elastic",
+    name: "ELASTIC",
+    logo: "/img/logos/elastic.png",
+    logoClass: "proj-card__logo--dark",
+    desc: "Next-generation network orchestration with WebAssembly and confidential computing for 6G. Horizon Europe.",
+    href: "/projects/elastic",
+  },
+  {
+    slug: "titan",
+    name: "TITAN",
+    logo: "/img/logos/titan.svg",
+    logoClass: "proj-card__logo--box",
+    desc: "Trusted AI systems through confidential data processing and privacy-preserving technologies for the EOSC ecosystem. €5M, Horizon Europe.",
+    href: "/projects/titan",
+  },
 ];
 ---
 
-<Layout title="Projects — EU Research | Ultraviolet" description="Ultraviolet's EU Horizon Europe research projects: CONFIDENTIAL6G, ELASTIC, and TITAN.">
+<Layout
+  title="Projects — EU Research | Ultraviolet"
+  description="Ultraviolet's EU Horizon Europe research projects: CONFIDENTIAL6G, ELASTIC, and TITAN."
+>
   <Header />
   <main>
     <PageHero
@@ -32,16 +53,20 @@ const projects = [
     <section class="section divider-top">
       <div class="container">
         <div class="proj-cards">
-          {projects.map((p, i) => (
-            <a href={p.href} class="proj-card reveal" data-delay={i}>
-              <div class={`proj-card__logo ${p.logoClass}`}>
-                <img src={p.logo} alt={`${p.name} logo`} loading="lazy" />
-              </div>
-              <h3 class="proj-card__name">{p.name}</h3>
-              <p class="proj-card__desc">{p.desc}</p>
-              <span class="arrow-link">Learn more<span aria-hidden="true">→</span></span>
-            </a>
-          ))}
+          {
+            projects.map((p, i) => (
+              <a href={p.href} class="proj-card reveal" data-delay={i}>
+                <div class={`proj-card__logo ${p.logoClass}`}>
+                  <img src={p.logo} alt={`${p.name} logo`} loading="lazy" />
+                </div>
+                <h3 class="proj-card__name">{p.name}</h3>
+                <p class="proj-card__desc">{p.desc}</p>
+                <span class="arrow-link">
+                  Learn more<span aria-hidden="true">→</span>
+                </span>
+              </a>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -49,17 +74,35 @@ const projects = [
     <section class="section--tight divider-top">
       <div class="container" style="text-align:center">
         <span class="eyebrow"><span class="tick"></span>EU funding</span>
-        <p style="font-size:1.1rem;color:var(--ink-2);margin-top:1rem;max-width:60ch;margin-inline:auto">
-          Ultraviolet has received over €10M in EU Horizon Europe research funding, validating our confidential computing approach with some of Europe's leading technology organizations.
+        <p
+          style="font-size:1.1rem;color:var(--ink-2);margin-top:1rem;max-width:60ch;margin-inline:auto"
+        >
+          Ultraviolet has received over €10M in EU Horizon Europe research
+          funding, validating our confidential computing approach with some of
+          Europe's leading technology organizations.
         </p>
       </div>
       <div class="marquee proj-pw__marquee">
         <div class="marquee__track">
-          {(logos => [...logos, ...logos])(['nokia-1', 'ericsson', 'telefonica', 'thales', 'fujitsu', 'fraunhofer', 'tno', 'vtt', 'inserm', 'tuw', 'tue']).map((f, i) => (
-            <span class="proj-pw__logo">
-              <img src={`/img/logos/${f}.png`} alt={f} loading="lazy" />
-            </span>
-          ))}
+          {
+            ((logos) => [...logos, ...logos])([
+              "nokia-1",
+              "ericsson",
+              "telefonica",
+              "thales",
+              "fujitsu",
+              "fraunhofer",
+              "tno",
+              "vtt",
+              "inserm",
+              "tuw",
+              "tue",
+            ]).map((f) => (
+              <span class="proj-pw__logo">
+                <img src={`/img/logos/${f}.png`} alt={f} loading="lazy" />
+              </span>
+            ))
+          }
         </div>
       </div>
     </section>

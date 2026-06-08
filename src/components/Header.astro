@@ -1,30 +1,44 @@
 ---
-import NavDropdown from './NavDropdown.astro';
+import NavDropdown from "./NavDropdown.astro";
 ---
+
 <header class="hdr" id="site-header">
   <div class="hdr__inner container">
     <a href="/" class="hdr__logo" aria-label="Ultraviolet home">
-      <img src="/img/logos/UltraViolet_logo-horizontal.svg" alt="Ultraviolet" height="22" style="height:22px;width:auto;" />
+      <img
+        src="/img/logos/UltraViolet_logo-horizontal.svg"
+        alt="Ultraviolet"
+        height="22"
+        style="height:22px;width:auto;"
+      />
     </a>
 
     <nav class="hdr__nav" aria-label="Main">
       <NavDropdown label="Products">
         <a href="/products/cube-ai" class="hdr__mi" role="menuitem">
-          <span style="width:8px;height:8px;background:var(--cube);display:inline-block;flex-shrink:0;margin-top:5px"></span>
+          <span
+            style="width:8px;height:8px;background:var(--cube);display:inline-block;flex-shrink:0;margin-top:5px"
+          ></span>
           <span class="hdr__mi-body">
-            <span class="hdr__mi-name">Cube AI <em class="hdr__badge">Flagship</em></span>
+            <span class="hdr__mi-name"
+              >Cube AI <em class="hdr__badge">Flagship</em></span
+            >
             <span class="hdr__mi-role">Sovereign AI Platform</span>
           </span>
         </a>
         <a href="/products/prism-ai" class="hdr__mi" role="menuitem">
-          <span style="width:8px;height:8px;background:var(--prism);display:inline-block;flex-shrink:0;margin-top:5px"></span>
+          <span
+            style="width:8px;height:8px;background:var(--prism);display:inline-block;flex-shrink:0;margin-top:5px"
+          ></span>
           <span class="hdr__mi-body">
             <span class="hdr__mi-name">Prism AI</span>
             <span class="hdr__mi-role">Secure AI Collaboration</span>
           </span>
         </a>
         <a href="/products/cocos-ai" class="hdr__mi" role="menuitem">
-          <span style="width:8px;height:8px;background:var(--cocos);display:inline-block;flex-shrink:0;margin-top:5px"></span>
+          <span
+            style="width:8px;height:8px;background:var(--cocos);display:inline-block;flex-shrink:0;margin-top:5px"
+          ></span>
           <span class="hdr__mi-body">
             <span class="hdr__mi-name">Cocos AI</span>
             <span class="hdr__mi-role">Confidential Computing Foundation</span>
@@ -33,55 +47,166 @@ import NavDropdown from './NavDropdown.astro';
       </NavDropdown>
 
       <NavDropdown label="Solutions" panelClass="hdr__menu--grid">
-        <a href="/solutions/sovereign-ai" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Sovereign AI</span></span></a>
-        <a href="/solutions/private-ai" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Private AI</span></span></a>
-        <a href="/solutions/enterprise-ai" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Enterprise AI</span></span></a>
-        <a href="/solutions/air-gapped-ai" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Air-Gapped AI</span></span></a>
-        <a href="/solutions/secure-collaboration" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Secure Collaboration</span></span></a>
-        <a href="/solutions/ai-governance" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">AI Governance</span></span></a>
-        <a href="/solutions/agentic-ai" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Agentic AI</span></span></a>
+        <a href="/solutions/sovereign-ai" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Sovereign AI</span></span
+          ></a
+        >
+        <a href="/solutions/private-ai" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Private AI</span></span
+          ></a
+        >
+        <a href="/solutions/enterprise-ai" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Enterprise AI</span></span
+          ></a
+        >
+        <a href="/solutions/air-gapped-ai" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Air-Gapped AI</span></span
+          ></a
+        >
+        <a
+          href="/solutions/secure-collaboration"
+          class="hdr__mi"
+          role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Secure Collaboration</span></span
+          ></a
+        >
+        <a href="/solutions/ai-governance" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">AI Governance</span></span
+          ></a
+        >
+        <a href="/solutions/agentic-ai" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Agentic AI</span></span
+          ></a
+        >
       </NavDropdown>
 
       <NavDropdown label="Industries" panelClass="hdr__menu--grid">
-        <a href="/industries/government" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Government</span></span></a>
-        <a href="/industries/defense" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Defense</span></span></a>
-        <a href="/industries/healthcare" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Healthcare</span></span></a>
-        <a href="/industries/financial-services" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Financial Services</span></span></a>
-        <a href="/industries/telecommunications" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Telecommunications</span></span></a>
-        <a href="/industries/research" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Research</span></span></a>
+        <a href="/industries/government" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Government</span></span
+          ></a
+        >
+        <a href="/industries/defense" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Defense</span></span
+          ></a
+        >
+        <a href="/industries/healthcare" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Healthcare</span></span
+          ></a
+        >
+        <a href="/industries/financial-services" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Financial Services</span></span
+          ></a
+        >
+        <a href="/industries/telecommunications" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Telecommunications</span></span
+          ></a
+        >
+        <a href="/industries/research" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Research</span></span
+          ></a
+        >
       </NavDropdown>
 
       <a href="/projects" class="hdr__link">Projects</a>
       <a href="/blog" class="hdr__link">Blog</a>
 
       <NavDropdown label="Company" panelClass="hdr__menu--grid">
-        <a href="/company/about" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">About</span></span></a>
-        <a href="/company/careers" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Careers</span></span></a>
-        <a href="/company/contact" class="hdr__mi" role="menuitem"><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"><span class="hdr__mi-name">Contact</span></span></a>
+        <a href="/company/about" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">About</span></span
+          ></a
+        >
+        <a href="/company/careers" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Careers</span></span
+          ></a
+        >
+        <a href="/company/contact" class="hdr__mi" role="menuitem"
+          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+            ><span class="hdr__mi-name">Contact</span></span
+          ></a
+        >
       </NavDropdown>
     </nav>
 
     <div class="hdr__right">
       <button class="hdr__icon" id="theme-toggle" aria-label="Toggle theme">
-        <svg id="icon-moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <svg id="icon-sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        <svg
+          id="icon-moon"
+          width="17"
+          height="17"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          ><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg
+        >
+        <svg
+          id="icon-sun"
+          width="17"
+          height="17"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          style="display:none"
+          ><circle cx="12" cy="12" r="4"></circle><path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"
+          ></path></svg
+        >
       </button>
-      <a class="hdr__icon" href="https://github.com/ultravioletrs" target="_blank" rel="noopener" aria-label="GitHub">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.8c.85 0 1.71.11 2.5.33 1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+      <a
+        class="hdr__icon"
+        href="https://github.com/ultravioletrs"
+        target="_blank"
+        rel="noopener"
+        aria-label="GitHub"
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+          ><path
+            d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.66-.22.66-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.8c.85 0 1.71.11 2.5.33 1.9-1.29 2.74-1.02 2.74-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.16.58.67.48A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10z"
+          ></path></svg
+        >
       </a>
-      <a class="btn btn--primary hdr__cta" href="/company/contact">Contact sales</a>
-      <button class="hdr__burger" id="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <a class="btn btn--primary hdr__cta" href="/company/contact"
+        >Contact sales</a
+      >
+      <button
+        class="hdr__burger"
+        id="mobile-menu-toggle"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
-
 </header>
 
 <!-- Mobile drawer — placed outside <header> so the backdrop-filter on .hdr
      does not act as a containing block and clip this fixed overlay to the
      header's own bounds (a known Chrome/Safari bug with backdrop-filter). -->
-<div class="hdr__mobile" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Site navigation">
+<div
+  class="hdr__mobile"
+  id="mobile-menu"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Site navigation"
+>
   <div class="hdr__mobile-backdrop" id="mobile-backdrop"></div>
   <div class="hdr__mobile-panel">
     <details class="hdr__mblock">
@@ -99,7 +224,9 @@ import NavDropdown from './NavDropdown.astro';
         <a href="/solutions/private-ai" class="hdr__mlink">Private AI</a>
         <a href="/solutions/enterprise-ai" class="hdr__mlink">Enterprise AI</a>
         <a href="/solutions/air-gapped-ai" class="hdr__mlink">Air-Gapped AI</a>
-        <a href="/solutions/secure-collaboration" class="hdr__mlink">Secure Collaboration</a>
+        <a href="/solutions/secure-collaboration" class="hdr__mlink"
+          >Secure Collaboration</a
+        >
         <a href="/solutions/ai-governance" class="hdr__mlink">AI Governance</a>
       </div>
     </details>
@@ -109,12 +236,18 @@ import NavDropdown from './NavDropdown.astro';
         <a href="/industries/government" class="hdr__mlink">Government</a>
         <a href="/industries/defense" class="hdr__mlink">Defense</a>
         <a href="/industries/healthcare" class="hdr__mlink">Healthcare</a>
-        <a href="/industries/financial-services" class="hdr__mlink">Financial Services</a>
-        <a href="/industries/telecommunications" class="hdr__mlink">Telecommunications</a>
+        <a href="/industries/financial-services" class="hdr__mlink"
+          >Financial Services</a
+        >
+        <a href="/industries/telecommunications" class="hdr__mlink"
+          >Telecommunications</a
+        >
         <a href="/industries/research" class="hdr__mlink">Research</a>
       </div>
     </details>
-    <div class="hdr__mblock"><a href="/projects" class="hdr__mhead">Projects</a></div>
+    <div class="hdr__mblock">
+      <a href="/projects" class="hdr__mhead">Projects</a>
+    </div>
     <div class="hdr__mblock"><a href="/blog" class="hdr__mhead">Blog</a></div>
     <details class="hdr__mblock">
       <summary class="hdr__mhead hdr__msummary">Company</summary>
@@ -124,54 +257,73 @@ import NavDropdown from './NavDropdown.astro';
         <a href="/company/contact" class="hdr__mlink">Contact</a>
       </div>
     </details>
-    <a class="btn btn--primary" href="/company/contact" style="width:100%;margin-top:0.5rem">Contact sales</a>
+    <a
+      class="btn btn--primary"
+      href="/company/contact"
+      style="width:100%;margin-top:0.5rem">Contact sales</a
+    >
   </div>
 </div>
 
 <script>
-  const header = document.getElementById('site-header')!;
+  const header = document.getElementById("site-header")!;
 
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('hdr--scrolled', window.scrollY > 8);
-  }, { passive: true });
+  window.addEventListener(
+    "scroll",
+    () => {
+      header.classList.toggle("hdr--scrolled", window.scrollY > 8);
+    },
+    { passive: true },
+  );
 
   // Mobile drawer
-  const toggle = document.getElementById('mobile-menu-toggle')!;
-  const drawer = document.getElementById('mobile-menu')!;
-  const backdrop = document.getElementById('mobile-backdrop')!;
+  const toggle = document.getElementById("mobile-menu-toggle")!;
+  const drawer = document.getElementById("mobile-menu")!;
+  const backdrop = document.getElementById("mobile-backdrop")!;
 
   const openDrawer = () => {
-    drawer.classList.add('is-open');
-    toggle.setAttribute('aria-expanded', 'true');
-    document.documentElement.style.overflow = 'hidden';
+    drawer.classList.add("is-open");
+    toggle.setAttribute("aria-expanded", "true");
+    document.documentElement.style.overflow = "hidden";
   };
   const closeDrawer = () => {
-    drawer.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
-    document.documentElement.style.overflow = '';
+    drawer.classList.remove("is-open");
+    toggle.setAttribute("aria-expanded", "false");
+    document.documentElement.style.overflow = "";
   };
 
-  toggle.addEventListener('click', () => drawer.classList.contains('is-open') ? closeDrawer() : openDrawer());
-  backdrop.addEventListener('click', closeDrawer);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDrawer(); });
-  drawer.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeDrawer));
+  toggle.addEventListener("click", () =>
+    drawer.classList.contains("is-open") ? closeDrawer() : openDrawer(),
+  );
+  backdrop.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDrawer();
+  });
+  drawer
+    .querySelectorAll("a")
+    .forEach((a) => a.addEventListener("click", closeDrawer));
 
-  window.matchMedia('(min-width: 981px)').addEventListener('change', (e) => { if (e.matches) closeDrawer(); });
+  window.matchMedia("(min-width: 981px)").addEventListener("change", (e) => {
+    if (e.matches) closeDrawer();
+  });
 
   // Theme toggle
-  const themeToggle = document.getElementById('theme-toggle')!;
-  const moon = document.getElementById('icon-moon') as HTMLElement;
-  const sun = document.getElementById('icon-sun') as HTMLElement;
+  const themeToggle = document.getElementById("theme-toggle")!;
+  const moon = document.getElementById("icon-moon") as HTMLElement;
+  const sun = document.getElementById("icon-sun") as HTMLElement;
 
   function applyTheme(dark: boolean) {
-    document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-    localStorage.setItem('uv-theme', dark ? 'dark' : 'light');
-    moon.style.display = dark ? 'none' : '';
-    sun.style.display = dark ? '' : 'none';
+    document.documentElement.setAttribute(
+      "data-theme",
+      dark ? "dark" : "light",
+    );
+    localStorage.setItem("uv-theme", dark ? "dark" : "light");
+    moon.style.display = dark ? "none" : "";
+    sun.style.display = dark ? "" : "none";
   }
 
-  applyTheme(document.documentElement.getAttribute('data-theme') === 'dark');
-  themeToggle.addEventListener('click', () => {
-    applyTheme(document.documentElement.getAttribute('data-theme') !== 'dark');
+  applyTheme(document.documentElement.getAttribute("data-theme") === "dark");
+  themeToggle.addEventListener("click", () => {
+    applyTheme(document.documentElement.getAttribute("data-theme") !== "dark");
   });
 </script>
