@@ -46,82 +46,92 @@ import NavDropdown from "./NavDropdown.astro";
         </a>
       </NavDropdown>
 
-      <NavDropdown label="Solutions" panelClass="hdr__menu--grid">
-        <a href="/solutions/sovereign-ai" class="hdr__mi" role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">Sovereign AI</span></span
-          ></a
-        >
-        <a href="/solutions/private-ai" class="hdr__mi" role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">Private AI</span></span
-          ></a
-        >
-        <a href="/solutions/enterprise-ai" class="hdr__mi" role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">Enterprise AI</span></span
-          ></a
-        >
-        <a href="/solutions/air-gapped-ai" class="hdr__mi" role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">Air-Gapped AI</span></span
-          ></a
-        >
-        <a
-          href="/solutions/secure-collaboration"
-          class="hdr__mi"
-          role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">Secure Collaboration</span></span
-          ></a
-        >
-        <a href="/solutions/ai-governance" class="hdr__mi" role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">AI Governance</span></span
-          ></a
-        >
-        <a href="/solutions/agentic-ai" class="hdr__mi" role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">Agentic AI</span></span
-          ></a
-        >
-      </NavDropdown>
-
-      <NavDropdown label="Industries" panelClass="hdr__menu--grid">
-        <a href="/industries/government" class="hdr__mi" role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">Government</span></span
-          ></a
-        >
-        <a href="/industries/defense" class="hdr__mi" role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">Defense</span></span
-          ></a
-        >
-        <a href="/industries/healthcare" class="hdr__mi" role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">Healthcare</span></span
-          ></a
-        >
-        <a href="/industries/financial-services" class="hdr__mi" role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">Financial Services</span></span
-          ></a
-        >
-        <a href="/industries/telecommunications" class="hdr__mi" role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">Telecommunications</span></span
-          ></a
-        >
-        <a href="/industries/research" class="hdr__mi" role="menuitem"
-          ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
-            ><span class="hdr__mi-name">Research</span></span
-          ></a
-        >
+      <NavDropdown label="Solutions" panelClass="hdr__menu--wide">
+        <div class="hdr__menu-cols">
+          <div class="hdr__menu-col">
+            <span class="hdr__menu-head">Solutions</span>
+            <a href="/solutions/sovereign-ai" class="hdr__mi" role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">Sovereign AI</span></span
+              ></a
+            >
+            <a href="/solutions/private-ai" class="hdr__mi" role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">Private AI</span></span
+              ></a
+            >
+            <a href="/solutions/enterprise-ai" class="hdr__mi" role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">Enterprise AI</span></span
+              ></a
+            >
+            <a href="/solutions/air-gapped-ai" class="hdr__mi" role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">Air-Gapped AI</span></span
+              ></a
+            >
+            <a
+              href="/solutions/secure-collaboration"
+              class="hdr__mi"
+              role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">Secure Collaboration</span></span
+              ></a
+            >
+            <a href="/solutions/ai-governance" class="hdr__mi" role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">AI Governance</span></span
+              ></a
+            >
+            <a href="/solutions/agentic-ai" class="hdr__mi" role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">Agentic AI</span></span
+              ></a
+            >
+          </div>
+          <div class="hdr__menu-col">
+            <span class="hdr__menu-head">Industries</span>
+            <a href="/industries/government" class="hdr__mi" role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">Government</span></span
+              ></a
+            >
+            <a href="/industries/defense" class="hdr__mi" role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">Defense</span></span
+              ></a
+            >
+            <a href="/industries/healthcare" class="hdr__mi" role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">Healthcare</span></span
+              ></a
+            >
+            <a
+              href="/industries/financial-services"
+              class="hdr__mi"
+              role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">Financial Services</span></span
+              ></a
+            >
+            <a
+              href="/industries/telecommunications"
+              class="hdr__mi"
+              role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">Telecommunications</span></span
+              ></a
+            >
+            <a href="/industries/research" class="hdr__mi" role="menuitem"
+              ><span class="hdr__mi-tick">/</span><span class="hdr__mi-body"
+                ><span class="hdr__mi-name">Research</span></span
+              ></a
+            >
+          </div>
+        </div>
       </NavDropdown>
 
       <a href="/projects" class="hdr__link">Projects</a>
-      <a href="/blog" class="hdr__link">Blog</a>
 
       <NavDropdown label="Company" panelClass="hdr__menu--grid">
         <a href="/company/about" class="hdr__mi" role="menuitem"
@@ -139,6 +149,55 @@ import NavDropdown from "./NavDropdown.astro";
             ><span class="hdr__mi-name">Contact</span></span
           ></a
         >
+      </NavDropdown>
+      <a href="/blog" class="hdr__link">Blog</a>
+
+      <NavDropdown label="Docs">
+        <a
+          href="https://www.ultraviolet.rs/docs/cube-ai/"
+          class="hdr__mi"
+          role="menuitem"
+          target="_blank"
+          rel="noopener"
+        >
+          <span
+            style="width:8px;height:8px;background:var(--cube);display:inline-block;flex-shrink:0;margin-top:5px"
+          ></span>
+          <span class="hdr__mi-body">
+            <span class="hdr__mi-name">Cube AI</span>
+            <span class="hdr__mi-role">Documentation</span>
+          </span>
+        </a>
+        <a
+          href="https://www.ultraviolet.rs/docs/prism-ai/"
+          class="hdr__mi"
+          role="menuitem"
+          target="_blank"
+          rel="noopener"
+        >
+          <span
+            style="width:8px;height:8px;background:var(--prism);display:inline-block;flex-shrink:0;margin-top:5px"
+          ></span>
+          <span class="hdr__mi-body">
+            <span class="hdr__mi-name">Prism AI</span>
+            <span class="hdr__mi-role">Documentation</span>
+          </span>
+        </a>
+        <a
+          href="https://www.ultraviolet.rs/docs/cocos-ai/"
+          class="hdr__mi"
+          role="menuitem"
+          target="_blank"
+          rel="noopener"
+        >
+          <span
+            style="width:8px;height:8px;background:var(--cocos);display:inline-block;flex-shrink:0;margin-top:5px"
+          ></span>
+          <span class="hdr__mi-body">
+            <span class="hdr__mi-name">Cocos AI</span>
+            <span class="hdr__mi-role">Documentation</span>
+          </span>
+        </a>
       </NavDropdown>
     </nav>
 
@@ -220,6 +279,7 @@ import NavDropdown from "./NavDropdown.astro";
     <details class="hdr__mblock">
       <summary class="hdr__mhead hdr__msummary">Solutions</summary>
       <div class="hdr__mitems">
+        <span class="hdr__msublabel">Solutions</span>
         <a href="/solutions/sovereign-ai" class="hdr__mlink">Sovereign AI</a>
         <a href="/solutions/private-ai" class="hdr__mlink">Private AI</a>
         <a href="/solutions/enterprise-ai" class="hdr__mlink">Enterprise AI</a>
@@ -228,11 +288,8 @@ import NavDropdown from "./NavDropdown.astro";
           >Secure Collaboration</a
         >
         <a href="/solutions/ai-governance" class="hdr__mlink">AI Governance</a>
-      </div>
-    </details>
-    <details class="hdr__mblock">
-      <summary class="hdr__mhead hdr__msummary">Industries</summary>
-      <div class="hdr__mitems">
+        <a href="/solutions/agentic-ai" class="hdr__mlink">Agentic AI</a>
+        <span class="hdr__msublabel">Industries</span>
         <a href="/industries/government" class="hdr__mlink">Government</a>
         <a href="/industries/defense" class="hdr__mlink">Defense</a>
         <a href="/industries/healthcare" class="hdr__mlink">Healthcare</a>
@@ -249,6 +306,29 @@ import NavDropdown from "./NavDropdown.astro";
       <a href="/projects" class="hdr__mhead">Projects</a>
     </div>
     <div class="hdr__mblock"><a href="/blog" class="hdr__mhead">Blog</a></div>
+    <details class="hdr__mblock">
+      <summary class="hdr__mhead hdr__msummary">Docs</summary>
+      <div class="hdr__mitems">
+        <a
+          href="https://cube.ultraviolet.rs/docs/"
+          class="hdr__mlink"
+          target="_blank"
+          rel="noopener">Cube AI</a
+        >
+        <a
+          href="https://prism.ultraviolet.rs/docs/"
+          class="hdr__mlink"
+          target="_blank"
+          rel="noopener">Prism AI</a
+        >
+        <a
+          href="https://cocos.ultraviolet.rs/docs/"
+          class="hdr__mlink"
+          target="_blank"
+          rel="noopener">Cocos AI</a
+        >
+      </div>
+    </details>
     <details class="hdr__mblock">
       <summary class="hdr__mhead hdr__msummary">Company</summary>
       <div class="hdr__mitems">
