@@ -1,0 +1,32 @@
+title: "Agentic AI — Autonomous Agents That Never Leak Your IP | Ultraviolet"
+description: "OpenAI-compatible endpoints power agents and copilots on private models, with guardrails on every step."
+eyebrow: "Solution · Agentic AI"
+h1: "Autonomous agents<br /><span class=\"hero__accent\">that never leak your IP.</span>"
+sub: "OpenAI-compatible endpoints power agents and copilots on private models, with guardrails enforced on every step of every agent loop."
+compH2: "Agentic AI on hosted APIs<br />means your data is the training set."
+compBody: "Every tool call, every document chunk, every intermediate result in an agentic workflow passes through a hosted API. At scale, your proprietary workflows, documents, and IP become training data for the provider."
+compHeaders: ["Hosted agent APIs", "Ultraviolet Agentic AI"]
+compRows:
+  - ["Agent tool calls", "Each call sends your data to the provider.", "Agent calls stay inside your perimeter."]
+  - ["RAG documents", "Embedded and retrieved via the provider.", "Embedded and stored on your own infrastructure."]
+  - ["Model behavior", "Updated without notice by the vendor.", "You pin and govern the model version."]
+  - ["Guardrail enforcement", "At the application layer; inconsistent.", "Every agent step passes through your guardrails."]
+product:
+  which: "cube"
+  name: "Cube AI"
+  role: "Sovereign AI Platform"
+  blurb: "Private inference with OpenAI-compatible endpoints, so agent frameworks like LangChain, AutoGPT, and custom agents repoint to your infrastructure with no code changes."
+  points:
+    - "OpenAI-compatible API — drop-in replacement"
+    - "RAG on your own knowledge bases"
+    - "NeMo guardrails on every agent step"
+    - "Continue and OpenCode integrations for coding agents"
+  supporting:
+    - which: "cocos"
+      name: "Cocos AI"
+      role: "Confidential Computing Foundation"
+      blurb: "Hardware TEE isolation for agentic workloads that require the highest assurance of IP protection."
+ctaH2: "Agents that work for you,<br />not the model provider."
+ctaSub: "Talk to the team about agentic AI deployments, OpenAI-compatible endpoints, and coding agent integrations."
+ctaLabel: "View Cube AI"
+ctaHref: "/products/cube-ai"

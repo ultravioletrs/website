@@ -1,0 +1,37 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LensPage from "../../components/LensPage.astro";
+
+export async function getStaticPaths() {
+  const items = await getCollection("solutions");
+  return items.map((item) => ({
+    params: { slug: item.id },
+    props: { data: item.data },
+  }));
+}
+
+const { data } = Astro.props;
+---
+
+<Layout title={data.title} description={data.description}>
+  <Header />
+  <LensPage
+    eyebrow={data.eyebrow}
+    h1={data.h1}
+    sub={data.sub}
+    compH2={data.compH2}
+    compBody={data.compBody}
+    compHeaders={data.compHeaders}
+    compRows={data.compRows}
+    product={data.product}
+    ctaH2={data.ctaH2}
+    ctaSub={data.ctaSub}
+    ctaLabel={data.ctaLabel}
+    ctaHref={data.ctaHref}
+    ctaExternal={data.ctaExternal}
+  />
+  <Footer />
+</Layout>
