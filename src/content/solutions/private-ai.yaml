@@ -1,0 +1,27 @@
+title: "Private AI — Frontier Models, Zero Data Egress | Ultraviolet"
+description: "Self-hosted inference and RAG on your own GPUs. Prompts, embeddings, and responses never leave your network."
+eyebrow: "Solution · Private AI"
+h1: "Frontier models,<br /><span class=\"hero__accent\">zero data leaving your perimeter.</span>"
+sub: "Self-hosted inference and RAG on your own GPUs, so prompts, embeddings, and responses never leave your network."
+compH2: "Hosted AI means<br />data leaving your control."
+compBody: "Every API call to a hosted model sends your data to a third party's infrastructure. For organizations with sensitive data, that's an unacceptable risk regardless of contractual protections."
+compHeaders: ["Hosted AI APIs", "Ultraviolet Private AI"]
+compRows:
+  - ["Where do prompts go?", "To a third-party cloud, logged and retained.", "Never leave your perimeter. Zero outbound."]
+  - ["Who processes your data?", "The provider and its subprocessors.", "Only your infrastructure, under your control."]
+  - ["What about model weights?", "Proprietary, inaccessible, closed-source.", "Open-weight models you own and control."]
+  - ["Rate limits and costs?", "Vendor-set pricing, rate limits, and changes.", "Your hardware, your capacity, your cost model."]
+product:
+  which: "cube"
+  name: "Cube AI"
+  role: "Sovereign AI Platform"
+  blurb: "Private inference, RAG, and guardrails running entirely on your own hardware — the complete platform for organizations that cannot afford data egress."
+  points:
+    - "vLLM and Ollama on your own GPUs"
+    - "RAG on internal knowledge bases"
+    - "OpenAI-compatible API — drop-in replacement"
+    - "Air-gapped deployment available"
+ctaH2: "Private inference,<br />on your terms."
+ctaSub: "Talk to the team about self-hosted LLM deployment, hardware requirements, and getting started."
+ctaLabel: "View Cube AI"
+ctaHref: "/products/cube-ai"
