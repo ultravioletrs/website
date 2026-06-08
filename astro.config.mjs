@@ -12,7 +12,7 @@ export default defineConfig({
   integrations: [
     tailwind(),
     sitemap({
-      filenameBase: "sitemap",
+      filenameBase: "sitemap-pages",
       filter: (page) =>
         ![
           "/cube/privacy/",
