@@ -63,9 +63,7 @@ function getPostAuthors(p: typeof post): { name: string; picture?: string }[] {
       "@type": "Article",
       headline: post.data.title,
       description: post.data.excerpt || post.data.description,
-      image: coverImage
-        ? `https://www.ultraviolet.rs${coverImage}`
-        : undefined,
+      image: coverImage ? `https://www.ultraviolet.rs${coverImage}` : undefined,
       datePublished: new Date(post.data.date).toISOString(),
       dateModified: new Date(post.data.date).toISOString(),
       author: authors.map((a) => ({
