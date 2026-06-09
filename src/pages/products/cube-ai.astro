@@ -815,6 +815,68 @@ const faqs = [
       </div>
     </section>
 
+    <!-- Related guides -->
+    <section class="section divider-top">
+      <div class="container">
+        <div class="prin__head reveal" style="margin-bottom:2rem">
+          <span class="eyebrow"><span class="tick"></span>Learn more</span>
+          <h2 class="prin__h2" style="margin-top:0.8rem;font-size:1.6rem">
+            Guides for the teams<br />deploying Cube AI.
+          </h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:1px;border:1px solid var(--line)">
+          {
+            [
+              {
+                href: "/solutions/sovereign-ai",
+                label: "What Is Sovereign AI?",
+                desc: "The infrastructure requirements, legal context, and regulatory frameworks behind sovereign AI deployment.",
+              },
+              {
+                href: "/solutions/secure-ai-deployment",
+                label: "Secure AI Deployment",
+                desc: "On-premise, air-gapped, and TEE deployment architectures — how to choose and how to implement each.",
+              },
+              {
+                href: "/solutions/ai-governance",
+                label: "AI Compliance & Governance",
+                desc: "GDPR, EU AI Act (August 2026), DORA, and HIPAA — technical controls that satisfy each framework.",
+              },
+              {
+                href: "/solutions/confidential-computing",
+                label: "What Is Confidential Computing?",
+                desc: "AMD SEV-SNP, Intel TDX, remote attestation, and how hardware TEEs protect inference in use.",
+              },
+              {
+                href: "/solutions/confidential-computing/use-cases",
+                label: "Confidential Computing Use Cases",
+                desc: "Eight real-world TEE use cases: private inference, multi-party AI, clinical data, financial analytics.",
+              },
+              {
+                href: "/solutions/air-gapped-ai",
+                label: "Air-Gapped AI Deployment",
+                desc: "Zero-connectivity operation for classified, critical infrastructure, and isolated environments.",
+              },
+            ].map(({ href, label, desc }) => (
+              <a
+                href={href}
+                class="reveal"
+                style="display:block;padding:1.4rem 1.5rem;background:var(--bg-alt);text-decoration:none;border-right:0;border-bottom:0"
+              >
+                <div style="font-family:var(--font-display);font-weight:600;font-size:0.97rem;margin-bottom:0.4rem">
+                  {label}
+                </div>
+                <p style="margin:0;color:var(--ink-2);font-size:0.86rem;line-height:1.6">{desc}</p>
+                <span class="arrow-link" style="font-size:0.8rem;margin-top:0.7rem;display:inline-flex">
+                  Read<span aria-hidden="true">→</span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
     <!-- Cross-sell -->
     <section class="stack section divider-top p-cross">
       <div class="container">

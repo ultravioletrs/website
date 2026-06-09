@@ -1,0 +1,390 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import SectionHead from "../../../components/SectionHead.astro";
+import ProductCTA from "../../../components/ProductCTA.astro";
+import FAQAccordion from "../../../components/FAQAccordion.astro";
+import { Shield, Lock, Server, Globe, Database, Layers } from "@lucide/astro";
+
+const faqs: [string, string][] = [
+  [
+    "What are the main use cases for confidential computing?",
+    "The primary use cases are: (1) private AI inference — running LLMs on sensitive data without exposing it to the infrastructure operator; (2) multi-party AI collaboration — training or evaluating shared models across organizations without any party seeing the others' data; (3) financial analytics — fraud detection and risk modeling on confidential financial records; (4) healthcare AI — clinical data processing within HIPAA and GDPR constraints; (5) secure key management — cryptographic material managed inside hardware that cannot be extracted.",
+  ],
+  [
+    "How does confidential computing enable multi-party AI?",
+    "In multi-party AI, multiple organizations contribute data to a shared model without any party — including the TEE operator — being able to read the other parties' inputs. Each organization's data is sealed inside a Trusted Execution Environment. The model trains or runs inference over all sealed inputs. Only the aggregate result is returned. No raw data crosses organizational boundaries at any point.",
+  ],
+  [
+    "What is the use case for confidential computing in healthcare?",
+    "Healthcare confidential computing enables two things standard encryption cannot: (1) AI inference on Protected Health Information inside a hospital's own infrastructure without exposing PHI to the inference platform operator; (2) multi-institution AI research where each hospital's patient records stay sealed in their own TEE, allowing shared model training without pooling records. Both satisfy HIPAA requirements that standard cloud API deployments cannot meet.",
+  ],
+  [
+    "Can confidential computing protect AI model weights?",
+    "Yes. When an LLM runs inside a TEE, model weights are loaded into hardware-encrypted memory. The host OS, hypervisor, and cloud operator see only ciphertext. The weights cannot be read or exfiltrated by anyone with privileged access to the hardware. This is the primary use case for organizations serving proprietary fine-tuned models on shared or third-party infrastructure.",
+  ],
+  [
+    "What is a Trusted Execution Environment use case in financial services?",
+    "In financial services, TEEs enable: (1) risk model inference on confidential financial data without exposing the data to the infrastructure team; (2) cross-bank AML collaboration — multiple banks run shared fraud detection on transaction data without sharing raw records; (3) confidential trading strategy execution — strategy logic and position data stay encrypted in use; (4) DORA-compliant AI deployment with hardware-level evidence of data isolation.",
+  ],
+  [
+    "Is confidential computing used in government and defense?",
+    "Yes. Defense and intelligence agencies use confidential computing for classified AI workloads where hardware isolation is a hard requirement. TEEs provide cryptographic proof — via remote attestation — that the correct, unmodified AI system is running in an isolated enclave. This is stronger than any software-level or contractual assurance. Air-gapped TEE deployment combines physical network isolation with hardware memory encryption for maximum protection.",
+  ],
+];
+
+const useCases = [
+  {
+    Icon: Layers,
+    tag: "AI · LLM Inference",
+    title: "Private AI inference on sensitive data",
+    body: "Run LLM inference on regulated data — financial records, health data, legal documents, classified content — inside a hardware TEE. Prompts and responses are encrypted in memory at the CPU level, invisible to the host OS, hypervisor, and cloud operator. The model processes your data without the infrastructure ever seeing it in plaintext.",
+    who: "Financial services, healthcare, government, legal",
+    product: "Cube AI on Cocos AI",
+    href: "/solutions/confidential-computing",
+  },
+  {
+    Icon: Globe,
+    tag: "AI · Multi-Party",
+    title: "Multi-party AI collaboration without data sharing",
+    body: "Multiple organizations train or run inference on a shared AI model without any party seeing the others' raw data. Each organization's input is sealed in a TEE. The model processes all sealed inputs and returns only the result. No data crosses organizational boundaries — not even to the TEE operator. Required for cross-bank AML, multi-hospital research, and cross-agency intelligence analysis.",
+    who: "Banks (AML), hospital networks, research consortia, intelligence agencies",
+    product: "Prism AI",
+    href: "/products/prism-ai",
+  },
+  {
+    Icon: Lock,
+    tag: "AI · Model IP",
+    title: "Proprietary model weight protection",
+    body: "When a fine-tuned LLM runs inside a TEE, its weights are loaded into hardware-encrypted memory and cannot be read by the host, the cloud operator, or any privileged process. The model serves inference without its weights ever being accessible outside the enclave. Essential for organizations deploying commercially valuable proprietary models on shared or co-located infrastructure.",
+    who: "AI companies, enterprises with proprietary fine-tunes, defense contractors",
+    product: "Cube AI on Cocos AI",
+    href: "/products/cube-ai",
+  },
+  {
+    Icon: Shield,
+    tag: "Healthcare · HIPAA",
+    title: "HIPAA-compliant clinical AI",
+    body: "Process Protected Health Information with AI inside the hospital infrastructure — without a third-party cloud processor receiving PHI. Clinical decision support, summarization, and RAG over internal knowledge bases run inside a TEE or on-premise. Presidio PII/PHI detection redacts identifiers before they reach the model. Audit trail satisfies HIPAA audit control requirements.",
+    who: "Hospitals, health systems, clinical research organizations",
+    product: "Cube AI",
+    href: "/industries/healthcare",
+  },
+  {
+    Icon: Database,
+    tag: "Finance · DORA",
+    title: "Confidential financial analytics and risk modeling",
+    body: "Run risk models, fraud detection, and financial analysis on confidential data with hardware-level isolation. DORA (in force January 2025) requires EU financial institutions to manage ICT third-party risk — on-premise confidential computing eliminates the third-party AI vendor from the risk register entirely. Cross-bank AML analytics via Prism AI allow joint fraud detection without sharing raw transaction records between competing institutions.",
+    who: "Banks, insurers, asset managers, payment processors",
+    product: "Cube AI, Prism AI",
+    href: "/industries/financial-services",
+  },
+  {
+    Icon: Server,
+    tag: "Government · Sovereign AI",
+    title: "Classified and sovereign government AI",
+    body: "Government AI workloads on citizen data, policy content, and classified information require hardware isolation and cryptographic proof of integrity. TEE-based deployment with remote attestation provides evidence that the correct, unmodified AI system is running — stronger than any contractual assurance. Air-gapped TEE deployment for classified missions combines physical network isolation with hardware memory encryption.",
+    who: "National governments, defense agencies, intelligence services",
+    product: "Cube AI on Cocos AI",
+    href: "/industries/government",
+  },
+  {
+    Icon: Globe,
+    tag: "Research · Collaboration",
+    title: "Privacy-preserving AI research across institutions",
+    body: "Research institutions collaborate on shared AI models without pooling participant data. Each institution's records stay sealed in a TEE — no other party, including the research coordinator, can access them. Only aggregate model improvements or statistics are returned. Enables multi-site clinical trials, cross-border genomics research, and federated studies that would otherwise require legally complex data sharing agreements.",
+    who: "Universities, research hospitals, government research agencies",
+    product: "Prism AI",
+    href: "/industries/research",
+  },
+  {
+    Icon: Lock,
+    tag: "Infrastructure · Key Management",
+    title: "Hardware-protected key management and PKI",
+    body: "Cryptographic keys and certificates managed inside a TEE cannot be exfiltrated even by a privileged host process. The enclave performs signing, decryption, and key derivation operations without the key material ever leaving hardware-encrypted memory. Remote attestation verifies that the correct key management software is running before any key operation is authorized — a stronger guarantee than software HSMs.",
+    who: "PKI operators, certificate authorities, key management services",
+    product: "Cocos AI",
+    href: "/products/cocos-ai",
+  },
+];
+---
+
+<Layout
+  title="Confidential Computing Use Cases: AI, Healthcare, Finance & Government | Ultraviolet"
+  description="Eight real-world confidential computing use cases: private AI inference, multi-party collaboration, HIPAA clinical AI, financial analytics, government classified AI, and model IP protection."
+  canonical="/solutions/confidential-computing/use-cases"
+>
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify([
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(([q, a]) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://www.ultraviolet.rs/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Solutions",
+            item: "https://www.ultraviolet.rs/solutions/",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: "Confidential Computing",
+            item: "https://www.ultraviolet.rs/solutions/confidential-computing/",
+          },
+          {
+            "@type": "ListItem",
+            position: 4,
+            name: "Use Cases",
+            item: "https://www.ultraviolet.rs/solutions/confidential-computing/use-cases/",
+          },
+        ],
+      },
+    ])}
+  />
+  <Header />
+  <main>
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="container">
+        <div class="hero__centered" style="max-width:780px;margin:0 auto;text-align:center">
+          <span class="eyebrow"><span class="tick"></span>Confidential Computing · Use Cases</span>
+          <h1 class="hero__h1" style="margin-top:1.1rem">
+            Confidential computing<br />use cases.
+          </h1>
+          <p class="hero__sub hero__sub--center" style="max-width:640px;margin:1.4rem auto 0">
+            Eight real-world use cases where hardware Trusted Execution Environments
+            solve security and compliance problems that encryption and access controls
+            alone cannot.
+          </p>
+          <div class="hero__ctas" style="justify-content:center;margin-top:2rem">
+            <a class="btn btn--primary" href="/company/contact">Talk to the team</a>
+            <a class="btn btn--ghost" href="/solutions/confidential-computing">
+              What is confidential computing?
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use cases grid -->
+    <section class="ind section divider-top dotgrid">
+      <div class="container">
+        <SectionHead
+          eyebrow="Use cases"
+          title="Where confidential computing<br />solves real problems."
+          intro="Each use case below describes a security or compliance problem that standard cloud architecture cannot solve — and the specific TEE capability that resolves it."
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,480px),1fr));gap:1.5rem;margin-top:3rem">
+          {
+            useCases.map(({ Icon, tag, title, body, who, product, href }, i) => (
+              <article
+                class="reveal"
+                data-delay={i % 2}
+                style="border:1px solid var(--line);background:var(--bg-alt);padding:1.8rem;display:flex;flex-direction:column;gap:0.85rem"
+              >
+                <div style="display:flex;align-items:center;gap:0.7rem">
+                  <span style="color:var(--accent)">
+                    <Icon size={18} />
+                  </span>
+                  <span
+                    class="mono"
+                    style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted)"
+                  >
+                    {tag}
+                  </span>
+                </div>
+                <h2
+                  style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin:0;line-height:1.3"
+                >
+                  {title}
+                </h2>
+                <p style="margin:0;color:var(--ink-2);font-size:0.92rem;line-height:1.68">
+                  {body}
+                </p>
+                <div style="display:flex;flex-direction:column;gap:0.3rem;margin-top:0.2rem">
+                  <div style="display:flex;gap:0.5rem;align-items:baseline">
+                    <span
+                      class="mono"
+                      style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;min-width:3.5rem"
+                    >
+                      Who
+                    </span>
+                    <span style="font-size:0.86rem;color:var(--ink-2)">{who}</span>
+                  </div>
+                  <div style="display:flex;gap:0.5rem;align-items:baseline">
+                    <span
+                      class="mono"
+                      style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;min-width:3.5rem"
+                    >
+                      Product
+                    </span>
+                    <span style="font-size:0.86rem;color:var(--accent);font-weight:500">{product}</span>
+                  </div>
+                </div>
+                <a
+                  href={href}
+                  class="arrow-link"
+                  style="margin-top:auto;font-size:0.83rem"
+                >
+                  Learn more<span aria-hidden="true">→</span>
+                </a>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- What makes it work -->
+    <section class="comp section divider-top">
+      <div class="container">
+        <div class="comp__grid">
+          <div class="comp__copy reveal">
+            <span class="eyebrow"><span class="tick"></span>How it works</span>
+            <h2 class="comp__h2" style="margin:1.1rem 0 1.3rem">
+              What enables all<br />of these use cases.
+            </h2>
+            <p class="comp__desc">
+              Every use case above depends on two properties that only hardware
+              TEEs can provide: encrypted computation and remote attestation.
+              Neither property is available from any software-only solution.
+            </p>
+            <a class="arrow-link" href="/solutions/confidential-computing" style="margin-top:1.4rem;display:inline-flex">
+              How confidential computing works<span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="reveal" data-delay="1">
+            <div class="comp__proof p-proof">
+              {
+                [
+                  [
+                    "Encrypted computation",
+                    "Data is decrypted only inside CPU registers during the actual computation cycle. At all other times — in RAM, in cache, in the memory bus — it is encrypted with a hardware key that only the CPU controls.",
+                  ],
+                  [
+                    "Remote attestation",
+                    "Before any sensitive data enters the enclave, the client receives a hardware-signed report proving that the correct, unmodified software is running in a genuine TEE. This is cryptographic proof, not contractual assurance.",
+                  ],
+                  [
+                    "Host-blind operation",
+                    "The host OS, hypervisor, and cloud operator see that a TEE is running and can observe timing — but cannot read the workload's memory. Even root access to the server yields only ciphertext.",
+                  ],
+                  [
+                    "Sealed storage",
+                    "Data and model weights can be encrypted and sealed to a specific enclave identity. Only the correct enclave — running the correct software on the correct hardware — can unseal and read the data.",
+                  ],
+                ].map(([t, d]) => (
+                  <div class="comp__proof-item">
+                    <div class="comp__proof-t">{t}</div>
+                    <div class="comp__proof-d">{d}</div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="pmap section divider-top">
+      <div class="container">
+        <SectionHead
+          eyebrow="The Ultraviolet stack"
+          title="Three products, all the use cases."
+          intro="Cocos AI provides the TEE foundation. Cube AI delivers private AI inference and governance. Prism AI enables multi-party collaboration. Each is open-source at its core."
+        />
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:1.5rem;margin-top:3rem">
+          {
+            [
+              {
+                which: "cocos",
+                name: "Cocos AI",
+                role: "Confidential Computing Foundation",
+                desc: "The open-source TEE abstraction layer — AMD SEV-SNP, Intel TDX, remote attestation, and key management. The foundation all other use cases build on.",
+                href: "/products/cocos-ai",
+              },
+              {
+                which: "cube",
+                name: "Cube AI",
+                role: "Sovereign AI Platform",
+                desc: "Private LLM inference, RAG, guardrails, governance, and audit — running inside a TEE on infrastructure you control. The platform for private AI inference use cases.",
+                href: "/products/cube-ai",
+              },
+              {
+                which: "prism",
+                name: "Prism AI",
+                role: "Secure AI Collaboration",
+                desc: "Multi-party AI without data sharing. Run joint models across organizational boundaries with every party's data sealed in a TEE. The platform for multi-party use cases.",
+                href: "/products/prism-ai",
+              },
+            ].map(({ which, name, role, desc, href }) => (
+              <a
+                href={href}
+                class="stack__card reveal"
+                style="text-decoration:none"
+              >
+                <div class="stack__card-top">
+                  <span style={`font-size:0.72rem;color:var(--${which});font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em`}>
+                    <span style={`width:7px;height:7px;background:var(--${which});display:inline-block;margin-right:0.4rem`} />
+                    {role}
+                  </span>
+                  <h3 style="font-size:1.5rem;margin:0.7rem 0 0">{name}</h3>
+                </div>
+                <p class="stack__desc">{desc}</p>
+                <span class="arrow-link" style="margin-top:auto">
+                  Explore {name}<span aria-hidden="true">→</span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section divider-top dotgrid">
+      <div class="container">
+        <div class="prin__head reveal" style="margin-bottom:2.6rem">
+          <span class="eyebrow"><span class="tick"></span>FAQ</span>
+          <h2 class="prin__h2" style="margin-top:1.1rem">
+            Confidential computing use cases,<br />answered precisely.
+          </h2>
+        </div>
+        <FAQAccordion items={faqs} reveal delay={1} id="faq" />
+      </div>
+    </section>
+
+    <ProductCTA
+      h2="Which use case fits<br />your organization?"
+      sub="Talk to the team about your specific workload, data classification requirements, and the right TEE architecture for your deployment."
+      primaryLabel="Contact sales"
+      primaryHref="/company/contact"
+      secondaryLabel="What is confidential computing?"
+      secondaryHref="/solutions/confidential-computing"
+      note="Apache 2.0 · Deploy anywhere · No vendor lock-in"
+    />
+  </main>
+  <Footer />
+</Layout>

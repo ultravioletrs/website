@@ -1,27 +1,95 @@
-title: "AI Governance — Prove Compliance, Don't Just Promise It | Ultraviolet"
-description: "Policy enforcement, complete audit trails, and attestation that make AI use provable to a regulator."
-eyebrow: "Solution · AI Governance"
+title: "AI Compliance & Governance: GDPR, EU AI Act, HIPAA & DORA | Ultraviolet"
+description: "Meet AI compliance requirements under GDPR, the EU AI Act (enforceable August 2026), DORA, and HIPAA with architecture-level controls — not contractual promises."
+eyebrow: "Solution · AI Governance & Compliance"
 h1: "Prove compliance —<br /><span class=\"hero__accent\">don't just promise it.</span>"
 sub: "Policy enforcement, complete audit trails, and hardware attestation that make AI use provable to a regulator — by architecture, not by promise."
+
+explainerEyebrow: "The compliance problem"
+explainerH2: "GDPR AI compliance requires more than a data processing agreement."
+explainerBody: "GDPR, the EU AI Act, DORA, HIPAA, and sector-specific mandates create technical requirements that a contractual relationship with a cloud AI vendor cannot satisfy. Regulators increasingly demand demonstrable technical controls — audit trails you own, policies enforced at the infrastructure layer, and evidence of where and how data was processed. 'We use a GDPR-compliant vendor' is not a technical control. Governance built into the infrastructure is."
+explainerChips:
+  - "GDPR — in force since May 2018"
+  - "EU AI Act — high-risk systems from August 2026"
+  - "DORA — January 2025 financial sector"
+  - "NIS2 — October 2024 transposition"
+  - "HIPAA — US healthcare"
+
 compH2: "Hosted AI compliance<br />is contractual, not architectural."
-compBody: "Governance for hosted AI depends on vendor promises, contractual SLAs, and borrowed audit artifacts. That's not compliance by architecture — it's compliance by hope. Regulators and legal teams need more."
+compBody: "Governance for hosted AI depends on vendor promises, contractual SLAs, and borrowed audit artifacts. That is not compliance by architecture — it is compliance by hope. Regulators and legal teams need more: audit trails you own, policies you enforce, and technical evidence you generate yourself."
 compHeaders: ["Hosted AI governance", "Ultraviolet AI Governance"]
 compRows:
   - ["Audit trail", "Vendor-provided; incomplete; not yours.", "Full, queryable audit trail you own and control."]
-  - ["Policy enforcement", "At the application layer; bypassable.", "At the infrastructure layer; every call."]
-  - ["Regulatory evidence", "Inherited from the vendor; hard to customize.", "Hardware-attested proofs you generate yourself."]
-  - ["Data-use proof", "Contractual assurances only.", "Cryptographic attestation of exactly what ran."]
+  - ["Policy enforcement", "At the application layer; bypassable.", "At the infrastructure layer — on every call, enforced by the runtime."]
+  - ["Regulatory evidence", "Inherited from the vendor; hard to customize.", "Hardware-attested proofs you generate and export yourself."]
+  - ["Data-use proof", "Contractual assurances only.", "Cryptographic attestation of exactly what ran and where."]
+  - ["EU AI Act high-risk AI requirements", "Vendor compliance artifacts — you inherit their documentation.", "Your own conformity documentation, audit trail, and risk management system."]
+
+detailsEyebrow: "Regulatory landscape"
+detailsH2: "AI compliance frameworks you need to satisfy."
+detailsSub: "These are the active regulatory frameworks with direct implications for how organizations deploy AI. Dates are enforcement dates, not publication dates."
+detailsItems:
+  - title: "EU AI Act — High-Risk AI Systems"
+    body: "The EU AI Act classifies AI systems in sensitive domains (HR, credit, education, critical infrastructure, biometrics) as high-risk. High-risk AI system requirements are fully enforceable from August 2026. Requirements include: a documented risk management system (Article 9), data governance and data management practices (Article 10), technical documentation (Article 11), automatic logging of operation (Article 12), transparency to users (Article 13), and a quality management system (Article 17). Sovereign AI on infrastructure you control provides the technical foundation for all of these."
+  - title: "GDPR — General Data Protection Regulation"
+    body: "In force since May 2018. Article 5 requires personal data be processed lawfully, fairly, and transparently, with purpose limitation and data minimisation. Article 25 requires data protection by design and by default — technical controls baked into the architecture, not bolted on. Article 44 restricts transfers of personal data to third countries. Running AI on your own infrastructure eliminates Article 44 transfers entirely."
+  - title: "DORA — Digital Operational Resilience Act"
+    body: "In force January 2025 for EU financial entities. DORA requires financial institutions to manage ICT third-party risk under Articles 28–30. A cloud AI API is an ICT third-party service under DORA. Requirements include contractual documentation, audit rights, exit plans, and concentration risk management. On-premise AI eliminates the third-party ICT dependency entirely."
+  - title: "NIS2 — Network and Information Security Directive 2"
+    body: "EU member state transposition deadline October 2024. NIS2 extends cybersecurity obligations to a broader set of critical infrastructure entities. Covered organizations must implement appropriate technical and organisational measures for AI systems used in critical operations. Sovereign AI deployment with hardware attestation satisfies NIS2's technical controls requirements."
+  - title: "HIPAA — Health Insurance Portability and Accountability Act"
+    body: "US law governing Protected Health Information. HIPAA's Technical Safeguard standards require access controls, audit controls, integrity controls, and transmission security for systems handling PHI. AI inference on clinical data must occur in a HIPAA-compliant environment. On-premise deployment with Cube AI's audit trail, RBAC, and guardrails satisfies HIPAA Technical Safeguard requirements."
+  - title: "Sector-Specific: CMMC, FedRAMP, NCSC"
+    body: "US federal AI deployments face FedRAMP authorization requirements and, for defense contractors, CMMC (Cybersecurity Maturity Model Certification) at appropriate levels. UK public sector AI must align with NCSC guidance. In all cases, demonstrable technical controls — hardware-attested infrastructure, complete audit trails, policy enforcement at the infrastructure layer — provide the evidence base regulators require."
+
+stepsEyebrow: "Technical controls"
+stepsH2: "AI governance controls that satisfy regulators."
+stepsSub: "These are the technical controls that move compliance from contractual promise to architectural fact — the ones regulators can audit rather than just receive documentation for."
+stepsItems:
+  - title: "Complete audit trail for every AI interaction"
+    body: "Cube AI records every prompt, guardrail decision, model response, policy change, and administrative action in a queryable, exportable audit log. The audit trail is stored inside your perimeter — not in a vendor's logging service. Every entry is timestamped, attributed to an authenticated user or system, and tamper-evident. For EU AI Act Article 12 (record-keeping) and HIPAA audit controls: this is the evidence base."
+  - title: "Policy enforcement at the infrastructure layer"
+    body: "Guardrails in Cube AI are enforced by the Cube Proxy — the layer through which every inference request passes. Policies cannot be bypassed at the application layer because enforcement is below the application. NeMo Guardrails handle prompt injection defense and content policy; Presidio handles PII detection and redaction. Every guardrail decision is logged. This is policy enforcement by architecture, not by convention."
+  - title: "Role-based access control with domain isolation"
+    body: "Cube AI's multi-domain architecture creates strictly separated workspaces. Each team, department, or use case operates in its own domain with its own identity namespace, model access permissions, and audit log partition. RBAC and ABAC policies control who can register models, modify guardrails, read audit logs, and access specific domains. Principle of least privilege is enforced at the platform level."
+  - title: "Hardware attestation for maximum assurance"
+    body: "For high-risk AI systems requiring the strongest evidence of data-in-use protection: Cocos AI provides hardware remote attestation. Before any sensitive data is processed, clients receive a hardware-signed attestation report from the TEE (AMD SEV-SNP or Intel TDX). This report cryptographically proves that the correct, unmodified Cube AI software is running in an isolated enclave. For regulators requiring technical evidence of data protection during AI processing, attestation is the highest-assurance control available."
+  - title: "Data residency enforcement"
+    body: "For GDPR Article 44, DORA data residency requirements, and national data sovereignty mandates: on-premise deployment enforces data residency at the infrastructure level, not the contract level. No API call, no model output, and no audit event leaves your defined boundary without an explicit policy exception. Network-level controls enforce this — it is not a configuration option that can be accidentally overridden."
+
 product:
   which: "cube"
   name: "Cube AI"
   role: "Sovereign AI Platform"
-  blurb: "Governance built into the infrastructure: audit, RBAC, guardrails, and attestation — all running inside your perimeter."
+  blurb: "Governance built into the infrastructure: complete audit trail, NeMo guardrails on every call, RBAC with domain isolation, and hardware attestation — all running inside your perimeter and provable to a regulator."
   points:
-    - "Complete audit trail for every interaction"
-    - "NeMo guardrails on every prompt and response"
-    - "RBAC + ABAC with domain isolation"
-    - "Hardware attestation when TEEs are required"
+    - "Complete audit trail for every interaction — own it, export it"
+    - "NeMo guardrails + Presidio PII redaction on every prompt and response"
+    - "RBAC + ABAC with domain isolation — least privilege enforced"
+    - "Hardware attestation when TEEs are required for high-risk AI"
+    - "Data residency enforced at the infrastructure layer"
+  supporting:
+    - which: "cocos"
+      name: "Cocos AI"
+      role: "Confidential Computing Foundation"
+      blurb: "Hardware TEE isolation and remote attestation — the cryptographic proof layer for organizations operating under EU AI Act high-risk AI requirements."
+
 ctaH2: "Compliance by architecture,<br />not by promise."
-ctaSub: "Talk to the team about AI governance requirements, GDPR, HIPAA, and EU AI Act compliance."
+ctaSub: "Talk to the team about AI governance requirements, GDPR, EU AI Act, HIPAA, and DORA compliance for your AI deployment."
 ctaLabel: "View Cube AI"
 ctaHref: "/products/cube-ai"
+
+faqs:
+  - q: "What does GDPR require for AI deployments?"
+    a: "GDPR requires that AI systems processing personal data implement data protection by design and by default (Article 25), limit processing to declared purposes (Article 5), document the legal basis for processing, and avoid international transfers without adequate safeguards (Article 44). On-premise AI deployment eliminates Article 44 cross-border transfer risk and provides the architectural foundation for Articles 5 and 25."
+  - q: "When do EU AI Act requirements apply to my AI system?"
+    a: "The EU AI Act imposes tiered requirements based on risk. High-risk AI systems — those used in employment, credit, education, critical infrastructure, biometrics, and law enforcement contexts — must meet requirements including a risk management system, data governance, technical documentation, automatic logging, and a quality management system. These requirements are fully enforceable from August 2026 for high-risk systems."
+  - q: "What technical controls does the EU AI Act require?"
+    a: "For high-risk AI systems, the EU AI Act requires: a risk management system covering the AI lifecycle (Article 9), data governance and management practices (Article 10), technical documentation maintained throughout the system's lifetime (Article 11), automatic logging sufficient to reconstruct what happened (Article 12), transparency measures for deployers and users (Article 13), and a quality management system (Article 17). Cube AI's audit trail, guardrails, and governance dashboard directly address Articles 9, 10, 11, 12, and 17."
+  - q: "Does DORA apply to AI systems used by financial institutions?"
+    a: "Yes. DORA (in force January 2025) requires EU financial entities to manage ICT third-party risk, including cloud AI API providers. Cloud AI APIs are ICT third-party services under DORA Articles 28–30, requiring contractual documentation, audit rights, and exit plans. On-premise AI deployment eliminates the third-party ICT dependency entirely — there is no third party to manage."
+  - q: "What is the difference between AI governance and AI compliance?"
+    a: "AI compliance refers to meeting specific regulatory requirements — GDPR, EU AI Act, HIPAA, DORA. AI governance refers to the internal systems and processes for managing AI use responsibly: who approves models, how policies are set and enforced, how incidents are investigated. Good AI governance produces compliance as an output: when you have the right audit trails, access controls, and policy enforcement, you have the evidence regulators require."
+  - q: "How does Cube AI's audit trail support regulatory requirements?"
+    a: "Cube AI records every prompt, guardrail decision, policy change, and administrative action in a structured, queryable audit log stored inside your perimeter. Each entry is timestamped and attributed to an authenticated principal. The log is exportable in standard formats. For EU AI Act Article 12 (automatic logging), HIPAA audit controls, and DORA ICT incident records, this audit trail is the primary technical evidence of what your AI system did and when."
+  - q: "What is hardware attestation and why does it matter for compliance?"
+    a: "Hardware attestation is a cryptographic process by which a Trusted Execution Environment generates a hardware-signed report proving that specific software is running in an unmodified enclave. For AI compliance, attestation provides the highest-assurance evidence that data was processed in an isolated environment — stronger than any contractual assurance a cloud vendor can provide. Relevant for EU AI Act high-risk systems requiring demonstrable technical data protection controls."

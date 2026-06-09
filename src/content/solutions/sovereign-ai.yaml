@@ -1,16 +1,61 @@
-title: "Sovereign AI — Build AI Under Your Jurisdiction | Ultraviolet"
-description: "Deploy AI entirely inside your national or organizational boundary. No foreign cloud, no data egress, full sovereignty guaranteed by hardware."
+title: "What Is Sovereign AI? Infrastructure, Risks & How to Deploy | Ultraviolet"
+description: "Sovereign AI is AI running under your jurisdiction on infrastructure you control — no foreign cloud, no data egress. Learn what it requires, who needs it, and how to build it."
 eyebrow: "Solution · Sovereign AI"
 h1: "AI under your<br /><span class=\"hero__accent\">jurisdiction and control.</span>"
 sub: "Build, run, and govern AI entirely inside your national or organizational boundary — on hardware you control, with nothing leaving your network, ever."
+
+explainerEyebrow: "Definition"
+explainerH2: "What Is Sovereign AI?"
+explainerBody: "Sovereign AI is AI that runs on infrastructure under your direct control and legal jurisdiction — not in a foreign commercial cloud. It means data never leaves your boundary, governance is set by your organization, and no foreign authority can compel access to your models or inference inputs. Sovereignty is a hardware guarantee, not a contractual promise: you are sovereign over your AI when a foreign entity cannot access your data, legally or physically, even under compulsion."
+explainerChips:
+  - "Data stays in your jurisdiction"
+  - "Hardware you control"
+  - "Your governance policies"
+  - "No foreign cloud dependency"
+  - "Audit trail you own"
+
 compH2: "The problem with hosted AI<br />for sovereign organizations."
-compBody: "Every request to a hosted AI service is data leaving your jurisdiction. For governments, defense, and regulated organizations, that is not a feature trade-off — it is a structural compliance failure."
-compHeaders: ["Hosted AI APIs", "Ultraviolet"]
+compBody: "Every request to a hosted AI service is data leaving your jurisdiction. For governments, defense, and regulated organizations, that is not a feature trade-off — it is a structural compliance failure. The US CLOUD Act (2018) authorizes US law enforcement to compel US cloud providers to produce stored data regardless of where it is physically located, including data belonging to non-US organizations."
+compHeaders: ["Hosted AI APIs", "Ultraviolet Sovereign AI"]
 compRows:
   - ["Where is your data processed?", "A foreign cloud under foreign jurisdiction and laws.", "Inside your own perimeter, on your own hardware."]
   - ["Who sets governance policy?", "The vendor's terms of service govern what runs.", "Your organization's policies govern everything."]
   - ["Can regulators audit it?", "You inherit the vendor's audit artifacts.", "A complete, hardware-attested audit trail you own."]
   - ["What is the sovereignty risk?", "Data egress creates ongoing legal exposure.", "Zero outbound by default — no egress risk."]
+  - ["CLOUD Act exposure?", "US-based vendors can be compelled to produce your data.", "Infrastructure outside US jurisdiction eliminates this vector."]
+
+detailsEyebrow: "Why it matters"
+detailsH2: "AI sovereignty is a legal and operational necessity."
+detailsSub: "The case for sovereign AI is not primarily about ideology. It is about specific legal instruments, regulatory mandates, and operational risk that affect any organization processing sensitive data with AI."
+detailsItems:
+  - title: "The US CLOUD Act"
+    body: "The Clarifying Lawful Overseas Use of Data Act (2018) authorizes US law enforcement to compel US cloud providers to produce stored data regardless of where it is physically located — including data belonging to non-US governments and enterprises. Any AI workload on AWS, Azure, or Google Cloud is reachable under CLOUD Act authority."
+  - title: "GDPR and EU AI Act"
+    body: "GDPR Article 44 prohibits transfers of personal data to third countries without adequate protection. The EU AI Act imposes audit trail, record-keeping, and conformity assessment requirements on high-risk AI systems, fully enforceable from August 2026. Both require demonstrable control over where and how AI processes personal data."
+  - title: "Vendor lock-in and supply chain risk"
+    body: "Operational dependency on a single foreign AI vendor is a supply chain risk. Vendors can change terms, restrict access, increase prices, or be subject to export controls — cutting off access to systems your organization depends on. Sovereign AI eliminates this structural dependency."
+  - title: "Model and data IP protection"
+    body: "When you send prompts and proprietary data to a hosted AI API, you expose your training distribution, your knowledge base structure, and potentially your fine-tuning approach through the queries themselves. Your AI competitive advantage is visible to the vendor's infrastructure."
+  - title: "DORA and sectoral compliance"
+    body: "The Digital Operational Resilience Act (DORA, January 2025) requires EU financial entities to manage ICT third-party risk. NIS2 extends cybersecurity obligations to critical infrastructure operators. Foreign cloud AI is a third-party ICT risk under both frameworks."
+  - title: "National security and defense"
+    body: "Government and defense AI workloads often process classified or operationally sensitive content. Foreign cloud providers — regardless of their reputation — cannot guarantee that their management plane, support access, or firmware has not been subject to intelligence collection requirements."
+
+stepsEyebrow: "Implementation"
+stepsH2: "How to deploy sovereign AI."
+stepsSub: "A five-step process that closes each access vector in sequence. The result is an AI environment where you can prove — not just promise — that sensitive data is contained."
+stepsItems:
+  - title: "Select TEE-capable hardware"
+    body: "Choose servers with AMD SEV-SNP or Intel TDX support. Both are available from major hardware vendors and in several confidential computing cloud offerings. This hardware enforces memory encryption at the CPU level — model weights and inference data stay encrypted in use, invisible to the host OS and hypervisor."
+  - title: "Deploy a sovereign AI stack"
+    body: "Deploy an open-source, auditable AI platform on your infrastructure. Cube AI bundles inference (vLLM, Ollama), retrieval-augmented generation, guardrails, governance, and a production UI — all running inside your perimeter under an Apache 2.0 license you can inspect and modify."
+  - title: "Enforce network isolation"
+    body: "Configure outbound network policies to block data egress by default. AI inference does not require internet connectivity. Only updates and administrative access should have controlled outbound paths — and none should carry prompt data or model outputs."
+  - title: "Implement audit logging and governance"
+    body: "Configure role-based access control, per-domain policies, and a complete audit trail for every inference call, administrative action, and policy change. The audit trail must be owned and exportable by your organization — not stored in a vendor's logging service."
+  - title: "Enable remote attestation"
+    body: "If using TEE hardware, configure remote attestation so clients can cryptographically verify the enclave before sending sensitive data. Cocos AI, Ultraviolet's open-source confidential computing layer, automates attestation verification and key management for the full Ultraviolet stack."
+
 product:
   which: "cube"
   name: "Cube AI"
@@ -19,14 +64,34 @@ product:
   points:
     - "On-premises, air-gapped, or sovereign cloud"
     - "Jurisdictional data residency guaranteed"
-    - "Hardware TEE isolation available"
+    - "Hardware TEE isolation — AMD SEV-SNP and Intel TDX"
     - "Apache 2.0 — inspect and own the stack"
+    - "Complete audit trail you control"
   supporting:
     - which: "cocos"
       name: "Cocos AI"
       role: "Confidential Computing Foundation"
-      blurb: "The open TEE foundation beneath Cube AI — hardware-enforced isolation and remote attestation for maximum assurance."
+      blurb: "The open TEE foundation beneath Cube AI — hardware-enforced isolation and remote attestation that makes sovereignty cryptographically verifiable, not just contractually promised."
+
 ctaH2: "Your AI. Your jurisdiction.<br />Your rules."
 ctaSub: "Talk to the team about sovereign AI deployments, national cloud configurations, and regulatory compliance."
 ctaLabel: "View Cube AI"
 ctaHref: "/products/cube-ai"
+
+faqs:
+  - q: "What is sovereign AI?"
+    a: "Sovereign AI is AI that runs on infrastructure under your direct control and legal jurisdiction — not in a foreign commercial cloud. It requires hardware ownership or lease within your jurisdiction, data residency guarantees, organization-defined governance policies, and optionally cryptographic proof via remote attestation that no unauthorized party can access the computation."
+  - q: "What is the difference between data sovereignty and AI sovereignty?"
+    a: "Data sovereignty means controlling where data is stored. AI sovereignty means controlling the entire AI lifecycle: where data is stored, where models run, who can access inference outputs, what governance policies apply, and who can audit the system. You can have data sovereignty without AI sovereignty if your data stays local but your models run on a foreign cloud API."
+  - q: "Why do countries need sovereign AI?"
+    a: "Countries need sovereign AI to protect national security, comply with data protection laws, prevent foreign intelligence access to sensitive workloads, and maintain operational independence. The US CLOUD Act (2018) authorizes US law enforcement to compel US cloud providers to produce data stored anywhere in the world, including data belonging to foreign governments."
+  - q: "What are the risks of using foreign AI cloud services?"
+    a: "Foreign AI cloud services expose organizations to five structural risks: (1) foreign surveillance laws such as the US CLOUD Act grant foreign governments legal access to your data; (2) vendor lock-in creates operational dependency on a foreign commercial entity; (3) regulatory non-compliance when data processing falls under GDPR, EU AI Act, or sectoral mandates; (4) supply chain disruption if the vendor restricts access; (5) model IP loss when proprietary data is processed on vendor infrastructure."
+  - q: "Is private AI the same as sovereign AI?"
+    a: "Not exactly. Private AI means your data does not leave your network during inference. Sovereign AI adds jurisdictional control, governance policy ownership, and hardware attestation on top of privacy. All sovereign AI is private AI, but private AI deployed on a foreign cloud — even in a private VPC — is not fully sovereign because the cloud provider retains physical and legal access to the infrastructure."
+  - q: "What hardware is needed for sovereign AI?"
+    a: "Sovereign AI requires compute infrastructure in your jurisdiction: on-premises GPU servers, a national sovereign cloud, or a private data centre. For the strongest isolation, TEE-capable hardware — AMD SEV-SNP confidential VMs or Intel TDX Trust Domains — encrypts model weights and inference inputs in memory so that even the host operator cannot access plaintext."
+  - q: "Does sovereign AI require air-gapping?"
+    a: "No. Air-gapping (zero network connectivity) is the maximum isolation level, required for classified workloads. Most sovereign AI deployments need outbound connectivity for updates and monitoring, but with no egress of prompt data or model outputs. The key requirement is that user data and model inference stay inside your perimeter — not that the servers are physically disconnected."
+  - q: "How does the EU AI Act affect sovereign AI requirements?"
+    a: "The EU AI Act classifies certain applications as high-risk AI systems, requiring conformity assessments, audit trails, and technical documentation. High-risk AI system requirements are fully enforceable from August 2026. Sovereign AI infrastructure — running on hardware you control with a complete audit trail — provides the technical controls needed to demonstrate compliance with Articles 9, 12, and 17."

@@ -604,6 +604,58 @@ policy       debug=off · migrate=off
       </div>
     </section>
 
+    <!-- Related guides -->
+    <section class="section divider-top">
+      <div class="container">
+        <div class="prin__head reveal" style="margin-bottom:2rem">
+          <span class="eyebrow"><span class="tick"></span>Learn more</span>
+          <h2 class="prin__h2" style="margin-top:0.8rem;font-size:1.6rem">
+            Deep dives on confidential<br />computing and sovereign AI.
+          </h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:1px;border:1px solid var(--line)">
+          {
+            [
+              {
+                href: "/solutions/confidential-computing",
+                label: "What Is Confidential Computing?",
+                desc: "AMD SEV-SNP, Intel TDX, remote attestation, and why hardware TEEs are the only production-viable approach for data-in-use protection.",
+              },
+              {
+                href: "/solutions/confidential-computing/use-cases",
+                label: "Confidential Computing Use Cases",
+                desc: "Eight real-world use cases: private AI inference, multi-party collaboration, clinical AI, financial analytics, and government classified AI.",
+              },
+              {
+                href: "/solutions/sovereign-ai",
+                label: "What Is Sovereign AI?",
+                desc: "Jurisdictional control, data residency, hardware isolation — what sovereign AI actually requires and how to build it.",
+              },
+              {
+                href: "/solutions/secure-ai-deployment",
+                label: "Secure AI Deployment Guide",
+                desc: "On-premise, air-gapped, and TEE deployment — how each architecture works and which to choose for your threat model.",
+              },
+            ].map(({ href, label, desc }) => (
+              <a
+                href={href}
+                class="reveal"
+                style="display:block;padding:1.4rem 1.5rem;background:var(--bg-alt);text-decoration:none"
+              >
+                <div style="font-family:var(--font-display);font-weight:600;font-size:0.97rem;margin-bottom:0.4rem">
+                  {label}
+                </div>
+                <p style="margin:0;color:var(--ink-2);font-size:0.86rem;line-height:1.6">{desc}</p>
+                <span class="arrow-link" style="font-size:0.8rem;margin-top:0.7rem;display:inline-flex">
+                  Read<span aria-hidden="true">→</span>
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
     <!-- Cross-sell -->
     <section class="stack section divider-top p-cross">
       <div class="container">
