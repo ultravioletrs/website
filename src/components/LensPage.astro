@@ -147,9 +147,16 @@ const hasFaqs = faqTuples.length > 0;
                 {explainerEyebrow}
               </span>
             )}
-            <h2 class="comp__h2" style="margin:1.1rem 0 1.3rem" set:html={explainerH2} />
+            <h2
+              class="comp__h2"
+              style="margin:1.1rem 0 1.3rem"
+              set:html={explainerH2}
+            />
             {explainerBody && (
-              <p class="comp__desc" style="font-size:1.05rem;line-height:1.72;max-width:52rem">
+              <p
+                class="comp__desc"
+                style="font-size:1.05rem;line-height:1.72;max-width:52rem"
+              >
                 {explainerBody}
               </p>
             )}
@@ -257,9 +264,15 @@ const hasFaqs = faqTuples.length > 0;
                 {stepsEyebrow}
               </span>
             )}
-            <h2 class="prin__h2" style="margin-top:1.1rem" set:html={stepsH2 ?? ""} />
+            <h2
+              class="prin__h2"
+              style="margin-top:1.1rem"
+              set:html={stepsH2 ?? ""}
+            />
             {stepsSub && (
-              <p style="color:var(--ink-2);margin-top:0.8rem;max-width:48rem">{stepsSub}</p>
+              <p style="color:var(--ink-2);margin-top:0.8rem;max-width:48rem">
+                {stepsSub}
+              </p>
             )}
           </div>
           <div class="prin__grid">
@@ -361,7 +374,9 @@ const hasFaqs = faqTuples.length > 0;
               FAQ
             </span>
             <h2 class="prin__h2" style="margin-top:1.1rem">
-              Common questions,<br />answered precisely.
+              Common questions,
+              <br />
+              answered precisely.
             </h2>
           </div>
           <FAQAccordion items={faqTuples} reveal delay={1} id="faq" />

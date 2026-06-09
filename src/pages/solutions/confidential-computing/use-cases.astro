@@ -163,22 +163,34 @@ const useCases = [
   />
   <Header />
   <main>
-
     <!-- Hero -->
     <section class="hero" id="top">
       <div class="container">
-        <div class="hero__centered" style="max-width:780px;margin:0 auto;text-align:center">
-          <span class="eyebrow"><span class="tick"></span>Confidential Computing · Use Cases</span>
+        <div
+          class="hero__centered"
+          style="max-width:780px;margin:0 auto;text-align:center"
+        >
+          <span class="eyebrow"
+            ><span class="tick"></span>Confidential Computing · Use Cases</span
+          >
           <h1 class="hero__h1" style="margin-top:1.1rem">
             Confidential computing<br />use cases.
           </h1>
-          <p class="hero__sub hero__sub--center" style="max-width:640px;margin:1.4rem auto 0">
-            Eight real-world use cases where hardware Trusted Execution Environments
-            solve security and compliance problems that encryption and access controls
-            alone cannot.
+          <p
+            class="hero__sub hero__sub--center"
+            style="max-width:640px;margin:1.4rem auto 0"
+          >
+            Eight real-world use cases where hardware Trusted Execution
+            Environments solve security and compliance problems that encryption
+            and access controls alone cannot.
           </p>
-          <div class="hero__ctas" style="justify-content:center;margin-top:2rem">
-            <a class="btn btn--primary" href="/company/contact">Talk to the team</a>
+          <div
+            class="hero__ctas"
+            style="justify-content:center;margin-top:2rem"
+          >
+            <a class="btn btn--primary" href="/company/contact"
+              >Talk to the team</a
+            >
             <a class="btn btn--ghost" href="/solutions/confidential-computing">
               What is confidential computing?
             </a>
@@ -195,62 +207,68 @@ const useCases = [
           title="Where confidential computing<br />solves real problems."
           intro="Each use case below describes a security or compliance problem that standard cloud architecture cannot solve — and the specific TEE capability that resolves it."
         />
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,480px),1fr));gap:1.5rem;margin-top:3rem">
+        <div
+          style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,480px),1fr));gap:1.5rem;margin-top:3rem"
+        >
           {
-            useCases.map(({ Icon, tag, title, body, who, product, href }, i) => (
-              <article
-                class="reveal"
-                data-delay={i % 2}
-                style="border:1px solid var(--line);background:var(--bg-alt);padding:1.8rem;display:flex;flex-direction:column;gap:0.85rem"
-              >
-                <div style="display:flex;align-items:center;gap:0.7rem">
-                  <span style="color:var(--accent)">
-                    <Icon size={18} />
-                  </span>
-                  <span
-                    class="mono"
-                    style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted)"
+            useCases.map(
+              ({ Icon, tag, title, body, who, product, href }, i) => (
+                <article
+                  class="reveal"
+                  data-delay={i % 2}
+                  style="border:1px solid var(--line);background:var(--bg-alt);padding:1.8rem;display:flex;flex-direction:column;gap:0.85rem"
+                >
+                  <div style="display:flex;align-items:center;gap:0.7rem">
+                    <span style="color:var(--accent)">
+                      <Icon size={18} />
+                    </span>
+                    <span
+                      class="mono"
+                      style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted)"
+                    >
+                      {tag}
+                    </span>
+                  </div>
+                  <h2 style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin:0;line-height:1.3">
+                    {title}
+                  </h2>
+                  <p style="margin:0;color:var(--ink-2);font-size:0.92rem;line-height:1.68">
+                    {body}
+                  </p>
+                  <div style="display:flex;flex-direction:column;gap:0.3rem;margin-top:0.2rem">
+                    <div style="display:flex;gap:0.5rem;align-items:baseline">
+                      <span
+                        class="mono"
+                        style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;min-width:3.5rem"
+                      >
+                        Who
+                      </span>
+                      <span style="font-size:0.86rem;color:var(--ink-2)">
+                        {who}
+                      </span>
+                    </div>
+                    <div style="display:flex;gap:0.5rem;align-items:baseline">
+                      <span
+                        class="mono"
+                        style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;min-width:3.5rem"
+                      >
+                        Product
+                      </span>
+                      <span style="font-size:0.86rem;color:var(--accent);font-weight:500">
+                        {product}
+                      </span>
+                    </div>
+                  </div>
+                  <a
+                    href={href}
+                    class="arrow-link"
+                    style="margin-top:auto;font-size:0.83rem"
                   >
-                    {tag}
-                  </span>
-                </div>
-                <h2
-                  style="font-family:var(--font-display);font-size:1.18rem;font-weight:600;margin:0;line-height:1.3"
-                >
-                  {title}
-                </h2>
-                <p style="margin:0;color:var(--ink-2);font-size:0.92rem;line-height:1.68">
-                  {body}
-                </p>
-                <div style="display:flex;flex-direction:column;gap:0.3rem;margin-top:0.2rem">
-                  <div style="display:flex;gap:0.5rem;align-items:baseline">
-                    <span
-                      class="mono"
-                      style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;min-width:3.5rem"
-                    >
-                      Who
-                    </span>
-                    <span style="font-size:0.86rem;color:var(--ink-2)">{who}</span>
-                  </div>
-                  <div style="display:flex;gap:0.5rem;align-items:baseline">
-                    <span
-                      class="mono"
-                      style="font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;min-width:3.5rem"
-                    >
-                      Product
-                    </span>
-                    <span style="font-size:0.86rem;color:var(--accent);font-weight:500">{product}</span>
-                  </div>
-                </div>
-                <a
-                  href={href}
-                  class="arrow-link"
-                  style="margin-top:auto;font-size:0.83rem"
-                >
-                  Learn more<span aria-hidden="true">→</span>
-                </a>
-              </article>
-            ))
+                    Learn more<span aria-hidden="true">→</span>
+                  </a>
+                </article>
+              ),
+            )
           }
         </div>
       </div>
@@ -270,7 +288,11 @@ const useCases = [
               TEEs can provide: encrypted computation and remote attestation.
               Neither property is available from any software-only solution.
             </p>
-            <a class="arrow-link" href="/solutions/confidential-computing" style="margin-top:1.4rem;display:inline-flex">
+            <a
+              class="arrow-link"
+              href="/solutions/confidential-computing"
+              style="margin-top:1.4rem;display:inline-flex"
+            >
               How confidential computing works<span aria-hidden="true">→</span>
             </a>
           </div>
@@ -315,7 +337,9 @@ const useCases = [
           title="Three products, all the use cases."
           intro="Cocos AI provides the TEE foundation. Cube AI delivers private AI inference and governance. Prism AI enables multi-party collaboration. Each is open-source at its core."
         />
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:1.5rem;margin-top:3rem">
+        <div
+          style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:1.5rem;margin-top:3rem"
+        >
           {
             [
               {
@@ -346,15 +370,20 @@ const useCases = [
                 style="text-decoration:none"
               >
                 <div class="stack__card-top">
-                  <span style={`font-size:0.72rem;color:var(--${which});font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em`}>
-                    <span style={`width:7px;height:7px;background:var(--${which});display:inline-block;margin-right:0.4rem`} />
+                  <span
+                    style={`font-size:0.72rem;color:var(--${which});font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.08em`}
+                  >
+                    <span
+                      style={`width:7px;height:7px;background:var(--${which});display:inline-block;margin-right:0.4rem`}
+                    />
                     {role}
                   </span>
                   <h3 style="font-size:1.5rem;margin:0.7rem 0 0">{name}</h3>
                 </div>
                 <p class="stack__desc">{desc}</p>
                 <span class="arrow-link" style="margin-top:auto">
-                  Explore {name}<span aria-hidden="true">→</span>
+                  Explore {name}
+                  <span aria-hidden="true">→</span>
                 </span>
               </a>
             ))

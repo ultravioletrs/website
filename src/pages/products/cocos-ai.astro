@@ -613,7 +613,9 @@ policy       debug=off · migrate=off
             Deep dives on confidential<br />computing and sovereign AI.
           </h2>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:1px;border:1px solid var(--line)">
+        <div
+          style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:1px;border:1px solid var(--line)"
+        >
           {
             [
               {
@@ -645,8 +647,13 @@ policy       debug=off · migrate=off
                 <div style="font-family:var(--font-display);font-weight:600;font-size:0.97rem;margin-bottom:0.4rem">
                   {label}
                 </div>
-                <p style="margin:0;color:var(--ink-2);font-size:0.86rem;line-height:1.6">{desc}</p>
-                <span class="arrow-link" style="font-size:0.8rem;margin-top:0.7rem;display:inline-flex">
+                <p style="margin:0;color:var(--ink-2);font-size:0.86rem;line-height:1.6">
+                  {desc}
+                </p>
+                <span
+                  class="arrow-link"
+                  style="font-size:0.8rem;margin-top:0.7rem;display:inline-flex"
+                >
                   Read<span aria-hidden="true">→</span>
                 </span>
               </a>
