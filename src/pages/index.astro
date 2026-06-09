@@ -16,9 +16,41 @@ import FinalCTA from "../components/FinalCTA.astro";
 ---
 
 <Layout
-  title="Ultraviolet — Sovereign AI Infrastructure"
+  title="Ultraviolet — Sovereign AI Infrastructure Platform"
   description="Ultraviolet is the sovereign AI platform. Build, deploy, govern, and operate AI on infrastructure you control. Private AI. No data egress. No vendor lock-in."
 >
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "Ultraviolet",
+      url: "https://www.ultraviolet.rs",
+      logo: "https://www.ultraviolet.rs/img/logos/ultraviolet.png",
+      foundingDate: "2023",
+      description:
+        "Ultraviolet is a sovereign AI infrastructure company headquartered in Belgrade, Serbia. We build open-source confidential computing and sovereign AI platforms.",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Bulevar Arsenija Čarnojevića 103",
+        addressLocality: "Belgrade",
+        postalCode: "11000",
+        addressCountry: "RS",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        email: "info@ultraviolet.rs",
+      },
+      sameAs: [
+        "https://github.com/ultravioletrs",
+        "https://www.linkedin.com/company/ultravioletrs",
+        "https://x.com/ultravioletrs",
+      ],
+    })}
+  />
   <Header />
   <main>
     <HomeHero />

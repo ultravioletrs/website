@@ -32,7 +32,6 @@ const resolveMetaUrl = (value: string | undefined) => {
 
 const canonicalUrl = resolveMetaUrl(canonical ?? Astro.url.pathname);
 const ogImageUrl = resolveMetaUrl(ogImage);
-console.log("og image url: ", ogImageUrl);
 ---
 
 <!doctype html>
@@ -58,11 +57,12 @@ console.log("og image url: ", ogImageUrl);
     {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
     {ogImageUrl && <meta property="og:image:alt" content={ogImageAlt} />}
 
-    <!-- Twitter -->
+    <!-- Twitter / X -->
     <meta
       name="twitter:card"
       content={ogImageUrl ? "summary_large_image" : "summary"}
     />
+    <meta name="twitter:site" content="@ultravioletrs" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
@@ -91,6 +91,8 @@ console.log("og image url: ", ogImageUrl);
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+
+    <slot name="head" />
 
     <script is:inline>
       (function () {

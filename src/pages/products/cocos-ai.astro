@@ -112,8 +112,71 @@ const faqs = [
 <Layout
   title="Cocos AI — Confidential Computing Foundation | Ultraviolet"
   description="Cocos AI is the open-source hardware abstraction layer for Trusted Execution Environments — the transparent, auditable substrate beneath Cube and Prism AI."
+  ogImage="/img/og-cocos-ai.png"
+  ogImageAlt="Cocos AI — Confidential Computing Foundation"
   prod="cocos"
 >
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify([
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "Cocos AI",
+        applicationCategory: "DeveloperApplication",
+        operatingSystem: "Linux",
+        url: "https://www.ultraviolet.rs/products/cocos-ai",
+        description:
+          "Cocos AI is an open-source hardware abstraction layer for Trusted Execution Environments — the transparent, auditable confidential computing substrate for private AI workloads.",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "EUR",
+          description: "Open-source under Apache 2.0 license",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "Ultraviolet",
+          url: "https://www.ultraviolet.rs",
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(([q, a]) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://www.ultraviolet.rs/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Products",
+            item: "https://www.ultraviolet.rs/products/",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: "Cocos AI",
+            item: "https://www.ultraviolet.rs/products/cocos-ai",
+          },
+        ],
+      },
+    ])}
+  />
   <Header />
   <main>
     <!-- Hero -->
@@ -130,10 +193,12 @@ const faqs = [
               Cocos AI — Confidential Computing Foundation
             </span>
             <h1 class="hero__h1">
-              The open foundation<br /><span
+              Open-source <br /><span
                 class="hero__accent"
-                style="color:var(--cocos)">the stack runs on.</span
-              >
+                style="color:var(--cocos)"
+                >confidential computing
+              </span>
+              for private AI.
             </h1>
             <p class="hero__sub">
               Cocos AI is the open-source hardware abstraction layer for Trusted

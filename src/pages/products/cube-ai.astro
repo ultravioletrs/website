@@ -152,10 +152,73 @@ const faqs = [
 ---
 
 <Layout
-  title="Cube AI — Sovereign AI Platform | Ultraviolet"
-  description="Cube AI is Ultraviolet's flagship platform for private LLM deployment — inference, RAG, guardrails, governance, and a production workspace, all inside your perimeter."
+  title="Cube AI — Private LLM Platform & AI Governance | Ultraviolet"
+  description="Cube AI is Ultraviolet's flagship private LLM platform — inference, RAG, guardrails, governance, and a production workspace, all inside your perimeter."
+  ogImage="/img/og-cube-ai.png"
+  ogImageAlt="Cube AI — Sovereign AI Platform"
   prod="cube"
 >
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify([
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "Cube AI",
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Linux",
+        url: "https://www.ultraviolet.rs/products/cube-ai",
+        description:
+          "Cube AI is Ultraviolet's flagship platform for private LLM deployment — inference, RAG, guardrails, governance, and a production workspace, all inside your perimeter.",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "EUR",
+          description: "Open-source core under Apache 2.0 license",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "Ultraviolet",
+          url: "https://www.ultraviolet.rs",
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(([q, a]) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: "https://www.ultraviolet.rs/",
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Products",
+            item: "https://www.ultraviolet.rs/products/",
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: "Cube AI",
+            item: "https://www.ultraviolet.rs/products/cube-ai",
+          },
+        ],
+      },
+    ])}
+  />
   <Header />
   <main>
     <!-- Hero -->
@@ -173,7 +236,7 @@ const faqs = [
               <em class="p-badge">Flagship</em>
             </span>
             <h1 class="hero__h1">
-              Run frontier AI entirely<br /><span class="hero__accent"
+              Private LLM platform,<br /><span class="hero__accent"
                 >on your own hardware.</span
               >
             </h1>

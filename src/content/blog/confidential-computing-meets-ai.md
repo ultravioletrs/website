@@ -4,7 +4,7 @@ title: "Confidential Computing Meets AI: How Cube AI Protects Your LLM Prompts"
 excerpt: "Cube AI leverages confidential computing and TEEs to protect your sensitive AI workloads. Ensure your prompts remain private with hardware-verified security."
 description: "Discover how Cube AI leverages Trusted Execution Environments (TEEs) to protect your sensitive data and LLM prompts from cloud providers and insider threats."
 author:
-  name: "sammy oina"
+  name: "Sammy Oina"
   picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
 tags: [security, confidential-computing, ai, privacy, "cube ai"]
 image: /img/confidential-computing-meets-ai/confidential-computing-cover.png

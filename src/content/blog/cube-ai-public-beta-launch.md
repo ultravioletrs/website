@@ -4,7 +4,7 @@ title: "Cube AI Public Beta: The Future of Confidential LLM Inference is Here"
 excerpt: "We are incredibly excited to announce the public beta release of Cube AI. Unlock the power of open-source, hardware-secured generative AI. Build and deploy agentic workflows with absolute data privacy using Trusted Execution Environments."
 description: "Discover Cube AI, the open-source framework by Ultraviolet for secure, agentic LLM inference. Learn how we use AMD SEV-SNP and Intel TDX to secure vLLM and Ollama deployments."
 author:
-  name: "sammy oina"
+  name: "Sammy Oina"
   picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
 tags: [confidential-computing, ai, privacy, "cube ai", beta-launch, open-source]
 date: 2026-03-04
@@ -19,7 +19,7 @@ The maturation of generative artificial intelligence has arrived at a structural
 
 Organizations have been forced into a binary choice: sacrifice proprietary data and intellectual property to public cloud providers or forego the advantages of cutting-edge AI. Today, that choice is obsolete.
 
-We are incredibly excited to announce the **Public Beta of Cube AI**, an open-source framework developed by Ultraviolet that pioneers a "Confidential-by-Design" architecture. By leveraging hardware-based Trusted Execution Environments (TEEs), Cube AI secures the entire AI inference lifecycle.
+We are incredibly excited to announce the **Public Beta of [Cube AI](/products/cube-ai)**, an open-source framework developed by Ultraviolet that pioneers a "Confidential-by-Design" architecture. By leveraging hardware-based Trusted Execution Environments (TEEs), Cube AI secures the entire AI inference lifecycle.
 
 <!--truncate-->
 
@@ -33,7 +33,7 @@ Confidential computing addresses this through **Trusted Execution Environments (
 
 Cube AI provides software enablement for leading TEE architectures: **[AMD SEV-SNP and Intel TDX](/blog/amd-sev-snp-vs-intel-tdx)**. By integrating with Buildroot and custom Linux kernels, we minimize the Trusted Computing Base (TCB), thereby significantly reducing the attack surface.
 
-To achieve this deep hardware integration, Cube AI relies on the open-source **[Cocos AI](https://cocos.ai)** framework—another flagship platform from Ultraviolet. Cocos AI provisions the secure **Hardware Abstraction Layer (HAL)** and manages the intricate **Remote Attestation** protocols. By leveraging Cocos, a client can cryptographically verify that the AI model is running inside a genuine hardware enclave with an unmodified software configuration. This establishes true "Zero Trust" at the hardware level.
+To achieve this deep hardware integration, Cube AI relies on the open-source **[Cocos AI](/products/cocos-ai)** framework—another flagship platform from Ultraviolet. Cocos AI provisions the secure **Hardware Abstraction Layer (HAL)** and manages the intricate **Remote Attestation** protocols. By leveraging Cocos, a client can cryptographically verify that the AI model is running inside a genuine hardware enclave with an unmodified software configuration. This establishes true "Zero Trust" at the hardware level.
 
 ## Architectural Innovation: The Cube AI Stack
 

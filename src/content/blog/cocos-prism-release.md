@@ -4,7 +4,7 @@ title: "Unleashing Confidential AI: Cocos v0.8.0 and Prism v0.6.0 Released"
 excerpt: "Ultraviolet releases Cocos AI v0.8.0 and Prism v0.6.0, enhancing the confidential computing ecosystem. These updates bring improved attestation, stronger security, and a better enterprise experience."
 description: "Learn about the new features in Cocos AI v0.8.0 and Prism v0.6.0, including enhanced security policies, performance improvements, and a new asset discovery system."
 author:
-  name: "sammy oina"
+  name: "Sammy Oina"
   picture: "https://avatars.githubusercontent.com/u/44265300?v=4"
 tags: [confidential-computing, ai, "cocos ai", "prism ai", privacy]
 date: 2026-02-06
@@ -14,7 +14,7 @@ ogImage: /img/cocos-prism-release/cocos_prism_release_cover.png
 featured: true
 ---
 
-The confidential computing landscape continues to evolve with two major releases that strengthen the ecosystem for secure, privacy-preserving AI: **Cocos AI v0.8.0** and **Prism v0.6.0**. Together, they represent a powerful advancement in enabling organizations to build trustworthy, collaborative AI systems without compromising data privacy.
+The confidential computing landscape continues to evolve with two major releases that strengthen the ecosystem for secure, privacy-preserving AI: **[Cocos AI](/products/cocos-ai) v0.8.0** and **[Prism AI](/products/prism-ai) v0.6.0**. Together, they represent a powerful advancement in enabling organizations to build trustworthy, collaborative AI systems without compromising data privacy.
 
 <!--truncate-->
 

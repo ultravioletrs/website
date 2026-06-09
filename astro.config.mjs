@@ -12,11 +12,36 @@ export default defineConfig({
   integrations: [
     tailwind(),
     sitemap({
-      filenameBase: "sitemap", // This will output sitemap.xml
-      changefreq: "hourly",
-      priority: 1.0,
+      filenameBase: "sitemap-pages",
+      filter: (page) =>
+        ![
+          "/cube/privacy/",
+          "/cube/terms/",
+          "/prism/privacy/",
+          "/prism/terms/",
+        ].some((path) => page.endsWith(path)),
       serialize(item) {
-        item.lastmod = new Date().toISOString(); // Sets all pages to the build time
+        item.lastmod = new Date().toISOString();
+
+        if (item.url === "https://www.ultraviolet.rs/") {
+          item.changefreq = "weekly";
+          item.priority = 1.0;
+        } else if (/\/products\//.test(item.url)) {
+          item.changefreq = "monthly";
+          item.priority = 0.9;
+        } else if (/\/solutions\/|\/industries\//.test(item.url)) {
+          item.changefreq = "monthly";
+          item.priority = 0.8;
+        } else if (/\/blog\//.test(item.url)) {
+          item.changefreq = "monthly";
+          item.priority = 0.7;
+        } else if (/\/projects\//.test(item.url)) {
+          item.changefreq = "monthly";
+          item.priority = 0.6;
+        } else {
+          item.changefreq = "monthly";
+          item.priority = 0.5;
+        }
 
         return item;
       },
