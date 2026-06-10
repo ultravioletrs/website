@@ -1,0 +1,94 @@
+title: "Secure AI Deployment: On-Premise, Air-Gapped & Confidential Computing | Ultraviolet"
+description: "Deploy AI securely on-premise, in air-gapped environments, or inside hardware TEEs. A technical guide to private LLM deployment for regulated and sovereign organizations."
+eyebrow: "Solution · Secure AI Deployment"
+h1: "Deploy AI securely —<br /><span class=\"hero__accent\">on your infrastructure.</span>"
+sub: "Private LLM deployment for regulated, sovereign, and security-conscious organizations — on-premise, air-gapped, or inside hardware Trusted Execution Environments. No cloud required."
+
+explainerEyebrow: "The deployment problem"
+explainerH2: "On-premise vs cloud AI: what security requires."
+explainerBody: "Cloud AI APIs offer the lowest operational friction but the highest security exposure: your prompts, your data, and the inferred outputs all traverse and are processed on infrastructure you do not control. For regulated organizations — under GDPR, HIPAA, EU AI Act, DORA, or national security requirements — that exposure is not a trade-off to weigh. It is a compliance disqualifier. Secure AI deployment means bringing the model to the data, not the data to the model."
+explainerChips:
+  - "On-premise deployment"
+  - "Air-gapped environments"
+  - "Hardware TEE isolation"
+  - "Private LLM inference"
+  - "No data egress"
+
+compH2: "What cloud AI costs<br />beyond the API bill."
+compBody: "The operational cost of cloud AI is low. The security and compliance cost is structural. For organizations processing regulated, classified, or commercially sensitive data with AI, every cloud API call is a data transfer event with legal, regulatory, and competitive consequences."
+compHeaders: ["Cloud AI APIs", "Secure On-Premise AI"]
+compRows:
+  - ["Where do prompts go?", "To the vendor's cloud — outside your jurisdiction.", "Processed on your hardware — never leave your network."]
+  - ["Who can access inference inputs?", "The vendor's infrastructure team, subject to their policies and any legal orders.", "Only your authorized users — hardware-enforced if using a TEE."]
+  - ["Regulatory compliance", "Inherited from vendor; hard to customize or audit.", "Architecture-level compliance you control and demonstrate."]
+  - ["Air-gap compatible?", "No — requires internet connectivity by definition.", "Yes — Cube AI operates with zero outbound connectivity."]
+  - ["Model IP protection", "Fine-tuned weights sent to or hosted on vendor infrastructure.", "Weights stay inside your perimeter — never leave the enclave."]
+
+detailsEyebrow: "Deployment architectures"
+detailsH2: "Three secure AI deployment modes."
+detailsSub: "The right architecture depends on your threat model, regulatory requirements, and operational constraints. These are the three deployment modes Ultraviolet supports, from standard on-premise to maximum-isolation confidential computing."
+detailsItems:
+  - title: "On-premise private deployment"
+    body: "The baseline: Cube AI runs on your own GPU servers in your data centre. No traffic leaves your network. Your team controls the hardware, the models, the guardrails, and the audit trail. Suitable for most regulated enterprise environments — GDPR, DORA, financial services data residency — where the threat model does not include a malicious internal operator."
+    href: "/solutions/private-ai"
+  - title: "Air-gapped deployment"
+    body: "Zero network connectivity. Cube AI operates with no outbound internet access — suitable for classified environments, operational technology networks, and critical infrastructure where physical network isolation is required. Model updates, configuration changes, and audit log exports are performed via offline media transfer. Validated in EU Horizon Europe research deployments."
+    href: "/solutions/air-gapped-ai"
+  - title: "Confidential computing with hardware TEEs"
+    body: "Maximum isolation: the entire Cube AI stack runs inside an AMD SEV-SNP or Intel TDX Trusted Execution Environment. Model weights, inference inputs, and outputs are encrypted in hardware memory — invisible to the host OS, hypervisor, and even the server operator. Remote attestation lets you cryptographically verify the enclave before sending any data. The right choice when the threat model includes a potentially malicious or coerced infrastructure operator."
+    href: "/solutions/confidential-computing"
+
+stepsEyebrow: "How to deploy"
+stepsH2: "How to deploy LLM on-premise securely."
+stepsSub: "Deploying a private LLM on-premise involves five layers of work. Each addresses a distinct attack surface. Skip a layer and you leave a gap."
+stepsItems:
+  - title: "Select and provision TEE-capable hardware"
+    body: "Start with hardware that supports your required isolation level. For standard on-premise: any modern GPU server (NVIDIA A100, H100, or Blackwell) with Linux. For confidential computing: AMD EPYC processors with SEV-SNP (3rd gen Milan or later) or Intel Xeon 4th gen with TDX. For GPU TEE: NVIDIA H100 in confidential computing mode. Provision with a hardened Linux base — no unnecessary services, minimal attack surface."
+  - title: "Deploy the AI platform inside your perimeter"
+    body: "Install Cube AI on your provisioned hardware. Cube AI runs as a containerized stack — inference runtime (vLLM or Ollama), retrieval engine, guardrails engine (NeMo Guardrails + Presidio PII detection), the Cube Proxy API gateway, and the governance dashboard. For TEE deployments, Cocos AI provisions and manages the enclave automatically. For air-gapped: load all container images and model weights via offline transfer before disconnecting."
+  - title: "Configure network isolation and egress controls"
+    body: "Block all outbound traffic from the AI inference nodes by default. Define explicit allow-list rules for: (a) internal clients accessing the Cube API; (b) model weight update channels, if any, on a separate isolated path; (c) audit log export destinations inside your network. Verify with network monitoring that no prompt data or model output traverses the perimeter. Document the network architecture for regulatory audit."
+  - title: "Set up governance: RBAC, domains, and guardrails"
+    body: "Configure Cube AI's multi-domain structure — each team or use case gets its own isolated workspace with its own identity and policies. Define role-based access control: who can register models, who can modify guardrails, who can view audit logs, who can access which domains. Author guardrail policies for your specific context: PII redaction via Presidio, prompt-injection defense, content filtering, and domain-specific rules."
+  - title: "Verify with remote attestation"
+    body: "For TEE deployments: run the Cocos AI attestation verification flow. Cocos AI generates an attestation report from the hardware, verifies it against AMD's or Intel's certificate chain, and confirms that the expected Cube AI software is running in an unmodified enclave. Document this verification. For regulated environments, attestation reports are audit artifacts that demonstrate the infrastructure guarantee to regulators."
+
+product:
+  which: "cube"
+  name: "Cube AI"
+  role: "Sovereign AI Platform"
+  blurb: "The private LLM platform built for secure on-premise deployment — inference, RAG, guardrails, governance, and a production workspace, all running on infrastructure you control. Operates on-prem, air-gapped, or inside hardware TEEs."
+  points:
+    - "vLLM and Ollama for private GPU inference"
+    - "RAG over internal knowledge bases — no data leaves"
+    - "NeMo Guardrails + Presidio PII redaction on every call"
+    - "Full audit trail, RBAC, multi-domain workspace"
+    - "Air-gapped and TEE deployment supported"
+  supporting:
+    - which: "cocos"
+      name: "Cocos AI"
+      role: "Confidential Computing Foundation"
+      blurb: "TEE provisioning, remote attestation, and key management — the open-source layer that makes confidential AI deployment possible without rewriting your application."
+
+ctaH2: "Private AI on your hardware,<br />on your terms."
+ctaSub: "Talk to the team about secure LLM deployment, on-premise architecture, air-gapped configurations, and confidential computing."
+ctaLabel: "View Cube AI"
+ctaHref: "/products/cube-ai"
+
+faqs:
+  - q: "What is secure AI deployment?"
+    a: "Secure AI deployment means running AI models on infrastructure you control — on-premise, air-gapped, or inside hardware Trusted Execution Environments — so that prompts, inference inputs, and outputs never leave your perimeter. It eliminates the security and compliance exposure of sending sensitive data to a third-party cloud AI API."
+  - q: "How do I deploy an LLM on-premise securely?"
+    a: "Secure on-premise LLM deployment requires five layers: (1) TEE-capable hardware for maximum isolation; (2) an auditable, self-hosted AI platform like Cube AI; (3) network policies blocking outbound data egress by default; (4) role-based governance with a complete audit trail; (5) remote attestation if using hardware TEEs. Each layer closes a distinct attack surface."
+  - q: "What is an air-gapped AI deployment?"
+    a: "An air-gapped AI deployment runs with zero network connectivity — the AI infrastructure has no inbound or outbound internet access. Model weights, configuration, and audit exports are transferred via offline media. Required for classified environments, critical infrastructure, and any workload where physical network isolation is a security or regulatory requirement."
+  - q: "What is private AI inference?"
+    a: "Private AI inference means running LLM inference on your own hardware so prompts and responses never leave your network. In contrast to cloud APIs — where every request traverses and is processed on vendor infrastructure — private inference keeps all computation inside your perimeter. Cube AI delivers private inference via vLLM and Ollama runtimes on your own GPU hardware."
+  - q: "On-premise vs cloud AI: which is more secure?"
+    a: "On-premise AI eliminates the data transfer and third-party access risks inherent in cloud AI APIs. Cloud AI requires sending prompts to vendor infrastructure subject to the vendor's access policies and any legal orders under laws like the US CLOUD Act. On-premise keeps all data local. The trade-off is operational responsibility — you manage the hardware, models, and updates rather than the vendor."
+  - q: "What GPU hardware do I need for private LLM inference?"
+    a: "Cube AI supports NVIDIA GPU hardware: A100, H100, and Blackwell GPUs for high-throughput inference. For confidential computing, NVIDIA H100 supports confidential computing mode alongside AMD SEV-SNP or Intel TDX CPU TEEs. For smaller models or edge deployments, Cube AI also supports CPU inference via Ollama. The right hardware depends on model size, throughput requirements, and isolation needs."
+  - q: "Can I use open-source models in a private deployment?"
+    a: "Yes. Cube AI is model-agnostic and serves open-weight models including Llama, Mistral, Qwen, DeepSeek, Phi, and Gemma, plus custom fine-tunes in GGUF or safetensors format. All model weights stay inside your perimeter — registered, versioned, and served from your own storage without any call back to the original model provider."
+  - q: "How does private AI deployment help with GDPR compliance?"
+    a: "GDPR Article 5 requires that personal data be processed with appropriate technical measures. Processing personal data through a cloud AI API creates a transfer to a data processor (the AI vendor) requiring appropriate safeguards. On-premise deployment eliminates the transfer entirely — personal data is processed inside your own infrastructure, under your own data processing controls, with no third-party processor involved."

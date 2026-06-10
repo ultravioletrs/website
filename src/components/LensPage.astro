@@ -2,6 +2,7 @@
 import PageHero from "./PageHero.astro";
 import SectionHead from "./SectionHead.astro";
 import ProductCTA from "./ProductCTA.astro";
+import FAQAccordion from "./FAQAccordion.astro";
 import { Check } from "@lucide/astro";
 
 interface ProductDef {
@@ -13,7 +14,24 @@ interface ProductDef {
   supporting?: { which: string; name: string; role: string; blurb: string }[];
 }
 
+interface FaqItem {
+  q: string;
+  a: string;
+}
+
+interface DetailItem {
+  title: string;
+  body: string;
+  href?: string;
+}
+
+interface StepItem {
+  title: string;
+  body: string;
+}
+
 interface Props {
+  // Core (required)
   eyebrow: string;
   h1: string;
   sub: string;
@@ -27,6 +45,27 @@ interface Props {
   ctaLabel: string;
   ctaHref: string;
   ctaExternal?: boolean;
+
+  // Optional: explainer / definition section
+  explainerEyebrow?: string;
+  explainerH2?: string;
+  explainerBody?: string;
+  explainerChips?: string[];
+
+  // Optional: details grid
+  detailsEyebrow?: string;
+  detailsH2?: string;
+  detailsSub?: string;
+  detailsItems?: DetailItem[];
+
+  // Optional: steps section
+  stepsEyebrow?: string;
+  stepsH2?: string;
+  stepsSub?: string;
+  stepsItems?: StepItem[];
+
+  // Optional: FAQ
+  faqs?: FaqItem[];
 }
 
 const {
@@ -43,10 +82,45 @@ const {
   ctaLabel,
   ctaHref,
   ctaExternal,
+  explainerEyebrow,
+  explainerH2,
+  explainerBody,
+  explainerChips,
+  detailsEyebrow,
+  detailsH2,
+  detailsSub,
+  detailsItems,
+  stepsEyebrow,
+  stepsH2,
+  stepsSub,
+  stepsItems,
+  faqs,
 } = Astro.props;
 
 const prodHref = `/products/${product.which}-ai`;
+
+// Convert FAQ objects to tuple format expected by FAQAccordion
+const faqTuples: [string, string][] = (faqs ?? []).map(({ q, a }) => [q, a]);
+const hasFaqs = faqTuples.length > 0;
 ---
+
+{
+  hasFaqs && (
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqTuples.map(([q, a]) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: { "@type": "Answer", text: a },
+        })),
+      })}
+    />
+  )
+}
 
 <main>
   <PageHero
@@ -60,6 +134,47 @@ const prodHref = `/products/${product.which}-ai`;
     secondaryHref={ctaHref}
     secondaryExternal={ctaExternal}
   />
+
+  <!-- Explainer / definition section (optional) -->
+  {
+    explainerH2 && (
+      <section class="comp section divider-top">
+        <div class="container">
+          <div class="reveal" style="max-width:62rem">
+            {explainerEyebrow && (
+              <span class="eyebrow">
+                <span class="tick" />
+                {explainerEyebrow}
+              </span>
+            )}
+            <h2
+              class="comp__h2"
+              style="margin:1.1rem 0 1.3rem"
+              set:html={explainerH2}
+            />
+            {explainerBody && (
+              <p
+                class="comp__desc"
+                style="font-size:1.05rem;line-height:1.72;max-width:52rem"
+              >
+                {explainerBody}
+              </p>
+            )}
+            {explainerChips && explainerChips.length > 0 && (
+              <div class="comp__badges" style="margin-top:1.6rem">
+                {explainerChips.map((chip) => (
+                  <span class="chip">
+                    <Check size={13} />
+                    {chip}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <!-- Comparison -->
   <section class="problem section divider-top dotgrid">
@@ -92,6 +207,87 @@ const prodHref = `/products/${product.which}-ai`;
       </div>
     </div>
   </section>
+
+  <!-- Details grid (optional) -->
+  {
+    detailsItems && detailsItems.length > 0 && (
+      <section class="ind section divider-top dotgrid">
+        <div class="container">
+          <SectionHead
+            eyebrow={detailsEyebrow ?? "Why it matters"}
+            title={detailsH2 ?? ""}
+            intro={detailsSub}
+          />
+          <div class="ind__grid" style="margin-top:3rem">
+            {detailsItems.map(({ title, body, href }, i) => {
+              const inner = (
+                <>
+                  <h3 class="ind__t">{title}</h3>
+                  <p class="ind__d">{body}</p>
+                  {href && (
+                    <span class="ind__go arrow-link">
+                      Learn more<span aria-hidden="true">→</span>
+                    </span>
+                  )}
+                </>
+              );
+              return href ? (
+                <a
+                  href={href}
+                  class="ind__cell reveal"
+                  data-delay={i % 3}
+                  style="text-decoration:none"
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div class="ind__cell reveal" data-delay={i % 3}>
+                  {inner}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Steps section (optional) -->
+  {
+    stepsItems && stepsItems.length > 0 && (
+      <section class="prin section divider-top">
+        <div class="container">
+          <div class="prin__head reveal">
+            {stepsEyebrow && (
+              <span class="eyebrow">
+                <span class="tick" />
+                {stepsEyebrow}
+              </span>
+            )}
+            <h2
+              class="prin__h2"
+              style="margin-top:1.1rem"
+              set:html={stepsH2 ?? ""}
+            />
+            {stepsSub && (
+              <p style="color:var(--ink-2);margin-top:0.8rem;max-width:48rem">
+                {stepsSub}
+              </p>
+            )}
+          </div>
+          <div class="prin__grid">
+            {stepsItems.map(({ title, body }, i) => (
+              <div class="prin__cell reveal" data-delay={i % 3}>
+                <div class="prin__num">{String(i + 1).padStart(2, "0")}</div>
+                <h3 class="prin__t">{title}</h3>
+                <p class="prin__d">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   <!-- Product mapping -->
   <section class="pmap section divider-top">
@@ -166,6 +362,28 @@ const prodHref = `/products/${product.which}-ai`;
       </div>
     </div>
   </section>
+
+  <!-- FAQ section (optional) -->
+  {
+    hasFaqs && (
+      <section class="section divider-top dotgrid">
+        <div class="container">
+          <div class="prin__head reveal" style="margin-bottom:2.6rem">
+            <span class="eyebrow">
+              <span class="tick" />
+              FAQ
+            </span>
+            <h2 class="prin__h2" style="margin-top:1.1rem">
+              Common questions,
+              <br />
+              answered precisely.
+            </h2>
+          </div>
+          <FAQAccordion items={faqTuples} reveal delay={1} id="faq" />
+        </div>
+      </section>
+    )
+  }
 
   <ProductCTA
     h2={ctaH2}

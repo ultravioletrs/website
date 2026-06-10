@@ -482,6 +482,56 @@ const faqs = [
       </div>
     </section>
 
+    <!-- Related guides -->
+    <section class="section divider-top">
+      <div class="container">
+        <SectionHead
+          eyebrow="Related guides"
+          title="Understand the technology<br />behind Prism AI."
+        />
+        <div
+          style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:1px;border:1px solid var(--line);margin-top:3rem"
+        >
+          {
+            [
+              [
+                "/solutions/confidential-computing",
+                "What Is Confidential Computing?",
+                "The TEE fundamentals Prism AI is built on.",
+              ],
+              [
+                "/solutions/confidential-computing/use-cases",
+                "Confidential Computing Use Cases",
+                "Eight real-world TEE applications including multi-party AI.",
+              ],
+              [
+                "/solutions/secure-collaboration",
+                "Secure AI Collaboration",
+                "How organizations run joint AI without sharing data.",
+              ],
+              [
+                "/solutions/sovereign-ai",
+                "What Is Sovereign AI?",
+                "Infrastructure sovereignty and why it matters for your organization.",
+              ],
+            ].map(([href, title, desc]) => (
+              <a
+                href={href}
+                style="display:flex;flex-direction:column;gap:0.4rem;padding:1.6rem;border:none;text-decoration:none;color:inherit;background:var(--bg);transition:background 0.15s"
+                onmouseover="this.style.background='var(--surface)'"
+                onmouseout="this.style.background='var(--bg)'"
+              >
+                <span style="font-size:0.95rem;font-weight:600">{title}</span>
+                <span style="font-size:0.85rem;color:var(--fg-muted)">
+                  {desc}
+                </span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
     <!-- Cross-sell -->
     <section class="stack section divider-top p-cross">
       <div class="container">

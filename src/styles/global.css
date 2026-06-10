@@ -1142,7 +1142,7 @@ details[open] .hdr__msummary::after {
 
 /* ============ STACK ============ */
 .stack__head {
-  max-width: 60ch;
+  /* max-width: 60ch; */
   margin-bottom: 3.5rem;
 }
 .stack__h2 {

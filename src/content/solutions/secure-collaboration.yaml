@@ -3,6 +3,16 @@ description: "Run shared AI across organizational boundaries. Every party's inpu
 eyebrow: "Solution · Secure Collaboration"
 h1: "Joint AI across organizations,<br /><span class=\"hero__accent\">data never exposed.</span>"
 sub: "Run shared models and analyses across organizational boundaries with every party's inputs sealed inside a Trusted Execution Environment."
+explainerEyebrow: "What is secure AI collaboration"
+explainerH2: "Secure AI collaboration lets organizations run joint AI workloads without sharing raw data."
+explainerBody: "Secure AI collaboration is a pattern where multiple organizations contribute data or algorithms to a shared AI workload, but no participant ever sees another's raw inputs. Each party's data is sealed inside a Trusted Execution Environment — a hardware-enforced enclave that even the platform operator cannot read. Only the agreed result is released, with cryptographic attestation proving exactly what ran."
+explainerChips:
+  - "Multi-party computation"
+  - "TEE-enforced isolation"
+  - "Zero data pooling"
+  - "Attested results"
+  - "Cross-border capable"
+
 compH2: "Data sharing for AI collaboration<br />creates unacceptable risk."
 compBody: "Organizations with complementary data cannot pool it for AI workloads without creating legal, commercial, and security exposure. The result: valuable insights left on the table because no one can trust a shared platform."
 compHeaders: ["Data pooling approach", "Ultraviolet Secure Collaboration"]
@@ -26,6 +36,20 @@ product:
       name: "Cocos AI"
       role: "Confidential Computing Foundation"
       blurb: "The TEE infrastructure Prism AI runs on — hardware-enforced isolation, open-source, Apache 2.0."
+faqs:
+  - q: "What is secure AI collaboration?"
+    a: "Secure AI collaboration is a method of running joint AI workloads across organizations where no participant shares their raw data. Each organization's data is processed inside a Trusted Execution Environment (TEE) — hardware-enforced memory isolation that prevents other parties and the platform operator from reading the inputs. Only the agreed result is released, with cryptographic proof of exactly what computation produced it."
+  - q: "How can organizations collaborate on AI without sharing data?"
+    a: "By running the shared computation inside a Trusted Execution Environment. Each party's dataset is encrypted and only decrypted inside the TEE, which is verified by remote attestation before any data is released. The other parties — and the operator of the platform — never see the raw data. This is technically distinct from federated learning (which leaks information through gradients) and data clean rooms (which require legal rather than technical trust)."
+  - q: "What is multi-party computation for AI?"
+    a: "Multi-party computation (MPC) for AI is a category of techniques that allow multiple parties to jointly compute a result — a trained model, an inference output, or an analysis — without revealing their inputs to each other. TEE-based MPC, which Prism AI uses, achieves this through hardware isolation rather than cryptographic protocols, making it practical for large AI workloads where pure cryptographic MPC would be computationally prohibitive."
+  - q: "Can banks collaborate on AI for anti-money laundering without sharing customer data?"
+    a: "Yes. Prism AI was designed for exactly this use case. Each bank contributes its transaction data to a joint AML model inside a TEE. The model trains or runs inference on the combined data, but each bank's raw records are never exposed to the other banks or to the platform operator. The resulting model — or a combined risk score — is the only output shared."
+  - q: "Does secure collaboration satisfy GDPR data minimization requirements?"
+    a: "TEE-based collaboration satisfies GDPR data minimization (Article 5(1)(c)) because no raw personal data is transferred to other parties — only the result. The technical guarantee is stronger than a data processing agreement: attestation proves that raw data was never accessible to other participants. Cross-border transfers under Article 44 are also simplified because the data itself does not cross borders — only the computation result does."
+  - q: "What is the difference between Prism AI and a data clean room?"
+    a: "A data clean room provides a managed environment where parties can run queries on each other's data with contractual controls on what can be extracted. The trust is legal, not technical — if the clean room operator or another party wanted to extract raw data, they could. Prism AI uses hardware TEEs to make this technically impossible: the platform operator cannot read the data because the hardware enforces the boundary, not a contract."
+
 ctaH2: "Collaborate without<br />giving up your data."
 ctaSub: "Talk to the team about Prism AI deployments, multi-party AI workloads, and free tier access."
 ctaLabel: "View Prism AI"

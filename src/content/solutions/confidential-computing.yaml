@@ -1,0 +1,91 @@
+title: "What Is Confidential Computing? TEEs, Attestation & AI Security | Ultraviolet"
+description: "Confidential computing protects data in use inside hardware-enforced Trusted Execution Environments. Learn how AMD SEV-SNP and Intel TDX work, and why it matters for AI."
+eyebrow: "Solution · Confidential Computing"
+h1: "Protect data in use —<br /><span class=\"hero__accent\">down to the hardware.</span>"
+sub: "Confidential computing uses hardware-enforced Trusted Execution Environments to keep data encrypted even while it is being processed — so your AI workloads are sealed from the host, the hypervisor, and the cloud operator."
+
+explainerEyebrow: "Definition"
+explainerH2: "What Is Confidential Computing?"
+explainerBody: "Confidential computing is a hardware security paradigm that protects data in use by performing computation inside a Trusted Execution Environment (TEE) — a hardware-isolated region of the CPU where code and data are encrypted in memory at all times. Unlike encryption at rest (storage) or in transit (network), confidential computing addresses the hardest problem: data is normally decrypted to be processed, exposing it to the OS, hypervisor, and anyone with physical or privileged access. A TEE eliminates that exposure: data is decrypted only inside the enclave, and the plaintext is never visible outside it."
+explainerChips:
+  - "Data encrypted in use"
+  - "Isolated from host OS and hypervisor"
+  - "AMD SEV-SNP and Intel TDX"
+  - "Cryptographic remote attestation"
+  - "NVIDIA H100 GPU TEE support"
+
+compH2: "The gap encryption alone<br />cannot close."
+compBody: "Standard encryption protects data at rest and in transit — but the moment data is processed, it must be decrypted. That decrypted data is visible to the operating system, the hypervisor, and anyone with administrative or physical access. For AI workloads processing sensitive data at inference time, this is a fundamental exposure that firewall rules and access policies cannot eliminate."
+compHeaders: ["Encryption-only approach", "Confidential Computing"]
+compRows:
+  - ["Data at rest", "Encrypted on disk.", "Encrypted on disk."]
+  - ["Data in transit", "Encrypted in flight.", "Encrypted in flight."]
+  - ["Data in use (during inference)", "Decrypted in memory — visible to OS and hypervisor.", "Encrypted in TEE memory — invisible to host, hypervisor, and operator."]
+  - ["Protection against privileged insiders", "None — admin access exposes everything.", "Hardware-enforced: TEE memory is inaccessible even to root."]
+  - ["Proof of integrity", "Contractual — trust the vendor's word.", "Cryptographic — remote attestation verifies the enclave before data is sent."]
+
+stepsEyebrow: "How it works"
+stepsH2: "Confidential computing, step by step."
+stepsSub: "A TEE creates a hardware-enforced boundary around computation. These are the five stages from hardware initialization to verified secure inference."
+stepsItems:
+  - title: "TEE initialization"
+    body: "The CPU initializes a Trusted Execution Environment — a hardware-isolated region of memory protected by the processor's memory encryption engine. On AMD SEV-SNP systems, each confidential VM gets its own AES-128 encryption key managed exclusively by the AMD Secure Processor. On Intel TDX systems, Trust Domain Extensions create hardware-isolated Trust Domains with similar guarantees."
+  - title: "Code and data loaded into the enclave"
+    body: "The AI application — model weights, inference runtime, and input data — is loaded into the TEE. The CPU measures a cryptographic hash of everything loaded, creating a record of exactly what is running inside the enclave. This measurement becomes the basis for remote attestation."
+  - title: "Processing with memory encryption"
+    body: "All computation happens inside the enclave with memory encrypted by the CPU's memory encryption engine. When data is written to RAM, it is automatically encrypted. When read back for processing, it is decrypted only inside the CPU core. The host OS, hypervisor, and any co-located workloads see only ciphertext."
+  - title: "Remote attestation"
+    body: "Before a client sends sensitive data to the enclave, it requests an attestation report. The TEE generates a hardware-signed report containing the measurements of what is running inside. The client verifies this report against AMD's or Intel's certificate chain, confirming that the hardware is a genuine TEE, the correct unmodified software is running, and the enclave is in a secure state."
+  - title: "Sealed result returned"
+    body: "Inference results are returned to the client over a secure channel established after attestation. The host operator can see that computation occurred and when — but cannot see prompts, model weights, or outputs. The enclave can optionally seal state to disk, encrypted in a key only it can access."
+
+detailsEyebrow: "Implementations"
+detailsH2: "TEE hardware: what to evaluate."
+detailsSub: "Three major hardware TEE implementations are commercially available today. Each offers different trade-offs in performance overhead, VM granularity, and attestation infrastructure."
+detailsItems:
+  - title: "AMD SEV-SNP"
+    body: "Confidential VM-level isolation with hardware-enforced memory integrity. SNP adds page access controls that prevent the hypervisor from remapping guest memory. Supported on AMD EPYC 3rd gen (Milan) onward. Available on Azure, Google Cloud, and AWS confidential VM offerings."
+  - title: "Intel TDX"
+    body: "Hardware-isolated Trust Domains at the VM level, built on Intel VT-x with a new SEAM CPU mode that shields Trust Domain memory from the VMM and host OS. Supported on Intel 4th gen Xeon Scalable (Sapphire Rapids) and later. Available in Azure Confidential VMs."
+  - title: "NVIDIA H100 Confidential Computing"
+    body: "GPU-level confidential computing for LLM inference. In CC mode, GPU memory is encrypted and isolated from the host CPU and driver stack. The H100 generates its own attestation report, combinable with a CPU TEE attestation for end-to-end verification of the full inference path. The only hardware path for confidential GPU-accelerated AI today."
+
+product:
+  which: "cocos"
+  name: "Cocos AI"
+  role: "Confidential Computing Foundation"
+  blurb: "The open-source TEE abstraction layer built for AI workloads — handles enclave provisioning, remote attestation, and key management so you get confidential computing without rewriting your application."
+  points:
+    - "AMD SEV-SNP and Intel TDX support"
+    - "Automated remote attestation verification"
+    - "Key management sealed to the enclave"
+    - "Apache 2.0 — inspect every layer"
+    - "Built for AI workloads: LLM inference, RAG, training"
+  supporting:
+    - which: "cube"
+      name: "Cube AI"
+      role: "Sovereign AI Platform"
+      blurb: "Runs on top of Cocos AI — private LLM platform with inference, RAG, guardrails, governance, and audit, all inside a hardware-attested enclave."
+
+ctaH2: "Zero trust in the operator.<br />Full trust in the hardware."
+ctaSub: "Talk to the team about confidential computing for AI workloads, TEE deployment architectures, and remote attestation."
+ctaLabel: "View Cocos AI"
+ctaHref: "/products/cocos-ai"
+
+faqs:
+  - q: "What is confidential computing?"
+    a: "Confidential computing is a hardware security paradigm that protects data in use by performing computation inside a Trusted Execution Environment — a hardware-isolated region where code and data are encrypted in memory at all times. Unlike encryption at rest or in transit, it protects data during processing, when it would otherwise be decrypted and visible to the OS and hypervisor."
+  - q: "What is a Trusted Execution Environment (TEE)?"
+    a: "A TEE is a hardware-isolated region inside a CPU — such as an AMD SEV-SNP confidential VM or an Intel TDX Trust Domain — where code and data are encrypted in memory at all times. Even the hypervisor and host OS cannot read the contents. Remote attestation lets you cryptographically verify that the correct, unmodified software is running inside the enclave before trusting it with sensitive data."
+  - q: "What is the difference between confidential computing and encryption?"
+    a: "Encryption protects data at rest (storage) and in transit (network). Confidential computing protects data in use — while it is being processed. Standard encryption requires decrypting data before computation, leaving it exposed in RAM. A TEE keeps data encrypted in memory during processing; the plaintext exists only inside CPU registers during computation, never in accessible RAM."
+  - q: "How does remote attestation work?"
+    a: "Remote attestation is the process by which a client verifies that a TEE contains the correct, unmodified software before sending sensitive data. The TEE generates a hardware-signed attestation report containing cryptographic measurements of what is running inside. The client verifies this report against the hardware manufacturer's certificate chain (AMD or Intel), confirming the enclave is genuine and unmodified."
+  - q: "Is confidential computing slower than standard computing?"
+    a: "Memory encryption overhead for CPU workloads on AMD SEV-SNP and Intel TDX is typically under 5% for most workloads. LLM inference is GPU-bound, so CPU memory encryption adds minimal latency. NVIDIA H100 confidential computing mode introduces some overhead on GPU-host data transfers. In practice, performance impact is workload-dependent and significantly lower than alternatives like homomorphic encryption, which is 1,000–10,000× slower."
+  - q: "What is the difference between confidential computing and homomorphic encryption?"
+    a: "Confidential computing uses hardware TEEs to protect data in use at near-native performance. Homomorphic encryption (HE) performs computation directly on encrypted data without a hardware enclave — no decryption required at any point. HE is mathematically elegant but currently 1,000–10,000× slower than native computation, making it impractical for production AI workloads. TEEs are the only production-viable approach for confidential AI inference today."
+  - q: "Does confidential computing protect model weights?"
+    a: "Yes. When an LLM runs inside a TEE, the model weights are loaded into encrypted TEE memory and never exposed to the host OS, hypervisor, or cloud operator. This protects proprietary fine-tuned models from exfiltration by the infrastructure operator — a critical requirement for organizations deploying commercially valuable AI models on shared or third-party hardware."
+  - q: "What AI workloads benefit from confidential computing?"
+    a: "Any AI workload processing sensitive input data benefits: LLM inference on patient records, legal documents, or financial data; multi-party AI training where participants cannot share raw datasets; RAG pipelines over confidential knowledge bases; and fine-tuned model serving where the weights themselves are proprietary. Cocos AI is purpose-built for these workloads."
