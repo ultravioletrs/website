@@ -56,7 +56,7 @@ message Source {
 }
 ```
 
-If a resource is marked `encrypted`, the Agent downloads the ciphertext, resolves the key from the configured key broker, and decrypts inside the enclave before the algorithm ever touches disk — the same guarantee as before, just no longer tied to one storage backend.
+If a resource is marked `encrypted`, the Agent downloads the ciphertext, resolves the key from the configured key broker service, and decrypts inside the enclave before the algorithm ever touches disk — the same guarantee as before, just no longer tied to one storage backend.
 
 ---
 
