@@ -1,0 +1,127 @@
+---
+export const prerender = false;
+
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const env = Astro.locals.runtime.env;
+const email = Astro.url.searchParams.get("email")?.trim() ?? "";
+
+let state: "invalid" | "done" | "error" = "invalid";
+
+if (email) {
+  state = "error";
+  try {
+    const searchRes = await fetch(
+      `${env.LISTMONK_URL}/api/subscribers?search=${encodeURIComponent(email)}`,
+      {
+        headers: {
+          Authorization:
+            "Basic " +
+            btoa(`${env.LISTMONK_TX_API_USER}:${env.LISTMONK_TX_API_TOKEN}`),
+        },
+      },
+    );
+    if (!searchRes.ok) {
+      console.error(
+        "unsubscribe search failed",
+        searchRes.status,
+        await searchRes.text(),
+      );
+    } else {
+      const searchData: { data: { results: { id: number; email: string }[] } } =
+        await searchRes.json();
+      const match = searchData.data.results.find(
+        (r) => r.email.toLowerCase() === email.toLowerCase(),
+      );
+
+      // No match means the address is already off the list (or never was on
+      // it) — treat that as success too, since the end state is the same.
+      if (!match) {
+        state = "done";
+      } else {
+        const unsubRes = await fetch(
+          `${env.LISTMONK_URL}/api/subscribers/lists`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization:
+                "Basic " +
+                btoa(
+                  `${env.LISTMONK_TX_API_USER}:${env.LISTMONK_TX_API_TOKEN}`,
+                ),
+            },
+            body: JSON.stringify({
+              ids: [match.id],
+              action: "unsubscribe",
+              target_list_ids: [Number(env.LISTMONK_LIST_ID)],
+            }),
+          },
+        );
+        if (!unsubRes.ok) {
+          console.error(
+            "unsubscribe put failed",
+            unsubRes.status,
+            await unsubRes.text(),
+          );
+        }
+        state = unsubRes.ok ? "done" : "error";
+      }
+    }
+  } catch (err) {
+    console.error("unsubscribe error", err);
+    state = "error";
+  }
+}
+---
+
+<Layout title="Unsubscribe — Ultraviolet">
+  <Header />
+  <main>
+    <section class="section divider-top">
+      <div class="container" style="max-width: 640px;">
+        <div class="surface" style="padding: 2.5rem;">
+          {
+            state === "done" && (
+              <>
+                <h1 style="margin-bottom: 0.75rem;">You're unsubscribed</h1>
+                <p style="color: var(--ink-2);">
+                  {email} won't receive any more emails from the Ultraviolet
+                  newsletter. You can resubscribe any time from the footer of
+                  our site.
+                </p>
+              </>
+            )
+          }
+          {
+            state === "invalid" && (
+              <>
+                <h1 style="margin-bottom: 0.75rem;">Missing email</h1>
+                <p style="color: var(--ink-2);">
+                  This link is missing an email address, so we can't process an
+                  unsubscribe request.
+                </p>
+              </>
+            )
+          }
+          {
+            state === "error" && (
+              <>
+                <h1 style="margin-bottom: 0.75rem;">Something went wrong</h1>
+                <p style="color: var(--ink-2);">
+                  We couldn't process your unsubscribe request. Please try
+                  again, or email{" "}
+                  <a href="mailto:info@ultraviolet.rs">info@ultraviolet.rs</a>{" "}
+                  and we'll remove you manually.
+                </p>
+              </>
+            )
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

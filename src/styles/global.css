@@ -1668,6 +1668,79 @@ details[open] .hdr__msummary::after {
   color: var(--muted);
   font-family: var(--font-mono);
 }
+.ft__nl {
+  margin-bottom: 1.4rem;
+  max-width: 34ch;
+}
+.ft__nl-label {
+  display: block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  margin-bottom: 0.6rem;
+}
+.ft__nl-row {
+  display: flex;
+  gap: 0.5rem;
+}
+.ft__nl-input {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg);
+  border: 1px solid var(--line-2);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 0.6rem 0.75rem;
+  outline: none;
+  transition:
+    border-color 0.2s var(--ease),
+    background-color 0.2s var(--ease);
+}
+.ft__nl-input::placeholder {
+  color: var(--muted);
+}
+.ft__nl-input:focus {
+  border-color: var(--accent);
+}
+.ft__nl-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+.ft__nl-btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--accent);
+  border: 1px solid transparent;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s var(--ease);
+}
+.ft__nl-btn:hover:not(:disabled) {
+  background: color-mix(in oklch, var(--accent) 86%, #000);
+}
+.ft__nl-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.ft__nl-status {
+  font-size: 0.76rem;
+  color: var(--accent);
+  margin-top: 0.55rem;
+  min-height: 1em;
+}
+.ft__nl-status.is-error {
+  color: #b3453a;
+}
 .ft__cols {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

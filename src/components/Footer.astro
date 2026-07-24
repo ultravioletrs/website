@@ -59,6 +59,32 @@ const cols = [
           Sovereign AI infrastructure. Build, deploy, govern, and operate AI on
           infrastructure you control.
         </p>
+
+        <form class="ft__nl" id="nl-form">
+          <label class="ft__nl-label" for="nl-email">Get product updates</label>
+          <div class="ft__nl-row">
+            <input
+              class="ft__nl-input"
+              id="nl-email"
+              type="email"
+              name="email"
+              placeholder="you@company.com"
+              required
+              aria-label="Email address"
+            />
+            <input
+              class="ft__nl-hp"
+              type="text"
+              name="company"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+            />
+            <button class="ft__nl-btn" type="submit">Subscribe</button>
+          </div>
+          <p class="ft__nl-status" id="nl-status" role="status"></p>
+        </form>
+
         <div class="ft__meta">Belgrade, Serbia · Apache 2.0</div>
       </div>
       <div class="ft__cols">
@@ -90,3 +116,45 @@ const cols = [
     </div>
   </div>
 </footer>
+
+<script>
+  const form = document.getElementById("nl-form") as HTMLFormElement | null;
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const status = document.getElementById("nl-status");
+    const submitBtn = form.querySelector<HTMLButtonElement>(".ft__nl-btn");
+    if (!status || !submitBtn) return;
+
+    const email = (
+      form.elements.namedItem("email") as HTMLInputElement
+    ).value.trim();
+    const company = (form.elements.namedItem("company") as HTMLInputElement)
+      .value;
+
+    status.textContent = "";
+    status.classList.remove("is-error");
+    submitBtn.disabled = true;
+    const originalLabel = submitBtn.textContent;
+    submitBtn.textContent = "Subscribing…";
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, company }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || "Something went wrong.");
+
+      form.reset();
+      status.textContent = "You're subscribed — check your inbox.";
+      submitBtn.textContent = originalLabel;
+    } catch (err) {
+      status.textContent =
+        err instanceof Error ? err.message : "Something went wrong.";
+      status.classList.add("is-error");
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    }
+  });
+</script>
