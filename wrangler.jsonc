@@ -19,6 +19,14 @@
     "MAIL_FROM_EMAIL": "noreply@ultraviolet.rs",
     "SMTP_HOST": "mail.ultraviolet.rs",
     "SMTP_PORT": "465",
-    "SMTP_SECURE": "true"
+    "SMTP_SECURE": "true",
+    "LISTMONK_URL": "https://mailer.absmach.eu",
+    "LISTMONK_LIST_UUID": "5c87fa97-618c-4076-9f57-ea0f1b366029",
+    "LISTMONK_LIST_ID": "4",
+    "LISTMONK_WELCOME_TEMPLATE_ID": "6",
+    "LISTMONK_FROM_EMAIL": "Ultraviolet <info@ultraviolet.rs>",
+    "LISTMONK_TX_API_USER": "uvc-website-tx"
   }
+  // LISTMONK_TX_API_TOKEN is a secret: set locally in .dev.vars, and in prod via
+  // `wrangler secret put LISTMONK_TX_API_TOKEN`.
 }
