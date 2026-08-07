@@ -38,9 +38,16 @@ Run commands from the repository root:
 | `pnpm run preview` | Preview the production build locally     |
 | `pnpm run check`   | Run Astro and TypeScript checks          |
 
+## Images
+
+New and updated images are published to Cloudflare R2 (not committed to this repo) and
+served from `/img/...` unchanged via `src/pages/img/[...path].ts`. Maintainers publishing
+images: see [scripts/README.md](scripts/README.md).
+
 ## Content Notes
 
 - Page routes live in `src/pages/`.
 - Shared layout and UI primitives live in `src/layouts/` and `src/components/`.
 - Blog collection schema is defined in `src/content/config.ts`.
 - Static brand assets and icons live in `public/`.
+- Documentation: [Publishing Images (maintainers)](scripts/README.md)

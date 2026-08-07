@@ -1,5 +1,15 @@
 import type { Runtime } from "@astrojs/cloudflare";
 
+// Minimal shape of the R2 binding actually used by src/lib/r2-proxy.ts.
+type R2Bucket = {
+  get(key: string): Promise<{
+    body: ReadableStream;
+    size: number;
+    httpEtag: string;
+    writeHttpMetadata(headers: Headers): void;
+  } | null>;
+};
+
 type CloudflareEnv = {
   LISTMONK_URL: string;
   LISTMONK_LIST_UUID: string;
@@ -8,6 +18,8 @@ type CloudflareEnv = {
   LISTMONK_FROM_EMAIL: string;
   LISTMONK_TX_API_USER: string;
   LISTMONK_TX_API_TOKEN: string;
+  // Shared "websites-images" R2 bucket; see src/lib/r2-proxy.ts.
+  IMAGES_BUCKET: R2Bucket;
 };
 
 declare global {

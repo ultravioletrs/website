@@ -14,6 +14,12 @@
     "directory": "./dist",
     "binding": "UV_WEBSITE_ASSETS"
   },
+  "r2_buckets": [
+    {
+      "binding": "IMAGES_BUCKET",
+      "bucket_name": "websites-images"
+    }
+  ],
   "vars": {
     "TEAM_CONTACT_EMAIL": "info@ultraviolet.rs",
     "MAIL_FROM_EMAIL": "noreply@ultraviolet.rs",
