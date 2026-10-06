@@ -3,11 +3,12 @@ import type { APIRoute } from "astro";
 export const prerender = false;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const TURNSTILE_ACTION = "newsletter_signup";
 
 export const POST: APIRoute = async ({ request, locals }) => {
   const env = locals.runtime.env;
 
-  let body: { email?: unknown; company?: unknown };
+  let body: { email?: unknown; company?: unknown; turnstileToken?: unknown };
   try {
     body = await request.json();
   } catch {
@@ -22,6 +23,13 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   if (!EMAIL_RE.test(email)) {
     return json({ error: "Enter a valid email address." }, 400);
+  }
+
+  const token =
+    typeof body.turnstileToken === "string" ? body.turnstileToken : "";
+  const clientIp = request.headers.get("CF-Connecting-IP");
+  if (!(await verifyTurnstile(token, clientIp, env))) {
+    return json({ error: "Verification failed. Please try again." }, 403);
   }
 
   let subscribeRes: Response;
@@ -55,6 +63,62 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   return json({ ok: true });
 };
+
+// Fails closed: any error, missing config, wrong action or unexpected hostname
+// rejects the request. Tokens are single-use, so a replay also fails here.
+async function verifyTurnstile(
+  token: string,
+  clientIp: string | null,
+  env: App.Locals["runtime"]["env"],
+): Promise<boolean> {
+  const expectedHostnames = new Set(
+    (env.TURNSTILE_HOSTNAMES ?? "")
+      .split(",")
+      .map((h) => h.trim())
+      .filter(Boolean),
+  );
+  if (
+    !env.TURNSTILE_SECRET ||
+    expectedHostnames.size === 0 ||
+    token.length === 0 ||
+    token.length > 2048
+  ) {
+    return false;
+  }
+
+  try {
+    const params = new URLSearchParams({
+      secret: env.TURNSTILE_SECRET,
+      response: token,
+    });
+    if (clientIp) params.set("remoteip", clientIp);
+
+    const res = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: params,
+        signal: AbortSignal.timeout(10_000),
+      },
+    );
+    if (!res.ok) return false;
+    const result = (await res.json()) as {
+      success?: boolean;
+      action?: string;
+      hostname?: string;
+    };
+    return (
+      result.success === true &&
+      result.action === TURNSTILE_ACTION &&
+      typeof result.hostname === "string" &&
+      expectedHostnames.has(result.hostname)
+    );
+  } catch (err) {
+    console.error("turnstile verify error", err);
+    return false;
+  }
+}
 
 // Best-effort: a failed welcome email shouldn't fail the subscription itself.
 async function sendWelcomeEmail(

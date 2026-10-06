@@ -1732,6 +1732,11 @@ details[open] .hdr__msummary::after {
   opacity: 0.6;
   cursor: default;
 }
+/* Empty until Cloudflare actually shows a challenge (interaction-only). */
+.ft__nl-turnstile:not(:empty) {
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
 .ft__nl-status {
   font-size: 0.76rem;
   color: var(--accent);
