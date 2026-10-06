@@ -14,8 +14,6 @@ type CloudflareEnv = {
   LISTMONK_URL: string;
   LISTMONK_LIST_UUID: string;
   LISTMONK_LIST_ID: string;
-  LISTMONK_WELCOME_TEMPLATE_ID: string;
-  LISTMONK_FROM_EMAIL: string;
   LISTMONK_TX_API_USER: string;
   LISTMONK_TX_API_TOKEN: string;
   // Comma-separated frontend hostnames siteverify may report (no localhost in prod).

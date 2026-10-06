@@ -234,7 +234,7 @@ const cols = [
       if (!res.ok) throw new Error(data?.error || "Something went wrong.");
 
       form.reset();
-      status.textContent = "You're subscribed — check your inbox.";
+      status.textContent = "You're subscribed.";
       submitBtn.textContent = originalLabel;
     } catch (err) {
       status.textContent =
