@@ -18,6 +18,9 @@ type CloudflareEnv = {
   LISTMONK_FROM_EMAIL: string;
   LISTMONK_TX_API_USER: string;
   LISTMONK_TX_API_TOKEN: string;
+  // Comma-separated frontend hostnames siteverify may report (no localhost in prod).
+  TURNSTILE_HOSTNAMES: string;
+  TURNSTILE_SECRET: string;
   // Shared "websites-images" R2 bucket; see src/lib/r2-proxy.ts.
   IMAGES_BUCKET: R2Bucket;
 };

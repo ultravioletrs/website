@@ -31,8 +31,10 @@
     "LISTMONK_LIST_ID": "4",
     "LISTMONK_WELCOME_TEMPLATE_ID": "6",
     "LISTMONK_FROM_EMAIL": "Ultraviolet <info@ultraviolet.rs>",
-    "LISTMONK_TX_API_USER": "uvc-website-tx"
+    "LISTMONK_TX_API_USER": "uvc-website-tx",
+    "TURNSTILE_HOSTNAMES": "ultraviolet.rs,www.ultraviolet.rs"
   }
+  // TURNSTILE_SECRET is also a secret (`wrangler secret put TURNSTILE_SECRET`).
   // LISTMONK_TX_API_TOKEN is a secret: set locally in .dev.vars, and in prod via
   // `wrangler secret put LISTMONK_TX_API_TOKEN`.
 }

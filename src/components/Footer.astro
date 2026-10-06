@@ -1,5 +1,6 @@
 ---
 const year = new Date().getFullYear();
+const turnstileSitekey = import.meta.env.PUBLIC_TURNSTILE_SITEKEY ?? "";
 
 const cols = [
   {
@@ -60,7 +61,7 @@ const cols = [
           infrastructure you control.
         </p>
 
-        <form class="ft__nl" id="nl-form">
+        <form class="ft__nl" id="nl-form" data-sitekey={turnstileSitekey}>
           <label class="ft__nl-label" for="nl-email">Get product updates</label>
           <div class="ft__nl-row">
             <input
@@ -82,6 +83,7 @@ const cols = [
             />
             <button class="ft__nl-btn" type="submit">Subscribe</button>
           </div>
+          <div class="ft__nl-turnstile" id="nl-turnstile"></div>
           <p class="ft__nl-status" id="nl-status" role="status"></p>
         </form>
 
@@ -118,7 +120,86 @@ const cols = [
 </footer>
 
 <script>
+  type TurnstileApi = {
+    render: (
+      container: HTMLElement,
+      options: {
+        sitekey: string;
+        action: string;
+        appearance: "interaction-only";
+        callback: (token: string) => void;
+        "expired-callback": () => void;
+        "error-callback": () => void;
+      },
+    ) => string;
+    reset: (widgetId: string) => void;
+  };
+  const turnstileWindow = window as Window & { turnstile?: TurnstileApi };
+
   const form = document.getElementById("nl-form") as HTMLFormElement | null;
+  const container = document.getElementById("nl-turnstile");
+  const sitekey = form?.dataset.sitekey ?? "";
+
+  let widgetId: string | undefined;
+  let token = "";
+  let waiter: ((t: string) => void) | undefined;
+
+  const setToken = (t: string) => {
+    token = t;
+    if (t && waiter) {
+      waiter(t);
+      waiter = undefined;
+    }
+  };
+
+  // A widget error means no token is coming, so stop waiting right away.
+  const onWidgetError = () => {
+    token = "";
+    waiter?.("");
+    waiter = undefined;
+  };
+
+  // Load Turnstile lazily so it isn't fetched on every page view, only once
+  // someone actually starts using the newsletter form.
+  let loading = false;
+  const loadTurnstile = () => {
+    if (loading || !form || !container || !sitekey) return;
+    loading = true;
+    const script = document.createElement("script");
+    script.src =
+      "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+    script.async = true;
+    script.addEventListener(
+      "load",
+      () => {
+        widgetId = turnstileWindow.turnstile?.render(container, {
+          sitekey,
+          action: "newsletter_signup",
+          appearance: "interaction-only",
+          callback: setToken,
+          "expired-callback": () => setToken(""),
+          "error-callback": onWidgetError,
+        });
+      },
+      { once: true },
+    );
+    document.head.appendChild(script);
+  };
+  form?.addEventListener("focusin", loadTurnstile, { once: true });
+
+  const waitForToken = (ms: number) =>
+    token
+      ? Promise.resolve(token)
+      : new Promise<string>((resolve) => {
+          waiter = resolve;
+          setTimeout(() => {
+            if (waiter === resolve) {
+              waiter = undefined;
+              resolve("");
+            }
+          }, ms);
+        });
+
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
     const status = document.getElementById("nl-status");
@@ -138,10 +219,16 @@ const cols = [
     submitBtn.textContent = "Subscribing…";
 
     try {
+      loadTurnstile();
+      const turnstileToken = await waitForToken(15_000);
+      if (!turnstileToken) {
+        throw new Error("Verification failed. Please reload and try again.");
+      }
+
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, company }),
+        body: JSON.stringify({ email, company, turnstileToken }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error || "Something went wrong.");
@@ -155,6 +242,10 @@ const cols = [
       status.classList.add("is-error");
       submitBtn.disabled = false;
       submitBtn.textContent = originalLabel;
+    } finally {
+      // Tokens are single-use; get a fresh one before any retry.
+      token = "";
+      if (widgetId !== undefined) turnstileWindow.turnstile?.reset(widgetId);
     }
   });
 </script>
