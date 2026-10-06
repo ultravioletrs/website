@@ -3,37 +3,35 @@
   "name": "uvc-website",
   "main": "./dist/_worker.js/index.js",
   "compatibility_date": "2026-02-24",
-  "compatibility_flags": [
-    "nodejs_compat",
-    "global_fetch_strictly_public"
-  ],
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "observability": {
-    "enabled": true
+    "enabled": true,
   },
   "assets": {
     "directory": "./dist",
-    "binding": "UV_WEBSITE_ASSETS"
+    "binding": "UV_WEBSITE_ASSETS",
   },
   "r2_buckets": [
     {
       "binding": "IMAGES_BUCKET",
-      "bucket_name": "websites-images"
-    }
+      "bucket_name": "websites-images",
+    },
   ],
   "vars": {
-    "TEAM_CONTACT_EMAIL": "info@ultraviolet.rs",
+    "LISTMONK_FROM_EMAIL": "Ultraviolet <info@ultraviolet.rs>",
+    "LISTMONK_LIST_ID": "4",
+    "LISTMONK_LIST_UUID": "5c87fa97-618c-4076-9f57-ea0f1b366029",
+    "LISTMONK_TX_API_USER": "uvc-website-tx",
+    "LISTMONK_URL": "https://mailer.absmach.eu",
+    "LISTMONK_WELCOME_TEMPLATE_ID": "6",
     "MAIL_FROM_EMAIL": "noreply@ultraviolet.rs",
+    "PUBLIC_TURNSTILE_SITEKEY": "0x4AAAAAAFPY9tVrCWIDO0v9",
     "SMTP_HOST": "mail.ultraviolet.rs",
     "SMTP_PORT": "465",
     "SMTP_SECURE": "true",
-    "LISTMONK_URL": "https://mailer.absmach.eu",
-    "LISTMONK_LIST_UUID": "5c87fa97-618c-4076-9f57-ea0f1b366029",
-    "LISTMONK_LIST_ID": "4",
-    "LISTMONK_WELCOME_TEMPLATE_ID": "6",
-    "LISTMONK_FROM_EMAIL": "Ultraviolet <info@ultraviolet.rs>",
-    "LISTMONK_TX_API_USER": "uvc-website-tx",
-    "TURNSTILE_HOSTNAMES": "ultraviolet.rs,www.ultraviolet.rs"
-  }
+    "TEAM_CONTACT_EMAIL": "info@ultraviolet.rs",
+    "TURNSTILE_HOSTNAMES": "ultraviolet.rs,www.ultraviolet.rs",
+  },
   // TURNSTILE_SECRET is also a secret (`wrangler secret put TURNSTILE_SECRET`).
   // LISTMONK_TX_API_TOKEN is a secret: set locally in .dev.vars, and in prod via
   // `wrangler secret put LISTMONK_TX_API_TOKEN`.
