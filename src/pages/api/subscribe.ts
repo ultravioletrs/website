@@ -59,8 +59,6 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return json({ error: message }, subscribeRes.status === 400 ? 400 : 502);
   }
 
-  locals.runtime.ctx.waitUntil(sendWelcomeEmail(email, env));
-
   return json({ ok: true });
 };
 
@@ -117,34 +115,6 @@ async function verifyTurnstile(
   } catch (err) {
     console.error("turnstile verify error", err);
     return false;
-  }
-}
-
-// Best-effort: a failed welcome email shouldn't fail the subscription itself.
-async function sendWelcomeEmail(
-  email: string,
-  env: App.Locals["runtime"]["env"],
-) {
-  try {
-    const res = await fetch(`${env.LISTMONK_URL}/api/tx`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "Basic " +
-          btoa(`${env.LISTMONK_TX_API_USER}:${env.LISTMONK_TX_API_TOKEN}`),
-      },
-      body: JSON.stringify({
-        subscriber_email: email,
-        template_id: Number(env.LISTMONK_WELCOME_TEMPLATE_ID),
-        from_email: env.LISTMONK_FROM_EMAIL,
-      }),
-    });
-    if (!res.ok) {
-      console.error("welcome email failed", res.status, await res.text());
-    }
-  } catch (err) {
-    console.error("welcome email error", err);
   }
 }
 
