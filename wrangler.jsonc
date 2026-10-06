@@ -18,10 +18,11 @@
     },
   ],
   "vars": {
-    "LISTMONK_LIST_ID": "4",
-    "LISTMONK_LIST_UUID": "5c87fa97-618c-4076-9f57-ea0f1b366029",
+    "LISTMONK_FROM_EMAIL": "Ultraviolet <info@ultraviolet.rs>",
+    "LISTMONK_LIST_ID": "7",
     "LISTMONK_TX_API_USER": "uvc-website-tx",
     "LISTMONK_URL": "https://mailer.absmach.eu",
+    "LISTMONK_WELCOME_TEMPLATE_ID": "6",
     "MAIL_FROM_EMAIL": "noreply@ultraviolet.rs",
     "PUBLIC_TURNSTILE_SITEKEY": "0x4AAAAAAFPY9tVrCWIDO0v9",
     "SMTP_HOST": "mail.ultraviolet.rs",
