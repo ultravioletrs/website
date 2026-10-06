@@ -56,9 +56,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
     return json({ error: "Could not reach the subscription service." }, 502);
   }
 
-  // Already subscribed. Treat it as success without revealing that the address
-  // exists, and don't send another welcome email to it.
+  // The address already exists in listmonk (e.g. on another list), so add it
+  // to ours. The welcome email only goes to addresses that were never on it.
   if (subscribeRes.status === 409) {
+    const result = await addExistingToList(email, env);
+    if (result === "failed") {
+      return json({ error: "Could not subscribe right now." }, 502);
+    }
+    if (result === "added") {
+      locals.runtime.ctx.waitUntil(sendWelcomeEmail(email, env));
+    }
     return json({ ok: true });
   }
 
@@ -78,6 +85,78 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   return json({ ok: true });
 };
+
+function listmonkAuth(env: App.Locals["runtime"]["env"]) {
+  return (
+    "Basic " + btoa(`${env.LISTMONK_TX_API_USER}:${env.LISTMONK_TX_API_TOKEN}`)
+  );
+}
+
+// "added": newly on our list. "already": subscribed (or blocklisted), nothing
+// to do. "resubscribed": had unsubscribed earlier, put back without a welcome.
+// Search only returns subscribers on lists this API user can see, so an
+// address that exists only on unrelated lists comes back as "failed".
+async function addExistingToList(
+  email: string,
+  env: App.Locals["runtime"]["env"],
+): Promise<"added" | "already" | "resubscribed" | "failed"> {
+  const listId = Number(env.LISTMONK_LIST_ID);
+  try {
+    const searchRes = await fetch(
+      `${env.LISTMONK_URL}/api/subscribers?search=${encodeURIComponent(email)}`,
+      { headers: { Authorization: listmonkAuth(env) } },
+    );
+    if (!searchRes.ok) {
+      console.error("subscriber search failed", searchRes.status);
+      return "failed";
+    }
+    const data = (await searchRes.json()) as {
+      data?: {
+        results?: {
+          id: number;
+          email: string;
+          status: string;
+          lists?: { id: number; subscription_status: string }[];
+        }[];
+      };
+    };
+    const match = data.data?.results?.find(
+      (r) => r.email.toLowerCase() === email.toLowerCase(),
+    );
+    if (!match) {
+      console.error("existing subscriber not visible to API user");
+      return "failed";
+    }
+    if (match.status === "blocklisted") return "already";
+
+    const onList = match.lists?.find((l) => l.id === listId);
+    if (onList && onList.subscription_status !== "unsubscribed") {
+      return "already";
+    }
+
+    const addRes = await fetch(`${env.LISTMONK_URL}/api/subscribers/lists`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: listmonkAuth(env),
+      },
+      body: JSON.stringify({
+        ids: [match.id],
+        action: "add",
+        target_list_ids: [listId],
+        status: "confirmed",
+      }),
+    });
+    if (!addRes.ok) {
+      console.error("add to list failed", addRes.status, await addRes.text());
+      return "failed";
+    }
+    return onList ? "resubscribed" : "added";
+  } catch (err) {
+    console.error("add existing subscriber error", err);
+    return "failed";
+  }
+}
 
 // Fails closed: any error, missing config, wrong action or unexpected hostname
 // rejects the request. Tokens are single-use, so a replay also fails here.
